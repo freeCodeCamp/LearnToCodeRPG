@@ -4,6 +4,10 @@
 ## them. Lines beginning with a single '#' mark are commented-out code, and you
 ## may want to uncomment them when appropriate.
 
+## Custimization
+
+# show non-selectable options as well
+define config.menu_include_disabled = True
 
 ## Basics ######################################################################
 
