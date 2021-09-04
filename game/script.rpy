@@ -7,6 +7,8 @@
             player_name = "Lydia"
         persistent.player_name = player_name
 
+        # calendar system
+        day = 1
         # stats system
         player_stats = {
         'Sanity': 100,
@@ -27,24 +29,33 @@
             xpadding 30
             ypadding 30
 
-            hbox:
-                spacing 40
-                # left column
-                vbox:
+            vbox:
+                spacing 20
+                # calendar
+                hbox:
                     spacing 10
-                    for stats_name in player_stats_names:
-                        # if None, not yet initialized/unlocked
-                        if player_stats[stats_name] is not None:
-                            text stats_name color gui.accent_color
-                # right column
-                vbox:
-                    spacing 10
-                    for stats_name in player_stats_names:
-                        # if None, not yet initialized/unlocked
-                        if player_stats[stats_name] is not None:
-                            text str(player_stats[stats_name])
+                    text 'Day' color gui.accent_color font gui.interface_text_font size gui.name_text_size bold True
+                    text str(day) font gui.interface_text_font size gui.name_text_size bold True
+
+                hbox:
+                    spacing 40
+                    # left column
+                    vbox:
+                        spacing 10
+                        for stats_name in player_stats_names:
+                            # if None, not yet initialized/unlocked
+                            if player_stats[stats_name] is not None:
+                                text stats_name color gui.accent_color
+                    # right column
+                    vbox:
+                        spacing 10
+                        for stats_name in player_stats_names:
+                            # if None, not yet initialized/unlocked
+                            if player_stats[stats_name] is not None:
+                                text str(player_stats[stats_name])
 
 label stage1_intro:
+    play music "audio/bgm/bgm_loop.wav" fadein 1.0
     show screen player_stats
     # Stage 2. player's decision to learn to code
     scene bg kid_home with dissolve
@@ -61,17 +72,28 @@ label stage1_intro:
     mc "Let's see, what should we learn first? Python? JavaScript? Web Dev?"
     mc "Oh here's a video about the top 10 tech skills worth learning in 2021. Let's check that out!"
 
+    # player starts learning to code, so we initialize CS knowledge to 0
     $ player_stats['CS Knowledge'] = 0
     mc "So Java and JavaScript are different things? Wait, which one is for web dev again?"
     $ player_stats['CS Knowledge'] += 1
+    $ player_stats['Sanity'] -= 1
+    play sound sfx_stats_change
     mc "And there are print statements and print() functions. Which is for Python 2 and which is for Python 3? I remember one video saying that Python 2 is outdated but does that mean that I don't have to learn it?"
     $ player_stats['CS Knowledge'] += 1
+    $ player_stats['Sanity'] -= 1
+    play sound sfx_stats_change
     mc "Maybe I shouldn't bother with learning Python 3 even. Someone may just decide that Python 3 is too old-fashioned before I even get a chance to learn it."
     $ player_stats['CS Knowledge'] += 1
+    $ player_stats['Sanity'] -= 1
+    play sound sfx_stats_change
     mc "Java doesn't sound like a good idea either. People are so hyped about Kotlin."
     $ player_stats['CS Knowledge'] += 1
+    $ player_stats['Sanity'] -= 1
+    play sound sfx_stats_change
     mc "JavaScript? TypeScript?"
     $ player_stats['CS Knowledge'] += 1
+    $ player_stats['Sanity'] -= 1
+    play sound sfx_stats_change
     mc "Maybe I can find a job posting I like and start learning their required skills."
     mc "But what is front-end, back-end, or full-stack? What are the differences?"
     mc "DevOps?"
@@ -82,6 +104,8 @@ label stage1_intro:
 
     # hard-reset player's CS knowledge :)
     $ player_stats['CS Knowledge'] = 0
+    $ player_stats['Sanity'] = 90
+    play sound sfx_stats_change
     mc "The kid I'm tutoring is cutting down our sessions for his coding classes. Ugh. I still need to pay the bills. Let's see if the coffee shop next door is hiring."
 
 label stage3_annika:
@@ -93,12 +117,12 @@ label stage3_annika:
     # scene gray90 with dissolve
     # with Pause(1)
     
+    $ day += 1
     scene bg bedroom day with dissolve
     mc "My phone is beeping."
     mc "Who's calling me at this hour?"
 
     show annika
-
     annika "[persistent.player_name]! How have you been?"
     mc "Good. Just new grad blues. You?"
 

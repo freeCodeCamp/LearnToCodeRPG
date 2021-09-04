@@ -48,3 +48,6 @@ init:
             attribute confused null
 
         attribute_function Picker(expressions)
+
+    # audio files
+    define sfx_stats_change = 'audio/sfx/stats_change.ogg'

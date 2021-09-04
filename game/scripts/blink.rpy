@@ -27,9 +27,9 @@ init python:
 
                     # time to swap to normal
 
-                    self.blink_st = st + 2.0 + ( renpy.python.rng.random() * 5.0 )
-
-                    # renpy.notify("Next: {}".format(self.blink_st))
+                    # XXX: renpy.python.rng.random() is too CPU-heavy
+                    # self.blink_st = st + 2.0 + ( renpy.python.rng.random() * 5.0 )
+                    self.blink_st = st + 2.0
 
                     self.current_image = args[0]
 
