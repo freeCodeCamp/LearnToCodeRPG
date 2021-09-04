@@ -1,14 +1,4 @@
-﻿define mc = Character("[persistent.player_name]")
-define annika = Character("Annika")
-define ryan = Character("Ryan")
-define becca = Character("Becca")
-
-# minor characters
-define kid = Character("Kid")
-
-# The game starts here.
-
-label start:
+﻿label start:
     python:
         player_name = renpy.input("What's your name? (Type something and hit Enter)")
         player_name = player_name.strip()
@@ -16,6 +6,7 @@ label start:
             player_name = "Lydia"
         persistent.player_name = player_name
 
+label stage1_intro:
     # Stage 2. MC's decision to learn to code
     scene bg kid_home with dissolve
     mc "Okay, so that's it for today's session. I'll see you next week."
@@ -44,21 +35,30 @@ label start:
     mc "There might be people who are cut out to do this, but definitely not me."
     mc "The kid I'm tutoring is cutting down our sessions for his coding classes. Ugh. I still need to pay the bills. Let's see if the coffee shop next door is hiring."
 
+label stage3_annika:
     # Stage 3. Annika
     scene bg bedroom day with dissolve
+    show annika
+
     annika "[persistent.player_name]! How have you been?"
     mc "Good. Just new grad blues. You?"
+
+    show annika happy
     annika "Great! Well, I'm really excited. I just got a job!"
     annika "And, like, it's not just any job! It's a web development job!"
     annika "I get paid for building cool websites for others. Doesn't that sound great?"
     mc "Yeah. Wow. Congrats!"
     annika "Thanks!"
     mc "How hard was it for you? I also tried to learn to code for some time but it got too hard and I quit."
+
+    show annika confused
     annika "I'm sorry to hear that but you should give coding another try!"
     annika "Hey, hear me out."
     annika "It wasn't like easy peasy for me either. Like neither of us majored in CS. The CS kids have a way easier time getting a tech job."
     mc "You did take some CS electives in school, no?"
     annika "Yeah but they are pretty rusty. And honestly, what you learn in school is so much different from real-world software engineering."
+
+    show annika neutral
     annika "I mean, in school you learn about theories and stuff. Like I did take a Web Dev 101 back in school but we never built an entire website from scratch."
     annika "I never gave web design a second thought after the final exam."
     annika "I've been self-studying all these months with the help of some awesome free resources. I even built a pet adoption website for a side project and that's when I applied everything I learned about user experience, data models, and so on."
@@ -77,8 +77,11 @@ label start:
     mc "Thanks Annika. I know I can count on you."
     mc "Best of luck with your new job by the way! Let me know how it goes."
 
+label stage7_ryan:
     # Stage 7. Ryan
     scene bg desk with dissolve
+    show ryan
+
     ryan "Hi [persistent.player_name]. I'm Ryan. I'm a senior engineer at Colordeck."
     mc "Hi Ryan. Nice to meet you! I'm [persistent.player_name], a recent grad and developer wannabe."
     ryan "That sounds good."
@@ -135,6 +138,7 @@ label start:
                 mc "I'm done asking! That's all I want to know. Thanks so much for sharing!"
                 ryan "Anytime, [persistent.player_name]. Have fun coding and keep me updated on your progress!"
 
+label stage8_interviews:
     # Stage 8. Coding interviews
     scene bg bedroom night with dissolve
     mc "I read that technical jobs ask candidates to complete coding interviews."
@@ -166,8 +170,10 @@ label start:
     mc "How come I have no idea what these questions are trying to get at?"
     mc "They do look similar to some questions I saw on LeetCode, but I still have zero clue."
 
+label stage14_becca:
     # Stage 14. New hire MC
     scene bg office with dissolve
+    show becca
     becca "Hey [persistent.player_name]. I'm Becca. I'm your onboarding buddy. Feel free to ask me anything."
     mc "Hi Becca. Nice to meet you."
     mc "... Um..."
