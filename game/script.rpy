@@ -1,4 +1,5 @@
 ﻿label start:
+    # initialize variables
     python:
         player_name = renpy.input("What's your name? (Type something and hit Enter)")
         player_name = player_name.strip()
@@ -6,26 +7,71 @@
             player_name = "Lydia"
         persistent.player_name = player_name
 
+        # stats system
+        player_stats = {
+        'Sanity': 100,
+        'CS Knowledge': None,
+        'Interview Skills': None,
+        'Dev Skills': None,
+        }
+        # to loop over the dictionary deterministically
+        player_stats_names = list(player_stats.keys())
+
+    screen player_stats():
+        ## Ensure this appears on top of other screens.
+        zorder 100
+        frame:
+            # top left of screen
+            xalign 0
+            yalign 1
+            xpadding 30
+            ypadding 30
+
+            hbox:
+                spacing 40
+                # left column
+                vbox:
+                    spacing 10
+                    for stats_name in player_stats_names:
+                        # if None, not yet initialized/unlocked
+                        if player_stats[stats_name] is not None:
+                            text stats_name color gui.accent_color
+                # right column
+                vbox:
+                    spacing 10
+                    for stats_name in player_stats_names:
+                        # if None, not yet initialized/unlocked
+                        if player_stats[stats_name] is not None:
+                            text str(player_stats[stats_name])
+
 label stage1_intro:
-    # Stage 2. MC's decision to learn to code
+    show screen player_stats
+    # Stage 2. player's decision to learn to code
     scene bg kid_home with dissolve
     mc "Okay, so that's it for today's session. I'll see you next week."
     kid "Oh sorry, can we do the week after next? I just heard about a new class that teaches you how to code and build robots and I need to check that out next week."
     mc "Sure, no problem. See you then."
 
     scene bg bedroom night with dissolve
-    mc "It's crazy how everyone these days is learning to code. High schoolers even."
+    mc "It's crazy how everyone these days is learning to code. High school students even."
     mc "Six months then a six-figure job? That's even crazier."
     mc "Hmm, but I can see the appeal in that."
     mc "Maybe I can learn to code as well."
-    mc "These bootcamps are expensive. Maybe I can go with free online resources first."
+    mc "These bootcamp programs are expensive. Maybe I can go with free online resources first."
     mc "Let's see, what should we learn first? Python? JavaScript? Web Dev?"
     mc "Oh here's a video about the top 10 tech skills worth learning in 2021. Let's check that out!"
+
+    $ player_stats['CS Knowledge'] = 0
     mc "So Java and JavaScript are different things? Wait, which one is for web dev again?"
+    $ player_stats['CS Knowledge'] += 1
     mc "And there are print statements and print() functions. Which is for Python 2 and which is for Python 3? I remember one video saying that Python 2 is outdated but does that mean that I don't have to learn it?"
+    $ player_stats['CS Knowledge'] += 1
     mc "Maybe I shouldn't bother with learning Python 3 even. Someone may just decide that Python 3 is too old-fashioned before I even get a chance to learn it."
+    $ player_stats['CS Knowledge'] += 1
     mc "Java doesn't sound like a good idea either. People are so hyped about Kotlin."
+    $ player_stats['CS Knowledge'] += 1
     mc "JavaScript? TypeScript?"
+    $ player_stats['CS Knowledge'] += 1
     mc "Maybe I can find a job posting I like and start learning their required skills."
     mc "But what is front-end, back-end, or full-stack? What are the differences?"
     mc "DevOps?"
@@ -33,11 +79,24 @@ label stage1_intro:
     mc "Ugh. This is so frustrating."
     mc "Learn to code? Haha. I know it can't be that easy."
     mc "There might be people who are cut out to do this, but definitely not me."
+
+    # hard-reset player's CS knowledge :)
+    $ player_stats['CS Knowledge'] = 0
     mc "The kid I'm tutoring is cutting down our sessions for his coding classes. Ugh. I still need to pay the bills. Let's see if the coffee shop next door is hiring."
 
 label stage3_annika:
     # Stage 3. Annika
+
+    # scene gray90 with Pause(1)
+    # show text "{size=48}{color=#fff}{i}Annika{i}{/color}{/size}" with dissolve
+    # with Pause(2)
+    # scene gray90 with dissolve
+    # with Pause(1)
+    
     scene bg bedroom day with dissolve
+    mc "My phone is beeping."
+    mc "Who's calling me at this hour?"
+
     show annika
 
     annika "[persistent.player_name]! How have you been?"
@@ -171,7 +230,7 @@ label stage8_interviews:
     mc "They do look similar to some questions I saw on LeetCode, but I still have zero clue."
 
 label stage14_becca:
-    # Stage 14. New hire MC
+    # Stage 14. New hire player
     scene bg office with dissolve
     show becca
     becca "Hey [persistent.player_name]. I'm Becca. I'm your onboarding buddy. Feel free to ask me anything."
