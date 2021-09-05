@@ -8,7 +8,7 @@
         persistent.player_name = player_name
 
         # calendar system
-        day = 1
+        day_counter = 1
         # stats system
         player_stats = {
         'Sanity': 100,
@@ -35,7 +35,7 @@
                 hbox:
                     spacing 10
                     text 'Day' color gui.accent_color font gui.interface_text_font size gui.name_text_size bold True
-                    text str(day) font gui.interface_text_font size gui.name_text_size bold True
+                    text str(day_counter) font gui.interface_text_font size gui.name_text_size bold True
 
                 hbox:
                     spacing 40
@@ -55,16 +55,18 @@
                                 text str(player_stats[stats_name])
 
 label stage1_intro:
-    play music "audio/bgm/bgm_loop.wav" fadein 1.0
+    play music "audio/bgm/bgm_loop.wav" fadein 1.0 volume 0.5
     show screen player_stats
     # Stage 1. player background
     scene bg kid_home with dissolve
     player "Okay, so that's it for today's session."
-    player "(I still can't believe I'm working this gig tutoring high school kids.)"
+    kid "Uhh okay, so that's what trigonometry is about?"
+    player confused "(I still can't believe I'm working this gig tutoring high school kids.)"
     player "(I just graduated from college but it's so hard to get a serious full-time job.)"
     player "(I did apply to some consulting firms and banks. And I've heard back from None.)"
     player "(It's not like I don't enjoy tutoring kids. I actually enjoy explaining concepts to others. I just need a full-time job that is more intellectually fulfilling.)"
     player "(Better yet if it pays better.)"
+    player neutral "Yep. That's the basics of trigonometry."
     player "Do you have any more questions before we wrap up?"
     kid "Nope! I think my project report is good to go. Thanks!"
     player "Good. I'll see you next week."
@@ -76,13 +78,15 @@ label stage2_start:
     # Stage 2. player's decision to learn to code
     # player returns home
     scene bg bedroom night with dissolve
-    player "It's crazy how everyone these days is learning to code. High school students even."
+    player confused "It's crazy how everyone these days is learning to code. High school students even."
     player "Six months then a {bt}six-figure{/bt} job? That's even crazier."
     player "Hmm, but I can see the appeal in that."
-    player "Maybe I can learn to code as well."
-    player "These bootcamp programs are expensive. Maybe I can go with free online resources first."
-    player "Let's see, what should we learn first? Python? JavaScript? Web Dev?"
-    player "Oh here's a video about the top 10 tech skills worth learning in 2021. Let's check that out!"
+    player awe "Maybe I can learn to code as well."
+    player neutral "A bit of research won't hurt. Where shall we start? Maybe a coding bootcamp?"
+    player distress "These bootcamp programs are expensive."
+    player "Maybe I can go with free online resources first."
+    player neutral "Let's see, what should we learn first? Python? JavaScript? Web Dev?"
+    player awe "Oh here's a video about the top 10 tech skills worth learning in 2021. Let's check that out!"
 
     # player starts learning to code, so we initialize CS knowledge to 0
     $ player_stats['CS Knowledge'] = 0
@@ -90,7 +94,7 @@ label stage2_start:
     $ player_stats['CS Knowledge'] += 1
     $ player_stats['Sanity'] -= 1
     play sound sfx_stats_change
-    player "And there are print statements and print() functions. Which is for Python 2 and which is for Python 3? I remember one video saying that Python 2 is outdated but does that mean that I don't have to learn it?"
+    player confused "And there are print statements and print() functions. Which is for Python 2 and which is for Python 3? I remember one video saying that Python 2 is outdated but does that mean that I don't have to learn it?"
     $ player_stats['CS Knowledge'] += 1
     $ player_stats['Sanity'] -= 1
     play sound sfx_stats_change
@@ -102,7 +106,7 @@ label stage2_start:
     $ player_stats['CS Knowledge'] += 1
     $ player_stats['Sanity'] -= 1
     play sound sfx_stats_change
-    player "JavaScript? TypeScript?"
+    player distress "JavaScript? TypeScript?"
     $ player_stats['CS Knowledge'] += 1
     $ player_stats['Sanity'] -= 1
     play sound sfx_stats_change
@@ -111,14 +115,16 @@ label stage2_start:
     player "DevOps?"
     player "Why is this company using their pet coding language that nobody else uses?"
 
-    player "Ugh. This is so frustrating."
+    player cry "Ugh. This is so frustrating."
     # hard-reset player's CS knowledge :)
     $ player_stats['CS Knowledge'] = 0
     $ player_stats['Sanity'] = 90
     play sound sfx_stats_change
-    player "Learn to code? Haha. I know it can't be that easy."
+    player confused "Learn to code? Haha. I know it can't be that easy."
     player "There might be people who are cut out to do this, but definitely not me."
-    player "The kid I'm tutoring is cutting down our sessions for his coding classes."
+    player "I guess I better call it a day and go to bed."
+
+    player "What can I do if the kid I'm tutoring cuts down our sessions for his coding classes?"
     player "Ugh. I still need to pay the bills. Let's see if the coffee shop next door is hiring."
 
 label stage3_annika:
@@ -130,22 +136,24 @@ label stage3_annika:
     # scene gray90 with dissolve
     # with Pause(1)
 
-    $ day += 1
+    play sound "<to 2.0>audio/sfx/phone_ring.wav"
+    $ day_counter += 1
     scene bg bedroom day with fade
-    player "My phone is beeping."
-    player "Who's calling me at this hour?"
+    player confused "Here goes my phone at this early hour."
+    play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
+    player "Do I merit a personal rejection call from the neighborhood coffee shop?"
 
     show annika
     annika "[persistent.player_name]! How have you been?"
-    player "Good. Just new grad blues. You?"
+    player happy "Good. Just new grad blues. You?"
 
     show annika happy
     annika "Great! Well, I'm really excited. I just got a job!"
     annika "And, like, it's not just any job! It's a web development job!"
     annika "I get paid for building cool websites for others. Doesn't that sound great?"
-    player "Yeah. Wow. Congrats!"
+    player laugh "Yeah. Wow. Congrats!"
     annika "Thanks!"
-    player "How hard was it for you? I also tried to learn to code for some time but it got too hard and I quit."
+    player happy "How hard was it for you? I also tried to learn to code for some time but it got too hard and I quit."
 
     show annika confused
     annika "I'm sorry to hear that but you should give coding another try!"
@@ -164,13 +172,15 @@ label stage3_annika:
     player "That must be really cool. I wish I could be like you."
     annika "You totally can! Did I give you the link to the {bt}awesome resource{/bt} that I've been using?"
     annika "It's called [freeCodeCamp]. Check that out!"
-    player "Thanks. I will."
+    player laugh "Thanks. I will."
 
     $ day += 3
     scene bg bedroom day with fade
-    player "Hey Annika. So I've been checking out [freeCodeCamp] as you suggested."
+    show annika neutral
+    player happy "Hey Annika. So I've been checking out [freeCodeCamp] as you suggested."
     player "I think its curriculum looks solid."
-    player "It's honest hard work, though. And I'm not sure if I can make it through on my own... What if I run into something that I can't understand? What if there is an issue I can't solve? What if it gets too hard again and I lose my motivation?"
+    player confused "It's honest hard work, though. And I'm not sure if I can make it through on my own... What if I run into something that I can't understand? What if there is an issue I can't solve? What if it gets too hard again and I lose my motivation?"
+    show annika happy
     annika "That's totally okay! In fact, what I love about [freeCodeCamp] is that they have an entire community that can help you out and cheer you on."
     annika "And I can be your go-to accountability buddy as well! Ping me anytime if anything comes up."
     player "Thanks Annika. I know I can count on you."
