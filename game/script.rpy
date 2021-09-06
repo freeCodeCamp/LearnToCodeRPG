@@ -1,5 +1,8 @@
 ﻿label start:
-    # initialize variables
+    "Hi there! You are about to embark on an adventure where you learn to code and become an engineer."
+    "Hope you are excited :) Why don't you start by telling us a bit about your self?"
+    # TODO: more customization on top of the name
+ 
     python:
         player_name = renpy.input("What's your name? (Type something and hit Enter)")
         player_name = player_name.strip()
@@ -7,6 +10,7 @@
             player_name = "Lydia"
         persistent.player_name = player_name
 
+        # initialize variables
         # calendar system
         day_counter = 1
         # stats system
@@ -61,12 +65,14 @@ label stage1_intro:
     scene bg kid_home with dissolve
     player "Okay, so that's it for today's session."
     kid "Uhh okay, so that's what trigonometry is about?"
+    player "Yep. That's the basics of trigonometry."
     player confused "(I still can't believe I'm working this gig tutoring high school kids.)"
     player "(I just graduated from college but it's so hard to get a serious full-time job.)"
     player "(I did apply to some consulting firms and banks. And I've heard back from None.)"
     player "(It's not like I don't enjoy tutoring kids. I actually enjoy explaining concepts to others. I just need a full-time job that is more intellectually fulfilling.)"
     player "(Better yet if it pays better.)"
-    player neutral "Yep. That's the basics of trigonometry."
+    kid "Hey [persistent.player_name]?"
+    player neutral "Oh. I just spaced out for a bit."
     player "Do you have any more questions before we wrap up?"
     kid "Nope! I think my project report is good to go. Thanks!"
     player "Good. I'll see you next week."
@@ -79,7 +85,7 @@ label stage2_start:
     # player returns home
     scene bg bedroom night with dissolve
     player confused "It's crazy how everyone these days is learning to code. High school students even."
-    player "Six months then a {bt}six-figure{/bt} job? That's even crazier."
+    player "Six months then a six-figure job? That's even crazier."
     player "Hmm, but I can see the appeal in that."
     player awe "Maybe I can learn to code as well."
     player neutral "A bit of research won't hurt. Where shall we start? Maybe a coding bootcamp?"
@@ -90,7 +96,7 @@ label stage2_start:
 
     # player starts learning to code, so we initialize CS knowledge to 0
     $ player_stats['CS Knowledge'] = 0
-    player "So Java and JavaScript are different things? Wait, which one is for web dev again?"
+    player "So Java and JavaScript are different languages? Wait, which one is for web dev again?"
     $ player_stats['CS Knowledge'] += 1
     $ player_stats['Sanity'] -= 1
     play sound sfx_stats_change
@@ -123,7 +129,7 @@ label stage2_start:
     player confused "Learn to code? Haha. I know it can't be that easy."
     player "There might be people who are cut out to do this, but definitely not me."
     player "I guess I better call it a day and go to bed."
-
+    player "But it's hard to fall asleep with all these thoughts floating around in my head."
     player "What can I do if the kid I'm tutoring cuts down our sessions for his coding classes?"
     player "Ugh. I still need to pay the bills. Let's see if the coffee shop next door is hiring."
 
@@ -136,24 +142,28 @@ label stage3_annika:
     # scene gray90 with dissolve
     # with Pause(1)
 
-    play sound "<to 2.0>audio/sfx/phone_ring.wav"
     $ day_counter += 1
     scene bg bedroom day with fade
+    play sound "<to 2.0>audio/sfx/phone_ring.wav"
     player confused "Here goes my phone at this early hour."
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
     player "Do I merit a personal rejection call from the neighborhood coffee shop?"
 
     show annika
     annika "[persistent.player_name]! How have you been?"
-    player happy "Good. Just new grad blues. You?"
+    player happy "Annika! Geez. When was the last time you called me? When we were moving out after graduation?"
+    player laugh "Anyways, it's really nice to hear from you again!"
+    player netural "I've been okay. Just new grad blues. You?"
 
     show annika happy
-    annika "Great! Well, I'm really excited. I just got a job!"
+    annika "Things are going pretty well for me! I just got my job offer!"
     annika "And, like, it's not just any job! It's a web development job!"
-    annika "I get paid for building cool websites for others. Doesn't that sound great?"
-    player laugh "Yeah. Wow. Congrats!"
+    annika "Can you believe it? I get paid generously for building cool websites."
+    annika "It's almost like getting paid for being creative and doing art!"
+    player laugh "Yeah. Wow. {bt}Congrats!{/bt}"
     annika "Thanks!"
-    player happy "How hard was it for you? I also tried to learn to code for some time but it got too hard and I quit."
+    player netural "Hey, if I may ask, how hard was it for you to learn to develop websites?"
+    player confused "I also tried to learn to code for some time but it got too hard and I quit."
 
     show annika confused
     annika "I'm sorry to hear that but you should give coding another try!"
@@ -167,6 +177,9 @@ label stage3_annika:
     annika "I never gave web design a second thought after the final exam."
     annika "I've been self-studying all these months with the help of some awesome free resources. I even built a pet adoption website for a side project and that's when I applied everything I learned about user experience, data models, and so on."
     annika "And there was this bug that I had no idea how to fix until..."
+    annika "..."
+
+    show annika happy
     annika "Oh sorry I've been talking all the time. I must have bored you with this tech talk stuff."
     player "No worries. It does look like you are doing something you enjoy!"
     player "That must be really cool. I wish I could be like you."
@@ -174,23 +187,151 @@ label stage3_annika:
     annika "It's called [freeCodeCamp]. Check that out!"
     player laugh "Thanks. I will."
 
-    $ day += 3
+    $ day_counter += 3
     scene bg bedroom day with fade
     show annika neutral
     player happy "Hey Annika. So I've been checking out [freeCodeCamp] as you suggested."
-    player "I think its curriculum looks solid."
-    player confused "It's honest hard work, though. And I'm not sure if I can make it through on my own... What if I run into something that I can't understand? What if there is an issue I can't solve? What if it gets too hard again and I lose my motivation?"
+    player "I think its curriculum looks solid and I'd love to give it a try."
+    player confused "It's honest hard work, though. And I'm not sure if I can make it through on my own..."
+    player "What if I run into something that I can't understand? What if there is an issue I can't solve?"
+    player "What if it gets too hard again and I lose my motivation?"
     show annika happy
     annika "That's totally okay! In fact, what I love about [freeCodeCamp] is that they have an entire community that can help you out and cheer you on."
     annika "And I can be your go-to accountability buddy as well! Ping me anytime if anything comes up."
-    player "Thanks Annika. I know I can count on you."
-    player "Best of luck with your new job by the way! Let me know how it goes."
+    player happy "Thanks Annika. I know I can count on you."
+    player laugh "Best of luck with your new job by the way! Let me know how it goes."
 
 label stage6_trials:
     # Stage 4, 5, 6. Trials
+    scene bg bedroom day with fade
+    player "Okay, let's sit down to actually learn something."
+    player "I'll start with the video lessons and then answer their multiple choice questions to check my understanding."
+    call study_menu_choices
+    jump end_of_day_script
+
+    show annika
+    annika "Hey [persistent.player_name]! How did studying go?"
+    player "Hey Annika!"
+    player "I felt pretty productive today. It's nice how the curriculum gives you end-of-chapter tests for frequent feedback."
+    player "How was work?"
+    annika "It went well! I'm learning to use the custom framework that my company uses."
+    player "That sounds like fun!"
+    annika "It is pretty fun. I've heard about that tech stack from my friends at Hacker Space but I've never tried it."
+    player "What is this Hacker Space you are talking about?"
+    annika "It's just a casual meetup place for people interested in tech."
+    annika "I highly recommend checking it out if you have time!"
+    player "Hmmm..."
+    annika "Haha don't worry. I know what you must be thinking about. It's not like nerds hanging out playing board games."
+    annika "It's a chill space for people to gather, work, and build cool projects."
+    player "That sounds nice. I will check it out."
+    annika "Yay! And we should go together some time if you enjoy it!"
+
+    jump end_of_day_script
+
+label study_menu_choices:
+    # correct choices increments CS knowledge
+    # TODO: refactor using menu arguments
+    menu:
+        "Which of the following is the binary representation of 10?"
+
+        "1010": # correct answer
+            $ player_stats['CS Knowledge'] += 1
+            play sound sfx_stats_change
+            player "Correct!"
+
+        "0101":
+            player "Wrong..."
+
+        "1001":
+            player "Wrong..."
+
+        "0100":
+            player "Wrong..."
+    return
+
+label day_activity_choices:
+    $ day_counter += 1
+    scene bg bedroom day with fade
+
+    player "A new day!"
+    player "Okay, so what shall we do for the day?"
+
+label study_menu:
+    menu:
+        "Study CS fundamentals":
+            player "Let's crunch some more code."
+            call study_menu_choices
+            jump end_of_day_script
+        "Take a walk":
+            player "Let's head out to the park."
+            call choice_walk
+            jump end_of_day_script
+        "Work gig as a barista":
+            player "I can do some shifts to cover my bills."
+            call barista
+            jump end_of_day_script
+        "Hang out at Hacker Space":
+            call hacker_space
+            jump end_of_day_script
+        "Work on open-source projects":
+            player "Annika mentioned that contributing to open-source project is a good way to learn."
+            
+            if player_stats['CS Knowledge'] > 3: # can proceed
+                player "Let's see, what are the newest Pull Requests?"
+                call open_source
+                jump end_of_day_script
+            else:
+                player "Ehhh... I don't think my technical skills are solid enough for open-source projects yet. Maybe we can learn Git first?"
+                call study_menu # re-enter choice screen
+
+label open_source:
+    scene bg laptop_screen
+    player "Hmm... I don't know how to solve this but I can re-assign it to the original author."
+    player "It's cool how people volunteer their time and energy to make software accessible."
+    $ player_stats['CS Knowledge'] += 1
+    play sound sfx_stats_change
+    return
+
+label hacker_space:
+    scene bg hacker_space
+    player "Let's check out what cool projects people are working on."
+    $ player_stats['CS Knowledge'] += 1
+    play sound sfx_stats_change
+    return
+
+label barista:
+    scene bg cafe
+    player "Here's your matcha latte. Enjoy your day!"
+    player "Hmm... There are a group of kids in the back with their computers."
+    kid "So I have this hackathon idea..."
+    player "I don't mean to eavesdrop, but did they mention a hackathon?"
+    player "Geez, kids these days are intense."
+    player "But a hackathon? That sounds cool. I should give it a try when I know more about coding."
+    return
+
+label choice_walk:
+    scene bg park
+    player happy "It always soothe my nerves to take a walk in the park."
+    player "I almost feel like it restores my sanity."
+    $ player_stats['Sanity'] += 10
+    return
+
+label end_of_day_script:
+    scene bg bedroom night with dissolve
+    player "Phew... That was a long day."
+
+    if player_stats['CS Knowledge'] > 5 and day_counter > 8:
+        jump stage7_ryan
+    else:
+        jump day_activity_choices # a new day
 
 label stage7_ryan:
     # Stage 7. Ryan
+    scene bg bedroom day with fade
+    player "So I found this person's profile online. He taught himself to code with [freeCodeCamp]."
+    player "He is now a senior software engineer and has decided to give back to the community."
+    player "He said I can ask him anything so let's give it a shot."
+
     scene bg desk with dissolve
     show ryan
 
