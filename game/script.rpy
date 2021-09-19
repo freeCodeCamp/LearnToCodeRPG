@@ -1,7 +1,7 @@
 ﻿label start:
     "Hi there! You are about to embark on an adventure where you learn to code and become an engineer."
     "Hope you are excited :) Why don't you start by telling us a bit about your self?"
-    # TODO: more customization on top of the name
+    # TODO: more customization like gender, pronouns, life story
  
     python:
         player_name = renpy.input("What's your name? (Type something and hit Enter)")
@@ -59,7 +59,7 @@
                                 text str(player_stats[stats_name])
 
 label stage1_intro:
-    play music "audio/bgm/bgm_loop.wav" fadein 1.0 volume 0.5
+    # play music "audio/bgm/bgm_loop.wav" fadein 1.0 volume 0.5
     show screen player_stats
     # Stage 1. player background
     scene bg kid_home with dissolve
@@ -206,7 +206,7 @@ label stage6_trials:
     scene bg bedroom day with fade
     player "Okay, let's sit down to actually learn something."
     player "I'll start with the video lessons and then answer their multiple choice questions to check my understanding."
-    call study_menu_choices
+    call study_menu_choices from _call_study_menu_choices
     jump end_of_day_script
 
     show annika
@@ -260,29 +260,29 @@ label study_menu:
     menu:
         "Study CS fundamentals":
             player "Let's crunch some more code."
-            call study_menu_choices
+            call study_menu_choices from _call_study_menu_choices_1
             jump end_of_day_script
         "Take a walk":
             player "Let's head out to the park."
-            call choice_walk
+            call choice_walk from _call_choice_walk
             jump end_of_day_script
         "Work gig as a barista":
             player "I can do some shifts to cover my bills."
-            call barista
+            call barista from _call_barista
             jump end_of_day_script
         "Hang out at Hacker Space":
-            call hacker_space
+            call hacker_space from _call_hacker_space
             jump end_of_day_script
         "Work on open-source projects":
             player "Annika mentioned that contributing to open-source project is a good way to learn."
             
             if player_stats['CS Knowledge'] > 3: # can proceed
                 player "Let's see, what are the newest Pull Requests?"
-                call open_source
+                call open_source from _call_open_source
                 jump end_of_day_script
             else:
                 player "Ehhh... I don't think my technical skills are solid enough for open-source projects yet. Maybe we can learn Git first?"
-                call study_menu # re-enter choice screen
+                call study_menu from _call_study_menu # re-enter choice screen
 
 label open_source:
     scene bg laptop_screen
