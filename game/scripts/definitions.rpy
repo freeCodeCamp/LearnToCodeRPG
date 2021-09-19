@@ -15,7 +15,7 @@ init python:
 init:
     # major characters
     define player = Character("[persistent.player_name]", image="player")
-    define annika = Character("Annika")
+    define annika = Character("Annika", image="annika")
     define ryan = Character("Ryan")
     define becca = Character("Becca")
 
@@ -86,9 +86,6 @@ init:
             attribute confused null
 
         attribute_function Picker(expressions)
-
-    # audio files
-    define sfx_stats_change = 'audio/sfx/stats_change.ogg'
 
     # text displayables
     define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp{/color}{/font}{/a}'

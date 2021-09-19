@@ -4,63 +4,18 @@
     # TODO: more customization like gender, pronouns, life story
  
     python:
+        # init player stats
+        player_stats = PlayerStats()
+        
         player_name = renpy.input("What's your name? (Type something and hit Enter)")
         player_name = player_name.strip()
         if not player_name:
             player_name = "Lydia"
         persistent.player_name = player_name
 
-        # initialize variables
-        # calendar system
-        day_counter = 1
-        # stats system
-        player_stats = {
-        'Sanity': 100,
-        'CS Knowledge': None,
-        'Interview Skills': None,
-        'Dev Skills': None,
-        }
-        # to loop over the dictionary deterministically
-        player_stats_names = list(player_stats.keys())
-
-    screen player_stats():
-        ## Ensure this appears on top of other screens.
-        zorder 100
-        frame:
-            # top left of screen
-            xalign 0
-            yalign 1
-            xpadding 30
-            ypadding 30
-
-            vbox:
-                spacing 20
-                # calendar
-                hbox:
-                    spacing 10
-                    text 'Day' color gui.accent_color font gui.interface_text_font size gui.name_text_size bold True
-                    text str(day_counter) font gui.interface_text_font size gui.name_text_size bold True
-
-                hbox:
-                    spacing 40
-                    # left column
-                    vbox:
-                        spacing 10
-                        for stats_name in player_stats_names:
-                            # if None, not yet initialized/unlocked
-                            if player_stats[stats_name] is not None:
-                                text stats_name color gui.accent_color
-                    # right column
-                    vbox:
-                        spacing 10
-                        for stats_name in player_stats_names:
-                            # if None, not yet initialized/unlocked
-                            if player_stats[stats_name] is not None:
-                                text str(player_stats[stats_name])
-
 label stage1_intro:
     # play music "audio/bgm/bgm_loop.wav" fadein 1.0 volume 0.5
-    show screen player_stats
+    show screen player_stats_screen(player_stats)
     # Stage 1. player background
     scene bg kid_home with dissolve
     player "Okay, so that's it for today's session."
@@ -95,37 +50,41 @@ label stage2_start:
     player awe "Oh here's a video about the top 10 tech skills worth learning in 2021. Let's check that out!"
 
     # player starts learning to code, so we initialize CS knowledge to 0
-    $ player_stats['CS Knowledge'] = 0
+    $ player_stats.init_stats('CS Knowledge')
+
     player "So Java and JavaScript are different languages? Wait, which one is for web dev again?"
-    $ player_stats['CS Knowledge'] += 1
-    $ player_stats['Sanity'] -= 1
-    play sound sfx_stats_change
+    $ player_stats.change_stats('CS Knowledge', 1)
+    $ player_stats.change_stats('Sanity', -5)
+
     player confused "And there are print statements and print() functions. Which is for Python 2 and which is for Python 3? I remember one video saying that Python 2 is outdated but does that mean that I don't have to learn it?"
-    $ player_stats['CS Knowledge'] += 1
-    $ player_stats['Sanity'] -= 1
-    play sound sfx_stats_change
+    $ player_stats.change_stats('CS Knowledge', 1)
+    $ player_stats.change_stats('Sanity', -5)
+
     player "Maybe I shouldn't bother with learning Python 3 even. Someone may just decide that Python 3 is too old-fashioned before I even get a chance to learn it."
-    $ player_stats['CS Knowledge'] += 1
-    $ player_stats['Sanity'] -= 1
-    play sound sfx_stats_change
+    $ player_stats.change_stats('CS Knowledge', 1)
+    $ player_stats.change_stats('Sanity', -5)
+
     player "Java doesn't sound like a good idea either. People are so hyped about Kotlin."
-    $ player_stats['CS Knowledge'] += 1
-    $ player_stats['Sanity'] -= 1
-    play sound sfx_stats_change
+    $ player_stats.change_stats('CS Knowledge', 1)
+    $ player_stats.change_stats('Sanity', -5)
+
     player distress "JavaScript? TypeScript?"
-    $ player_stats['CS Knowledge'] += 1
-    $ player_stats['Sanity'] -= 1
-    play sound sfx_stats_change
+    $ player_stats.change_stats('CS Knowledge', 1)
+    $ player_stats.change_stats('Sanity', -5)
+
     player "Maybe I can find a job posting I like and start learning their required skills."
     player "But what is front-end, back-end, or full-stack? What are the differences?"
     player "DevOps?"
     player "Why is this company using their pet coding language that nobody else uses?"
 
-    player cry "Ugh. This is so frustrating."
     # hard-reset player's CS knowledge :)
-    $ player_stats['CS Knowledge'] = 0
-    $ player_stats['Sanity'] = 90
-    play sound sfx_stats_change
+    python:
+        player_stats.set_stats('Sanity', 90)
+        player_stats.set_stats('CS Knowledge', 0)
+
+    play sound 'audio/sfx/stats_change_doom.wav'
+    player cry "Ugh. This is so frustrating."
+
     player confused "Learn to code? Haha. I know it can't be that easy."
     player "There might be people who are cut out to do this, but definitely not me."
     player "I guess I better call it a day and go to bed."
@@ -142,7 +101,7 @@ label stage3_annika:
     # scene gray90 with dissolve
     # with Pause(1)
 
-    $ day_counter += 1
+    $ player_stats.day_counter += 1
     scene bg bedroom day with fade
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
     player confused "Here goes my phone at this early hour."
@@ -187,7 +146,9 @@ label stage3_annika:
     annika "It's called [freeCodeCamp]. Check that out!"
     player laugh "Thanks. I will."
 
-    $ day_counter += 3
+    # TODO: player checks out the website
+
+    $ player_stats.day_counter += 3
     scene bg bedroom day with fade
     show annika neutral
     player happy "Hey Annika. So I've been checking out [freeCodeCamp] as you suggested."
@@ -235,8 +196,7 @@ label study_menu_choices:
         "Which of the following is the binary representation of 10?"
 
         "1010": # correct answer
-            $ player_stats['CS Knowledge'] += 1
-            play sound sfx_stats_change
+            $ player_stats.change_stats('CS Knowledge', 1)
             player "Correct!"
 
         "0101":
@@ -250,7 +210,7 @@ label study_menu_choices:
     return
 
 label day_activity_choices:
-    $ day_counter += 1
+    $ player_stats.day_counter += 1
     scene bg bedroom day with fade
 
     player "A new day!"
@@ -276,7 +236,7 @@ label study_menu:
         "Work on open-source projects":
             player "Annika mentioned that contributing to open-source project is a good way to learn."
             
-            if player_stats['CS Knowledge'] > 3: # can proceed
+            if player_stats.player_stats_map['CS Knowledge'] > 3: # can proceed
                 player "Let's see, what are the newest Pull Requests?"
                 call open_source from _call_open_source
                 jump end_of_day_script
@@ -288,15 +248,13 @@ label open_source:
     scene bg laptop_screen
     player "Hmm... I don't know how to solve this but I can re-assign it to the original author."
     player "It's cool how people volunteer their time and energy to make software accessible."
-    $ player_stats['CS Knowledge'] += 1
-    play sound sfx_stats_change
+    $ player_stats.change_stats('CS Knowledge', 1)
     return
 
 label hacker_space:
     scene bg hacker_space
     player "Let's check out what cool projects people are working on."
-    $ player_stats['CS Knowledge'] += 1
-    play sound sfx_stats_change
+    $ player_stats.change_stats('CS Knowledge', 1)
     return
 
 label barista:
@@ -313,14 +271,16 @@ label choice_walk:
     scene bg park
     player happy "It always soothe my nerves to take a walk in the park."
     player "I almost feel like it restores my sanity."
-    $ player_stats['Sanity'] += 10
+    $ player_stats.change_stats('Sanity', 10)
     return
 
 label end_of_day_script:
     scene bg bedroom night with dissolve
+    # TODO: rewrite logic
+    $ player_stats.change_stats('Sanity', -10)
     player "Phew... That was a long day."
 
-    if player_stats['CS Knowledge'] > 5 and day_counter > 8:
+    if player_stats.player_stats_map['CS Knowledge'] > 5 and player_stats.day_counter > 8:
         jump stage7_ryan
     else:
         jump day_activity_choices # a new day
