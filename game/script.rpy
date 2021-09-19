@@ -6,7 +6,7 @@
     python:
         # init player stats
         player_stats = PlayerStats()
-        
+
         player_name = renpy.input("What's your name? (Type something and hit Enter)")
         player_name = player_name.strip()
         if not player_name:
@@ -191,22 +191,32 @@ label stage6_trials:
 
 label study_menu_choices:
     # correct choices increments CS knowledge
-    # TODO: refactor using menu arguments
-    menu:
-        "Which of the following is the binary representation of 10?"
+    # ask 4 questions each time
+    $ num_questions = 4
+    while num_questions > 0:
+        if num_questions == 4:
+            player "First question. Three more to go!"
+        elif num_questions == 3:
+            player "Second question. Halfway through!"
+        elif num_questions == 2:
+            player "Third question. Almost there!"
+        elif num_questions == 1:
+            player "Last question. Hang in there!"
 
-        "1010": # correct answer
+        $ num_questions -= 1
+
+        window hide
+        # see cs_questions.rpy
+        $ choices = renpy.random.choice(cs_questions)
+        # result is True or False
+        $ result = renpy.display_menu(choices)
+
+        if result == True:
             $ player_stats.change_stats('CS Knowledge', 1)
             player "Correct!"
-
-        "0101":
+        else:
             player "Wrong..."
 
-        "1001":
-            player "Wrong..."
-
-        "0100":
-            player "Wrong..."
     return
 
 label day_activity_choices:

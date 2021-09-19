@@ -20,7 +20,7 @@ init:
     define becca = Character("Becca")
 
     # minor characters
-    define kid = Character("Kid")
+    define kid = Character("High Schoool Kid")
 
     # expressions
     # player

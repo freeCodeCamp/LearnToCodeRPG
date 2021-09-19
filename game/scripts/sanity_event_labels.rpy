@@ -2,12 +2,15 @@ label sanity_event_player:
     player "Ugh I feel burnt out."
     player "Maybe we need to take it slow."
     player "Let's call it a day early."
+    return
 
 label sanity_event_player_pet:
     player "My eyes hurt. My brain even more so."
     player "I wish I could get a pet."
     player "Let's go check out some pets."
     scene bg pet_shop
+    player "Hmmm. Cute pets. Should I get a cat or dog?"
+    return
 
 label sanity_event_annika_boba:
     player "I'm soooo tired. I could barely keep my eyes open."
@@ -36,5 +39,6 @@ label sanity_event_annika_boba:
     scene bg bedroom_night
     player "Annika and I ended up chatting the whole afternoon."
     player "It felt really nice, though. I feel so much more refreshed."
-    
+
     $ player_stats.change_stats('Sanity', 10)
+    return
