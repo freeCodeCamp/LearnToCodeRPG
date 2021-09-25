@@ -1,23 +1,97 @@
 ﻿label start:
-    "Hi there! You are about to embark on an adventure where you learn to code and become an engineer."
-    "Hope you are excited :) Why don't you start by telling us a bit about your self?"
-    # TODO: more customization like gender, pronouns, life story
- 
+    scene bg laptop_screen
+
+    # get some action and conflict in here :)
+    "Thanks for applying to our software engineering role! We've reviewed your resume and as a first step in our recruiting process, we'd like you to invite you to complete an online assessment."
+    "Press start whenever you are ready."
+
+    menu:
+        "Start":
+            pass
+
+    # timed menu
+    $ timeout = 5.0
+    # Set the label that is jumped to if the player doesn't make a decision.
+    $ timeout_label = "start_interview_question2"
+    with pixellate
+    menu:
+        "How do you prove that P = NP in one sentence?"
+
+        "Banana nuts":
+            pass
+    
+        "I don't know":
+            pass
+    
+        "...":
+            pass
+
+label start_interview_question2:
+    with vpunch
+    $ timeout_label = "start_interview_question3"
+    menu:
+        "In Python, what is a generator?"
+    
+        "Banana nuts":
+            pass
+    
+        "I don't know":
+            pass
+    
+        "...":
+            pass
+
+label start_interview_question3:
+    with hpunch
+    menu:
+        "How do you explain how the Internet works to a five-year old?"
+    
+        "Banana nuts":
+            pass
+    
+        "I don't know":
+            pass
+    
+        "...":
+            pass
+
+    $ timeout_label = None    
+    with vpunch
+
+    "Thanks for taking the time to complete our coding interview."
+    "Before you go, please take some time to complete your basic information so we can get to know you better."
+    "The fields marked with {color=#f00}*{/color} are required."
+
+    # TODO: more customization like gender, pronouns, life story 
     python:
-        # init player stats
+        # init player stats but we won't show the stats screen until the label `stage1_intro`
         player_stats = PlayerStats()
 
-        player_name = renpy.input("What's your name? (Type something and hit Enter)")
+        player_name = renpy.input("What's your name? {color=#f00}*{/color} (Type something and hit Enter)")
         player_name = player_name.strip()
         if not player_name:
             player_name = "Lydia"
         persistent.player_name = player_name
 
+        player_pronouns = renpy.input("What's your preferred pronoun?")
+ 
+    with pixellate
+    "Thanks for completing your information. We will be in touch about next steps."
+
+    with fade
+    player "(Sigh....)"
+    player "That was exhausting. There's no doubt that I bombed the questions."
+    player "Geez, coding interviews are hard..."
+    with vpunch
+    player "What made me think I'm capable of getting a software job in the first place?"
+    player "Well, it all started some time ago when I first decided to learn to code..."
+
 label stage1_intro:
     # play music "audio/bgm/bgm_loop.wav" fadein 1.0 volume 0.5
+    scene bg kid_home with fade
     show screen player_stats_screen(player_stats)
+
     # Stage 1. player background
-    scene bg kid_home with dissolve
     player "Okay, so that's it for today's session."
     kid "Uhh okay, so that's what trigonometry is about?"
     player "Yep. That's the basics of trigonometry."
