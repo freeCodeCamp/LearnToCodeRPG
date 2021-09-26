@@ -472,7 +472,7 @@ label stage8_interviews:
     # Stage 8. Coding interviews
 
     call screen confirm_and_share(
-        "Congratulations! You completed the coding curriculum in {b}[player_stats.day_counter]{/b} days. Now you are ready to rock the coding interview and realize your dream of becoming a software engineer!",
+        "{bt}{size=[gui.name_text_size]}Congratulations!{/size}{/bt}\n\nYou completed the coding curriculum in {b}[player_stats.day_counter]{/b} days.\nNow you are ready to rock the coding interview and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
         ok_text="Let's go!"
         )
 

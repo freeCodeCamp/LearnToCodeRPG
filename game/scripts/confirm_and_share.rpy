@@ -28,9 +28,9 @@ screen confirm_and_share(message, ok_text):
             hbox:
                 spacing 100
                 xalign .5
-                textbutton "{icon=logo-facebook}" action Return()
-                textbutton "{icon=logo-instagram}" action Return()
-                textbutton "{icon=logo-twitter}" action Return()
+                textbutton "{icon=logo-facebook}" action OpenURL('https://www.facebook.com')
+                textbutton "{icon=logo-instagram}" action OpenURL('https://www.instagram.com')
+                textbutton "{icon=logo-twitter}" action OpenURL('https:///www.twitter.com')
 
             hbox:
                 spacing 100
