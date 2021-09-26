@@ -2,7 +2,7 @@
     scene bg laptop_screen
 
     # get some action and conflict in here :)
-    "Thanks for applying to our software engineering role! We've reviewed your resume and as a first step in our recruiting process, we'd like you to invite you to complete an online assessment."
+    "Thanks for applying to our software engineering role! {w}We've reviewed your resume and as a first step in our recruiting process, we'd like you to invite you to complete an online assessment."
     "Press start whenever you are ready."
 
     menu:
@@ -74,7 +74,8 @@ label start_interview_question3:
         persistent.player_name = player_name
 
         player_pronouns = renpy.input("What's your preferred pronoun?")
- 
+    
+    window hide
     with pixellate
     "Thanks for completing your information. We will be in touch about next steps."
 
@@ -84,12 +85,17 @@ label start_interview_question3:
     player "Geez, coding interviews are hard..."
     with vpunch
     player "What made me think I'm capable of getting a software job in the first place?"
-    player "Well, it all started some time ago when I first decided to learn to code..."
+    player "Well, it all started some time ago when I first decided to learn to code and get a real job..."
 
-label stage1_intro:
+label stage1:
+    scene black with dissolve
+    pause 1
+    show text "{size=48}{color=#fff}{i}Chapter 1: Where It All Started{i}{/color}{/size}" with dissolve 
+    pause 1
+    hide text with dissolve
+
     # play music "audio/bgm/bgm_loop.wav" fadein 1.0 volume 0.5
     scene bg kid_home with fade
-    show screen player_stats_screen(player_stats)
 
     # Stage 1. player background
     player "Okay, so that's it for today's session."
@@ -101,7 +107,7 @@ label stage1_intro:
     player "(It's not like I don't enjoy tutoring kids. I actually enjoy explaining concepts to others. I just need a full-time job that is more intellectually fulfilling.)"
     player "(Better yet if it pays better.)"
     kid "Hey [persistent.player_name]?"
-    player neutral "Oh. I just spaced out for a bit."
+    player neutral "Oh. {w}I just spaced out for a bit."
     player "Do you have any more questions before we wrap up?"
     kid "Nope! I think my project report is good to go. Thanks!"
     player "Good. I'll see you next week."
@@ -109,7 +115,7 @@ label stage1_intro:
     kid "I just heard about a new class that teaches you how to code and build robots and I need to check that out next week."
     player "Sure, no problem. See you then."
 
-label stage2_start:
+label stage2:
     # Stage 2. player's decision to learn to code
     # player returns home
     scene bg bedroom night with dissolve
@@ -117,6 +123,9 @@ label stage2_start:
     player "Six months then a six-figure job? That's even crazier."
     player "Hmm, but I can see the appeal in that."
     player awe "Maybe I can learn to code as well."
+
+    show screen player_stats_screen(player_stats)
+
     player neutral "A bit of research won't hurt. Where shall we start? Maybe a coding bootcamp?"
     player distress "These bootcamp programs are expensive."
     player "Maybe I can go with free online resources first."
@@ -153,7 +162,6 @@ label stage2_start:
 
     # hard-reset player's CS knowledge :)
     python:
-        player_stats.set_stats('Sanity', 90)
         player_stats.set_stats('CS Knowledge', 0)
 
     play sound 'audio/sfx/stats_change_doom.wav'
@@ -162,18 +170,19 @@ label stage2_start:
     player confused "Learn to code? Haha. I know it can't be that easy."
     player "There might be people who are cut out to do this, but definitely not me."
     player "I guess I better call it a day and go to bed."
-    player "But it's hard to fall asleep with all these thoughts floating around in my head."
+
+    with fade
+    player "I can't sleep with all these thoughts floating around in my head."
     player "What can I do if the kid I'm tutoring cuts down our sessions for his coding classes?"
     player "Ugh. I still need to pay the bills. Let's see if the coffee shop next door is hiring."
 
-label stage3_annika:
+label stage3:
     # Stage 3. Annika
-
-    # scene gray90 with Pause(1)
-    # show text "{size=48}{color=#fff}{i}Annika{i}{/color}{/size}" with dissolve
-    # with Pause(2)
-    # scene gray90 with dissolve
-    # with Pause(1)
+    scene black with dissolve
+    pause 1
+    show text "{size=48}{color=#fff}{i}Chapter 2: Annika from College{i}{/color}{/size}" with dissolve 
+    pause 1
+    hide text with dissolve
 
     $ player_stats.day_counter += 1
     scene bg bedroom day with fade
@@ -220,7 +229,31 @@ label stage3_annika:
     annika "It's called [freeCodeCamp]. Check that out!"
     player laugh "Thanks. I will."
 
-    # TODO: player checks out the website
+label stage4:
+    scene bg bedroom night with fade
+    player "Phew. It's been a long day at work. I'm glad that the coffee shop happens to need a part-time barista."
+    player "Let's check out the awesome resource Annika's been talking about."
+    jump stage4_guess_name
+
+label stage4_wrong_name:
+    player "That doesn't sound like the right name."
+    player "My memory must be playing a trick on me."
+    return
+
+label stage4_guess_name:
+    menu:
+        player "What was it called again?"
+
+        "freebieGoodie":
+            call stage4_wrong_name
+            jump stage4_guess_name
+        "coolCodersCamp":
+            call stage4_wrong_name
+            jump stage4_guess_name
+        "freeCodeCamp":
+            pass
+
+    player "[freeCodeCamp]. That sounds right! Let's check it out!"
 
     $ player_stats.day_counter += 3
     scene bg bedroom day with fade
@@ -437,6 +470,12 @@ label stage7_ryan:
 
 label stage8_interviews:
     # Stage 8. Coding interviews
+
+    call screen confirm_and_share(
+        "Congratulations! You completed the coding curriculum in {b}[player_stats.day_counter]{/b} days. Now you are ready to rock the coding interview and realize your dream of becoming a software engineer!",
+        ok_text="Let's go!"
+        )
+
     scene bg bedroom night with dissolve
     player "I read that technical jobs ask candidates to complete coding interviews."
     player "I know how to code, so these interviews shouldn't be too hard if I study, right?"
