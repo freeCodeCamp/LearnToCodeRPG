@@ -12,7 +12,7 @@ screen confirm_and_share(message, ok_text):
         style_prefix "confirm"
 
         xfill True
-        xsize 800
+        xsize 1000
         xmargin 50
         ypadding 25
         yalign .25
@@ -25,7 +25,12 @@ screen confirm_and_share(message, ok_text):
                 text_align 0.5
                 xalign 0.5
 
-            textbutton "{icon=logo-python}" action Return()
+            hbox:
+                spacing 100
+                xalign .5
+                textbutton "{icon=logo-facebook}" action Return()
+                textbutton "{icon=logo-instagram}" action Return()
+                textbutton "{icon=logo-twitter}" action Return()
 
             hbox:
                 spacing 100

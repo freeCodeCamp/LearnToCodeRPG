@@ -1,0 +1,299 @@
+@font-face {
+  font-family: 'feather-ramen2-icon';
+  src:
+    url('fonts/feather-ramen2-icon.ttf?jck6f9') format('truetype'),
+    url('fonts/feather-ramen2-icon.woff?jck6f9') format('woff'),
+    url('fonts/feather-ramen2-icon.svg?jck6f9#feather-ramen2-icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+i {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'feather-ramen2-icon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.alert:before {
+  content: "\21";
+}
+.arrow-down:before {
+  content: "\77";
+}
+.arrow-down-left:before {
+  content: "\65";
+}
+.arrow-down-right:before {
+  content: "\72";
+}
+.arrow-left:before {
+  content: "\74";
+}
+.arrow-right:before {
+  content: "\79";
+}
+.arrow-up:before {
+  content: "\75";
+}
+.arrow-up-left:before {
+  content: "\69";
+}
+.arrow-up-right:before {
+  content: "\6f";
+}
+.chevron-left:before {
+  content: "\26";
+}
+.chevron-right:before {
+  content: "\2a";
+}
+.chevrons-down:before {
+  content: "\70";
+}
+.chevrons-left:before {
+  content: "\61";
+}
+.chevrons-right:before {
+  content: "\73";
+}
+.chevrons-up:before {
+  content: "\64";
+}
+.circle:before {
+  content: "\66";
+}
+.circle-check:before {
+  content: "\67";
+}
+.click-left:before {
+  content: "\68";
+}
+.click-right:before {
+  content: "\6a";
+}
+.close:before {
+  content: "\6b";
+}
+.folder:before {
+  content: "\6c";
+}
+.folder-qload:before {
+  content: "\7a";
+}
+.folder-qsave:before {
+  content: "\78";
+}
+.ico-archive:before {
+  content: "\63";
+}
+.ico-bag:before {
+  content: "\76";
+}
+.ico-box:before {
+  content: "\62";
+}
+.ico-box2:before {
+  content: "\6e";
+}
+.ico-briefcase:before {
+  content: "\6d";
+}
+.ico-bulb:before {
+  content: "\51";
+}
+.ico-cart:before {
+  content: "\57";
+}
+.ico-cash:before {
+  content: "\24";
+}
+.ico-coins:before {
+  content: "\45";
+}
+.ico-disk:before {
+  content: "\52";
+}
+.ico-map:before {
+  content: "\25";
+}
+.ico-phone:before {
+  content: "\40";
+}
+.ico-settings:before {
+  content: "\54";
+}
+.ico-tool:before {
+  content: "\59";
+}
+.ico-wallet:before {
+  content: "\23";
+}
+.inbox:before {
+  content: "\55";
+}
+.key-back:before {
+  content: "\49";
+}
+.key-fast:before {
+  content: "\4f";
+}
+.key-forward:before {
+  content: "\50";
+}
+.key-pause:before {
+  content: "\41";
+}
+.key-play:before {
+  content: "\53";
+}
+.list:before {
+  content: "\7c";
+}
+.log-down:before {
+  content: "\44";
+}
+.log-in:before {
+  content: "\29";
+}
+.log-in2:before {
+  content: "\46";
+}
+.log-out:before {
+  content: "\28";
+}
+.log-out2:before {
+  content: "\47";
+}
+.log-up:before {
+  content: "\48";
+}
+.logo-python:before {
+  content: "\3f";
+}
+.logo-ramen:before {
+  content: "\4a";
+}
+.logo-renpy:before {
+  content: "\71";
+}
+.menu:before {
+  content: "\4b";
+}
+.menu-small:before {
+  content: "\4c";
+}
+.menu1:before {
+  content: "\5a";
+}
+.moon1:before {
+  content: "\58";
+}
+.moon2:before {
+  content: "\43";
+}
+.moon3:before {
+  content: "\56";
+}
+.more-horizontal:before {
+  content: "\42";
+}
+.more-vertical:before {
+  content: "\4e";
+}
+.msg-forward:before {
+  content: "\3d";
+}
+.msg-reply:before {
+  content: "\2b";
+}
+.phone:before {
+  content: "\4d";
+}
+.phone-call:before {
+  content: "\2c";
+}
+.phone-incoming:before {
+  content: "\2e";
+}
+.phone-outgoing:before {
+  content: "\2f";
+}
+.phone-x:before {
+  content: "\27";
+}
+.sliders:before {
+  content: "\3b";
+}
+.square:before {
+  content: "\5b";
+}
+.square-check:before {
+  content: "\5d";
+}
+.square-edit:before {
+  content: "\5e";
+}
+.square-minus:before {
+  content: "\31";
+}
+.square-plus:before {
+  content: "\32";
+}
+.square-x:before {
+  content: "\33";
+}
+.star:before {
+  content: "\34";
+}
+.sun1:before {
+  content: "\35";
+}
+.sun2:before {
+  content: "\36";
+}
+.sun3:before {
+  content: "\37";
+}
+.terminal:before {
+  content: "\5c";
+}
+.toggle-left:before {
+  content: "\38";
+}
+.toggle-right:before {
+  content: "\39";
+}
+.trash-0:before {
+  content: "\5f";
+}
+.trash-1:before {
+  content: "\2d";
+}
+.volume-off:before {
+  content: "\30";
+}
+.volume-on:before {
+  content: "\60";
+}
+.volume-x:before {
+  content: "\7e";
+}
+.facebook:before {
+  content: "\7b";
+}
+.instagram:before {
+  content: "\7d";
+}
+.twitter:before {
+  content: "\22";
+}
