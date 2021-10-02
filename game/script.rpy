@@ -118,15 +118,43 @@ label stage1:
 label stage2:
     # Stage 2. player's decision to learn to code
     # player returns home
+    scene bg livingroom night with dissolve
+
+    player "I'm home!"
+    mom "Hey sweetie. Welcome back!"
+    dad "Welcome home, pumpkin. How was your day?"
+    player "(That's my mom and dad. {w} Mom is a high school teacher, which is why she could find me this tutoring gig. {w}Dad is a mechanical engineer, but I never got too into engineering.)"
+    player "Good. I'm tutoring this smart kid who wants to take up coding classes. I can't believe that came from a high school student."
+    mom "That's interesting. I heard that a lot of high schools are rolling out coding curriculum."
+    mom "That must be a trendy thing right now."
+    dad "Yeah, remember our neighbor, the guy who moved away last month? I heard his kid is majoring in Computer Science at college."
+    dad "The kid is only a junior but is already interning for large companies during summer break."
+    player "Wow. Haha. That's pretty cool."
+
+    # TODO: kitchen timer rings
+
+    mom "Dinner's ready! I made your favorites."
+    player "Thanks mom! You are the best!"
+
+    # TODO: sound of kitchen utensils
+
     scene bg bedroom night with dissolve
+    player happy "That was a stuffing dinner. Mom's the best cook I know."
+    player "..."
+    player neutral "Hmmm..."
+    player "We talked more about this coding hype during dinner."
     player confused "It's crazy how everyone these days is learning to code. High school students even."
-    player "Six months then a six-figure job? That's even crazier."
+    player "And what's with these bootcamp programs? Six months then a six-figure job? That's even crazier."
     player "Hmm, but I can see the appeal in that."
     player awe "Maybe I can learn to code as well."
+    mint "Meow meow"
+    player "Haha, you think so as well, Mint?"
+    player "(Mint, our home cat, is a real sweetie.)"
+    player "(I mean, mom and dad are sweet and understanding enough, but Mint is definitely one of the reasons that I decided to move back home.)"
 
-    show screen player_stats_screen(player_stats)
+    player neutral "Alright, let's do this."
+    player "A bit of research won't hurt. Where shall we start? Maybe a coding bootcamp like everyone else is doing?"
 
-    player neutral "A bit of research won't hurt. Where shall we start? Maybe a coding bootcamp?"
     player distress "These bootcamp programs are expensive."
     player "Maybe I can go with free online resources first."
     player neutral "Let's see, what should we learn first? Python? JavaScript? Web Dev?"
@@ -134,6 +162,7 @@ label stage2:
 
     # player starts learning to code, so we initialize CS knowledge to 0
     $ player_stats.init_stats('CS Knowledge')
+    show screen player_stats_screen(player_stats)
 
     player "So Java and JavaScript are different languages? Wait, which one is for web dev again?"
     $ player_stats.change_stats('CS Knowledge', 1)
@@ -166,13 +195,14 @@ label stage2:
 
     play sound 'audio/sfx/stats_change_doom.wav'
     player cry "Ugh. This is so frustrating."
+    mint "Meow meow"
 
     player confused "Learn to code? Haha. I know it can't be that easy."
     player "There might be people who are cut out to do this, but definitely not me."
     player "I guess I better call it a day and go to bed."
 
-    with fade
-    player "I can't sleep with all these thoughts floating around in my head."
+    with longfade
+    player "... {w}I can't sleep with all these thoughts floating around in my head."
     player "What can I do if the kid I'm tutoring cuts down our sessions for his coding classes?"
     player "Ugh. I still need to pay the bills. Let's see if the coffee shop next door is hiring."
 
@@ -255,7 +285,9 @@ label stage4_guess_name:
 
     player "[freeCodeCamp]. That sounds right! Let's check it out!"
 
-    $ player_stats.day_counter += 3
+
+    # the next day
+    $ player_stats.day_counter += 1
     scene bg bedroom day with fade
     show annika neutral
     player happy "Hey Annika. So I've been checking out [freeCodeCamp] as you suggested."

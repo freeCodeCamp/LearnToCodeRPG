@@ -12,6 +12,11 @@ init python:
 
             return rv
 
+    # make a meow sound when the cat speaks
+    def meow_sound_callback(event, **kwargs):
+        if event == "show":
+            renpy.sound.play("audio/sfx/meow.wav", loop=False)
+
 init:
     # major characters
     define player = Character("[persistent.player_name]", image="player")
@@ -21,6 +26,9 @@ init:
 
     # minor characters
     define kid = Character("High Schoool Kid")
+    define mom = Character("Mom")
+    define dad = Character("Dad")
+    define mint = Character("Mint", callback=meow_sound_callback) # player's cat
 
     # expressions
     # player
@@ -89,3 +97,6 @@ init:
 
     # text displayables
     define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp{/color}{/font}{/a}'
+
+    # transitions
+    define longfade = Fade(3.0)
