@@ -99,4 +99,4 @@ init:
     define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp{/color}{/font}{/a}'
 
     # transitions
-    define longfade = Fade(3.0)
+    define fadehold = Fade(0.5, 1.0, 0.5)

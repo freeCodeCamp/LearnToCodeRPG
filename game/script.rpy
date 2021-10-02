@@ -90,7 +90,7 @@ label start_interview_question3:
 label stage1:
     scene black with dissolve
     pause 1
-    show text "{size=48}{color=#fff}{i}Chapter 1: Where It All Started{i}{/color}{/size}" with dissolve 
+    show text "{size=48}{color=#fff}{i}Chapter 1: Let's learn to code!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
 
@@ -142,7 +142,21 @@ label stage2:
     player happy "That was a stuffing dinner. Mom's the best cook I know."
     player "..."
     player neutral "Hmmm..."
-    player "We talked more about this coding hype during dinner."
+
+    # TODO: sound of social media ding
+    player "Must be something on social media."
+    menu:
+        "Check phone":
+            pass
+        "Ignore":
+            jump stage2_after_social_media_ding
+
+    player "Looks like someone from my junior high school. I don't even remember who they are."
+    player "What did they post to get this crazy many likes?"
+    player "{bt}\"Proud intern at DonutDatabase. Check out my swaaaag!\"{/bt}"
+    player "Oh. wow."
+
+label stage2_after_social_media_ding:
     player confused "It's crazy how everyone these days is learning to code. High school students even."
     player "And what's with these bootcamp programs? Six months then a six-figure job? That's even crazier."
     player "Hmm, but I can see the appeal in that."
@@ -196,23 +210,27 @@ label stage2:
     play sound 'audio/sfx/stats_change_doom.wav'
     player cry "Ugh. This is so frustrating."
     mint "Meow meow"
-
+    player confused "Awww thanks Mint. I'm okay."
     player confused "Learn to code? Haha. I know it can't be that easy."
     player "There might be people who are cut out to do this, but definitely not me."
     player "I guess I better call it a day and go to bed."
 
-    with longfade
+    with fadehold
     player "... {w}I can't sleep with all these thoughts floating around in my head."
     player "What can I do if the kid I'm tutoring cuts down our sessions for his coding classes?"
-    player "Ugh. I still need to pay the bills. Let's see if the coffee shop next door is hiring."
+    player "Ugh. I still need to pay the bills even if my parents are nice enough not to ask me for rent."
+    player "Let's check out the coffee shop next door tomorrow and see if they are hiring."
 
 label stage3:
     # Stage 3. Annika
+    hide player_stats_screen
     scene black with dissolve
     pause 1
-    show text "{size=48}{color=#fff}{i}Chapter 2: Annika from College{i}{/color}{/size}" with dissolve 
+    show text "{size=48}{color=#fff}{i}Chapter 2: A learning buddy to make it better!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
+    show player_stats_screen
+    # the above is standard for a chapter opening screen
 
     $ player_stats.day_counter += 1
     scene bg bedroom day with fade
@@ -284,19 +302,111 @@ label stage4_guess_name:
             pass
 
     player "[freeCodeCamp]. That sounds right! Let's check it out!"
+    show fcc_curriculum at truecenter with dissolve
+    player "Wow. Their curriculum is sure comprehensive. {w}They also offer certifications that I can showcase on my resume. Neat!"
+    player "What shall we start with?"
+    # booleans mark whether a choice has been visited
+    $ stage4_choose_curriculum_visited = [False, ] * 10
 
+label stage4_choose_curriculum:
+    # this choice actually has no consequences :)
+    menu:
+        "Responsive Web Design" if not stage4_choose_curriculum_visited[0]:
+            player confused "Ehhh... what even is web design? And I'm not a design person... Will I be able to follow along?"
+            player "Maybe let's look some more?"
+            $ stage4_choose_curriculum_visited[0] = True
+            jump stage4_choose_curriculum
+        "JavaScript Algorithms and Data Structures" if not stage4_choose_curriculum_visited[1]:
+            player confused "I remember having heard about JavaScript. Or wait, that's perhaps Java."
+            player "What are algorithms and data structures? That sounds like math, which is not my favorite subject."
+            player "What other curriculum options do I have?"
+            $ stage4_choose_curriculum_visited[1] = True
+            jump stage4_choose_curriculum
+        "Front End Development Libraries" if not stage4_choose_curriculum_visited[2]:
+            player confused "Front end development? That sounds so complicated."
+            player "Maybe I should go for some beginner topics?"
+            $ stage4_choose_curriculum_visited[2] = True
+            jump stage4_choose_curriculum
 
+        "Data Visualization" if not stage4_choose_curriculum_visited[3]:
+            player confused "I know there is some hype about big data, but can I really do that without a Ph.D.?"
+            player "This doesn't look like it's for me."
+            $ stage4_choose_curriculum_visited[3] = True
+            jump stage4_choose_curriculum
+
+        "Back End Development and APIs" if not stage4_choose_curriculum_visited[4]:
+            player confused "Back end, front end. What are the differences? They definitely sound like they should go together."
+            player "But I don't have the time or energy to learn both..."
+            player "Let's look for something simpler."
+            $ stage4_choose_curriculum_visited[4] = True
+            jump stage4_choose_curriculum
+
+        "Quality Assurance" if not stage4_choose_curriculum_visited[5]:
+            player confused "Quality assurance? That sounds like I will be on a digital conveyor belt making sure all cookie packs weigh more or less the same."
+            player awe "Nice, warm, and chewy cookies... I love cookies. Hope mom still keeps some in the kitchen cookie jar."
+            mint "Meow?"
+            player "Hey Mint. You want a cookie as well?"
+            mint "Meow meow"
+            menu:
+                "Let's go grab a cookie from the kitchen":
+                    call stage4_cookie
+
+                "Enough cookie talk! Let's go back to studying":
+                    pass
+
+            with vpunch
+            player confused "Wait. {w}I got distracted. Where was I?"
+            player "At any rate, I don't think quality assurance is something I want to learn."
+            $ stage4_choose_curriculum_visited[5] = True
+            jump stage4_choose_curriculum
+
+        "Scientific Computing with Python" if not stage4_choose_curriculum_visited[6]:
+            pass
+
+        "Data Analysis with Python" if not stage4_choose_curriculum_visited[7]:
+            pass
+
+        "Information Security" if not stage4_choose_curriculum_visited[8]:
+            pass
+
+        "Machine Learning with Python" if not stage4_choose_curriculum_visited[9]:
+            pass
+
+        "Let's just wait until tomorrow and ask Annika for advice":
+            player confused "Hmmm... I don't know. They all look equally hard. Let's ask Annika for advice tomorrow."
+            mint "Meow!"
+            player neutral "You think that's a good idea too, Mint?"
+            player "Okay, let's get some rest today. Tomorrow is another day."
+            jump stage4_annika
+
+label stage4_cookie:
+    # TODO: show interactions with Mom
+    # sound of chewing on cookie
+    player "Mmmm... Mom's cookies are the best."
+    return
+
+label stage4_annika:
     # the next day
     $ player_stats.day_counter += 1
     scene bg bedroom day with fade
     show annika neutral
     player happy "Hey Annika. So I've been checking out [freeCodeCamp] as you suggested."
-    player "I think its curriculum looks solid and I'd love to give it a try."
-    player confused "It's honest hard work, though. And I'm not sure if I can make it through on my own..."
-    player "What if I run into something that I can't understand? What if there is an issue I can't solve?"
-    player "What if it gets too hard again and I lose my motivation?"
-    show annika happy
-    annika "That's totally okay! In fact, what I love about [freeCodeCamp] is that they have an entire community that can help you out and cheer you on."
+    player "I think its curriculum looks solid."
+    player confused "The thing is, I have no idea what to learn."
+    player "They all look super complicated and are honest hard work."
+
+    annika "Hey [persistent.player_name], I totally get where you are coming from."
+    annika happy "It's already a big step forward now that you've checked out their curriculum!"
+    annika "Trust me, I was just like you when I first started."
+    annika "I was clueless, but then I decided to just go with their general introduction to computer science quizzes and start from there."
+    annika "I found those bite-sized quizzes fun and easier to digest."
+    annika "How does that sound?"
+
+    player "Ehh... Even that, I'm not sure if I can make it through all the quizzes and CS concepts on my own..."
+    player "What if I run into something that I can't understand?"
+    player "What if the quizzes gets too hard like they always do at college, and I lose my motivation?"
+
+    annika laugh "That's totally okay! In fact, what I love about [freeCodeCamp] is that they have an entire community that can help you out and cheer you on."
     annika "And I can be your go-to accountability buddy as well! Ping me anytime if anything comes up."
     player happy "Thanks Annika. I know I can count on you."
     player laugh "Best of luck with your new job by the way! Let me know how it goes."
