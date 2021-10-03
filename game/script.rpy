@@ -223,13 +223,13 @@ label stage2_after_social_media_ding:
 
 label stage3:
     # Stage 3. Annika
-    hide player_stats_screen
+    hide screen player_stats_screen
     scene black with dissolve
     pause 1
     show text "{size=48}{color=#fff}{i}Chapter 2: A learning buddy to make it better!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
-    show player_stats_screen
+    show screen player_stats_screen
     # the above is standard for a chapter opening screen
 
     $ player_stats.day_counter += 1
@@ -610,13 +610,13 @@ label stage7_ryan:
                 player "I'm done asking! That's all I want to know. Thanks so much for sharing!"
                 ryan "Anytime, [persistent.player_name]. Have fun coding and keep me updated on your progress!"
 
-label stage8_interviews:
-    # Stage 8. Coding interviews
-
     call screen confirm_and_share(
         "{bt}{size=[gui.name_text_size]}Congratulations!{/size}{/bt}\n\nYou completed the coding curriculum in {b}[player_stats.day_counter]{/b} days.\nNow you are ready to rock the coding interview and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
         ok_text="Let's go!"
         )
+
+label stage8_interviews:
+    # Stage 8. Coding interviews
 
     scene bg bedroom night with dissolve
     player "I read that technical jobs ask candidates to complete coding interviews."
@@ -627,6 +627,17 @@ label stage8_interviews:
     player "What is time complexity? What about space complexity? Does that mean that my code needs to run fast in addition to being correct?"
     player "Coding interviews are so different from coding..."
     player "Maybe I need to take some more courses specifically for coding interviews?"
+    # Let's study more
+
+    show screen job_posting_screen
+    player "Should I apply to this job posting?"
+    menu:
+        "Apply":
+            player "Let's apply and see what they say"
+        "Don't apply":
+            player "I don't think I qualify for this job yet..."
+    hide screen job_posting_screen
+
     player "So I've applied to over 30 jobs this week."
     player "Submitted my resume, a cover letter, and whatnot."
     player "Yet nothing has happened."
@@ -642,7 +653,8 @@ label stage8_interviews:
     player "I read that the next step is usually an online assessment that features LeetCode-style questions."
     player "My coding interview skills are still pretty shaky. So let's keep grinding LeetCode while I wait."
     player "Oh, an email!"
-    player "DevWire just sent me an online assessment!"
+
+    player "{b}QuicheQueue{/b} just sent me an online assessment!"
     player "They said I have a week to complete it and must do it in a 90-minute sitting."
     player "Well, here goes nothing."
     player "How come I have no idea what these questions are trying to get at?"
