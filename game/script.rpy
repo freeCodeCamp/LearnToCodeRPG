@@ -301,47 +301,48 @@ label stage4_guess_name:
         "freeCodeCamp":
             pass
 
+label stage5:
     player "[freeCodeCamp]. That sounds right! Let's check it out!"
     show fcc_curriculum at truecenter with dissolve
     player "Wow. Their curriculum is sure comprehensive. {w}They also offer certifications that I can showcase on my resume. Neat!"
     player "What shall we start with?"
     # booleans mark whether a choice has been visited
-    $ stage4_choose_curriculum_visited = [False, ] * 10
+    $ stage5_choose_curriculum_visited = [False, ] * 10
 
-label stage4_choose_curriculum:
+label stage5_choose_curriculum:
     # this choice actually has no consequences :)
     menu:
-        "Responsive Web Design" if not stage4_choose_curriculum_visited[0]:
+        "Responsive Web Design" if not stage5_choose_curriculum_visited[0]:
             player confused "Ehhh... what even is web design? And I'm not a design person... Will I be able to follow along?"
             player "Maybe let's look some more?"
-            $ stage4_choose_curriculum_visited[0] = True
-            jump stage4_choose_curriculum
-        "JavaScript Algorithms and Data Structures" if not stage4_choose_curriculum_visited[1]:
+            $ stage5_choose_curriculum_visited[0] = True
+            jump stage5_choose_curriculum
+        "JavaScript Algorithms and Data Structures" if not stage5_choose_curriculum_visited[1]:
             player confused "I remember having heard about JavaScript. Or wait, that's perhaps Java."
             player "What are algorithms and data structures? That sounds like math, which is not my favorite subject."
             player "What other curriculum options do I have?"
-            $ stage4_choose_curriculum_visited[1] = True
-            jump stage4_choose_curriculum
-        "Front End Development Libraries" if not stage4_choose_curriculum_visited[2]:
+            $ stage5_choose_curriculum_visited[1] = True
+            jump stage5_choose_curriculum
+        "Front End Development Libraries" if not stage5_choose_curriculum_visited[2]:
             player confused "Front end development? That sounds so complicated."
             player "Maybe I should go for some beginner topics?"
-            $ stage4_choose_curriculum_visited[2] = True
-            jump stage4_choose_curriculum
+            $ stage5_choose_curriculum_visited[2] = True
+            jump stage5_choose_curriculum
 
-        "Data Visualization" if not stage4_choose_curriculum_visited[3]:
+        "Data Visualization" if not stage5_choose_curriculum_visited[3]:
             player confused "I know there is some hype about big data, but can I really do that without a Ph.D.?"
             player "This doesn't look like it's for me."
-            $ stage4_choose_curriculum_visited[3] = True
-            jump stage4_choose_curriculum
+            $ stage5_choose_curriculum_visited[3] = True
+            jump stage5_choose_curriculum
 
-        "Back End Development and APIs" if not stage4_choose_curriculum_visited[4]:
+        "Back End Development and APIs" if not stage5_choose_curriculum_visited[4]:
             player confused "Back end, front end. What are the differences? They definitely sound like they should go together."
             player "But I don't have the time or energy to learn both..."
             player "Let's look for something simpler."
-            $ stage4_choose_curriculum_visited[4] = True
-            jump stage4_choose_curriculum
+            $ stage5_choose_curriculum_visited[4] = True
+            jump stage5_choose_curriculum
 
-        "Quality Assurance" if not stage4_choose_curriculum_visited[5]:
+        "Quality Assurance" if not stage5_choose_curriculum_visited[5]:
             player confused "Quality assurance? That sounds like I will be on a digital conveyor belt making sure all cookie packs weigh more or less the same."
             player awe "Nice, warm, and chewy cookies... I love cookies. Hope mom still keeps some in the kitchen cookie jar."
             mint "Meow?"
@@ -349,43 +350,75 @@ label stage4_choose_curriculum:
             mint "Meow meow"
             menu:
                 "Let's go grab a cookie from the kitchen":
-                    call stage4_cookie
+                    call stage5_cookie
 
                 "Enough cookie talk! Let's go back to studying":
                     pass
 
             with vpunch
-            player confused "Wait. {w}I got distracted. Where was I?"
+            player confused "Wait. {w}I got distracted. Where was I? Was I browsing the course category or something? Oh. I have this quality assurance tab open."
             player "At any rate, I don't think quality assurance is something I want to learn."
-            $ stage4_choose_curriculum_visited[5] = True
-            jump stage4_choose_curriculum
+            $ stage5_choose_curriculum_visited[5] = True
+            jump stage5_choose_curriculum
 
-        "Scientific Computing with Python" if not stage4_choose_curriculum_visited[6]:
-            pass
+        "Scientific Computing with Python" if not stage5_choose_curriculum_visited[6]:
+            player confused "Scientific computing? I'm not that much of a science person and I don't see myself becoming a scientist either."
+            player "Plus I don't know anything about Python yet."
+            player "I guess I'll pass."
+            $ stage5_choose_curriculum_visited[6] = True
+            jump stage5_choose_curriculum
 
-        "Data Analysis with Python" if not stage4_choose_curriculum_visited[7]:
-            pass
+        "Data Analysis with Python" if not stage5_choose_curriculum_visited[7]:
+            player "Data analysis sounds cool..."
+            player confused "But I don't know anything about Python. Plus I didn't do a lot of math in college."
+            player "That's probably too hard for me right now."
+            player "Let's find something else."
+            $ stage5_choose_curriculum_visited[7] = True
+            jump stage5_choose_curriculum
 
-        "Information Security" if not stage4_choose_curriculum_visited[8]:
-            pass
+        "Information Security" if not stage5_choose_curriculum_visited[8]:
+            player confused "What can I do after learning about information security?"
+            player "Hack into others' computers? Stop bad guys from hacking into others' computers?"
+            player "That sounds like a lot of moral commitment. I'm not sure if I can handle that."
+            player "Is there something more neutral on the list?"
+            $ stage5_choose_curriculum_visited[8] = True
+            jump stage5_choose_curriculum
 
-        "Machine Learning with Python" if not stage4_choose_curriculum_visited[9]:
-            pass
+        "Machine Learning with Python" if not stage5_choose_curriculum_visited[9]:
+            player awe "Machine Learning. Wow. That sounds cool."
+            player "I'm really interested in teaching machines to learn."
+            player "Just think about it. Teaching machines to chat like humans. {w}Wow."
+            player "No wonder everyone is hyped about Artificial Intelligence these days."
+            player "..."
+            player confused "That said, it looks hard. I know nothing about machine learning, except that there are so many memes about how machine learning is nothing but math."
+            player "Math... linear algebra... that kind of thing."
+            player "That's probably out of the league for me."
+            player "Maybe I should start with something more basic?"
+            $ stage5_choose_curriculum_visited[9] = True
+            jump stage5_choose_curriculum
 
         "Let's just wait until tomorrow and ask Annika for advice":
             player confused "Hmmm... I don't know. They all look equally hard. Let's ask Annika for advice tomorrow."
             mint "Meow!"
             player neutral "You think that's a good idea too, Mint?"
             player "Okay, let's get some rest today. Tomorrow is another day."
-            jump stage4_annika
+            jump stage5_annika
 
-label stage4_cookie:
-    # TODO: show interactions with Mom
+label stage5_cookie:
+    scene kitchen night with dissolve
+    mom "Hey honey, taking a break from all the studying?"
+    mom "Your dad and I are really glad that you continue to learn new things after college, but don't push yourself too hard, okay?"
+    player "Haha thanks Mom. I'm doing just fine."
+    player "I'm just deciding on what CS topic to learn so I can get a job in tech like Annika."
+    mom "Alright, know that we are always here if you'd like to talk or anything."
+    player "I will. Thanks Mom."
+
+    scene bedroom night with dissolve
     # sound of chewing on cookie
     player "Mmmm... Mom's cookies are the best."
     return
 
-label stage4_annika:
+label stage5_annika:
     # the next day
     $ player_stats.day_counter += 1
     scene bg bedroom day with fade
@@ -393,9 +426,15 @@ label stage4_annika:
     player happy "Hey Annika. So I've been checking out [freeCodeCamp] as you suggested."
     player "I think its curriculum looks solid."
     player confused "The thing is, I have no idea what to learn."
-    player "They all look super complicated and are honest hard work."
+    player "They all look super complicated. I bet you put in honest hard work to complete them."
+    player "Which one did you do, by the way?"
 
-    annika "Hey [persistent.player_name], I totally get where you are coming from."
+    annika "Oh, I did the web design one. What was it? {a=https://www.freecodecamp.org/learn/responsive-web-design/}Responsive Web Design?{/a}"
+    annika "If I remembered anything from my college CS minor, it's those web markup languages."
+    player confused "(So Annika managed to pull through the curriculum because she had some existing experience from college. Plus she has really good designer eyes.)"
+    player "(I'm not like that... There's no way I can do this...)"
+
+    annika "Hey [persistent.player_name], don't get discouraged, okay?"
     annika happy "It's already a big step forward now that you've checked out their curriculum!"
     annika "Trust me, I was just like you when I first started."
     annika "I was clueless, but then I decided to just go with their general introduction to computer science quizzes and start from there."
@@ -412,141 +451,59 @@ label stage4_annika:
     player laugh "Best of luck with your new job by the way! Let me know how it goes."
 
 label stage6_trials:
-    # Stage 4, 5, 6. Trials
+    # Stage 6. Trials
     scene bg bedroom day with fade
-    player "Okay, let's sit down to actually learn something."
+
+    # this first day has this fixed dialogue
+    # after this, the start-of-day dialogue will be randomly drawn from start_of_day_event_labels.rpy
+    # TODO: play sound of alarm
+    player "Ahhh here goes my alarm."
+    mint "Meow Meow"
+    player "Ahhh good morning, Mint."
+    player "..."
+    player "Okay, let's do this. Let's sit down to actually learn something."
     player "I'll start with the video lessons and then answer their multiple choice questions to check my understanding."
-    call study_menu_choices from _call_study_menu_choices
-    jump end_of_day_script
+    call study_menu_choices
+
+    # fixed dialogue for this first day
+    scene bedroom night with dissolve
+    player "Phew... I'm finally done with these questions. What a day..."
+   
+    play sound "<to 2.0>audio/sfx/phone_ring.wav"
+    play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
 
     show annika
-    annika "Hey [persistent.player_name]! How did studying go?"
-    player "Hey Annika!"
+    annika "Heyya [persistent.player_name]! How did your first day of studying go?"
+    player "Hey Annika! Thanks for checking in on me."
     player "I felt pretty productive today. It's nice how the curriculum gives you end-of-chapter tests for frequent feedback."
-    player "How was work?"
-    annika "It went well! I'm learning to use the custom framework that my company uses."
+    player "What about your day? How was work?"
+    annika "It went well! I'm learning to use the custom web dev framework that my company uses."
+    annika "It's pretty different from what I've been using in my own projects, and a little confusing at times, but my colleagues said it gets better with time."
     player "That sounds like fun!"
-    annika "It is pretty fun. I've heard about that tech stack from my friends at Hacker Space but I've never tried it."
-    player "What is this Hacker Space you are talking about?"
+    annika "It is pretty fun. Like it's not the first time I've heard about this framework. My friends at Hacker Space keep telling me how rad it is and I've been curious about it for a while."
+    player "What is this {b}Hacker Space{/b} you are talking about?"
     annika "It's just a casual meetup place for people interested in tech."
     annika "I highly recommend checking it out if you have time!"
     player "Hmmm..."
     annika "Haha don't worry. I know what you must be thinking about. It's not like nerds hanging out playing board games."
     annika "It's a chill space for people to gather, work, and build cool projects."
+    annika "You might actually find someone like you who's also learning to code there. You can totally become study buddies!"
     player "That sounds nice. I will check it out."
     annika "Yay! And we should go together some time if you enjoy it!"
+    annika "Whelp, I guess you must be tired. Sleep tight and keep up your productive streak!"
+    player "Haha thanks Annika. You as well. Have a good night and a great day at work tomorrow!"
+    # TODO: play sound of hanging up phone
 
-    jump end_of_day_script
-
-label study_menu_choices:
-    # correct choices increments CS knowledge
-    # ask 4 questions each time
-    $ num_questions = 4
-    while num_questions > 0:
-        if num_questions == 4:
-            player "First question. Three more to go!"
-        elif num_questions == 3:
-            player "Second question. Halfway through!"
-        elif num_questions == 2:
-            player "Third question. Almost there!"
-        elif num_questions == 1:
-            player "Last question. Hang in there!"
-
-        $ num_questions -= 1
-
-        window hide
-        # see cs_questions.rpy
-        $ choices = renpy.random.choice(cs_questions)
-        # result is True or False
-        $ result = renpy.display_menu(choices)
-
-        if result == True:
-            $ player_stats.change_stats('CS Knowledge', 1)
-            player "Correct!"
-        else:
-            player "Wrong..."
-
-    return
-
-label day_activity_choices:
-    $ player_stats.day_counter += 1
-    scene bg bedroom day with fade
-
-    player "A new day!"
-    player "Okay, so what shall we do for the day?"
-
-label study_menu:
-    menu:
-        "Study CS fundamentals":
-            player "Let's crunch some more code."
-            call study_menu_choices from _call_study_menu_choices_1
-            jump end_of_day_script
-        "Take a walk":
-            player "Let's head out to the park."
-            call choice_walk from _call_choice_walk
-            jump end_of_day_script
-        "Work gig as a barista":
-            player "I can do some shifts to cover my bills."
-            call barista from _call_barista
-            jump end_of_day_script
-        "Hang out at Hacker Space":
-            call hacker_space from _call_hacker_space
-            jump end_of_day_script
-        "Work on open-source projects":
-            player "Annika mentioned that contributing to open-source project is a good way to learn."
-            
-            if player_stats.player_stats_map['CS Knowledge'] > 3: # can proceed
-                player "Let's see, what are the newest Pull Requests?"
-                call open_source from _call_open_source
-                jump end_of_day_script
-            else:
-                player "Ehhh... I don't think my technical skills are solid enough for open-source projects yet. Maybe we can learn Git first?"
-                call study_menu from _call_study_menu # re-enter choice screen
-
-label open_source:
-    scene bg laptop_screen
-    player "Hmm... I don't know how to solve this but I can re-assign it to the original author."
-    player "It's cool how people volunteer their time and energy to make software accessible."
-    $ player_stats.change_stats('CS Knowledge', 1)
-    return
-
-label hacker_space:
-    scene bg hacker_space
-    player "Let's check out what cool projects people are working on."
-    $ player_stats.change_stats('CS Knowledge', 1)
-    return
-
-label barista:
-    scene bg cafe
-    player "Here's your matcha latte. Enjoy your day!"
-    player "Hmm... There are a group of kids in the back with their computers."
-    kid "So I have this hackathon idea..."
-    player "I don't mean to eavesdrop, but did they mention a hackathon?"
-    player "Geez, kids these days are intense."
-    player "But a hackathon? That sounds cool. I should give it a try when I know more about coding."
-    return
-
-label choice_walk:
-    scene bg park
-    player happy "It always soothe my nerves to take a walk in the park."
-    player "I almost feel like it restores my sanity."
-    $ player_stats.change_stats('Sanity', 10)
-    return
-
-label end_of_day_script:
-    scene bg bedroom night with dissolve
-    # TODO: rewrite logic
-    $ player_stats.change_stats('Sanity', -10)
-    player "Phew... That was a long day."
-
-    if player_stats.player_stats_map['CS Knowledge'] > 5 and player_stats.day_counter > 8:
-        jump stage7_ryan
-    else:
-        jump day_activity_choices # a new day
+    player "Yawwwwwn... I can barely keep my eyes open. Today's been quite a workout day for my brain."
+    player "Good night, Mint."
+    mint "Meow"
+    scene black with dissolve
 
 label stage7_ryan:
     # Stage 7. Ryan
     scene bg bedroom day with fade
+    # play sound of typing
+    # show a close-up graphic of Ryan?
     player "So I found this person's profile online. He taught himself to code with [freeCodeCamp]."
     player "He is now a senior software engineer and has decided to give back to the community."
     player "He said I can ask him anything so let's give it a shot."
@@ -576,7 +533,7 @@ label stage7_ryan:
     ryan "So that's my story. Anything you'd like to learn more about?"
 
     # initialize all choices to False
-    $ ryan_story_choices = [False, False, False, False]
+    $ ryan_story_choices = [False, ] * 4
     label ryan_story_choices:
         menu:
             "What are you up to nowadays?" if not ryan_story_choices[0]:
@@ -609,11 +566,6 @@ label stage7_ryan:
             "I'm done asking!":
                 player "I'm done asking! That's all I want to know. Thanks so much for sharing!"
                 ryan "Anytime, [persistent.player_name]. Have fun coding and keep me updated on your progress!"
-
-    call screen confirm_and_share(
-        "{bt}{size=[gui.name_text_size]}Congratulations!{/size}{/bt}\n\nYou completed the coding curriculum in {b}[player_stats.day_counter]{/b} days.\nNow you are ready to rock the coding interview and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
-        ok_text="Let's go!"
-        )
 
 label stage8_interviews:
     # Stage 8. Coding interviews

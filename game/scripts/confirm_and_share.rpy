@@ -1,7 +1,7 @@
 # https://www.renpy.org/doc/html/screen_special.html
 # based on the confirm screen
 
-screen confirm_and_share(message, ok_text):
+screen confirm_and_share(message, ok_text, ok_actioi=Return()):
 
     modal True
 
@@ -35,4 +35,4 @@ screen confirm_and_share(message, ok_text):
             hbox:
                 spacing 100
                 xalign .5
-                textbutton ok_text action Return()
+                textbutton ok_text action ok_action
