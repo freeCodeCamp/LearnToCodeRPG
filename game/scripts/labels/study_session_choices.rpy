@@ -1,7 +1,8 @@
-label study_menu_choices:
+label study_session_choices:
     # correct choices increments CS knowledge
     # ask 4 questions each time
     $ num_questions = 4
+    $ num_correct = 0
     while num_questions > 0:
         if num_questions == 4:
             player "First question. Three more to go!"
@@ -21,9 +22,11 @@ label study_menu_choices:
         $ result = renpy.display_menu(choices)
 
         if result == True:
+            $ num_correct += 1
             $ player_stats.change_stats('CS Knowledge', 1)
-            player "Correct!"
+            player happy "Correct!"
         else:
-            player "Wrong..."
+            player confused "Wrong..."
+    player "All done!"
 
     return

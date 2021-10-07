@@ -15,15 +15,6 @@ init python:
             # to loop over the dictionary deterministically
             self.player_stats_name_list = list(self.player_stats_map.keys())
 
-            # see sanity_event_labels.rpy
-            # initially there are only events with player themself and Annika
-            # eventually the plot will unlock those with Ryan and the community
-            self.sanity_event_labels = [
-                'sanity_event_player',
-                'sanity_event_player_pet',
-                'sanity_event_annika_boba',
-            ]
-
         def init_stats(self, stats_name):
             if stats_name in self.player_stats_map:
                 self.player_stats_map[stats_name] = 0
@@ -39,26 +30,11 @@ init python:
                 if not renpy.sound.is_playing():
                     renpy.sound.play('audio/sfx/stats_change_boop.wav')
 
-                if stats_name == 'Sanity' and val > 0:
-                    return
-                # else check if we can trigger some sanity events
-                self.detect_low_sanity()
-
         def set_stats(self, stats_name, val):
             # keep between 0 and 100
             if stats_name in self.player_stats_map:
                 clamped_val = min(100, max(0, val))
                 self.player_stats_map[stats_name] = clamped_val
-
-        def detect_low_sanity(self):
-            # trigger NPC event, see sanity_event_labels.rpy
-            # TODO: add more NPC
-            if self.player_stats_map['Sanity'] <= 60:
-                label = renpy.random.choice(seq=self.sanity_event_labels)
-                renpy.call(label)
-
-        def add_sanity_events_ryan(self):
-            pass
 
 init:            
     screen player_stats_screen(player_stats):

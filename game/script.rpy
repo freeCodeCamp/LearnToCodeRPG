@@ -153,12 +153,12 @@ label stage2:
 
     player "Looks like someone from my junior high school. I don't even remember who they are."
     player "What did they post to get this crazy many likes?"
-    player "{bt}\"Proud intern at DonutDatabase. Check out my swaaaag!\"{/bt}"
+    player "{bt}\"Proud intern at {b}DonutDatabase{\b}. Check out my swaaaag!\"{/bt}"
     player "Oh. wow."
 
 label stage2_after_social_media_ding:
     player confused "It's crazy how everyone these days is learning to code. High school students even."
-    player "And what's with these bootcamp programs? Six months then a six-figure job? That's even crazier."
+    player "And what's with these boot camp programs? Six months then a six-figure job? That's even crazier."
     player "Hmm, but I can see the appeal in that."
     player awe "Maybe I can learn to code as well."
     mint "Meow meow"
@@ -167,9 +167,9 @@ label stage2_after_social_media_ding:
     player "(I mean, mom and dad are sweet and understanding enough, but Mint is definitely one of the reasons that I decided to move back home.)"
 
     player neutral "Alright, let's do this."
-    player "A bit of research won't hurt. Where shall we start? Maybe a coding bootcamp like everyone else is doing?"
+    player "A bit of research won't hurt. Where shall we start? Maybe a coding boot camp like everyone else is doing?"
 
-    player distress "These bootcamp programs are expensive."
+    player distress "These boot camp programs are expensive."
     player "Maybe I can go with free online resources first."
     player neutral "Let's see, what should we learn first? Python? JavaScript? Web Dev?"
     player awe "Oh here's a video about the top 10 tech skills worth learning in 2021. Let's check that out!"
@@ -310,7 +310,9 @@ label stage5:
     $ stage5_choose_curriculum_visited = [False, ] * 10
 
 label stage5_choose_curriculum:
-    # this choice actually has no consequences :)
+    # this choice actually has no consequences on what the player will learn :)
+    # show unavailable choices as greyed out
+    $ config.menu_include_disabled = True
     menu:
         "Responsive Web Design" if not stage5_choose_curriculum_visited[0]:
             player confused "Ehhh... what even is web design? And I'm not a design person... Will I be able to follow along?"
@@ -450,8 +452,16 @@ label stage5_annika:
     player happy "Thanks Annika. I know I can count on you."
     player laugh "Best of luck with your new job by the way! Let me know how it goes."
 
-label stage6_trials:
+label stage6:
     # Stage 6. Trials
+    hide screen player_stats_screen
+    scene black with dissolve
+    pause 1
+    show text "{size=48}{color=#fff}{i}Chapter 3: Let's hit the books!{i}{/color}{/size}" with dissolve 
+    pause 1
+    hide text with dissolve
+    show screen player_stats_screen
+
     scene bg bedroom day with fade
 
     # this first day has this fixed dialogue
@@ -463,7 +473,7 @@ label stage6_trials:
     player "..."
     player "Okay, let's do this. Let's sit down to actually learn something."
     player "I'll start with the video lessons and then answer their multiple choice questions to check my understanding."
-    call study_menu_choices
+    call study_session_choices
 
     # fixed dialogue for this first day
     scene bedroom night with dissolve
@@ -487,9 +497,9 @@ label stage6_trials:
     player "Hmmm..."
     annika "Haha don't worry. I know what you must be thinking about. It's not like nerds hanging out playing board games."
     annika "It's a chill space for people to gather, work, and build cool projects."
-    annika "You might actually find someone like you who's also learning to code there. You can totally become study buddies!"
-    player "That sounds nice. I will check it out."
-    annika "Yay! And we should go together some time if you enjoy it!"
+    annika "You know what? At Hacker Space, you might actually find someone like you who's also learning to code. You can totally become study buddies!"
+    player "That sounds nice. I will visit there some time."
+    annika "Yay! And we should go together some time!"
     annika "Whelp, I guess you must be tired. Sleep tight and keep up your productive streak!"
     player "Haha thanks Annika. You as well. Have a good night and a great day at work tomorrow!"
     # TODO: play sound of hanging up phone
@@ -499,8 +509,19 @@ label stage6_trials:
     mint "Meow"
     scene black with dissolve
 
-label stage7_ryan:
+    # begin looping routines
+
+
+label stage7:
     # Stage 7. Ryan
+    hide screen player_stats_screen
+    scene black with dissolve
+    pause 1
+    show text "{size=48}{color=#fff}{i}Chapter 4: A mentor to lead the way!{i}{/color}{/size}" with dissolve 
+    pause 1
+    hide text with dissolve
+    show screen player_stats_screen
+
     scene bg bedroom day with fade
     # play sound of typing
     # show a close-up graphic of Ryan?
@@ -511,7 +532,7 @@ label stage7_ryan:
     scene bg desk with dissolve
     show ryan
 
-    ryan "Hi [persistent.player_name]. I'm Ryan. I'm a senior engineer at Colordeck."
+    ryan "Hi [persistent.player_name]. I'm Ryan. I'm a senior engineer at {b}QuicheQueue{\b}."
     player "Hi Ryan. Nice to meet you! I'm [persistent.player_name], a recent grad and developer wannabe."
     ryan "That sounds good."
     ryan "Why don't I start by telling you a bit about myself? Then ask whatever you want to know about me, my job, or tech in general."
@@ -534,6 +555,8 @@ label stage7_ryan:
 
     # initialize all choices to False
     $ ryan_story_choices = [False, ] * 4
+    # show unavailable choices as greyed out
+    $ config.menu_include_disabled = True
     label ryan_story_choices:
         menu:
             "What are you up to nowadays?" if not ryan_story_choices[0]:
@@ -550,7 +573,7 @@ label stage7_ryan:
 
             "What is your experience working with people who have a CS degree versus who don't?" if not ryan_story_choices[2]:
                 player "What is your experience working with people who have a CS degree versus who don't?"
-                ryan "I'd say it's not too different. A CS degree may give you a headstart in your first year as a junior developer, but after then, it is up to you to learn, grow, and adapt continuously to new technology."
+                ryan "I'd say it's not too different. A CS degree may give you a head start in your first year as a junior developer, but after then, it is up to you to learn, grow, and adapt continuously to new technology."
                 $ ryan_story_choices[2] = True
                 jump ryan_story_choices
 
@@ -567,8 +590,15 @@ label stage7_ryan:
                 player "I'm done asking! That's all I want to know. Thanks so much for sharing!"
                 ryan "Anytime, [persistent.player_name]. Have fun coding and keep me updated on your progress!"
 
-label stage8_interviews:
+label stage8:
     # Stage 8. Coding interviews
+    hide screen player_stats_screen
+    scene black with dissolve
+    pause 1
+    show text "{size=48}{color=#fff}{i}Chapter 5: Let's crunch them interviews!{i}{/color}{/size}" with dissolve 
+    pause 1
+    hide text with dissolve
+    show screen player_stats_screen
 
     scene bg bedroom night with dissolve
     player "I read that technical jobs ask candidates to complete coding interviews."
@@ -606,14 +636,23 @@ label stage8_interviews:
     player "My coding interview skills are still pretty shaky. So let's keep grinding LeetCode while I wait."
     player "Oh, an email!"
 
-    player "{b}QuicheQueue{/b} just sent me an online assessment!"
+    player "{b}ToffeeTerminal{/b} just sent me an online assessment!"
     player "They said I have a week to complete it and must do it in a 90-minute sitting."
     player "Well, here goes nothing."
     player "How come I have no idea what these questions are trying to get at?"
     player "They do look similar to some questions I saw on LeetCode, but I still have zero clue."
 
-label stage14_becca:
-    # Stage 14. New hire player
+label stage14:
+    # Stage 14. New hire player meets Becca
+    # TODO
+    hide screen player_stats_screen
+    scene black with dissolve
+    pause 1
+    show text "{size=48}{color=#fff}{i}Chapter ???: Let's hit the books!{i}{/color}{/size}" with dissolve 
+    pause 1
+    hide text with dissolve
+    show screen player_stats_screen
+
     scene bg office with dissolve
     show becca
     becca "Hey [persistent.player_name]. I'm Becca. I'm your onboarding buddy. Feel free to ask me anything."
