@@ -23,6 +23,7 @@ label study_session_choices:
 
         # result is True or False
         $ result = renpy.display_menu(quiz_question.choices)
+        hide screen example
 
         if result == True:
             $ num_correct += 1
@@ -30,8 +31,6 @@ label study_session_choices:
             player happy "Correct!"
         else:
             player confused "Wrong..."
-
-        hide screen example
 
     player "All done!"
 

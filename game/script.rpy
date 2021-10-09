@@ -1,4 +1,5 @@
 ﻿label start:
+    $ player_stats = PlayerStats()
     scene bg laptop_screen
 
     # get some action and conflict in here :)
@@ -67,8 +68,6 @@ label start_after_interview:
 
     # TODO: more customization like gender, pronouns, life story 
     python:
-        player_stats = PlayerStats()
-
         player_name = renpy.input("What is your name? {color=#f00}*{/color} (Type something and hit Enter)", default="Lydia")
         player_name = player_name.strip()
         if not player_name:
