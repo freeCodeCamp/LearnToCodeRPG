@@ -17,16 +17,22 @@ label study_session_choices:
 
         window hide
         # see cs_questions.rpy
-        $ choices = renpy.random.choice(cs_questions)
+        $ quiz_question = renpy.random.choice(general_questions)
+        if quiz_question.code_label is not None:
+            show screen example(quiz_question.code_label)
+
         # result is True or False
-        $ result = renpy.display_menu(choices)
+        $ result = renpy.display_menu(quiz_question.choices)
 
         if result == True:
             $ num_correct += 1
-            $ player_stats.change_stats('CS Knowledge', 1)
+            $ player_stats.change_stats('CS Knowledge', 5)
             player happy "Correct!"
         else:
             player confused "Wrong..."
+
+        hide screen example
+
     player "All done!"
 
     return

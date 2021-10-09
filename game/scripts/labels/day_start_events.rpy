@@ -3,6 +3,7 @@ label day_start:
     scene bg bedroom day with fade
 
     # play sound of alarm
+    # play sound of bird chirping
     player "A new day!"
     mint "Meow meow"
     player "Okay, what shall we do for the day?"

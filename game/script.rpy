@@ -43,6 +43,7 @@ label start_interview_question2:
 
 label start_interview_question3:
     with hpunch
+    $ timeout_label = "start_after_interview"
     menu:
         "How do you explain how the Internet works to a five-year old?"
     
@@ -55,6 +56,8 @@ label start_interview_question3:
         "...":
             pass
 
+label start_after_interview:
+    # reset to non-timed choices
     $ timeout_label = None    
     with vpunch
 
@@ -64,16 +67,46 @@ label start_interview_question3:
 
     # TODO: more customization like gender, pronouns, life story 
     python:
-        # init player stats but we won't show the stats screen until the label `stage1_intro`
         player_stats = PlayerStats()
 
-        player_name = renpy.input("What's your name? {color=#f00}*{/color} (Type something and hit Enter)")
+        player_name = renpy.input("What is your name? {color=#f00}*{/color} (Type something and hit Enter)", default="Lydia")
         player_name = player_name.strip()
         if not player_name:
             player_name = "Lydia"
         persistent.player_name = player_name
 
-        player_pronouns = renpy.input("What's your preferred pronoun?")
+        # TODO
+        # player_pronouns = renpy.input("What's your preferred pronoun?")
+
+    # questions with no substantial consequences
+    menu:
+        "How did you hear about this opportunity?"
+    
+        "Email":
+            pass
+    
+        "Career fair":
+            pass
+
+        "Job posting websites":
+            pass
+
+        "Referral":
+            $ renpy.input("What is the full name of your referral? (Type something and hit Enter)")
+            "Hmmm... We aren't able to locate that person in our employee database. Maybe you had a typo?"
+
+        "Others (Please specify)":
+            $ renpy.input("How did you hear about us? (Type something and hit Enter)")
+            "Well, we aren't sure how you came across this opportunity through the portal you specified, but we are glad you are here!"
+
+    menu:
+        "Would you like to opt into our recruiting email list?"
+    
+        "Yes":
+            pass
+    
+        "No":
+            pass
     
     window hide
     with pixellate
@@ -148,6 +181,7 @@ label stage2:
     menu:
         "Check phone":
             pass
+
         "Ignore":
             jump stage2_after_social_media_ding
 
@@ -155,6 +189,17 @@ label stage2:
     player "What did they post to get this crazy many likes?"
     player "{bt}\"Proud intern at {b}DonutDatabase{\b}. Check out my swaaaag!\"{/bt}"
     player "Oh. wow."
+    player "Should I leave a like or comment on their post?"
+    # no consequence
+    menu:
+        "Leave a like":
+            pass
+    
+        "Post a comment":
+            pass
+
+        "Do nothing":
+            pass
 
 label stage2_after_social_media_ding:
     player confused "It's crazy how everyone these days is learning to code. High school students even."
@@ -229,7 +274,7 @@ label stage3:
     show text "{size=48}{color=#fff}{i}Chapter 2: A learning buddy to make it better!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
-    show screen player_stats_screen
+    show screen player_stats_screen(player_stats)
     # the above is standard for a chapter opening screen
 
     $ player_stats.day_counter += 1
@@ -240,9 +285,10 @@ label stage3:
     player "Do I merit a personal rejection call from the neighborhood coffee shop?"
 
     show annika
-    annika "[persistent.player_name]! How have you been?"
+    annika "[persistent.player_name]!"
     player happy "Annika! Geez. When was the last time you called me? When we were moving out after graduation?"
     player laugh "Anyways, it's really nice to hear from you again!"
+    annika "Same! How have you been?"
     player netural "I've been okay. Just new grad blues. You?"
 
     show annika happy
@@ -460,7 +506,7 @@ label stage6:
     show text "{size=48}{color=#fff}{i}Chapter 3: Let's hit the books!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
-    show screen player_stats_screen
+    show screen player_stats_screen(player_stats)
 
     scene bg bedroom day with fade
 
@@ -509,8 +555,9 @@ label stage6:
     mint "Meow"
     scene black with dissolve
 
-    # begin looping routines
-
+    # begin looping routines, see day_start_events.rpy
+    # TODO: refactor flow, move checks to this main flow
+    jump day_start
 
 label stage7:
     # Stage 7. Marco
@@ -520,7 +567,7 @@ label stage7:
     show text "{size=48}{color=#fff}{i}Chapter 4: A mentor to lead the way!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
-    show screen player_stats_screen
+    show screen player_stats_screen(player_stats)
 
     scene bg bedroom day with fade
     # play sound of typing
@@ -598,7 +645,7 @@ label stage8:
     show text "{size=48}{color=#fff}{i}Chapter 5: Let's crunch them interviews!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
-    show screen player_stats_screen
+    show screen player_stats_screen(player_stats)
 
     scene bg bedroom night with dissolve
     player "I read that technical jobs ask candidates to complete coding interviews."
@@ -651,7 +698,7 @@ label stage14:
     show text "{size=48}{color=#fff}{i}Chapter ???: Let's hit the books!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
-    show screen player_stats_screen
+    show screen player_stats_screen(player_stats)
 
     scene bg office with dissolve
     show layla

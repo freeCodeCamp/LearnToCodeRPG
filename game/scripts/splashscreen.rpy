@@ -2,7 +2,7 @@ image splash = 'gui/fcc_primary_large.jpg'
 
 label splashscreen:
     scene gray90 with Pause(1)
-    show splash with dissolve
+    show splash at truecenter with dissolve
     with Pause(2)
     scene gray90 with dissolve
     with Pause(1)

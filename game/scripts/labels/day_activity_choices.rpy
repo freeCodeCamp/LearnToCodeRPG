@@ -145,8 +145,9 @@ label day_end:
         )
 
     # check whether to proceed to the next stage
-    if player_stats.player_stats_map['CS Knowledge'] > 5 and player_stats.day_counter > 8:
-        jump stage7_ryan
+    # if the player is half-way through the curriculum and some days have elapsed
+    if player_stats.player_stats_map['CS Knowledge'] >= 40 and player_stats.day_counter > 8:
+        jump stage7 # Marco
     
     # check whether the next day will have a sanity event
     if player_stats.player_stats_map['Sanity'] <= 60:
