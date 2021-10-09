@@ -265,25 +265,195 @@ init python:
         explanation="The difference between these two equality operators is that the first allows type coercion and the second does not. Because JavaScript is a loosely typed language, the abstract equality operator can establish equality between dissimilar types. For instance, "2" == 2 evaluates to true, however, this would fail under a check of strict equality. Generally, strict equality is safer and preferred, but it's good to understand the difference between these two equality operators."
         ),
 
-    QuizQuestion(
-        ),
-
-    QuizQuestion(
-        ),
-
-    QuizQuestion(
-        ),
-
     ]
 
     web_questions = [
+
+    QuizQuestion(
+        question="What service to CDNs provide?",
+        true="A CDN (content delivery or distribution network) is designed to provide web content with high availability and high performance.",
+        false=[
+        "A CDN makes real-time communication between web clients very efficient.",
+        "CDNs are responsible for routing web requests to destination servers.",
+        "None of these are correct."
+        ],
+        explanation="""
+        A CDN is a content delivery network primarily responsible for serving static web assets in a very performant manner. CDNs can reduce server traffic by handling specific requests and are often geographically distributed in a way to handle requests more efficiently. A large percentage of web traffic is served via CDNs today.
+        """
+        ),
+
+    QuizQuestion(
+        question="Which HTTP status code is reserved for successful responses?",
+        true="200",
+        false=[
+        "500",
+        "404",
+        "303",
+        "505"
+        ],
+        explanation="The 200 status codes are reserved for client requests that are received and successfully processed by a server."
+        ),
+
+    QuizQuestion(
+        question="___ is the HTTP status code for client errors, and ___ is the status code for server errors.",
+        true="400, 500",
+        false=[
+        "200, 400",
+        "200, 500",
+        "200, 300",
+        "300, 500"
+        ],
+        explanation="Any 400 status is used for client errors (unauthorized, bad request, not found, etc), and 500 status is used for servers errors (internal server error, bad gateway, etc.)."
+        ),
+
+    QuizQuestion(
+        question="What role does the Domain Name System play in resolving web traffic?",
+        true="The DNS is responsible for resolving web domain names to the actual IP addresses where the associated service is located.",
+        false=[
+        "The DNS system plays an important role re-routing server traffic when a single server becomes over-loaded.",
+        "The DNS is responsible for breaking internet traffic into small packets to be sent to web clients.",
+        "The DNS system is responsible for verifying SSL security certificates."
+        ],
+        explanation="""
+        The Domain Name System maps domain names to the underlying IP addresses which are responsible for actually serving web traffic. This allows web addresses to be represented by a single, human-readable domain (e.g. freecodecamp.com), while behind the scenes freeCodeCamp servers may exist at one or more IP addresses which are mapped to the domain name by the DNS system when a user visits freecodecamp.com.
+        """
+        ),
+
+    QuizQuestion(
+        question="How many classes of HTTP status codes are there?",
+        true="Five",
+        false=["Two", "Three", "Four", "One"],
+        explanation="""
+        There are five different classes of HTTP status codes, represented by 100, 200, 300, 400, and 500. Each is used to specify a different server response to a client during use of the Hypertext Transfer Protocol (HTTP). 
+        """
+        ),
 
     ]
 
     algorithm_questions = [
 
+    QuizQuestion(
+        question="What is the distinguishing characteristic of a `pure function`?",
+        true="A pure function has no side effects and given the same arguments always returns the same result.",
+        false=[
+        "A pure function directly returns a result without calling any other functions.",
+        "A pure function is a function that modifies a global variable, and does nothing else.",
+        "A function is `pure` if it only accepts a single argument.",
+        "None of these answers are correct."
+        ],
+        explanation="""
+        Pure functions are crucial elements of functional programming. In this paradigm, a pure function is conceptually similar to a mathematical function. It will determine a result solely based on its input values, and given those same input parameters again, it will return the same result. This property allows a pure function to exist independently of the state of system surrounding it. It doesn't rely on the state of outside variables and it also does not directly modify any variables in its outer scope. This property also means the function can be memoized, which is a common method of improving performance. 
+        """
+        ),
+
+    QuizQuestion(
+        question="What principle does the following function illustrate?",
+        true="Recursion",
+        false=[
+        "Dynamic Programming",
+        "Memoization",
+        "Object-Oriented Programming",
+        "Imperative Programming"
+        ],
+        code_label='js_code8',
+        explanation="""
+        This demonstrates recursion, a programming technique where a function calls itself. Here, we are searching through a binary tree structure looking for a node. At each node, if we can't find the target value and that node has child nodes, we call the parent function again with the appropriate child node as input. This continues until the function finds the target node or reaches a leaf node and terminates.
+        """
+        ),
+
+    QuizQuestion(
+        question="What is the time complexity of the following function?",
+        true="O(n)",
+        false=["O(log(n))", "O(1)", "O(n*log(n))", "O(n^2)"],
+        code_label='js_code9',
+        explanation="""
+        This function takes an array and a target element and searches for the element in the array. It iterates through the array with a for-loop, and in the worst case must visit every item in the array. This gives this function linear time complexity. That is, the time complexity will increase in a linear manner in relation to the size of the input. If the input increases by 1000, this solution may loop 1000 times more — there is a linear relationship between the algorithm's performance and the size of the input.
+        """
+        ),
+
+    QuizQuestion(
+        question="What principle does the following function illustrate?",
+        true="Memoization",
+        false=[
+        "Recursion",
+        "Prototypal Inheritance",
+        "Object Composition"
+        ],
+        code_label='js_code10',
+        explanation="""
+        This code demonstrates memoization. createSearchFunction returns a new function that has closure over a cache, which is simply a fast, constant-time lookup table. The function sees if a parameter exists in the cache as a key, if it does it returns the associated value. If not, it computes the value, saves the parameter and result in the cache, and then returns the result. In this way, if it subsequently encounters the same parameter again, it can quickly return the cached result and forego the expensive computation. This pattern is a very useful way to improve the performance of computationally expensive functions.         """
+        ),
+
+    QuizQuestion(
+        question="A complex problem which can be broken down into repeating sub-problems can be solved by a method known as:",
+        true="Dynamic Programming",
+        false=["Recursion", "Functional Composition", "Multithreaded Programming"],
+        explanation="""
+        Some complex problems can be divded into smaller, repeating sub-problems. These are ideal candidates for the method of dynamic programming, in which the sub-problems are solved and used to dynamically build up a solution to the more complex problem. This is a more advanced programming method but can be very useful in solving problems which otherwise would not be possible by brute force approaches.
+        """
+        ),
+
     ]
 
     system_questions = [
+
+    QuizQuestion(
+        question="What problem does a load balancer solve?",
+        true="Load balancers can distribute incoming traffic to one of many servers, allowing one to scale a server architecture to support a high volume of traffic.",
+        false=[
+        "A load balancer determines how to route requests between clients and servers.",
+        "None of these are correct.",
+        "If traffic reaches a certain level load balancers will start throttling traffic to prevent servers from crashing."
+        ],
+        explanation="Load balancers optimize resource use by distributing requests or traffic evenly among many computers. This is commonly used in serving web traffic to a number of servers after the point where a single server is unable to handle the amount of incoming traffic. The load balancer acts as an intermediary which distributes incoming requests to one of many servers, and in this way is an important scaleability tool."
+        ),
+
+    QuizQuestion(
+        question="Caching is an important method to improve web application performance. Which of the following are popular caching technologies that exist at the server/database interface?",
+        true="Redis and Memcached",
+        false=["CDNs", "Docker", "Kubernetes", "Elasticsearch"],
+        explanation="""
+        Redis and Memcached are two of the most common caching solutions for database queries. They are key-value pair in-memory datastores that allow you to cache the results of database queries to prevent subsequent requests from performing the same database query again. The use of these technologies can often offer sizable performance improvements to database heavy web applications.
+        """
+        ),
+
+    QuizQuestion(
+        question="When scaling a server architecture, it is important to use redundancy to protect against: ",
+        true="Single points of failture",
+        false=[
+        "System fragility",
+        "Network vulnerabilities",
+        "Security exploits"
+        ],
+        explanation="""
+        Introducing a load balancer, for instance, creates a single point that, if compromised, could compromise the entire system. Because of this, it is important to use redundancy to guard against these single points of failure. Now, if one of these components fails the backup system could be transitioned in through a process known as "failover".
+        """
+        ),
+
+    QuizQuestion(
+        question="What is continuous integration?",
+        true="Continuous integration is a software development practice that involves frequent incorporation of code changes to a shared repository, and usually involves an automated build and testing process.",
+        false=[
+        "None of these are correct.",
+        "Continuous integration is a process where tests are written for a project and all subsequent code is written in order to pass the tests.",
+        "Continuous integration is the agile methodology practice of deploying production code frequently, usually at least once per sprint."
+        ],
+        explanation="""
+        Continuous integration (CI) is the practice of frequently integrating local code changes with a shared code repository. The main idea is to speed up the development/release lifecycle and improve the ability of developers to identify and address bugs. CI is often associated with an automated build and testing process, which additionally helps to catch bugs quickly and earlier.
+        """
+        ),
+
+    QuizQuestion(
+        question="A system designed with several different services that are all isolated and managed independently is referred to as",
+        true="A microservices architecture.",
+        false=[
+        "A dynamic architecture.",
+        "A monolithic architecture.",
+        "A component architecture."
+        ],
+        explanation="""
+        Microservices are commonly contrasted with the so-called monolithic architecture. In the former, different tasks or services are broken up into independent, isolated services, all of which interact with each other. In the other approach, everything involved in an application is consolidated into one architecture. Both approaches have their own advantages and disadvantages.
+        """
+        ),
 
     ]

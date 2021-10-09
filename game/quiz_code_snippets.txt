@@ -63,3 +63,71 @@ console.log("2" + "2" + 1 + -"1");
 var x;
 console.log(x);
 #end js_code7
+
+#begin js_code8
+function doesNodeExist(node, target) {
+
+    if (node.value === target) {
+        return true;
+    } else if (target < node.value) {
+
+        if (node.left !== null) {
+            return doesNodeExist(node.left, target);
+        } else {
+            return false;
+        }
+
+    } else {
+
+        if (node.right !== null) {
+            return doesNodeExist(node.right, target);
+        } else {
+            return false;
+        }
+
+    }
+
+}
+#end js_code8
+
+#begin js_code9
+function findElement(array, target) {
+
+    for (var i = 0; i < array.length; i++) {
+
+        if (array[i] === target) {
+            return array[i];
+        }
+
+    }
+
+    return null;
+
+}
+#end js_code9
+
+#begin js_code10
+function createSearchFunction() {
+
+    var cache = {};
+
+    return function(target) {
+
+        if (target in cache) {
+            return cache[target];
+        }
+
+        /* executeSearch is complex
+         * and defined elsewhere */
+        var result = executeSearch(target);
+
+        cache[target] = result;
+
+        return result;
+
+    }
+
+};
+
+var searchArchives = createSearchFunction();
+#end js_code10

@@ -5,13 +5,13 @@ label study_session_choices:
     $ num_correct = 0
     while num_questions > 0:
         if num_questions == 4:
-            player "First question. Three more to go!"
+            player neutral "First question. Three more to go!"
         elif num_questions == 3:
-            player "Second question. Halfway through!"
+            player neutral "Second question. Halfway through!"
         elif num_questions == 2:
-            player "Third question. Almost there!"
+            player neutral "Third question. Almost there!"
         elif num_questions == 1:
-            player "Last question. Hang in there!"
+            player neutral "Last question. Hang in there!"
 
         $ num_questions -= 1
 
@@ -30,8 +30,10 @@ label study_session_choices:
             $ player_stats.change_stats('CS Knowledge', 5)
             player happy "Correct!"
         else:
+            with vpunch
             player confused "Wrong..."
 
-    player "All done!"
+    with hpunch
+    player neutral "All done!"
 
     return
