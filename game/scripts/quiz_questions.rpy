@@ -37,6 +37,8 @@ init python:
             self.explanation = explanation
             self.code_label = code_label
 
+    # we have general_questions, javascript_questions, web_questions, algorithm_questions, and system_questions
+
     general_questions = [
     
     QuizQuestion(

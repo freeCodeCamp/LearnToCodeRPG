@@ -140,7 +140,8 @@ label day_end:
     # we check whether we can show the congrats screen
     if player_stats.player_stats_map['CS Knowledge'] >= 100:
         call screen confirm_and_share(
-            "{bt}{size=[gui.name_text_size]}Congratulations!{/size}{/bt}\n\nYou completed the coding curriculum in {b}[player_stats.day_counter]{/b} days.\nNow you are ready to rock the coding interview and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
+            title="{bt}Congratulations!{/bt}",
+            message="You completed the coding curriculum in {b}[player_stats.day_counter]{/b} days.\nNow you are ready to rock the coding interview and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
             ok_text="Let's go!", ok_action=Jump('stage8')
         )
 

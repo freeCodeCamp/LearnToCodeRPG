@@ -186,7 +186,7 @@ label stage2:
 
     player "Looks like someone from my junior high school. I don't even remember who they are."
     player "What did they post to get this crazy many likes?"
-    player "{bt}\"Proud intern at {b}DonutDatabase{\b}. Check out my swaaaag!\"{/bt}"
+    player "{bt}\"Proud intern at {b}DonutDB{\b}. Check out my swaaaag!\"{/bt}"
     player "Oh. wow."
     player "Should I leave a like or comment on their post?"
     # no consequence
@@ -518,7 +518,7 @@ label stage6:
     player "..."
     player "Okay, let's do this. Let's sit down to actually learn something."
     player "I'll start with the video lessons and then answer their multiple choice questions to check my understanding."
-    call study_session_choices
+    call study_session
 
     # fixed dialogue for this first day
     scene bedroom night with dissolve
@@ -719,6 +719,9 @@ label stage14:
     layla "That's not true, you know."
     player "Oops, sorry."
     layla "No big deal."
+
+    # TODO: Layla AMA session like Marco
+
     layla "Have you heard of the word, imposter syndrome?"
     player "Yeah. I feel that quite often."
     layla "You are good. That's almost the norm for people in tech."
@@ -736,4 +739,24 @@ label stage14:
     layla "So are we ready to go back and squash some bugs?"
     player "Lead the way!"
 
+label final:
+    scene office with dissolve
+    player happy "Okay, I think my code is good to go! Let's commit it to the server."
+    # TODO: system processing animation
+    player "... {w}And nothing happened."
+
+    hide screen player_stats_screen
+    call screen confirm_and_share(
+        title="{color=#f00}{icon=alert} Attention{/color}",
+        message="Hey [persistent.player_name]... \nThe thing is, it looks like... {sc}{color=#f00}YOU HAVE BROUGHT DOWN THE PRODUCTION SERVER{/color}{/sc}",
+        ok_text="Oopsy... Am I... fired?"
+    )
+
+    scene black with dissolve
+    pause 2
+    show text "{bt}{size=48}{color=#fff}{i}Well, that's another story :){i}{/color}{/size}{/bt}" with dissolve 
+    pause 2
+    hide text with dissolve
+
+    # end of this game
     return

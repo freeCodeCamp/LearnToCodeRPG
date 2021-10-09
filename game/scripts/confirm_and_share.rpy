@@ -1,7 +1,7 @@
 # https://www.renpy.org/doc/html/screen_special.html
 # based on the confirm screen
 
-screen confirm_and_share(message, ok_text, ok_actioi=Return()):
+screen confirm_and_share(title, message, ok_text, ok_action=Return()):
 
     modal True
 
@@ -20,6 +20,11 @@ screen confirm_and_share(message, ok_text, ok_actioi=Return()):
         vbox:
             xfill True
             spacing 25
+
+            text _(title):
+                text_align 0.5
+                xalign 0.5
+                size gui.name_text_size
 
             text _(message):
                 text_align 0.5

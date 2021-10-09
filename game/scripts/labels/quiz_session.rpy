@@ -1,4 +1,4 @@
-label study_session_choices:
+label study_session:
     # correct choices increments CS knowledge
     # ask 4 questions each time
     $ num_questions = 4
