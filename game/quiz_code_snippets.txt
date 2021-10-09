@@ -10,9 +10,96 @@ int main()
 }
 #end c_code1
 
+#begin java_code1
+import java. util.Hashtable;
+import java. util.Map;
+public class hashTableBlog {
+    public static void main (String args[])
+    {
+        Map<Integer,String> hashtable = new Hashtable<Integer,String>();
+        hashtable.put(11,”a”);
+        hashtable.put(null,”c”);
+        hashtable.put(null,null);
+
+        System.out.println(hashtable.size());
+        System.out.println(hashtable);
+    }
+}
+#end java_code1
+
+#begin java_code2
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+public class MyClass {
+    public static void main(String args[])
+    {
+        Map<Integer,String> hashMap = new HashMap<Integer,String>();
+        hashMap.put(11,”a”);
+        Collections.unmodifiableMap(hashMap);
+        hashMap.put(12,”b”);
+        System.out.println(hashMap);
+    }
+}
+#end java_code2
+
+#begin java_code3
+public static synchronized void main(String[] args) throws  
+InterruptedException {  
+     Thread f = new Thread();  
+      f.start();  
+      System.out.print("A");  
+      f.wait(1000);  
+      System.out.print("B");  
+}
+#end java_code3
+
 #begin py_code1
 print([0,[1,2,3,4,5][2],2][1])
 #end py_code1
+
+#begin py_code2
+camp = ""
+for x in range(5):
+  camp += x
+print(camp)
+#end py_code2
+
+#begin py_code3
+import re
+hand = open('mbox-short.txt')
+for line in hand:
+    line = line.rstrip()
+    if re.search('^From:', line):
+        print(line)
+#end py_code3
+
+#begin py_code4
+width = 15
+height = 12.0
+print(height/3)
+#end py_code4
+
+#begin py_code5
+mystock = {
+"Product": "Earphone",
+"Price": 800,
+"Quantity": 50,
+"InStock" : "Yes"
+}
+#end py_code5
+
+#begin py_code6
+tuple = {} 
+tuple[(1,2,4)] = 8
+tuple[(4,2,1)] = 10
+tuple[(1,2)] = 12
+sum = 0
+for k in tuple: 
+    sum += tuple[k] 
+print(len(tuple) + sum)
+#end py_code6
 
 #begin js_code1
 var foo = "Hello World";
@@ -131,3 +218,15 @@ function createSearchFunction() {
 
 var searchArchives = createSearchFunction();
 #end js_code10
+
+#begin js_code11
+puzzle = true ? false ? "free" : true ? "code" : "camp" : false ? "courses" : "joke answer"
+#end js_code11
+
+#begin js_code12
+var a = 10;
+do {
+   a += 1;
+   console.log(a);
+} while (a < 5);
+#end js_code12

@@ -55,7 +55,7 @@ init python:
         question="How many times is the value of i checked in the following C code?",
         true="3",
         false=["2", "4", "1"],
-        code_label="code1"
+        code_label='c_code1'
         ),
 
     QuizQuestion(
@@ -68,7 +68,203 @@ init python:
         question="What will this Python code print?",
         true="3",
         false=["0", "1", "2", "π"],
-        code_label="py_code1"
+        code_label='py_code1'
+        ),
+
+    QuizQuestion(
+        question="What is the value of 'puzzle' in this line of JavaScript?",
+        true="joke answer",
+        false=["free", "code", "camp", "courses"],
+        code_label='js_code11'
+        ),
+
+    QuizQuestion(
+        question="What will this Python code print?",
+        true="None of the above.",
+        false=["012345", "15", "01234", "10"],
+        code_label='py_code2'
+        ),
+
+    QuizQuestion(
+        question="What should be at the top of most HTML files?",
+        true="<!DOCTYPE html>",
+        false=["<DOCTYPE html>", "<!BEWARE html>"]
+        ),
+
+    QuizQuestion(
+        question="Which is an HTML comment?",
+        true="<!-- comment -->",
+        false=["// comment", "# comment", "-- comment"]
+        ),
+
+    QuizQuestion(
+        question="In Regex, which will match all digits in a string?",
+        true="[1-9]",
+        false=["/#", "/digits", "/D", "/d"]
+        ),
+
+    QuizQuestion(
+        question="What will the following Python code print?",
+        true="Any line that starts with 'From:'",
+        false=[
+        "Any line containing 'From'",
+        "Any line taht starts with 'From'",
+        "Any line containing 'From:'",
+        "The lyrics of 'Never Gonna Give You Up'"
+        ],
+        code_label='py_code3'
+        ),
+
+    QuizQuestion(
+        question="What will print out after running this Python code:",
+        true="4.0",
+        false=["4", "height/3", "5", "opossum"],
+        code_label='py_code4'
+        ),
+
+    QuizQuestion(
+        question="What will be the output of the following JavaScript code?",
+        true="11",
+        false=["11121314", "1112", "12345"],
+        code_label='js_code12'
+        ),
+
+    QuizQuestion(
+        question="How do you access the value for key `Price` in the following Python dictionary?",
+        true='mystock["Price"]',
+        false=[
+        'mystock[Price]',
+        'mystock("Price")',
+        'mystock{"Price"}',
+        'mystock(price)'
+        ],
+        code_label='py_code5'
+        ),
+
+    QuizQuestion(
+        question="Which will create a variable in JavaScript?",
+        true='let me = "in"',
+        false=[
+        'string freeCodeCamp = "amazing";',
+        'language <- "JavaScript"',
+        'variable correct = "answer";',
+        'let there be variable'
+        ]
+        ),
+
+    QuizQuestion(
+        question="What will be the output of the following Java code?",
+        true="Runtime Exception",
+        false=[
+        "Compile time exception",
+        "UnsupportedOperationException",
+        ],
+        code_label='java_code1'
+        ),
+
+    QuizQuestion(
+        question="How do you convert uppercase letters in a string to lowercase letters in Python?",
+        true="lower()",
+        false=["lowercase()", "toLower()", "sudo make lower case"]
+        ),
+
+    QuizQuestion(
+        question="What will be the output of the following Java code?",
+        true="UnsupportedOperationException",
+        false=[
+        "{11=a}",
+        "{11=a, 12=b}",
+        "Compile time exception",
+        ],
+        code_label='java_code2'
+        ),
+
+    QuizQuestion(
+        question="Which of the following properly expresses the precedence of operators (using parentheses) in the following expression: 5*3 > 10 and 4+6==11",
+        true="((5*3) > 10) and ((4+6) == 11)",
+        false=[
+        "(5*(3 > 10)) and (4 + (6 == 11))",
+        "((((5*3) > 10) and 4)+6) == 11",
+        "((5*3) > (10 and (4+6))) == 11"
+        ]
+        ),
+
+    QuizQuestion(
+        question="What is the command to list all Node modules that are installed globally?",
+        true="npm ls -g",
+        false=[
+        "npm ls",
+        "node ls -g",
+        "node ls"
+        ]
+        ),
+
+    QuizQuestion(
+        question="Which line of code produces a list of numbers between 1 and 1000 that are divisible by 3?",
+        true="[x for x in range(1000) if x%3==0]",
+        false=[
+        "[x in range(1, 1000) if x%3==0]",
+        "[x%3 for x in range(1, 1000)]",
+        "[x%3=0 for x in range(1, 1000)]"
+        ]
+        ),
+
+    QuizQuestion(
+        question="What is the output of the following Python program?",
+        true="33",
+        false=["34", "12", "31", "42"],
+        code_label='py_code6'
+        ),
+
+    QuizQuestion(
+        question="What is the result of the following Java code?",
+        true="A will be printed, and then an exception is thrown.",
+        false=[
+        "It only prints B and exits.",
+        "It only prints A and exits.",
+        "It prints A and B with a 1000 seconds delay between them."
+        ]
+        ),
+
+    QuizQuestion(
+        question="Which of the following is not part of Data Analysis?",
+        true="Picking a desired conclusion for the analysis.",
+        false=[
+        "Building statistical models and data visualizations.",
+        "Fixing incorrect values and removing invalid data.",
+        "Transforming data into an appropriate data structure."
+        ]
+        ),
+
+    QuizQuestion(
+        question="What does the shape of our dataframe tell us?",
+        true="How many rows and columns our dataframe has.",
+        false=[
+        "The size in gigabytes the dataframe we loaded into memory is.",
+        "How many rows the source data had before loading.",
+        "How many columns the source data had before loading."
+        ]
+        ),
+
+    QuizQuestion(
+        question="Which statement below is false?",
+        true="Neural networks are modeled after the way the human brain works.",
+        false=[
+        "Computer programs that play tic-tac-toe or chess against human players are examples of simple artificial intelligence.",
+        "Machine learning is a subset of artificial intelligence."
+        ]
+        ),
+
+    QuizQuestion(
+        question="Where are your programs stored when they are running?",
+        true="Memory.",
+        false=["Hard Drive.", "Central Processing Unit."]
+        ),
+
+    QuizQuestion(
+        question="Which data structure ensures the uniqueness of its elements?",
+        true="Set",
+        false=["List", "Array", "Collection", "Heap"]
         ),
 
     ]
@@ -129,7 +325,7 @@ init python:
 
     QuizQuestion(
         question="Which of the following is a feature provided by ES6 arrow functions?",
-        true="They "inherit" this from the enclosing lexical context, regardless of how the function is called.",
+        true='They "inherit" this from the enclosing lexical context, regardless of how the function is called.',
         false=[
         "They allow for functional composition.",
         "The only advantage is shorter syntax.",
@@ -262,7 +458,9 @@ init python:
         "None of these are correct.",
         "These operators are interchangeable and both test for equality."
         ],
-        explanation="The difference between these two equality operators is that the first allows type coercion and the second does not. Because JavaScript is a loosely typed language, the abstract equality operator can establish equality between dissimilar types. For instance, "2" == 2 evaluates to true, however, this would fail under a check of strict equality. Generally, strict equality is safer and preferred, but it's good to understand the difference between these two equality operators."
+        explanation="""
+        The difference between these two equality operators is that the first allows type coercion and the second does not. Because JavaScript is a loosely typed language, the abstract equality operator can establish equality between dissimilar types. For instance, "2" == 2 evaluates to true, however, this would fail under a check of strict equality. Generally, strict equality is safer and preferred, but it's good to understand the difference between these two equality operators.
+        """
         ),
 
     ]
