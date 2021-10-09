@@ -1,4 +1,5 @@
-*.txt
+progressive_download.txt
+
 # Logs
 logs
 *.log

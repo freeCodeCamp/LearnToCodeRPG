@@ -507,15 +507,19 @@ screen example(blocks, small=False, bottom=False, showtrans=False):
     default raw_code = example_code(blocks, raw=True, showtrans=showtrans)
     default code = example_code(blocks, showtrans=showtrans)
 
-    if small:
-        $ height = 80
-    else:
-        $ height = 160
+    # if small:
+    #     $ height = 80
+    # else:
+    #     $ height = 160
 
-    if bottom:
-        $ ypos = 720
-    else:
-        $ ypos = 540
+    # if bottom:
+    #     $ ypos = 720
+    # else:
+    #     $ ypos = 540
+
+
+    $ height = 300
+    $ ypos = 1000
 
 
     if SHOW_EXAMPLES:
@@ -546,7 +550,7 @@ screen example(blocks, small=False, bottom=False, showtrans=False):
 
                 text code:
                     alt ""
-                    size 16
+                    size gui.notify_text_size
                     color "#000"
                     font "fonts/roboto-mono/RobotoMono-Regular.ttf"
 
@@ -556,7 +560,7 @@ screen example(blocks, small=False, bottom=False, showtrans=False):
                 text_text_align 0.5
                 text_minwidth 180
 
-                text_size 16
+                text_size gui.notify_text_size
 
                 action CopyCode(raw_code)
 
@@ -568,13 +572,15 @@ init python hide:
     import os.path
     import re
 
-    # A list of files we will be scanning.
-    files = [ ]
+    # # A list of files we will be scanning.
+    # files = [ ]
 
-    script_dir = os.path.join(config.gamedir, 'scripts')
-    for i in os.listdir(script_dir):
-        if i.endswith(".rpy"):
-            files.append(os.path.join(script_dir, i))
+    # script_dir = os.path.join(config.gamedir, 'scripts')
+    # for i in os.listdir(script_dir):
+    #     if i.endswith(".rpy"):
+    #         files.append(os.path.join(script_dir, i))
+
+    files = [os.path.join(config.gamedir, 'quiz_code_snippets.txt')]
 
     for fn in files:
 
