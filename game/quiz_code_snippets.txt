@@ -1,4 +1,4 @@
-#begin code1
+#begin c_code1
 #include <stdio.h>
 int main()
 {
@@ -8,4 +8,58 @@ int main()
         printf("in while loop\n");
     } while (i < 3);
 }
-#end code1
+#end c_code1
+
+#begin py_code1
+print([0,[1,2,3,4,5][2],2][1])
+#end py_code1
+
+#begin js_code1
+var foo = "Hello World";
+var bar = foo.split('');
+var baz = bar;
+baz.reverse();
+
+console.log(bar.join(''));
+#end js_code1
+
+#begin js_code2
+var foo = {
+    baz: 'Hello',
+    bar: () => {
+      console.log(this);
+      return this.baz;
+    }
+};
+
+console.log(foo.bar());
+#end js_code2]
+
+#begin js_code3
+(function foo(a) {
+  return function bar(b) {
+    console.log(a);
+  };
+})('super')('cool');
+#end js_code3
+
+#begin js_code4
+console.log(false == 0);
+console.log(false === 0);
+#end js_code4
+
+#begin js_code5
+for (var i = 0; i < 5; i++) {
+  setTimeout(function() { console.log(i) }, i * 1000 );
+}
+#end js_code5
+
+#begin js_code6
+console.log(1 + -"1" + "2" + "2");
+console.log("2" + "2" + 1 + -"1");
+#end js_code6
+
+#begin js_code7
+var x;
+console.log(x);
+#end js_code7
