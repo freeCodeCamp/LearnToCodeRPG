@@ -513,7 +513,7 @@ label stage6:
 
 
 label stage7:
-    # Stage 7. Ryan
+    # Stage 7. Marco
     hide screen player_stats_screen
     scene black with dissolve
     pause 1
@@ -524,71 +524,71 @@ label stage7:
 
     scene bg bedroom day with fade
     # play sound of typing
-    # show a close-up graphic of Ryan?
+    # show a close-up graphic of Marco?
     player "So I found this person's profile online. He taught himself to code with [freeCodeCamp]."
     player "He is now a senior software engineer and has decided to give back to the community."
     player "He said I can ask him anything so let's give it a shot."
 
     scene bg desk with dissolve
-    show ryan
+    show marco
 
-    ryan "Hi [persistent.player_name]. I'm Ryan. I'm a senior engineer at {b}QuicheQueue{\b}."
-    player "Hi Ryan. Nice to meet you! I'm [persistent.player_name], a recent grad and developer wannabe."
-    ryan "That sounds good."
-    ryan "Why don't I start by telling you a bit about myself? Then ask whatever you want to know about me, my job, or tech in general."
+    marco "Hi [persistent.player_name]. I'm Marco. I'm a senior engineer at {b}QuicheQueue{\b}."
+    player "Hi Marco. Nice to meet you! I'm [persistent.player_name], a recent grad and developer wannabe."
+    marco "That sounds good."
+    marco "Why don't I start by telling you a bit about myself? Then ask whatever you want to know about me, my job, or tech in general."
     player "Sounds good."
-    ryan "It's a long story and a bumpy ride. So buckle up."
-    ryan "I graduated from college some ten years ago. I majored in music and design so I worked as a freelance designer straight out of college."
-    ryan "Freelancing gives me some freedom and flexibility at first, but I soon discovered that my skills weren't honed enough to attract large, established clients. And working with small, less established clients doesn't pay well and puts a lot of stress on a newbie freelancer."
-    ryan "So I decided to upgrade my skills and try something new."
-    ryan "I learned to design websites and got a job designing websites at a small local company."
-    ryan "You know, at small companies, everyone does a little bit of everything."
-    ryan "I was hired for my web design skills, but occasionally I would be asked to write some HTML, CSS, JavaScript to showcase the design I have in mind in action, not just on paper."
-    ryan "I picked up a little HTML, CSS, JavaScript in those years and found them to be quite interesting."
-    ryan "I then found out that there is a term for these skills, front-end development."
-    ryan "I thought, cool, I've done some front-end development, maybe I can become a full-time front-end developer?"
-    ryan "I started researching and teaching myself front-end dev. The Internet in my days didn't have nearly as many resources as nowadays. So I had to be extremely resourceful and develop my own learning path."
-    ryan "It all paid off when I got my front-end development job at my current company. I've been with the company since. Nice culture, smart people, interesting work."
+    marco "It's a long story and a bumpy ride. So buckle up."
+    marco "I graduated from college some ten years ago. I majored in music and design so I worked as a freelance designer straight out of college."
+    marco "Freelancing gives me some freedom and flexibility at first, but I soon discovered that my skills weren't honed enough to attract large, established clients. And working with small, less established clients doesn't pay well and puts a lot of stress on a newbie freelancer."
+    marco "So I decided to upgrade my skills and try something new."
+    marco "I learned to design websites and got a job designing websites at a small local company."
+    marco "You know, at small companies, everyone does a little bit of everything."
+    marco "I was hired for my web design skills, but occasionally I would be asked to write some HTML, CSS, JavaScript to showcase the design I have in mind in action, not just on paper."
+    marco "I picked up a little HTML, CSS, JavaScript in those years and found them to be quite interesting."
+    marco "I then found out that there is a term for these skills, front-end development."
+    marco "I thought, cool, I've done some front-end development, maybe I can become a full-time front-end developer?"
+    marco "I started researching and teaching myself front-end dev. The Internet in my days didn't have nearly as many resources as nowadays. So I had to be extremely resourceful and develop my own learning path."
+    marco "It all paid off when I got my front-end development job at my current company. I've been with the company since. Nice culture, smart people, interesting work."
     player "Wow."
-    ryan "Yeah, I know. Looking back it's like a blur."
-    ryan "So that's my story. Anything you'd like to learn more about?"
+    marco "Yeah, I know. Looking back it's like a blur."
+    marco "So that's my story. Anything you'd like to learn more about?"
 
     # initialize all choices to False
-    $ ryan_story_choices = [False, ] * 4
+    $ marco_story_choices = [False, ] * 4
     # show unavailable choices as greyed out
     $ config.menu_include_disabled = True
-    label ryan_story_choices:
+    label marco_story_choices:
         menu:
-            "What are you up to nowadays?" if not ryan_story_choices[0]:
+            "What are you up to nowadays?" if not marco_story_choices[0]:
                 player "What are you up to nowadays?"
-                ryan "If you are looking for a one-word answer, then it's “learning.” Everyone else I know will probably give you the same answer if you ask."
-                $ ryan_story_choices[0] = True
-                jump ryan_story_choices
+                marco "If you are looking for a one-word answer, then it's “learning.” Everyone else I know will probably give you the same answer if you ask."
+                $ marco_story_choices[0] = True
+                jump marco_story_choices
 
-            "Do you still have much to learn as a senior engineer?" if not ryan_story_choices[1]:
+            "Do you still have much to learn as a senior engineer?" if not marco_story_choices[1]:
                 player "Do you still have much to learn as a senior engineer?"
-                ryan "Of course! I still run into technologies that are novel to me in my day-to-day."
-                $ ryan_story_choices[1] = True
-                jump ryan_story_choices
+                marco "Of course! I still run into technologies that are novel to me in my day-to-day."
+                $ marco_story_choices[1] = True
+                jump marco_story_choices
 
-            "What is your experience working with people who have a CS degree versus who don't?" if not ryan_story_choices[2]:
+            "What is your experience working with people who have a CS degree versus who don't?" if not marco_story_choices[2]:
                 player "What is your experience working with people who have a CS degree versus who don't?"
-                ryan "I'd say it's not too different. A CS degree may give you a head start in your first year as a junior developer, but after then, it is up to you to learn, grow, and adapt continuously to new technology."
-                $ ryan_story_choices[2] = True
-                jump ryan_story_choices
+                marco "I'd say it's not too different. A CS degree may give you a head start in your first year as a junior developer, but after then, it is up to you to learn, grow, and adapt continuously to new technology."
+                $ marco_story_choices[2] = True
+                jump marco_story_choices
 
-            "Do you have a favorite side project?" if not ryan_story_choices[3]:
+            "Do you have a favorite side project?" if not marco_story_choices[3]:
                 player "Do you have a favorite side project?"
-                ryan "There is one I'm working on right now. Top secret. You will know when you see it."
-                ryan "Like I said, I majored in design and music in college. Design and music are two things that get me up in the morning."
-                ryan "Now that I've also learned to code, I think it's prime time to put my passion into use to create something awesome, like a video game. I get to do the art, music, and coding all by myself."
+                marco "There is one I'm working on right now. Top secret. You will know when you see it."
+                marco "Like I said, I majored in design and music in college. Design and music are two things that get me up in the morning."
+                marco "Now that I've also learned to code, I think it's prime time to put my passion into use to create something awesome, like a video game. I get to do the art, music, and coding all by myself."
                 player "That sure sounds like fun! I'd love to see it one day!"
-                $ ryan_story_choices[3] = True
-                jump ryan_story_choices
+                $ marco_story_choices[3] = True
+                jump marco_story_choices
 
             "I'm done asking!":
                 player "I'm done asking! That's all I want to know. Thanks so much for sharing!"
-                ryan "Anytime, [persistent.player_name]. Have fun coding and keep me updated on your progress!"
+                marco "Anytime, [persistent.player_name]. Have fun coding and keep me updated on your progress!"
 
 label stage8:
     # Stage 8. Coding interviews
@@ -643,7 +643,7 @@ label stage8:
     player "They do look similar to some questions I saw on LeetCode, but I still have zero clue."
 
 label stage14:
-    # Stage 14. New hire player meets Becca
+    # Stage 14. New hire player meets Layla
     # TODO
     hide screen player_stats_screen
     scene black with dissolve
@@ -654,40 +654,40 @@ label stage14:
     show screen player_stats_screen
 
     scene bg office with dissolve
-    show becca
-    becca "Hey [persistent.player_name]. I'm Becca. I'm your onboarding buddy. Feel free to ask me anything."
-    player "Hi Becca. Nice to meet you."
+    show layla
+    layla "Hey [persistent.player_name]. I'm Layla. I'm your onboarding buddy. Feel free to ask me anything."
+    player "Hi Layla. Nice to meet you."
     player "... Um..."
-    becca "Something on your mind?"
+    layla "Something on your mind?"
     player "I'm kind of stuck... Or, I guess a more accurate way to put this is, I don't even know where to start."
-    becca "No worries! Onboarding could be daunting."
-    becca "Think about it. Teams of talented developers spent months, even years, building out this codebase."
+    layla "No worries! Onboarding could be daunting."
+    layla "Think about it. Teams of talented developers spent months, even years, building out this codebase."
     player "Haha, thanks. That does make me feel better."
-    becca "How about this? Let's take your mind off this code for a while and go grab coffee?"
+    layla "How about this? Let's take your mind off this code for a while and go grab coffee?"
     player "Sure, I'd love to!"
-    player "Hey Becca. Mind if I ask how long you've been with this company and team?"
-    becca "Of course not! I've been here for two years. I interned here when I was in college and returned full-time right after graduation."
+    player "Hey Layla. Mind if I ask how long you've been with this company and team?"
+    layla "Of course not! I've been here for two years. I interned here when I was in college and returned full-time right after graduation."
     player "So you were a CS major?"
-    becca "Yep."
-    becca "Oh please I know that look. CS kids must have had it the easy way."
-    becca "That's not true, you know."
+    layla "Yep."
+    layla "Oh please I know that look. CS kids must have had it the easy way."
+    layla "That's not true, you know."
     player "Oops, sorry."
-    becca "No big deal."
-    becca "Have you heard of the word, imposter syndrome?"
+    layla "No big deal."
+    layla "Have you heard of the word, imposter syndrome?"
     player "Yeah. I feel that quite often."
-    becca "You are good. That's almost the norm for people in tech."
-    becca "Hah. Would you believe me if I tell you that imposter syndrome hits CS students equally hard, if not harder?"
+    layla "You are good. That's almost the norm for people in tech."
+    layla "Hah. Would you believe me if I tell you that imposter syndrome hits CS students equally hard, if not harder?"
     player "... Um... Tell me about it."
-    becca "It starts the first time we step into a CS classroom, maybe earlier. There is always that kid that sits in the front row, who has been coding since five and knows everything the professor has yet to talk about."
+    layla "It starts the first time we step into a CS classroom, maybe earlier. There is always that kid that sits in the front row, who has been coding since five and knows everything the professor has yet to talk about."
     player "That's... intense."
-    becca "And there is the expectation that CS kids should get big-names internships as early as their freshman year summer. Definitely not later than their junior year summer. Otherwise, the myth goes that they are unhirable."
-    becca "I spent my freshman and sophomore summers volunteering at a local school teaching kids to code. I don't see any problems with that. I mean, I love coding and I love teaching, and being able to convey that to the next generation is an awesome opportunity for me."
-    becca "But my friends were either interning for big names or building their own startups during the summer. They are nice enough not to say anything to my face, but I always feel a strange sense of hollowness when I see them post about their intern perks or startup progress."
-    becca "It was a rough time, but my friends and my college advisors were supportive, and I eventually come to terms with being who I am and contributing to causes that I care about."
-    becca "Haha sorry for the rant. I didn't mean to scare you away from continuing working in tech."
-    becca "It's just that the battle with imposter syndrome is a continuous battle. Every little win is a win. In fact, I still grapple with imposter syndrome and have to stop myself from banging my head on the desk whenever I run into a bug I can't fix."
+    layla "And there is the expectation that CS kids should get big-names internships as early as their freshman year summer. Definitely not later than their junior year summer. Otherwise, the myth goes that they are unhirable."
+    layla "I spent my freshman and sophomore summers volunteering at a local school teaching kids to code. I don't see any problems with that. I mean, I love coding and I love teaching, and being able to convey that to the next generation is an awesome opportunity for me."
+    layla "But my friends were either interning for big names or building their own startups during the summer. They are nice enough not to say anything to my face, but I always feel a strange sense of hollowness when I see them post about their intern perks or startup progress."
+    layla "It was a rough time, but my friends and my college advisors were supportive, and I eventually come to terms with being who I am and contributing to causes that I care about."
+    layla "Haha sorry for the rant. I didn't mean to scare you away from continuing working in tech."
+    layla "It's just that the battle with imposter syndrome is a continuous battle. Every little win is a win. In fact, I still grapple with imposter syndrome and have to stop myself from banging my head on the desk whenever I run into a bug I can't fix."
     player "Wow. Haha. Thanks for sharing. That actually makes me feel a lot better."
-    becca "So are we ready to go back and squash some bugs?"
+    layla "So are we ready to go back and squash some bugs?"
     player "Lead the way!"
 
     return

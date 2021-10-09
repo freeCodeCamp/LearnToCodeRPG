@@ -21,8 +21,8 @@ init:
     # major characters
     define player = Character("[persistent.player_name]", image="player")
     define annika = Character("Annika", image="annika")
-    define ryan = Character("Ryan")
-    define becca = Character("Becca")
+    define marco = Character("Marco")
+    define layla = Character("Layla")
 
     # minor characters
     define kid = Character("High Schoool Kid")
