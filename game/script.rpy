@@ -64,11 +64,11 @@ label start_after_interview:
 
     "Thanks for taking the time to complete our coding interview."
     "Before you go, please take some time to complete your basic information so we can get to know you better."
-    "The fields marked with {color=#f00}*{/color} are required."
+    "The fields marked with {color=[red]}*{/color} are required."
 
     # TODO: more customization like gender, pronouns, life story 
     python:
-        player_name = renpy.input("What is your name? {color=#f00}*{/color} (Type something and hit Enter)", default="Lydia")
+        player_name = renpy.input("What is your name? {color=[red]}*{/color} (Type something and hit Enter)", default="Lydia")
         player_name = player_name.strip()
         if not player_name:
             player_name = "Lydia"
@@ -122,7 +122,7 @@ label start_after_interview:
 label stage1:
     scene black with dissolve
     pause 1
-    show text "{size=48}{color=#fff}{i}Chapter 1: Let's learn to code!{i}{/color}{/size}" with dissolve 
+    show text "{size=48}{color=[white]}{i}Chapter 1: Let's learn to code!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
 
@@ -270,7 +270,7 @@ label stage3:
     hide screen player_stats_screen
     scene black with dissolve
     pause 1
-    show text "{size=48}{color=#fff}{i}Chapter 2: A learning buddy to make it better!{i}{/color}{/size}" with dissolve 
+    show text "{size=48}{color=[white]}{i}Chapter 2: A learning buddy to make it better!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
     show screen player_stats_screen(player_stats)
@@ -502,7 +502,7 @@ label stage6:
     hide screen player_stats_screen
     scene black with dissolve
     pause 1
-    show text "{size=48}{color=#fff}{i}Chapter 3: Let's hit the books!{i}{/color}{/size}" with dissolve 
+    show text "{size=48}{color=[white]}{i}Chapter 3: Let's hit the books!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
     show screen player_stats_screen(player_stats)
@@ -563,7 +563,7 @@ label stage7:
     hide screen player_stats_screen
     scene black with dissolve
     pause 1
-    show text "{size=48}{color=#fff}{i}Chapter 4: A mentor to lead the way!{i}{/color}{/size}" with dissolve 
+    show text "{size=48}{color=[white]}{i}Chapter 4: A mentor to lead the way!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
     show screen player_stats_screen(player_stats)
@@ -641,7 +641,7 @@ label stage8:
     hide screen player_stats_screen
     scene black with dissolve
     pause 1
-    show text "{size=48}{color=#fff}{i}Chapter 5: Let's crunch them interviews!{i}{/color}{/size}" with dissolve 
+    show text "{size=48}{color=[white]}{i}Chapter 5: Let's crunch them interviews!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
     show screen player_stats_screen(player_stats)
@@ -694,7 +694,7 @@ label stage14:
     hide screen player_stats_screen
     scene black with dissolve
     pause 1
-    show text "{size=48}{color=#fff}{i}Chapter ???: Let's hit the books!{i}{/color}{/size}" with dissolve 
+    show text "{size=48}{color=[white]}{i}Chapter ???: Let's hit the books!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
     show screen player_stats_screen(player_stats)
@@ -747,15 +747,15 @@ label final:
 
     hide screen player_stats_screen
     call screen confirm_and_share(
-        title="{color=#f00}{icon=alert} Attention{/color}",
-        message="Hey [persistent.player_name]... \nThe thing is, it looks like... {sc}{color=#f00}YOU HAVE BROUGHT DOWN THE PRODUCTION SERVER{/color}{/sc}",
+        title="{color=[red]}{icon=alert} Attention{/color}",
+        message="Hey [persistent.player_name]... \nThe thing is, it looks like... {sc}{color=[red]}YOU HAVE BROUGHT DOWN THE PRODUCTION SERVER{/color}{/sc}",
         ok_text="Oopsy... Am I... fired?"
     )
 
     scene black with dissolve
-    pause 2
-    show text "{bt}{size=48}{color=#fff}{i}Well, that's another story :){i}{/color}{/size}{/bt}" with dissolve 
-    pause 2
+    pause 1
+    show text "{bt}{size=48}{color=[white]}{i}Well, that's another story :){i}{/color}{/size}{/bt}" with dissolve 
+    pause 5
     hide text with dissolve
 
     # end of this game
