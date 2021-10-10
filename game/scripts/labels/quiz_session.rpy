@@ -63,6 +63,7 @@ label interview_session_questions:
     interviewer "Thanks for taking your time. We will be in touch about next steps."
     player "Hmmm... I heard that you might be allowed to ask about your performance on the interview. Shall I do that?"
 
+    $ timeout = 5.0
     menu:
         "Shall I ask about how I did on the interview and get feedback?"
     
@@ -76,10 +77,13 @@ label interview_session_questions:
         "Let's not do that and ruin my chance of getting an offer":
             pass
 
+    $ timeout_label = None
+
     # check results
     if num_correct > num_questions * 0.8:
         # coin flip
-        if renpy.random.random() > 0.5:
+        if renpy.random.random() > 0.2:
+            $ renpy.notify("This is a debug message to let you know that you've gotten an offer")
             $ days_before_offer = renpy.random.randint(2, 4)
             # TODO: this must be buggy lol
             $ offer_company_name = interview_company_name

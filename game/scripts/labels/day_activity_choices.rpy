@@ -145,7 +145,7 @@ label day_activity_video_game:
 label day_activity_job_search:
     # 0.5 chance there is no new job posting and the player goes back to other routines
 
-    if renpy.random.random() > 0.5: # go back to routines
+    if renpy.random.random() > 0.7: # go back to routines
         player "I don't see any new job postings that I haven't applied to."
         player "Let's go do something else."
         jump day_activity_choices
@@ -165,9 +165,10 @@ label day_activity_job_search:
                 else:
                     python:
                         # coin flip
-                        if renpy.random.random() > 0.5:
+                        if renpy.random.random() > 0.3:
                             days_before_interview = renpy.random.randint(2, 4)
                             interview_company_name = company_name
+                            renpy.notify("This is a debug message, you have an interview with [interview_company_name] in [days_before_interview] days")
 
             "Don't apply":
                 player "I don't think I qualify for this job yet... They will probably reject me any ways."

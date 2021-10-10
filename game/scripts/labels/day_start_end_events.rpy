@@ -2,7 +2,15 @@ label day_start:
     # this label should end up jumping to day_end
 
     $ player_stats.day_counter += 1
+
+    if days_before_interview is not None:
+        $ days_before_interview -= 1
+
+    if days_before_offer is not None:
+        $ days_before_offer -= 1
+
     scene bg bedroom day with fade
+    play music "audio/bgm/Press Your Advantage.mp3" fadein 1.0 volume 0.5
 
     # play sound of alarm
     # play sound of bird chirping
@@ -43,10 +51,19 @@ label day_end:
 
     # at the end of the day, since we've just learned something
 
+    # check whether to proceed to the next stage
+    # if the player is half-way through the curriculum and some days have elapsed
+    if not has_met_marco and \
+    player_stats.player_stats_map['CS Knowledge'] >= 40 and \
+    player_stats.day_counter > 8:
+        jump stage7 # Marco
+
     # we check whether we can show the congrats screen
     # although other activities can increase CS knowledge as well
     # only a same-day study session will trigger this congrats
-    if has_had_study_session_today and player_stats.player_stats_map['CS Knowledge'] >= 80:
+    if not has_completed_curriculum and \
+    has_had_study_session_today and \
+    player_stats.player_stats_map['CS Knowledge'] >= 80:
         player "Hey... I just got this email..."
         $ has_completed_curriculum = True
         $ day_completed_curriculum = player_stats.day_counter
@@ -56,13 +73,6 @@ label day_end:
             ok_text="Let's crunch 'em interviews!", 
             ok_action=Jump('stage8')
         )
-
-    # check whether to proceed to the next stage
-    # if the player is half-way through the curriculum and some days have elapsed
-    if not has_met_marco and \
-    player_stats.player_stats_map['CS Knowledge'] >= 40 and \
-    player_stats.day_counter > 8:
-        jump stage7 # Marco
     
     # check whether the next day will have a sanity event
     if player_stats.player_stats_map['Sanity'] <= 60:
@@ -83,7 +93,7 @@ label day_end:
         $ days_before_interview = None
 
     # check whether the next day has an offer
-    if days_before_offer == 0:
+    if not has_accepted_offer and days_before_offer == 0:
         player "Oh hey. Here's an email from {b}[offer_company_name]{/b}."
         player "... {w}Did I read that correctly? {sc}An offer?{/sc}"
         player happy "I made it!"
@@ -91,12 +101,14 @@ label day_end:
         $ has_received_offer = True
         $ has_accepted_offer = True
         $ day_of_first_offer = player_stats.day_counter
-
+        $ day_diff = day_of_first_offer - day_completed_curriculum
         call screen confirm_and_share(
             title="{bt}Congratulations!{/bt}",
-            message="You taught yourself to become a developer in {b}[player_stats.day_counter]{/b} days, [day_of_first_offer - day_completed_curriculum] days after you've completed the coding curriculum.\nNow you are ready to rock your new job!\n Feel free to share your progress with the world!",
+            message="You taught yourself to become a developer in {b}[player_stats.day_counter]{/b} days, [day_diff] days after you've completed the coding curriculum.\nNow you are ready to rock your new job!\n Feel free to share your progress with the world!",
             ok_text="Let's rock my new job!", 
             ok_action=Jump('stage14')
         )
+
+    $ has_done_job_search_today = False
 
     jump day_start

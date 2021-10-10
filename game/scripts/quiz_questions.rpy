@@ -137,7 +137,7 @@ init python:
         false=[
         'mystock[[Price]',
         'mystock("Price")',
-        'mystock{"Price"}',
+        'mystock{{"Price"}',
         'mystock(price)'
         ],
         code_label='py_code5'
@@ -174,8 +174,8 @@ init python:
         question="What will be the output of the following Java code?",
         true="UnsupportedOperationException",
         false=[
-        "{11=a}",
-        "{11=a, 12=b}",
+        "{{11=a}",
+        "{{11=a, 12=b}",
         "Compile time exception",
         ],
         code_label='java_code2'
@@ -309,17 +309,17 @@ init python:
 
     QuizQuestion(
         question="When executed in a browser's console, what will the following code output?",
-        true="Window {...}\nundefined",
+        true="Window {{...}\nundefined",
         false=[
-        "{ baz: 'Hello', bar: [Function: bar] }\nHello",
-        "Window {...}\nHello",
-        "{ baz: 'Hello', bar: [Function: bar] }\nundefined"
+        "{{ baz: 'Hello', bar: [Function: bar] }\nHello",
+        "Window {{...}\nHello",
+        "{{ baz: 'Hello', bar: [Function: bar] }\nundefined"
         ],
         code_label='js_code2',
         explanation="""
         You might have expected this code to log the foo object along with Hello to the console, however, arrow function expressions are not ideally suited for method functions. Here's why: arrow functions do not create their own this context, nor do they care how the function is called; rather, they inherit their this value from the enclosing scope. So in this case, this still refers to the global context, in which baz is not defined. Had bar been written with the function keyword, this code would have worked as expected, since typically, when a function is invoked with method invokation, this will always refer to the context, or object, that the function was written in.
 
-        Note that in different environments, the global this value can reference different things. Running this code in a browser's console, as in this example, this will always refer to the global Window object. If we ran this same code in a Node environment, however, the this value would simply be an empty global object: {}.
+        Note that in different environments, the global this value can reference different things. Running this code in a browser's console, as in this example, this will always refer to the global Window object. If we ran this same code in a Node environment, however, the this value would simply be an empty global object: {{}.
 
         In general, there's no other reason why arrow functions are not an appropriate choice for object methods. So if you use them in this way, just be careful with this!
         """
@@ -470,7 +470,7 @@ init python:
     web_questions = [
 
     QuizQuestion(
-        question="What service to CDNs provide?",
+        question="What service do CDNs provide?",
         true="A CDN (content delivery or distribution network) is designed to provide web content with high availability and high performance.",
         false=[
         "A CDN makes real-time communication between web clients very efficient.",

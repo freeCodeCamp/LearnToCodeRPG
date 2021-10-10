@@ -151,6 +151,7 @@ label stage2:
     # Stage 2. player's decision to learn to code
     # player returns home
     scene bg livingroom night with dissolve
+    play music "audio/bgm/Never Not Favored.mp3" fadein 1.0 volume 0.5
 
     player "I'm home!"
     mom "Hey sweetie. Welcome back!"
@@ -283,6 +284,8 @@ label stage3:
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
     player "Do I merit a personal rejection call from the neighborhood coffee shop?"
 
+    play music "audio/bgm/Crystalize That Child in Me.mp3" fadein 1.0 volume 0.5
+
     show annika
     annika "[persistent.player_name]!"
     player happy "Annika! Geez. When was the last time you called me? When we were moving out after graduation?"
@@ -324,6 +327,8 @@ label stage3:
 
 label stage4:
     scene bg bedroom night with fade
+    play music "audio/bgm/Chasing That Feeling.mp3" fadein 1.0 volume 0.5
+
     player "Phew. It's been a long day at work. I'm glad that the coffee shop happens to need a part-time barista."
     player "Let's check out the awesome resource Annika's been talking about."
     jump stage4_guess_name
@@ -577,6 +582,8 @@ label stage7:
 
     scene bg desk with dissolve
     show marco
+    play music "audio/bgm/Never Not Favored.mp3" fadein 1.0 volume 0.5
+
     $ has_met_marco = True
 
     marco "Hi [persistent.player_name]. I'm Marco. I'm a senior engineer at {b}QuicheQueue{\b}."
@@ -676,7 +683,7 @@ label stage8:
 
     player "Okay, let's search for some jobs on the web."
 
-    jump day_activity_job_search
+    call day_activity_job_search
 
 
     player "Let's call this a day and restart our routines tomorrow."
@@ -691,13 +698,15 @@ label stage14:
     hide screen player_stats_screen
     scene black with dissolve
     pause 1
-    show text "{size=48}{color=[white]}{i}Chapter ???: Let's hit the books!{i}{/color}{/size}" with dissolve 
+    show text "{size=48}{color=[white]}{i}Chapter 6: Let's meet my new colleagues!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
     show screen player_stats_screen(player_stats)
 
     scene bg office with dissolve
     show layla
+    play music "audio/bgm/Crystalize That Child in Me.mp3" fadein 1.0 volume 0.5
+
     layla "Hey [persistent.player_name]. I'm Layla. I'm your onboarding buddy. Feel free to ask me anything."
 
     if not has_met_layla:
@@ -753,6 +762,8 @@ label stage14:
     layla "So are we ready to go back and squash some bugs?"
     player "Lead the way!"
 
+    jump ending
+
 label ending:
     scene office with dissolve
     player happy "Okay, I think my code is good to go! Let's commit it to the server."
@@ -782,4 +793,5 @@ label ending:
     hide text with dissolve
 
     # end of this game
+    $ MainMenu(confirm=False)()
     return
