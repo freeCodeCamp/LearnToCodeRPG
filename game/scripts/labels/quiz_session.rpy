@@ -58,12 +58,12 @@ label interview_session_questions:
             interviewer "Last question."
         else:
             interviewer "Next question."
-        call interview_one_question
+        call interview_one_question from _call_interview_one_question
 
     interviewer "Thanks for taking your time. We will be in touch about next steps."
     player "Hmmm... I heard that you might be allowed to ask about your performance on the interview. Shall I do that?"
 
-    $ timeout = 5.0
+    $ timeout_label = None
     menu:
         "Shall I ask about how I did on the interview and get feedback?"
     
@@ -76,8 +76,6 @@ label interview_session_questions:
     
         "Let's not do that and ruin my chance of getting an offer":
             pass
-
-    $ timeout_label = None
 
     # check results
     if num_correct > num_questions * 0.8:

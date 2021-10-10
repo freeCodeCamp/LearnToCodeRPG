@@ -343,10 +343,10 @@ label stage4_guess_name:
         player "What was it called again?"
 
         "freebieGoodie":
-            call stage4_wrong_name
+            call stage4_wrong_name from _call_stage4_wrong_name
             jump stage4_guess_name
         "coolCodersCamp":
-            call stage4_wrong_name
+            call stage4_wrong_name from _call_stage4_wrong_name_1
             jump stage4_guess_name
         "freeCodeCamp":
             pass
@@ -403,7 +403,7 @@ label stage5_choose_curriculum:
             mint "Meow meow"
             menu:
                 "Let's go grab a cookie from the kitchen":
-                    call stage5_cookie
+                    call stage5_cookie from _call_stage5_cookie
 
                 "Enough cookie talk! Let's go back to studying":
                     pass
@@ -524,7 +524,7 @@ label stage6:
     player "..."
     player "Okay, let's do this. Let's sit down to actually learn something."
     player "I'll start with the video lessons and then answer their multiple choice questions to check my understanding."
-    call study_session
+    call study_session from _call_study_session
 
     # fixed dialogue for this first day
     scene bedroom night with dissolve
@@ -683,7 +683,7 @@ label stage8:
 
     player "Okay, let's search for some jobs on the web."
 
-    call day_activity_job_search
+    call day_activity_job_search from _call_day_activity_job_search
 
 
     player "Let's call this a day and restart our routines tomorrow."

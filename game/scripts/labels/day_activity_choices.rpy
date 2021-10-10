@@ -11,7 +11,7 @@ label day_activity_choices:
         "Search for job openings" if has_completed_curriculum and not has_done_job_search_today:
             $ has_done_job_search_today = True
             player "Let's search for job openings."
-            call day_activity_job_search
+            call day_activity_job_search from _call_day_activity_job_search_1
             jump day_end
 
         # TODO: change this string to study more CS fundamentals
@@ -21,7 +21,7 @@ label day_activity_choices:
             # this choice helps grow coding knowledge
             # TODO: different text
             player "Let's hit the books."
-            call study_session
+            call study_session from _call_study_session_1
             player "I feel like I just did a good amount of brain gymnastics..."
 
             $ player_stats.change_stats_random('Sanity', -20, -10)
@@ -44,13 +44,13 @@ label day_activity_choices:
         "Work gig as a barista":
             # this choice unlocks interesting tech rumors and recovers a bit of sanity
             player "I can work some shifts to cover my bills. Plus, I get to interact with people and take my mind off cramming for a bit."
-            call day_activity_barista
+            call day_activity_barista from _call_day_activity_barista
             jump day_end
 
         "Hang out at Hacker Space":
             # this choice progresses the Hacker Space side story
             player "The Hacker Space place that Annika mentioned sounds fun. Let's hit the road."
-            call day_activity_hacker_space
+            call day_activity_hacker_space from _call_day_activity_hacker_space
             jump day_end
 
         "Work on open-source projects" if annika_open_source_visited:
@@ -60,7 +60,7 @@ label day_activity_choices:
                 player "Plus it will beef up my resume and make me more visible to recruiters."
             
             if player_stats.player_stats_map['CS Knowledge'] > 30: # can proceed
-                call day_activity_open_source
+                call day_activity_open_source from _call_day_activity_open_source
                 jump day_end
             else:
                 player "Ehhh... I don't think my technical skills are solid enough for open-source projects yet. Maybe we can learn some coding fundamentals first?"
@@ -79,17 +79,17 @@ label day_activity_choices:
             menu:
                 "Take a walk in the park":
                     player "Let's head out to the park. Too bad I can't take Mint out on a walk like Annika does with her puppy."
-                    call day_activity_park
+                    call day_activity_park from _call_day_activity_park
                 "Chill at home with Mint":
                     player "Hey Mint, come here. I will grab a nice book and we will just chill with some tea in the living room. Sounds good?"
                     mint "Meow"
-                    call day_activity_read
+                    call day_activity_read from _call_day_activity_read
                 "Bake some treats":
                     player "Hmmm... how about baking something yummy?"
-                    call day_activity_bake
+                    call day_activity_bake from _call_day_activity_bake
                 "Play some video games":
                     player "Nothing beats some indie games."
-                    call day_activity_video_game
+                    call day_activity_video_game from _call_day_activity_video_game
             $ player_stats.change_stats_random('Sanity', 5, 20)
             # all relaxing activities converges to the end of the day
             jump day_end
@@ -187,7 +187,7 @@ label day_activity_interview:
     player "Yes. Good morning."
 
     interviewer "Alright, since we are here, let's get started."
-    call interview_session
+    call interview_session from _call_interview_session
 
     player "... {w}Was that everything? {w}Thank god..."
     $ player_stats.change_stats_random('Sanity', -20, -10)

@@ -89,7 +89,7 @@ label day_end:
 
     # check whether the next day has an interview
     if days_before_interview == 0:
-        call day_activity_interview
+        call day_activity_interview from _call_day_activity_interview
         $ days_before_interview = None
 
     # check whether the next day has an offer
