@@ -29,6 +29,7 @@ init:
     define mom = Character("Mom")
     define dad = Character("Dad")
     define mint = Character("Mint", callback=meow_sound_callback) # player's cat
+    define interviewer = Character("Interviewer")
 
     # expressions
     # player

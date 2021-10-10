@@ -3,6 +3,7 @@ init python:
     annika_open_source_first_visit = False
 
     has_had_study_session_today = False
+    has_done_job_search_today = False
 
     # player_stats.player_stats_map['CS Knowledge'] >= 80
     has_completed_curriculum = False
@@ -11,15 +12,21 @@ init python:
     # player_stats.player_stats_map['CS Knowledge'] >= 40 and player_stats.day_counter > 8
     has_met_marco = False
 
+    # TODO: definitely refactor
+    interview_company_name = None
     days_before_interview = None
 
+    offer_company_name = None
+    days_before_offer = None
+
     has_received_offer = False
-
-    # day counter of the first offer
-    day_of_first_offer = None
-
     # TODO: beyond demo version, can do negotiation
     has_accepted_offer = False
+
+    # TODO: more day counters, more refactoring
+    day_completed_curriculum = None
+    # day counter of the first offer, subtract this from the other day counters
+    day_of_first_offer = None
 
     # player can meet Layla at Hacker Space
     has_met_layla = False

@@ -26,6 +26,10 @@ label day_end:
     # when it returns, it returns to script.rpy, where we check 
     scene bg bedroom dusk with dissolve
     player "Phew... That was a long day."
+
+    # TODO: different text if the player has had an interview
+    # they will talk with parents during dinner about the interview
+
     # TODO: different text
     dad "[persistent.player_name], dinner's ready!"
     player "Coming, dad!"
@@ -45,10 +49,11 @@ label day_end:
     if has_had_study_session_today and player_stats.player_stats_map['CS Knowledge'] >= 80:
         player "Hey... I just got this email..."
         $ has_completed_curriculum = True
+        $ day_completed_curriculum = player_stats.day_counter
         call screen confirm_and_share(
             title="{bt}Congratulations!{/bt}",
             message="You completed the coding curriculum in {b}[player_stats.day_counter]{/b} days.\nNow you are ready to rock the coding interview and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
-            ok_text="Let's go!", 
+            ok_text="Let's crunch 'em interviews!", 
             ok_action=Jump('stage8')
         )
 
@@ -68,9 +73,30 @@ label day_end:
         # restore some sanity when we return from the sanity event
         $ player_stats.change_stats_random('Sanity', 5, 20)
 
+    # two days before an interview, the player should receive an email alert
+    if days_before_interview == 2:
+        player "Oh hey. Here's an email from {b}[interview_company_name]{/b}. They've looked at my resume and want to interview me in two days. I better get prepared."
+
     # check whether the next day has an interview
     if days_before_interview == 0:
         call day_activity_interview
+        $ days_before_interview = None
 
-    # return to script.rpy
-    return
+    # check whether the next day has an offer
+    if days_before_offer == 0:
+        player "Oh hey. Here's an email from {b}[offer_company_name]{/b}."
+        player "... {w}Did I read that correctly? {sc}An offer?{/sc}"
+        player happy "I made it!"
+
+        $ has_received_offer = True
+        $ has_accepted_offer = True
+        $ day_of_first_offer = player_stats.day_counter
+
+        call screen confirm_and_share(
+            title="{bt}Congratulations!{/bt}",
+            message="You taught yourself to become a developer in {b}[player_stats.day_counter]{/b} days, [day_of_first_offer - day_completed_curriculum] days after you've completed the coding curriculum.\nNow you are ready to rock your new job!\n Feel free to share your progress with the world!",
+            ok_text="Let's rock my new job!", 
+            ok_action=Jump('stage14')
+        )
+
+    jump day_start

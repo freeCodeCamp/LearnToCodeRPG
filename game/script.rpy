@@ -126,7 +126,7 @@ label stage1:
     pause 1
     hide text with dissolve
 
-    # play music "audio/bgm/bgm_loop.wav" fadein 1.0 volume 0.5
+    play music "audio/bgm/Chasing That Feeling.mp3" fadein 1.0 volume 0.5
     scene bg kid_home with fade
 
     # Stage 1. player background
@@ -555,13 +555,7 @@ label stage6:
     mint "Meow"
     scene black with dissolve
 
-label routines:
-    # begin looping routines, see day_start_events.rpy
-    while not has_accepted_offer:
-        call day_start
-
-    # if we come down here, the player has accepted their offer and is ready to begin their job
-    jump stage14 # new hire
+    jump day_start
 
 label stage7:
     # this stage is invoked inside label `day_end`
@@ -644,7 +638,7 @@ label stage7:
                 marco "Anytime, [persistent.player_name]. Have fun coding and keep me updated on your progress!"
 
     # go back to our routines
-    jump routines
+    jump day_start
 
 label stage8:
     # Stage 8. Coding interviews
@@ -687,31 +681,9 @@ label stage8:
 
     player "Let's call this a day and restart our routines tomorrow."
     # go back to our routines
-    jump routines
+    jump day_start
 
-    player "So I've applied to over 30 jobs this week."
-    player "Submitted my resume, a cover letter, and whatnot."
-    player "Yet nothing has happened."
-    player "Let's maybe wait this out."
-    player "Is there something wrong with my application?"
-    player "I heard that some companies first screen resumes using AI, so maybe my resume never got to a recruiter..."
-    player "I know I don't have the strongest resume, but still..."
-    player "I've done what I could.I don't have a CS degree, so I took a quite comprehensive course. It is 300 hours! I even completed the end-of-curriculum project and put it on my GitHub."
-    player "Maybe they threw my resume away as soon as they saw that I'm not a CS major."
-    player "There is nothing I can do about that..."
-    player "I guess the best I can do is to apply to more companies."
-    player "That aside, in case I do hear back from anyone, what's next?"
-    player "I read that the next step is usually an online assessment that features LeetCode-style questions."
-    player "My coding interview skills are still pretty shaky. So let's keep grinding LeetCode while I wait."
-    player "Oh, an email!"
-
-    player "{b}ToffeeTerminal{/b} just sent me an online assessment!"
-    player "They said I have a week to complete it and must do it in a 90-minute sitting."
-    player "Well, here goes nothing."
-    player "How come I have no idea what these questions are trying to get at?"
-    player "They do look similar to some questions I saw on LeetCode, but I still have zero clue."
-
-# actually no stage between 8 and 14
+# actually no stages between 8 and 14
 
 label stage14:
     # Stage 14. New hire player meets Layla
@@ -781,7 +753,7 @@ label stage14:
     layla "So are we ready to go back and squash some bugs?"
     player "Lead the way!"
 
-label final:
+label ending:
     scene office with dissolve
     player happy "Okay, I think my code is good to go! Let's commit it to the server."
     # TODO: system processing animation
@@ -798,7 +770,14 @@ label final:
 
     scene black with dissolve
     pause 1
-    show text "{bt}{size=48}{color=[white]}{i}Well, that's another story :){i}{/color}{/size}{/bt}" with dissolve 
+    show text "{bt}{size=48}{color=[white]}{i}Well, that's another chapter :){i}{/color}{/size}{/bt}" with dissolve 
+    pause 5
+    hide text with dissolve
+
+    # TODO: play scrolling end credits
+    scene black with dissolve
+    pause 1
+    show text "{bt}{size=48}{color=[white]}{i}Now we play some credits{i}{/color}{/size}{/bt}" with dissolve 
     pause 5
     hide text with dissolve
 

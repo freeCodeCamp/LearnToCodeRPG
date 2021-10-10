@@ -6,11 +6,16 @@ label day_activity_choices:
     $ config.menu_include_disabled = False
 
     menu:
-        "Search for job openings" if has_completed_curriculum:
+        # if the player has searched for jobs on this day and saw nothing
+        # they jump back here and this first option won't be available
+        "Search for job openings" if has_completed_curriculum and not has_done_job_search_today:
+            $ has_done_job_search_today = True
             player "Let's search for job openings."
             call day_activity_job_search
             jump day_end
 
+        # TODO: change this string to study more CS fundamentals
+        # when the player has completed the curriculum
         "Study CS fundamentals":
             $ has_had_study_session_today = True
             # this choice helps grow coding knowledge
@@ -54,7 +59,7 @@ label day_activity_choices:
                 player "Annika mentioned that contributing to open-source project is a good way to learn."
                 player "Plus it will beef up my resume and make me more visible to recruiters."
             
-            if player_stats.player_stats_map['CS Knowledge'] > 3: # can proceed
+            if player_stats.player_stats_map['CS Knowledge'] > 30: # can proceed
                 call day_activity_open_source
                 jump day_end
             else:
@@ -138,23 +143,53 @@ label day_activity_video_game:
     return
 
 label day_activity_job_search:
-    $ company_name = renpy.random.choice(seq=all_company_names)
+    # 0.5 chance there is no new job posting and the player goes back to other routines
 
-    show screen job_posting_screen(company_name, all_skill_names)
-    player "Oh, a job posted by {b}[company_name]{/b}."
-    player "Should I apply to this job posting?"
-    menu:
-        "Apply":
-            player "Let's apply and see what they say."
+    if renpy.random.random() > 0.5: # go back to routines
+        player "I don't see any new job postings that I haven't applied to."
+        player "Let's go do something else."
+        jump day_activity_choices
 
-        "Don't apply":
-            player "I don't think I qualify for this job yet..."
+    else: # proceed to application
+        $ company_name = renpy.random.choice(seq=all_company_names)
 
-    hide screen job_posting_screen
+        show screen job_posting_screen(company_name, all_skill_names)
+        player "Oh, a job posted by {b}[company_name]{/b}."
+        player "Should I apply to this job posting?"
+        menu:
+            "Apply":
+                player "Let's apply and see what they say."
+                # TODO: refactor
+                if days_before_interview is not None: # already has an interview scheduled
+                    pass
+                else:
+                    python:
+                        # coin flip
+                        if renpy.random.random() > 0.5:
+                            days_before_interview = renpy.random.randint(2, 4)
+                            interview_company_name = company_name
+
+            "Don't apply":
+                player "I don't think I qualify for this job yet... They will probably reject me any ways."
+
+        hide screen job_posting_screen
+
     return
 
 label day_activity_interview:
+    player "Today is my big day! I have an interview with [interview_company_name]."    
+
     scene bg interview_room with dissolve
-    player "Today is my big day! I have an interview."
+    player "Wow they have a fancy office. I do wish I can work here."
+
+    interviewer "Hello, is that [persistent.player_name]?"
+    player "Yes. Good morning."
+
+    interviewer "Alright, since we are here, let's get started."
     call interview_session
-    # check results
+
+    player "... {w}Was that everything? {w}Thank god..."
+    $ player_stats.change_stats_random('Sanity', -20, -10)
+    player "That was more intense than I thought. I hope I did well."
+    player "I can't wait to go home and just cuddle with Mint now..."
+    return

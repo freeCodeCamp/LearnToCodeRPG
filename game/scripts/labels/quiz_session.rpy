@@ -45,11 +45,46 @@ label interview_session:
     $ num_questions = 4
     $ num_correct = 0
 
-    $ timeout_label = 'interview_one_question'
+    $ timeout_label = 'interview_session_questions'
     $ timeout = 180.0 # three minutes for each question
 
+    # fall through to the next label
+
+label interview_session_questions:
     while num_questions > 0:
+        if num_questions == 4:
+            interviewer "Here's the first question."
+        elif num_questions == 1:
+            interviewer "Last question."
+        else:
+            interviewer "Next question."
         call interview_one_question
+
+    interviewer "Thanks for taking your time. We will be in touch about next steps."
+    player "Hmmm... I heard that you might be allowed to ask about your performance on the interview. Shall I do that?"
+
+    menu:
+        "Shall I ask about how I did on the interview and get feedback?"
+    
+        "There's no harm in asking, right?":
+            player "Emm... Excuse me. How did I do? May I ask for some feedback so I can improve next time?"
+            if renpy.random.random() > 0.5:
+                interviewer "Sorry. We don't provide feedback after interviews."
+            else:
+                interviewer "From my opinion you did okay. Just keep doing what you are doing."
+    
+        "Let's not do that and ruin my chance of getting an offer":
+            pass
+
+    # check results
+    if num_correct > num_questions * 0.8:
+        # coin flip
+        if renpy.random.random() > 0.5:
+            $ days_before_offer = renpy.random.randint(2, 4)
+            # TODO: this must be buggy lol
+            $ offer_company_name = interview_company_name
+
+    return
 
 label interview_one_question:
     $ num_questions -= 1
