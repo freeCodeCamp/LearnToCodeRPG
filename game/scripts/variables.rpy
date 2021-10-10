@@ -29,6 +29,6 @@ init python:
     # eventually the plot will unlock those with Ryan and the community
     sanity_event_labels = [
         'sanity_event_player',
-        'sanity_event_player_pet',
+        'sanity_event_mint',
         'sanity_event_annika_boba',
     ]

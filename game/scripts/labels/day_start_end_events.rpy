@@ -43,11 +43,13 @@ label day_end:
     # although other activities can increase CS knowledge as well
     # only a same-day study session will trigger this congrats
     if has_had_study_session_today and player_stats.player_stats_map['CS Knowledge'] >= 80:
+        player "Hey... I just got this email..."
         $ has_completed_curriculum = True
         call screen confirm_and_share(
             title="{bt}Congratulations!{/bt}",
             message="You completed the coding curriculum in {b}[player_stats.day_counter]{/b} days.\nNow you are ready to rock the coding interview and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
-            ok_text="Let's go!", okay_action=Jump('stage8')
+            ok_text="Let's go!", 
+            ok_action=Jump('stage8')
         )
 
     # check whether to proceed to the next stage
@@ -63,8 +65,8 @@ label day_end:
             label = renpy.random.choice(seq=sanity_event_labels)
             renpy.call(label)
 
-            # restore some sanity when we return from the sanity event
-            player_stats.change_stats_random('Sanity', 5, 20)
+        # restore some sanity when we return from the sanity event
+        $ player_stats.change_stats_random('Sanity', 5, 20)
 
     # check whether the next day has an interview
     if days_before_interview == 0:

@@ -133,9 +133,9 @@ init python:
 
     QuizQuestion(
         question="How do you access the value for key `Price` in the following Python dictionary?",
-        true='mystock["Price"]',
+        true='mystock[["Price"]',
         false=[
-        'mystock[Price]',
+        'mystock[[Price]',
         'mystock("Price")',
         'mystock{"Price"}',
         'mystock(price)'
@@ -203,11 +203,11 @@ init python:
 
     QuizQuestion(
         question="Which line of code produces a list of numbers between 1 and 1000 that are divisible by 3?",
-        true="[x for x in range(1000) if x%3==0]",
+        true="[[x for x in range(1000) if x%3==0]",
         false=[
-        "[x in range(1, 1000) if x%3==0]",
-        "[x%3 for x in range(1, 1000)]",
-        "[x%3=0 for x in range(1, 1000)]"
+        "[[x in range(1, 1000) if x%3==0]",
+        "[[x%3 for x in range(1, 1000)]",
+        "[[x%3=0 for x in range(1, 1000)]"
         ]
         ),
 
@@ -299,8 +299,8 @@ init python:
         question="What will the following code print to the console?",
         true="dlroW olleH",
         false=[
-        "[ 'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd' ]",
-        "[ 'd', 'l', 'r', 'o', 'W', ' ', 'o', 'l', 'l', 'e', 'H' ]",
+        "[[ 'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd' ]",
+        "[[ 'd', 'l', 'r', 'o', 'W', ' ', 'o', 'l', 'l', 'e', 'H' ]",
         "Hello World",
         ],
         code_label='js_code1',

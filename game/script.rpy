@@ -682,15 +682,10 @@ label stage8:
 
     player "Okay, let's search for some jobs on the web."
 
-    show screen job_posting_screen
-    player "Should I apply to this job posting?"
-    menu:
-        "Apply":
-            player "Let's apply and see what they say"
-        "Don't apply":
-            player "I don't think I qualify for this job yet..."
-    hide screen job_posting_screen
+    jump day_activity_job_search
 
+
+    player "Let's call this a day and restart our routines tomorrow."
     # go back to our routines
     jump routines
 

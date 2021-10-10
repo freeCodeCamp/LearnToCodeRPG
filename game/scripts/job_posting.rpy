@@ -38,9 +38,9 @@ init:
                 # job title
                 text company_name color gui.accent_color font gui.interface_text_font size gui.name_text_size bold True
                 # description
-                text "We are hiring for a candidate with the following qualities:"
+                text "We are hiring for a candidate with the following skills:"
                 vbox:
                     for skill in skill_names:
                         hbox:
-                            text "{icon=circle-check}"
+                            text "{icon=circle-check}  "
                             text skill

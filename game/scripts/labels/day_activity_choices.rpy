@@ -9,6 +9,7 @@ label day_activity_choices:
         "Search for job openings" if has_completed_curriculum:
             player "Let's search for job openings."
             call day_activity_job_search
+            jump day_end
 
         "Study CS fundamentals":
             $ has_had_study_session_today = True
@@ -132,11 +133,15 @@ label day_activity_read:
     player "I'm staying home and read"
     return
 
+label day_activity_video_game:
+    player "play some video game"
+    return
+
 label day_activity_job_search:
     $ company_name = renpy.random.choice(seq=all_company_names)
 
-    show screen job_posting_screen(company_name, skills=all_skill_names)
-    player "Oh, a job posted by {b}[company_name]{/b}"
+    show screen job_posting_screen(company_name, all_skill_names)
+    player "Oh, a job posted by {b}[company_name]{/b}."
     player "Should I apply to this job posting?"
     menu:
         "Apply":
@@ -146,6 +151,7 @@ label day_activity_job_search:
             player "I don't think I qualify for this job yet..."
 
     hide screen job_posting_screen
+    return
 
 label day_activity_interview:
     scene bg interview_room with dissolve
