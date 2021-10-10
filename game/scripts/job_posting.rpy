@@ -1,11 +1,11 @@
 init python:
     # we have javascript_questions, web_questions, algorithm_questions, and system_questions
-    skill_names = ['JavaScript', 'Web Development', 'Algorithm', 'System Design']
+    all_skill_names = ['JavaScript', 'Web Development', 'Algorithm', 'System Design']
 
-    company_names = [
+    all_company_names = [
     'AvocadoAPI',
     'AioliAI',
-    'AgaveAlgo',
+    'AnkoAnalytics',
     'ButterscotchBytes',
     'BobaBandwidth',
     'BrownieBenchmark',
@@ -17,9 +17,9 @@ init python:
     'HoneydewHeap',
     'SconeSys',
     'SundaeSoft',
-    'MarshmallowML',
-    'MacaronModem',
+    'MochiML',
     'TiramisuTPU',
+    'ToffeeTerminal',
     'WaffleWiFi',
     'VanillaVM'
     ]

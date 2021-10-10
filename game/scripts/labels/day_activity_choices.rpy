@@ -1,14 +1,24 @@
 label day_activity_choices:
+    $ has_had_study_session_today = False
+    # this label should end up jumping to day_end
+
     # hide unavailable choices
     $ config.menu_include_disabled = False
+
     menu:
+        "Search for job openings" if has_completed_curriculum:
+            player "Let's search for job openings."
+            call day_activity_job_search
+
         "Study CS fundamentals":
+            $ has_had_study_session_today = True
             # this choice helps grow coding knowledge
             # TODO: different text
             player "Let's hit the books."
-            call study_session_choices
+            call study_session
             player "I feel like I just did a good amount of brain gymnastics..."
-            $ player_stats.change_stats('Sanity', -10)
+
+            $ player_stats.change_stats_random('Sanity', -20, -10)
 
             if num_correct == 4:
                 player "But I got all questions right! Way to go!"
@@ -74,7 +84,7 @@ label day_activity_choices:
                 "Play some video games":
                     player "Nothing beats some indie games."
                     call day_activity_video_game
-            $ player_stats.change_stats('Sanity', 10)
+            $ player_stats.change_stats_random('Sanity', 5, 20)
             # all relaxing activities converges to the end of the day
             jump day_end
 
@@ -83,7 +93,7 @@ label day_activity_open_source:
     player "Let's see, what are the newest Pull Requests?"
     player "Hmm... I don't know how to solve this but I can re-assign it to the original author."
     player "It's cool how people volunteer their time and energy to make software accessible."
-    $ player_stats.change_stats('CS Knowledge', 1)
+    $ player_stats.change_stats_random('CS Knowledge', 2, 4)
     return
 
 label day_activity_hacker_space:
@@ -114,47 +124,31 @@ label day_activity_park:
 
 label day_activity_bake:
     scene bg kitchen day
-    player "bake"
+    player "I'm staying home and bake"
     return
 
 label day_activity_read:
     scene bg living_room day
-    player "read"
+    player "I'm staying home and read"
     return
 
-label day_end:
-    scene bg bedroom dusk with dissolve
-    player "Phew... That was a long day."
-    # TODO: different text
-    dad "[persistent.player_name], dinner's ready!"
-    player "Coming, dad!"
+label day_activity_job_search:
+    $ company_name = renpy.random.choice(seq=all_company_names)
 
-    scene bg bedroom night with dissolve
-    player "Tomorrow will be another day. Right, Mint?"
-    mint "Meow"
-    player "Haha good night Mint."
+    show screen job_posting_screen(company_name, skills=all_skill_names)
+    player "Oh, a job posted by {b}[company_name]{/b}"
+    player "Should I apply to this job posting?"
+    menu:
+        "Apply":
+            player "Let's apply and see what they say."
 
-    scene black with dissolve
+        "Don't apply":
+            player "I don't think I qualify for this job yet..."
 
-    # at the end of the day, since we've just learned something
-    # we check whether we can show the congrats screen
-    if player_stats.player_stats_map['CS Knowledge'] >= 100:
-        call screen confirm_and_share(
-            title="{bt}Congratulations!{/bt}",
-            message="You completed the coding curriculum in {b}[player_stats.day_counter]{/b} days.\nNow you are ready to rock the coding interview and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
-            ok_text="Let's go!", ok_action=Jump('stage8')
-        )
+    hide screen job_posting_screen
 
-    # check whether to proceed to the next stage
-    # if the player is half-way through the curriculum and some days have elapsed
-    if player_stats.player_stats_map['CS Knowledge'] >= 40 and player_stats.day_counter > 8:
-        jump stage7 # Marco
-    
-    # check whether the next day will have a sanity event
-    if player_stats.player_stats_map['Sanity'] <= 60:
-        python:
-            label = renpy.random.choice(seq=sanity_event_labels)
-            renpy.call(label)
-
-    # a new day
-    jump day_start
+label day_activity_interview:
+    scene bg interview_room with dissolve
+    player "Today is my big day! I have an interview."
+    call interview_session
+    # check results

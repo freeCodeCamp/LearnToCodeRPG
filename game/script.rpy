@@ -351,6 +351,7 @@ label stage5:
     show fcc_curriculum at truecenter with dissolve
     player "Wow. Their curriculum is sure comprehensive. {w}They also offer certifications that I can showcase on my resume. Neat!"
     player "What shall we start with?"
+    hide fcc_curriculum
     # booleans mark whether a choice has been visited
     $ stage5_choose_curriculum_visited = [False, ] * 10
 
@@ -554,11 +555,16 @@ label stage6:
     mint "Meow"
     scene black with dissolve
 
+label routines:
     # begin looping routines, see day_start_events.rpy
-    # TODO: refactor flow, move checks to this main flow
-    jump day_start
+    while not has_accepted_offer:
+        call day_start
+
+    # if we come down here, the player has accepted their offer and is ready to begin their job
+    jump stage14 # new hire
 
 label stage7:
+    # this stage is invoked inside label `day_end`
     # Stage 7. Marco
     hide screen player_stats_screen
     scene black with dissolve
@@ -577,6 +583,7 @@ label stage7:
 
     scene bg desk with dissolve
     show marco
+    $ has_met_marco = True
 
     marco "Hi [persistent.player_name]. I'm Marco. I'm a senior engineer at {b}QuicheQueue{\b}."
     player "Hi Marco. Nice to meet you! I'm [persistent.player_name], a recent grad and developer wannabe."
@@ -636,26 +643,44 @@ label stage7:
                 player "I'm done asking! That's all I want to know. Thanks so much for sharing!"
                 marco "Anytime, [persistent.player_name]. Have fun coding and keep me updated on your progress!"
 
+    # go back to our routines
+    jump routines
+
 label stage8:
     # Stage 8. Coding interviews
     hide screen player_stats_screen
     scene black with dissolve
     pause 1
-    show text "{size=48}{color=[white]}{i}Chapter 5: Let's crunch them interviews!{i}{/color}{/size}" with dissolve 
+    show text "{size=48}{color=[white]}{i}Chapter 5: Let's crunch 'em interviews!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
     show screen player_stats_screen(player_stats)
 
     scene bg bedroom night with dissolve
     player "I read that technical jobs ask candidates to complete coding interviews."
-    player "I know how to code, so these interviews shouldn't be too hard if I study, right?"
+    player "I now know how to code, so these interviews shouldn't be too hard if I study, right?"
     player "Let's do this."
     player "Hmm? What is a heap? I remember learning about lists and dictionaries in my course, but definitely not heaps."
     player "And heaps are under data structure fundamentals. Does that mean that I need to learn to implement a heap from scratch?"
     player "What is time complexity? What about space complexity? Does that mean that my code needs to run fast in addition to being correct?"
     player "Coding interviews are so different from coding..."
-    player "Maybe I need to take some more courses specifically for coding interviews?"
-    # Let's study more
+    player "Maybe I need to tackle more questions specifically for coding interviews?"
+    player "Or I could try applying to jobs first."
+    player "... {w}I don't know. Should I get some advice from Annika and Marco?"
+
+    menu:
+        "Call Annika":
+            # TODO
+            "Okay I'll write some dialogue w Annika"
+    
+        "Message Marco":
+            # TODO
+            "Okay I'll write some dialogue w Marco"
+    
+        "Research online on my own":
+            player "Hmmm... People online recommend applying to jobs as soon as possible."
+
+    player "Okay, let's search for some jobs on the web."
 
     show screen job_posting_screen
     player "Should I apply to this job posting?"
@@ -665,6 +690,9 @@ label stage8:
         "Don't apply":
             player "I don't think I qualify for this job yet..."
     hide screen job_posting_screen
+
+    # go back to our routines
+    jump routines
 
     player "So I've applied to over 30 jobs this week."
     player "Submitted my resume, a cover letter, and whatnot."
@@ -688,6 +716,8 @@ label stage8:
     player "How come I have no idea what these questions are trying to get at?"
     player "They do look similar to some questions I saw on LeetCode, but I still have zero clue."
 
+# actually no stage between 8 and 14
+
 label stage14:
     # Stage 14. New hire player meets Layla
     # TODO
@@ -702,7 +732,24 @@ label stage14:
     scene bg office with dissolve
     show layla
     layla "Hey [persistent.player_name]. I'm Layla. I'm your onboarding buddy. Feel free to ask me anything."
-    player "Hi Layla. Nice to meet you."
+
+    if not has_met_layla:
+        player "Hi Layla. Nice to meet you."
+    else:
+        player "(Hmmm... I wonder if we have met before. Layla looks familiar somehow.)"
+        player "(... {w}Oh! {w}Was that her at Hacker Space?)"
+        # TODO: flashback fade
+
+        scene bg hacker_space with fadehold
+        layla "So how's everyone's project going? We mentors are here to answer any question you have!"
+
+        scene bg office with dissolve
+        layla "[persistent.player_name]? Are you okay? You are spacing out."
+        player "Ah! I'm fine. I just remembered that we might have met before."
+        player "You know, at Hacker Space. I used to go there to study and work on projects before I get this job."
+        layla "Oh, wow. Yeah. I was at various Hacker Space events. {w}Nice to hear that you enjoyed the space!"
+
+    layla "So how's work going? Have you worked your way through our codebase already?"
     player "... Um..."
     layla "Something on your mind?"
     player "I'm kind of stuck... Or, I guess a more accurate way to put this is, I don't even know where to start."
@@ -744,6 +791,8 @@ label final:
     player happy "Okay, I think my code is good to go! Let's commit it to the server."
     # TODO: system processing animation
     player "... {w}And nothing happened."
+
+    # office red alert animation
 
     hide screen player_stats_screen
     call screen confirm_and_share(

@@ -101,7 +101,7 @@ init python:
 
     QuizQuestion(
         question="In Regex, which will match all digits in a string?",
-        true="[1-9]",
+        true="[[1-9]",
         false=["/#", "/digits", "/D", "/d"]
         ),
 
@@ -657,3 +657,6 @@ init python:
         ),
 
     ]
+
+    # TODO: more fine-grained category
+    interview_questions = javascript_questions + web_questions + algorithm_questions + system_questions

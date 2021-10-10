@@ -4,13 +4,19 @@ label sanity_event_player:
     player "Let's call it a day early."
     return
 
-label sanity_event_player_pet:
+label sanity_event_mint:
     player "My eyes hurt. My brain even more so."
-    player "I wish I could get a pet."
-    player "Let's go check out some pets."
-    scene bg pet_shop
-    player "Hmmm. Cute pets. Should I get a cat or dog?"
+    mint "Meow meow"
+    player "Don't worry, Mint. I'm fine."
+    mint "Meow meow"
+    player "Haha thanks Mint. I'll get some rest."
     return
+
+label sanity_event_mom:
+    pass
+
+label sanity_event_dad:
+    pass
 
 label sanity_event_annika_boba:
     player "I'm soooo tired. I could barely keep my eyes open."
@@ -42,3 +48,5 @@ label sanity_event_annika_boba:
 
     $ player_stats.change_stats('Sanity', 10)
     return
+
+# TODO: one more for Annika and two more for Marco

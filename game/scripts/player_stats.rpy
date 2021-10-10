@@ -30,6 +30,11 @@ init python:
                 if not renpy.sound.is_playing():
                     renpy.sound.play('audio/sfx/stats_change_boop.wav')
 
+        def change_stats_random(self, stats_name, min_val, max_val):
+            # renpy.random.randint([min], [max]) both ends inclusive
+            val = renpy.random.randint(min_val, max_val)
+            self.change_stats(stats_name, val)
+
         def set_stats(self, stats_name, val):
             # keep between 0 and 100
             if stats_name in self.player_stats_map:
