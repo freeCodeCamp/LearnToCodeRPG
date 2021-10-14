@@ -34,6 +34,23 @@ define config.version = "1.0"
 ## triple-quotes, and leave a blank line between paragraphs.
 
 define gui.about = _p("""
+Learn To Code RPG was made possible by all the kind people who donate to support freeCodeCamp.org. You can help support our nonprofit's mission {a=https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/}here{/a}.
+
+This project is open source. You can make suggestions and report bugs {a=https://github.com/freeCodeCamp/LearnToCodeRPG}here on GitHub{/a}.
+
+
+{b}Credits{/b}
+
+Production          Quincy Larson
+
+Coding & Writing    {a=https://lynnzheng.netlify.app/}Lynn Zheng{/a}
+
+Art                 Noa Trinh
+
+Proofreading        Abbey Rennemeyer
+
+
+{b}Engine{/b}
 """)
 
 
