@@ -788,10 +788,15 @@ label ending:
     hide text with dissolve
 
     # Learn to Code RPG logo
+    scene gray90 with Pause(1)
+    show learn_to_code_splash at truecenter with dissolve
+    with Pause(2)
+    scene gray90 with dissolve
+    with Pause(1)
 
     # freeCodeCamp logo
     scene gray90 with Pause(1)
-    show splash at truecenter with dissolve
+    show fcc_splash at truecenter with dissolve
     with Pause(2)
     scene gray90 with dissolve
     with Pause(1)
@@ -806,9 +811,9 @@ label ending:
 
     scene gray90 with dissolve
     pause 1
-    show text "{size=48}{color=[white]}Production & Music: {a=}{color=[blue]}Quincy Larson{/color}{/a}\nCoding & Writing: {a=https://ruolinzheng08.github.io/}{color=[blue]}Lynn Zheng{/color}{/a}\nArt: {a=}{color=[blue]}Noa Trinh{/color}{/a}\nProofreading: {a=}{color=[blue]}Abbey Rennemeyer{/color}{/a}{/color}{/size}"
+    show text "{size=48}{color=[white]}Production & Music          {a=}{color=[blue]}Quincy Larson{/color}{/a}\nCoding & Writing            {a=https://ruolinzheng08.github.io/}{color=[blue]}Lynn Zheng{/color}{/a}\nArt                         {a=}{color=[blue]}Noa Trinh{/color}{/a}\nProofreading                {a=}{color=[blue]}Abbey Rennemeyer{/color}{/a}{/color}{/size}"
     with dissolve 
-    pause 5
+    pause 3
     hide text with dissolve
 
     # end of this game
