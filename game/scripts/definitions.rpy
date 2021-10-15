@@ -97,7 +97,7 @@ init:
         attribute_function Picker(expressions)
 
     # text displayables
-    define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp{/color}{/font}{/a}'
+    define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=[gui.accent_color]}freeCodeCamp{/color}{/font}{/a}'
 
     # transitions
     define fadehold = Fade(0.5, 1.0, 0.5)

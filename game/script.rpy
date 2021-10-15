@@ -779,16 +779,35 @@ label ending:
         ok_text="Oopsy... Am I... fired?"
     )
 
-    scene black with dissolve
+    $ quick_menu = False
+
+    scene black with pixellate
     pause 1
     show text "{bt}{size=48}{color=[white]}{i}Well, that's another chapter :){i}{/color}{/size}{/bt}" with dissolve 
-    pause 5
+    pause 3
     hide text with dissolve
 
-    # TODO: play scrolling end credits
-    scene black with dissolve
+    # Learn to Code RPG logo
+
+    # freeCodeCamp logo
+    scene gray90 with Pause(1)
+    show splash at truecenter with dissolve
+    with Pause(2)
+    scene gray90 with dissolve
+    with Pause(1)
+
+    # Credits, like in the About section from options.rpy
+    scene gray90 with dissolve
     pause 1
-    show text "{bt}{size=48}{color=[white]}{i}Now we play some credits{i}{/color}{/size}{/bt}" with dissolve 
+    show text "{size=48}{color=[white]}Learn To Code RPG was made possible by all the kind people who donate to support freeCodeCamp.org. You can help support our nonprofit's mission {a=https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/}{color=[blue]}here{/color}{/a}.\n\nThis project is open source. You can make suggestions and report bugs {a=https://github.com/freeCodeCamp/LearnToCodeRPG}{color=[blue]}here on GitHub{/color}{/a}.{/color}{/size}"
+    with dissolve 
+    pause 3
+    hide text with dissolve
+
+    scene gray90 with dissolve
+    pause 1
+    show text "{size=48}{color=[white]}Production & Music: {a=}{color=[blue]}Quincy Larson{/color}{/a}\nCoding & Writing: {a=https://ruolinzheng08.github.io/}{color=[blue]}Lynn Zheng{/color}{/a}\nArt: {a=}{color=[blue]}Noa Trinh{/color}{/a}\nProofreading: {a=}{color=[blue]}Abbey Rennemeyer{/color}{/a}{/color}{/size}"
+    with dissolve 
     pause 5
     hide text with dissolve
 
