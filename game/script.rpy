@@ -1,4 +1,7 @@
 ﻿label start:
+    # stop main menu music
+    stop music fadeout 3.0
+
     $ player_stats = PlayerStats()
     scene bg laptop_screen
 
@@ -91,8 +94,12 @@ label start_after_interview:
             pass
 
         "Referral":
-            $ renpy.input("What is the full name of your referral? (Type something and hit Enter)")
-            "Hmmm... We aren't able to locate that person in our employee database. Maybe you had a typo?"
+            $ referral_name = renpy.input("What is the full name of your referral? (Type something and hit Enter)")
+            # Easter egg :)
+            if referral_name in ['Quincy', 'Quincy Larson', 'Lynn', 'Lynn Zheng', 'Abbey', 'Abbey Rennemeyer']:
+                "System processing...{w}Looks like you were referred by a VIP team member. That's awesome!"
+            else:
+                "Hmmm... We aren't able to locate that person in our employee database. Maybe you had a typo?"
 
         "Others (Please specify)":
             $ renpy.input("How did you hear about us? (Type something and hit Enter)")
@@ -119,6 +126,9 @@ label start_after_interview:
     player "What made me think I'm capable of getting a software job in the first place?"
     player "Well, it all started some time ago when I first decided to learn to code and get a real job..."
 
+    # start the music here
+    $ continue_looping_music = True
+
 label stage1:
     scene black with dissolve
     pause 1
@@ -126,7 +136,6 @@ label stage1:
     pause 1
     hide text with dissolve
 
-    play music "audio/bgm/Chasing That Feeling.mp3" fadein 1.0 volume 0.5
     scene bg kid_home with fade
 
     # Stage 1. player background
@@ -151,7 +160,6 @@ label stage2:
     # Stage 2. player's decision to learn to code
     # player returns home
     scene bg livingroom night with dissolve
-    play music "audio/bgm/Never Not Favored.mp3" fadein 1.0 volume 0.5
 
     player "I'm home!"
     mom "Hey sweetie. Welcome back!"
@@ -284,8 +292,6 @@ label stage3:
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
     player "Do I merit a personal rejection call from the neighborhood coffee shop?"
 
-    play music "audio/bgm/Crystalize That Child in Me.mp3" fadein 1.0 volume 0.5
-
     show annika
     annika "[persistent.player_name]!"
     player happy "Annika! Geez. When was the last time you called me? When we were moving out after graduation?"
@@ -327,7 +333,6 @@ label stage3:
 
 label stage4:
     scene bg bedroom night with fade
-    play music "audio/bgm/Chasing That Feeling.mp3" fadein 1.0 volume 0.5
 
     player "Phew. It's been a long day at work. I'm glad that the coffee shop happens to need a part-time barista."
     player "Let's check out the awesome resource Annika's been talking about."
@@ -582,7 +587,6 @@ label stage7:
 
     scene bg desk with dissolve
     show marco
-    play music "audio/bgm/Never Not Favored.mp3" fadein 1.0 volume 0.5
 
     $ has_met_marco = True
 
@@ -705,7 +709,6 @@ label stage14:
 
     scene bg office with dissolve
     show layla
-    play music "audio/bgm/Crystalize That Child in Me.mp3" fadein 1.0 volume 0.5
 
     layla "Hey [persistent.player_name]. I'm Layla. I'm your onboarding buddy. Feel free to ask me anything."
 
@@ -769,6 +772,10 @@ label ending:
     player happy "Okay, I think my code is good to go! Let's commit it to the server."
     # TODO: system processing animation
     player "... {w}And nothing happened."
+
+    # stop the music here
+    $ continue_looping_music = False
+    stop music
 
     # office red alert animation
 

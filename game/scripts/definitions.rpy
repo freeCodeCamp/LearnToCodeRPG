@@ -17,6 +17,27 @@ init python:
         if event == "show":
             renpy.sound.play("audio/sfx/meow.wav", loop=False)
 
+    # play music random looping
+    continue_looping_music = False
+
+    all_music = [
+    "audio/bgm/Chasing That Feeling.mp3",
+    "audio/bgm/Never Not Favored.mp3",
+    "audio/bgm/Crystalize That Child in Me.mp3",
+    "audio/bgm/Press Your Advantage.mp3",
+    ]
+
+    def loop_music():
+        if continue_looping_music:
+            music = renpy.random.choice(all_music)
+            renpy.music.queue(music, loop=False, fadein=1.0, tight=True)
+
+    renpy.music.set_queue_empty_callback(loop_music)
+  
+    # to stop, set the following
+    # continue_looping_music = False
+    # stop music
+
 init:
     # major characters
     define player = Character("[persistent.player_name]", image="player")
