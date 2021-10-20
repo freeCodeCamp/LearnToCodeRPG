@@ -21,6 +21,8 @@ label study_session:
         if quiz_question.code_label is not None:
             show screen example(quiz_question.code_label)
 
+        # display question
+        $ renpy.say(None, quiz_question.question, interact=False)
         # result is True or False
         $ result = renpy.display_menu(quiz_question.choices)
         hide screen example

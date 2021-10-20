@@ -6,8 +6,8 @@
 
 ## Custimization
 
-# show non-selectable options as well
-define config.menu_include_disabled = True
+# uncomment this to show non-selectable options as well
+# define config.menu_include_disabled = True
 
 ## Basics ######################################################################
 
@@ -45,7 +45,7 @@ Production & Music          {a=}{font=fonts/saxmono.ttf}Quincy Larson{/font}{/a}
 
 Coding & Writing            {a=https://ruolinzheng08.github.io/}{font=fonts/saxmono.ttf}Lynn Zheng{/font}{/a}
 
-Art                         {a=}{font=fonts/saxmono.ttf}Noa Trinh{/font}{/a}
+Art                         {a=layerto.carrd.co}{font=fonts/saxmono.ttf}Layerto (Noa Trinh){/font}{/a}
 
 Proofreading                {a=}{font=fonts/saxmono.ttf}Abbey Rennemeyer{/font}{/a}
 

@@ -1,7 +1,4 @@
 ﻿label start:
-    # stop main menu music
-    stop music fadeout 3.0
-
     $ player_stats = PlayerStats()
     scene bg laptop_screen
 
@@ -211,7 +208,8 @@ label stage2:
 
 label stage2_after_social_media_ding:
     player confused "It's crazy how everyone these days is learning to code. High school students even."
-    player "And what's with these boot camp programs? Six months then a six-figure job? That's even crazier."
+    player "College itself has been crazy enough for me, and now people are going back to school to complete an online master's program in Computer Science?"
+    player "Six months of self-paced learning and then a six-figure job? That's even crazier."
     player "Hmm, but I can see the appeal in that."
     player awe "Maybe I can learn to code as well."
     mint "Meow meow"
@@ -220,11 +218,7 @@ label stage2_after_social_media_ding:
     player "(I mean, mom and dad are sweet and understanding enough, but Mint is definitely one of the reasons that I decided to move back home.)"
 
     player neutral "Alright, let's do this."
-    player "A bit of research won't hurt. Where shall we start? Maybe a coding boot camp like everyone else is doing?"
-
-    player distress "These boot camp programs are expensive."
-    player "Maybe I can go with free online resources first."
-    player neutral "Let's see, what should we learn first? Python? JavaScript? Web Dev?"
+    player "A bit of research won't hurt. Where shall we start? Maybe some free online resources like everyone else is doing?"
     player awe "Oh here's a video about the top 10 tech skills worth learning in 2021. Let's check that out!"
 
     # player starts learning to code, so we initialize CS knowledge to 0
@@ -332,6 +326,8 @@ label stage3:
     player laugh "Thanks. I will."
 
 label stage4:
+    # TODO: player works barista gig and saw high school students chatting about coding
+
     scene bg bedroom night with fade
 
     player "Phew. It's been a long day at work. I'm glad that the coffee shop happens to need a part-time barista."
@@ -495,7 +491,8 @@ label stage5_annika:
     annika "Hey [persistent.player_name], don't get discouraged, okay?"
     annika happy "It's already a big step forward now that you've checked out their curriculum!"
     annika "Trust me, I was just like you when I first started."
-    annika "I was clueless, but then I decided to just go with their general introduction to computer science quizzes and start from there."
+    annika "I was clueless, so I reached out to [freeCodeCamp]'s online community."
+    annika "They recommended that I start with some general introduction to computer science quizzes on a site named [developerquiz]."
     annika "I found those bite-sized quizzes fun and easier to digest."
     annika "How does that sound?"
 
@@ -597,7 +594,8 @@ label stage7:
     player "Sounds good."
     marco "It's a long story and a bumpy ride. So buckle up."
     marco "I graduated from college some ten years ago. I majored in music and design so I worked as a freelance designer straight out of college."
-    marco "Freelancing gives me some freedom and flexibility at first, but I soon discovered that my skills weren't honed enough to attract large, established clients. And working with small, less established clients doesn't pay well and puts a lot of stress on a newbie freelancer."
+    marco "Freelancing gives me some freedom and flexibility at first, but I soon discovered that my skills weren't honed enough to attract large, established clients."
+    marco "And working with small, less established clients doesn't pay well and puts a lot of stress on a newbie freelancer."
     marco "So I decided to upgrade my skills and try something new."
     marco "I learned to design websites and got a job designing websites at a small local company."
     marco "You know, at small companies, everyone does a little bit of everything."
@@ -710,7 +708,7 @@ label stage14:
     scene bg office with dissolve
     show layla
 
-    layla "Hey [persistent.player_name]. I'm Layla. I'm your onboarding buddy. Feel free to ask me anything."
+    layla "Hey [persistent.player_name]. I'm Layla. I'm your on boarding buddy. Feel free to ask me anything."
 
     if not has_met_layla:
         player "Hi Layla. Nice to meet you."
@@ -728,11 +726,11 @@ label stage14:
         player "You know, at Hacker Space. I used to go there to study and work on projects before I get this job."
         layla "Oh, wow. Yeah. I was at various Hacker Space events. {w}Nice to hear that you enjoyed the space!"
 
-    layla "So how's work going? Have you worked your way through our codebase already?"
+    layla "So how's work going? Have you worked your way through our code base already?"
     player "... Um..."
     layla "Something on your mind?"
     player "I'm kind of stuck... Or, I guess a more accurate way to put this is, I don't even know where to start."
-    layla "No worries! Onboarding could be daunting."
+    layla "No worries! On boarding could be daunting."
     layla "Think about it. Teams of talented developers spent months, even years, building out this codebase."
     player "Haha, thanks. That does make me feel better."
     layla "How about this? Let's take your mind off this code for a while and go grab coffee?"
@@ -818,7 +816,7 @@ label ending:
 
     scene gray90 with dissolve
     pause 1
-    show text "{size=48}{color=[white]}Production & Music          {a=}{color=[blue]}Quincy Larson{/color}{/a}\nCoding & Writing            {a=https://ruolinzheng08.github.io/}{color=[blue]}Lynn Zheng{/color}{/a}\nArt                         {a=}{color=[blue]}Noa Trinh{/color}{/a}\nProofreading                {a=}{color=[blue]}Abbey Rennemeyer{/color}{/a}{/color}{/size}"
+    show text "{size=48}{color=[white]}Production & Music          {a=}{color=[blue]}Quincy Larson{/color}{/a}\nCoding & Writing            {a=https://ruolinzheng08.github.io/}{color=[blue]}Lynn Zheng{/color}{/a}\nArt                         {a=layerto.carrd.co}{color=[blue]}Layerto (Noa Trinh){/color}{/a}\nProofreading                {a=}{color=[blue]}Abbey Rennemeyer{/color}{/a}{/color}{/size}"
     with dissolve 
     pause 3
     hide text with dissolve

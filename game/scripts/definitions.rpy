@@ -12,10 +12,19 @@ init python:
 
             return rv
 
+    meow_sounds = [
+    "audio/sfx/meow1.wav",
+    "audio/sfx/meow2.wav",
+    "audio/sfx/meow3.wav",
+    "audio/sfx/meow4.wav",
+    ]
+
     # make a meow sound when the cat speaks
     def meow_sound_callback(event, **kwargs):
         if event == "show":
-            renpy.sound.play("audio/sfx/meow.wav", loop=False)
+            if renpy.random.random() > 0.5:
+                meow = renpy.random.choice(meow_sounds)
+                renpy.sound.play(meow, loop=False)
 
     # play music random looping
     continue_looping_music = False
@@ -118,7 +127,8 @@ init:
         attribute_function Picker(expressions)
 
     # text displayables
-    define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=[gui.accent_color]}freeCodeCamp{/color}{/font}{/a}'
+    define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp{/color}{/font}{/a}'
+    define developerquiz = '{a=}{font=fonts/saxmono.ttf}{color=#002ead}http://developerquiz.org/{/color}{/font}{/a}'
 
     # transitions
     define fadehold = Fade(0.5, 1.0, 0.5)

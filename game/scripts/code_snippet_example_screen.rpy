@@ -518,8 +518,8 @@ screen example(blocks, small=False, bottom=False, showtrans=False):
     #     $ ypos = 540
 
 
-    $ height = 300
-    $ ypos = 1000
+    $ height = 200
+    $ ypos = 850
 
 
     if SHOW_EXAMPLES:

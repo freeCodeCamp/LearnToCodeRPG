@@ -9,7 +9,6 @@ init python:
         '''
         def __init__(self, question, true, false, explanation=None, code_label=None):
             choices = {
-            question: None,
             true: True
             }
             for f in false:
@@ -31,9 +30,10 @@ init python:
             # max is total num of choices, true plus false
             idx = renpy.random.randint(0, len(false) + 1)
             choices.insert(idx, (true, True))
-            # put the question at the front
-            self.choices = [(question, None)] + choices
 
+            self.choices = choices
+
+            self.question = question
             self.explanation = explanation
             self.code_label = code_label
 
