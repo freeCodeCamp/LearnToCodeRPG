@@ -1,5 +1,5 @@
 ﻿label start:
-    $ player_stats = PlayerStats()
+    default player_stats = PlayerStats()
     scene bg laptop_screen
 
     # get some action and conflict in here :)
@@ -94,7 +94,7 @@ label start_after_interview:
             $ referral_name = renpy.input("What is the full name of your referral? (Type something and hit Enter)")
             # Easter egg :)
             if referral_name in ['Quincy', 'Quincy Larson', 'Lynn', 'Lynn Zheng', 'Abbey', 'Abbey Rennemeyer']:
-                "System processing...{w}Looks like you were referred by a VIP team member. That's awesome!"
+                "System processing... {w}Looks like you were referred by a VIP team member. That's awesome! We'll highlight this on your profile."
             else:
                 "Hmmm... We aren't able to locate that person in our employee database. Maybe you had a typo?"
 
@@ -293,7 +293,6 @@ label stage3:
     annika "Same! How have you been?"
     player netural "I've been okay. Just new grad blues. You?"
 
-    show annika happy
     annika "Things are going pretty well for me! I just got my job offer!"
     annika "And, like, it's not just any job! It's a web development job!"
     annika "Can you believe it? I get paid generously for building cool websites."
@@ -303,21 +302,18 @@ label stage3:
     player netural "Hey, if I may ask, how hard was it for you to learn to develop websites?"
     player confused "I also tried to learn to code for some time but it got too hard and I quit."
 
-    show annika confused
     annika "I'm sorry to hear that but you should give coding another try!"
     annika "Hey, hear me out."
     annika "It wasn't like easy peasy for me either. Like neither of us majored in CS. The CS kids have a way easier time getting a tech job."
     player "You did take some CS electives in school, no?"
     annika "Yeah but they are pretty rusty. And honestly, what you learn in school is so much different from real-world software engineering."
 
-    show annika neutral
     annika "I mean, in school you learn about theories and stuff. Like I did take a Web Dev 101 back in school but we never built an entire website from scratch."
     annika "I never gave web design a second thought after the final exam."
     annika "I've been self-studying all these months with the help of some awesome free resources. I even built a pet adoption website for a side project and that's when I applied everything I learned about user experience, data models, and so on."
     annika "And there was this bug that I had no idea how to fix until..."
     annika "..."
 
-    show annika happy
     annika "Oh sorry I've been talking all the time. I must have bored you with this tech talk stuff."
     player "No worries. It does look like you are doing something you enjoy!"
     player "That must be really cool. I wish I could be like you."
@@ -332,23 +328,20 @@ label stage4:
 
     player "Phew. It's been a long day at work. I'm glad that the coffee shop happens to need a part-time barista."
     player "Let's check out the awesome resource Annika's been talking about."
-    jump stage4_guess_name
 
-label stage4_wrong_name:
-    player "That doesn't sound like the right name."
-    player "My memory must be playing a trick on me."
-    return
-
-label stage4_guess_name:
-    menu:
+    menu stage4_guess_name:
         player "What was it called again?"
 
         "freebieGoodie":
-            call stage4_wrong_name from _call_stage4_wrong_name
+            player "That doesn't sound like the right name."
+            player "My memory must be playing a trick on me."
             jump stage4_guess_name
+
         "coolCodersCamp":
-            call stage4_wrong_name from _call_stage4_wrong_name_1
+            player "That doesn't sound like the right name."
+            player "My memory must be playing a trick on me."
             jump stage4_guess_name
+
         "freeCodeCamp":
             pass
 
@@ -358,45 +351,41 @@ label stage5:
     player "Wow. Their curriculum is sure comprehensive. {w}They also offer certifications that I can showcase on my resume. Neat!"
     player "What shall we start with?"
     hide fcc_curriculum
-    # booleans mark whether a choice has been visited
-    $ stage5_choose_curriculum_visited = [False, ] * 10
 
-label stage5_choose_curriculum:
-    # this choice actually has no consequences on what the player will learn :)
-    # show unavailable choices as greyed out
-    $ config.menu_include_disabled = True
-    menu:
-        "Responsive Web Design" if not stage5_choose_curriculum_visited[0]:
+    # booleans mark whether a choice has been visited
+    default stage5_choose_curriculum_visited = set()
+
+    menu stage5_choose_curriculum:
+        set stage5_choose_curriculum_visited
+
+        "Responsive Web Design":
             player confused "Ehhh... what even is web design? And I'm not a design person... Will I be able to follow along?"
             player "Maybe let's look some more?"
-            $ stage5_choose_curriculum_visited[0] = True
             jump stage5_choose_curriculum
-        "JavaScript Algorithms and Data Structures" if not stage5_choose_curriculum_visited[1]:
+
+        "JavaScript Algorithms and Data Structures":
             player confused "I remember having heard about JavaScript. Or wait, that's perhaps Java."
             player "What are algorithms and data structures? That sounds like math, which is not my favorite subject."
             player "What other curriculum options do I have?"
-            $ stage5_choose_curriculum_visited[1] = True
             jump stage5_choose_curriculum
-        "Front End Development Libraries" if not stage5_choose_curriculum_visited[2]:
+
+        "Front End Development Libraries" :
             player confused "Front end development? That sounds so complicated."
             player "Maybe I should go for some beginner topics?"
-            $ stage5_choose_curriculum_visited[2] = True
             jump stage5_choose_curriculum
 
-        "Data Visualization" if not stage5_choose_curriculum_visited[3]:
+        "Data Visualization":
             player confused "I know there is some hype about big data, but can I really do that without a Ph.D.?"
             player "This doesn't look like it's for me."
-            $ stage5_choose_curriculum_visited[3] = True
             jump stage5_choose_curriculum
 
-        "Back End Development and APIs" if not stage5_choose_curriculum_visited[4]:
+        "Back End Development and APIs":
             player confused "Back end, front end. What are the differences? They definitely sound like they should go together."
             player "But I don't have the time or energy to learn both..."
             player "Let's look for something simpler."
-            $ stage5_choose_curriculum_visited[4] = True
             jump stage5_choose_curriculum
 
-        "Quality Assurance" if not stage5_choose_curriculum_visited[5]:
+        "Quality Assurance":
             player confused "Quality assurance? That sounds like I will be on a digital conveyor belt making sure all cookie packs weigh more or less the same."
             player awe "Nice, warm, and chewy cookies... I love cookies. Hope mom still keeps some in the kitchen cookie jar."
             mint "Meow?"
@@ -412,33 +401,28 @@ label stage5_choose_curriculum:
             with vpunch
             player confused "Wait. {w}I got distracted. Where was I? Was I browsing the course category or something? Oh. I have this quality assurance tab open."
             player "At any rate, I don't think quality assurance is something I want to learn."
-            $ stage5_choose_curriculum_visited[5] = True
             jump stage5_choose_curriculum
 
-        "Scientific Computing with Python" if not stage5_choose_curriculum_visited[6]:
+        "Scientific Computing with Python":
             player confused "Scientific computing? I'm not that much of a science person and I don't see myself becoming a scientist either."
             player "Plus I don't know anything about Python yet."
-            player "I guess I'll pass."
-            $ stage5_choose_curriculum_visited[6] = True
             jump stage5_choose_curriculum
 
-        "Data Analysis with Python" if not stage5_choose_curriculum_visited[7]:
+        "Data Analysis with Python":
             player "Data analysis sounds cool..."
             player confused "But I don't know anything about Python. Plus I didn't do a lot of math in college."
             player "That's probably too hard for me right now."
             player "Let's find something else."
-            $ stage5_choose_curriculum_visited[7] = True
             jump stage5_choose_curriculum
 
-        "Information Security" if not stage5_choose_curriculum_visited[8]:
+        "Information Security":
             player confused "What can I do after learning about information security?"
             player "Hack into others' computers? Stop bad guys from hacking into others' computers?"
             player "That sounds like a lot of moral commitment. I'm not sure if I can handle that."
             player "Is there something more neutral on the list?"
-            $ stage5_choose_curriculum_visited[8] = True
             jump stage5_choose_curriculum
 
-        "Machine Learning with Python" if not stage5_choose_curriculum_visited[9]:
+        "Machine Learning with Python":
             player awe "Machine Learning. Wow. That sounds cool."
             player "I'm really interested in teaching machines to learn."
             player "Just think about it. Teaching machines to chat like humans. {w}Wow."
@@ -448,7 +432,6 @@ label stage5_choose_curriculum:
             player "Math... linear algebra... that kind of thing."
             player "That's probably out of the league for me."
             player "Maybe I should start with something more basic?"
-            $ stage5_choose_curriculum_visited[9] = True
             jump stage5_choose_curriculum
 
         "Let's just wait until tomorrow and ask Annika for advice":
@@ -476,7 +459,9 @@ label stage5_annika:
     # the next day
     $ player_stats.day_counter += 1
     scene bg bedroom day with fade
-    show annika neutral
+
+    show annika
+
     player happy "Hey Annika. So I've been checking out [freeCodeCamp] as you suggested."
     player "I think its curriculum looks solid."
     player confused "The thing is, I have no idea what to learn."
@@ -489,7 +474,7 @@ label stage5_annika:
     player "(I'm not like that... There's no way I can do this...)"
 
     annika "Hey [persistent.player_name], don't get discouraged, okay?"
-    annika happy "It's already a big step forward now that you've checked out their curriculum!"
+    annika "It's already a big step forward now that you've checked out their curriculum!"
     annika "Trust me, I was just like you when I first started."
     annika "I was clueless, so I reached out to [freeCodeCamp]'s online community."
     annika "They recommended that I start with some general introduction to computer science quizzes on a site named [developerquiz]."
@@ -500,7 +485,7 @@ label stage5_annika:
     player "What if I run into something that I can't understand?"
     player "What if the quizzes gets too hard like they always do at college, and I lose my motivation?"
 
-    annika laugh "That's totally okay! In fact, what I love about [freeCodeCamp] is that they have an entire community that can help you out and cheer you on."
+    annika "That's totally okay! In fact, what I love about [freeCodeCamp] is that they have an entire community that can help you out and cheer you on."
     annika "And I can be your go-to accountability buddy as well! Ping me anytime if anything comes up."
     player happy "Thanks Annika. I know I can count on you."
     player laugh "Best of luck with your new job by the way! Let me know how it goes."
@@ -610,41 +595,35 @@ label stage7:
     marco "So that's my story. Anything you'd like to learn more about?"
 
     # initialize all choices to False
-    $ marco_story_choices = [False, ] * 4
-    # show unavailable choices as greyed out
-    $ config.menu_include_disabled = True
-    label marco_story_choices:
-        menu:
-            "What are you up to nowadays?" if not marco_story_choices[0]:
-                player "What are you up to nowadays?"
-                marco "If you are looking for a one-word answer, then it's “learning.” Everyone else I know will probably give you the same answer if you ask."
-                $ marco_story_choices[0] = True
-                jump marco_story_choices
+    default marco_story_choices = set()
+    menu marco_story_choices:
+        set marco_story_choices
+        "What are you up to nowadays?":
+            player "What are you up to nowadays?"
+            marco "If you are looking for a one-word answer, then it's “learning.” Everyone else I know will probably give you the same answer if you ask."
+            jump marco_story_choices
 
-            "Do you still have much to learn as a senior engineer?" if not marco_story_choices[1]:
-                player "Do you still have much to learn as a senior engineer?"
-                marco "Of course! I still run into technologies that are novel to me in my day-to-day."
-                $ marco_story_choices[1] = True
-                jump marco_story_choices
+        "Do you still have much to learn as a senior engineer?":
+            player "Do you still have much to learn as a senior engineer?"
+            marco "Of course! I still run into technologies that are novel to me in my day-to-day."
+            jump marco_story_choices
 
-            "What is your experience working with people who have a CS degree versus who don't?" if not marco_story_choices[2]:
-                player "What is your experience working with people who have a CS degree versus who don't?"
-                marco "I'd say it's not too different. A CS degree may give you a head start in your first year as a junior developer, but after then, it is up to you to learn, grow, and adapt continuously to new technology."
-                $ marco_story_choices[2] = True
-                jump marco_story_choices
+        "What is your experience working with people who have a CS degree versus who don't?":
+            player "What is your experience working with people who have a CS degree versus who don't?"
+            marco "I'd say it's not too different. A CS degree may give you a head start in your first year as a junior developer, but after then, it is up to you to learn, grow, and adapt continuously to new technology."
+            jump marco_story_choices
 
-            "Do you have a favorite side project?" if not marco_story_choices[3]:
-                player "Do you have a favorite side project?"
-                marco "There is one I'm working on right now. Top secret. You will know when you see it."
-                marco "Like I said, I majored in design and music in college. Design and music are two things that get me up in the morning."
-                marco "Now that I've also learned to code, I think it's prime time to put my passion into use to create something awesome, like a video game. I get to do the art, music, and coding all by myself."
-                player "That sure sounds like fun! I'd love to see it one day!"
-                $ marco_story_choices[3] = True
-                jump marco_story_choices
+        "Do you have a favorite side project?":
+            player "Do you have a favorite side project?"
+            marco "There is one I'm working on right now. Top secret. You will know when you see it."
+            marco "Like I said, I majored in design and music in college. Design and music are two things that get me up in the morning."
+            marco "Now that I've also learned to code, I think it's prime time to put my passion into use to create something awesome, like a video game. I get to do the art, music, and coding all by myself."
+            player "That sure sounds like fun! I'd love to see it one day!"
+            jump marco_story_choices
 
-            "I'm done asking!":
-                player "I'm done asking! That's all I want to know. Thanks so much for sharing!"
-                marco "Anytime, [persistent.player_name]. Have fun coding and keep me updated on your progress!"
+        "I'm done asking!":
+            player "I'm done asking! That's all I want to know. Thanks so much for sharing!"
+            marco "Anytime, [persistent.player_name]. Have fun coding and keep me updated on your progress!"
 
     # go back to our routines
     jump day_start

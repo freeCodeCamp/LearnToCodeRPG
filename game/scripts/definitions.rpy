@@ -61,23 +61,27 @@ init:
     define mint = Character("Mint", callback=meow_sound_callback) # player's cat
     define interviewer = Character("Interviewer")
 
+    ## temporary
+    image side player = 'chara/player/player.png'
+    ## end
+
     # expressions
     # player
-    define player_expressions = [
-    "neutral eyes_blink face_no_eyes_neutral",
-    "happy eyes_blink face_no_eyes_happy",
-    "confused eyes_blink face_no_eyes_confused",
-    "awe face_awe",
-    "cry face_cry",
-    "distress face_distress",
-    "laugh face_laugh",
-    ]
-    # major characters except player
-    define expressions = [
-    "neutral eyes_blink face_no_eyes_neutral",
-    "happy eyes_blink face_no_eyes_happy",
-    "confused eyes_blink face_no_eyes_confused",
-    ]
+    # define player_expressions = [
+    # "neutral eyes_blink face_no_eyes_neutral",
+    # "happy eyes_blink face_no_eyes_happy",
+    # "confused eyes_blink face_no_eyes_confused",
+    # "awe face_awe",
+    # "cry face_cry",
+    # "distress face_distress",
+    # "laugh face_laugh",
+    # ]
+    # # major characters except player
+    # define expressions = [
+    # "neutral eyes_blink face_no_eyes_neutral",
+    # "happy eyes_blink face_no_eyes_happy",
+    # "confused eyes_blink face_no_eyes_confused",
+    # ]
 
     # blink
     image player_eyes_blink = DynamicBlink(
@@ -91,40 +95,40 @@ init:
 
     # layered character sprites
     # player should always appear as a side image
-    layeredimage player:
-        always "player_base"
+    # layeredimage player:
+    #     always "player_base"
 
-        group eyes auto prefix "eyes"
-        group face_no_eyes auto prefix "face_no_eyes"
-        group face auto prefix "face"
+    #     group eyes auto prefix "eyes"
+    #     group face_no_eyes auto prefix "face_no_eyes"
+    #     group face auto prefix "face"
 
-        group expressions:
-            # need null b/c no prefix
-            attribute neutral default null
-            attribute happy null
-            attribute confused null
-            attribute awe null
-            attribute cry null
-            attribute distress null
-            attribute laugh null
+    #     group expressions:
+    #         # need null b/c no prefix
+    #         attribute neutral default null
+    #         attribute happy null
+    #         attribute confused null
+    #         attribute awe null
+    #         attribute cry null
+    #         attribute distress null
+    #         attribute laugh null
 
-        attribute_function Picker(player_expressions)
+    #     attribute_function Picker(player_expressions)
 
-    image side player = LayeredImageProxy("player")
+    # image side player = LayeredImageProxy("player")
 
-    layeredimage annika:
-        always "annika_base"
+    # layeredimage annika:
+    #     always "annika_base"
 
-        group eyes auto prefix "eyes"
-        group face_no_eyes auto prefix "face_no_eyes"
-        group face auto prefix "face"
+    #     group eyes auto prefix "eyes"
+    #     group face_no_eyes auto prefix "face_no_eyes"
+    #     group face auto prefix "face"
 
-        group expressions:
-            attribute neutral default null
-            attribute happy null
-            attribute confused null
+    #     group expressions:
+    #         attribute neutral default null
+    #         attribute happy null
+    #         attribute confused null
 
-        attribute_function Picker(expressions)
+    #     attribute_function Picker(expressions)
 
     # text displayables
     define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp{/color}{/font}{/a}'
