@@ -7,9 +7,6 @@ init python:
             self.player_stats_map = {
                 'Sanity': 100,
                 'CS Knowledge': None,
-                'Curriuclum Progress': None,
-                'Interview Skills': None,
-                'Dev Skills': None,
             }
 
             # to loop over the dictionary deterministically
@@ -41,17 +38,27 @@ init python:
                 clamped_val = min(100, max(0, val))
                 self.player_stats_map[stats_name] = clamped_val
 
-init:            
-    screen player_stats_screen(player_stats):
+        def is_sanity_low(self):
+            return self.player_stats_map['Sanity'] > 50
+
+init:
+    screen player_stats_screen:
         ## Ensure this appears on top of other screens.
         # zorder 100
+        default todo_expanded = False
+        default roadmap_expanded = False
+
+        $ width = 620
 
         frame:
             # top left of screen
+            xsize width
             xalign 0
             yalign 1
             xpadding 30
             ypadding 30
+
+            background Solid("#ffffffcc") # 80% opacity
 
             vbox:
                 spacing 20
@@ -77,7 +84,7 @@ init:
                         for stats_name in player_stats.player_stats_name_list:
                             # if None, not yet initialized/unlocked
                             if player_stats.player_stats_map[stats_name] is not None:
-                                bar value player_stats.player_stats_map[stats_name] range 100 xalign 0.5 yalign 0.9 xmaximum 300 at alpha_dissolve
+                                bar value player_stats.player_stats_map[stats_name] range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
 
                     # right column shows the stats value in numbers
                     vbox:
@@ -86,6 +93,40 @@ init:
                             # if None, not yet initialized/unlocked
                             if player_stats.player_stats_map[stats_name] is not None:
                                 text str(player_stats.player_stats_map[stats_name])
+
+                if todo_unlocked:
+                    null height 10
+                    hbox:
+                        spacing 40
+                        if todo_unlocked:
+                            textbutton '{icon=list} To-Do' action ToggleScreenVariable('todo_expanded', true_value=True, false_value=False)
+                        if roadmap_unlocked:
+                            textbutton '{icon=ico-map} Roadmap' action ToggleScreenVariable('roadmap_expanded')
+
+                    hbox:
+                        if todo_expanded:
+
+                            viewport:
+                                xsize width
+                                ymaximum 200
+                                child_size (None, 4000)
+                                scrollbars 'vertical'
+                                spacing 5
+                                draggable True
+                                mousewheel True
+                                arrowkeys True
+                                vscrollbar_xsize 5
+                                vscrollbar_unscrollable "hide"
+
+                                vbox:
+                                    spacing 5
+                                    for todo in todo_dict:
+                                        if not todo_dict[todo]: # a boolean indicating completion
+                                            text '{icon=circle} ' + todo
+                                        else:
+                                            text '{icon=circle-check} ' + todo color gui.idle_color
+                        if roadmap_expanded:
+                            text 'Blah'
 
     transform alpha_dissolve:
         alpha 0.0

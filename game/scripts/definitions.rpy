@@ -1,4 +1,6 @@
 init python:
+    import re
+
     class Picker(object):
         def __init__(self, options):
             self.options =  [ i.split() for i in options ]
@@ -47,23 +49,65 @@ init python:
     # continue_looping_music = False
     # stop music
 
+    # day-night effects
+    # https://www.twoandahalfstudios.com/2019/08/tds-making-of-3-day-night-and-sunset-reshading-images-in-renpy-with-im-matrixcolor
+
+    tint_dark = im.matrix.tint(.44, .44, .75) * im.matrix.brightness(-0.02)
+    tint_sunset = im.matrix.tint(.85, .60, .45) * im.matrix.brightness(0.10)
+    # late night in front of computer
+    tint_dim = im.matrix.tint(.90, .90, 1) * im.matrix.brightness(-0.1)
+
+    # programmatically apply effects to all bg images inside game/images/bg
+    for file in renpy.list_files():
+        if file.startswith('images/bg'):
+            image_path = re.sub(r'images/', '', file) # remove the `images/` prefix
+            image_name = re.match(r'images/bg/(.+).png', file).group(1) # ex. images/bg/(bg living_room).png
+            renpy.image(image_name + ' night', im.MatrixColor(image_path, tint_dark))
+
 init:
     # major characters
-    define player = Character("[persistent.player_name]", image="player")
-    define annika = Character("Annika", image="annika")
+    define player = Character("[persistent.player_name]", image='player')
+    define annika = Character("Annika", image='annika')
     define marco = Character("Marco")
     define layla = Character("Layla")
 
     # minor characters
     define kid = Character("High Schoool Kid")
+    define boy = Character("High School Boy")
+    define girl = Character("High School Girl")
+
     define mom = Character("Mom")
     define dad = Character("Dad")
     define mint = Character("Mint", callback=meow_sound_callback) # player's cat
     define interviewer = Character("Interviewer")
 
+    # text displayables
+    define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp{/color}{/font}{/a}'
+    define developerquiz = '{a=}{font=fonts/saxmono.ttf}{color=#002ead}http://developerquiz.org/{/color}{/font}{/a}'
+
+    # transitions
+    define fadehold = Fade(0.5, 1.0, 0.5)
+
+    ## images
+
     ## temporary
     image side player = 'chara/player/player.png'
+    image side player dark = im.MatrixColor('chara/player/player.png', tint_dark)
+    image side player sunset = im.MatrixColor('chara/player/player.png', tint_sunset)
+    image side player dim = im.MatrixColor('chara/player/player.png', tint_dim)
     ## end
+
+    # mint
+    image mint:
+        "others/mint1.png"
+        1.0
+        "others/mint2.png"
+        1.0
+        "others/mint3.png"
+        1.0
+        "others/mint2.png"
+        1.0
+        repeat
 
     # expressions
     # player
@@ -129,10 +173,3 @@ init:
     #         attribute confused null
 
     #     attribute_function Picker(expressions)
-
-    # text displayables
-    define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp{/color}{/font}{/a}'
-    define developerquiz = '{a=}{font=fonts/saxmono.ttf}{color=#002ead}http://developerquiz.org/{/color}{/font}{/a}'
-
-    # transitions
-    define fadehold = Fade(0.5, 1.0, 0.5)

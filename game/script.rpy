@@ -1,6 +1,6 @@
 ﻿label start:
     default player_stats = PlayerStats()
-    scene bg laptop_screen
+    scene bg laptop_screen with dissolve
 
     # get some action and conflict in here :)
     "Hi there. Thanks for applying to our software engineering role! {w}We've reviewed your resume and as a first step in our recruiting process, we'd like you to invite you to complete an online assessment."
@@ -121,7 +121,7 @@ label start_after_interview:
     player "Geez, coding interviews are hard..."
     with vpunch
     player "What made me think I'm capable of getting a software job in the first place?"
-    player "Well, it all started some time ago when I first decided to learn to code and get a real job..."
+    player "Well... {w}it all started some time ago when I first decided to learn to code and get a real job..."
 
     # start the music here
     $ continue_looping_music = True
@@ -139,7 +139,7 @@ label stage1:
     player "Okay, so that's it for today's session."
     kid "Uhh okay, so that's what trigonometry is about?"
     player "Yep. That's the basics of trigonometry."
-    player confused "(I still can't believe I'm working this gig tutoring high school kids.)"
+    player pout "(I still can't believe I'm working this gig tutoring high school kids.)"
     player "(I just graduated from college but it's so hard to get a serious full-time job.)"
     player "(I did apply to some consulting firms and banks. And I've heard back from None.)"
     player "(It's not like I don't enjoy tutoring kids. I actually enjoy explaining concepts to others. I just need a full-time job that is more intellectually fulfilling.)"
@@ -156,12 +156,13 @@ label stage1:
 label stage2:
     # Stage 2. player's decision to learn to code
     # player returns home
-    scene bg livingroom night with dissolve
+    scene bg living_room night with dissolve
 
     player "I'm home!"
     mom "Hey sweetie. Welcome back!"
     dad "Welcome home, pumpkin. How was your day?"
     player "(That's my mom and dad. {w} Mom is a high school teacher, which is why she could find me this tutoring gig. {w}Dad is a mechanical engineer, but I never got too into engineering.)"
+    player "(Not bragging but they are the nicest parents I know.)"
     player "Good. I'm tutoring this smart kid who wants to take up coding classes. I can't believe that came from a high school student."
     mom "That's interesting. I heard that a lot of high schools are rolling out coding curriculum."
     mom "That must be a trendy thing right now."
@@ -169,20 +170,23 @@ label stage2:
     dad "The kid is only a junior but is already interning for large companies during summer break."
     player "Wow. Haha. That's pretty cool."
 
-    # TODO: kitchen timer rings
+    play sound 'audio/sfx/kitchen_beep.ogg'
 
     mom "Dinner's ready! I made your favorites."
     player "Thanks mom! You are the best!"
 
-    # TODO: sound of kitchen utensils
+    scene bg kitchen night with dissolve
+    play sound 'audio/sfx/dining_ambient.wav'
+
+    pause 5
 
     scene bg bedroom night with dissolve
     player happy "That was a stuffing dinner. Mom's the best cook I know."
     player "..."
-    player neutral "Hmmm..."
 
-    # TODO: sound of social media ding
-    player "Must be something on social media."
+    play sound 'audio/sfx/social_media_notification.wav'
+    player neutral "Hmmm... A notification from my phone?  Must be something on social media."
+
     menu:
         "Check phone":
             pass
@@ -192,30 +196,33 @@ label stage2:
 
     player "Looks like someone from my junior high school. I don't even remember who they are."
     player "What did they post to get this crazy many likes?"
-    player "{bt}\"Proud intern at {b}DonutDB{\b}. Check out my swaaaag!\"{/bt}"
+    player "{bt}\"Proud intern at {b}DonutDB{/b}. Check out my swaaaag!\"{/bt}"
     player "Oh. wow."
     player "Should I leave a like or comment on their post?"
     # no consequence
     menu:
         "Leave a like":
-            pass
+            player "Liked. Wow. They've got 1k+ likes already? Guess I'm one of them now."
     
         "Post a comment":
-            pass
+            player "{i}Congrats!{/i} {w}Posted. Now I'm one of their 100+ comments."
 
         "Do nothing":
-            pass
+            player "Meh, they are just bragging. I don't even know them that well."
 
 label stage2_after_social_media_ding:
-    player confused "It's crazy how everyone these days is learning to code. High school students even."
+    player confused "It's crazy how everyone these days is learning to code and getting high-paying jobs in software."
     player "College itself has been crazy enough for me, and now people are going back to school to complete an online master's program in Computer Science?"
-    player "Six months of self-paced learning and then a six-figure job? That's even crazier."
+    player "Six months of self-paced learning and then a six-figure job? Talk about the end of craziness."
     player "Hmm, but I can see the appeal in that."
     player awe "Maybe I can learn to code as well."
-    mint "Meow meow"
+
+    show mint
+    mint "Meow meow."
     player "Haha, you think so as well, Mint?"
     player "(Mint, our home cat, is a real sweetie.)"
     player "(I mean, mom and dad are sweet and understanding enough, but Mint is definitely one of the reasons that I decided to move back home.)"
+    hide mint
 
     player neutral "Alright, let's do this."
     player "A bit of research won't hurt. Where shall we start? Maybe some free online resources like everyone else is doing?"
@@ -223,7 +230,8 @@ label stage2_after_social_media_ding:
 
     # player starts learning to code, so we initialize CS knowledge to 0
     $ player_stats.init_stats('CS Knowledge')
-    show screen player_stats_screen(player_stats)
+    show screen player_stats_screen
+    play sound 'audio/sfx/stats_change_boop.wav'
 
     player "So Java and JavaScript are different languages? Wait, which one is for web dev again?"
     $ player_stats.change_stats('CS Knowledge', 1)
@@ -246,18 +254,26 @@ label stage2_after_social_media_ding:
     $ player_stats.change_stats('Sanity', -5)
 
     player "Maybe I can find a job posting I like and start learning their required skills."
+    with hpunch
     player "But what is front-end, back-end, or full-stack? What are the differences?"
-    player "DevOps?"
-    player "Why is this company using their pet coding language that nobody else uses?"
+    with hpunch
+    player "What are DevOps and Site Reliability Engineering?"
+    with hpunch
+    player "And why is this company using their pet coding language that nobody else uses?"
 
     # hard-reset player's CS knowledge :)
     python:
         player_stats.set_stats('CS Knowledge', 0)
 
+    with vpunch
     play sound 'audio/sfx/stats_change_doom.wav'
     player cry "Ugh. This is so frustrating."
-    mint "Meow meow"
+
+    show mint
+    mint "Meow meow."
     player confused "Awww thanks Mint. I'm okay."
+    hide mint
+
     player confused "Learn to code? Haha. I know it can't be that easy."
     player "There might be people who are cut out to do this, but definitely not me."
     player "I guess I better call it a day and go to bed."
@@ -276,11 +292,11 @@ label stage3:
     show text "{size=48}{color=[white]}{i}Chapter 2: A learning buddy to make it better!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
-    show screen player_stats_screen(player_stats)
+    show screen player_stats_screen
     # the above is standard for a chapter opening screen
 
     $ player_stats.day_counter += 1
-    scene bg bedroom day with fade
+    scene bg bedroom with fade
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
     player confused "Here goes my phone at this early hour."
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
@@ -320,14 +336,32 @@ label stage3:
     annika "You totally can! Did I give you the link to the {bt}awesome resource{/bt} that I've been using?"
     annika "It's called [freeCodeCamp]. Check that out!"
     player laugh "Thanks. I will."
+    player "(Let's add it to my to-do list.)"
+    $ todo_unlocked = True
+    $ todo_dict['Check out [freeCodeCamp]'] = False
+    $ todo_dict['Do chores'] = True
+    annika "Anyways, what's your plan for the day?"
+    player "Um, I need to check out the cafe around the neighborhood."
+    annika "Cool! Let's catch up some time and get coffee!"
+    player "Sure! Chat later!"
 
 label stage4:
-    # TODO: player works barista gig and saw high school students chatting about coding
+    scene bg cafe with fade
+    player "I'm glad that the coffee shop happens to need a part-time barista."
+    player "Now at least I have some pocket money for necessities."
+    player "(This reminds me so much of college. I used to work part-time as a barista at the school library cafe as well.)"
+    player "(It was always nice to see my peers socializing and doing work at the cafe.)"
+    player "(An additional perk is that I get first-hand knowledge of interesting things happening on campus.)"
+
+
+    player "I believe I can use this piece of information to my advantage."
 
     scene bg bedroom night with fade
 
-    player "Phew. It's been a long day at work. I'm glad that the coffee shop happens to need a part-time barista."
-    player "Let's check out the awesome resource Annika's been talking about."
+    player dark "Phew... It's been a long day at work."
+
+    scene bg laptop_screen night with dissolve
+    player dim "Let's check out the awesome resource Annika's been talking about."
 
     menu stage4_guess_name:
         player "What was it called again?"
@@ -452,13 +486,15 @@ label stage5_cookie:
 
     scene bedroom night with dissolve
     # sound of chewing on cookie
+
+    play sound 'audio/sfx/chew_cookie.wav'
     player "Mmmm... Mom's cookies are the best."
     return
 
 label stage5_annika:
     # the next day
     $ player_stats.day_counter += 1
-    scene bg bedroom day with fade
+    scene bg bedroom with fade
 
     show annika
 
@@ -488,6 +524,10 @@ label stage5_annika:
     annika "That's totally okay! In fact, what I love about [freeCodeCamp] is that they have an entire community that can help you out and cheer you on."
     annika "And I can be your go-to accountability buddy as well! Ping me anytime if anything comes up."
     player happy "Thanks Annika. I know I can count on you."
+
+    annika "Better yet, let me give you my roadmap of breaking into the tech industry."
+    # TODO: Add roadmap to player stats screen
+
     player laugh "Best of luck with your new job by the way! Let me know how it goes."
 
 label stage6:
@@ -498,9 +538,9 @@ label stage6:
     show text "{size=48}{color=[white]}{i}Chapter 3: Let's hit the books!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
-    show screen player_stats_screen(player_stats)
+    show screen player_stats_screen
 
-    scene bg bedroom day with fade
+    scene bg bedroom with fade
 
     # this first day has this fixed dialogue
     # after this, the start-of-day dialogue will be randomly drawn from start_of_day_event_labels.rpy
@@ -558,9 +598,9 @@ label stage7:
     show text "{size=48}{color=[white]}{i}Chapter 4: A mentor to lead the way!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
-    show screen player_stats_screen(player_stats)
+    show screen player_stats_screen
 
-    scene bg bedroom day with fade
+    scene bg bedroom with fade
     # play sound of typing
     # show a close-up graphic of Marco?
     player "So I found this person's profile online. He taught himself to code with [freeCodeCamp]."
@@ -636,7 +676,7 @@ label stage8:
     show text "{size=48}{color=[white]}{i}Chapter 5: Let's crunch 'em interviews!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
-    show screen player_stats_screen(player_stats)
+    show screen player_stats_screen
 
     scene bg bedroom night with dissolve
     player "I read that technical jobs ask candidates to complete coding interviews."
@@ -682,7 +722,7 @@ label stage14:
     show text "{size=48}{color=[white]}{i}Chapter 6: Let's meet my new colleagues!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
-    show screen player_stats_screen(player_stats)
+    show screen player_stats_screen
 
     scene bg office with dissolve
     show layla

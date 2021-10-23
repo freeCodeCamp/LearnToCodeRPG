@@ -2,9 +2,6 @@ label day_activity_choices:
     $ has_had_study_session_today = False
     # this label should end up jumping to day_end
 
-    # hide unavailable choices
-    $ config.menu_include_disabled = False
-
     menu:
         # if the player has searched for jobs on this day and saw nothing
         # they jump back here and this first option won't be available

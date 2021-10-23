@@ -1,4 +1,8 @@
 init python:
+
+    todo_unlocked = False
+    roadmap_unlocked = False
+
     annika_open_source_visited = False
     annika_open_source_first_visit = False
 
@@ -30,6 +34,9 @@ init python:
 
     # player can meet Layla at Hacker Space
     has_met_layla = False
+
+    # maps todo to True or False booleans
+    todo_dict = {}
 
     # see sanity_events.rpy
     # initially there are only events with player themself and Annika
