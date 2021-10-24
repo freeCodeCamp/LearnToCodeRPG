@@ -339,20 +339,21 @@ label stage3:
     player "(Let's add it to my to-do list.)"
     $ todo_unlocked = True
     $ todo_dict['Check out [freeCodeCamp]'] = False
-    $ todo_dict['Do chores'] = True
     annika "Anyways, what's your plan for the day?"
     player "Um, I need to check out the cafe around the neighborhood."
     annika "Cool! Let's catch up some time and get coffee!"
     player "Sure! Chat later!"
 
 label stage4:
-    scene bg cafe with fade
-    player "I'm glad that the coffee shop happens to need a part-time barista."
+    scene bg cafe with fadehold
+    player "I'm glad that this coffee shop happens to need a part-time barista."
     player "Now at least I have some pocket money for necessities."
-    player "(This reminds me so much of college. I used to work part-time as a barista at the school library cafe as well.)"
-    player "(It was always nice to see my peers socializing and doing work at the cafe.)"
-    player "(An additional perk is that I get first-hand knowledge of interesting things happening on campus.)"
-
+    player "This reminds me so much of college. I used to work part-time as a barista at the school library cafe as well."
+    player "It was always nice to see my peers socializing and doing work at the cafe."
+    player "An additional perk is that I get first-hand knowledge of interesting things happening on campus."
+    player "That might also be true for this place. Looking around, I see quite a few people with their laptop."
+    player "It's totally possible that some of them are working on the next million-dollar startup! {w}Not an impossibility given that the tech scene is booming in our quite little town."
+    player "Or at least they might be talking about something interesting happening in the tech industry."
 
     player "I believe I can use this piece of information to my advantage."
 
