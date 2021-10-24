@@ -1,8 +1,5 @@
 init python:
-
-    player_stats = PlayerStats()
-    todo_list = ToDoList()
-
+    stats_unlocked = False
     todo_unlocked = False
 
     annika_open_source_visited = False

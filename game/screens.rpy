@@ -263,7 +263,9 @@ screen quick_menu():
             # textbutton _("Q.Save") action QuickSave()
             # textbutton _("Q.Load") action QuickLoad()
             textbutton _("{icon=ico-settings} Prefs ") action ShowMenu('preferences')
-            textbutton _("{icon=ico-phone} Stats") action ToggleScreen("player_stats_screen")
+
+            if stats_unlocked:
+                textbutton _("{icon=ico-phone} Stats") action ToggleScreen("player_stats_screen")
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever

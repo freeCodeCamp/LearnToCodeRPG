@@ -1,4 +1,8 @@
 ﻿label start:
+    default player_stats = PlayerStats()
+    default todo_list = ToDoList()
+
+    stop music fadeout 2.0
     scene bg laptop_screen with dissolve
 
     # get some action and conflict in here :)
@@ -13,7 +17,6 @@
     $ timeout = 5.0
     # Set the label that is jumped to if the player doesn't make a decision.
     $ timeout_label = "start_interview_question2"
-    with pixellate
     menu:
         "How do you prove that P = NP in one sentence?"
 
@@ -81,13 +84,13 @@ label start_after_interview:
         "How did you hear about this opportunity?"
     
         "Email":
-            pass
+            "Cool! We are glad that you are here!"
     
         "Career fair":
-            pass
+            "Cool! We are glad that you are here!"
 
         "Job posting websites":
-            pass
+            "Cool! We are glad that you are here!"
 
         "Referral":
             $ referral_name = renpy.input("What is the full name of your referral? (Type something and hit Enter)")
@@ -110,8 +113,6 @@ label start_after_interview:
         "No":
             pass
     
-    window hide
-    with pixellate
     "Thanks for completing your information. We will be in touch about next steps."
 
     with fade
@@ -126,25 +127,30 @@ label start_after_interview:
     $ continue_looping_music = True
 
 label stage1:
+    $ quick_menu = False
     scene black with dissolve
     pause 1
     show text "{size=48}{color=[white]}{i}Chapter 1: Let's learn to code!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
+    $ quick_menu = True
 
+    $ stats_unlocked = True
     scene bg kid_home with fade
 
     # Stage 1. player background
     player "Okay, so that's it for today's session."
     kid "Uhh okay, so that's what trigonometry is about?"
     player "Yep. That's the basics of trigonometry."
+    kid "Okay... I need to reread my notes to make sure I have everything for the day."
+    player "Sure. Take your time."
     player pout "(I still can't believe I'm working this gig tutoring high school kids.)"
     player "(I just graduated from college but it's so hard to get a serious full-time job.)"
-    player "(I did apply to some consulting firms and banks. And I've heard back from None.)"
+    player "(I did apply to some consulting firms and banks. And I've heard back from none.)"
     player "(It's not like I don't enjoy tutoring kids. I actually enjoy explaining concepts to others. I just need a full-time job that is more intellectually fulfilling.)"
-    player "(Better yet if it pays better.)"
+    player "(Better yet if it pays better...){p=0.5}{nw}"
     kid "Hey [persistent.player_name]?"
-    player neutral "Oh. {w}I just spaced out for a bit."
+    player neutral "Oh. {w}Hey. {w}Sorry I just spaced out for a bit."
     player "Do you have any more questions before we wrap up?"
     kid "Nope! I think my project report is good to go. Thanks!"
     player "Good. I'll see you next week."
@@ -162,7 +168,7 @@ label stage2:
     dad "Welcome home, pumpkin. How was your day?"
     player "(That's my mom and dad. {w} Mom is a high school teacher, which is why she could find me this tutoring gig. {w}Dad is a mechanical engineer, but I never got too into engineering.)"
     player "(Not bragging but they are the nicest parents I know.)"
-    player "Good. I'm tutoring this smart kid who wants to take up coding classes. I can't believe that came from a high school student."
+    player "My day is okay. I'm tutoring this smart kid who wants to take up coding classes. I can't believe that came from a high school student."
     mom "That's interesting. I heard that a lot of high schools are rolling out coding curriculum."
     mom "That must be a trendy thing right now."
     dad "Yeah, remember our neighbor, the guy who moved away last month? I heard his kid is majoring in Computer Science at college."
@@ -176,10 +182,12 @@ label stage2:
 
     scene bg kitchen night with dissolve
     play sound 'audio/sfx/dining_ambient.wav'
+    dad "So here's the best part about my day...{p=0.5}{nw}"
+    player "Haha that's hilarious!{p=0.5}{nw}"
+    mom "So what plans do we have for the weekend?{p=0.5}{nw}"
+    player "I'm up to anything!{p=0.5}{nw}"
 
-    pause 5
-
-    scene bg bedroom night with dissolve
+    scene bg bedroom night with fadehold
     player happy "That was a stuffing dinner. Mom's the best cook I know."
     player "..."
 
@@ -229,11 +237,13 @@ label stage2_after_social_media_ding:
     player awe "Oh here's a video about the top 10 tech skills worth learning in 2021. Let's check that out!"
 
     # player starts learning to code, so we initialize CS knowledge to 0
-    $ player_stats.init_stats('CS Knowledge')
-    player "I'll keep track of my progress on my phone."
-    play sound 'audio/sfx/stats_change_boop.wav'
+    $ player_stats.set_stats('Sanity', 100)
+    $ player_stats.set_stats('CS Knowledge', 0)
+    # now the screen should be showing
 
-    "(Click on the phone icon {icon=ico-phone} on the bottom-right corner of the textbox to show or hide our progress.)"
+    player "I'll keep track of my progress on my phone."
+
+    "(Click on the phone icon {icon=ico-phone} on the bottom-right corner of the textbox to show or hide your progress.)"
 
     player "So Java and JavaScript are different languages? Wait, which one is for web dev again?"
     $ player_stats.change_stats('CS Knowledge', 1)
@@ -264,8 +274,7 @@ label stage2_after_social_media_ding:
     player "And why is this company using their pet coding language that nobody else uses?"
 
     # hard-reset player's CS knowledge :)
-    python:
-        player_stats.set_stats('CS Knowledge', 0)
+    $ player_stats.set_stats('CS Knowledge', 0)
 
     with vpunch
     play sound 'audio/sfx/stats_change_doom.wav'
@@ -280,6 +289,7 @@ label stage2_after_social_media_ding:
     player "There might be people who are cut out to do this, but definitely not me."
     player "I guess I better call it a day and go to bed."
 
+    hide screen player_stats_screen
     with fadehold
     player "... {w}I can't sleep with all these thoughts floating around in my head."
     player "What can I do if the kid I'm tutoring cuts down our sessions for his coding classes?"
@@ -288,17 +298,17 @@ label stage2_after_social_media_ding:
 
 label stage3:
     # Stage 3. Annika
-    hide screen player_stats_screen
+    $ quick_menu = False
     scene black with dissolve
     pause 1
     show text "{size=48}{color=[white]}{i}Chapter 2: A learning buddy to make it better!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
+    $ quick_menu = True
     # the above is standard for a chapter opening screen
 
     scene bg bedroom with fade
     $ player_stats.day_counter += 1
-    show screen player_stats_screen
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
     player confused "Here goes my phone at this early hour."
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
@@ -342,6 +352,7 @@ label stage3:
 
     $ todo_unlocked = True
     $ todo_list.add_todo('Check out [freeCodeCamp]')
+    "(Click on the To-Do icon {icon=list} to show or hide your To-Do items.)"
 
     annika "Anyways, what's your plan for the day?"
     player "Um, I need to check out the cafe around the neighborhood."

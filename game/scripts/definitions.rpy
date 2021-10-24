@@ -23,8 +23,9 @@ init python:
 
     # make a meow sound when the cat speaks
     def meow_sound_callback(event, **kwargs):
-        meow = renpy.random.choice(meow_sounds)
-        renpy.sound.play(meow, loop=False)
+        if event == "show":
+            meow = renpy.random.choice(meow_sounds)
+            renpy.sound.play(meow, loop=False)
 
     # play music random looping
     continue_looping_music = False

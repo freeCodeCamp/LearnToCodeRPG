@@ -5,19 +5,27 @@ init python:
 
             # map string names to stats
             self.player_stats_map = {
-                'Sanity': 100,
-                'CS Knowledge': None,
+            'Sanity': None, 
+            'CS Knowledge': None, 
+            'Dev Trivia': None
             }
 
             # to loop over the dictionary deterministically
             self.player_stats_name_list = list(self.player_stats_map.keys())
 
-        def init_stats(self, stats_name):
+        def set_stats(self, stats_name, val):
+            # keep between 0 and 100
             if stats_name in self.player_stats_map:
-                self.player_stats_map[stats_name] = 0
-            # TODO: play sound
+                clamped_val = min(100, max(0, val))
+                self.player_stats_map[stats_name] = clamped_val
+            else:
+                renpy.notify(message='None existent stats: ' + stats_name)
+            if not renpy.get_screen('player_stats_screen'):
+                renpy.show_screen('player_stats_screen')
 
         def change_stats(self, stats_name, val):
+            if not renpy.get_screen('player_stats_screen'):
+                renpy.show_screen('player_stats_screen')
             # keep between 0 and 100
             if stats_name in self.player_stats_map and self.player_stats_map[stats_name] is not None:
                 new_val = self.player_stats_map[stats_name] + val
@@ -32,12 +40,6 @@ init python:
             val = renpy.random.randint(min_val, max_val)
             self.change_stats(stats_name, val)
 
-        def set_stats(self, stats_name, val):
-            # keep between 0 and 100
-            if stats_name in self.player_stats_map:
-                clamped_val = min(100, max(0, val))
-                self.player_stats_map[stats_name] = clamped_val
-
         def is_sanity_low(self):
             return self.player_stats_map['Sanity'] > 50
 
@@ -49,7 +51,16 @@ init python:
         def add_todo(self, todo):
             self.todo_keys.append(todo)
             self.todo_dict[todo] = False
-            # TODO: show and collapse screen
+            if not renpy.get_screen('player_stats_screen'):
+                renpy.show_screen('player_stats_screen')
+            if not renpy.sound.is_playing():
+                renpy.sound.play('audio/sfx/todo_create_complete.wav')
+
+        def complete_todo(self, todo):
+            if todo in self.todo_dict:
+                todo_dict[todo] = True
+            if not renpy.sound.is_playing():
+                renpy.sound.play('audio/sfx/todo_create_complete.wav')
 
 init:
 
@@ -57,19 +68,14 @@ init:
         alpha 0.0
         linear 0.5 alpha 1.0
 
-    $ player_stats_screen_width = 620
-
-    screen player_stats_screen:
+    screen player_stats_screen(todo_expanded=True):
         ## Ensure this appears on top of other screens.
         # zorder 100
-        default todo_expanded = False
-
-        on "show" action With(Dissolve(1.0))
-        on "hide" action With(Dissolve(1.0))
+        on "show" action With(Dissolve(0.5))
+        on "hide" action With(Dissolve(0.5))
 
         frame:
             # top left of screen
-            xsize player_stats_screen_width
             xalign 0.0
             yalign 0.0
             xpadding 30
@@ -116,14 +122,14 @@ init:
                     hbox:
                         spacing 40
                         if todo_unlocked:
-                            textbutton '{icon=list}To-Do' action ToggleScreenVariable('todo_expanded', true_value=True, false_value=False)
+                            textbutton '{icon=list} To-Do' action ToggleScreenVariable('todo_expanded', true_value=True, false_value=False)
 
                     if todo_expanded:
                         use todo_listview
 
     screen todo_listview:
         viewport:
-            xsize player_stats_screen_width
+            xsize 620
             ymaximum 200
             child_size (None, 4000)
             scrollbars 'vertical'
@@ -138,7 +144,7 @@ init:
                 spacing 5
                 for todo in todo_list.todo_keys:
                     if not todo_list.todo_dict[todo]: # a boolean indicating completion
-                        text '{icon=circle} ' + todo
+                        text '{icon=circle}    ' + todo
                     else:
-                        text '{icon=circle-check} ' + todo color gui.idle_color
+                        text '{icon=circle-check}    ' + todo color gui.idle_color
 
