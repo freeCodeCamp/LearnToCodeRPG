@@ -41,20 +41,37 @@ init python:
         def is_sanity_low(self):
             return self.player_stats_map['Sanity'] > 50
 
+    class ToDoList():
+        def __init__(self):
+            self.todo_keys = [] # a list of keys for traversing the dict deterministically
+            self.todo_dict = {} # maps str todo to boolean indicating completion
+
+        def add_todo(self, todo):
+            self.todo_keys.append(todo)
+            self.todo_dict[todo] = False
+            # TODO: show and collapse screen
+
 init:
+
+    transform alpha_dissolve:
+        alpha 0.0
+        linear 0.5 alpha 1.0
+
+    $ player_stats_screen_width = 620
+
     screen player_stats_screen:
         ## Ensure this appears on top of other screens.
         # zorder 100
         default todo_expanded = False
-        default roadmap_expanded = False
 
-        $ width = 620
+        on "show" action With(Dissolve(1.0))
+        on "hide" action With(Dissolve(1.0))
 
         frame:
             # top left of screen
-            xsize width
-            xalign 0
-            yalign 1
+            xsize player_stats_screen_width
+            xalign 0.0
+            yalign 0.0
             xpadding 30
             ypadding 30
 
@@ -99,35 +116,29 @@ init:
                     hbox:
                         spacing 40
                         if todo_unlocked:
-                            textbutton '{icon=list} To-Do' action ToggleScreenVariable('todo_expanded', true_value=True, false_value=False)
-                        if roadmap_unlocked:
-                            textbutton '{icon=ico-map} Roadmap' action ToggleScreenVariable('roadmap_expanded')
+                            textbutton '{icon=list}To-Do' action ToggleScreenVariable('todo_expanded', true_value=True, false_value=False)
 
-                    hbox:
-                        if todo_expanded:
+                    if todo_expanded:
+                        use todo_listview
 
-                            viewport:
-                                xsize width
-                                ymaximum 200
-                                child_size (None, 4000)
-                                scrollbars 'vertical'
-                                spacing 5
-                                draggable True
-                                mousewheel True
-                                arrowkeys True
-                                vscrollbar_xsize 5
-                                vscrollbar_unscrollable "hide"
+    screen todo_listview:
+        viewport:
+            xsize player_stats_screen_width
+            ymaximum 200
+            child_size (None, 4000)
+            scrollbars 'vertical'
+            spacing 5
+            draggable True
+            mousewheel True
+            arrowkeys True
+            vscrollbar_xsize 5
+            vscrollbar_unscrollable "hide"
 
-                                vbox:
-                                    spacing 5
-                                    for todo in todo_dict:
-                                        if not todo_dict[todo]: # a boolean indicating completion
-                                            text '{icon=circle} ' + todo
-                                        else:
-                                            text '{icon=circle-check} ' + todo color gui.idle_color
-                        if roadmap_expanded:
-                            text 'Blah'
+            vbox:
+                spacing 5
+                for todo in todo_list.todo_keys:
+                    if not todo_list.todo_dict[todo]: # a boolean indicating completion
+                        text '{icon=circle} ' + todo
+                    else:
+                        text '{icon=circle-check} ' + todo color gui.idle_color
 
-    transform alpha_dissolve:
-        alpha 0.0
-        linear 0.5 alpha 1.0

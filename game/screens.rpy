@@ -253,16 +253,17 @@ screen quick_menu():
             style_prefix "quick"
 
             xalign 0.5
-            yalign 1.0
+            yalign 0.98
 
-            textbutton _("Back") action Rollback()
-            textbutton _("History") action ShowMenu('history')
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Save") action ShowMenu('save')
-            textbutton _("Q.Save") action QuickSave()
-            textbutton _("Q.Load") action QuickLoad()
-            textbutton _("Prefs") action ShowMenu('preferences')
+            textbutton _("{icon=key-back} Back") action Rollback()
+            textbutton _("{icon=ico-map} History") action ShowMenu('history')
+            textbutton _("{icon=key-fast} Skip") action Skip() alternate Skip(fast=True, confirm=True)
+            textbutton _("{icon=key-play} Auto") action Preference("auto-forward", "toggle")
+            textbutton _("{icon=folder-qsave} Save") action ShowMenu('save')
+            # textbutton _("Q.Save") action QuickSave()
+            # textbutton _("Q.Load") action QuickLoad()
+            textbutton _("{icon=ico-settings} Prefs ") action ShowMenu('preferences')
+            textbutton _("{icon=ico-phone} Stats") action ToggleScreen("player_stats_screen")
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever

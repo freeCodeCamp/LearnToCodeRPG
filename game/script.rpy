@@ -1,5 +1,4 @@
 ﻿label start:
-    default player_stats = PlayerStats()
     scene bg laptop_screen with dissolve
 
     # get some action and conflict in here :)
@@ -192,6 +191,7 @@ label stage2:
             pass
 
         "Ignore":
+            player "Let's make this evening distraction-free for my sanity."
             jump stage2_after_social_media_ding
 
     player "Looks like someone from my junior high school. I don't even remember who they are."
@@ -230,8 +230,10 @@ label stage2_after_social_media_ding:
 
     # player starts learning to code, so we initialize CS knowledge to 0
     $ player_stats.init_stats('CS Knowledge')
-    show screen player_stats_screen
+    player "I'll keep track of my progress on my phone."
     play sound 'audio/sfx/stats_change_boop.wav'
+
+    "(Click on the phone icon {icon=ico-phone} on the bottom-right corner of the textbox to show or hide our progress.)"
 
     player "So Java and JavaScript are different languages? Wait, which one is for web dev again?"
     $ player_stats.change_stats('CS Knowledge', 1)
@@ -292,11 +294,11 @@ label stage3:
     show text "{size=48}{color=[white]}{i}Chapter 2: A learning buddy to make it better!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
-    show screen player_stats_screen
     # the above is standard for a chapter opening screen
 
-    $ player_stats.day_counter += 1
     scene bg bedroom with fade
+    $ player_stats.day_counter += 1
+    show screen player_stats_screen
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
     player confused "Here goes my phone at this early hour."
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
@@ -339,7 +341,7 @@ label stage3:
     player "(Let's add it to my to-do list.)"
 
     $ todo_unlocked = True
-    $ todo_dict['Check out [freeCodeCamp]'] = False
+    $ todo_list.add_todo('Check out [freeCodeCamp]')
 
     annika "Anyways, what's your plan for the day?"
     player "Um, I need to check out the cafe around the neighborhood."
@@ -370,7 +372,7 @@ label stage4:
     player "Oops. I wasn't intentionally eavesdropping on high school kids, but the {b}hackathon{/b} idea they mentioned is new."
     player "I believe I can use this piece of information to my advantage. Let's make it a to-do item to ask Annika has done similar events before."
 
-    $ todo_dict['Ask Annika about hackathon'] = False
+    $ todo_list.add_todo('Ask Annika about hackathon')
 
     scene bg bedroom night with fadehold
 
