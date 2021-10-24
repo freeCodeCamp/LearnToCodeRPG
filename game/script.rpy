@@ -337,8 +337,10 @@ label stage3:
     annika "It's called [freeCodeCamp]. Check that out!"
     player laugh "Thanks. I will."
     player "(Let's add it to my to-do list.)"
+
     $ todo_unlocked = True
     $ todo_dict['Check out [freeCodeCamp]'] = False
+
     annika "Anyways, what's your plan for the day?"
     player "Um, I need to check out the cafe around the neighborhood."
     annika "Cool! Let's catch up some time and get coffee!"
@@ -355,9 +357,22 @@ label stage4:
     player "It's totally possible that some of them are working on the next million-dollar startup! {w}Not an impossibility given that the tech scene is booming in our quite little town."
     player "Or at least they might be talking about something interesting happening in the tech industry."
 
-    player "I believe I can use this piece of information to my advantage."
+    girl "Hey hey! Did you hear that our school will soon have a computer club?"
+    boy "Wow. Really? What do you plan to do at a computer club? Play video games?"
+    girl "That, and much better! We can code stuff, maybe build a video game ourselves!"
+    girl "I heard that we will have a dedicated teacher to lead the club. They will even host hackathons and stuff."
+    boy "Hmmm, what are hackathons for?"
+    girl "You know, like a marathon, but you hack away at some project instead of running around."
+    boy "That sounds like fun. Do you have any project idea already?"
+    girl "Emmm... Do you know this thing called a visual novel game?"
+    boy "Tell me about it."
 
-    scene bg bedroom night with fade
+    player "Oops. I wasn't intentionally eavesdropping on high school kids, but the {b}hackathon{/b} idea they mentioned is new."
+    player "I believe I can use this piece of information to my advantage. Let's make it a to-do item to ask Annika has done similar events before."
+
+    $ todo_dict['Ask Annika about hackathon'] = False
+
+    scene bg bedroom night with fadehold
 
     player dark "Phew... It's been a long day at work."
 
@@ -829,14 +844,14 @@ label ending:
     # Credits, like in the About section from options.rpy
     scene gray90 with dissolve
     pause 1
-    show text "{size=48}{color=[white]}Learn To Code RPG was made possible by all the kind people who donate to support freeCodeCamp.org. You can help support our nonprofit's mission {a=https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/}{color=[blue]}here{/color}{/a}.\n\nThis project is open source. You can make suggestions and report bugs {a=https://github.com/freeCodeCamp/LearnToCodeRPG}{color=[blue]}here on GitHub{/color}{/a}.{/color}{/size}"
+    show text "{size=48}{color=[white]}[about]{/color}{/size}"
     with dissolve 
     pause 3
     hide text with dissolve
 
     scene gray90 with dissolve
     pause 1
-    show text "{size=48}{color=[white]}Production & Music          {a=}{color=[blue]}Quincy Larson{/color}{/a}\nCoding & Writing            {a=https://ruolinzheng08.github.io/}{color=[blue]}Lynn Zheng{/color}{/a}\nArt                         {a=layerto.carrd.co}{color=[blue]}Layerto (Noa Trinh){/color}{/a}\nProofreading                {a=}{color=[blue]}Abbey Rennemeyer{/color}{/a}{/color}{/size}"
+    show text "{size=48}{color=[white]}[credits]{/color}{/size}"
     with dissolve 
     pause 3
     hide text with dissolve

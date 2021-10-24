@@ -64,6 +64,12 @@ init python:
             image_name = re.match(r'images/bg/(.+).png', file).group(1) # ex. images/bg/(bg living_room).png
             renpy.image(image_name + ' night', im.MatrixColor(image_path, tint_dark))
 
+    ## font replacement
+    # font file, boldness, italics
+    config.font_replacement_map["fonts/lato/Lato-Regular.ttf", True, False] = ("fonts/lato/Lato-Bold.ttf", False, False)
+    config.font_replacement_map["fonts/lato/Lato-Regular.ttf", False, True] = ("fonts/lato/Lato-Italic.ttf", False, False)
+
+
 init:
     # major characters
     define player = Character("[persistent.player_name]", image='player')

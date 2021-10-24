@@ -33,22 +33,27 @@ define config.version = "1.0"
 ## Text that is placed on the game's about screen. Place the text between the
 ## triple-quotes, and leave a blank line between paragraphs.
 
-define gui.about = _p("""
+define about = _p("""
 Learn To Code RPG was made possible by all the kind people who donate to support freeCodeCamp.org. You can help support our nonprofit's mission {a=https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/}{font=fonts/saxmono.ttf}here{/font}{/a}.
 
 This project is open source. You can make suggestions and report bugs {a=https://github.com/freeCodeCamp/LearnToCodeRPG}{font=fonts/saxmono.ttf}here on GitHub{/font}{/a}.
+""")
 
+define credits = _p("""
+Coding & Writing & Misc. Art            {a=https://ruolinzheng08.github.io/}{font=fonts/saxmono.ttf}Lynn Zheng{/font}{/a}
+
+Production & Music                      {a=}{font=fonts/saxmono.ttf}Quincy Larson{/font}{/a}
+
+Character Art                           {a=layerto.carrd.co}{font=fonts/saxmono.ttf}Layerto (Noa Trinh){/font}{/a}
+
+Proofreading                            {a=}{font=fonts/saxmono.ttf}Abbey Rennemeyer{/font}{/a}
+""")
+
+define gui.about = _p(about + """
 
 {b}Credits{/b}
 
-Production & Music          {a=}{font=fonts/saxmono.ttf}Quincy Larson{/font}{/a}
-
-Coding & Writing            {a=https://ruolinzheng08.github.io/}{font=fonts/saxmono.ttf}Lynn Zheng{/font}{/a}
-
-Art                         {a=layerto.carrd.co}{font=fonts/saxmono.ttf}Layerto (Noa Trinh){/font}{/a}
-
-Proofreading                {a=}{font=fonts/saxmono.ttf}Abbey Rennemeyer{/font}{/a}
-
+""" + credits + """
 
 {b}Engine Information{/b}
 """)

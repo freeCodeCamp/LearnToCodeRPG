@@ -67,7 +67,7 @@ define gui.interface_text_font = "fonts/saxmono.ttf"
 define gui.text_size = 33
 
 ## The size of character names.
-define gui.name_text_size = 45
+define gui.name_text_size = 40
 
 ## The size of text in the game's user interface.
 define gui.interface_text_size = 33

@@ -15,8 +15,8 @@ transform ctc_animation:
         linear 1.0 alpha .2
         repeat
     parallel:
-        linear 0.5 yoffset 0
-        linear 0.5 yoffset 10
-        linear 0.5 yoffset 0
-        linear 0.5 yoffset -10
+        linear 0.3 yoffset 0
+        linear 0.3 yoffset 10
+        linear 0.3 yoffset 0
+        linear 0.3 yoffset -10
         repeat
