@@ -104,15 +104,27 @@ init:
 
     # mint
     image mint:
-        "others/mint1.png"
+        "others/mint/mint1.png"
         1.0
-        "others/mint2.png"
+        "others/mint/mint2.png"
         1.0
-        "others/mint3.png"
+        "others/mint/mint3.png"
         1.0
-        "others/mint2.png"
+        "others/mint/mint2.png"
         1.0
         repeat
+
+    # cookie
+    image cookie:
+        "others/cookie/cookie1.png"
+        0.5
+        "others/cookie/cookie2.png"
+        0.5
+        "others/cookie/cookie3.png"
+        0.5
+        "others/cookie/cookie4.png"
+        0.5
+        "others/cookie/cookie5.png"
 
     # expressions
     # player

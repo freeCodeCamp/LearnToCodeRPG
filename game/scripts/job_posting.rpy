@@ -20,7 +20,7 @@ init python:
     'MochiML',
     'TiramisuTPU',
     'ToffeeTerminal',
-    'WaffleWiFi',
+    'WaffleWireless',
     'VanillaVM'
     ]
 

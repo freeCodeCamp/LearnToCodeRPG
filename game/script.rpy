@@ -226,7 +226,7 @@ label stage2_after_social_media_ding:
     player awe "Maybe I can learn to code as well."
 
     show mint
-    mint "Meow meow."
+    mint "Meow meow~"
     player "Haha, you think so as well, Mint?"
     player "(Mint, our home cat, is a real sweetie.)"
     player "(I mean, mom and dad are sweet and understanding enough, but Mint is definitely one of the reasons that I decided to move back home.)"
@@ -281,7 +281,7 @@ label stage2_after_social_media_ding:
     player cry "Ugh. This is so frustrating."
 
     show mint
-    mint "Meow meow."
+    mint "Meow meow~"
     player confused "Awww thanks Mint. I'm okay."
     hide mint
 
@@ -358,6 +358,7 @@ label stage3:
     player "Um, I need to check out the cafe around the neighborhood."
     annika "Cool! Let's catch up some time and get coffee!"
     player "Sure! Chat later!"
+    hide screen player_stats_screen
 
 label stage4:
     scene bg cafe with fadehold
@@ -367,7 +368,8 @@ label stage4:
     player "It was always nice to see my peers socializing and doing work at the cafe."
     player "An additional perk is that I get first-hand knowledge of interesting things happening on campus."
     player "That might also be true for this place. Looking around, I see quite a few people with their laptop."
-    player "It's totally possible that some of them are working on the next million-dollar startup! {w}Not an impossibility given that the tech scene is booming in our quite little town."
+    player "It's totally possible that some of them are working on the next million-dollar startup"
+    player "Not totally out of scope given that the tech scene is booming in our quite little town."
     player "Or at least they might be talking about something interesting happening in the tech industry."
 
     girl "Hey hey! Did you hear that our school will soon have a computer club?"
@@ -381,10 +383,13 @@ label stage4:
     boy "Tell me about it."
 
     player "Oops. I wasn't intentionally eavesdropping on high school kids, but the {b}hackathon{/b} idea they mentioned is new."
-    player "I believe I can use this piece of information to my advantage. Let's make it a to-do item to ask Annika has done similar events before."
+    player "I believe I can use this piece of information to my advantage. Let's make it a to-do item to ask Annika if she knows about events like this."
 
-    $ todo_list.add_todo('Ask Annika about hackathon')
+    $ todo_list.add_todo('Ask Annika about hackathons')
+    player "Alright! Going back to my shift."
+    hide screen player_stats_screen
 
+    # player goes back home
     scene bg bedroom night with fadehold
 
     player dark "Phew... It's been a long day at work."
@@ -451,9 +456,11 @@ label stage5:
         "Quality Assurance":
             player confused "Quality assurance? That sounds like I will be on a digital conveyor belt making sure all cookie packs weigh more or less the same."
             player awe "Nice, warm, and chewy cookies... I love cookies. Hope mom still keeps some in the kitchen cookie jar."
+            show mint
             mint "Meow?"
             player "Hey Mint. You want a cookie as well?"
-            mint "Meow meow"
+            mint "Meow meow~"
+            hide mint
             menu:
                 "Let's go grab a cookie from the kitchen":
                     call stage5_cookie from _call_stage5_cookie
@@ -499,13 +506,15 @@ label stage5:
 
         "Let's just wait until tomorrow and ask Annika for advice":
             player confused "Hmmm... I don't know. They all look equally hard. Let's ask Annika for advice tomorrow."
+            show mint
             mint "Meow!"
             player neutral "You think that's a good idea too, Mint?"
             player "Okay, let's get some rest today. Tomorrow is another day."
+            hide mint
             jump stage5_annika
 
 label stage5_cookie:
-    scene kitchen night with dissolve
+    scene bg kitchen night with dissolve
     mom "Hey honey, taking a break from all the studying?"
     mom "Your dad and I are really glad that you continue to learn new things after college, but don't push yourself too hard, okay?"
     player "Haha thanks Mom. I'm doing just fine."
@@ -513,11 +522,12 @@ label stage5_cookie:
     mom "Alright, know that we are always here if you'd like to talk or anything."
     player "I will. Thanks Mom."
 
-    scene bedroom night with dissolve
-    # sound of chewing on cookie
-
+    scene bg bedroom night with dissolve
+    show cookie at truecenter
+    pause 0.2
     play sound 'audio/sfx/chew_cookie.wav'
     player "Mmmm... Mom's cookies are the best."
+    hide cookie
     return
 
 label stage5_annika:
@@ -575,7 +585,7 @@ label stage6:
     # after this, the start-of-day dialogue will be randomly drawn from start_of_day_event_labels.rpy
     # TODO: play sound of alarm
     player "Ahhh here goes my alarm."
-    mint "Meow Meow"
+    mint "Meow Meow~"
     player "Ahhh good morning, Mint."
     player "..."
     player "Okay, let's do this. Let's sit down to actually learn something."
@@ -613,7 +623,7 @@ label stage6:
 
     player "Yawwwwwn... I can barely keep my eyes open. Today's been quite a workout day for my brain."
     player "Good night, Mint."
-    mint "Meow"
+    mint "Meow~"
     scene black with dissolve
 
     jump day_start

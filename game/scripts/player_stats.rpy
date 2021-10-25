@@ -68,7 +68,8 @@ init:
         alpha 0.0
         linear 0.5 alpha 1.0
 
-    screen player_stats_screen(todo_expanded=True):
+    screen player_stats_screen:
+        default todo_expanded = True # screen local variable
         ## Ensure this appears on top of other screens.
         # zorder 100
         on "show" action With(Dissolve(0.5))
