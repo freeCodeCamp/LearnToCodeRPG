@@ -506,11 +506,16 @@ label stage5:
 
         "Let's just wait until tomorrow and ask Annika for advice":
             player confused "Hmmm... I don't know. They all look equally hard. Let's ask Annika for advice tomorrow."
+            $ todo_list.add_todo('Ask Annika about CS curriculum')
+            player "Added it to my To-Do!"
+            player "Well, I did accomplish something today. Now at least I know what [freeCodeCamp]'s curriculum is about. That's one item off my To-Do list."
+            $ todo_list.complete_todo('Check out [freeCodeCamp]')
             show mint
             mint "Meow!"
             player neutral "You think that's a good idea too, Mint?"
             player "Okay, let's get some rest today. Tomorrow is another day."
             hide mint
+            hide screen player_stats_screen
             jump stage5_annika
 
 label stage5_cookie:
@@ -535,16 +540,28 @@ label stage5_annika:
     $ player_stats.day_counter += 1
     scene bg bedroom with fade
 
+    play sound 'audio/sfx/alarm.wav'
+    player "Ahhh... my alarm... It's a new day already?"
+    player "What's on our To-Do today?"
+    show screen player_stats_screen
+    player "Right. Let's give Annika a call and ask about the CS curriculum."
+    play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
+
     show annika
 
-    player happy "Hey Annika. So I've been checking out [freeCodeCamp] as you suggested."
+    player happy "Morning Annika!"
+    annika "Morning! As energetic as ever, I see."
+    player "Haha all thanks to you!"
+    annika "What's up?"
+    player "So I've been checking out [freeCodeCamp] as you suggested."
     player "I think its curriculum looks solid."
-    player confused "The thing is, I have no idea what to learn."
+    player confused "The thing is, I have no idea what to learn. Web dev, data science, machine learning..."
     player "They all look super complicated. I bet you put in honest hard work to complete them."
     player "Which one did you do, by the way?"
 
-    annika "Oh, I did the web design one. What was it? {a=https://www.freecodecamp.org/learn/responsive-web-design/}Responsive Web Design?{/a}"
+    annika "Oh, I did the web design one. What was it? {a=https://www.freecodecamp.org/learn/responsive-web-design/}Responsive Web Design{/a}?"
     annika "If I remembered anything from my college CS minor, it's those web markup languages."
+    player "Ahh I see."
     player confused "(So Annika managed to pull through the curriculum because she had some existing experience from college. Plus she has really good designer eyes.)"
     player "(I'm not like that... There's no way I can do this...)"
 
@@ -563,13 +580,36 @@ label stage5_annika:
     annika "That's totally okay! In fact, what I love about [freeCodeCamp] is that they have an entire community that can help you out and cheer you on."
     annika "And I can be your go-to accountability buddy as well! Ping me anytime if anything comes up."
     player happy "Thanks Annika. I know I can count on you."
+    annika "Anytime!"
+    annika "Well, I'm about to head out to work. Talk later!"
+    player laugh "Best of luck with work! Let me know how it goes."
 
-    annika "Better yet, let me give you my roadmap of breaking into the tech industry."
-    # TODO: Add roadmap to player stats screen
+    play sound 'audio/sfx/phone_hangup.wav'
+    hide annika
 
-    player laugh "Best of luck with your new job by the way! Let me know how it goes."
+    player "Okay. Now I've asked about the curriculum. One To-Do item off the list."
+    $ todo_list.complete_todo('Ask Annika about CS curriculum')
+    player "I can ask Annika about other topics another day."
+    player "Now my new To-Do would be to beef up my CS knowledge."
+    $ todo_list.add_todo('Beef up CS knowledge')
+    player "Sounds like a plan!"
+    player "Time to go work my barista shift."
+    hide screen player_stats_screen
+
+    scene bg cafe with fadehold
+    play sound 'audio/sfx/cafe_pour.wav'
+    pause 5
+
+    player "I don't see too many people in the cafe today. Maybe because it's a work day?"
+
+    scene bg cafe dusk with fadehold
+    play sound 'audio/sfx/cafe_pour.wav'
+    pause 5
+    player "That's about it for my shift. Not much happened."
+    player "Let's head home early to squeeze in some studying tonight, just to keep up the momentum."
 
 label stage6:
+    # TODO
     # Stage 6. Trials
     hide screen player_stats_screen
     scene black with dissolve

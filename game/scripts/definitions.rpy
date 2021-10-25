@@ -62,6 +62,7 @@ init python:
             image_path = re.sub(r'images/', '', file) # remove the `images/` prefix
             image_name = re.match(r'images/bg/(.+).png', file).group(1) # ex. images/bg/(bg living_room).png
             renpy.image(image_name + ' night', im.MatrixColor(image_path, tint_dark))
+            renpy.image(image_name + ' dusk', im.MatrixColor(image_path, tint_sunset))
 
     ## font replacement
     # font file, boldness, italics
@@ -88,7 +89,7 @@ init:
 
     # text displayables
     define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp{/color}{/font}{/a}'
-    define developerquiz = '{a=}{font=fonts/saxmono.ttf}{color=#002ead}http://developerquiz.org/{/color}{/font}{/a}'
+    define developerquiz = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}http://developerquiz.org/{/color}{/font}{/a}'
 
     # transitions
     define fadehold = Fade(0.5, 1.0, 0.5)

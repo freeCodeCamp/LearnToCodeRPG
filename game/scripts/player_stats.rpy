@@ -54,14 +54,15 @@ init python:
             if not renpy.get_screen('player_stats_screen'):
                 renpy.show_screen('player_stats_screen')
             if not renpy.sound.is_playing():
-                renpy.sound.play('audio/sfx/todo_create_complete.wav')
+                renpy.sound.play('audio/sfx/smartphone_typing.wav')
 
         def complete_todo(self, todo):
             if todo in self.todo_dict:
-                todo_dict[todo] = True
-            if not renpy.sound.is_playing():
-                renpy.sound.play('audio/sfx/todo_create_complete.wav')
-
+                self.todo_dict[todo] = True
+                if not renpy.sound.is_playing():
+                    renpy.sound.play('audio/sfx/todo_complete.wav')
+            else:
+                renpy.notify(message='None existent todo: ' + todo)
 init:
 
     transform alpha_dissolve:
