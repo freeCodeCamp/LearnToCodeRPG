@@ -33,6 +33,7 @@ init python:
 
             self.choices = choices
 
+            self.true = true
             self.question = question
             self.explanation = explanation
             self.code_label = code_label
@@ -44,7 +45,7 @@ init python:
     QuizQuestion(
         question="What is the binary representation of 10?",
         true="1010",
-        false=["0101"]
+        false=["0101", "1011", "0010"]
         ),
 
     QuizQuestion(
@@ -311,9 +312,9 @@ init python:
         question="When executed in a browser's console, what will the following code output?",
         true="Window {{...}\nundefined",
         false=[
-        "{{ baz: 'Hello', bar: [Function: bar] }\nHello",
+        "{{ baz: 'Hello', bar: [[Function: bar] }\nHello",
         "Window {{...}\nHello",
-        "{{ baz: 'Hello', bar: [Function: bar] }\nundefined"
+        "{{ baz: 'Hello', bar: [[Function: bar] }\nundefined"
         ],
         code_label='js_code2',
         explanation="""
@@ -343,7 +344,7 @@ init python:
         true="True, these are now constant values.",
         false=["False, they are only references. The actual values in the array or object can still be mutated."],
         explanation="""
-        The use of const prevents a value from being reassigned. Arrays and objects, however, can be modified without being reassigned. If you have a const object dictionary and you write dictionary[freecodecamp] = true this code will run without error. However, if you were to try to reassign this constant value by writing dictionary = 5, this would throw an error: Uncaught TypeError: Assignment to constant variable. This is an important aspect to keep in mind when working with constant values in JavaScript.
+        The use of const prevents a value from being reassigned. Arrays and objects, however, can be modified without being reassigned. If you have a const object dictionary and you write dictionary[[freecodecamp] = true this code will run without error. However, if you were to try to reassign this constant value by writing dictionary = 5, this would throw an error: Uncaught TypeError: Assignment to constant variable. This is an important aspect to keep in mind when working with constant values in JavaScript.
         """
         ),
 
@@ -351,14 +352,14 @@ init python:
         question="Which of the following choices will empty the array foo as well as all references to foo (such as bar)?",
         true="foo.splice(0, foo.length);",
         false=[
-        "foo = [];",
+        "foo = [[];",
         "foo.empty();",
         "foo.slice(0, foo.length);",
         ],
         explanation="""
         JavaScript's native splice method modifies a referenced array in place by removing and (optionally) adding elements. splice's first parameter indicates the index at which to begin removing elements, the second indicates how many elements to remove, while the third can be any number of elements to add to the array in their place. So by invoking splice with 0 and Array.length, and by omitting the 3rd, parameter we can reliably empty an array of any length. Another method of emptying an array that works just as well, is to explicitly set the length of the array to 0, i.e. foo.length = 0;.
 
-        The foo = []; method would not truly empty the array. Instead, it would have only reassigned the variable foo to a new array object. The original array that foo used to point to would still exist in memory, and any other references to that array, such as bar in this case, would be unaffected.
+        The foo = [[]; method would not truly empty the array. Instead, it would have only reassigned the variable foo to a new array object. The original array that foo used to point to would still exist in memory, and any other references to that array, such as bar in this case, would be unaffected.
 
         slice is better suited to copying arrays, and is not appropriate for this use case. Array.empty() is not a native JavaScript method, so this solution would fail.
         """
@@ -373,13 +374,13 @@ init python:
         "undefined",
         ],
         code_label='js_code3',
-        explanation="""
-        This code logs super to the console even though a is never defined in the inner function bar, becuase bar has closure over the outer function foo.
+        explanation=_p("""
+        This code logs super to the console even though a is never defined in the inner function bar, because bar has closure over the outer function foo.
 
         When a function is defined inside of another function, it is said to have "closure" over that function, meaning that it has access to the variables defined in the outer function's scope. When execution reaches the console.log() statement, JavaScript searches bar's scope for a variable called a. When it does not find one, it then searches the scope "bubble" that is the next level up, in this case, the scope created by foo. If a was not defined in foo, the search would continue, moving up to the next scope. If the outer-most, or global scope is reached and a variable is still not found, JavaScript will throw a ReferenceError.
 
         If the way that these functions are called tripped you up, here's the explanation: foo is an immediately invoked function expression (or IIFE), invoked by the parentheses that contain 'super'. This expression resolves before anything else occurs, and since it resolves to the function bar, the second set of parentheses are simply invoking that function, and thus the console.log() statement is executed.
-        """
+        """)
         ),
 
     QuizQuestion(
@@ -660,3 +661,58 @@ init python:
 
     # TODO: more fine-grained category
     interview_questions = javascript_questions + web_questions + algorithm_questions + system_questions
+
+screen quiz_question_answer_explanation_screen(quiz_question):
+    # see code_snippet_example_screen.rpy
+
+    default raw_code = example_code(quiz_question.code_label, raw=True)
+    default code = example_code(quiz_question.code_label)
+
+    on "show" action With(Dissolve(0.5))
+    on "hide" action With(Dissolve(0.5))
+
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xpadding 80
+        ypadding 30
+        background "#fffc"
+
+        vbox:
+            spacing 10
+
+            textbutton '{icon=close}' xalign 1.0 action Return(True)
+
+            viewport:
+                xsize 1000
+                ymaximum 600
+                child_size (None, 4000)
+                scrollbars 'vertical'
+                spacing 5
+                draggable True
+                mousewheel True
+                arrowkeys True
+                vscrollbar_xsize 5
+                vscrollbar_unscrollable "hide"
+
+                vbox spacing 5:
+                    text 'Question Recap' bold True
+                    text quiz_question.question
+
+                    # TODO: maybe add copy code feature from screen example
+                    if quiz_question.code_label:
+                        null height 30
+                        text code:
+                            alt ""
+                            size gui.notify_text_size
+                            color "#000"
+                            font "fonts/roboto-mono/RobotoMono-Regular.ttf"
+
+                    null height 30
+
+                    text 'Correct answer' bold True
+                    text quiz_question.true
+                    if quiz_question.explanation:
+                        null height 50
+                        text 'Explanation' bold True
+                        text quiz_question.explanation

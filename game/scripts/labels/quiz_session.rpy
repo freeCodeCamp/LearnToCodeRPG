@@ -19,7 +19,7 @@ label study_session:
 
         window hide
         # see cs_questions.rpy
-        $ quiz_question = renpy.random.choice(general_questions)
+        $ quiz_question = renpy.random.choice(study_session_questions)
         if quiz_question.code_label is not None:
             show screen example(quiz_question.code_label)
 
@@ -36,11 +36,11 @@ label study_session:
         else:
             with vpunch
             player pout "Wrong..."
-            # show the correct answer
-            $ renpy.say(None, quiz_question.question, interact=False)
-            $ renpy.display_menu(items=quiz_question.choices, interact=False, screen='choice_highlight_correct')
-            # TODO: show explanation
-
+            # show the code again for the explanation
+            # show screen example(quiz_question.code_label)
+            # show the correct answer and explanation using a viewport
+            call screen quiz_question_answer_explanation_screen(quiz_question)
+            # hide screen example # hide when we return
 
     pause 0.5
     # hide player stats screen if it was showing

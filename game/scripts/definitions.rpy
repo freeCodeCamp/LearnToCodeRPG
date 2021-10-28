@@ -87,6 +87,9 @@ init:
     define mint = Character("Mint", callback=meow_sound_callback) # player's cat
     define interviewer = Character("Interviewer")
 
+    # use nvl "novel" mode for quiz question explanation
+    define nvl_narrator = Character(None, kind=nvl)
+
     # text displayables
     define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp{/color}{/font}{/a}'
     define developerquiz = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}http://developerquiz.org/{/color}{/font}{/a}'

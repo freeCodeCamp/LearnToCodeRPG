@@ -2,6 +2,8 @@ init python:
     stats_unlocked = False
     todo_unlocked = False
 
+    study_session_questions = general_questions
+
     annika_open_source_visited = False
     annika_open_source_first_visit = False
 
