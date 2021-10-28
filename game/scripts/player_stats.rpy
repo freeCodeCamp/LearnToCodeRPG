@@ -18,8 +18,9 @@ init python:
             if stats_name in self.player_stats_map:
                 clamped_val = min(100, max(0, val))
                 self.player_stats_map[stats_name] = clamped_val
+            # DEBUG
             else:
-                renpy.notify(message='None existent stats: ' + stats_name)
+                renpy.notify(message='Nonexistent stats: ' + stats_name)
             if not renpy.get_screen('player_stats_screen'):
                 renpy.show_screen('player_stats_screen')
 
@@ -61,8 +62,9 @@ init python:
                 self.todo_dict[todo] = True
                 if not renpy.sound.is_playing():
                     renpy.sound.play('audio/sfx/todo_complete.wav')
+                # DEBUG
             else:
-                renpy.notify(message='None existent todo: ' + todo)
+                renpy.notify(message='Nonexistent todo: ' + todo)
 
 transform alpha_dissolve:
     alpha 0.0

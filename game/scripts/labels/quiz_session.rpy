@@ -36,16 +36,14 @@ label study_session:
         else:
             with vpunch
             player pout "Wrong..."
-            # show the code again for the explanation
-            # show screen example(quiz_question.code_label)
             # show the correct answer and explanation using a viewport
             call screen quiz_question_answer_explanation_screen(quiz_question)
-            # hide screen example # hide when we return
 
+        # hide player stats screen if it was showing so it doesn't obstruct the questions
+        hide screen player_stats_screen
+
+    play sound 'audio/sfx/quiz_complete.wav'
     pause 0.5
-    # hide player stats screen if it was showing
-    hide screen player_stats_screen
-
     player neutral "All done!"
 
     return

@@ -180,6 +180,7 @@ label stage2:
     mom "Dinner's ready! I made your favorites."
     player "Thanks mom! You are the best!"
 
+    # dinner scene
     scene bg kitchen night with blinds
     play sound 'audio/sfx/dining_ambient.wav'
     dad "So here's the best part about my day...{p=0.5}{nw}"
@@ -593,8 +594,8 @@ label stage5_annika:
     player "Okay. Now I've asked about the curriculum. One To-Do item off the list."
     $ todo_list.complete_todo('Ask Annika about CS curriculum')
     player "I can ask Annika about other topics another day."
-    player "Now my new To-Do would be to beef up my CS knowledge."
-    $ todo_list.add_todo('Beef up CS knowledge')
+    player "Now my new To-Do would be to ramp up my CS knowledge."
+    $ todo_list.add_todo('Ramp up CS knowledge')
     player "Sounds like a plan!"
     player "Time to go work my barista shift."
     hide screen player_stats_screen
@@ -665,46 +666,123 @@ label stage6:
 
     scene bg bedroom with blinds
 
-    player "Okay. Let's get to work."
+    player "Okay. Breakfast's done. Let's get to work."
+    player "Hopefully I can get more questions correct today."
 
     call study_session
+
+    scene bg bedroom with dissolve
 
     player "That's about it for the morning. I feel like I'm much more productive if I can focus on one thing for an entire day."    
     player "Let's alternate between working whole-day shifts and spending whole days studying."
     player "I can call Annika this afternoon when she's done with her work to chat and ask about things."
 
-    scene bg bedroom with blinds
+    scene bg bedroom dusk with fadehold
 
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
+    pause 2.0
 
     show annika
+    pause 1.0
     player "Hey Annika! Is now a good time to talk?"
-    annika "Heyya [persistent.player_name]! Yep I just got back from work. How did your first day of studying go?"
+    annika "Heyya [persistent.player_name]! Now's perfect. I just got back from work."
+    annika "How did your first day of studying go?"
     player "I felt pretty productive today. It's nice how the quiz questions give you frequent feedback."
     player "What about your day? How was work?"
     annika "It went well! I'm learning to use the custom web dev framework that my company uses."
-    annika "It's pretty different from what I've been using in my own projects, and a little confusing at times, but my colleagues said it gets better with time."
+    annika "It's pretty different from what I've been using in my own projects, and a little confusing at times, but my colleagues said it gets better with practice."
     player "That sounds like fun!"
-    annika "It is pretty fun. Like it's not the first time I've heard about this framework. My friends at Hacker Space keep telling me how rad it is and I've been curious about it for a while."
-    player "What is this {b}Hacker Space{/b} you are talking about?"
-    annika "It's just a casual meetup place for people interested in tech."
-    annika "I highly recommend checking it out if you have time!"
-    player "Hmmm..."
-    annika "Haha don't worry. I know what you must be thinking about. It's not like nerds hanging out playing board games."
-    annika "It's a chill space for people to gather, work, and build cool projects."
-    annika "You know what? At Hacker Space, you might actually find someone like you who's also learning to code. You can totally become study buddies!"
-    player "That sounds nice. I will visit there some time."
-    annika "Yay! And we should go together some time!"
-    annika "Whelp, I guess you must be tired. Sleep tight and keep up your productive streak!"
-    player "Haha thanks Annika. You as well. Have a good night and a great day at work tomorrow!"
-    # TODO: play sound of hanging up phone
+    annika "Yeah! And I've heard good things about this framework. Mostly from people I ran into at the local Hacker Space."
+    annika "It looks like a popular tool for people who want to test out project ideas at hackathons."
+    player "({b}Hackathons{/b}! That reminds me, I should probably ask Annika about this topic.)"
+    player "(And she also just mentioned something called {b}Hacker Space{/b}. That's something worth asking about as well.){p=1.0}{nw}"
+    annika "Hello? Earth to [persistent.player_name]?"
+    player "Haha no worries I'm here. Just wondering about something."
+    annika "What is it?"
 
-    player "Yawwwwwn... I can barely keep my eyes open. Today's been quite a workout day for my brain."
+    # booleans mark whether a choice has been visited
+    default stage6_annika_questions_visited = set()
+
+    menu stage6_annika_questions:
+        set stage6_annika_questions_visited
+
+        "What topic to ask Annika about?"
+
+        "Hackthon":
+            player "What is a hackathon?"
+            annika "It's a event where people come together to design and implement cool tech projects."
+            annika "Hackathons aren't usually too long. Most lasts for one or two days. {w}Now imagine people hacking away at their laptops overnight! You get the idea."
+            annika "People usually form small teams to collaborate. It's especially cool when the team consists of people with different expertise, not just software engineers, but graphic designers and product managers as well."
+            annika "It's a great way to brainstorm, prototype, and test out ideas that might one day evolve into full-fledged products."
+            player "That sounds cool!"
+            annika "Yeah! I've only been to one or two of them, but my company has those seasonal innovation events that I'll be checking out soon."
+            annika "You should go to some hackathons as well! You will learn to collaborate with other developers and even designers."
+            annika "Plus, hackathon projects look great on your resume."
+            player "Cool! But how do I find hackathon events?"
+            annika "Just search online! You might be surprised by the number of hackathons happening locally near you."
+            player "That's awesome! I'll check that out when I get a bit better at coding."
+
+            # TODO: todo_list.add_todo('Try out hackathons'), needs more writing
+            $ todo_list.complete_todo('Ask Annika about hackathons')
+            hide screen player_stats_screen
+            jump stage6_annika_questions
+
+        "Hacker Space":
+            player "What is this Hacker Space you are talking about?"
+            annika "It's just a casual meetup place for people interested in tech."
+            annika "I highly recommend checking it out if you have time!"
+            player "Hmmm..."
+            annika "Haha don't worry. I know what you must be thinking about. It's not like nerds hanging out playing board games."
+            annika "It's a chill space for people to gather, work, and build cool projects."
+            annika "You know what? At Hacker Space, you might actually find someone like you who's also learning to code. You can totally become study buddies!"
+            player "That sounds nice. I will go there some time."
+            annika "Yay! And we should go together some time!"
+
+            jump stage6_annika_questions
+
+        "That's everything I need to know":
+            jump stage6_after_annika_questions
+
+label stage6_after_annika_questions:
+    player "That's all I want to know. Thanks so much for answering my questions!"
+    annika "Any time! You will become a pro in those tech culture terms in no time."
+    annika "Whelp, I guess you must be tired after a day's studying. Enjoy a relaxing evening!"
+    player "Haha thanks Annika. You as well. Have a good night and a great day at work tomorrow!"
+
+    hide annika
+    play sound 'audio/sfx/phone_hangup.wav'
+
+    player "Whew. That's a lot of knowledge to unpack."
+    dad "Dinner's ready, [persistent.player_name]!"
+    player "(Wow. Dad is cooking tonight? He cooks perhaps once or twice a month, but when he cooks, it's usually really good.)"
+    player "Coming!"
+
+    # dinner scene
+    scene bg kitchen night with blinds
+    play sound 'audio/sfx/dining_ambient.wav'
+    mom "Hey honey, how do you like working as a barista? You don't have to go if it distracts too much from your study, you know."
+    dad "Your mom's right. We are here to support you if you ever need us."
+    player "Thanks folks, but no worries. I can use an occasional break from studying."
+    player "Plus, a lot of tech people visit the cafe and they talk a lot about cool tech stuff."
+    player "Like I heard people talking about a type of event called a hackathon the other day, and I had the chance to ask Annika today."
+    dad "That's great to hear, pumpkin. {w}What's Annika been up to? You two were really close at college, weren't you?"
+    player "You won't believe it! She didn't major in CS but now she has this cool tech job...{p=0.5}{nw}"
+    player "... And she taught herself everything...{p=0.5}{nw}"
+    player "... I'm gonna work hard just like she did!"
+    dad "That's the spirit!"
+    scene bg kitchen night with fadehold
+
+    scene bg bedroom night with blinds
+    player "Yawwwwwn... What a day. My brain certainly enjoyed a great amount of workout today."
+    player "I can barely keep my eyes open. Let's call this a day."
     player "Good night, Mint."
+    show mint
     mint "Meow~"
+    hide mint
     scene black with dissolve
 
+    # TODO: now what?
     jump day_start
 
 label stage7:
