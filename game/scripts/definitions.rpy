@@ -126,6 +126,20 @@ init:
         "others/cookie/cookie4.png"
         0.5
         "others/cookie/cookie5.png"
+        1.0
+
+    # toast
+    image toast:
+        'others/toast/toast1.png'
+        0.8
+        'others/toast/toast2.png'
+        0.8
+        'others/toast/toast3.png'
+        0.8
+        'others/toast/toast4.png'
+        0.8
+        'others/toast/toast5.png'
+        1.0
 
     # expressions
     # player

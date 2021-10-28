@@ -35,7 +35,10 @@ label study_session:
             with vpunch
             player confused "Wrong..."
 
-    with hpunch
+    pause 0.5
+    # hide player stats screen if it was showing
+    hide screen player_stats_screen
+
     player neutral "All done!"
 
     return

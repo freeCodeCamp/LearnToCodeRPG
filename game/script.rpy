@@ -136,7 +136,7 @@ label stage1:
     $ quick_menu = True
 
     $ stats_unlocked = True
-    scene bg kid_home with fade
+    scene bg kid_home with dissolve
 
     # Stage 1. player background
     player "Okay, so that's it for today's session."
@@ -161,7 +161,7 @@ label stage1:
 label stage2:
     # Stage 2. player's decision to learn to code
     # player returns home
-    scene bg living_room night with dissolve
+    scene bg living_room night with pushright
 
     player "I'm home!"
     mom "Hey sweetie. Welcome back!"
@@ -180,14 +180,14 @@ label stage2:
     mom "Dinner's ready! I made your favorites."
     player "Thanks mom! You are the best!"
 
-    scene bg kitchen night with dissolve
+    scene bg kitchen night with blinds
     play sound 'audio/sfx/dining_ambient.wav'
     dad "So here's the best part about my day...{p=0.5}{nw}"
     player "Haha that's hilarious!{p=0.5}{nw}"
     mom "So what plans do we have for the weekend?{p=0.5}{nw}"
     player "I'm up to anything!{p=0.5}{nw}"
 
-    scene bg bedroom night with fadehold
+    scene bg bedroom night with blinds
     player happy "That was a stuffing dinner. Mom's the best cook I know."
     player "..."
 
@@ -219,7 +219,7 @@ label stage2:
             player "Meh, they are just bragging. I don't even know them that well."
 
 label stage2_after_social_media_ding:
-    player confused "It's crazy how everyone these days is learning to code and getting high-paying jobs in software."
+    player pout "It's crazy how everyone these days is learning to code and getting high-paying jobs in software."
     player "College itself has been crazy enough for me, and now people are going back to school to complete an online master's program in Computer Science?"
     player "Six months of self-paced learning and then a six-figure job? Talk about the end of craziness."
     player "Hmm, but I can see the appeal in that."
@@ -249,7 +249,7 @@ label stage2_after_social_media_ding:
     $ player_stats.change_stats('CS Knowledge', 1)
     $ player_stats.change_stats('Sanity', -5)
 
-    player confused "And there are print statements and print() functions. Which is for Python 2 and which is for Python 3? I remember one video saying that Python 2 is outdated but does that mean that I don't have to learn it?"
+    player pout "And there are print statements and print() functions. Which is for Python 2 and which is for Python 3? I remember one video saying that Python 2 is outdated but does that mean that I don't have to learn it?"
     $ player_stats.change_stats('CS Knowledge', 1)
     $ player_stats.change_stats('Sanity', -5)
 
@@ -282,10 +282,10 @@ label stage2_after_social_media_ding:
 
     show mint
     mint "Meow meow~"
-    player confused "Awww thanks Mint. I'm okay."
+    player pout "Awww thanks Mint. I'm okay."
     hide mint
 
-    player confused "Learn to code? Haha. I know it can't be that easy."
+    player pout "Learn to code? Haha. I know it can't be that easy."
     player "There might be people who are cut out to do this, but definitely not me."
     player "I guess I better call it a day and go to bed."
 
@@ -298,6 +298,9 @@ label stage2_after_social_media_ding:
 
 label stage3:
     # Stage 3. Annika
+
+    ## standard for a chapter openin screen
+    # hide screen player_stats_screen
     $ quick_menu = False
     scene black with dissolve
     pause 1
@@ -305,12 +308,12 @@ label stage3:
     pause 1
     hide text with dissolve
     $ quick_menu = True
-    # the above is standard for a chapter opening screen
+    ## standard for a chapter openin screen
 
-    scene bg bedroom with fade
+    scene bg bedroom with dissolve
     $ player_stats.day_counter += 1
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
-    player confused "Here goes my phone at this early hour."
+    player pout "Here goes my phone at this early hour."
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
     player "Do I merit a personal rejection call from the neighborhood coffee shop?"
 
@@ -328,7 +331,7 @@ label stage3:
     player laugh "Yeah. Wow. {bt}Congrats!{/bt}"
     annika "Thanks!"
     player netural "Hey, if I may ask, how hard was it for you to learn to develop websites?"
-    player confused "I also tried to learn to code for some time but it got too hard and I quit."
+    player pout "I also tried to learn to code for some time but it got too hard and I quit."
 
     annika "I'm sorry to hear that but you should give coding another try!"
     annika "Hey, hear me out."
@@ -427,34 +430,34 @@ label stage5:
         set stage5_choose_curriculum_visited
 
         "Responsive Web Design":
-            player confused "Ehhh... what even is web design? And I'm not a design person... Will I be able to follow along?"
+            player pout "Ehhh... what even is web design? And I'm not a design person... Will I be able to follow along?"
             player "Maybe let's look some more?"
             jump stage5_choose_curriculum
 
         "JavaScript Algorithms and Data Structures":
-            player confused "I remember having heard about JavaScript. Or wait, that's perhaps Java."
+            player pout "I remember having heard about JavaScript. Or wait, that's perhaps Java."
             player "What are algorithms and data structures? That sounds like math, which is not my favorite subject."
             player "What other curriculum options do I have?"
             jump stage5_choose_curriculum
 
         "Front End Development Libraries" :
-            player confused "Front end development? That sounds so complicated."
+            player pout "Front end development? That sounds so complicated."
             player "Maybe I should go for some beginner topics?"
             jump stage5_choose_curriculum
 
         "Data Visualization":
-            player confused "I know there is some hype about big data, but can I really do that without a Ph.D.?"
+            player pout "I know there is some hype about big data, but can I really do that without a Ph.D.?"
             player "This doesn't look like it's for me."
             jump stage5_choose_curriculum
 
         "Back End Development and APIs":
-            player confused "Back end, front end. What are the differences? They definitely sound like they should go together."
+            player pout "Back end, front end. What are the differences? They definitely sound like they should go together."
             player "But I don't have the time or energy to learn both..."
             player "Let's look for something simpler."
             jump stage5_choose_curriculum
 
         "Quality Assurance":
-            player confused "Quality assurance? That sounds like I will be on a digital conveyor belt making sure all cookie packs weigh more or less the same."
+            player pout "Quality assurance? That sounds like I will be on a digital conveyor belt making sure all cookie packs weigh more or less the same."
             player awe "Nice, warm, and chewy cookies... I love cookies. Hope mom still keeps some in the kitchen cookie jar."
             show mint
             mint "Meow?"
@@ -469,24 +472,24 @@ label stage5:
                     pass
 
             with vpunch
-            player confused "Wait. {w}I got distracted. Where was I? Was I browsing the course category or something? Oh. I have this quality assurance tab open."
+            player pout "Wait. {w}I got distracted. Where was I? Was I browsing the course category or something? Oh. I have this quality assurance tab open."
             player "At any rate, I don't think quality assurance is something I want to learn."
             jump stage5_choose_curriculum
 
         "Scientific Computing with Python":
-            player confused "Scientific computing? I'm not that much of a science person and I don't see myself becoming a scientist either."
+            player pout "Scientific computing? I'm not that much of a science person and I don't see myself becoming a scientist either."
             player "Plus I don't know anything about Python yet."
             jump stage5_choose_curriculum
 
         "Data Analysis with Python":
             player "Data analysis sounds cool..."
-            player confused "But I don't know anything about Python. Plus I didn't do a lot of math in college."
+            player pout "But I don't know anything about Python. Plus I didn't do a lot of math in college."
             player "That's probably too hard for me right now."
             player "Let's find something else."
             jump stage5_choose_curriculum
 
         "Information Security":
-            player confused "What can I do after learning about information security?"
+            player pout "What can I do after learning about information security?"
             player "Hack into others' computers? Stop bad guys from hacking into others' computers?"
             player "That sounds like a lot of moral commitment. I'm not sure if I can handle that."
             player "Is there something more neutral on the list?"
@@ -498,14 +501,14 @@ label stage5:
             player "Just think about it. Teaching machines to chat like humans. {w}Wow."
             player "No wonder everyone is hyped about Artificial Intelligence these days."
             player "..."
-            player confused "That said, it looks hard. I know nothing about machine learning, except that there are so many memes about how machine learning is nothing but math."
+            player pout "That said, it looks hard. I know nothing about machine learning, except that there are so many memes about how machine learning is nothing but math."
             player "Math... linear algebra... that kind of thing."
             player "That's probably out of the league for me."
             player "Maybe I should start with something more basic?"
             jump stage5_choose_curriculum
 
         "Let's just wait until tomorrow and ask Annika for advice":
-            player confused "Hmmm... I don't know. They all look equally hard. Let's ask Annika for advice tomorrow."
+            player pout "Hmmm... I don't know. They all look equally hard. Let's ask Annika for advice tomorrow."
             $ todo_list.add_todo('Ask Annika about CS curriculum')
             player "Added it to my To-Do!"
             player "Well, I did accomplish something today. Now at least I know what [freeCodeCamp]'s curriculum is about. That's one item off my To-Do list."
@@ -519,7 +522,7 @@ label stage5:
             jump stage5_annika
 
 label stage5_cookie:
-    scene bg kitchen night with dissolve
+    scene bg kitchen night with blinds
     mom "Hey honey, taking a break from all the studying?"
     mom "Your dad and I are really glad that you continue to learn new things after college, but don't push yourself too hard, okay?"
     player "Haha thanks Mom. I'm doing just fine."
@@ -527,10 +530,10 @@ label stage5_cookie:
     mom "Alright, know that we are always here if you'd like to talk or anything."
     player "I will. Thanks Mom."
 
-    scene bg bedroom night with dissolve
+    scene bg bedroom night with blinds
     show cookie at truecenter
     pause 0.2
-    play sound 'audio/sfx/chew_cookie.wav'
+    play sound 'audio/sfx/chew_food.wav'
     player "Mmmm... Mom's cookies are the best."
     hide cookie
     return
@@ -555,14 +558,14 @@ label stage5_annika:
     annika "What's up?"
     player "So I've been checking out [freeCodeCamp] as you suggested."
     player "I think its curriculum looks solid."
-    player confused "The thing is, I have no idea what to learn. Web dev, data science, machine learning..."
+    player pout "The thing is, I have no idea what to learn. Web dev, data science, machine learning..."
     player "They all look super complicated. I bet you put in honest hard work to complete them."
     player "Which one did you do, by the way?"
 
     annika "Oh, I did the web design one. What was it? {a=https://www.freecodecamp.org/learn/responsive-web-design/}Responsive Web Design{/a}?"
     annika "If I remembered anything from my college CS minor, it's those web markup languages."
     player "Ahh I see."
-    player confused "(So Annika managed to pull through the curriculum because she had some existing experience from college. Plus she has really good designer eyes.)"
+    player pout "(So Annika managed to pull through the curriculum because she had some existing experience from college. Plus she has really good designer eyes.)"
     player "(I'm not like that... There's no way I can do this...)"
 
     annika "Hey [persistent.player_name], don't get discouraged, okay?"
@@ -609,33 +612,57 @@ label stage5_annika:
     player "Let's head home early to squeeze in some studying tonight, just to keep up the momentum."
 
 label stage6:
-    # TODO
     # Stage 6. Trials
     hide screen player_stats_screen
+    $ quick_menu = False
     scene black with dissolve
     pause 1
     show text "{size=48}{color=[white]}{i}Chapter 3: Let's hit the books!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
-    show screen player_stats_screen
+    $ quick_menu = True
 
-    scene bg bedroom with fade
+    scene bg bedroom dusk with fade
+    player "I'm finally home! {w}Let's head over to [developerquiz] and try out some quiz questions."
+    scene bg laptop_screen with dissolve
+    player "Looks like I will need to complete four multiple choice questions per session."
+    player "Let's do it."
 
-    # this first day has this fixed dialogue
-    # after this, the start-of-day dialogue will be randomly drawn from start_of_day_event_labels.rpy
-    # TODO: play sound of alarm
-    player "Ahhh here goes my alarm."
-    mint "Meow Meow~"
-    player "Ahhh good morning, Mint."
-    player "..."
-    player "Okay, let's do this. Let's sit down to actually learn something."
-    player "I'll start with the video lessons and then answer their multiple choice questions to check my understanding."
-    call study_session from _call_study_session
+    call study_session
 
-    # fixed dialogue for this first day
-    scene bedroom night with dissolve
+    scene bg bedroom night with dissolve
     player "Phew... I'm finally done with these questions. What a day..."
-   
+    player "I think I did okay, but I do feel tired after a day at work."
+    player "Maybe it's best for my productivity if I take an entire day off to study?"
+    player "Let's give that a try tomorrow."
+    show mint
+    mint "Meow~"
+    player "Good night, Mint."
+    hide mint
+
+    scene bg bedroom with fadehold
+    
+    # a new day, player studies in the morning, and hangs out with Annika at night
+    play sound 'audio/sfx/alarm.wav'
+    show mint
+    mint "Meow~"
+    player "Yawwwwwn... Good morning to you too, Mint."
+    player "Okay, let's grab a quick breakfast and jump into studying."
+    hide mint
+
+    scene bg kitchen with blinds
+    player "Morning, mom. Morning, dad."
+    dad "Morning, pumpkin."
+    mom "Morning, honey. Did you sleep well?"
+    player "Yep. I'm recharged for a new day."
+    dad "That's great. Let's start the morning with a nice family breakfast."
+
+    show toast at truecenter
+    pause 0.2
+    play sound 'audio/sfx/chew_food.wav'
+    player "Yum yum."
+    hide toast
+
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
 
