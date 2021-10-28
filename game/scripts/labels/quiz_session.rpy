@@ -1,4 +1,6 @@
 label study_session:
+    scene bg laptop_screen with dissolve
+
     # correct choices increments CS knowledge
     $ timeout_label = None # no time limit
     $ num_questions = 4 # ask 4 questions each time
@@ -33,7 +35,12 @@ label study_session:
             player happy "Correct!"
         else:
             with vpunch
-            player confused "Wrong..."
+            player pout "Wrong..."
+            # show the correct answer
+            $ renpy.say(None, quiz_question.question, interact=False)
+            $ renpy.display_menu(items=quiz_question.choices, interact=False, screen='choice_highlight_correct')
+            # TODO: show explanation
+
 
     pause 0.5
     # hide player stats screen if it was showing

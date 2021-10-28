@@ -663,13 +663,25 @@ label stage6:
     player "Yum yum."
     hide toast
 
+    scene bg bedroom with blinds
+
+    player "Okay. Let's get to work."
+
+    call study_session
+
+    player "That's about it for the morning. I feel like I'm much more productive if I can focus on one thing for an entire day."    
+    player "Let's alternate between working whole-day shifts and spending whole days studying."
+    player "I can call Annika this afternoon when she's done with her work to chat and ask about things."
+
+    scene bg bedroom with blinds
+
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
 
     show annika
-    annika "Heyya [persistent.player_name]! How did your first day of studying go?"
-    player "Hey Annika! Thanks for checking in on me."
-    player "I felt pretty productive today. It's nice how the curriculum gives you end-of-chapter tests for frequent feedback."
+    player "Hey Annika! Is now a good time to talk?"
+    annika "Heyya [persistent.player_name]! Yep I just got back from work. How did your first day of studying go?"
+    player "I felt pretty productive today. It's nice how the quiz questions give you frequent feedback."
     player "What about your day? How was work?"
     annika "It went well! I'm learning to use the custom web dev framework that my company uses."
     annika "It's pretty different from what I've been using in my own projects, and a little confusing at times, but my colleagues said it gets better with time."
