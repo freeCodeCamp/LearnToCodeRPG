@@ -702,11 +702,13 @@ screen quiz_question_answer_explanation_screen(quiz_question):
                     # TODO: maybe add copy code feature from screen example
                     if quiz_question.code_label:
                         null height 30
-                        text code:
-                            alt ""
-                            size gui.notify_text_size
-                            color "#000"
-                            font "fonts/roboto-mono/RobotoMono-Regular.ttf"
+                        frame: # different background color from the primary screen for contrast
+                            background "#d0d0d5cc" # gray15 at 80% opacity
+                            text code:
+                                alt ""
+                                size gui.notify_text_size
+                                color "#000"
+                                font "fonts/roboto-mono/RobotoMono-Regular.ttf"
 
                     null height 30
 
