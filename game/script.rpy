@@ -205,7 +205,9 @@ label stage2:
 
     player "Looks like someone from my junior high school. I don't even remember who they are."
     player "What did they post to get this crazy many likes?"
+    show swag at truecenter with zoomin
     player "{bt}\"Proud intern at {b}DonutDB{/b}. Check out my swaaaag!\"{/bt}"
+    hide swag
     player "Oh. wow."
     player "Should I leave a like or comment on their post?"
     # no consequence
