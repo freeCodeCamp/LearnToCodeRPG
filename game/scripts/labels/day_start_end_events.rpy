@@ -1,7 +1,6 @@
 label day_start:
-    # this label should end up jumping to day_end
-
-    $ player_stats.day_counter += 1
+    # this label should end up jumping to day_end, which then returns control to the main game
+    $ calendar.next()
 
     if days_before_interview is not None:
         $ days_before_interview -= 1
@@ -9,8 +8,7 @@ label day_start:
     if days_before_offer is not None:
         $ days_before_offer -= 1
 
-    scene bg bedroom day with fade
-    play music "audio/bgm/Press Your Advantage.mp3" fadein 1.0 volume 0.5
+    scene bg bedroom with fade
 
     # play sound of alarm
     # play sound of bird chirping
@@ -54,8 +52,7 @@ label day_end:
     # check whether to proceed to the next stage
     # if the player is half-way through the curriculum and some days have elapsed
     if not has_met_marco and \
-    player_stats.player_stats_map['CS Knowledge'] >= 40 and \
-    player_stats.day_counter > 8:
+    player_stats.player_stats_map['CS Knowledge'] >= 40:
         jump stage7 # Marco
 
     # we check whether we can show the congrats screen
@@ -66,10 +63,11 @@ label day_end:
     player_stats.player_stats_map['CS Knowledge'] >= 80:
         player "Hey... I just got this email..."
         $ has_completed_curriculum = True
-        $ day_completed_curriculum = player_stats.day_counter
+        $ completed_curriculum_date = date(calendar.year, calendar.month, calendar.day)
+        $ days_between_start_and_curriculum_completion = (completed_curriculum_date - start_date).days
         call screen confirm_and_share(
             title="{bt}Congratulations!{/bt}",
-            message="You completed the coding curriculum in {b}[player_stats.day_counter]{/b} days.\nNow you are ready to rock the coding interview and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
+            message="You completed the coding curriculum in {b}[days_between_start_and_curriculum_completion]{/b} days.\nNow you are ready to rock the coding interview and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
             ok_text="Let's crunch 'em interviews!", 
             ok_action=Jump('stage8')
         )
@@ -100,15 +98,16 @@ label day_end:
 
         $ has_received_offer = True
         $ has_accepted_offer = True
-        $ day_of_first_offer = player_stats.day_counter
-        $ day_diff = day_of_first_offer - day_completed_curriculum
+        $ first_offer_date = date(calendar.year, calendar.month, calendar.day)
+        $ days_between_start_and_offer = (first_offer_date - start_date).days
+        $ days_between_curriculum_and_offer = (completed_curriculum_date - start_date).days
         call screen confirm_and_share(
             title="{bt}Congratulations!{/bt}",
-            message="You taught yourself to become a developer in {b}[player_stats.day_counter]{/b} days, [day_diff] days after you've completed the coding curriculum.\nNow you are ready to rock your new job!\n Feel free to share your progress with the world!",
+            message="You taught yourself to become a developer in {b}[days_between_start_and_offer]{/b} days, [days_between_curriculum_and_offer] days after you've completed the coding curriculum.\nNow you are ready to rock your new job!\n Feel free to share your progress with the world!",
             ok_text="Let's rock my new job!", 
             ok_action=Jump('stage14')
         )
 
     $ has_done_job_search_today = False
 
-    jump day_start
+    return # should return control to script.rpy

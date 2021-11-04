@@ -13,8 +13,7 @@ init python:
     # player_stats.player_stats_map['CS Knowledge'] >= 80
     has_completed_curriculum = False
 
-    # if the player is half-way through the curriculum and some days have elapsed
-    # player_stats.player_stats_map['CS Knowledge'] >= 40 and player_stats.day_counter > 8
+    # TODO: refactor
     has_met_marco = False
 
     # TODO: definitely refactor
@@ -35,6 +34,9 @@ init python:
 
     # player can meet Layla at Hacker Space
     has_met_layla = False
+
+    # topics to ask Annika, Marco, and Layla
+    topics_to_ask = set()
 
     ## Non-mutable
 

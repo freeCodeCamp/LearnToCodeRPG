@@ -1,8 +1,6 @@
 init python:
     class PlayerStats():
         def __init__(self):
-            self.day_counter = 1
-
             # map string names to stats
             self.player_stats_map = {
             'Sanity': None, 
@@ -91,8 +89,8 @@ screen player_stats_screen:
             # calendar
             hbox:
                 spacing 10
-                text 'Day' color gui.accent_color font gui.interface_text_font size gui.name_text_size bold True
-                text str(player_stats.day_counter) font gui.interface_text_font size gui.name_text_size bold True
+                text calendar.get_month_string() color gui.accent_color font gui.interface_text_font size gui.name_text_size bold True
+                text calendar.get_day_string() font gui.interface_text_font size gui.name_text_size bold True
 
             hbox:
                 spacing 40

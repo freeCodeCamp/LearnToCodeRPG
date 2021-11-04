@@ -1,6 +1,8 @@
 ﻿label start:
     default player_stats = PlayerStats()
     default todo_list = ToDoList()
+    default calendar = Calendar(day=1, month=8, year=2021) # story starts on Aug 1st, 2021
+    default start_date = date(2021, 8, 1) # this will be used to calculate how many days it took for the player to learn to code
 
     stop music fadeout 2.0
     scene bg laptop_screen with dissolve
@@ -135,7 +137,7 @@ label stage1:
     hide text with dissolve
     $ quick_menu = True
 
-    $ stats_unlocked = True
+    $ stats_unlocked = True # now the quick menu screen show the button to access stats
     scene bg kid_home with dissolve
 
     # Stage 1. player background
@@ -314,7 +316,7 @@ label stage3:
     ## standard for a chapter openin screen
 
     scene bg bedroom with dissolve
-    $ player_stats.day_counter += 1
+    $ calendar.next()
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
     player pout "Here goes my phone at this early hour."
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
@@ -392,6 +394,7 @@ label stage4:
     player "I believe I can use this piece of information to my advantage. Let's make it a to-do item to ask Annika if she knows about events like this."
 
     $ todo_list.add_todo('Ask Annika about hackathons')
+    $ topics_to_ask.add('Hackathon')
     player "Alright! Going back to my shift."
     hide screen player_stats_screen
 
@@ -543,7 +546,7 @@ label stage5_cookie:
 
 label stage5_annika:
     # the next day
-    $ player_stats.day_counter += 1
+    $ calendar.next()
     scene bg bedroom with fade
 
     play sound 'audio/sfx/alarm.wav'
@@ -726,6 +729,7 @@ label stage6:
             player "That's awesome! I'll check that out when I get a bit better at coding."
 
             # TODO: todo_list.add_todo('Try out hackathons'), needs more writing
+            # TODO: refactor and add to topics_to_ask
             $ todo_list.complete_todo('Ask Annika about hackathons')
             hide screen player_stats_screen
             jump stage6_annika_questions
@@ -784,8 +788,10 @@ label stage6_after_annika_questions:
     hide mint
     scene black with dissolve
 
-    # TODO: now what?
-    jump day_start
+    # two days of activity of the player's choosing
+    call day_start
+
+    call day_start
 
 label stage7:
     # this stage is invoked inside label `day_end`
