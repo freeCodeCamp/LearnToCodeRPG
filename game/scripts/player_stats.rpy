@@ -40,7 +40,7 @@ init python:
             self.change_stats(stats_name, val)
 
         def is_sanity_low(self):
-            return self.player_stats_map['Sanity'] > 50
+            return self.player_stats_map['Sanity'] < 50
 
     class ToDoList():
         def __init__(self):

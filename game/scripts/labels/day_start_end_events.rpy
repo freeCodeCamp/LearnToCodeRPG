@@ -10,22 +10,78 @@ label day_start:
 
     scene bg bedroom with fade
 
-    # play sound of alarm
-    # play sound of bird chirping
-    player "A new day!"
-    mint "Meow meow"
-    player "Okay, what shall we do for the day?"
+    play sound 'audio/sfx/alarm.wav'
+    pause 2.0
+    play sound 'audio/sfx/birds.wav'
+    pause 3.0
+
+    # randomly choose a start-of-day label to call
+    python:
+        day_start_text = renpy.random.choice(seq=[
+            'day_start_text1',
+            'day_start_text2',
+            'day_start_text3',
+            ])
+        renpy.call(day_start_text)
+    
     jump day_activity_choices
 
-# TODO: different text
-label start_of_day_1:
-    pass
+# TODO: special text on days of interview
+label day_start_text1:
+    player "A new day!"
+    show mint
+    mint "Meow meow~"
+    player "Good morning, Mint."
+    hide mint
+    player "Hmmm, I don't feel like eating a big breakfast today. I guess a cookie will do."
 
-label start_of_day_2:
-    pass
+    scene bg kitchen with blinds
+    show cookie at truecenter
+    pause 0.2
+    play sound 'audio/sfx/chew_food.wav'
+    player "Yum yum."
+    hide cookie
 
-label start_of_day_3:
-    pass
+    scene bg bedroom with blinds
+    player "Mom's homemade cookies never fail to kick-start my morning."
+    return
+
+label day_start_text2:
+    mom "[persistent.player_name], breakfast's ready!"
+    player "Okay, I'm up!"
+
+    scene bg kitchen with blinds
+    show toast at truecenter
+    pause 0.2
+    play sound 'audio/sfx/chew_food.wav'
+    player "Yum yum."
+    hide toast
+    player "I'm done. Gotta go and prepare for the day."
+    player "Have a good day at work!"
+    dad "You too, [persistent.player_name]!"
+    mom "See you later, honey!"
+    
+    scene bg bedroom with blinds
+    player "Alright, moving on from the most important meal of the day."
+    return
+
+label day_start_text3:
+    show mint
+    mint "Meow!"
+    player "Yawwwwwn..."
+    player "(I feel like hitting snooze on my alarm...)"
+    mint "Meow!"
+    player "Ahhh... Mint, are you hungry? Okay I'm getting up and getting you breakfast."
+
+    scene bg bedroom with fadehold
+    show mint
+    play sound 'audio/sfx/chew_food.wav'
+    pause 4.0
+    hide mint
+
+    player "Haha Mint, thanks for waking me up."
+    player "Now let's get on with the day."
+    return
 
 label day_end:
     # this label either return or jump

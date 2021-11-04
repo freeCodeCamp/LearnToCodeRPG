@@ -4,11 +4,7 @@ init python:
 
     study_session_questions = general_questions
 
-    annika_open_source_visited = False
-    annika_open_source_first_visit = False
-
-    has_had_study_session_today = False
-    has_done_job_search_today = False
+    has_visited_hacker_space_with_annika = False
 
     # player_stats.player_stats_map['CS Knowledge'] >= 80
     has_completed_curriculum = False
