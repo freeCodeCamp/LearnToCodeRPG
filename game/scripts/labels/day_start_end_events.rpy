@@ -102,6 +102,7 @@ label day_end:
     player "Haha good night Mint."
 
     scene black with dissolve
+    return
 
     # at the end of the day, since we've just learned something
 
