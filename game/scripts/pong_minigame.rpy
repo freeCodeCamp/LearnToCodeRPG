@@ -13,8 +13,8 @@ init python:
             self.PADDLE_X = 240
             self.BALL_WIDTH = 15
             self.BALL_HEIGHT = 15
-            self.COURT_TOP = 129
-            self.COURT_BOTTOM = 650
+            self.COURT_TOP = 194
+            self.COURT_BOTTOM = 975
 
 
             # Some displayables we use.
@@ -37,7 +37,7 @@ init python:
             self.by = self.playery
             self.bdx = .5
             self.bdy = .5
-            self.bspeed = 350.0
+            self.bspeed = 450.0
 
             # The time of the past render-frame.
             self.oldst = None
@@ -129,7 +129,7 @@ init python:
                         hit = True
 
                     if hit:
-                        renpy.sound.play("pong_boop.opus", channel=1)
+                        renpy.sound.play("audio/sfx/pong_boop.opus", channel=1)
                         self.bspeed *= 1.10
 
             # Draw the two paddles.
@@ -198,15 +198,18 @@ screen pong():
         xanchor 0.5
         ypos 25
         size 40
+        color '#fff'
 
     text _("Computer"):
-        xpos (1280 - 240)
+        xpos (1920 - 240)
         xanchor 0.5
         ypos 25
         size 40
+        color '#fff'
 
     if pong.stuck:
         text _("Click to Begin"):
             xalign 0.5
             ypos 50
             size 40
+            color '#fff'

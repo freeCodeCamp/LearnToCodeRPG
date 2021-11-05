@@ -99,24 +99,35 @@ label day_activity_hacker_space:
     # hacker space trivia
     if not has_won_hacker_space_trivia:
         trivia_guy "Hey, you there! Would you be up to a round of tech trivia?"
-        call hacker_space_tech_trivia
+        menu:        
+            "Sure!":
+                call hacker_space_tech_trivia
+            "Sorry, not feeling like it.":
+                player "Sorry, but I'm not feeling like it."
+                trivia_guy "No problem. Let me know anytime if you are to a challenge."
+                player "(Let's just check out what's happening around here.)"
+                call day_activity_hacker_space_random
     else:
-        scene bg hacker_space with blinds
-        python:
-            hacker_space_event = renpy.random.choice(seq=[
-                'hacker_space_tech_talk',
-                'hacker_space_project',
-                'hacker_space_open_source',
-                'hacker_space_playtest'
-                ])
-            renpy.call(hacker_space_event)
-            player_stats.change_stats('Sanity', 5)
-            player_stats.change_stats('Dev Trivia', 5)
+        call day_activity_hacker_space_random
 
     scene bg hacker_space dusk with fadehold
     player "Wow, it's already getting dark? Today's quite an eventful day."
     player "Let's head home now."
 
+    return
+
+label day_activity_hacker_space_random:
+    scene bg hacker_space with blinds
+    python:
+        hacker_space_event = renpy.random.choice(seq=[
+            'hacker_space_tech_talk',
+            'hacker_space_project',
+            'hacker_space_open_source',
+            'hacker_space_playtest'
+            ])
+        renpy.call(hacker_space_event)
+        player_stats.change_stats('Sanity', 5)
+        player_stats.change_stats('Dev Trivia', 5)
     return
 
 label day_activity_barista:
