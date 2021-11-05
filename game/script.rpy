@@ -932,22 +932,18 @@ label stage14:
     show layla
 
     layla "Hey [persistent.player_name]. I'm Layla. I'm your on boarding buddy. Feel free to ask me anything."
+    player "(Hmmm... I wonder if we have met before. Layla looks familiar somehow.)"
+    player "(... {w}Oh! {w}Was that her at Hacker Space?)"
+    # TODO: flashback fade
 
-    if not has_met_layla:
-        player "Hi Layla. Nice to meet you."
-    else:
-        player "(Hmmm... I wonder if we have met before. Layla looks familiar somehow.)"
-        player "(... {w}Oh! {w}Was that her at Hacker Space?)"
-        # TODO: flashback fade
+    scene bg hacker_space with fadehold
+    layla "So how's everyone's project going? We mentors are here to answer any question you have!"
 
-        scene bg hacker_space with fadehold
-        layla "So how's everyone's project going? We mentors are here to answer any question you have!"
-
-        scene bg office with dissolve
-        layla "[persistent.player_name]? Are you okay? You are spacing out."
-        player "Ah! I'm fine. I just remembered that we might have met before."
-        player "You know, at Hacker Space. I used to go there to study and work on projects before I get this job."
-        layla "Oh, wow. Yeah. I was at various Hacker Space events. {w}Nice to hear that you enjoyed the space!"
+    scene bg office with dissolve
+    layla "[persistent.player_name]? Are you okay? You are spacing out."
+    player "Ah! I'm fine. I just remembered that we might have met before."
+    player "You know, at Hacker Space. I used to go there to study and work on projects before I get this job."
+    layla "Oh, wow. Yeah. I was at various Hacker Space events. {w}Nice to hear that you enjoyed the space!"
 
     layla "So how's work going? Have you worked your way through our code base already?"
     player "... Um..."

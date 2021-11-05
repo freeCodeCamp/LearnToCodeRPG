@@ -86,7 +86,7 @@ label day_start_text3:
 label day_end:
     # this label either return or jump
     # when it returns, it returns to script.rpy, where we check 
-    scene bg bedroom dusk with dissolve
+    scene bg bedroom dusk with slideright
     player "Phew... That was a long day."
 
     # TODO: different text if the player has had an interview
@@ -103,6 +103,8 @@ label day_end:
 
     scene black with dissolve
     return
+
+    # TODO
 
     # at the end of the day, since we've just learned something
 

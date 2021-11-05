@@ -31,8 +31,7 @@ init python:
     # day counter of the first offer, subtract this from the other day counters
     day_of_first_offer = None
 
-    # player can meet Layla at Hacker Space
-    has_met_layla = False
+    seen_hacker_space_events = set()
 
     ## Non-mutable
 
@@ -42,3 +41,11 @@ init python:
     todo_ask_curriculum = 'Ask Annika about CS curriculum'
     todo_learn_cs = 'Ramp up CS knowledge'
     todo_apply_cupcakecpu = 'Apply to CupcakeCPU'
+
+    # story labels for hacker space and barista
+    hacker_space_event_labels = [
+    'hacker_space_tech_talk',
+    'hacker_space_playtest',
+    'hacker_space_project',
+    'hacker_space_open_source',
+    ]

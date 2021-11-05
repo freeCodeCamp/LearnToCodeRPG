@@ -84,7 +84,7 @@ label day_activity_relax:
             player "Let's head out to the park. Too bad I can't take Mint out on a walk. Annika does that with her puppy sometimes and they both love it."
             call day_activity_park from _call_day_activity_park
         "Play some video games":
-            player "Nothing beats some indie games."
+            player "Nothing beats some video games."
             call day_activity_video_game from _call_day_activity_video_game
     $ player_stats.change_stats_random('Sanity', 5, 20)
     # all relaxing activities converges to the end of the day
@@ -119,20 +119,29 @@ label day_activity_hacker_space:
 label day_activity_hacker_space_random:
     scene bg hacker_space with blinds
     python:
-        hacker_space_event = renpy.random.choice(seq=[
-            'hacker_space_tech_talk',
-            'hacker_space_project',
-            'hacker_space_open_source',
-            'hacker_space_playtest'
-            ])
+        if len(seen_hacker_space_events) == 4: # all seen, now pick random
+            hacker_space_event = renpy.random.choice(seq=hacker_space_events)
+        else: # just add the next one
+            hacker_space_event = hacker_space_event_labels[len(seen_hacker_space_events)]
+            seen_hacker_space_events.add(hacker_space_event)
+
         renpy.call(hacker_space_event)
         player_stats.change_stats('Sanity', 5)
         player_stats.change_stats('Dev Trivia', 5)
     return
 
 label day_activity_barista:
-    scene bg cafe with dissolve
-    # play sound ding-dong
+    scene bg cafe with slideright
+    # TODO: play sound ding-dong
+
+    python:
+        if len(seen_hacker_space_events) == 4: # all seen, now pick random
+            hacker_space_event = renpy.random.choice(seq=hacker_space_events)
+        else: # just add the next one
+            hacker_space_event = hacker_space_event_labels[len(seen_hacker_space_events)]
+            seen_hacker_space_events.add(hacker_space_event)
+
+
     player "Here's your matcha latte. Enjoy your day!"
     player "Hmm... There are a group of kids in the back with their computers."
     kid "So I have this hackathon idea..."
@@ -145,23 +154,47 @@ label day_activity_barista:
     return
 
 label day_activity_park:
-    scene bg park
+    scene bg park1 with slideright
+    play sound 'audio/sfx/birds.wav'
     player happy "It always soothe my nerves to take a walk in the park."
-    player "I almost feel like it restores my sanity."
-    return
-
-label day_activity_bake:
-    scene bg kitchen day
-    player "I'm staying home and bake"
-    return
-
-label day_activity_read:
-    scene bg living_room day
-    player "I'm staying home and read"
+    scene bg park2 with fadehold
+    pause 2.0
+    scene bg park3 with fadehold
+    pause 2.0
+    scene bg park4 with fadehold
+    pause 2.0
+    play sound 'audio/sfx/birds.wav'
+    scene bg park1 dusk with fadehold
+    pause 2.0
+    player "Time really flies when I'm relaxing in nature... Let's head home now."
     return
 
 label day_activity_video_game:
-    player "play some video game"
+    player "I recently got this rhythm game everyone's talking about. Let's pick a song from the playlist."
+    $ choice = renpy.display_menu(list(rhythm_game_beatmaps.items()))
+    # start the rhythm game
+    # window hide
+    $ quick_menu = False
+
+    # avoid rolling back and losing game state
+    $ renpy.block_rollback()
+
+    # unpack the file paths associated with the chosen song
+    $ audio_path, beatmap_path = choice
+    call screen rhythm_game(audio_path, beatmap_path)
+
+    # avoid rolling back and entering the chess game again
+    $ renpy.block_rollback()
+
+    # restore rollback from this point on
+    $ renpy.checkpoint()
+
+    $ quick_menu = True
+    window show
+
+    $ num_hits, num_notes = _return
+    player "I hit [num_hits] notes out of [num_notes]. That wasn't bad!"
+    player "Video games are a nice way to let off steam."
     return
 
 label day_activity_job_search:
