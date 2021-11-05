@@ -12,6 +12,10 @@ init python:
     # player_stats.player_stats_map['CS Knowledge'] >= 80
     has_completed_curriculum = False
 
+    day_activity = None # set in day_activity_choice.rpy
+
+    ## TODO
+
     # TODO: refactor
     has_met_marco = False
 

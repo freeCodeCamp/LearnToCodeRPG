@@ -1,4 +1,5 @@
 label day_start:
+    hide screen player_stats_screen
     # this label should end up jumping to day_end, which then returns control to the main game
     $ calendar.next()
 
@@ -8,7 +9,7 @@ label day_start:
     if days_before_offer is not None:
         $ days_before_offer -= 1
 
-    scene bg bedroom with fade
+    scene bg bedroom with fadehold
 
     play sound 'audio/sfx/alarm.wav'
     pause 2.0
@@ -24,13 +25,13 @@ label day_start:
             ])
         renpy.call(day_start_text)
     
-    jump day_activity_choices
+    call day_activity_choices
 
 # TODO: special text on days of interview
 label day_start_text1:
     player "A new day!"
     show mint
-    mint "Meow meow~"
+    # mint "Meow meow~"
     player "Good morning, Mint."
     hide mint
     player "Hmmm, I don't feel like eating a big breakfast today. I guess a cookie will do."
@@ -67,7 +68,7 @@ label day_start_text2:
 
 label day_start_text3:
     show mint
-    mint "Meow!"
+    # mint "Meow!"
     player "Yawwwwwn..."
     player "(I feel like hitting snooze on my alarm...)"
     mint "Meow!"
@@ -84,89 +85,48 @@ label day_start_text3:
     return
 
 label day_end:
-    # this label either return or jump
-    # when it returns, it returns to script.rpy, where we check 
+    hide screen player_stats_screen
     scene bg bedroom dusk with slideright
     player "Phew... That was a long day."
 
-    # TODO: different text if the player has had an interview
-    # they will talk with parents during dinner about the interview
+    # dinner
+    mom "[persistent.player_name], dinner's ready!"
+    player "Coming, mom!"
 
-    # TODO: different text
-    dad "[persistent.player_name], dinner's ready!"
-    player "Coming, dad!"
+    scene bg kitchen night with blinds
+    play sound 'audio/sfx/dining_ambient.wav'
+    mom "How was your day, honey?"
+    player "Good, good."
+    # TODO: different text according to the day activity
+    if day_activity == 'study':
+        player "I spent today studying and learned a lot!"
+    elif day_activity == 'barista':
+        player "I worked at the cafe today and heard some interesting conversations."
+    elif day_activity == 'hackerspace':
+        player "I went to Hacker Space today and saw some people working on cool projects."
+    elif day_activity == 'park':
+        player "I was at the park reading a nice book. It was really refreshing."
+    elif day_activity == 'videogame':
+        player "I played some cool video games today. Hopefully one day I'll able to code up a game myself."
+    elif day_activity == 'jobsearch':
+        player "I spent my day looking for job openings. I hope that my resume will catch the recruiter's eyes."
+    elif day_activity == 'interview':
+        player "I wouldn't say my interview wasn't stressful, but I felt like I've given it my best shot."
+    else:
+        player "I just chilled for the day."
+    dad "Sounds like you enjoyed your day."
+    mom "Talk to us if you need anything."
+    player "Thanks! You guys are the best."
 
-    scene bg bedroom night with dissolve
+    scene bg bedroom night with blinds
+    player happy "Delicious home-cooked dinner as always."
+    player "Anyways, I've done quite a lot today. Let's call it a day and get some rest."
     player "Tomorrow will be another day. Right, Mint?"
-    mint "Meow"
+    show mint
+    mint "Meow!"
     player "Haha good night Mint."
+    hide mint
 
-    scene black with dissolve
-    return
-
-    # TODO
-
-    # at the end of the day, since we've just learned something
-
-    # check whether to proceed to the next stage
-    # if the player is half-way through the curriculum and some days have elapsed
-    if not has_met_marco and \
-    player_stats.player_stats_map['CS Knowledge'] >= 40:
-        jump stage7 # Marco
-
-    # we check whether we can show the congrats screen
-    # although other activities can increase CS knowledge as well
-    # only a same-day study session will trigger this congrats
-    if not has_completed_curriculum and \
-    has_had_study_session_today and \
-    player_stats.player_stats_map['CS Knowledge'] >= 80:
-        player "Hey... I just got this email..."
-        $ has_completed_curriculum = True
-        $ completed_curriculum_date = date(calendar.year, calendar.month, calendar.day)
-        $ days_between_start_and_curriculum_completion = (completed_curriculum_date - start_date).days
-        call screen confirm_and_share(
-            title="{bt}Congratulations!{/bt}",
-            message="You completed the coding curriculum in {b}[days_between_start_and_curriculum_completion]{/b} days.\nNow you are ready to rock the coding interview and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
-            ok_text="Let's crunch 'em interviews!", 
-            ok_action=Jump('stage8')
-        )
-    
-    # check whether the next day will have a sanity event
-    if player_stats.player_stats_map['Sanity'] <= 60:
-        python:
-            label = renpy.random.choice(seq=sanity_event_labels)
-            renpy.call(label)
-
-        # restore some sanity when we return from the sanity event
-        $ player_stats.change_stats_random('Sanity', 5, 20)
-
-    # two days before an interview, the player should receive an email alert
-    if days_before_interview == 2:
-        player "Oh hey. Here's an email from {b}[interview_company_name]{/b}. They've looked at my resume and want to interview me in two days. I better get prepared."
-
-    # check whether the next day has an interview
-    if days_before_interview == 0:
-        call day_activity_interview from _call_day_activity_interview
-        $ days_before_interview = None
-
-    # check whether the next day has an offer
-    if not has_accepted_offer and days_before_offer == 0:
-        player "Oh hey. Here's an email from {b}[offer_company_name]{/b}."
-        player "... {w}Did I read that correctly? {sc}An offer?{/sc}"
-        player happy "I made it!"
-
-        $ has_received_offer = True
-        $ has_accepted_offer = True
-        $ first_offer_date = date(calendar.year, calendar.month, calendar.day)
-        $ days_between_start_and_offer = (first_offer_date - start_date).days
-        $ days_between_curriculum_and_offer = (completed_curriculum_date - start_date).days
-        call screen confirm_and_share(
-            title="{bt}Congratulations!{/bt}",
-            message="You taught yourself to become a developer in {b}[days_between_start_and_offer]{/b} days, [days_between_curriculum_and_offer] days after you've completed the coding curriculum.\nNow you are ready to rock your new job!\n Feel free to share your progress with the world!",
-            ok_text="Let's rock my new job!", 
-            ok_action=Jump('stage14')
-        )
-
-    $ has_done_job_search_today = False
+    scene black with fadehold
 
     return # should return control to script.rpy

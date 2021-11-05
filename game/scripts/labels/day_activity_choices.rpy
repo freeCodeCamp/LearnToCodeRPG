@@ -1,4 +1,5 @@
 label day_activity_choices:
+    $ day_activity = None
     # this label should end up jumping to day_end
 
     # if the player has low_energy level, jump directly to one of the relaxing choices
@@ -13,19 +14,20 @@ label day_activity_choices:
             $ has_done_job_search_today = True
             player "Let's search for job openings."
             call day_activity_job_search from _call_day_activity_job_search_1
-            jump day_end
+            call day_end
 
         # TODO: change this string to study more CS fundamentals
         # when the player has completed the curriculum
         "Study CS fundamentals":
             # this choice helps grow coding knowledge
             python:
+                day_activity = 'study'
                 text = renpy.random.choice([
                     "Let's hit the books!",
                     "Let's head over to [developerquiz]!",
                     "Let's ramp up on my CS knowledge!"
                     ])
-                renpy.say('player', text)
+                renpy.say(player, text)
             call study_session from _call_study_session_1
 
             python:
@@ -34,7 +36,7 @@ label day_activity_choices:
                     "That was a lot of new information to digest...",
                     "Phew... hopefully my brain will thank me for this workout later..."
                     ])
-                renpy.say('player', text)
+                renpy.say(player, text)
 
             $ player_stats.change_stats_random('Sanity', -20, -10)
 
@@ -51,28 +53,32 @@ label day_activity_choices:
                 player pout "... I got all questions wrong..."
                 player neutral "But it will get better with practice, won't it?"
 
-            jump day_end
+            call day_end
         
         "Work gig as a barista":
             # this choice unlocks interesting tech rumors and recovers a bit of sanity
+            $ day_activity = 'barista'
             player "I can work some shifts to cover my bills. Plus, I get to interact with people and take my mind off cramming for a bit."
             call day_activity_barista from _call_day_activity_barista
-            jump day_end
+            call day_end
 
         "Hang out at Hacker Space" if has_visited_hacker_space_with_annika:
             # this choice progresses the Hacker Space side story
+            $ day_activity = 'hackerspace'
             player "I'm feeling adventurous. Why not check out Hacker Space for some adventures?"
             call day_activity_hacker_space from _call_day_activity_hacker_space
-            jump day_end
+            call day_end
 
         "Take a day off and relax":
             call day_activity_relax
+            call day_end
             
 label day_activity_relax:
     # this choice boosts sanity
-    player pout "Hmmm... Actually, instead of doing something, I feel like I could use some rest today."
-    "(Whoa! {sc}Slow down, tiger.{/sc} We know you are excited about beefing up your {b}CS Knowledge{/b}, but it's important not to deplete your {b}Sanity{/b}. Why not take some time to recharge?)"
-    player "...But I have so much work to do..."
+    player "Hmmm... Actually, instead of doing something, I feel like I could use some rest today."
+    if player_stats.is_sanity_low():
+        "(Whoa! {sc}Slow down, tiger.{/sc} We know you are excited about beefing up your {b}CS Knowledge{/b}, but it's important not to deplete your {b}Sanity{/b}. Why not take some time to recharge?)"
+    player pout "...But I have so much work to do..."
     show mint
     mint "Meow~"
     player neutral "Oh Mint. Are you trying to tell me to take better care of myself?"
@@ -88,7 +94,7 @@ label day_activity_relax:
             call day_activity_video_game from _call_day_activity_video_game
     $ player_stats.change_stats_random('Sanity', 5, 20)
     # all relaxing activities converges to the end of the day
-    jump day_end
+    return
 
 label day_activity_hacker_space:
     scene bg hacker_space with slideright
@@ -113,7 +119,6 @@ label day_activity_hacker_space:
     scene bg hacker_space dusk with fadehold
     player "Wow, it's already getting dark? Today's quite an eventful day."
     player "Let's head home now."
-
     return
 
 label day_activity_hacker_space_random:
@@ -134,6 +139,7 @@ label day_activity_barista:
     scene bg cafe with slideright
     # TODO: play sound ding-dong
 
+    # TODO: refactor
     python:
         if len(seen_hacker_space_events) == 4: # all seen, now pick random
             hacker_space_event = renpy.random.choice(seq=hacker_space_events)
@@ -154,6 +160,7 @@ label day_activity_barista:
     return
 
 label day_activity_park:
+    $ day_activity = 'park'
     scene bg park1 with slideright
     play sound 'audio/sfx/birds.wav'
     player happy "It always soothe my nerves to take a walk in the park."
@@ -170,6 +177,7 @@ label day_activity_park:
     return
 
 label day_activity_video_game:
+    $ day_activity = 'videogame'
     player "I recently got this rhythm game everyone's talking about. Let's pick a song from the playlist."
     $ choice = renpy.display_menu(list(rhythm_game_beatmaps.items()))
     # start the rhythm game
@@ -199,13 +207,13 @@ label day_activity_video_game:
 
 label day_activity_job_search:
     # 0.5 chance there is no new job posting and the player goes back to other routines
-
-    if renpy.random.random() > 0.7: # go back to routines
+    if renpy.random.random() > 0.5: # go back to routines
         player "I don't see any new job postings that I haven't applied to."
         player "Let's go do something else."
         jump day_activity_choices
 
     else: # proceed to application
+        $ day_activity = 'jobsearch'
         $ company_name = renpy.random.choice(seq=all_company_names)
 
         show screen job_posting_screen(company_name, all_skill_names)
@@ -233,6 +241,7 @@ label day_activity_job_search:
     return
 
 label day_activity_interview:
+    $ day_activity = 'interview'
     player "Today is my big day! I have an interview with [interview_company_name]."    
 
     scene bg interview_room with dissolve

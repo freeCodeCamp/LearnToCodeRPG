@@ -793,6 +793,9 @@ label stage6_after_annika_questions:
 
     call day_start
 
+    # hacker space story
+    
+
 label stage7:
     # this stage is invoked inside label `day_end`
     # Stage 7. Marco
