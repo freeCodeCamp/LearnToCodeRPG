@@ -1,3 +1,61 @@
+init:
+    screen quiz_question_answer_explanation_screen(quiz_question):
+        # see code_snippet_example_screen.rpy
+
+        default raw_code = example_code(quiz_question.code_label, raw=True)
+        default code = example_code(quiz_question.code_label)
+
+        on "show" action With(Dissolve(0.5))
+        on "hide" action With(Dissolve(0.5))
+
+        frame:
+            xalign 0.5
+            yalign 0.5
+            xpadding 80
+            ypadding 30
+            background "#fffc"
+
+            vbox:
+                spacing 10
+
+                textbutton '{icon=close}' xalign 1.0 action Return(True)
+
+                viewport:
+                    xsize 1000
+                    ymaximum 600
+                    child_size (None, 4000)
+                    scrollbars 'vertical'
+                    spacing 5
+                    draggable True
+                    mousewheel True
+                    arrowkeys True
+                    vscrollbar_xsize 5
+                    vscrollbar_unscrollable "hide"
+
+                    vbox spacing 5:
+                        text 'Question Recap' bold True
+                        text quiz_question.question
+
+                        # TODO: maybe add copy code feature from screen example
+                        if quiz_question.code_label:
+                            null height 30
+                            frame: # different background color from the primary screen for contrast
+                                background "#d0d0d5cc" # gray15 at 80% opacity
+                                text code:
+                                    alt ""
+                                    size gui.notify_text_size
+                                    color "#000"
+                                    font "fonts/roboto-mono/RobotoMono-Regular.ttf"
+
+                        null height 30
+
+                        text 'Correct answer' bold True
+                        text quiz_question.true
+                        if quiz_question.explanation:
+                            null height 50
+                            text 'Explanation' bold True
+                            text quiz_question.explanation
+
 init python:
     class QuizQuestion():
         # TODO: explanation
@@ -662,59 +720,78 @@ init python:
     # TODO: more fine-grained category
     interview_questions = javascript_questions + web_questions + algorithm_questions + system_questions
 
-screen quiz_question_answer_explanation_screen(quiz_question):
-    # see code_snippet_example_screen.rpy
+    ## Hacker Space Tech Trivia
+    trivia_questions = [
+    QuizQuestion(
+        question="Which is faster for training Neural Networks, a GPU or a CPU?",
+        true="GPU.",
+        false=[
+        "CPU.",
+        "They are the same."
+        ]
+        ),
+    QuizQuestion(
+        question="Which of the following is a legal identifier in assembly language?",
+        true="july_2021",
+        false=[
+        "10percent",
+        "a1a2a3...a247a248",
+        "eflags"
+        ]
+        ),
+    QuizQuestion(
+        question="Who was the child of a famous poet and English mathematician whom many historians consider the first programmer?",
+        true="Ada Lovelace",
+        false=[
+        "Grace Hopper",
+        "Alan Turing",
+        "Charles Babbage"
+        ]
+        ),
+    QuizQuestion(
+        question="Which has more precision, a double or a float?",
+        true="A double.",
+        false=[
+        "A float.",
+        "They have the same precision."
+        ]
+        ),
+    QuizQuestion(
+        question="Which of the following programming languages is created by a Japanese?",
+        true="Ruby",
+        false=[
+        "C",
+        "C++",
+        "Java",
+        "Kotlin",
+        "Python"
+        ]
+        ),
+    QuizQuestion(
+        question="Which of the following operators has the highest precedence in C++?",
+        true="!",
+        false=[
+        "*",
+        "&&",
+        "!=",
+        ]
+        ),
+    QuizQuestion(
+        question="What's the meaning behind the name of the Python programming language?",
+        true="Monty Python",
+        false=[
+        "The snake",
+        ]
+        ),
+    QuizQuestion(
+        question="What was the original name for Java?",
+        true="Oak",
+        false=[
+        "Coffee",
+        "JavaScript",
+        "Guava",
+        "Homebrew"
+        ]
+        ),
 
-    default raw_code = example_code(quiz_question.code_label, raw=True)
-    default code = example_code(quiz_question.code_label)
-
-    on "show" action With(Dissolve(0.5))
-    on "hide" action With(Dissolve(0.5))
-
-    frame:
-        xalign 0.5
-        yalign 0.5
-        xpadding 80
-        ypadding 30
-        background "#fffc"
-
-        vbox:
-            spacing 10
-
-            textbutton '{icon=close}' xalign 1.0 action Return(True)
-
-            viewport:
-                xsize 1000
-                ymaximum 600
-                child_size (None, 4000)
-                scrollbars 'vertical'
-                spacing 5
-                draggable True
-                mousewheel True
-                arrowkeys True
-                vscrollbar_xsize 5
-                vscrollbar_unscrollable "hide"
-
-                vbox spacing 5:
-                    text 'Question Recap' bold True
-                    text quiz_question.question
-
-                    # TODO: maybe add copy code feature from screen example
-                    if quiz_question.code_label:
-                        null height 30
-                        frame: # different background color from the primary screen for contrast
-                            background "#d0d0d5cc" # gray15 at 80% opacity
-                            text code:
-                                alt ""
-                                size gui.notify_text_size
-                                color "#000"
-                                font "fonts/roboto-mono/RobotoMono-Regular.ttf"
-
-                    null height 30
-
-                    text 'Correct answer' bold True
-                    text quiz_question.true
-                    if quiz_question.explanation:
-                        null height 50
-                        text 'Explanation' bold True
-                        text quiz_question.explanation
+    ]

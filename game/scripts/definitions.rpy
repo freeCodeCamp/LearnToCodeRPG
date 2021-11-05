@@ -81,14 +81,15 @@ init:
     define kid = Character("High Schoool Kid")
     define boy = Character("High School Boy")
     define girl = Character("High School Girl")
-
+    define college_boy = Character("College Boy")
+    define college_girl = Character("College Girl")
+    define male = Character("Young Male")
+    define female = Character("Young Female")
+    define trivia_guy = Character("Trivia Guy") # trivia guy at hacker space
     define mom = Character("Mom")
     define dad = Character("Dad")
     define mint = Character("Mint", callback=meow_sound_callback) # player's cat
     define interviewer = Character("Interviewer")
-
-    # use nvl "novel" mode for quiz question explanation
-    define nvl_narrator = Character(None, kind=nvl)
 
     # text displayables
     define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp{/color}{/font}{/a}'

@@ -1,3 +1,4 @@
+## study session in daily activity choices
 label study_session:
     scene bg laptop_screen with dissolve
 
@@ -48,6 +49,71 @@ label study_session:
 
     return
 
+## hacker space trivia session
+label trivia_session:
+    $ num_questions = len(trivia_questions)
+    $ num_correct = 0
+
+    $ timeout_label = 'trivia_session_questions'
+    $ timeout = 30.0 # 30 seconds for each question
+
+    # fall through to the next label
+
+label trivia_session_questions:
+    while num_questions > 0:
+        if num_questions == len(trivia_questions):
+            trivia_guy "Here's the first question."
+        elif num_questions == 1:
+            trivia_guy "Last question."
+        else:
+            trivia_guy "Next question."
+        call trivia_one_question
+
+    # check results
+    trivia_guy "Now let's check the results."
+    play sound 'audio/sfx/hacker_space_trivia_evaluate.wav'
+    trivia_guy "...{w=0.5}...{w=0.5}...{w=0.5}"
+    if num_correct == len(trivia_questions):
+        trivia_guy "Could this be...?"
+        play sound 'audio/sfx/hacker_space_trivia_win.wav'
+        trivia_guy "You are the first person to get everything correct! Congratulations!"
+        $ player_stats.change_stats('Dev Trivia', 20)
+        trivia_guy "Now about the award..."
+        show business_card at truecenter with zoomin
+        trivia_guy "I'm actually a talent recruiter at {b}CupcakeCPU™{/b}. Feel free to apply to our roles. We welcome talent like you."
+        hide business_card
+        trivia_guy "Until next time!"
+        hide trivia_guy with dissolve
+        player "Uhhh... cool? I guess?"
+        player "Let's add it to my To-Do list to apply to their company once I'm comfortable with my skill level."
+        $ todo_list.add_todo(todo_apply_cupcakecpu)
+        $ has_won_hacker_space_trivia = True
+
+    else:
+        trivia_guy "You missed some of the questions there, but it was close."
+        trivia_guy "Better luck next time. I'll be here waiting."
+
+    return
+
+label trivia_one_question:
+    $ num_questions -= 1
+    $ quiz_question = trivia_questions[num_questions]
+    if quiz_question.code_label is not None:
+        show screen example(quiz_question.code_label)
+
+    # display question
+    $ renpy.say(None, quiz_question.question, interact=False)
+    # result is True or False
+    $ result = renpy.display_menu(quiz_question.choices)
+    hide screen example
+
+    if result == True:
+        $ num_correct += 1
+
+    with dissolve
+    return
+
+## coding interview session
 label interview_session:
     # ask 3 - 6 questions each time
     # to pass, must have more than 80 percent correct
@@ -104,6 +170,8 @@ label interview_one_question:
     if quiz_question.code_label is not None:
         show screen example(quiz_question.code_label)
 
+    # display question
+    $ renpy.say(None, quiz_question.question, interact=False)
     # result is True or False
     $ result = renpy.display_menu(quiz_question.choices)
     hide screen example

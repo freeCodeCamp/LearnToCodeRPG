@@ -163,7 +163,7 @@ label stage1:
 label stage2:
     # Stage 2. player's decision to learn to code
     # player returns home
-    scene bg living_room night with pushright
+    scene bg living_room night with slideright
 
     player "I'm home!"
     mom "Hey sweetie. Welcome back!"
@@ -359,7 +359,7 @@ label stage3:
     player "(Let's add it to my to-do list.)"
 
     $ todo_unlocked = True
-    $ todo_list.add_todo('Check out [freeCodeCamp]')
+    $ todo_list.add_todo(todo_check_fcc)
     "(Click on the To-Do icon {icon=list} to show or hide your To-Do items.)"
 
     annika "Anyways, what's your plan for the day?"
@@ -393,8 +393,8 @@ label stage4:
     player "Oops. I wasn't intentionally eavesdropping on high school kids, but the {b}hackathon{/b} idea they mentioned is new."
     player "I believe I can use this piece of information to my advantage. Let's make it a to-do item to ask Annika if she knows about events like this."
 
-    $ todo_list.add_todo('Ask Annika about hackathons')
-    $ topics_to_ask.add('Hackathon')
+    $ todo_list.add_todo(todo_ask_hackathon)
+    # $ topics_to_ask.add('Hackathon')
     player "Alright! Going back to my shift."
     hide screen player_stats_screen
 
@@ -515,10 +515,10 @@ label stage5:
 
         "Let's just wait until tomorrow and ask Annika for advice":
             player pout "Hmmm... I don't know. They all look equally hard. Let's ask Annika for advice tomorrow."
-            $ todo_list.add_todo('Ask Annika about CS curriculum')
+            $ todo_list.add_todo(todo_ask_curriculum)
             player "Added it to my To-Do!"
             player "Well, I did accomplish something today. Now at least I know what [freeCodeCamp]'s curriculum is about. That's one item off my To-Do list."
-            $ todo_list.complete_todo('Check out [freeCodeCamp]')
+            $ todo_list.complete_todo(todo_check_fcc)
             show mint
             mint "Meow!"
             player neutral "You think that's a good idea too, Mint?"
@@ -597,10 +597,10 @@ label stage5_annika:
     hide annika
 
     player "Okay. Now I've asked about the curriculum. One To-Do item off the list."
-    $ todo_list.complete_todo('Ask Annika about CS curriculum')
+    $ todo_list.complete_todo(todo_ask_curriculum)
     player "I can ask Annika about other topics another day."
     player "Now my new To-Do would be to ramp up my CS knowledge."
-    $ todo_list.add_todo('Ramp up CS knowledge')
+    $ todo_list.add_todo(todo_learn_cs)
     player "Sounds like a plan!"
     player "Time to go work my barista shift."
     hide screen player_stats_screen
@@ -730,7 +730,7 @@ label stage6:
 
             # TODO: todo_list.add_todo('Try out hackathons'), needs more writing
             # TODO: refactor and add to topics_to_ask
-            $ todo_list.complete_todo('Ask Annika about hackathons')
+            $ todo_list.complete_todo(todo_ask_hackathon)
             hide screen player_stats_screen
             jump stage6_annika_questions
 

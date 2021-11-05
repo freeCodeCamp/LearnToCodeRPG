@@ -6,6 +6,9 @@ init python:
 
     has_visited_hacker_space_with_annika = False
 
+    # once this is True, trivia guy no longer appears, and player can get a first round interview w/ CupCakeCPU
+    has_won_hacker_space_trivia = False
+
     # player_stats.player_stats_map['CS Knowledge'] >= 80
     has_completed_curriculum = False
 
@@ -31,16 +34,11 @@ init python:
     # player can meet Layla at Hacker Space
     has_met_layla = False
 
-    # topics to ask Annika, Marco, and Layla
-    topics_to_ask = set()
-
     ## Non-mutable
 
-    # see sanity_events.rpy
-    # initially there are only events with player themself and Annika
-    # eventually the plot will unlock those with Ryan and the community
-    sanity_event_labels = [
-        'sanity_event_player',
-        'sanity_event_mint',
-        'sanity_event_annika_boba',
-    ]
+    # to-do strings
+    todo_check_fcc = 'Check out [freeCodeCamp]'
+    todo_ask_hackathon = 'Ask Annika about hackathons'
+    todo_ask_curriculum = 'Ask Annika about CS curriculum'
+    todo_learn_cs = 'Ramp up CS knowledge'
+    todo_apply_cupcakecpu = 'Apply to CupcakeCPU'

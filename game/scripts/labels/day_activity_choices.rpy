@@ -61,8 +61,7 @@ label day_activity_choices:
 
         "Hang out at Hacker Space" if has_visited_hacker_space_with_annika:
             # this choice progresses the Hacker Space side story
-            # TODO
-            player "The Hacker Space place that Annika mentioned sounds fun. Let's hit the road."
+            player "I'm feeling adventurous. Why not check out Hacker Space for some adventures?"
             call day_activity_hacker_space from _call_day_activity_hacker_space
             jump day_end
 
@@ -84,13 +83,6 @@ label day_activity_relax:
         "Take a walk in the park":
             player "Let's head out to the park. Too bad I can't take Mint out on a walk. Annika does that with her puppy sometimes and they both love it."
             call day_activity_park from _call_day_activity_park
-        "Chill at home with Mint":
-            player "Hey Mint, come here. I will grab a nice book and we will just chill with some tea in the living room. Sounds good?"
-            mint "Meow"
-            call day_activity_read from _call_day_activity_read
-        "Bake some treats":
-            player "Hmmm... how about baking something yummy?"
-            call day_activity_bake from _call_day_activity_bake
         "Play some video games":
             player "Nothing beats some indie games."
             call day_activity_video_game from _call_day_activity_video_game
@@ -98,18 +90,33 @@ label day_activity_relax:
     # all relaxing activities converges to the end of the day
     jump day_end
 
-label day_activity_open_source:
-    scene bg laptop_screen with dissolve
-    player "Let's see, what are the newest Pull Requests?"
-    player "Hmm... I don't know how to solve this but I can re-assign it to the original author."
-    player "It's cool how people volunteer their time and energy to make software accessible."
-    $ player_stats.change_stats_random('CS Knowledge', 2, 4)
-    return
-
 label day_activity_hacker_space:
-    scene bg hacker_space with dissolve
-    player "Let's check out what cool projects people are working on."
-    $ player_stats.change_stats('CS Knowledge', 1)
+    scene bg hacker_space with slideright
+    play sound 'audio/sfx/office_ambient.wav'
+    player "(As always, a lot of people are hanging out here.)"
+    player "(I can go around and talk to people to learn about what cool things are happening.)"
+
+    # hacker space trivia
+    if not has_won_hacker_space_trivia:
+        trivia_guy "Hey, you there! Would you be up to a round of tech trivia?"
+        call hacker_space_tech_trivia
+    else:
+        scene bg hacker_space with blinds
+        python:
+            hacker_space_event = renpy.random.choice(seq=[
+                'hacker_space_tech_talk',
+                'hacker_space_project',
+                'hacker_space_open_source',
+                'hacker_space_playtest'
+                ])
+            renpy.call(hacker_space_event)
+            player_stats.change_stats('Sanity', 5)
+            player_stats.change_stats('Dev Trivia', 5)
+
+    scene bg hacker_space dusk with fadehold
+    player "Wow, it's already getting dark? Today's quite an eventful day."
+    player "Let's head home now."
+
     return
 
 label day_activity_barista:
@@ -123,7 +130,7 @@ label day_activity_barista:
     player "But a hackathon? That sounds cool. I should give it a try when I know more about coding."
 
     player "Serving coffee is no easy work, but somehow I feel refreshed from meeting all these people."
-    $ player_stats.change_stats('Sanity', 2)
+    $ player_stats.change_stats('Sanity', 5)
     return
 
 label day_activity_park:
