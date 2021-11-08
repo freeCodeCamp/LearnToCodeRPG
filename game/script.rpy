@@ -192,7 +192,6 @@ label stage2:
 
     scene bg bedroom night with blinds
     player happy "That was a stuffing dinner. Mom's the best cook I know."
-    player "..."
 
     play sound 'audio/sfx/social_media_notification.wav'
     player neutral "Hmmm... A notification from my phone?  Must be something on social media."
@@ -794,7 +793,73 @@ label stage6_after_annika_questions:
     call day_start
 
     # hacker space story
-    
+    scene bg bedroom with fadehold
+
+    play sound "<to 2.0>audio/sfx/phone_ring.wav"
+    play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
+    pause 2.0
+
+    show annika
+    pause 1.0
+    annika "Morning, sleepy head!"
+    player "Hey Annika. You are up early."
+    annika "Yeah! Told you we are going to check out Hacker Space together."
+    annika "You ready for the ride?"
+    player "Yes! Lead the way."
+
+    scene bg hacker_space with slideright
+    play sound 'audio/sfx/office_ambient.wav'
+    annika "Here we are!"
+    player "Wow. This place is huge. And modern."
+    annika "Yeah! That's why local hackers love to hang out here."
+    annika "Why don't we go around and check out what people are working on?"
+    player "Sounds good!"
+
+    scene bg hacker_space with fade
+    college_boy "So I was reading this research paper and it occurs to me that we might be able to implement this idea in code..."
+
+    scene bg hacker_space with fade
+    girl "The last hackathon was fun!"
+    boy "It was! I feel like we might be able to grow our prototype into something even better."
+    girl "Would you like to elaborate on your thoughts?"
+    boy "Okay, here's the plan..."
+
+    scene bg hacker_space with fade
+    college_girl "I had an interview the other day and it was kinda scary..."
+    college_girl "They asked me to write code on the whiteboard and then eyeball-test it without an compiler..."
+    female "Don't worry! I'm sure you did well!"
+    college_girl "..."
+    female "I've worked in recruiting, so I'll let you in on some interviewer secrets..."
+
+    scene bg hacker_space dusk with fadehold
+    annika "So what do you think?"
+    player "It's amazing!"
+    player "This place is alive with energy... It's like you won't walk away without something interesting happening."
+    annika "That's the spirit!"
+    annika "Do you think you'll come here occasionally?"
+    player "Definitely!"
+    player "Thanks for taking me here!"
+    annika "Any time!"
+
+    scene bg bedroom night with slideright
+    player "Wow. I'm so amazed. Hacker Space sure is a cool place. Let's check it out on our own some day."
+    player "Now let's call this a day and get some rest."
+
+    $ has_visited_hacker_space_with_annika = True
+
+    # two days of activity of the player's choosing
+    call day_start
+
+    call day_start
+
+    $ calendar.next_month()
+    show screen player_stats_screen
+    scene bg bedroom with fadehold
+    player "Now I've been learning to code for an entire month, not only have I been making progress on the curriculum and visiting Hacker Space, but I've also been engaging with the [freeCodeCamp] community online."
+    player "I found this person who taught himself to code from scratch with [freeCodeCamp]."
+    player "That's truly a from-zero-to-hero story."
+    player "He is now a senior software engineer and has decided to give back to the community."
+    player "He said I can ask him anything so let's give it a shot."    
 
 label stage7:
     # this stage is invoked inside label `day_end`
@@ -805,20 +870,9 @@ label stage7:
     show text "{size=48}{color=[white]}{i}Chapter 4: A mentor to lead the way!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
-    show screen player_stats_screen
 
-    scene bg bedroom with fade
-    # play sound of typing
-    # show a close-up graphic of Marco?
-    player "So I found this person's profile online. He taught himself to code with [freeCodeCamp]."
-    player "He is now a senior software engineer and has decided to give back to the community."
-    player "He said I can ask him anything so let's give it a shot."
-
-    scene bg desk with dissolve
+    scene bg desk with blinds
     show marco
-
-    $ has_met_marco = True
-
     marco "Hi [persistent.player_name]. I'm Marco. I'm a senior engineer at {b}QuicheQueue{\b}."
     player "Hi Marco. Nice to meet you! I'm [persistent.player_name], a recent grad and developer wannabe."
     marco "That sounds good."
@@ -872,8 +926,152 @@ label stage7:
             player "I'm done asking! That's all I want to know. Thanks so much for sharing!"
             marco "Anytime, [persistent.player_name]. Have fun coding and keep me updated on your progress!"
 
-    # go back to our routines
-    jump day_start
+    scene bg bedroom night with slideright
+    player "Marco was certainly a cool guy. I'm so lucky to have him as my mentor."
+    player "Now if I have questions about anything, I can either talk to Annika or Marco."
+    show mint
+    player "Awww Mint, are you proud of me for making friends in the tech bubble?"
+    player "Haha, good night, Mint."
+    hide mint
+
+    # two days of activity of the player's choosing
+    call day_start
+
+    call day_start
+
+    $ calendar.next_month()
+    show screen player_stats_screen
+    scene bg bedroom with fadehold
+    player "It's been two months since I started to learn to code. Time really flies."
+    player "I feel like I'm so much more knowledgeable than when I started."
+
+    play sound "<to 2.0>audio/sfx/phone_ring.wav"
+    play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
+    pause 2.0
+
+    show annika
+    pause 1.0
+    annika "Hey [persistent.player_name]! Are you free today?"
+    player "Hey Annika. Yep, I'm down to hang out. What's up?"
+    annika "Guess what? It's {bt}Hacktober{/bt}. Hacker Space is holding a special hackathon for high school students."
+    annika "They could use some volunteers to help out."
+    annika "Wanna come with me to check it out today?"
+    player "Sounds good! See you in a moment!"
+
+    scene bg hacker_space with slideright
+    play sound 'audio/sfx/office_ambient.wav'
+    player "It's even more crowded than usual..."
+    annika "Looks like high school kids are all hyped up for the event!"
+
+    scene bg hacker_space with fade
+    boy "Now it's finally time for us to give shape to this awesome idea!"
+    girl "Yeah yeah, it's been pie in the sky since forever."
+    boy "This time we are finally going to code it all up!"
+    girl "Hmmm... Yeah... We probably need some advice. I heard they have mentors here to guide us..."
+
+    show layla with moveinleft
+    layla "Hey kids! I heard that you are looking for help from mentors."
+    layla "I'm Layla, one of today's mentors. I'd be glad to work with you today."
+    boy "Cool! Thanks!"
+    girl "Now I'm more confident that this is going to come together well!"
+
+    hide layla
+    show annika with moveinright
+    annika "Did you see that lady over there mentoring the kids?"
+    annika "She looks like she has tons of experience."
+    player "And energy!"
+    annika "That too! Mentoring kids looks like fun. I hope one day I get to do that as well."
+    player "Yay! Pass on the torch and give back. I feel like this is a culture thing in tech already."
+    annika "Haha now you are talking like you've been in tech for forever. Not a bad thing since you've only started learn to code for two months."
+    annika "You've certainly internalized a lot of the tech culture and values."
+    player "Those trips to Hacker Space definitely helped. All thanks to you and my online mentor, Marco."
+    annika "Yeah, that reminds me, how's things going with Marco? Are you still regularly checking in?"
+    player "Yep. Lately we've been talking about coding interviews. He said I could start applying to jobs once I'm comfortable with my skill level."
+    player "Oh and I meant to ask, what was your interview experience like?"
+    annika "Haha that's a long story. Shall we go grab a drink first?"
+
+    scene bg hacker_space with fadehold
+    annika "Okay, so here's my experience with interviewing."
+    annika "I polished my resume and applied to as many online postings as I could."
+    annika "I also had to highlight parts of my resume that are specific to the requirement of the jobs I'm applying to."
+    annika "Then it was a long wait, during which I practiced coding up interview questions on a white board."
+    player "A whiteboard?"
+    annika "Yeah, haha, I forgot to mention. You might think tech companies must be using high-end tech to screen candidates, right?"
+    annika "It turns out that a lot of tech companies actually want to test your ability to write code without any assistance."
+    annika "Like without code search, documentations, or support from your IDEs."
+    menu:    
+        "Wait, what's an IDE?":
+            annika "It's short for Integrated Development Environment. You know, like PyCharm for Python, IntelliJ for Java, etc."
+            player "Okay, got it."
+    
+        "Hmmm... Interesting":
+            pass
+    annika "Coding on a whiteboard requires that you are familiar with the syntax, but don't worry, the company will usually allow you to choose a programming language of your liking."
+    annika "What's more tricky about coding on a whiteboard is that you might need to come up with test cases your self, walk through the execution line-by-line, and validate your results."
+    annika "If there is a bug in your code, you need to be able to debug on the whiteboard as well, without the convenience of IDE debuggers."
+    player "(That sounds intense...)"
+    annika "Haha don't be scared. That's basically it for coding interviews."
+    annika "There's no shortcut to coding interview prep. I know it's cliche but I'll leave you with the phrase, practice makes perfect."
+    player "Hmmm... I see."
+    annika "Any more questions about coding interviews?"
+
+    # booleans mark whether a choice has been visited
+    default stage7_coding_interview_questions_visited = set()
+    menu stage7_coding_interview_questions:
+        set stage7_coding_interview_questions_visited
+
+        "Any more questions about coding interviews?"
+    
+        "What's the entire interview pipeline like?":
+            annika "It depends. A company might have multiple rounds of interviews and different recruitment processes."
+            annika "Their interview pipeline might start with an online assessment, usually called an OA."
+            annika "This is just like an online IDE where you will solve the given problems."
+            annika "If you manage to solve the problems and perform well on the online assessment, you may receive an update from the recruiter about moving forward onto a phone screen."
+            annika "This could either be an information session, a behavior interview with the recruiter or an engineer, or a technical interview with an engineer."
+            annika "If you perform well, you will move on to the next steps. Usually, a company will give out more than one rounds of technical interview over the phone."
+            annika "And finally, once you manage to pull through these phone screens, the ultimate challenge would be an onsite interview."
+            annika "Usually you will interview for an entire day onsite, with engineers and engineer managers."
+            annika "Onsite interviews might sound daunting but it's actually a good way for you to learn about the company's culture and the engineer's day-to-day."
+            annika "That's about it for the pipeline."
+            jump stage7_coding_interview_questions
+    
+        "What happens after an interview?":
+            annika "Usually, you can expect to hear back from the recruiter in a few days."
+            annika "It's best to just wait and not rush to email the recruiter for results if you don't hear back immediately. However, there is an exception."
+            annika "If you need an immediate response because of pending offers or other concurrent interviews, feel free to reach out to the recruiter."
+            annika "That's what happened to me. I had an offer with another company but was still in the interview pipeline with my current one, so I reached out to ask them to expedite the proces. And here am I, at my dream company!"
+            jump stage7_coding_interview_questions
+
+        "I'm done asking!":
+            pass
+
+    player "Thanks, that's all I need to know!"
+    annika "No problem! Good luck preparing for those interviews!"
+
+    scene bg bedroom night with slideright
+    player "Okay. Let's see, how's my progress on [developerquiz]?"
+    if player_stats.player_stats_map['CS Knowledge'] < 80:
+        player "I think I still need to ramp up more on my CS knowledge. Let's resume studying tomorrow."
+        "Try ramping up your {b}CS Knowledge{/b} to above 80 by completing more quizzes."
+
+    while player_stats.player_stats_map['CS Knowledge'] < 80:
+        call day_start
+
+    # once we are down here, we should have player_stats.player_stats_map['CS Knowledge'] >= 80
+    play sound 'audio/sfx/social_media_notification.wav'
+    player "Hmm? A notification from my phone?"
+    player "It says {bt}Congratulations!{/bt}...?"
+    $ completed_curriculum_date = date(calendar.year, calendar.month, calendar.day)
+    $ days_between_start_and_curriculum_completion = (completed_curriculum_date - start_date).days
+    call screen confirm_and_share(
+        title="{bt}Congratulations!{/bt}",
+        message="You completed the coding curriculum in {b}[days_between_start_and_curriculum_completion]{/b} days.\nNow you are ready to rock the coding interview and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
+        ok_text="Let's crunch 'em interviews!"
+    )
+    player "Great! Let's check the curriculum off my To-Do list."
+    $ todo_list.complete(todo_learn_cs)
+    player "(Let's make it a To-Do item to start preparing for coding interviews.)"
+    $ todo_list.add_todo(todo_apply_to_jobs)
 
 label stage8:
     # Stage 8. Coding interviews
@@ -883,9 +1081,14 @@ label stage8:
     show text "{size=48}{color=[white]}{i}Chapter 5: Let's crunch 'em interviews!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
-    show screen player_stats_screen
 
-    scene bg bedroom night with dissolve
+    scene bg bedroom night with fadehold
+    player "Alright! Let's start by applying to jobs!"
+    # if has_won_hacker_space_trivia:
+    #     player "Hey. I remember that "
+
+    "TO BE CONTINUED"
+
     player "I read that technical jobs ask candidates to complete coding interviews."
     player "I now know how to code, so these interviews shouldn't be too hard if I study, right?"
     player "Let's do this."

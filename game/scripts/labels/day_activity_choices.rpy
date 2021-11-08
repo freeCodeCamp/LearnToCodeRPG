@@ -4,7 +4,7 @@ label day_activity_choices:
 
     # if the player has low_energy level, jump directly to one of the relaxing choices
     if player_stats.is_sanity_low():
-        jump day_activity_relax
+        call day_activity_relax
 
     player "Okay, what shall we do for the day?"
     menu:
@@ -72,6 +72,7 @@ label day_activity_choices:
         "Take a day off and relax":
             call day_activity_relax
             call day_end
+    return
             
 label day_activity_relax:
     # this choice boosts sanity
@@ -244,8 +245,8 @@ label day_activity_interview:
     $ day_activity = 'interview'
     player "Today is my big day! I have an interview with [interview_company_name]."    
 
-    scene bg interview_room with dissolve
-    player "Wow they have a fancy office. I do wish I can work here."
+    scene bg interview_room with slideright
+    player "Wow. Their office sure is fancy. I wish I can get my cubicle in a fancy office like this..."
 
     interviewer "Hello, is that [persistent.player_name]?"
     player "Yes. Good morning."

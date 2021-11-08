@@ -93,6 +93,10 @@ label trivia_session_questions:
         trivia_guy "You missed some of the questions there, but it was close."
         trivia_guy "Better luck next time. I'll be here waiting."
 
+    # remove the timed menu
+    $ timeout_label = None
+    $ timeout = None
+
     return
 
 label trivia_one_question:

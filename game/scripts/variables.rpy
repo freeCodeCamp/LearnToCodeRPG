@@ -45,6 +45,8 @@ init python:
     todo_ask_curriculum = 'Ask Annika about CS curriculum'
     todo_learn_cs = 'Ramp up CS knowledge'
     todo_apply_cupcakecpu = 'Apply to CupcakeCPU'
+    todo_apply_to_jobs = 'Apply to jobs'
+    todo_interview_prep = 'Prepare for coding interviews'
 
     # story labels for hacker space and barista
     hacker_space_event_labels = [

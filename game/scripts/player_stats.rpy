@@ -33,6 +33,8 @@ init python:
                 # TODO: play different sound depending on the stats and direction of change
                 if not renpy.sound.is_playing():
                     renpy.sound.play('audio/sfx/stats_change_boop.wav')
+            # show the stats screen
+            renpy.show_screen('player_stats_screen')
 
         def change_stats_random(self, stats_name, min_val, max_val):
             # renpy.random.randint([min], [max]) both ends inclusive
