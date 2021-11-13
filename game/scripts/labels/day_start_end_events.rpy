@@ -124,22 +124,29 @@ label day_end:
 
     player "Hmmm... Let's see. Do I have any cool tech terms I caught during my barista shift that I need to research about?"
     # if there are topics to ask about, call Annika or Marco
-    if topics_to_ask_annika and topics_to_ask_marco and has_met_marco:
+    if topics_to_ask:
+        player "I do have something to ask."
         # randomly decide between Annika and Marco
-        if renpy.random.random() > 0.5:
-            player "Let's give Annika a call!"
-            call day_end_annika
+        if not has_met_marco:
+            player "Let's give Annika a call."
+            npc = annika
+            npc_sprite = 'annika'
         else:
-            player "Let's chat with Marco."
-            call day_end_marco
-    elif topics_to_ask_marco and not has_met_marco: # nothing in topics_to_ask_annika
-        player "I do have some questions to ask but I feel like Annika isn't the best person. Maybe I can find someone on the [freeCodeCamp] forum?"
-    elif topics_to_ask_annika:
-        call day_end_annika
-    elif topics_to_ask_marco and has_met_marco:
-        call day_end_marco
-    elif not topics_to_ask_annika and not topics_to_ask_marco:
-        player "I don't think I have any. I can just chill for a bit."
+            player "Who should I talk to?"
+            menu:
+                "Who to ask about tech buzzwords?"
+            
+                "Annika":
+                    player "Let's give Annika a call."
+                    npc = annika
+                    npc_sprite = 'annika'
+            
+                "Marco":
+                    player "Let's chat with Marco."
+                    npc = marco
+                    npc_sprite = 'marco'
+
+        call npc_conversation_start
 
     player "Anyways, I feel like I've done a lot today. Let's call it a day and get some rest."
     player "Tomorrow will be another day. Right, Mint?"

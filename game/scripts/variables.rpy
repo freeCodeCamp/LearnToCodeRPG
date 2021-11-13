@@ -18,6 +18,8 @@ init python:
     day_activity = None # set in day_activity_choice.rpy
 
     topics_to_ask = set()
+    npc = annika
+    npc_sprite = 'annika'
 
     seen_hacker_space_events = set()
 
@@ -79,13 +81,16 @@ init python:
     ]
 
     ask_npc = {
-    'Hackathon': ask_annika_hackathon,
-    'Full-Stack': ask_annika_fullstack,
-    'DevOps': ask_annika_devops,
-    'Conference': ask_annika_conference,
-    'Version Control': ask_annika_versioncontrol,
-    'Machine Learning': ask_marco_machinelearning,
-    'Agile': ask_marco_agile,
-    'API': ask_marco_api,
-    'User Experience': ask_marco_userexperience,
+    'Hackathon': ask_hackathon,
+    'Full-Stack': ask_fullstack,
+    'DevOps': ask_devops,
+    'Conference': ask_conference,
+    'Version Control': ask_versioncontrol,
+    'Machine Learning': ask_machinelearning,
+    'Agile': ask_agile,
+    'API': ask_api,
+    'User Experience': ask_userexperience,
     }
+
+    # reverse map for removing asked topics
+    ask_npc_label_to_topic = {label : topic for topic, label in ask_npc.items()}
