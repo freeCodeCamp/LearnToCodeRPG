@@ -67,7 +67,7 @@ label trivia_session_questions:
             trivia_guy "Last question."
         else:
             trivia_guy "Next question."
-        call trivia_one_question
+        call trivia_one_question from _call_trivia_one_question
 
     # check results
     trivia_guy "Now let's check the results."
@@ -77,7 +77,6 @@ label trivia_session_questions:
         trivia_guy "Could this be...?"
         play sound 'audio/sfx/hacker_space_trivia_win.wav'
         trivia_guy "You are the first person to get everything correct! Congratulations!"
-        $ player_stats.change_stats('Dev Trivia', 20)
         trivia_guy "Now about the award..."
         show business_card at truecenter with zoomin
         trivia_guy "I'm actually a talent recruiter at {b}CupcakeCPU™{/b}. Feel free to apply to our roles. We welcome talent like you."

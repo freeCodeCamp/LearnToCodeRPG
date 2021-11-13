@@ -393,7 +393,7 @@ label stage4:
     player "I believe I can use this piece of information to my advantage. Let's make it a to-do item to ask Annika if she knows about events like this."
 
     $ todo_list.add_todo(todo_ask_hackathon)
-    # $ topics_to_ask.add('Hackathon')
+    $ topics_to_ask.add('Hackathon')
     player "Alright! Going back to my shift."
     hide screen player_stats_screen
 
@@ -633,7 +633,7 @@ label stage6:
     player "Looks like I will need to complete four multiple choice questions per session."
     player "Let's do it."
 
-    call study_session
+    call study_session from _call_study_session
 
     scene bg bedroom night with dissolve
     player "Phew... I'm finally done with these questions. What a day..."
@@ -673,7 +673,7 @@ label stage6:
     player "Okay. Breakfast's done. Let's get to work."
     player "Hopefully I can get more questions correct today."
 
-    call study_session
+    call study_session from _call_study_session_2
 
     scene bg bedroom with dissolve
 
@@ -714,23 +714,7 @@ label stage6:
         "What topic to ask Annika about?"
 
         "Hackthon":
-            player "What is a hackathon?"
-            annika "It's a event where people come together to design and implement cool tech projects."
-            annika "Hackathons aren't usually too long. Most lasts for one or two days. {w}Now imagine people hacking away at their laptops overnight! You get the idea."
-            annika "People usually form small teams to collaborate. It's especially cool when the team consists of people with different expertise, not just software engineers, but graphic designers and product managers as well."
-            annika "It's a great way to brainstorm, prototype, and test out ideas that might one day evolve into full-fledged products."
-            player "That sounds cool!"
-            annika "Yeah! I've only been to one or two of them, but my company has those seasonal innovation events that I'll be checking out soon."
-            annika "You should go to some hackathons as well! You will learn to collaborate with other developers and even designers."
-            annika "Plus, hackathon projects look great on your resume."
-            player "Cool! But how do I find hackathon events?"
-            annika "Just search online! You might be surprised by the number of hackathons happening locally near you."
-            player "That's awesome! I'll check that out when I get a bit better at coding."
-
-            # TODO: todo_list.add_todo('Try out hackathons'), needs more writing
-            # TODO: refactor and add to topics_to_ask
-            $ todo_list.complete_todo(todo_ask_hackathon)
-            hide screen player_stats_screen
+            call ask_annika_hackathon
             jump stage6_annika_questions
 
         "Hacker Space":
@@ -788,9 +772,9 @@ label stage6_after_annika_questions:
     scene black with dissolve
 
     # two days of activity of the player's choosing
-    call day_start
+    call day_start from _call_day_start
 
-    call day_start
+    call day_start from _call_day_start_1
 
     # hacker space story
     scene bg bedroom with fadehold
@@ -848,9 +832,9 @@ label stage6_after_annika_questions:
     $ has_visited_hacker_space_with_annika = True
 
     # two days of activity of the player's choosing
-    call day_start
+    call day_start from _call_day_start_2
 
-    call day_start
+    call day_start from _call_day_start_3
 
     $ calendar.next_month()
     show screen player_stats_screen
@@ -935,9 +919,9 @@ label stage7:
     hide mint
 
     # two days of activity of the player's choosing
-    call day_start
+    call day_start from _call_day_start_4
 
-    call day_start
+    call day_start from _call_day_start_5
 
     $ calendar.next_month()
     show screen player_stats_screen
@@ -1055,7 +1039,7 @@ label stage7:
         "Try ramping up your {b}CS Knowledge{/b} to above 80 by completing more quizzes."
 
     while player_stats.player_stats_map['CS Knowledge'] < 80:
-        call day_start
+        call day_start from _call_day_start_6
 
     # once we are down here, we should have player_stats.player_stats_map['CS Knowledge'] >= 80
     play sound 'audio/sfx/social_media_notification.wav'

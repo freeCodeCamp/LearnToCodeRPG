@@ -14,7 +14,9 @@ init python:
 
     day_activity = None # set in day_activity_choice.rpy
 
-    ## TODO
+    topics_to_ask = set() # empty set
+
+    ## TODO #################
 
     # TODO: refactor
     has_met_marco = False
@@ -36,6 +38,7 @@ init python:
     day_of_first_offer = None
 
     seen_hacker_space_events = set()
+    #################################
 
     ## Non-mutable
 
@@ -47,6 +50,7 @@ init python:
     todo_apply_cupcakecpu = 'Apply to CupcakeCPU'
     todo_apply_to_jobs = 'Apply to jobs'
     todo_interview_prep = 'Prepare for coding interviews'
+    todo_ask = 'Learn about ' # should be concatenated with vocabs from barista story
 
     # story labels for hacker space and barista
     hacker_space_event_labels = [
@@ -55,3 +59,31 @@ init python:
     'hacker_space_project',
     'hacker_space_open_source',
     ]
+
+    barista_event_labels = [
+    'barista_fullstack'
+    'barista_devops',
+    'barista_conference',
+    'barista_versioncontrol'
+
+    'barista_machinelearning',
+    'barista_agile',
+    'barista_api',
+    'barista_userexperience',
+    
+    ]
+
+    ask_annika = {
+    'Hackathon': label_ask_annika_hackathon,
+    'Full-Stack': label_ask_annika_fullstack,
+    'DevOps': label_ask_annika_devops,
+    'Conference': label_ask_annika_conference,
+    'Version Control': label_ask_annika_versioncontrol,
+    }
+
+    ask_marco = {
+    'Machine Learning': label_ask_marco_machinelearning,
+    'Agile': label_ask_marco_agile,
+    'API': label_ask_marco_api,
+    'User Experience': label_ask_marco_userexperience
+    }

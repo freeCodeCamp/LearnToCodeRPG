@@ -4,7 +4,7 @@ label day_activity_choices:
 
     # if the player has low_energy level, jump directly to one of the relaxing choices
     if player_stats.is_sanity_low():
-        call day_activity_relax
+        call day_activity_relax from _call_day_activity_relax
 
     player "Okay, what shall we do for the day?"
     menu:
@@ -14,7 +14,7 @@ label day_activity_choices:
             $ has_done_job_search_today = True
             player "Let's search for job openings."
             call day_activity_job_search from _call_day_activity_job_search_1
-            call day_end
+            call day_end from _call_day_end
 
         # TODO: change this string to study more CS fundamentals
         # when the player has completed the curriculum
@@ -53,25 +53,25 @@ label day_activity_choices:
                 player pout "... I got all questions wrong..."
                 player neutral "But it will get better with practice, won't it?"
 
-            call day_end
+            call day_end from _call_day_end_1
         
         "Work gig as a barista":
             # this choice unlocks interesting tech rumors and recovers a bit of sanity
             $ day_activity = 'barista'
             player "I can work some shifts to cover my bills. Plus, I get to interact with people and take my mind off cramming for a bit."
             call day_activity_barista from _call_day_activity_barista
-            call day_end
+            call day_end from _call_day_end_2
 
         "Hang out at Hacker Space" if has_visited_hacker_space_with_annika:
             # this choice progresses the Hacker Space side story
             $ day_activity = 'hackerspace'
             player "I'm feeling adventurous. Why not check out Hacker Space for some adventures?"
             call day_activity_hacker_space from _call_day_activity_hacker_space
-            call day_end
+            call day_end from _call_day_end_3
 
         "Take a day off and relax":
-            call day_activity_relax
-            call day_end
+            call day_activity_relax from _call_day_activity_relax_1
+            call day_end from _call_day_end_4
     return
             
 label day_activity_relax:
@@ -108,17 +108,20 @@ label day_activity_hacker_space:
         trivia_guy "Hey, you there! Would you be up to a round of tech trivia?"
         menu:        
             "Sure!":
-                call hacker_space_tech_trivia
+                call hacker_space_tech_trivia from _call_hacker_space_tech_trivia
             "Sorry, not feeling like it.":
                 player "Sorry, but I'm not feeling like it."
                 trivia_guy "No problem. Let me know anytime if you are to a challenge."
                 player "(Let's just check out what's happening around here.)"
-                call day_activity_hacker_space_random
+                call day_activity_hacker_space_random from _call_day_activity_hacker_space_random
     else:
-        call day_activity_hacker_space_random
+        call day_activity_hacker_space_random from _call_day_activity_hacker_space_random_1
 
     scene bg hacker_space dusk with fadehold
     player "Wow, it's already getting dark? Today's quite an eventful day."
+    player "Somehow I feel quite relaxed in this coder-centric atmosphere."
+    # bump sanity for a little bit
+    $ player_stats.change_stats('Sanity', 5)
     player "Let's head home now."
     return
 
@@ -132,8 +135,6 @@ label day_activity_hacker_space_random:
             seen_hacker_space_events.add(hacker_space_event)
 
         renpy.call(hacker_space_event)
-        player_stats.change_stats('Sanity', 5)
-        player_stats.change_stats('Dev Trivia', 5)
     return
 
 label day_activity_barista:
@@ -203,7 +204,8 @@ label day_activity_video_game:
 
     $ num_hits, num_notes = _return
     player "I hit [num_hits] notes out of [num_notes]. That wasn't bad!"
-    player "Video games are a nice way to let off steam."
+    player "Video games are the best way to let off steam, aren't they?"
+    player "Now I feel properly relaxed and fueled for a battle tomorrow!"
     return
 
 label day_activity_job_search:

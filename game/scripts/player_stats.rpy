@@ -1,11 +1,13 @@
 init python:
+
+    # a change in stats or todo should always automatically trigger the showing of the stats screen
+
     class PlayerStats():
         def __init__(self):
             # map string names to stats
             self.player_stats_map = {
             'Sanity': None, 
             'CS Knowledge': None, 
-            'Dev Trivia': None
             }
 
             # to loop over the dictionary deterministically
@@ -16,9 +18,6 @@ init python:
             if stats_name in self.player_stats_map:
                 clamped_val = min(100, max(0, val))
                 self.player_stats_map[stats_name] = clamped_val
-            # DEBUG
-            else:
-                renpy.notify(message='Nonexistent stats: ' + stats_name)
             if not renpy.get_screen('player_stats_screen'):
                 renpy.show_screen('player_stats_screen')
 
@@ -34,7 +33,8 @@ init python:
                 if not renpy.sound.is_playing():
                     renpy.sound.play('audio/sfx/stats_change_boop.wav')
             # show the stats screen
-            renpy.show_screen('player_stats_screen')
+            if not renpy.get_screen('player_stats_screen'):
+                renpy.show_screen('player_stats_screen')
 
         def change_stats_random(self, stats_name, min_val, max_val):
             # renpy.random.randint([min], [max]) both ends inclusive
@@ -62,9 +62,6 @@ init python:
                 self.todo_dict[todo] = True
                 if not renpy.sound.is_playing():
                     renpy.sound.play('audio/sfx/todo_complete.wav')
-                # DEBUG
-            else:
-                renpy.notify(message='Nonexistent todo: ' + todo)
 
 transform alpha_dissolve:
     alpha 0.0

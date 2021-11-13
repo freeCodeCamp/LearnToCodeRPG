@@ -7,7 +7,7 @@ label hacker_space_tech_trivia:
     trivia_guy "Are you ready?"
     player "Yes, let's do this!"
 
-    call trivia_session # see quiz_session.rpy
+    call trivia_session from _call_trivia_session # see quiz_session.rpy
     # results has been checked
     return
 

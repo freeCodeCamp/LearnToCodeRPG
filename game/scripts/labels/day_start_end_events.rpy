@@ -25,7 +25,7 @@ label day_start:
             ])
         renpy.call(day_start_text)
     
-    call day_activity_choices
+    call day_activity_choices from _call_day_activity_choices
     return
 
 # TODO: special text on days of interview
