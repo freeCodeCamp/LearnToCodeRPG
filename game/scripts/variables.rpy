@@ -91,6 +91,3 @@ init python:
     'API': ask_api,
     'User Experience': ask_userexperience,
     }
-
-    # reverse map for removing asked topics
-    ask_npc_label_to_topic = {label : topic for topic, label in ask_npc.items()}

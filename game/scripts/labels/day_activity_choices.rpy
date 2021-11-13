@@ -128,36 +128,42 @@ label day_activity_hacker_space:
 label day_activity_hacker_space_random:
     scene bg hacker_space with blinds
     python:
-        if len(seen_hacker_space_events) == 4: # all seen, now pick random
-            hacker_space_event = renpy.random.choice(seq=hacker_space_events)
+        if len(seen_hacker_space_events) == len(hacker_space_event_labels): # all seen, now pick random
+            label = renpy.random.choice(seq=hacker_space_event_labels)
         else: # just add the next one
-            hacker_space_event = hacker_space_event_labels[len(seen_hacker_space_events)]
-            seen_hacker_space_events.add(hacker_space_event)
+            label = hacker_space_event_labels[len(seen_hacker_space_events)]
+            seen_hacker_space_events.add(label)
 
-        renpy.call(hacker_space_event)
+        renpy.call(label)
     return
 
 label day_activity_barista:
     scene bg cafe with slideright
-    # TODO: play sound ding-dong
+    player "Alright, let's focus on my shift!"
+    play sound 'audio/sfx/cafe_pour.wav'
+    show coffee at truecenter
+    pause 5
+    hide coffee
+    player "Here's your mocha latte. Enjoy your day!"
+    # if all seen, skip
+    if len(seen_barista_events) == len(barista_event_labels) or renpy.random.random() > 0.5:
+        player "(It's pretty quiet in the cafe today. Guess I won't get to hear any tech gossips.)"
+    else:
+        # pick random tech gossip
+        python:
+            label = renpy.random.choice(barista_event_labels)
+            seen_barista_events.add(label)
 
-    # TODO: refactor
-    python:
-        if len(seen_hacker_space_events) == 4: # all seen, now pick random
-            hacker_space_event = renpy.random.choice(seq=hacker_space_events)
-        else: # just add the next one
-            hacker_space_event = hacker_space_event_labels[len(seen_hacker_space_events)]
-            seen_hacker_space_events.add(hacker_space_event)
+            renpy.call(hacker_space_event)
 
-
-    player "Here's your matcha latte. Enjoy your day!"
-    player "Hmm... There are a group of kids in the back with their computers."
-    kid "So I have this hackathon idea..."
-    player "I don't mean to eavesdrop, but did they mention a hackathon?"
-    player "Geez, kids these days are intense."
-    player "But a hackathon? That sounds cool. I should give it a try when I know more about coding."
-
-    player "Serving coffee is no easy work, but somehow I feel refreshed from meeting all these people."
+    scene bg cafe dusk with fadehold
+    play sound 'audio/sfx/cafe_pour.wav'
+    show coffee at truecenter
+    pause 5
+    hide coffee
+    
+    player "My shift is almost over now."
+    player "Serving coffee is no easy work, but somehow I feel refreshed from meeting and greeting people."
     $ player_stats.change_stats('Sanity', 5)
     return
 

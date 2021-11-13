@@ -606,13 +606,17 @@ label stage5_annika:
 
     scene bg cafe with fadehold
     play sound 'audio/sfx/cafe_pour.wav'
+    show coffee at truecenter
     pause 5
+    hide coffee
 
     player "I don't see too many people in the cafe today. Maybe because it's a work day?"
 
     scene bg cafe dusk with fadehold
     play sound 'audio/sfx/cafe_pour.wav'
+    show coffee at truecenter
     pause 5
+    hide coffee
     player "That's about it for my shift. Not much happened."
     player "Let's head home early to squeeze in some studying tonight, just to keep up the momentum."
 

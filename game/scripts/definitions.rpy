@@ -143,6 +143,16 @@ init:
         0.8
         'others/toast/toast5.png'
 
+    # coffee
+    image coffee:
+        'others/coffee/coffee1.png'
+        0.8
+        'others/coffee/coffee2.png'
+        0.8
+        'others/coffee/coffee3.png'
+        0.8
+        repeat
+    
     # expressions
     # player
     # define player_expressions = [
