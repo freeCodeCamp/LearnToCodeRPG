@@ -1062,17 +1062,21 @@ label stage7:
     )
     player "Great! Let's check the curriculum off my To-Do list."
     $ todo_list.complete_todo(todo_learn_cs)
-    $ todo_list.add_todo(todo_apply_to_jobs)
+    $ todo_list.add_todo(todo_interview_prep)
     player "(Let's also make it a To-Do item to start preparing for coding interviews.)"
+    $ todo_list.add_todo(todo_apply_to_jobs)
+    player "(And to start applying to jobs as well!)"
 
 label stage8:
     # Stage 8. Coding interviews
     hide screen player_stats_screen
+    $ quick_menu = False
     scene black with dissolve
     pause 1
     show text "{size=48}{color=[white]}{i}Chapter 5: Let's crunch 'em interviews!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
+    $ quick_menu = True
 
     scene bg bedroom night with fadehold
     player "Alright! Let's start by applying to jobs!"
