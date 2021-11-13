@@ -3,10 +3,10 @@
 
 screen confirm_and_share(title, message, ok_text, ok_action=Return()):
 
-    modal True
-
-    window:
-        style "gm_root"
+    # this will replace background image
+    # modal True
+    # window:
+    #     style "gm_root"
 
     frame:
         style_prefix "confirm"

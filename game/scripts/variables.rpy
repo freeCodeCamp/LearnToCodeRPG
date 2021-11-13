@@ -80,14 +80,15 @@ init python:
     'barista_userexperience',    
     ]
 
+    # map topic to label name
     ask_npc = {
-    'Hackathon': ask_hackathon,
-    'Full-Stack': ask_fullstack,
-    'DevOps': ask_devops,
-    'Conference': ask_conference,
-    'Version Control': ask_versioncontrol,
-    'Machine Learning': ask_machinelearning,
-    'Agile': ask_agile,
-    'API': ask_api,
-    'User Experience': ask_userexperience,
+    'Hackathon': 'ask_hackathon',
+    'Full-Stack': 'ask_fullstack',
+    'DevOps': 'ask_devops',
+    'Conference': 'ask_conference',
+    'Version Control': 'ask_versioncontrol',
+    'Machine Learning': 'ask_machinelearning',
+    'Agile': 'ask_agile',
+    'API': 'ask_api',
+    'User Experience': 'ask_userexperience',
     }

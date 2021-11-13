@@ -123,14 +123,15 @@ label day_end:
     player happy "Delicious home-cooked dinner as always."
 
     player "Hmmm... Let's see. Do I have any cool tech terms I caught during my barista shift that I need to research about?"
-    # if there are topics to ask about, call Annika or Marco
-    if topics_to_ask:
+    if not topics_to_ask:
+        player "I don't have anything on my list."
+    else: # if there are topics to ask about, call Annika or Marco
         player "I do have something to ask."
         # randomly decide between Annika and Marco
         if not has_met_marco:
             player "Let's give Annika a call."
-            npc = annika
-            npc_sprite = 'annika'
+            $ npc = annika
+            $ npc_sprite = 'annika'
         else:
             player "Who should I talk to?"
             menu:
@@ -138,13 +139,13 @@ label day_end:
             
                 "Annika":
                     player "Let's give Annika a call."
-                    npc = annika
-                    npc_sprite = 'annika'
+                    $ npc = annika
+                    $ npc_sprite = 'annika'
             
                 "Marco":
                     player "Let's chat with Marco."
-                    npc = marco
-                    npc_sprite = 'marco'
+                    $ npc = marco
+                    $ npc_sprite = 'marco'
 
         call npc_conversation_start
 

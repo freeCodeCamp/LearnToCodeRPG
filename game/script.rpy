@@ -718,7 +718,7 @@ label stage6:
         "What topic to ask Annika about?"
 
         "Hackthon":
-            call ask_annika_hackathon
+            call ask_hackathon
             jump stage6_annika_questions
 
         "Hacker Space":
@@ -934,6 +934,7 @@ label stage7:
     scene bg bedroom with fadehold
     player "It's been two months since I started to learn to code. Time really flies."
     player "I feel like I'm so much more knowledgeable than when I started."
+    hide screen player_stats_screen
 
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
@@ -1048,8 +1049,9 @@ label stage7:
         call day_start from _call_day_start_6
 
     # once we are down here, we should have player_stats.player_stats_map['CS Knowledge'] >= 80
+    scene bg bedroom with fadehold
     play sound 'audio/sfx/social_media_notification.wav'
-    player "Hmm? A notification from my phone?"
+    player "Hmm? A notification from my phone? This early in the morning?"
     player "It says {bt}Congratulations!{/bt}...?"
     $ completed_curriculum_date = date(calendar.year, calendar.month, calendar.day)
     $ days_between_start_and_curriculum_completion = (completed_curriculum_date - start_date).days
@@ -1059,9 +1061,9 @@ label stage7:
         ok_text="Let's crunch 'em interviews!"
     )
     player "Great! Let's check the curriculum off my To-Do list."
-    $ todo_list.complete(todo_learn_cs)
-    player "(Let's make it a To-Do item to start preparing for coding interviews.)"
+    $ todo_list.complete_todo(todo_learn_cs)
     $ todo_list.add_todo(todo_apply_to_jobs)
+    player "(Let's also make it a To-Do item to start preparing for coding interviews.)"
 
 label stage8:
     # Stage 8. Coding interviews

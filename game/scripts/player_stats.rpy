@@ -18,8 +18,7 @@ init python:
             if stats_name in self.player_stats_map:
                 clamped_val = min(100, max(0, val))
                 self.player_stats_map[stats_name] = clamped_val
-            if not renpy.get_screen('player_stats_screen'):
-                renpy.show_screen('player_stats_screen')
+            renpy.show_screen('player_stats_screen')
 
         def change_stats(self, stats_name, val):
             if not renpy.get_screen('player_stats_screen'):
@@ -32,8 +31,7 @@ init python:
                 # TODO: play different sound depending on the stats and direction of change
                 if not renpy.sound.is_playing():
                     renpy.sound.play('audio/sfx/stats_change_boop.wav')
-            # show the stats screen
-            if not renpy.get_screen('player_stats_screen'):
+                # show the stats screen
                 renpy.show_screen('player_stats_screen')
 
         def change_stats_random(self, stats_name, min_val, max_val):
@@ -52,14 +50,14 @@ init python:
         def add_todo(self, todo):
             self.todo_keys.append(todo)
             self.todo_dict[todo] = False
-            if not renpy.get_screen('player_stats_screen'):
-                renpy.show_screen('player_stats_screen')
+            renpy.show_screen('player_stats_screen')
             if not renpy.sound.is_playing():
                 renpy.sound.play('audio/sfx/smartphone_typing.wav')
 
         def complete_todo(self, todo):
             if todo in self.todo_dict:
                 self.todo_dict[todo] = True
+                renpy.show_screen('player_stats_screen')
                 if not renpy.sound.is_playing():
                     renpy.sound.play('audio/sfx/todo_complete.wav')
 

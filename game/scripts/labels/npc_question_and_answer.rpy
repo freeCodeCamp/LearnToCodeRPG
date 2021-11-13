@@ -1,19 +1,19 @@
 # need to set npc and npc_sprite before calling these labels
 
 label npc_conversation_start:
-    show npc_sprite
-    # TODO: play sound of typing
+    $ renpy.show(npc_sprite) # Annika or Marco
     player "Hello!"
     npc "Hey [persistent.player_name]! What's up?"
     player "Well, I heard some tech buzzwords and would like to learn more about them."
     npc "Sure, what would you like to know?"
     $ choices = [(topic, ask_npc[topic]) for topic in topics_to_ask]
-    $ label = renpy.display_menu(items=choices)
+    $ label = renpy.display_menu(choices)
     $ renpy.call(label=label)
     # remove the asked topic inside each label
 
     player "That's all I need to know. Thanks!"
     npc "No problem. Have a good night!"
+    $ renpy.hide(npc_sprite)
     return
 
 label ask_hackathon:
@@ -174,7 +174,7 @@ label ask_userexperience:
     npc "There are time-tested UX flow and templates designed to make an application clean and crisp."
     player "(Hmmm... have I encountered any sites that have either really great or really bad user experience?)"
     npc "My turn to ask a question. What do you think about the user experience of [freeCodeCamp]?"
-    
+
     menu:
         "What do you think about the user experience of [freeCodeCamp]?"
     

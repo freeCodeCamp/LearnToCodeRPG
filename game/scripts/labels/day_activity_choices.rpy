@@ -5,6 +5,8 @@ label day_activity_choices:
     # if the player has low_energy level, jump directly to one of the relaxing choices
     if player_stats.is_sanity_low():
         call day_activity_relax from _call_day_activity_relax
+        call day_end
+        return # return to script.rpy
 
     player "Okay, what shall we do for the day?"
     menu:
@@ -129,7 +131,7 @@ label day_activity_hacker_space_random:
     scene bg hacker_space with blinds
     python:
         if len(seen_hacker_space_events) == len(hacker_space_event_labels): # all seen, now pick random
-            label = renpy.random.choice(seq=hacker_space_event_labels)
+            label = renpy.random.choice(hacker_space_event_labels)
         else: # just add the next one
             label = hacker_space_event_labels[len(seen_hacker_space_events)]
             seen_hacker_space_events.add(label)
@@ -146,22 +148,21 @@ label day_activity_barista:
     hide coffee
     player "Here's your mocha latte. Enjoy your day!"
     # if all seen, skip
-    if len(seen_barista_events) == len(barista_event_labels) or renpy.random.random() > 0.5:
+    if len(seen_barista_events) == len(barista_event_labels) or renpy.random.random() > 0.7:
         player "(It's pretty quiet in the cafe today. Guess I won't get to hear any tech gossips.)"
     else:
-        # pick random tech gossip
+        # 70% trigger rate, pick random tech gossip
         python:
             label = renpy.random.choice(barista_event_labels)
             seen_barista_events.add(label)
-
-            renpy.call(hacker_space_event)
+            renpy.call(label)
 
     scene bg cafe dusk with fadehold
     play sound 'audio/sfx/cafe_pour.wav'
     show coffee at truecenter
     pause 5
     hide coffee
-    
+
     player "My shift is almost over now."
     player "Serving coffee is no easy work, but somehow I feel refreshed from meeting and greeting people."
     $ player_stats.change_stats('Sanity', 5)

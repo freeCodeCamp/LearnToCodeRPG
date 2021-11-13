@@ -66,8 +66,7 @@ label barista_api:
     return
 
 label barista_userexperience:
-    female "Hey."
-    college_boy "Hey."
+    female "Hey there. Nice to meet you!"
     female "You must be our new User Experience intern, right?"
     college_boy "Yes! It's my great pleasure to be on the team!"
     female "Good, good. Now tell me a bit about yourself. Why did you get into UX? What UX projects have you done?"
