@@ -121,7 +121,27 @@ label day_end:
 
     scene bg bedroom night with blinds
     player happy "Delicious home-cooked dinner as always."
-    player "Anyways, I've done quite a lot today. Let's call it a day and get some rest."
+
+    player "Hmmm... Let's see. Do I have any cool tech terms I caught during my barista shift that I need to research about?"
+    # if there are topics to ask about, call Annika or Marco
+    if topics_to_ask_annika and topics_to_ask_marco and has_met_marco:
+        # randomly decide between Annika and Marco
+        if renpy.random.random() > 0.5:
+            player "Let's give Annika a call!"
+            call day_end_annika
+        else:
+            player "Let's chat with Marco."
+            call day_end_marco
+    elif topics_to_ask_marco and not has_met_marco: # nothing in topics_to_ask_annika
+        player "I do have some questions to ask but I feel like Annika isn't the best person. Maybe I can find someone on the [freeCodeCamp] forum?"
+    elif topics_to_ask_annika:
+        call day_end_annika
+    elif topics_to_ask_marco and has_met_marco:
+        call day_end_marco
+    elif not topics_to_ask_annika and not topics_to_ask_marco:
+        player "I don't think I have any. I can just chill for a bit."
+
+    player "Anyways, I feel like I've done a lot today. Let's call it a day and get some rest."
     player "Tomorrow will be another day. Right, Mint?"
     show mint
     mint "Meow!"
@@ -131,3 +151,8 @@ label day_end:
     scene black with fadehold
 
     return # should return control to script.rpy
+
+label day_end_annika:
+
+
+label day_end_marco:

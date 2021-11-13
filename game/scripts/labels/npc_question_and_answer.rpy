@@ -17,5 +17,35 @@ label ask_annika_hackathon:
     # TODO: todo_list.add_todo('Try out hackathons'), needs more writing
     # TODO: refactor and add to topics_to_ask
     $ todo_list.complete_todo(todo_ask_hackathon)
-    hide screen player_stats_screen
     return
+
+label ask_annika_fullstack:
+    player "What is a full-stack developer?"
+    annika "A full-stack developer usually refers to a full-stack web developer. It's a role for people who can develop both client and server software."
+    annika "You might have heard about front-end and back-end already. Full-stack is front-end and back-end put together."
+    annika "Front-end is synonymous with client software, or, User Interface (UI), the appearance of the application we are using."
+    annika "Like the layout of a website."
+    annika "Back-end is synonymous with server software, or, the logic. Like how the database remembers your information on a e-shopping website."
+    annika "Again, put front-end and back-end together and you have full-stack!"
+    player "Wow. Then a full-stack developer must be a real jack-of-all-trades."
+    annika "Exactly! If that's something you'd like to learn more about, check out the classes on [freeCodeCamp]!"
+    player "I'll, thanks!"
+
+    # TODO: add glossary
+    return
+
+label ask_annika_devops:
+
+label ask_annika_conference:
+
+label ask_annika_versioncontrol:
+
+# ask Marco
+
+label ask_marco_machinelearning:
+
+label ask_marco_agile:
+
+label ask_marco_api:
+
+label ask_marco_userexperience:

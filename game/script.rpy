@@ -855,6 +855,8 @@ label stage7:
     pause 1
     hide text with dissolve
 
+    $ has_met_marco = True # unlocks Marco's topics_to_ask
+
     scene bg desk with blinds
     show marco
     marco "Hi [persistent.player_name]. I'm Marco. I'm a senior engineer at {b}QuicheQueue{\b}."
