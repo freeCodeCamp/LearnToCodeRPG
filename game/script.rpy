@@ -1116,6 +1116,7 @@ label stage8:
     player "Yawwwwwn... Let's call this a day and get back to my routine tomorrow."
 
     # loop routine
+    # TODO: fix this
     while not has_received_offer:
         call day_start
 
@@ -1199,7 +1200,32 @@ label stage14:
     default layla_story_choices = set()
     menu layla_story_choices:
         set layla_story_choices
-        "":
+        "What was your experience like when you first joined?":
+            player "Would you mind telling me about your experience when you first joined this company?"
+            layla "Sure thing!"
+            layla "Like you, I also had an on boarding buddy. He was a few years ahead of me. Very knowledgeable and chill guy."
+            layla "Per his suggestion, I started with simple bug fixes. Then after a month, I started building small features and getting them approved by the team."
+            layla "As I became more familiar with the code base, I had more confidence to take on bigger features."
+            layla "And before I know it, here I am, two years in already."
+            player "Wow. Time sure flies."
+            layla "It sure does. You will be navigating our code base like a pro before you realize it."
+            jump layla_story_choices
+        "How was your transition from college to work?":
+            player "How was your transition from college to work? Was it any easier because of your CS background?"
+            layla "Yes and no. My CS background helps a little in that it gave me a general sense of what to expect in the workplace."
+            layla "However, there is few college CS curriculum that can cover the modern principles and best practices in the world of software."
+            layla "Which is not a surprise since the tech world is constantly evolving."
+            layla "But that also means that, for the most part, I had to pick up the important things on the job."
+            layla "Not a bad experience given that I had a supportive team behind me."
+            player "Awww that's nice!"
+            layla "Yep. Now you are the newbie here, we the team will be here for you."
+            jump layla_story_choices
+        "What is our team like?":
+            player "So what is our team like?"
+            layla "Oh, they are out investigating a customer case today, so it's only you and me here in the office."
+            layla "But you will meet them soon. They are all nice and smart people."
+            layla "You and I included, we have five developers in total, one scrum manager, one product manager, one UX designer. That makes us a team of eight."
+            player "Sounds cool! Can't wait to meet the team."
             jump layla_story_choices
         "I'm done asking!":
             player "I'm done asking! I feel so much better knowing that everyone started from square one."
