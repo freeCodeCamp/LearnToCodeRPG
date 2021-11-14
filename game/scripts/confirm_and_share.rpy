@@ -1,9 +1,9 @@
 # https://www.renpy.org/doc/html/screen_special.html
 # based on the confirm screen
 
-screen confirm_and_share(title, message, ok_text, ok_action=Return()):
+screen confirm_and_share_screen(title, message, ok_text, ok_action=Return()):
 
-    # this will replace background image
+    # uncommenting this will replace background image
     # modal True
     # window:
     #     style "gm_root"

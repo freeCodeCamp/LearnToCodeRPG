@@ -64,6 +64,13 @@ init python:
             renpy.image(image_name + ' night', im.MatrixColor(image_path, tint_dark))
             renpy.image(image_name + ' dusk', im.MatrixColor(image_path, tint_sunset))
 
+    # random interview room bg
+    interview_room_bgs = [
+    'images/bg/bg interview_room1.png',
+    'images/bg/bg interview_room2.png',
+    'images/bg/bg interview_room3.png'
+    ]
+
     ## font replacement
     # font file, boldness, italics
     config.font_replacement_map["fonts/lato/Lato-Regular.ttf", True, False] = ("fonts/lato/Lato-Bold.ttf", False, False)

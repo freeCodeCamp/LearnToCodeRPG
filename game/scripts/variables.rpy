@@ -21,7 +21,8 @@ init python:
     has_accepted_offer = False
 
     day_activity = None # set in day_activity_choice.rpy
-    interview_company_name = None
+    interview_company_name = None # set in day_activity_choice.rpy
+    offer_company_name = None # set in quiz_session.rpy
 
     topics_to_ask = set()
     npc = annika

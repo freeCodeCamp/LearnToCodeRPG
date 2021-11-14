@@ -118,12 +118,12 @@ label start_after_interview:
     "Thanks for completing your information. We will be in touch about next steps."
 
     with fade
-    player "(Sigh....)"
+    player "(Sigh...)"
     player "That was exhausting. There's no doubt that I bombed the questions."
     player "Geez, coding interviews are hard..."
     with vpunch
     player "What made me think I'm capable of getting a software job in the first place?"
-    player "Well... {w}it all started some time ago when I first decided to learn to code and get a real job..."
+    player "Well... it all started some time ago when I first decided to learn to code and get a real job..."
 
     # start the music here
     $ continue_looping_music = True
@@ -295,7 +295,7 @@ label stage2_after_social_media_ding:
 
     hide screen player_stats_screen
     with fadehold
-    player "... {w}I can't sleep with all these thoughts floating around in my head."
+    player "... I can't sleep with all these thoughts floating around in my head."
     player "What can I do if the kid I'm tutoring cuts down our sessions for his coding classes?"
     player "Ugh. I still need to pay the bills even if my parents are nice enough not to ask me for rent."
     player "Let's check out the coffee shop next door tomorrow and see if they are hiring."
@@ -435,7 +435,7 @@ label stage5:
         set stage5_choose_curriculum_visited
 
         "Responsive Web Design":
-            player pout "Ehhh... what even is web design? And I'm not a design person... Will I be able to follow along?"
+            player pout "Ehhh... What even is web design? And I'm not a design person... Will I be able to follow along?"
             player "Maybe let's look some more?"
             jump stage5_choose_curriculum
 
@@ -777,8 +777,10 @@ label stage6_after_annika_questions:
 
     # two days of activity of the player's choosing
     call day_start from _call_day_start
+    call day_activity_choices
 
     call day_start from _call_day_start_1
+    call day_activity_choices
 
     # hacker space story
     scene bg bedroom with fadehold
@@ -837,8 +839,10 @@ label stage6_after_annika_questions:
 
     # two days of activity of the player's choosing
     call day_start from _call_day_start_2
+    call day_activity_choices
 
     call day_start from _call_day_start_3
+    call day_activity_choices
 
     $ calendar.next_month()
     show screen player_stats_screen
@@ -926,8 +930,10 @@ label stage7:
 
     # two days of activity of the player's choosing
     call day_start from _call_day_start_4
+    call day_activity_choices
 
     call day_start from _call_day_start_5
+    call day_activity_choices
 
     $ calendar.next_month()
     show screen player_stats_screen
@@ -1047,6 +1053,7 @@ label stage7:
 
     while player_stats.player_stats_map['CS Knowledge'] < 80:
         call day_start from _call_day_start_6
+        call day_activity_choices
 
     # once we are down here, we should have player_stats.player_stats_map['CS Knowledge'] >= 80
     scene bg bedroom with fadehold
@@ -1057,7 +1064,7 @@ label stage7:
 
     $ completed_curriculum_date = date(calendar.year, calendar.month, calendar.day)
     $ days_between_start_and_curriculum_completion = (completed_curriculum_date - start_date).days
-    call screen confirm_and_share(
+    call screen confirm_and_share_screen(
         title="{bt}Congratulations!{/bt}",
         message="You completed the coding curriculum in {b}[days_between_start_and_curriculum_completion]{/b} days.\nNow you are ready to rock the coding interview and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
         ok_text="Let's crunch 'em interviews!"
@@ -1116,9 +1123,89 @@ label stage8:
     player "Yawwwwwn... Let's call this a day and get back to my routine tomorrow."
 
     # loop routine
-    # TODO: fix this
-    while not has_received_offer:
+    # TODO: refactor past demo if we need offer negotiation
+    while offer_company_name is None:
+        while interview_company_name is None:
+            # two free-to-play days in a row
+            call day_start
+            call day_activity_choices
+            call day_start
+            call day_activity_choices
+            $ calendar.next_week()
+
+            call day_start
+            if interview_company_name is None:
+                # go back to job search
+                player "Huh. It's been a whole week since I applied to the job but I'm not hearing back from the company."
+                player "Maybe it's time to apply to some new openings."
+                call day_activity_job_search
+                call day_activity_choices
+
+            else:
+                # receives an email
+                play sound 'audio/sfx/social_media_notification.wav'
+                player "Huh, an email from [interview_company_name]? Right, it's been a week since I've applied to their job posting."
+                player "The title says 'Application Follow-up'..."
+                show screen company_interview_email_screen(interview_company_name)
+                player awe "I made it! I'm going to a coding interview!"
+                player "I'm gonna share this with Annika and Marco."
+                play sound 'audio/sfx/smartphone_typing.wav'
+                player "Alright! Building on this momentum, let's kick start this awesome day!"
+                call day_activity_choices
+        # here interview_company_name is not None
+        call day_start_interview
+        call day_activity_interview
+        call day_end_interview
+
         call day_start
+        call day_activity_choices
+        $ calendar.next_week()
+
+        call day_start
+            if offer_company_name is None:
+                play sound 'audio/sfx/social_media_notification.wav'
+                player "Huh, an email from [offer_company_name]? Right, it's been a week since my interview with them."
+                player "The title says 'Interview Follow-up'..."
+                player pout "The last thing I need in my inbox is a rejection letter first thing in the morning..."
+                player "But I have to face it."
+                show screen company_rejection_email_screen(interview_company_name)
+                player pout "Well... Guess I need to work harder."
+
+        # reset interview_compnay_name to None so we enter the inner loop again
+        $ interview_company_name = None
+
+    # once we break out of this loop, show the offer screen
+    play sound 'audio/sfx/social_media_notification.wav'
+    player "Huh, an email from [offer_company_name]? Right, it's been a week since my interview with them."
+    player "The title says 'Interview Follow-up'..."
+    player pout "The last thing I need in my inbox is a rejection letter first thing in the morning..."
+    player "But who knows? It could be a request for follow-up interviews, or even better!"
+    player "(Deep breath...)"
+    player "Okay, I'm ready to take a look."
+    show screen company_offer_email_screen(offer_company_name)
+    player "... Is this a dream?"
+
+    show mint with vpunch
+    mint "Meow!"
+    player "Owww Mint... You are growing heavy..."
+    player "But wait! Mint just crash-landed on me and I felt the impact. This must mean that I'm not dreaming."
+    player "So this is real."
+    mint "Meow meow!"
+    hide mint
+
+    player "Wow. I did it. I'm now a real developer!"
+    $ accepted_offer_date = date(calendar.year, calendar.month, calendar.day)
+    $ days_between_start_and_offer = (accepted_offer_date - start_date).days
+    $ days_between_curriculum_compltion_and_offer = (accepted_offer_date - completed_curriculum_date).days
+    call screen confirm_and_share_screen(
+        title="{bt}Congratulations!{/bt}",
+        message="You taught yourself to become a developer in {b}[days_between_start_and_offer]{/b} days, [days_between_curriculum_compltion_and_offer] days after you've completed the coding curriculum.\nNow you are ready to rock your new job!\n Feel free to share your progress with the world!",
+        ok_text="Let's rock my new job!", 
+    )
+
+
+    # TODO: congrats from Annika, Marco, and family
+            
 
 # actually no stages between 8 and 14
 
@@ -1132,6 +1219,8 @@ label stage14:
     pause 1
     hide text with dissolve
     $ quick_menu = True
+
+    $ calendar.next_month() # player's start date is in a month
 
     scene bg office with slideright
     player "Wow. {w}I still can't believe that I'm working in such a fancy office."
@@ -1256,7 +1345,7 @@ label ending:
     pause 4.0
     hide red_flash with dissolve
 
-    call screen confirm_and_share(
+    call screen confirm_and_share_screen(
         title="{color=[red]}{icon=alert} Attention{/color}",
         message="Hey [persistent.player_name]... \nThe thing is, it looks like... {sc}{color=[red]}YOU HAVE BROUGHT DOWN THE PRODUCTION SERVER{/color}{/sc}",
         ok_text="Oopsy... Am I... fired?"
@@ -1264,6 +1353,7 @@ label ending:
 
     $ quick_menu = False
 
+    play sound 'audio/sfx/cartoon_suspense.wav'
     scene black with dissolve
     pause 1
     show text "{bt}{size=48}{color=[white]}{i}Well, that's another chapter :){i}{/color}{/size}{/bt}" with dissolve 
@@ -1271,6 +1361,7 @@ label ending:
     hide text with dissolve
 
     # Learn to Code RPG logo
+    play sound 'audio/sfx/title_drop_swoosh.wav'
     scene gray90 with Pause(1)
     show learn_to_code_splash at truecenter with dissolve
     with Pause(2)
@@ -1278,6 +1369,7 @@ label ending:
     with Pause(1)
 
     # freeCodeCamp logo
+    play sound 'audio/sfx/title_drop_swoosh.wav'
     scene gray90 with Pause(1)
     show fcc_splash at truecenter with dissolve
     with Pause(2)

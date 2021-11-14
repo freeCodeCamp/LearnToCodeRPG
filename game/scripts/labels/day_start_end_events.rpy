@@ -3,12 +3,6 @@ label day_start:
     # this label should end up jumping to day_end, which then returns control to the main game
     $ calendar.next()
 
-    if days_before_interview is not None:
-        $ days_before_interview -= 1
-
-    if days_before_offer is not None:
-        $ days_before_offer -= 1
-
     scene bg bedroom with fadehold
 
     play sound 'audio/sfx/alarm.wav'
@@ -24,8 +18,7 @@ label day_start:
             'day_start_text3',
             ])
         renpy.call(day_start_text)
-    
-    call day_activity_choices from _call_day_activity_choices
+        
     return
 
 # TODO: special text on days of interview

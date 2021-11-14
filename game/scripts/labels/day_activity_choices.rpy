@@ -169,7 +169,7 @@ label day_activity_barista:
     hide coffee
     player "Here's your mocha latte. Enjoy your day!"
     # if all seen, skip
-    if len(seen_barista_events) == len(barista_event_labels) or renpy.random.random() > 0.7:
+    if len(seen_barista_events) == len(barista_event_labels) or renpy.random.random() < 0.3:
         player "(It's pretty quiet in the cafe today. Guess I won't get to hear any tech gossips.)"
     else:
         # 70% trigger rate, pick random tech gossip
@@ -245,20 +245,23 @@ label day_activity_job_search:
         player "Let's apply to CupcakeCPU."
         hide business_card
         show screen job_posting_screen('CupcakeCPU', all_skill_names)
+        $ has_applied_to_cupcakecpu = True
+        # guaranteed interview
+        $ interview_company_name = 'CupcakeCPU'
 
     else:
         # apply to some random company
         $ company_name = renpy.random.choice(all_company_names)
         show screen job_posting_screen(company_name, all_skill_names)
+        if renpy.random.random() < 0.8: # 80% chance of interview
+            $ interview_company_name = company_name
 
     player "They require so many different skills... but I think I'll be fine. I should at least try."
     play sound 'audio/sfx/todo_complete.wav'
     player "Application submitted. Let's hope for the best."
+
     if has_won_hacker_space_trivia:
         $ todo_list.complete_todo(todo_apply_cupcakecpu)
-        $ has_applied_to_cupcakecpu = True
-        # guaranteed interview
-        $ interview_company_name = 'CupcakeCPU'
     hide screen job_posting_screen
 
     return
@@ -267,18 +270,22 @@ label day_activity_interview:
     $ day_activity = 'interview'
     player "Today is my big day! I have an interview with [interview_company_name]."    
 
-    scene bg interview_room with slideright
+    $ interview_room_bg = renpy.random.choice(interview_room_bgs)
+    scene interview_room_bg with slideright
     player "Wow. Their office sure is fancy. I wish I can get my cubicle in a fancy office like this..."
 
+    # TODO
+    # $ interviewer_sprite = renpy.random.choice(seq=[])
+    # show interviewer_sprite
     interviewer "Hello, is that [persistent.player_name]?"
     player "Yes. Good morning."
 
-    interviewer "Alright, since we are here, let's get started."
+    interviewer "Alright, since we are here, let's get started with the interview."
     call interview_session from _call_interview_session
 
-    player "... {w}Was that everything? {w}Thank god..."
+    interviewer "Thanks for taking your time. We will be in touch about next steps."
+    player "(... Was that everything? Kudos to myself for surviving...)"
     $ player_stats.change_stats_random('Sanity', -20, -10)
-    player "That was more intense than I thought. I hope I did well."
-    player "I can't wait to go home and just cuddle with Mint now..."
-    $ interview_company_name = None
+    player "That was as intense as I expected. I hope I did well with all those preparations."
+    player "I can't wait to go home and just relax now..."
     return
