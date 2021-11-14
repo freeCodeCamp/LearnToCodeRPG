@@ -1053,6 +1053,8 @@ label stage7:
     play sound 'audio/sfx/social_media_notification.wav'
     player "Hmm? A notification from my phone? This early in the morning?"
     player "It says {bt}Congratulations!{/bt}...?"
+    $ has_completed_curriculum = True
+
     $ completed_curriculum_date = date(calendar.year, calendar.month, calendar.day)
     $ days_between_start_and_curriculum_completion = (completed_curriculum_date - start_date).days
     call screen confirm_and_share(
@@ -1078,66 +1080,69 @@ label stage8:
     hide text with dissolve
     $ quick_menu = True
 
-    scene bg bedroom night with fadehold
+    scene bg bedroom with fadehold
     player "Alright! Let's start by applying to jobs!"
-    # if has_won_hacker_space_trivia:
-    #     player "Hey. I remember that "
+    call day_activity_job_search
+    $ todo_list.complete_todo(todo_apply_to_jobs)
 
-    "TO BE CONTINUED"
+    player "What's next on my To-Do for getting a job? Oh, let's start preparing for coding interviews."
+    # now change the day activity text for studying
+    $ day_activity_study = todo_interview_prep
+    player "What shall I study? I remember some skills mentioned in the job posting include JavaScript, Web Dev, Algorithms, and System Design."
+    call study_session_choose_topic
+    call study_session
 
-    player "I read that technical jobs ask candidates to complete coding interviews."
-    player "I now know how to code, so these interviews shouldn't be too hard if I study, right?"
-    player "Let's do this."
-    player "Hmm? What is a heap? I remember learning about lists and dictionaries in my course, but definitely not heaps."
-    player "And heaps are under data structure fundamentals. Does that mean that I need to learn to implement a heap from scratch?"
-    player "What is time complexity? What about space complexity? Does that mean that my code needs to run fast in addition to being correct?"
-    player "Coding interviews are so different from coding..."
-    player "Maybe I need to tackle more questions specifically for coding interviews?"
-    player "Or I could try applying to jobs first."
-    player "... {w}I don't know. Should I get some advice from Annika and Marco?"
+    scene bg bedroom night with fadehold
+    player "Whew... Those questions are harder than CS fundamental questions. Guess I need to put in more studying."
+    player "But this is a good start nonetheless!"
+    $ todo_list.complete_todo(todo_interview_prep)
+    player "Let's relax for a bit and see if anyone has messaged me while I was away."
+    # chat with Marco
+    play sound 'audio/sfx/social_media_notification.wav'
+    player "Huh. A message from Marco."
+    show marco
+    marco "Heya [persistent.player_name]! Was it a busy day?"
+    player "Hey Marco! Yeah. I just started preparing for interviews and applying to jobs."
+    marco "That's a good start!"
+    marco "But yeah, companies are usually slow to process the applications. You might need to wait for a week or more to hear back."
+    marco "So don't get discouraged if you don't hear back for a while!"
+    marco "Keep on applying to jobs, prepping for interview, and going about your routines."
+    marco "Once they have processed your application and gotten the interview process rolling, it's your time to shine!"
+    player "Haha thanks! I'll keep that in mind."
+    player "Have a great rest of your evening!"
+    marco "You as well."
 
-    menu:
-        "Call Annika":
-            # TODO
-            "Okay I'll write some dialogue w Annika"
-    
-        "Message Marco":
-            # TODO
-            "Okay I'll write some dialogue w Marco"
-    
-        "Research online on my own":
-            player "Hmmm... People online recommend applying to jobs as soon as possible."
+    play sound 'audio/sfx/phone_hangup.wav'
+    player "Yawwwwwn... Let's call this a day and get back to my routine tomorrow."
 
-    player "Okay, let's search for some jobs on the web."
-
-    call day_activity_job_search from _call_day_activity_job_search
-
-
-    player "Let's call this a day and restart our routines tomorrow."
-    # go back to our routines
-    jump day_start
+    # loop routine
+    while not has_received_offer:
+        call day_start
 
 # actually no stages between 8 and 14
 
 label stage14:
     # Stage 14. New hire player meets Layla
-    # TODO
     hide screen player_stats_screen
+    $ quick_menu = False
     scene black with dissolve
     pause 1
     show text "{size=48}{color=[white]}{i}Chapter 6: Let's meet my new colleagues!{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
-    show screen player_stats_screen
+    $ quick_menu = True
 
-    scene bg office with dissolve
+    scene bg office with slideright
+    player "Wow. {w}I still can't believe that I'm working in such a fancy office."
+    player "My orientation email says that my on boarding buddy will be here to pick me up and show me around the office...{p=0.5}{nw}"
     show layla
 
-    layla "Hey [persistent.player_name]. I'm Layla. I'm your on boarding buddy. Feel free to ask me anything."
+    layla "Hey [persistent.player_name]. Welcome to the team! I'm Layla, your on boarding buddy."
+    layla "Feel free to ask me anything!"
     player "(Hmmm... I wonder if we have met before. Layla looks familiar somehow.)"
-    player "(... {w}Oh! {w}Was that her at Hacker Space?)"
+    player "(...Oh! Was that her at Hacker Space mentoring the kids?)"
+    player "(If I remembered correctly...)"
     # TODO: flashback fade
-
     scene bg hacker_space with fadehold
     layla "So how's everyone's project going? We mentors are here to answer any question you have!"
 
@@ -1145,8 +1150,14 @@ label stage14:
     layla "[persistent.player_name]? Are you okay? You are spacing out."
     player "Ah! I'm fine. I just remembered that we might have met before."
     player "You know, at Hacker Space. I used to go there to study and work on projects before I get this job."
-    layla "Oh, wow. Yeah. I was at various Hacker Space events. {w}Nice to hear that you enjoyed the space!"
+    layla "Oh, wow. Yeah. I was at various Hacker Space events. Nice to hear that you enjoyed the place!"
+    layla "Alright, enough small talks! Are you ready to commit your first line of code into production today?"
+    player "(Uhhhh that's fast...)"
+    player "Ahhh... Yes, I'd love to dive into the code base as soon as possible!"
+    layla "Way to go! Our team sits in that corner."
+    play sound 'audio/sfx/keyboard_typing.wav'
 
+    scene bg office with fadehold
     layla "So how's work going? Have you worked your way through our code base already?"
     player "... Um..."
     layla "Something on your mind?"
@@ -1156,6 +1167,10 @@ label stage14:
     player "Haha, thanks. That does make me feel better."
     layla "How about this? Let's take your mind off this code for a while and go grab coffee?"
     player "Sure, I'd love to!"
+
+    scene bg office_cafe with blinds
+    layla "Here you go. From bean to coffee."
+    player "..."
     player "Hey Layla. Mind if I ask how long you've been with this company and team?"
     layla "Of course not! I've been here for two years. I interned here when I was in college and returned full-time right after graduation."
     player "So you were a CS major?"
@@ -1164,9 +1179,6 @@ label stage14:
     layla "That's not true, you know."
     player "Oops, sorry."
     layla "No big deal."
-
-    # TODO: Layla AMA session like Marco
-
     layla "Have you heard of the word, imposter syndrome?"
     player "Yeah. I feel that quite often."
     layla "You are good. That's almost the norm for people in tech."
@@ -1181,24 +1193,43 @@ label stage14:
     layla "Haha sorry for the rant. I didn't mean to scare you away from continuing working in tech."
     layla "It's just that the battle with imposter syndrome is a continuous battle. Every little win is a win. In fact, I still grapple with imposter syndrome and have to stop myself from banging my head on the desk whenever I run into a bug I can't fix."
     player "Wow. Haha. Thanks for sharing. That actually makes me feel a lot better."
-    layla "So are we ready to go back and squash some bugs?"
+    layla "You are very welcome."
+    layla "So, what else would you like to know about me or my role?"
+
+    default layla_story_choices = set()
+    menu layla_story_choices:
+        set layla_story_choices
+        "":
+            jump layla_story_choices
+        "I'm done asking!":
+            player "I'm done asking! I feel so much better knowing that everyone started from square one."
+            layla "Hehe, [persistent.player_name], you are a fun one. I'm sure you will enjoy your work as a developer."
+
+    layla "Are we now ready to go back and squash some bugs?"
     player "Lead the way!"
 
     jump ending
 
 label ending:
-    scene office with dissolve
+    scene bg office with fadehold
     player happy "Okay, I think my code is good to go! Let's commit it to the server."
     # TODO: system processing animation
+    play sound 'audio/sfx/system_processing.wav'
     player "... {w}And nothing happened."
 
     # stop the music here
     $ continue_looping_music = False
     stop music
 
-    # office red alert animation
-
     hide screen player_stats_screen
+    # office red alert animation
+    show red_flash    
+    play sound 'audio/sfx/error.wav'
+    layla "[persistent.player_name]...!{p=1.0}{nw}"
+    window hide
+    pause 4.0
+    hide red_flash with dissolve
+
     call screen confirm_and_share(
         title="{color=[red]}{icon=alert} Attention{/color}",
         message="Hey [persistent.player_name]... \nThe thing is, it looks like... {sc}{color=[red]}YOU HAVE BROUGHT DOWN THE PRODUCTION SERVER{/color}{/sc}",
@@ -1207,7 +1238,7 @@ label ending:
 
     $ quick_menu = False
 
-    scene black with pixellate
+    scene black with dissolve
     pause 1
     show text "{bt}{size=48}{color=[white]}{i}Well, that's another chapter :){i}{/color}{/size}{/bt}" with dissolve 
     pause 3
@@ -1228,20 +1259,18 @@ label ending:
     with Pause(1)
 
     # Credits, like in the About section from options.rpy
-    scene gray90 with dissolve
+    scene gray15 with dissolve
     pause 1
-    show text "{size=48}{color=[white]}[about]{/color}{/size}"
+    show text "{size=48}[about]{/size}"
     with dissolve 
     pause 3
     hide text with dissolve
 
-    scene gray90 with dissolve
+    scene gray15 with dissolve
     pause 1
-    show text "{size=48}{color=[white]}[credits]{/color}{/size}"
+    show text "{size=48}[credits]{/size}"
     with dissolve 
     pause 3
     hide text with dissolve
 
-    # end of this game
-    $ MainMenu(confirm=False)()
     return

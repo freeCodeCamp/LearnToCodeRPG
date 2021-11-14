@@ -44,11 +44,9 @@ init python:
 
     class ToDoList():
         def __init__(self):
-            self.todo_keys = [] # a list of keys for traversing the dict deterministically
             self.todo_dict = {} # maps str todo to boolean indicating completion
 
         def add_todo(self, todo):
-            self.todo_keys.append(todo)
             self.todo_dict[todo] = False
             renpy.show_screen('player_stats_screen')
             if not renpy.sound.is_playing():
@@ -140,7 +138,7 @@ screen todo_listview:
 
         vbox:
             spacing 5
-            for todo in todo_list.todo_keys:
+            for todo in sorted(todo_list.todo_dict):
                 if not todo_list.todo_dict[todo]: # a boolean indicating completion
                     text '{icon=circle}    ' + todo
                 else:

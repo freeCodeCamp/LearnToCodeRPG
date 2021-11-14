@@ -11,11 +11,17 @@ init python:
 
     # once this is True, trivia guy no longer appears, and player can get a first round interview w/ CupCakeCPU
     has_won_hacker_space_trivia = False
+    has_applied_to_cupcakecpu = False
 
     # player_stats.player_stats_map['CS Knowledge'] >= 80
     has_completed_curriculum = False
 
+    has_received_offer = False
+    # TODO: beyond demo version, can do negotiation
+    has_accepted_offer = False
+
     day_activity = None # set in day_activity_choice.rpy
+    interview_company_name = None
 
     topics_to_ask = set()
     npc = annika
@@ -25,30 +31,6 @@ init python:
 
     seen_barista_events = set()
 
-    ## TODO #################
-
-    # TODO: refactor
-    has_met_marco = False
-
-    # TODO: definitely refactor
-    interview_company_name = None
-    days_before_interview = None
-
-    offer_company_name = None
-    days_before_offer = None
-
-    has_received_offer = False
-    # TODO: beyond demo version, can do negotiation
-    has_accepted_offer = False
-
-    # TODO: more day counters, more refactoring
-    day_completed_curriculum = None
-    # day counter of the first offer, subtract this from the other day counters
-    day_of_first_offer = None
-
-    
-    #################################
-
     ## Non-mutable
 
     # to-do strings
@@ -56,10 +38,12 @@ init python:
     todo_ask_curriculum = 'Ask Annika about CS curriculum'
     todo_learn_cs = 'Ramp up CS knowledge'
     todo_apply_cupcakecpu = 'Apply to CupcakeCPU'
-    todo_apply_to_jobs = 'Apply to jobs'
-    todo_interview_prep = 'Prepare for coding interviews'
+    todo_apply_to_jobs = 'Start applying to jobs'
+    todo_interview_prep = 'Start preparing for coding interviews'
     todo_ask_hackathon = 'Learn about Hackathon'
     todo_ask = 'Learn about ' # should be concatenated with vocabs from barista story
+
+    day_acitivity_study = 'Study CS Fundamentals' # will later change into todo_interview_prep
 
     # story labels for hacker space and barista
     hacker_space_event_labels = [

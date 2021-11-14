@@ -2,27 +2,28 @@ init python:
     # we have javascript_questions, web_questions, algorithm_questions, and system_questions
     all_skill_names = ['JavaScript', 'Web Development', 'Algorithm', 'System Design']
 
-    all_company_names = [
-    'AvocadoAPI',
-    'AioliAI',
-    'AnkoAnalytics',
-    'ButterscotchBytes',
-    'BobaBandwidth',
-    'BrownieBenchmark',
-    'CasseroleCompiler',
-    'CupcakeCPU',
-    'GelatoGPU',
-    'GingerbreadGUI',
-    'PopsiclePy',
-    'HoneydewHeap',
-    'SconeSys',
-    'SundaeSoft',
-    'MochiML',
-    'TiramisuTPU',
-    'ToffeeTerminal',
-    'WaffleWireless',
-    'VanillaVM'
-    ]
+    # company logo files are named as images/others/company/avocado.png etc.
+    all_company_names = {
+    'AvocadoAPI': 'avocado',
+    'AioliAI': 'aioli',
+    'AnkoAnalytics': 'anko',
+    'ButterscotchBytes': 'butterscotch',
+    'BobaBandwidth': 'boba',
+    'BrownieBenchmark': 'brownie',
+    'CasseroleCompiler': 'casserole',
+    'CupcakeCPU': 'cupcake',
+    'GelatoGPU': 'gelato',
+    'GingerbreadGUI': 'gingerbread',
+    'PopsiclePy': 'popsicle',
+    'HoneydewHeap': 'honeydew',
+    'SconeSys': 'scone',
+    'SundaeSoft': 'sundae',
+    'MochiML': 'mochi',
+    'TiramisuTPU': 'tiramisu',
+    'ToffeeTerminal': 'toffee',
+    'WaffleWireless': 'waffle',
+    'VanillaVM': 'vanilla',
+    }
 
 init:
     screen job_posting_screen(company_name, skill_names):
@@ -35,8 +36,15 @@ init:
 
             vbox:
                 spacing 40
-                # job title
-                text company_name color gui.accent_color font gui.interface_text_font size gui.name_text_size bold True
+                # job title and logo
+                hbox:
+                    text company_name:
+                        color gui.accent_color
+                        font gui.interface_text_font
+                        size gui.name_text_size
+                        bold True
+                    $ company_logo = 'images/others/company/%s.png' % all_company_names[company_name]
+                    add company_logo
                 # description
                 text "We are hiring for a candidate with the following skills:"
                 vbox:

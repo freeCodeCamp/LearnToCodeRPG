@@ -10,17 +10,9 @@ label day_activity_choices:
 
     player "Okay, what shall we do for the day?"
     menu:
-        # if the player has searched for jobs on this day and saw nothing
-        # they jump back here and this first option won't be available
-        "Search for job openings" if has_completed_curriculum and not has_done_job_search_today:
-            $ has_done_job_search_today = True
-            player "Let's search for job openings."
-            call day_activity_job_search from _call_day_activity_job_search_1
-            call day_end from _call_day_end
-
         # TODO: change this string to study more CS fundamentals
         # when the player has completed the curriculum
-        "Study CS fundamentals":
+        "[day_acitivity_study]":
             # this choice helps grow coding knowledge
             python:
                 day_activity = 'study'
@@ -30,6 +22,35 @@ label day_activity_choices:
                     "Let's ramp up on my CS knowledge!"
                     ])
                 renpy.say(player, text)
+
+            if has_completed_curriculum: # can choose a topic to study
+                menu study_session_choose_topic:
+                    "Which topic to study for the coding interview?"
+
+                    "General CS knowledge":
+                        player "It's never a bad idea to go back to CS fundamentals!"
+                        $ study_session_questions = general_questions
+
+                    "JavaScript":
+                        player "I feel like crunching some JavaScript questions today!"
+                        $ study_session_questions = javascript_questions
+
+                    "Web Development":
+                        player "Let's buckle up and go with Web Dev!"
+                        $ study_session_questions = web_questions
+
+                    "Algorithms":
+                        player "I wonder if I can develop a better algorithm to streamline my interview prep process?"
+                        $ study_session_questions = algorithm_questions
+
+                    "System Design":
+                        player "Let's do some high-level system design!"
+                        $ study_session_questions = system_questions
+
+                    "Mix and match all topics":
+                        player "How about mixing and matching all topics? That sounds more realistic in an interview setting."
+                        $ study_session_questions = interview_questions
+
             call study_session from _call_study_session_1
 
             python:
@@ -216,37 +237,29 @@ label day_activity_video_game:
     return
 
 label day_activity_job_search:
-    # 0.5 chance there is no new job posting and the player goes back to other routines
-    if renpy.random.random() > 0.5: # go back to routines
-        player "I don't see any new job postings that I haven't applied to."
-        player "Let's go do something else."
-        jump day_activity_choices
+    $ day_activity = 'jobsearch'
+    if has_won_hacker_space_trivia and not has_applied_to_cupcakecpu:
+        player "Hey. I remember that the trivia guy at Hacker Space gave me a business card."
+        show business_card at truecenter with zoomin
+        player "Here's the business card. It's from CupcakeCPU."
+        player "Let's apply to CupcakeCPU."
+        hide business_card
+        show screen job_posting_screen('CupcakeCPU', all_skill_names)
 
-    else: # proceed to application
-        $ day_activity = 'jobsearch'
-        $ company_name = renpy.random.choice(seq=all_company_names)
-
+    else:
+        # apply to some random company
+        $ company_name = renpy.random.choice(all_company_names)
         show screen job_posting_screen(company_name, all_skill_names)
-        player "Oh, a job posted by {b}[company_name]{/b}."
-        player "Should I apply to this job posting?"
-        menu:
-            "Apply":
-                player "Let's apply and see what they say."
-                # TODO: refactor
-                if days_before_interview is not None: # already has an interview scheduled
-                    pass
-                else:
-                    python:
-                        # coin flip
-                        if renpy.random.random() > 0.3:
-                            days_before_interview = renpy.random.randint(2, 4)
-                            interview_company_name = company_name
-                            renpy.notify("This is a debug message, you have an interview with [interview_company_name] in [days_before_interview] days")
 
-            "Don't apply":
-                player "I don't think I qualify for this job yet... They will probably reject me any ways."
-
-        hide screen job_posting_screen
+    player "They require so many different skills... but I think I'll be fine. I should at least try."
+    play sound 'audio/sfx/todo_complete.wav'
+    player "Application submitted. Let's hope for the best."
+    if has_won_hacker_space_trivia:
+        $ todo_list.complete_todo(todo_apply_cupcakecpu)
+        $ has_applied_to_cupcakecpu = True
+        # guaranteed interview
+        $ interview_company_name = 'CupcakeCPU'
+    hide screen job_posting_screen
 
     return
 
@@ -267,4 +280,5 @@ label day_activity_interview:
     $ player_stats.change_stats_random('Sanity', -20, -10)
     player "That was more intense than I thought. I hope I did well."
     player "I can't wait to go home and just cuddle with Mint now..."
+    $ interview_company_name = None
     return

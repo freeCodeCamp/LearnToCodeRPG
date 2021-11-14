@@ -152,6 +152,14 @@ init:
         'others/coffee/coffee3.png'
         0.8
         repeat
+
+    # red warning flash light
+    image red_flash:
+        '#f00'
+        alpha 0.0
+        linear 1.0 alpha 0.8  
+        linear 1.0 alpha 0.1
+        repeat
     
     # expressions
     # player
