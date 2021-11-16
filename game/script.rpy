@@ -718,7 +718,7 @@ label stage6:
         "What topic to ask Annika about?"
 
         "Hackthon":
-            call ask_hackathon
+            call ask_hackathon from _call_ask_hackathon
             jump stage6_annika_questions
 
         "Hacker Space":
@@ -777,10 +777,10 @@ label stage6_after_annika_questions:
 
     # two days of activity of the player's choosing
     call day_start from _call_day_start
-    call day_activity_choices
+    call day_activity_choices from _call_day_activity_choices
 
     call day_start from _call_day_start_1
-    call day_activity_choices
+    call day_activity_choices from _call_day_activity_choices_1
 
     # hacker space story
     scene bg bedroom with fadehold
@@ -839,10 +839,10 @@ label stage6_after_annika_questions:
 
     # two days of activity of the player's choosing
     call day_start from _call_day_start_2
-    call day_activity_choices
+    call day_activity_choices from _call_day_activity_choices_2
 
     call day_start from _call_day_start_3
-    call day_activity_choices
+    call day_activity_choices from _call_day_activity_choices_3
 
     $ calendar.next_month()
     show screen player_stats_screen
@@ -930,10 +930,10 @@ label stage7:
 
     # two days of activity of the player's choosing
     call day_start from _call_day_start_4
-    call day_activity_choices
+    call day_activity_choices from _call_day_activity_choices_4
 
     call day_start from _call_day_start_5
-    call day_activity_choices
+    call day_activity_choices from _call_day_activity_choices_5
 
     $ calendar.next_month()
     show screen player_stats_screen
@@ -1053,7 +1053,7 @@ label stage7:
 
     while player_stats.player_stats_map['CS Knowledge'] < 80:
         call day_start from _call_day_start_6
-        call day_activity_choices
+        call day_activity_choices from _call_day_activity_choices_6
 
     # once we are down here, we should have player_stats.player_stats_map['CS Knowledge'] >= 80
     scene bg bedroom with fadehold
@@ -1089,15 +1089,15 @@ label stage8:
 
     scene bg bedroom with fadehold
     player "Alright! Let's start by applying to jobs!"
-    call day_activity_job_search
+    call day_activity_job_search from _call_day_activity_job_search
     $ todo_list.complete_todo(todo_apply_to_jobs)
 
     player "What's next on my To-Do for getting a job? Oh, let's start preparing for coding interviews."
     # now change the day activity text for studying
     $ day_activity_study = todo_interview_prep
     player "What shall I study? I remember some skills mentioned in the job posting include JavaScript, Web Dev, Algorithms, and System Design."
-    call study_session_choose_topic
-    call study_session
+    call study_session_choose_topic from _call_study_session_choose_topic
+    call study_session from _call_study_session_3
 
     scene bg bedroom night with fadehold
     player "Whew... Those questions are harder than CS fundamental questions. Guess I need to put in more studying."
@@ -1127,19 +1127,19 @@ label stage8:
     while offer_company_name is None:
         while interview_company_name is None:
             # two free-to-play days in a row
-            call day_start
-            call day_activity_choices
-            call day_start
-            call day_activity_choices
+            call day_start from _call_day_start_7
+            call day_activity_choices from _call_day_activity_choices_7
+            call day_start from _call_day_start_8
+            call day_activity_choices from _call_day_activity_choices_8
             $ calendar.next_week()
 
-            call day_start
+            call day_start from _call_day_start_9
             if interview_company_name is None:
                 # go back to job search
                 player "Huh. It's been a whole week since I applied to the job but I'm not hearing back from the company."
                 player "Maybe it's time to apply to some new openings."
-                call day_activity_job_search
-                call day_activity_choices
+                call day_activity_job_search from _call_day_activity_job_search_1
+                call day_activity_choices from _call_day_activity_choices_9
 
             else:
                 # receives an email
@@ -1151,17 +1151,17 @@ label stage8:
                 player "I'm gonna share this with Annika and Marco."
                 play sound 'audio/sfx/smartphone_typing.wav'
                 player "Alright! Building on this momentum, let's kick start this awesome day!"
-                call day_activity_choices
+                call day_activity_choices from _call_day_activity_choices_10
         # here interview_company_name is not None
-        call day_start_interview
-        call day_activity_interview
-        call day_end_interview
+        call day_start_interview from _call_day_start_interview
+        call day_activity_interview from _call_day_activity_interview
+        call day_end_interview from _call_day_end_interview
 
-        call day_start
-        call day_activity_choices
+        call day_start from _call_day_start_10
+        call day_activity_choices from _call_day_activity_choices_11
         $ calendar.next_week()
 
-        call day_start
+        call day_start from _call_day_start_11
         if offer_company_name is None:
             play sound 'audio/sfx/social_media_notification.wav'
             player "Huh, an email from [offer_company_name]? Right, it's been a week since my interview with them."
@@ -1361,16 +1361,16 @@ label ending:
     hide text with dissolve
 
     # Learn to Code RPG logo
-    play sound 'audio/sfx/title_drop_swoosh.wav'
     scene gray90 with Pause(1)
+    play sound 'audio/sfx/title_drop_swoosh.wav'
     show learn_to_code_splash at truecenter with dissolve
     with Pause(2)
     scene gray90 with dissolve
     with Pause(1)
 
     # freeCodeCamp logo
-    play sound 'audio/sfx/title_drop_swoosh.wav'
     scene gray90 with Pause(1)
+    play sound 'audio/sfx/title_drop_swoosh.wav'
     show fcc_splash at truecenter with dissolve
     with Pause(2)
     scene gray90 with dissolve

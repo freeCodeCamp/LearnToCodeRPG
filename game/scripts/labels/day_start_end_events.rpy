@@ -140,7 +140,7 @@ label day_end:
                     $ npc = marco
                     $ npc_sprite = 'marco'
 
-        call npc_conversation_start
+        call npc_conversation_start from _call_npc_conversation_start
 
     player "Anyways, I feel like I've done a lot today. Let's call it a day and get some rest."
     player "Tomorrow will be another day. Right, Mint?"

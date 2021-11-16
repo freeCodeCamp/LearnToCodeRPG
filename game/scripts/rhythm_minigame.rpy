@@ -4,9 +4,24 @@ screen rhythm_game(audio_path, beatmap_path):
     add Solid('#000')
     add rhythm_game_displayble
 
-    # show the score heads-up display (HUD)
-    text 'Hits: ' + str(rhythm_game_displayble.num_hits):
-        color '#fff' xpos 50 ypos 50
+    vbox:
+        xpos 50
+        ypos 50
+        spacing 10
+        # show the score heads-up display (HUD)
+        text 'Hits: ' + str(rhythm_game_displayble.num_hits):
+            color '#fff'
+        textbutton '{icon=log-out} Quit' action [
+        Confirm('Would you like to quit the rhythm game?',
+            yes=[
+            Stop('rhythm_game'),
+            Play('sound', 'audio/sfx/phone_hangup.wav'),
+            Return(
+                (rhythm_game_displayble.num_hits, rhythm_game_displayble.num_notes)
+                )
+            ])]:
+            text_hover_color '#fff'
+
 
     # return the number of hits and total number of notes to the main game
     if rhythm_game_displayble.has_ended:
@@ -16,6 +31,9 @@ screen rhythm_game(audio_path, beatmap_path):
             )
 
 init python:
+
+    # register channel
+    renpy.music.register_channel('rhythm_game')
 
     import os
     import pygame
@@ -148,7 +166,7 @@ init python:
             if self.time_offset is None:
                 self.time_offset = st
                 # play music here
-                renpy.music.play(self.audio_path, loop=False)
+                renpy.music.play(self.audio_path, channel='rhythm_game', loop=False)
                 self.has_started = True
 
             render = renpy.Render(width, height)
@@ -167,7 +185,7 @@ init python:
             # draw the notes
             if self.has_started:
                 # check if the song has ended
-                if renpy.music.get_playing() is None:
+                if renpy.music.get_playing(channel='rhythm_game') is None:
                     self.has_ended = True
                     renpy.timeout(0) # raise an event
                     return render

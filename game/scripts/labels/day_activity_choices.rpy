@@ -5,7 +5,7 @@ label day_activity_choices:
     # if the player has low_energy level, jump directly to one of the relaxing choices
     if player_stats.is_sanity_low():
         call day_activity_relax from _call_day_activity_relax
-        call day_end
+        call day_end from _call_day_end
         return # return to script.rpy
 
     player "Okay, what shall we do for the day?"
@@ -109,13 +109,19 @@ label day_activity_relax:
     player "Awww thanks Mint."
     hide mint
     player "Okay. Let's take a day off and chill. What shall we do?"
-    menu:
+    menu day_activity_relax_choices:
         "Take a walk in the park":
             player "Let's head out to the park. Too bad I can't take Mint out on a walk. Annika does that with her puppy sometimes and they both love it."
             call day_activity_park from _call_day_activity_park
         "Play some video games":
-            player "Nothing beats some video games."
-            call day_activity_video_game from _call_day_activity_video_game
+            if renpy.mobile:
+                player "I'd love to play some games, but those are only available on my laptop."
+                "(You won't able to access mini-games when you are playing the mobile or the web version. Please download the desktop version instead.)"
+                player "Let's instead go take a walk in the park."
+                call day_activity_park
+            else:
+                player "Nothing beats some video games."
+                call day_activity_video_game from _call_day_activity_video_game
     $ player_stats.change_stats_random('Sanity', 5, 20)
     # all relaxing activities converges to the end of the day
     return
@@ -208,7 +214,8 @@ label day_activity_park:
 
 label day_activity_video_game:
     $ day_activity = 'videogame'
-    player "I recently got this rhythm game everyone's talking about. Let's pick a song from the playlist."
+    player "I recently got this rhythm game everyone's talking about."
+    player "Let's pick a song from the playlist."
     $ choice = renpy.display_menu(list(rhythm_game_beatmaps.items()))
     # start the rhythm game
     # window hide
@@ -217,9 +224,22 @@ label day_activity_video_game:
     # avoid rolling back and losing game state
     $ renpy.block_rollback()
 
+    # disable Esc key menu to prevent the player from saving the game
+    $ _game_menu_screen = None
+
+    # stop the bgm
+    $ continue_looping_music = False
+    $ renpy.music.stop()
+
     # unpack the file paths associated with the chosen song
     $ audio_path, beatmap_path = choice
     call screen rhythm_game(audio_path, beatmap_path)
+
+    # resume the bgm
+    $ continue_looping_music = True
+
+    # re-enable the Esc key menu
+    $ _game_menu_screen = 'save'
 
     # avoid rolling back and entering the chess game again
     $ renpy.block_rollback()
