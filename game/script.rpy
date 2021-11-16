@@ -481,10 +481,10 @@ label stage5:
             player "At any rate, I don't think quality assurance is something I want to learn."
             jump stage5_choose_curriculum
 
-        "Scientific Computing with Python":
-            player pout "Scientific computing? I'm not that much of a science person and I don't see myself becoming a scientist either."
-            player "Plus I don't know anything about Python yet."
-            jump stage5_choose_curriculum
+        # "Scientific Computing with Python":
+        #     player pout "Scientific computing? I'm not that much of a science person and I don't see myself becoming a scientist either."
+        #     player "Plus I don't know anything about Python yet."
+        #     jump stage5_choose_curriculum
 
         "Data Analysis with Python":
             player "Data analysis sounds cool..."
@@ -493,12 +493,12 @@ label stage5:
             player "Let's find something else."
             jump stage5_choose_curriculum
 
-        "Information Security":
-            player pout "What can I do after learning about information security?"
-            player "Hack into others' computers? Stop bad guys from hacking into others' computers?"
-            player "That sounds like a lot of moral commitment. I'm not sure if I can handle that."
-            player "Is there something more neutral on the list?"
-            jump stage5_choose_curriculum
+        # "Information Security":
+        #     player pout "What can I do after learning about information security?"
+        #     player "Hack into others' computers? Stop bad guys from hacking into others' computers?"
+        #     player "That sounds like a lot of moral commitment. I'm not sure if I can handle that."
+        #     player "Is there something more neutral on the list?"
+        #     jump stage5_choose_curriculum
 
         "Machine Learning with Python":
             player awe "Machine Learning. Wow. That sounds cool."
@@ -726,7 +726,7 @@ label stage6:
             annika "It's just a casual meetup place for people interested in tech."
             annika "I highly recommend checking it out if you have time!"
             player "Hmmm..."
-            annika "Haha don't worry. I know what you must be thinking about. It's not like nerds hanging out playing board games."
+            annika "Haha don't worry. I know what you must be thinking about. Hacker Space isn't for the cyber criminal type of hackers."
             annika "It's a chill space for people to gather, work, and build cool projects."
             annika "You know what? At Hacker Space, you might actually find someone like you who's also learning to code. You can totally become study buddies!"
             player "That sounds nice. I will go there some time."
@@ -1162,14 +1162,14 @@ label stage8:
         $ calendar.next_week()
 
         call day_start
-            if offer_company_name is None:
-                play sound 'audio/sfx/social_media_notification.wav'
-                player "Huh, an email from [offer_company_name]? Right, it's been a week since my interview with them."
-                player "The title says 'Interview Follow-up'..."
-                player pout "The last thing I need in my inbox is a rejection letter first thing in the morning..."
-                player "But I have to face it."
-                show screen company_rejection_email_screen(interview_company_name)
-                player pout "Well... Guess I need to work harder."
+        if offer_company_name is None:
+            play sound 'audio/sfx/social_media_notification.wav'
+            player "Huh, an email from [offer_company_name]? Right, it's been a week since my interview with them."
+            player "The title says 'Interview Follow-up'..."
+            player pout "The last thing I need in my inbox is a rejection letter first thing in the morning..."
+            player "But I have to face it."
+            show screen company_rejection_email_screen(interview_company_name)
+            player pout "Well... Guess I need to work harder."
 
         # reset interview_compnay_name to None so we enter the inner loop again
         $ interview_company_name = None

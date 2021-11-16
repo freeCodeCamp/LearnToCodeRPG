@@ -757,7 +757,7 @@ init python:
         ]
         ),
     QuizQuestion(
-        question="Which of the following programming languages is created by a Japanese?",
+        question="Which of the following programming languages is created by a Japanese developer?",
         true="Ruby",
         false=[
         "C",

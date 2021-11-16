@@ -535,18 +535,20 @@ screen example(blocks, small=False, bottom=False, showtrans=False):
 
             at example_transform(height, ypos)
 
-            viewport:
+            viewport id "vp":
                 side_xmaximum 1098
                 side_xpos 180
                 child_size (2000, 2000)
                 ymaximum height
                 draggable True
                 mousewheel True
-                scrollbars "vertical"
+                scrollbars "both"
 
                 vscrollbar_xsize 5
-                vscrollbar_base_bar "#aaac"
                 vscrollbar_unscrollable "hide"
+
+                scrollbar_ysize 5
+                scrollbar_unscrollable "hide"
 
                 text code:
                     alt ""

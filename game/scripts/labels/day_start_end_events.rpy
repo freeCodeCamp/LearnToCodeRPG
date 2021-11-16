@@ -110,7 +110,7 @@ label day_end:
         player "I just chilled for the day."
     dad "Sounds like you enjoyed your day."
     mom "Talk to us if you need anything."
-    player "Thanks! You guys are the best."
+    player "Thanks! You two are the best."
 
     scene bg bedroom night with blinds
     player happy "Delicious home-cooked dinner as always."
