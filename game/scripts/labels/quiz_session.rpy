@@ -108,19 +108,19 @@ label trivia_one_question:
     $ renpy.say(None, quiz_question.question, interact=False)
     # result is True or False
     $ result = renpy.display_menu(quiz_question.choices)
-    hide screen example
 
     if result == True:
         $ num_correct += 1
+        trivia_guy "That's right!"
+    else:
+        with vpunch
+        trivia_guy "Nope."
+        trivia_guy "The correct answer was {b}[quiz_question.true]{/b}"
 
-    with dissolve
     return
 
 ## coding interview session
 label interview_session:
-    # ask 3 - 6 questions each time
-    # to pass, must have more than 80 percent correct
-    # and then 0.6 chance of hearing back with an offer in 1 - 3 days
     $ num_questions = 5
     $ num_correct = 0
 
