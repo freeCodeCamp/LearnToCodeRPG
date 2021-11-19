@@ -1,5 +1,6 @@
 ## study session in daily activity choices
 label study_session:
+    hide screen player_stats_screen
     scene bg laptop_screen with dissolve
 
     # correct choices increments CS knowledge

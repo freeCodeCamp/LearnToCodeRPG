@@ -70,7 +70,9 @@ label start_after_interview:
     "Before you go, please take some time to complete your basic information so we can get to know you better."
     "The fields marked with {color=[red]}*{/color} are required."
 
-    # TODO: more customization like gender, pronouns, life story 
+    # TODO: more customization like gender, pronouns, life story
+    $ persistent.player_name = ''
+    player "(Phew... Looks like I survived the technical questions. Now let's fill in the general information.)"
     python:
         player_name = renpy.input("What is your name? {color=[red]}*{/color} (Type something and hit Enter)", default="Lydia")
         player_name = player_name.strip()
@@ -117,7 +119,7 @@ label start_after_interview:
     
     "Thanks for completing your information. We will be in touch about next steps."
 
-    with fade
+    with fadehold
     player "(Sigh...)"
     player "That was exhausting. There's no doubt that I bombed the questions."
     player "Geez, coding interviews are hard..."
@@ -1057,6 +1059,7 @@ label stage7:
 
     # once we are down here, we should have player_stats.player_stats_map['CS Knowledge'] >= 80
     scene bg bedroom with fadehold
+    show screen player_stats_screen
     play sound 'audio/sfx/social_media_notification.wav'
     player "Hmm? A notification from my phone? This early in the morning?"
     player "It says {bt}Congratulations!{/bt}...?"
@@ -1066,15 +1069,16 @@ label stage7:
     $ days_between_start_and_curriculum_completion = (completed_curriculum_date - start_date).days
     call screen confirm_and_share_screen(
         title="{bt}Congratulations!{/bt}",
-        message="You completed the coding curriculum in {b}[days_between_start_and_curriculum_completion]{/b} days.\nNow you are ready to rock the coding interview and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
+        message="You completed the coding curriculum in {b}{color=#002ead}[days_between_start_and_curriculum_completion]{/color}{/b} days.\nNow you are ready to rock the coding interview and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
         ok_text="Let's crunch 'em interviews!"
     )
     player "Great! Let's check the curriculum off my To-Do list."
     $ todo_list.complete_todo(todo_learn_cs)
-    $ todo_list.add_todo(todo_interview_prep)
     player "(Let's also make it a To-Do item to start preparing for coding interviews.)"
-    $ todo_list.add_todo(todo_apply_to_jobs)
+    $ todo_list.add_todo(todo_interview_prep)
     player "(And to start applying to jobs as well!)"
+    $ todo_list.add_todo(todo_apply_to_jobs)
+    player "I'm feeling great about my decision to learn to code!"
 
 label stage8:
     # Stage 8. Coding interviews
@@ -1090,9 +1094,10 @@ label stage8:
     scene bg bedroom with fadehold
     player "Alright! Let's start by applying to jobs!"
     call day_activity_job_search from _call_day_activity_job_search
+    player "Now I've applied to my first job, I can check it off my To-Do list."
     $ todo_list.complete_todo(todo_apply_to_jobs)
 
-    player "What's next on my To-Do for getting a job? Oh, let's start preparing for coding interviews."
+    player "What's next on my To-Do? Oh right, let's start preparing for coding interviews."
     # now change the day activity text for studying
     $ day_activity_study = todo_interview_prep
     player "What shall I study? I remember some skills mentioned in the job posting include JavaScript, Web Dev, Algorithms, and System Design."
@@ -1103,6 +1108,9 @@ label stage8:
     player "Whew... Those questions are harder than CS fundamental questions. Guess I need to put in more studying."
     player "But this is a good start nonetheless!"
     $ todo_list.complete_todo(todo_interview_prep)
+    player "Now the next big thing on my To-Do list will be to actually pass an interview and get a job."
+    $ todo_list.add_todo(todo_get_job)
+
     player "Let's relax for a bit and see if anyone has messaged me while I was away."
     # chat with Marco
     play sound 'audio/sfx/social_media_notification.wav'
@@ -1120,7 +1128,14 @@ label stage8:
     marco "You as well."
 
     play sound 'audio/sfx/phone_hangup.wav'
+    hide marco
+
     player "Yawwwwwn... Let's call this a day and get back to my routine tomorrow."
+
+    call day_start
+    call day_activity_choices
+    $ calendar.next_week()
+    show screen player_stats_screen
 
     # loop routine
     # TODO: refactor past demo if we need offer negotiation
@@ -1129,81 +1144,93 @@ label stage8:
             # two free-to-play days in a row
             call day_start from _call_day_start_7
             call day_activity_choices from _call_day_activity_choices_7
-            call day_start from _call_day_start_8
-            call day_activity_choices from _call_day_activity_choices_8
             $ calendar.next_week()
+            show screen player_stats_screen
 
             call day_start from _call_day_start_9
             if interview_company_name is None:
                 # go back to job search
-                player "Huh. It's been a whole week since I applied to the job but I'm not hearing back from the company."
-                player "Maybe it's time to apply to some new openings."
+                player "Hey! Looks like there is a new job posting available. Let's check it out."
                 call day_activity_job_search from _call_day_activity_job_search_1
                 call day_activity_choices from _call_day_activity_choices_9
 
-            else:
-                # receives an email
-                play sound 'audio/sfx/social_media_notification.wav'
-                player "Huh, an email from [interview_company_name]? Right, it's been a week since I've applied to their job posting."
-                player "The title says 'Application Follow-up'..."
-                show screen company_interview_email_screen(interview_company_name)
-                player awe "I made it! I'm going to a coding interview!"
-                player "I'm gonna share this with Annika and Marco."
-                play sound 'audio/sfx/smartphone_typing.wav'
-                player "Alright! Building on this momentum, let's kick start this awesome day!"
-                call day_activity_choices from _call_day_activity_choices_10
+        # receives an email
+        scene bg bedroom with fadehold
+        play sound 'audio/sfx/alarm.wav'
+        pause 3.0
+        play sound 'audio/sfx/social_media_notification.wav'
+
+        player "Huh, an email from {b}[interview_company_name]{/b} first thing in the morning? Right, it's been some time since I've applied to their job posting."
+        player "The title says 'Application Follow-up'..."
+        call screen company_interview_email_screen(interview_company_name)
+        player awe "I made it! I'm going to a coding interview!"
+        player "I'm gonna share this with Annika and Marco."
+        play sound 'audio/sfx/smartphone_typing.wav'
+        player "Alright! Building on this momentum, let's kick start this awesome day!"
+        call day_activity_choices from _call_day_activity_choices_10
+
         # here interview_company_name is not None
-        call day_start_interview from _call_day_start_interview
         call day_activity_interview from _call_day_activity_interview
         call day_end_interview from _call_day_end_interview
 
-        call day_start from _call_day_start_10
-        call day_activity_choices from _call_day_activity_choices_11
+        call day_start
+        call day_activity_choices
         $ calendar.next_week()
+        show screen player_stats_screen
 
-        call day_start from _call_day_start_11
+        call day_start
         if offer_company_name is None:
             play sound 'audio/sfx/social_media_notification.wav'
-            player "Huh, an email from [offer_company_name]? Right, it's been a week since my interview with them."
+            player "Huh, an email from {b}[interview_company_name]{/b}? Right, it's been a week since my interview with them."
             player "The title says 'Interview Follow-up'..."
             player pout "The last thing I need in my inbox is a rejection letter first thing in the morning..."
             player "But I have to face it."
-            show screen company_rejection_email_screen(interview_company_name)
+            call screen company_rejection_email_screen(interview_company_name)
             player pout "Well... Guess I need to work harder."
+            "(Hey you there, don't look so down, okay? Coding interviews are hard and we know it. That's why you should study for it. Why not try out some more mock questions during your study sessions?)"
+            show mint
+            mint "Meow..."
+            player "... Thanks, Mint. I'm a bit disappointed, but I'll be fine."
+            hide mint
+            player "It's no use crying over spilled milk. Let's get on with my day."
+            call day_activity_choices
 
-        # reset interview_compnay_name to None so we enter the inner loop again
+        # reset interview_company_name to None so we enter the inner loop again
         $ interview_company_name = None
 
     # once we break out of this loop, show the offer screen
     play sound 'audio/sfx/social_media_notification.wav'
-    player "Huh, an email from [offer_company_name]? Right, it's been a week since my interview with them."
+    player "Huh, an email from {b}[offer_company_name]{/b}? Right, it's been a week since my interview with them."
     player "The title says 'Interview Follow-up'..."
     player pout "The last thing I need in my inbox is a rejection letter first thing in the morning..."
     player "But who knows? It could be a request for follow-up interviews, or even better!"
     player "(Deep breath...)"
     player "Okay, I'm ready to take a look."
-    show screen company_offer_email_screen(offer_company_name)
+    call screen company_offer_email_screen(offer_company_name)
     player "... Is this a dream?"
 
     show mint with vpunch
     mint "Meow!"
-    player "Owww Mint... You are growing heavy..."
+    player "Owww Mint... You are heavy... Don't just pounce on me like that, okay?"
     player "But wait! Mint just crash-landed on me and I felt the impact. This must mean that I'm not dreaming."
     player "So this is real."
     mint "Meow meow!"
     hide mint
 
     player "Wow. I did it. I'm now a real developer!"
+    play sound 'audio/sfx/applause.ogg'
+    $ todo_list.complete_todo(todo_get_job)
     $ accepted_offer_date = date(calendar.year, calendar.month, calendar.day)
     $ days_between_start_and_offer = (accepted_offer_date - start_date).days
     $ days_between_curriculum_compltion_and_offer = (accepted_offer_date - completed_curriculum_date).days
     call screen confirm_and_share_screen(
         title="{bt}Congratulations!{/bt}",
-        message="You taught yourself to become a developer in {b}[days_between_start_and_offer]{/b} days, [days_between_curriculum_compltion_and_offer] days after you've completed the coding curriculum.\nNow you are ready to rock your new job!\n Feel free to share your progress with the world!",
+        message="You taught yourself to become a developer in {b}{color=#002ead}[days_between_start_and_offer]{/color}{/b} days, [days_between_curriculum_compltion_and_offer] days after you've completed the coding curriculum.\nNow you are ready to rock your new job!\n Feel free to share your progress with the world!",
         ok_text="Let's rock my new job!", 
     )
 
-
+    player "I can't wait to tell my parents! And I should call Annika and Marco to let them know!"
+    player "Let's get everyone together and throw a big party to celebrate!"
     # TODO: congrats from Annika, Marco, and family
             
 
@@ -1221,10 +1248,11 @@ label stage14:
     $ quick_menu = True
 
     $ calendar.next_month() # player's start date is in a month
+    $ player_stats.set_stats('Developer Skill', 0)
 
-    scene bg office with slideright
+    scene bg office
     player "Wow. {w}I still can't believe that I'm working in such a fancy office."
-    player "My orientation email says that my on boarding buddy will be here to pick me up and show me around the office...{p=0.5}{nw}"
+    player "My orientation email says that my on boarding buddy will be here to pick me up and show me around the office...{p=1.0}{nw}"
     show layla
 
     layla "Hey [persistent.player_name]. Welcome to the team! I'm Layla, your on boarding buddy."
@@ -1233,10 +1261,13 @@ label stage14:
     player "(...Oh! Was that her at Hacker Space mentoring the kids?)"
     player "(If I remembered correctly...)"
     # TODO: flashback fade
+    hide screen player_stats_screen
     scene bg hacker_space with fadehold
     layla "So how's everyone's project going? We mentors are here to answer any question you have!"
 
     scene bg office with dissolve
+    show screen player_stats_screen
+    show layla with vpunch
     layla "[persistent.player_name]? Are you okay? You are spacing out."
     player "Ah! I'm fine. I just remembered that we might have met before."
     player "You know, at Hacker Space. I used to go there to study and work on projects before I get this job."
@@ -1244,10 +1275,11 @@ label stage14:
     layla "Alright, enough small talks! Are you ready to commit your first line of code into production today?"
     player "(Uhhhh that's fast...)"
     player "Ahhh... Yes, I'd love to dive into the code base as soon as possible!"
-    layla "Way to go! Our team sits in that corner."
+    layla "Way to go! Our team usually sits around that table, next to the whiteboard."
     play sound 'audio/sfx/keyboard_typing.wav'
 
     scene bg office with fadehold
+    show layla
     layla "So how's work going? Have you worked your way through our code base already?"
     player "... Um..."
     layla "Something on your mind?"
@@ -1259,7 +1291,8 @@ label stage14:
     player "Sure, I'd love to!"
 
     scene bg office_cafe with blinds
-    layla "Here you go. From bean to coffee."
+    show layla
+    layla "Here you go. From bean to coffee, freshly brewed in the office."
     player "..."
     player "Hey Layla. Mind if I ask how long you've been with this company and team?"
     layla "Of course not! I've been here for two years. I interned here when I was in college and returned full-time right after graduation."
@@ -1270,18 +1303,33 @@ label stage14:
     player "Oops, sorry."
     layla "No big deal."
     layla "Have you heard of the word, imposter syndrome?"
-    player "Yeah. I feel that quite often."
-    layla "You are good. That's almost the norm for people in tech."
+    menu:
+        "Yes":
+            player "Yeah. I feel that quite often."
+        "Nope":
+            player "Care to explain?"
+            layla "It's when you fee like everyone else is smarter and more competent than you."
+            layla "That you are a fraud, despite all of your education and achievements."
+            player "Uhhh... I know that feeling..."
+            layla "Not the prettiest feeling, huh?"
+    layla "No worries, you are good. That's almost the norm for people in tech."
     layla "Hah. Would you believe me if I tell you that imposter syndrome hits CS students equally hard, if not harder?"
-    player "... Um... Tell me about it."
-    layla "It starts the first time we step into a CS classroom, maybe earlier. There is always that kid that sits in the front row, who has been coding since five and knows everything the professor has yet to talk about."
+    player "Ummm... Tell me about it."
+    layla "It starts the first time we step into a CS classroom, maybe earlier."
+    layla "There is always that kid that sits in the front row, who has been coding since five and knows everything the professor has yet to talk about."
     player "That's... intense."
-    layla "And there is the expectation that CS kids should get big-names internships as early as their freshman year summer. Definitely not later than their junior year summer. Otherwise, the myth goes that they are unhirable."
-    layla "I spent my freshman and sophomore summers volunteering at a local school teaching kids to code. I don't see any problems with that. I mean, I love coding and I love teaching, and being able to convey that to the next generation is an awesome opportunity for me."
-    layla "But my friends were either interning for big names or building their own startups during the summer. They are nice enough not to say anything to my face, but I always feel a strange sense of hollowness when I see them post about their intern perks or startup progress."
+    layla "And there is the expectation that CS kids should get big-names internships as early as their freshman year summer."
+    layla "Definitely not later than their junior year summer. Otherwise, the myth goes that they are unhirable."
+    layla "I spent my freshman and sophomore summers volunteering at a local school teaching kids to code."
+    layla "I don't see any problems with that. I mean, I love coding and I love teaching, and being able to convey that to the next generation is an awesome opportunity for me."
+    player "(No wonder Layla's volunteering her time to mentor kids at Hacker Space.)"
+    layla "But my friends were either interning for big names or building their own startups during the summer."
+    layla "They are nice enough not to say anything to my face, but I always feel a strange sense of hollowness when I see them post about their intern perks or startup progress."
     layla "It was a rough time, but my friends and my college advisors were supportive, and I eventually come to terms with being who I am and contributing to causes that I care about."
+    player "(Awww... I would never imagine how hard imposter syndrome hits everyone.)"
     layla "Haha sorry for the rant. I didn't mean to scare you away from continuing working in tech."
-    layla "It's just that the battle with imposter syndrome is a continuous battle. Every little win is a win. In fact, I still grapple with imposter syndrome and have to stop myself from banging my head on the desk whenever I run into a bug I can't fix."
+    layla "It's just that the battle with imposter syndrome is a continuous battle. Every little win is a win."
+    layla "In fact, I still grapple with imposter syndrome and have to stop myself from banging my head on the desk whenever I run into a bug I can't fix."
     player "Wow. Haha. Thanks for sharing. That actually makes me feel a lot better."
     layla "You are very welcome."
     layla "So, what else would you like to know about me or my role?"
@@ -1331,6 +1379,7 @@ label ending:
     # TODO: system processing animation
     play sound 'audio/sfx/system_processing.wav'
     player "... {w}And nothing happened."
+    player "Hmm... my changes should at least do something to the code base. Maybe I can check if Layla is in... {p=1.0}{nw}"
 
     # stop the music here
     $ continue_looping_music = False
@@ -1340,7 +1389,8 @@ label ending:
     # office red alert animation
     show red_flash    
     play sound 'audio/sfx/error.wav'
-    layla "[persistent.player_name]...!{p=1.0}{nw}"
+    layla "[persistent.player_name]? Was that your change a few seconds ago?{p=2.0}{nw}"
+    layla "Oh don't tell me... I think we have some problems here...{p=2.0}{nw}"
     window hide
     pause 4.0
     hide red_flash with dissolve
@@ -1377,14 +1427,14 @@ label ending:
     with Pause(1)
 
     # Credits, like in the About section from options.rpy
-    scene gray15 with dissolve
+    scene gray10 with dissolve
     pause 1
     show text "{size=48}[about]{/size}"
     with dissolve 
     pause 3
     hide text with dissolve
 
-    scene gray15 with dissolve
+    scene gray10 with dissolve
     pause 1
     show text "{size=48}[credits]{/size}"
     with dissolve 

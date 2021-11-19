@@ -32,12 +32,12 @@ label barista_machinelearning:
 
 label barista_conference:
     college_girl "Ohh hey isn't that my favorite sister?"
-    highschool_girl "... I'm your only sister."
+    girl "... I'm your only sister."
     college_girl "Oh come on! I'm just trying to lighten up the mood a bit!"
     college_girl "Are you still nervous about going to the conference?"
-    highschool_girl "... Well, yeah. I've never been to one before... I don't know what to do once I'm there..."
+    girl "... Well, yeah. I've never been to one before... I don't know what to do once I'm there..."
     college_girl "You'll be fine! Conferences are fun! There are talks, poster sessions, and even career fairs!"
-    highschool_girl "Oh... That doesn't sound too bad. What exactly can I expect?"
+    girl "Oh... That doesn't sound too bad. What exactly can I expect?"
     player "A tech {b}conference{/b}... That sounds like a place for elite developers. I better take notes so I can learn more about it."
     $ todo_list.add_todo(todo_ask + 'Conference')
     $ topics_to_ask.add('Conference')
@@ -58,7 +58,7 @@ label barista_api:
     college_girl "Maybe. Or we can search online to see if there are public ones we can use."
     college_boy "That sounds like a good idea!"
     college_girl "Huh. Knowing you, anything that saves you efforts sounds like a good idea."
-    college_boy "Ow don't be so mean. I'm only doing this so we can avoid {bt}reinventing the wheel.{/bt}"
+    college_boy "Ouch. Don't be so mean. I'm only doing this so we can avoid {bt}reinventing the wheel.{/bt}"
     college_girl "... Okay. Whatever you say. Let's get to work."
     player "An {b}API{/b}... What is that? I better take notes so I can learn more about it."
     $ todo_list.add_todo(todo_ask + 'API')
@@ -77,14 +77,14 @@ label barista_userexperience:
     return
 
 label barista_versioncontrol:
-    highschool_girl "Oh. {w}My. {w}God. {w}Did you just blow up our codebase?"
-    highschool_boy "Oopsy."
-    highschool_girl "'Oopsy' is all you can say? Our project deadline is tomorrow, you know!"
-    highschool_boy "Relax, will you? We have version control, don't we?"
-    highschool_girl "Uh. True."
-    highschool_boy "Then problem solved. Let's just roll back."
-    highschool_boy "And remember to thank the genius who first suggested that we set up version control."
-    highschool_girl "... I'm not thanking you for breaking the code, you know."
+    girl "Oh. {w}My. {w}God. {w}Did you just blow up our codebase?"
+    boy "Oopsy."
+    girl "'Oopsy' is all you can say? Our project deadline is tomorrow, you know!"
+    boy "Relax, will you? We have version control, don't we?"
+    girl "Uh. True."
+    boy "Then problem solved. Let's just roll back."
+    boy "And remember to thank the genius who first suggested that we set up version control."
+    girl "... I'm not thanking you for breaking the code, you know."
     player "{b}Version Control{/b}... What is that? I better take notes so I can learn more about it."
     $ todo_list.add_todo(todo_ask + 'Version Control')
     $ topics_to_ask.add('Version Control')

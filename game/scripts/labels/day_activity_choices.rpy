@@ -8,7 +8,7 @@ label day_activity_choices:
         call day_end from _call_day_end
         return # return to script.rpy
 
-    player "Okay, what shall we do for the day?"
+    player "What shall we do for the day?"
     menu:
         # TODO: change this string to study more CS fundamentals
         # when the player has completed the curriculum
@@ -24,32 +24,7 @@ label day_activity_choices:
                 renpy.say(player, text)
 
             if has_completed_curriculum: # can choose a topic to study
-                menu study_session_choose_topic:
-                    "Which topic to study for the coding interview?"
-
-                    "General CS knowledge":
-                        player "It's never a bad idea to go back to CS fundamentals!"
-                        $ study_session_questions = general_questions
-
-                    "JavaScript":
-                        player "I feel like crunching some JavaScript questions today!"
-                        $ study_session_questions = javascript_questions
-
-                    "Web Development":
-                        player "Let's buckle up and go with Web Dev!"
-                        $ study_session_questions = web_questions
-
-                    "Algorithms":
-                        player "I wonder if I can develop a better algorithm to streamline my interview prep process?"
-                        $ study_session_questions = algorithm_questions
-
-                    "System Design":
-                        player "Let's do some high-level system design!"
-                        $ study_session_questions = system_questions
-
-                    "Mix and match all topics":
-                        player "How about mixing and matching all topics? That sounds more realistic in an interview setting."
-                        $ study_session_questions = interview_questions
+                call study_session_choose_topic
 
             call study_session from _call_study_session_1
 
@@ -95,6 +70,37 @@ label day_activity_choices:
         "Take a day off and relax":
             call day_activity_relax from _call_day_activity_relax_1
             call day_end from _call_day_end_4
+
+    hide screen player_stats_screen
+    return
+
+label study_session_choose_topic:
+    menu:
+        "Which topic to study for the coding interview?"
+
+        "General CS knowledge":
+            player "It's never a bad idea to go back to CS fundamentals!"
+            $ study_session_questions = general_questions
+
+        "JavaScript":
+            player "I feel like crunching some JavaScript questions today!"
+            $ study_session_questions = javascript_questions
+
+        "Web Development":
+            player "Let's buckle up and go with Web Dev!"
+            $ study_session_questions = web_questions
+
+        "Algorithms":
+            player "I wonder if I can develop a better algorithm to streamline my interview prep process?"
+            $ study_session_questions = algorithm_questions
+
+        "System Design":
+            player "Let's do some high-level system design!"
+            $ study_session_questions = system_questions
+
+        "Mix and match all topics":
+            player "How about mixing and matching all topics? That sounds more realistic in an interview setting."
+            $ study_session_questions = interview_questions
     return
             
 label day_activity_relax:
@@ -168,7 +174,7 @@ label day_activity_hacker_space_random:
 
 label day_activity_barista:
     scene bg cafe with slideright
-    player "Alright, let's focus on my shift!"
+    player "Alright, let's serve some coffee to help get people started on their day!"
     play sound 'audio/sfx/cafe_pour.wav'
     show coffee at truecenter
     pause 5
@@ -179,8 +185,10 @@ label day_activity_barista:
         player "(It's pretty quiet in the cafe today. Guess I won't get to hear any tech gossips.)"
     else:
         # 70% trigger rate, pick random tech gossip
+        player "(Pssst... Looks like there are people hanging out and having a fun conversation.)"
         python:
-            label = renpy.random.choice(barista_event_labels)
+            available_labels = list(set(barista_event_labels) - seen_barista_events)
+            label = renpy.random.choice(available_labels)
             seen_barista_events.add(label)
             renpy.call(label)
 
@@ -259,7 +267,7 @@ label day_activity_video_game:
 label day_activity_job_search:
     $ day_activity = 'jobsearch'
     if has_won_hacker_space_trivia and not has_applied_to_cupcakecpu:
-        player "Hey. I remember that the trivia guy at Hacker Space gave me a business card."
+        player "Speaking of job postings, I remember that the trivia guy at Hacker Space gave me a business card."
         show business_card at truecenter with zoomin
         player "Here's the business card. It's from CupcakeCPU."
         player "Let's apply to CupcakeCPU."
@@ -271,13 +279,14 @@ label day_activity_job_search:
 
     else:
         # apply to some random company
-        $ company_name = renpy.random.choice(all_company_names)
+        $ company_name = renpy.random.choice(all_company_names.keys())
         show screen job_posting_screen(company_name, all_skill_names)
         if renpy.random.random() < 0.8: # 80% chance of interview
             $ interview_company_name = company_name
 
-    player "They require so many different skills... but I think I'll be fine. I should at least try."
-    play sound 'audio/sfx/todo_complete.wav'
+    player "Here is a job posting by {b}[company_name]{/b}."
+    player "They require so many different skills... Looks like I'll need to study hard after applying to this role."
+    play sound 'audio/sfx/button_click.wav'
     player "Application submitted. Let's hope for the best."
 
     if has_won_hacker_space_trivia:
@@ -287,11 +296,18 @@ label day_activity_job_search:
     return
 
 label day_activity_interview:
+    scene bg bedroom with fadehold
     $ day_activity = 'interview'
-    player "Today is my big day! I have an interview with [interview_company_name]."    
+    play sound 'audio/sfx/alarm.wav'
+    pause 3.0
+    player "Today is my big day! I have an interview with {b}[interview_company_name]{/b}."    
 
     $ interview_room_bg = renpy.random.choice(interview_room_bgs)
-    scene interview_room_bg with slideright
+    $ renpy.scene()
+    $ renpy.show(interview_room_bg)
+    with slideright
+    # the above is equivalent to the below show statement
+    # scene interview_room_bg with slideright
     player "Wow. Their office sure is fancy. I wish I can get my cubicle in a fancy office like this..."
 
     # TODO
@@ -300,7 +316,10 @@ label day_activity_interview:
     interviewer "Hello, is that [persistent.player_name]?"
     player "Yes. Good morning."
 
+    interviewer "Nice to meet you! We are glad that you applied to our job posting."
     interviewer "Alright, since we are here, let's get started with the interview."
+    player "Sounds good!"
+    with blinds
     call interview_session from _call_interview_session
 
     interviewer "Thanks for taking your time. We will be in touch about next steps."

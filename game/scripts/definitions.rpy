@@ -66,9 +66,9 @@ init python:
 
     # random interview room bg
     interview_room_bgs = [
-    'images/bg/bg interview_room1.png',
-    'images/bg/bg interview_room2.png',
-    'images/bg/bg interview_room3.png'
+    'bg interview_room1',
+    'bg interview_room2',
+    'bg interview_room3'
     ]
 
     ## font replacement

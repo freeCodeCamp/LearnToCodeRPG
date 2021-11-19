@@ -32,6 +32,8 @@ init python:
 
     seen_barista_events = set()
 
+    seen_company_names = set()
+
     ## Non-mutable
 
     # to-do strings
@@ -41,6 +43,7 @@ init python:
     todo_apply_cupcakecpu = 'Apply to CupcakeCPU'
     todo_apply_to_jobs = 'Start applying to jobs'
     todo_interview_prep = 'Start preparing for coding interviews'
+    todo_get_job = 'Get a developer job'
     todo_ask_hackathon = 'Learn about Hackathon'
     todo_ask = 'Learn about ' # should be concatenated with vocabs from barista story
 
@@ -55,10 +58,10 @@ init python:
     ]
 
     barista_event_labels = [
-    'barista_fullstack'
+    'barista_fullstack',
     'barista_devops',
     'barista_conference',
-    'barista_versioncontrol'
+    'barista_versioncontrol',
     'barista_machinelearning',
     'barista_agile',
     'barista_api',

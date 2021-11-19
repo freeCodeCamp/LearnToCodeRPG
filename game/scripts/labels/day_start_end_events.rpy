@@ -105,7 +105,7 @@ label day_end:
     elif day_activity == 'jobsearch':
         player "I spent my day looking for job openings. I hope that my resume will catch the recruiter's eyes."
     elif day_activity == 'interview':
-        player "I wouldn't say my interview wasn't stressful, but I felt like I've given it my best shot."
+        player "I had an interview today. I wouldn't say it wasn't stressful, but I felt like I've given it my best shot."
     else:
         player "I just chilled for the day."
     dad "Sounds like you enjoyed your day."
@@ -122,9 +122,14 @@ label day_end:
         player "I do have something to ask."
         # randomly decide between Annika and Marco
         if not has_met_marco:
-            player "Let's give Annika a call."
-            $ npc = annika
-            $ npc_sprite = 'annika'
+            player "Shall I give Annika a call now?"
+            menu:            
+                "Call Annika now":
+                    $ npc = annika
+                    $ npc_sprite = 'annika'
+            
+                "Save the buzzword for later":
+                    player "Hmm... Let's save up on those buzzwords and ask when I've gathered a few of them."
         else:
             player "Who should I talk to?"
             menu:
@@ -134,13 +139,16 @@ label day_end:
                     player "Let's give Annika a call."
                     $ npc = annika
                     $ npc_sprite = 'annika'
+                    call npc_conversation_start
             
                 "Marco":
                     player "Let's chat with Marco."
                     $ npc = marco
                     $ npc_sprite = 'marco'
+                    call npc_conversation_start
 
-        call npc_conversation_start from _call_npc_conversation_start
+                "Save the buzzword for later":
+                    player "Hmm... Let's save up on those buzzwords and ask when I've gathered a few of them."
 
     player "Anyways, I feel like I've done a lot today. Let's call it a day and get some rest."
     player "Tomorrow will be another day. Right, Mint?"
@@ -149,11 +157,46 @@ label day_end:
     player "Haha good night Mint."
     hide mint
 
+    hide screen player_stats_screen
     scene black with fadehold
 
     return # should return control to script.rpy
 
-label day_end_annika:
+label day_end_interview:
+    hide screen player_stats_screen
+    scene bg kitchen night with blinds
+    play sound 'audio/sfx/dining_ambient.wav'
+    mom "How was your day, honey? How did the interview go?"
+    player "Well, I wouldn't say it wasn't stressful, but I felt like I've given it my best shot."
+    player "I also feel like I need to work harder on interview prep."
+    dad "That's the spirit."
+    mom "We are proud of you, honey."
+    dad "Let us know if you need anything."
+    player "Thanks, I will. It's awesome to have you two behind my back!"
+    dad "Any time, pumpkin."
 
+    play sound 'audio/sfx/dining_ambient.wav'
+    pause 3.0
 
-label day_end_marco:
+    scene bg bedroom night with blinds
+    player "Phew... What a day. I can't wait to go to catch some zzzz's already..."
+    play sound 'audio/sfx/social_media_notification.wav'
+    player "Oh. Here's a text from Annika."
+    show annika
+    player "It reads {i}'Hope your interview went well & take some well-deserved rest & let me know if there's anything you need help with! <3'{/i}"
+    hide annika
+    player "Awww that's so nice of Annika..."
+    play sound 'audio/sfx/social_media_notification.wav'
+    player "Hmm? Wow. A text from Marco as well?"
+    show marco
+    player "It reads {i}'Hey [persistent.player_name]! How did the interview go? Hopefully it wasn't too stressful for ya. Just keep in mind that we have all been there before. You can do it if you put in the work!{/i}"
+    hide marco
+    player "That's so considerate of Marco..."
+    show mint
+    mint "Meow meow~"
+    player "Awww Mint, now you too?"
+    hide mint
+    player "I'm lucky to have mom, dad, Annika, Marco, and Mint supporting me."
+    player "Yawwwwwn... Let's call this a day and wake up to a brand new tomorrow..."
+
+    return

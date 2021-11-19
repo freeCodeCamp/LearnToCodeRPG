@@ -13,6 +13,8 @@ label npc_conversation_start:
 
     player "That's all I need to know. Thanks!"
     npc "No problem. Have a good night!"
+    player "You as well!"
+    play sound 'audio/sfx/phone_hangup.wav'
     $ renpy.hide(npc_sprite)
     return
 
@@ -66,7 +68,7 @@ label ask_machinelearning:
     npc "Machine Learning requires a lot of mathematical knowledge. You need to be familiar with linear algebra, calculus, and so on."
     player "That sounds intense, but really cool!"
     npc "Remember that [freeCodeCamp] has resources if you'd like to get started with Machine Learning."
-    npc "You can build a lot of cool projects with Machine Learning. How about {a href=https://www.freecodecamp.org/news/discord-ai-chatbot/}a chatbot that speaks like your favorite character{/a}?"
+    npc "You can build a lot of cool projects with Machine Learning. How about {a=https://www.freecodecamp.org/news/discord-ai-chatbot/}a chatbot that speaks like your favorite character{/a}?"
     player "Sounds awesome! Thanks for sharing!"
 
     player "(Hmmm, so that's what {b}machine learning{/b} is about.)"
