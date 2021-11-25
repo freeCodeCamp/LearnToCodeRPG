@@ -64,7 +64,6 @@ label hacker_space_playtest:
             # restore rollback from this point on
             $ renpy.checkpoint()
             $ quick_menu = True
-            window show
 
             if _return == "computer":
                 player "Wow. The computer was really good..."

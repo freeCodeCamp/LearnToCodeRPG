@@ -294,7 +294,37 @@ style quick_button_text:
 ## This screen is included in the main and game menus, and provides navigation
 ## to other menus, and to start the game.
 
-screen navigation():
+screen main_menu_navigation():
+
+    hbox:
+        style_prefix "navigation"
+
+        xalign 0.5
+        yalign 0.95
+        spacing gui.navigation_spacing
+
+        textbutton _("Start") action Start()
+
+        textbutton _("Load") action ShowMenu("load")
+
+        textbutton _("Preferences") action ShowMenu("preferences")
+
+        null width 120 # hacky way to adjust spacing
+
+        textbutton _("About") action ShowMenu("about")
+
+        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+
+            ## Help isn't necessary or relevant to mobile devices.
+            textbutton _("Help") action ShowMenu("help")
+
+        if renpy.variant("pc"):
+
+            ## The quit button is banned on iOS and unnecessary on Android and
+            ## Web.
+            textbutton _("Quit") action Quit(confirm=not main_menu)
+
+screen game_menu_navigation():
 
     vbox:
         style_prefix "navigation"
@@ -370,7 +400,7 @@ screen main_menu():
 
     ## The use statement includes another screen inside this one. The actual
     ## contents of the main menu are in the navigation screen.
-    use navigation
+    use main_menu_navigation
 
     if gui.show_name:
 
@@ -476,7 +506,7 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
                     transclude
 
-    use navigation
+    use game_menu_navigation
 
     textbutton _("Return"):
         style "return_button"

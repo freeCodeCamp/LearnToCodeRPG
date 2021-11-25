@@ -1,4 +1,4 @@
-image learn_to_code_splash = 'images/others/learnToCodeRPG.png'
+image learn_to_code_splash = 'images/others/LearnToCodeRPG.png'
 image fcc_splash = 'images/others/fcc_primary_large.jpg'
 
 label splashscreen:

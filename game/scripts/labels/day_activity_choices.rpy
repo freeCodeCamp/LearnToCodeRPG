@@ -24,7 +24,7 @@ label day_activity_choices:
                 renpy.say(player, text)
 
             if has_completed_curriculum: # can choose a topic to study
-                call study_session_choose_topic
+                call study_session_choose_topic from _call_study_session_choose_topic_1
 
             call study_session from _call_study_session_1
 
@@ -124,7 +124,7 @@ label day_activity_relax:
                 player "I'd love to play some games, but those are only available on my laptop."
                 "(You won't able to access mini-games when you are playing the mobile or the web version. Please download the desktop version instead.)"
                 player "Let's instead go take a walk in the park."
-                call day_activity_park
+                call day_activity_park from _call_day_activity_park_1
             else:
                 player "Nothing beats some video games."
                 call day_activity_video_game from _call_day_activity_video_game
@@ -256,7 +256,6 @@ label day_activity_video_game:
     $ renpy.checkpoint()
 
     $ quick_menu = True
-    window show
 
     $ num_hits, num_notes = _return
     player "I hit [num_hits] notes out of [num_notes]. That wasn't bad!"

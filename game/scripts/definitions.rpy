@@ -76,6 +76,17 @@ init python:
     config.font_replacement_map["fonts/lato/Lato-Regular.ttf", True, False] = ("fonts/lato/Lato-Bold.ttf", False, False)
     config.font_replacement_map["fonts/lato/Lato-Regular.ttf", False, True] = ("fonts/lato/Lato-Italic.ttf", False, False)
 
+    all_dinner_images = [
+    'pizza',
+    'gyoza',
+    'chicken'
+    ]
+
+    def show_random_dinner_image():
+        image = renpy.random.choice(all_dinner_images)
+        renpy.show(image, at_list=[truecenter])
+        renpy.pause(4.0)
+        renpy.hide(image)
 
 init:
     # major characters
@@ -159,6 +170,36 @@ init:
         'others/coffee/coffee3.png'
         0.8
         repeat
+
+    # pizza
+    image pizza:
+        'others/pizza/pizza1.png'
+        0.8
+        'others/pizza/pizza2.png'
+        0.8
+        'others/pizza/pizza3.png'
+        0.8
+        'others/pizza/pizza4.png'
+        0.8
+        'others/pizza/pizza5.png'
+
+    # gyoza
+    image gyoza:
+        'others/gyoza/gyoza1.png'
+        1.0
+        'others/gyoza/gyoza2.png'
+        1.0
+        'others/gyoza/gyoza3.png'
+
+    # chicken
+    image chicken:
+        'others/chicken/chicken1.png'
+        0.8
+        'others/chicken/chicken2.png'
+        0.8
+        'others/chicken/chicken3.png'
+        0.8
+        'others/chicken/chicken4.png'
 
     # red warning flash light
     image red_flash:

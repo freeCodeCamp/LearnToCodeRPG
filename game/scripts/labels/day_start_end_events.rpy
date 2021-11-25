@@ -89,6 +89,8 @@ label day_end:
 
     scene bg kitchen night with blinds
     play sound 'audio/sfx/dining_ambient.wav'
+    $ show_random_dinner_image()
+
     mom "How was your day, honey?"
     player "Good, good."
     # TODO: different text according to the day activity
@@ -139,13 +141,13 @@ label day_end:
                     player "Let's give Annika a call."
                     $ npc = annika
                     $ npc_sprite = 'annika'
-                    call npc_conversation_start
+                    call npc_conversation_start from _call_npc_conversation_start
             
                 "Marco":
                     player "Let's chat with Marco."
                     $ npc = marco
                     $ npc_sprite = 'marco'
-                    call npc_conversation_start
+                    call npc_conversation_start from _call_npc_conversation_start_1
 
                 "Save the buzzword for later":
                     player "Hmm... Let's save up on those buzzwords and ask when I've gathered a few of them."
@@ -166,6 +168,8 @@ label day_end_interview:
     hide screen player_stats_screen
     scene bg kitchen night with blinds
     play sound 'audio/sfx/dining_ambient.wav'
+    $ show_random_dinner_image()
+
     mom "How was your day, honey? How did the interview go?"
     player "Well, I wouldn't say it wasn't stressful, but I felt like I've given it my best shot."
     player "I also feel like I need to work harder on interview prep."
@@ -174,9 +178,6 @@ label day_end_interview:
     dad "Let us know if you need anything."
     player "Thanks, I will. It's awesome to have you two behind my back!"
     dad "Any time, pumpkin."
-
-    play sound 'audio/sfx/dining_ambient.wav'
-    pause 3.0
 
     scene bg bedroom night with blinds
     player "Phew... What a day. I can't wait to go to catch some zzzz's already..."

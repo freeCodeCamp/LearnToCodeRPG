@@ -125,13 +125,19 @@ label start_after_interview:
     player "Geez, coding interviews are hard..."
     with vpunch
     player "What made me think I'm capable of getting a software job in the first place?"
-    player "Well... it all started some time ago when I first decided to learn to code and get a real job..."
+    player "Well... it all started three months ago when I first decided to learn to code and get a real job..."
 
     # start the music here
     $ continue_looping_music = True
 
 label stage1:
     $ quick_menu = False
+    scene black with dissolve
+    pause 1
+    show text "{size=48}{color=[white]}{i}Three months ago...{i}{/color}{/size}" with dissolve 
+    pause 1
+    hide text with dissolve
+
     scene black with dissolve
     pause 1
     show text "{size=48}{color=[white]}{i}Chapter 1: Let's learn to code!{i}{/color}{/size}" with dissolve 
@@ -187,6 +193,7 @@ label stage2:
     # dinner scene
     scene bg kitchen night with blinds
     play sound 'audio/sfx/dining_ambient.wav'
+    $ show_random_dinner_image()
     dad "So here's the best part about my day...{p=0.5}{nw}"
     player "Haha that's hilarious!{p=0.5}{nw}"
     mom "So what plans do we have for the weekend?{p=0.5}{nw}"
@@ -756,6 +763,7 @@ label stage6_after_annika_questions:
     # dinner scene
     scene bg kitchen night with blinds
     play sound 'audio/sfx/dining_ambient.wav'
+    $ show_random_dinner_image()
     mom "Hey honey, how do you like working as a barista? You don't have to go if it distracts too much from your study, you know."
     dad "Your mom's right. We are here to support you if you ever need us."
     player "Thanks folks, but no worries. I can use an occasional break from studying."
@@ -1051,7 +1059,7 @@ label stage7:
     player "Okay. Let's see, how's my progress on [developerquiz]?"
     if player_stats.player_stats_map['CS Knowledge'] < 80:
         player "I think I still need to ramp up more on my CS knowledge. Let's resume studying tomorrow."
-        "Try ramping up your {b}CS Knowledge{/b} to above 80 by completing more quizzes."
+        "(Try ramping up your {b}CS Knowledge{/b} to above 80 by completing more quizzes.)"
 
     while player_stats.player_stats_map['CS Knowledge'] < 80:
         call day_start from _call_day_start_6
@@ -1132,8 +1140,8 @@ label stage8:
 
     player "Yawwwwwn... Let's call this a day and get back to my routine tomorrow."
 
-    call day_start
-    call day_activity_choices
+    call day_start from _call_day_start_8
+    call day_activity_choices from _call_day_activity_choices_8
     $ calendar.next_week()
     show screen player_stats_screen
 
@@ -1173,12 +1181,12 @@ label stage8:
         call day_activity_interview from _call_day_activity_interview
         call day_end_interview from _call_day_end_interview
 
-        call day_start
-        call day_activity_choices
+        call day_start from _call_day_start_10
+        call day_activity_choices from _call_day_activity_choices_11
         $ calendar.next_week()
         show screen player_stats_screen
 
-        call day_start
+        call day_start from _call_day_start_11
         if offer_company_name is None:
             play sound 'audio/sfx/social_media_notification.wav'
             player "Huh, an email from {b}[interview_company_name]{/b}? Right, it's been a week since my interview with them."
@@ -1193,7 +1201,7 @@ label stage8:
             player "... Thanks, Mint. I'm a bit disappointed, but I'll be fine."
             hide mint
             player "It's no use crying over spilled milk. Let's get on with my day."
-            call day_activity_choices
+            call day_activity_choices from _call_day_activity_choices_12
 
         # reset interview_company_name to None so we enter the inner loop again
         $ interview_company_name = None
