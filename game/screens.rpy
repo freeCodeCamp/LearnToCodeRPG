@@ -252,17 +252,17 @@ screen quick_menu():
         hbox:
             style_prefix "quick"
 
-            xalign 0.5
+            xalign 0.55
             yalign 0.98
 
-            textbutton _("{icon=key-back} Back") action Rollback()
+            textbutton _("{icon=key-back} Rollback") action Rollback()
             textbutton _("{icon=ico-map} History") action ShowMenu('history')
             textbutton _("{icon=key-fast} Skip") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("{icon=key-play} Auto") action Preference("auto-forward", "toggle")
             textbutton _("{icon=folder-qsave} Save") action ShowMenu('save')
             # textbutton _("Q.Save") action QuickSave()
             # textbutton _("Q.Load") action QuickLoad()
-            textbutton _("{icon=ico-settings} Prefs ") action ShowMenu('preferences')
+            textbutton _("{icon=ico-settings} Settings ") action ShowMenu('preferences')
 
             if stats_unlocked:
                 textbutton _("{icon=ico-phone} Stats") action ToggleScreen("player_stats_screen")
@@ -297,32 +297,50 @@ style quick_button_text:
 screen main_menu_navigation():
 
     hbox:
-        style_prefix "navigation"
+        style_prefix "main_menu_navigation"
 
         xalign 0.5
         yalign 0.95
         spacing gui.navigation_spacing
 
-        textbutton _("Start") action Start()
+        textbutton _("New Game") action Start():
+            background "gui/button/sticky_note_button_green.png"
 
-        textbutton _("Load") action ShowMenu("load")
+        textbutton _("Continue Game") action ShowMenu("load"):
+            background "gui/button/sticky_note_button_orange.png"
 
-        textbutton _("Preferences") action ShowMenu("preferences")
+        textbutton _("Game Settings") action ShowMenu("preferences")
 
         null width 120 # hacky way to adjust spacing
 
-        textbutton _("About") action ShowMenu("about")
+        textbutton _("About This Game") action ShowMenu("about")
 
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
             ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Help") action ShowMenu("help")
+            textbutton _("Interface Help") action ShowMenu("help")
 
         if renpy.variant("pc"):
 
             ## The quit button is banned on iOS and unnecessary on Android and
             ## Web.
-            textbutton _("Quit") action Quit(confirm=not main_menu)
+            textbutton _("Quit Game") action Quit(confirm=not main_menu)
+
+style main_menu_navigation_button is gui_button
+style main_menu_navigation_button_text is gui_button_text
+
+style main_menu_navigation_button:
+    size_group "navigation"
+    # properties gui.button_properties("navigation_button")
+    background "gui/button/sticky_note_button.png"
+    padding (20, 20, 20, 20)
+    xsize 250
+    ysize 228
+
+style main_menu_navigation_button_text:
+    properties gui.button_text_properties("navigation_button")
+    text_align 0.5
+    xalign 0.5
 
 screen game_menu_navigation():
 
@@ -334,41 +352,32 @@ screen game_menu_navigation():
 
         spacing gui.navigation_spacing
 
-        if main_menu:
+        textbutton _("{icon=ico-map} History") action ShowMenu("history")
 
-            textbutton _("Start") action Start()
+        textbutton _("{icon=folder-qsave} Save Game") action ShowMenu("save")
 
-        else:
+        textbutton _("{icon=folder-qload} Load Game") action ShowMenu("load")
 
-            textbutton _("History") action ShowMenu("history")
-
-            textbutton _("Save") action ShowMenu("save")
-
-        textbutton _("Load") action ShowMenu("load")
-
-        textbutton _("Preferences") action ShowMenu("preferences")
+        textbutton _("{icon=ico-settings} Game Settings") action ShowMenu("preferences")
 
         if _in_replay:
 
             textbutton _("End Replay") action EndReplay(confirm=True)
 
-        elif not main_menu:
+        textbutton _("{icon=menu1} Main Menu") action MainMenu()
 
-            textbutton _("Main Menu") action MainMenu()
-
-        textbutton _("About") action ShowMenu("about")
+        textbutton _("{icon=ico-bulb} About This Game") action ShowMenu("about")
 
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
             ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Help") action ShowMenu("help")
+            textbutton _("{icon=ico-archive} Interface Help") action ShowMenu("help")
 
         if renpy.variant("pc"):
 
             ## The quit button is banned on iOS and unnecessary on Android and
             ## Web.
-            textbutton _("Quit") action Quit(confirm=not main_menu)
-
+            textbutton _("{icon=log-out} Quit Game") action Quit(confirm=not main_menu)
 
 style navigation_button is gui_button
 style navigation_button_text is gui_button_text
@@ -424,7 +433,7 @@ style main_menu_frame:
     xsize 420
     yfill True
 
-    background "gui/overlay/main_menu.png"
+    # background "gui/overlay/main_menu.png"
 
 style main_menu_vbox:
     xalign 1.0
@@ -751,7 +760,7 @@ screen preferences():
 
     tag menu
 
-    use game_menu(_("Preferences"), scroll="viewport"):
+    use game_menu(_("Game Settings"), scroll="viewport"):
 
         vbox:
 

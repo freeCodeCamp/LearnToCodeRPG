@@ -51,11 +51,13 @@ Proofreading                            {a=https://twitter.com/abbeyrenn}{font=f
 
 define gui.about = _p(about + """
 
-{b}Credits{/b}
+
+{b}{u}{color=#002ead}Credits{/color}{/u}{/b}
 
 """ + credits + """
 
-{b}Engine Information{/b}
+
+{b}{u}{color=#002ead}Engine Information{/color}{/u}{/b}
 """)
 
 
