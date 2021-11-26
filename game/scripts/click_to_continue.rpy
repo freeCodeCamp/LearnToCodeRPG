@@ -2,11 +2,22 @@ screen ctc(arg=None):
 
     zorder 100
 
-    text "{icon=chevrons-down}" at ctc_animation:
-        size 40
+    hbox:
         xalign 0.96
         yalign 0.96
-        color gui.accent_color
+        spacing 10
+
+        text _("{icon=chevrons-down}") at ctc_animation:
+            size 40  
+            color gui.accent_color
+
+        text _("Click to continue"):
+            font gui.interface_text_font
+            size gui.notify_text_size
+            xalign 0.94
+            yalign 0.96
+            color gui.accent_color
+    
 
 transform ctc_animation:
     parallel:

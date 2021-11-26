@@ -8,7 +8,7 @@
     scene bg laptop_screen with dissolve
 
     # get some action and conflict in here :)
-    "Hi there. Thanks for applying to our software engineering role! {w}We've reviewed your resume and as a first step in our recruiting process, we'd like you to invite you to complete an online assessment."
+    "Hi there. Thanks for applying to our software engineering role! {w}We've reviewed your resume and as a first step in our recruiting process, we'd like to invite you to complete an online assessment."
     "Press start whenever you are ready."
 
     menu:
