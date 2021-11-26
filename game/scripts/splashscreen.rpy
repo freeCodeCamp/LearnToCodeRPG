@@ -1,5 +1,5 @@
-image learn_to_code_splash = 'images/others/LearnToCodeRPG.png'
-image fcc_splash = 'images/others/fcc_primary_large.jpg'
+image learn_to_code_splash = 'images/others/learn_to_code_rpg_logo.png'
+image fcc_splash = 'images/others/fcc_logo.png'
 
 label splashscreen:
     scene gray90 with Pause(1)

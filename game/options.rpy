@@ -16,7 +16,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("Learn To Code RPG")
+define config.name = _("Learn to Code RPG")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
@@ -34,7 +34,7 @@ define config.version = "1.0"
 ## triple-quotes, and leave a blank line between paragraphs.
 
 define about = _p("""
-Learn To Code RPG was made possible by all the kind people who donate to support freeCodeCamp.org. You can help support our nonprofit's mission {a=https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/}{font=fonts/saxmono.ttf}here{/font}{/a}.
+{b}Learn to Code RPG{/b} was made possible by all the kind people who donate to support freeCodeCamp.org. You can help support our nonprofit's mission {a=https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/}{font=fonts/saxmono.ttf}here{/font}{/a}.
 
 This project is open source. You can make suggestions and report bugs {a=https://github.com/freeCodeCamp/LearnToCodeRPG}{font=fonts/saxmono.ttf}here on GitHub{/font}{/a}.
 """)
@@ -42,11 +42,11 @@ This project is open source. You can make suggestions and report bugs {a=https:/
 define credits = _p("""
 Coding & Writing & Misc. Art            {a=https://ruolinzheng08.github.io/}{font=fonts/saxmono.ttf}Lynn Zheng{/font}{/a}
 
-Production & Music                      {a=}{font=fonts/saxmono.ttf}Quincy Larson{/font}{/a}
+Production & Music                      {a=https://twitter.com/ossia}{font=fonts/saxmono.ttf}Quincy Larson{/font}{/a}
 
 Character Art                           {a=layerto.carrd.co}{font=fonts/saxmono.ttf}Layerto (Noa Trinh){/font}{/a}
 
-Proofreading                            {a=}{font=fonts/saxmono.ttf}Abbey Rennemeyer{/font}{/a}
+Proofreading                            {a=https://twitter.com/abbeyrenn}{font=fonts/saxmono.ttf}Abbey Rennemeyer{/font}{/a}
 """)
 
 define gui.about = _p(about + """
@@ -63,7 +63,7 @@ define gui.about = _p(about + """
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "LearnToCodeRPG"
+define build.name = "Learn to Code RPG"
 
 
 ## Sounds and music ############################################################
