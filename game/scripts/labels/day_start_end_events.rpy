@@ -182,7 +182,9 @@ label day_end_interview:
     scene bg bedroom night with blinds
     player "Phew... What a day. I can't wait to go to catch some zzzz's already..."
     play sound 'audio/sfx/social_media_notification.wav'
+    show smartphone at truecenter
     player "Oh. Here's a text from Annika."
+    hide smartphone
     show annika
     player "It reads {i}'Hope your interview went well & take some well-deserved rest & let me know if there's anything you need help with! <3'{/i}"
     hide annika

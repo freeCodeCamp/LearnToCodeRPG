@@ -39,7 +39,7 @@ init python:
     # to-do strings
     todo_check_fcc = 'Check out [freeCodeCamp]'
     todo_ask_curriculum = 'Ask Annika about CS curriculum'
-    todo_learn_cs = 'Ramp up CS knowledge'
+    todo_learn_cs = 'Bump {b}CS Knowledge{/b} to 80+'
     todo_apply_cupcakecpu = 'Apply to CupcakeCPU'
     todo_apply_to_jobs = 'Start applying to jobs'
     todo_interview_prep = 'Start preparing for coding interviews'

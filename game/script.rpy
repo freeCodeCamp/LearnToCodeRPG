@@ -203,35 +203,34 @@ label stage2:
     player happy "That was a stuffing dinner. Mom's the best cook I know."
 
     play sound 'audio/sfx/social_media_notification.wav'
+    show smartphone at truecenter
     player neutral "Hmmm... A notification from my phone?  Must be something on social media."
 
     menu:
         "Check phone":
-            pass
+            player "Looks like someone from my junior high school. I don't even remember who they are."
+            player "What did they post to get this crazy many likes?"
+            hide smartphone
+            show swag at truecenter with zoomin
+            player "{bt}\"Proud intern at {b}DonutDB{/b}. Check out my swaaaag!\"{/bt}"
+            hide swag
+            player "Oh. wow."
+            player "Should I leave a like or comment on their post?"
+            # no consequence
+            menu:
+                "Leave a like":
+                    player "Liked. Wow. They've got 1k+ likes already? Guess I'm one of them now."
+            
+                "Post a comment":
+                    player "{i}Congrats!{/i} {w}Posted. Now I'm one of their 100+ comments."
+
+                "Do nothing":
+                    player "Meh, they are just bragging. I don't even know them that well."
 
         "Ignore":
+            hide smartphone
             player "Let's make this evening distraction-free for my sanity."
-            jump stage2_after_social_media_ding
 
-    player "Looks like someone from my junior high school. I don't even remember who they are."
-    player "What did they post to get this crazy many likes?"
-    show swag at truecenter with zoomin
-    player "{bt}\"Proud intern at {b}DonutDB{/b}. Check out my swaaaag!\"{/bt}"
-    hide swag
-    player "Oh. wow."
-    player "Should I leave a like or comment on their post?"
-    # no consequence
-    menu:
-        "Leave a like":
-            player "Liked. Wow. They've got 1k+ likes already? Guess I'm one of them now."
-    
-        "Post a comment":
-            player "{i}Congrats!{/i} {w}Posted. Now I'm one of their 100+ comments."
-
-        "Do nothing":
-            player "Meh, they are just bragging. I don't even know them that well."
-
-label stage2_after_social_media_ding:
     player pout "It's crazy how everyone these days is learning to code and getting high-paying jobs in software."
     player "College itself has been crazy enough for me, and now people are going back to school to complete an online master's program in Computer Science?"
     player "Six months of self-paced learning and then a six-figure job? Talk about the end of craziness."
@@ -255,8 +254,9 @@ label stage2_after_social_media_ding:
     # now the screen should be showing
 
     player "I'll keep track of my progress on my phone."
-
+    show smartphone at truecenter
     "(Click on the phone icon {icon=ico-phone} on the bottom-right corner of the textbox to show or hide your progress.)"
+    hide smartphone
 
     player "So Java and JavaScript are different languages? Wait, which one is for web dev again?"
     $ player_stats.change_stats('CS Knowledge', 1)
@@ -326,9 +326,11 @@ label stage3:
     scene bg bedroom with dissolve
     $ calendar.next()
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
+    show smartphone at truecenter
     player pout "Here goes my phone at this early hour."
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
     player "Do I merit a personal rejection call from the neighborhood coffee shop?"
+    hide smartphone
 
     show annika
     annika "[persistent.player_name]!"
@@ -562,7 +564,9 @@ label stage5_annika:
     player "What's on our To-Do today?"
     show screen player_stats_screen
     player "Right. Let's give Annika a call and ask about the CS curriculum."
+    show smartphone at truecenter
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
+    hide smartphone
 
     show annika
 
@@ -588,6 +592,7 @@ label stage5_annika:
     annika "I was clueless, so I reached out to [freeCodeCamp]'s online community."
     annika "They recommended that I start with some general introduction to computer science quizzes on a site named [developerquiz]."
     annika "I found those bite-sized quizzes fun and easier to digest."
+    annika "Plus these quizzes cover a lot of fundamental CS knowledge. You can think of it as an intro curriculum to CS for complete noobs."
     annika "How does that sound?"
 
     player "Ehh... Even that, I'm not sure if I can make it through all the quizzes and CS concepts on my own..."
@@ -696,9 +701,11 @@ label stage6:
 
     scene bg bedroom dusk with fadehold
 
+    show smartphone at truecenter
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
     pause 2.0
+    hide smartphone
 
     show annika
     pause 1.0
@@ -795,9 +802,11 @@ label stage6_after_annika_questions:
     # hacker space story
     scene bg bedroom with fadehold
 
+    show smartphone at truecenter
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
     pause 2.0
+    hide smartphone
 
     show annika
     pause 1.0
@@ -952,9 +961,11 @@ label stage7:
     player "I feel like I'm so much more knowledgeable than when I started."
     hide screen player_stats_screen
 
+    show smartphone at truecenter
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
     pause 2.0
+    hide smartphone
 
     show annika
     pause 1.0
@@ -1059,7 +1070,7 @@ label stage7:
     player "Okay. Let's see, how's my progress on [developerquiz]?"
     if player_stats.player_stats_map['CS Knowledge'] < 80:
         player "I think I still need to ramp up more on my CS knowledge. Let's resume studying tomorrow."
-        "(Try ramping up your {b}CS Knowledge{/b} to above 80 by completing more quizzes.)"
+        "(Try bumping your {b}CS Knowledge{/b} to above 80 by completing more quizzes.)"
 
     while player_stats.player_stats_map['CS Knowledge'] < 80:
         call day_start from _call_day_start_6
@@ -1122,7 +1133,9 @@ label stage8:
     player "Let's relax for a bit and see if anyone has messaged me while I was away."
     # chat with Marco
     play sound 'audio/sfx/social_media_notification.wav'
+    show smartphone at truecenter
     player "Huh. A message from Marco."
+    hide smartphone
     show marco
     marco "Heya [persistent.player_name]! Was it a busy day?"
     player "Hey Marco! Yeah. I just started preparing for interviews and applying to jobs."
