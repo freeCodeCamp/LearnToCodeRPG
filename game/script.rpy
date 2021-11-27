@@ -72,16 +72,21 @@ label start_after_interview:
 
     # TODO: more customization like gender, pronouns, life story
     $ persistent.player_name = ''
-    player "(Phew... Looks like I survived the technical questions. Now let's fill in the general information.)"
-    python:
-        player_name = renpy.input("What is your name? {color=[red]}*{/color} (Type something and hit Enter)", default="Lydia")
-        player_name = player_name.strip()
-        if not player_name:
-            player_name = "Lydia"
-        persistent.player_name = player_name
+    player pout "(Phew... Looks like I survived the technical questions. Now let's fill in the general information.)"
 
-        # TODO
-        # player_pronouns = renpy.input("What's your preferred pronoun?")
+    $ player_name = renpy.input("What is your name? {color=[red]}*{/color} (Type something and hit Enter)", default="Lydia")
+    $ player_name = player_name.strip()
+    if player_name in vip_names:
+        $ vip_profile_url = vip_names[player_name]
+        "[player_name]? What a coincidence! Our VIP team member {a=[vip_profile_url]}[player_name]{/b} will be honored to hear that."
+        # TODO: Easter Egg
+    # handle empty string case
+    if not player_name:
+        $ player_name = "Lydia"
+    $ persistent.player_name = player_name
+
+    # TODO
+    # player_pronouns = renpy.input("What's your preferred pronoun?")
 
     # questions with no substantial consequences
     menu:
@@ -99,8 +104,9 @@ label start_after_interview:
         "Referral":
             $ referral_name = renpy.input("What is the full name of your referral? (Type something and hit Enter)")
             # Easter egg :)
-            if referral_name in ['Quincy', 'Quincy Larson', 'Lynn', 'Lynn Zheng', 'Abbey', 'Abbey Rennemeyer']:
+            if referral_name in vip_names:
                 "System processing... {w}Looks like you were referred by a VIP team member. That's awesome! We'll highlight this on your profile."
+                # TODO: Easter Egg Twitter
             else:
                 "Hmmm... We aren't able to locate that person in our employee database. Maybe you had a typo?"
 
@@ -124,7 +130,7 @@ label start_after_interview:
     player "That was exhausting. There's no doubt that I bombed the questions."
     player "Geez, coding interviews are hard..."
     with vpunch
-    player "What made me think I'm capable of getting a software job in the first place?"
+    player pout "What made me think I'm capable of getting a software job in the first place?"
     player "Well... it all started three months ago when I first decided to learn to code and get a real job..."
 
     # start the music here
@@ -149,7 +155,7 @@ label stage1:
     scene bg kid_home with dissolve
 
     # Stage 1. player background
-    player "Okay, so that's it for today's session."
+    player smile "Okay, so that's it for today's session."
     kid "Uhh okay, so that's what trigonometry is about?"
     player "Yep. That's the basics of trigonometry."
     kid "Okay... I need to reread my notes to make sure I have everything for the day."
@@ -173,10 +179,10 @@ label stage2:
     # player returns home
     scene bg living_room night with slideright
 
-    player "I'm home!"
+    player laugh "I'm home!"
     mom "Hey sweetie. Welcome back!"
     dad "Welcome home, pumpkin. How was your day?"
-    player "(That's my mom and dad. {w} Mom is a high school teacher, which is why she could find me this tutoring gig. {w}Dad is a mechanical engineer, but I never got too into engineering.)"
+    player happy "(That's my mom and dad. {w} Mom is a high school teacher, which is why she could find me this tutoring gig. {w}Dad is a mechanical engineer, but I never got too into engineering.)"
     player "(Not bragging but they are the nicest parents I know.)"
     player "My day is okay. I'm tutoring this smart kid who wants to take up coding classes. I can't believe that came from a high school student."
     mom "That's interesting. I heard that a lot of high schools are rolling out coding curriculum."
@@ -195,7 +201,7 @@ label stage2:
     play sound 'audio/sfx/dining_ambient.wav'
     $ show_random_dinner_image()
     dad "So here's the best part about my day...{p=0.5}{nw}"
-    player "Haha that's hilarious!{p=0.5}{nw}"
+    player laugh "Haha that's hilarious!{p=0.5}{nw}"
     mom "So what plans do we have for the weekend?{p=0.5}{nw}"
     player "I'm up to anything!{p=0.5}{nw}"
 
@@ -214,7 +220,7 @@ label stage2:
             show swag at truecenter with zoomin
             player "{bt}\"Proud intern at {b}DonutDB{/b}. Check out my swaaaag!\"{/bt}"
             hide swag
-            player "Oh. wow."
+            player smile "Oh. wow."
             player "Should I leave a like or comment on their post?"
             # no consequence
             menu:
@@ -235,7 +241,7 @@ label stage2:
     player "College itself has been crazy enough for me, and now people are going back to school to complete an online master's program in Computer Science?"
     player "Six months of self-paced learning and then a six-figure job? Talk about the end of craziness."
     player "Hmm, but I can see the appeal in that."
-    player awe "Maybe I can learn to code as well."
+    player laugh "Maybe I can learn to code as well."
 
     show mint
     mint "Meow meow~"
@@ -246,7 +252,7 @@ label stage2:
 
     player neutral "Alright, let's do this."
     player "A bit of research won't hurt. Where shall we start? Maybe some free online resources like everyone else is doing?"
-    player awe "Oh here's a video about the top 10 tech skills worth learning in 2021. Let's check that out!"
+    player happy "Oh here's a video about the top 10 tech skills worth learning in 2021. Let's check that out!"
 
     # player starts learning to code, so we initialize CS knowledge to 0
     $ player_stats.set_stats('Sanity', 100)
@@ -258,7 +264,7 @@ label stage2:
     "(Click on the phone icon {icon=ico-phone} on the bottom-right corner of the textbox to show or hide your progress.)"
     hide smartphone
 
-    player "So Java and JavaScript are different languages? Wait, which one is for web dev again?"
+    player neutral "So Java and JavaScript are different languages? Wait, which one is for web dev again?"
     $ player_stats.change_stats('CS Knowledge', 1)
     $ player_stats.change_stats('Sanity', -5)
 
@@ -270,17 +276,17 @@ label stage2:
     $ player_stats.change_stats('CS Knowledge', 1)
     $ player_stats.change_stats('Sanity', -5)
 
-    player "Java doesn't sound like a good idea either. People are so hyped about Kotlin."
+    player worry "Java doesn't sound like a good idea either. People are so hyped about Kotlin."
     $ player_stats.change_stats('CS Knowledge', 1)
     $ player_stats.change_stats('Sanity', -5)
 
-    player distress "JavaScript? TypeScript?"
+    player "JavaScript? TypeScript?"
     $ player_stats.change_stats('CS Knowledge', 1)
     $ player_stats.change_stats('Sanity', -5)
 
     player "Maybe I can find a job posting I like and start learning their required skills."
     with hpunch
-    player "But what is front-end, back-end, or full-stack? What are the differences?"
+    player pout "But what is front-end, back-end, or full-stack? What are the differences?"
     with hpunch
     player "What are DevOps and Site Reliability Engineering?"
     with hpunch
@@ -291,20 +297,20 @@ label stage2:
 
     with vpunch
     play sound 'audio/sfx/stats_change_doom.wav'
-    player cry "Ugh. This is so frustrating."
+    player worry "Ugh. This is so frustrating."
 
     show mint
     mint "Meow meow~"
     player pout "Awww thanks Mint. I'm okay."
     hide mint
 
-    player pout "Learn to code? Haha. I know it can't be that easy."
+    player "Learn to code? I guess it's not that easy..."
     player "There might be people who are cut out to do this, but definitely not me."
     player "I guess I better call it a day and go to bed."
 
     hide screen player_stats_screen
     with fadehold
-    player "... I can't sleep with all these thoughts floating around in my head."
+    player worry "... I can't sleep with all these thoughts floating around in my head."
     player "What can I do if the kid I'm tutoring cuts down our sessions for his coding classes?"
     player "Ugh. I still need to pay the bills even if my parents are nice enough not to ask me for rent."
     player "Let's check out the coffee shop next door tomorrow and see if they are hiring."
@@ -339,6 +345,7 @@ label stage3:
     annika "Same! How have you been?"
     player netural "I've been okay. Just new grad blues. You?"
 
+    show annika laugh
     annika "Things are going pretty well for me! I just got my job offer!"
     annika "And, like, it's not just any job! It's a web development job!"
     annika "Can you believe it? I get paid generously for building cool websites."
@@ -348,18 +355,21 @@ label stage3:
     player netural "Hey, if I may ask, how hard was it for you to learn to develop websites?"
     player pout "I also tried to learn to code for some time but it got too hard and I quit."
 
+    show annika neutral
     annika "I'm sorry to hear that but you should give coding another try!"
     annika "Hey, hear me out."
     annika "It wasn't like easy peasy for me either. Like neither of us majored in CS. The CS kids have a way easier time getting a tech job."
     player "You did take some CS electives in school, no?"
     annika "Yeah but they are pretty rusty. And honestly, what you learn in school is so much different from real-world software engineering."
 
+    show annika serious
     annika "I mean, in school you learn about theories and stuff. Like I did take a Web Dev 101 back in school but we never built an entire website from scratch."
     annika "I never gave web design a second thought after the final exam."
     annika "I've been self-studying all these months with the help of some awesome free resources. I even built a pet adoption website for a side project and that's when I applied everything I learned about user experience, data models, and so on."
     annika "And there was this bug that I had no idea how to fix until..."
     annika "..."
 
+    show annika neutral
     annika "Oh sorry I've been talking all the time. I must have bored you with this tech talk stuff."
     player "No worries. It does look like you are doing something you enjoy!"
     player "That must be really cool. I wish I could be like you."
@@ -372,15 +382,17 @@ label stage3:
     $ todo_list.add_todo(todo_check_fcc)
     "(Click on the To-Do icon {icon=list} to show or hide your To-Do items.)"
 
+    show annika laugh
     annika "Anyways, what's your plan for the day?"
     player "Um, I need to check out the cafe around the neighborhood."
     annika "Cool! Let's catch up some time and get coffee!"
     player "Sure! Chat later!"
+    hide annika
     hide screen player_stats_screen
 
 label stage4:
     scene bg cafe with fadehold
-    player "I'm glad that this coffee shop happens to need a part-time barista."
+    player smile "I'm glad that this coffee shop happens to need a part-time barista."
     player "Now at least I have some pocket money for necessities."
     player "This reminds me so much of college. I used to work part-time as a barista at the school library cafe as well."
     player "It was always nice to see my peers socializing and doing work at the cafe."
@@ -390,6 +402,8 @@ label stage4:
     player "Not totally out of scope given that the tech scene is booming in our quite little town."
     player "Or at least they might be talking about something interesting happening in the tech industry."
 
+    show girl flipped red at left
+    show boy orange at right
     girl "Hey hey! Did you hear that our school will soon have a computer club?"
     boy "Wow. Really? What do you plan to do at a computer club? Play video games?"
     girl "That, and much better! We can code stuff, maybe build a video game ourselves!"
@@ -399,9 +413,12 @@ label stage4:
     boy "That sounds like fun. Do you have any project idea already?"
     girl "Emmm... Do you know this thing called a visual novel game?"
     boy "Tell me about it."
+    girl "Okay here goes..."
+    hide girl
+    hide boy
 
     player "Oops. I wasn't intentionally eavesdropping on high school kids, but the {b}hackathon{/b} idea they mentioned is new."
-    player "I believe I can use this piece of information to my advantage. Let's make it a to-do item to ask Annika if she knows about events like this."
+    player happy "I believe I can use this piece of information to my advantage. Let's make it a to-do item to ask Annika if she knows about events like this."
 
     $ todo_list.add_todo(todo_ask_hackathon)
     $ topics_to_ask.add('Hackathon')
@@ -410,22 +427,21 @@ label stage4:
 
     # player goes back home
     scene bg bedroom night with fadehold
-
-    player dark "Phew... It's been a long day at work."
+    player pout "Phew... It's been a long day at work."
 
     scene bg laptop_screen night with dissolve
-    player dim "Let's check out the awesome resource Annika's been talking about."
+    player smile "Let's check out the awesome resource that Annika was talking about."
 
     menu stage4_guess_name:
         player "What was it called again?"
 
         "freebieGoodie":
-            player "That doesn't sound like the right name."
+            player pout "That doesn't sound like the right name."
             player "My memory must be playing a trick on me."
             jump stage4_guess_name
 
         "coolCodersCamp":
-            player "That doesn't sound like the right name."
+            player pout "That doesn't sound like the right name."
             player "My memory must be playing a trick on me."
             jump stage4_guess_name
 
@@ -433,9 +449,9 @@ label stage4:
             pass
 
 label stage5:
-    player "[freeCodeCamp]. That sounds right! Let's check it out!"
+    player smile "[freeCodeCamp]. That sounds right! Let's check it out!"
     show fcc_curriculum at truecenter with dissolve
-    player "Wow. Their curriculum is sure comprehensive. {w}They also offer certifications that I can showcase on my resume. Neat!"
+    player happy "Wow. Their curriculum is sure comprehensive. {w}They also offer certifications that I can showcase on my resume. Neat!"
     player "What shall we start with?"
     hide fcc_curriculum
 
@@ -474,7 +490,7 @@ label stage5:
 
         "Quality Assurance":
             player pout "Quality assurance? That sounds like I will be on a digital conveyor belt making sure all cookie packs weigh more or less the same."
-            player awe "Nice, warm, and chewy cookies... I love cookies. Hope mom still keeps some in the kitchen cookie jar."
+            player happy "Nice, warm, and chewy cookies... I love cookies. Hope mom still keeps some in the kitchen cookie jar."
             show mint
             mint "Meow?"
             player "Hey Mint. You want a cookie as well?"
@@ -512,7 +528,7 @@ label stage5:
         #     jump stage5_choose_curriculum
 
         "Machine Learning with Python":
-            player awe "Machine Learning. Wow. That sounds cool."
+            player happy "Machine Learning. Wow. That sounds cool."
             player "I'm really interested in teaching machines to learn."
             player "Just think about it. Teaching machines to chat like humans. {w}Wow."
             player "No wonder everyone is hyped about Artificial Intelligence these days."
@@ -541,7 +557,7 @@ label stage5_cookie:
     scene bg kitchen night with blinds
     mom "Hey honey, taking a break from all the studying?"
     mom "Your dad and I are really glad that you continue to learn new things after college, but don't push yourself too hard, okay?"
-    player "Haha thanks Mom. I'm doing just fine."
+    player happy "Haha thanks Mom. I'm doing just fine."
     player "I'm just deciding on what CS topic to learn so I can get a job in tech like Annika."
     mom "Alright, know that we are always here if you'd like to talk or anything."
     player "I will. Thanks Mom."
@@ -550,7 +566,7 @@ label stage5_cookie:
     show cookie at truecenter
     pause 0.2
     play sound 'audio/sfx/chew_food.wav'
-    player "Mmmm... Mom's cookies are the best."
+    player laugh "Mmmm... Mom's cookies are the best."
     hide cookie
     return
 
@@ -560,20 +576,20 @@ label stage5_annika:
     scene bg bedroom with fade
 
     play sound 'audio/sfx/alarm.wav'
-    player "Ahhh... my alarm... It's a new day already?"
-    player "What's on our To-Do today?"
+    player pout "Ahhh... my alarm... It's a new day already?"
+    player neutral "What's on our To-Do today?"
     show screen player_stats_screen
-    player "Right. Let's give Annika a call and ask about the CS curriculum."
+    player smile "Right. Let's give Annika a call and ask about the CS curriculum."
     show smartphone at truecenter
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
     hide smartphone
 
-    show annika
+    show annika neutral
 
     player happy "Morning Annika!"
-    annika "Morning! As energetic as ever, I see."
+    annika laugh "Morning! As energetic as ever, I see."
     player "Haha all thanks to you!"
-    annika "What's up?"
+    annika neutral "What's up?"
     player "So I've been checking out [freeCodeCamp] as you suggested."
     player "I think its curriculum looks solid."
     player pout "The thing is, I have no idea what to learn. Web dev, data science, machine learning..."
@@ -584,10 +600,12 @@ label stage5_annika:
     annika "If I remembered anything from my college CS minor, it's those web markup languages."
     player "Ahh I see."
     player pout "(So Annika managed to pull through the curriculum because she had some existing experience from college. Plus she has really good designer eyes.)"
-    player "(I'm not like that... There's no way I can do this...)"
+    player worry "(I'm not like that... There's no way I can do this...)"
 
     annika "Hey [persistent.player_name], don't get discouraged, okay?"
     annika "It's already a big step forward now that you've checked out their curriculum!"
+
+    show annika serious
     annika "Trust me, I was just like you when I first started."
     annika "I was clueless, so I reached out to [freeCodeCamp]'s online community."
     annika "They recommended that I start with some general introduction to computer science quizzes on a site named [developerquiz]."
@@ -595,14 +613,18 @@ label stage5_annika:
     annika "Plus these quizzes cover a lot of fundamental CS knowledge. You can think of it as an intro curriculum to CS for complete noobs."
     annika "How does that sound?"
 
-    player "Ehh... Even that, I'm not sure if I can make it through all the quizzes and CS concepts on my own..."
-    player "What if I run into something that I can't understand?"
-    player "What if the quizzes gets too hard like they always do at college, and I lose my motivation?"
+    player worry "Ehh... Even that, I'm not sure if I can make it through all the quizzes and CS concepts on my own..."
+    player pout "What if I run into something that I can't understand?"
+    player worry "What if the quizzes gets too hard like they always do at college, and I lose my motivation?"
 
+    show annika neutral
     annika "That's totally okay! In fact, what I love about [freeCodeCamp] is that they have an entire community that can help you out and cheer you on."
+    show annika laugh
     annika "And I can be your go-to accountability buddy as well! Ping me anytime if anything comes up."
     player happy "Thanks Annika. I know I can count on you."
     annika "Anytime!"
+
+    show annika neutral
     annika "Well, I'm about to head out to work. Talk later!"
     player laugh "Best of luck with work! Let me know how it goes."
 
@@ -1008,7 +1030,7 @@ label stage7:
     player "Oh and I meant to ask, what was your interview experience like?"
     annika "Haha that's a long story. Shall we go grab a drink first?"
 
-    scene bg hacker_space with fadehold
+    scene bg hacker_space_cafe with fadehold
     annika "Okay, so here's my experience with interviewing."
     annika "I polished my resume and applied to as many online postings as I could."
     annika "I also had to highlight parts of my resume that are specific to the requirement of the jobs I'm applying to."
@@ -1184,7 +1206,7 @@ label stage8:
         player "Huh, an email from {b}[interview_company_name]{/b} first thing in the morning? Right, it's been some time since I've applied to their job posting."
         player "The title says 'Application Follow-up'..."
         call screen company_interview_email_screen(interview_company_name)
-        player awe "I made it! I'm going to a coding interview!"
+        player laugh "I made it! I'm going to a coding interview!"
         player "I'm gonna share this with Annika and Marco."
         play sound 'audio/sfx/smartphone_typing.wav'
         player "Alright! Building on this momentum, let's kick start this awesome day!"

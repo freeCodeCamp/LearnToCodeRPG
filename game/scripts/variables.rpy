@@ -80,3 +80,16 @@ init python:
     'API': 'ask_api',
     'User Experience': 'ask_userexperience',
     }
+
+    # VIP names and profile links
+    quincy_profile = 'https://twitter.com/ossia'
+    abbey_profile = 'https://twitter.com/abbeyrenn'
+    lynn_profile = 'https://ruolinzheng08.github.io/'
+    vip_names = {
+    'Quincy': quincy_profile, 
+    'Quincy Larson': quincy_profile, 
+    'Lynn': lynn_profile, 
+    'Lynn Zheng': lynn_profile, 
+    'Abbey': abbey_profile, 
+    'Abbey Rennemeyer': abbey_profile
+    }

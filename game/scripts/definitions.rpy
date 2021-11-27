@@ -56,13 +56,33 @@ init python:
     # late night in front of computer
     tint_dim = im.matrix.tint(.90, .90, 1) * im.matrix.brightness(-0.1)
 
-    # programmatically apply effects to all bg images inside game/images/bg
+    # tint for gray NPC sprites
+    tint_red = im.matrix.tint(1, 0.6, 0.6)
+    tint_orange = im.matrix.tint(0.9, 0.6, 0.4)
+    tint_blue = im.matrix.tint(0.7, 0.8, 1)
+    tint_purple = im.matrix.tint(0.8, 0.6, 1)
+    
+    # programmatically apply effects
     for file in renpy.list_files():
+        # bg images inside game/images/bg 
         if file.startswith('images/bg'):
             image_path = re.sub(r'images/', '', file) # remove the `images/` prefix
             image_name = re.match(r'images/bg/(.+).png', file).group(1) # ex. images/bg/(bg living_room).png
             renpy.image(image_name + ' night', im.MatrixColor(image_path, tint_dark))
             renpy.image(image_name + ' dusk', im.MatrixColor(image_path, tint_sunset))
+        # npc sprites
+        if file.startswith('images/chara/npc'):
+            image_path = re.sub(r'images/', '', file) # remove the `images/` prefix
+            image_name = re.match(r'images/chara/npc/(.+).png', file).group(1) # ex. images/bg/(bg living_room).png
+            renpy.image(image_name + ' red', im.MatrixColor(image_path, tint_red))
+            renpy.image(image_name + ' orange', im.MatrixColor(image_path, tint_orange))
+            renpy.image(image_name + ' blue', im.MatrixColor(image_path, tint_blue))
+            renpy.image(image_name + ' purple', im.MatrixColor(image_path, tint_purple))
+
+            renpy.image(image_name + ' red flipped', im.MatrixColor(im.Flip(image_path, horizontal=True), tint_red))
+            renpy.image(image_name + ' orange flipped', im.MatrixColor(im.Flip(image_path, horizontal=True), tint_orange))
+            renpy.image(image_name + ' blue flipped', im.MatrixColor(im.Flip(image_path, horizontal=True), tint_blue))
+            renpy.image(image_name + ' purple flipped', im.MatrixColor(im.Flip(image_path, horizontal=True), tint_purple))
 
     # random interview room bg
     interview_room_bgs = [
@@ -87,6 +107,8 @@ init python:
         renpy.show(image, at_list=[truecenter])
         renpy.pause(4.0)
         renpy.hide(image)
+
+    # config.side_image_tag = 'player'
 
 init:
     # major characters
@@ -118,12 +140,17 @@ init:
 
     ## images
 
-    ## temporary
-    image side player = 'chara/player/player.png'
-    image side player dark = im.MatrixColor('chara/player/player.png', tint_dark)
-    image side player sunset = im.MatrixColor('chara/player/player.png', tint_sunset)
-    image side player dim = im.MatrixColor('chara/player/player.png', tint_dim)
-    ## end
+    image side player = 'chara/player/player neutral.png'
+    image side player neutral = 'chara/player/player neutral.png'
+    image side player smile = 'chara/player/player smile.png'
+    image side player happy = 'chara/player/player happy.png'
+    image side player laugh = 'chara/player/player laugh.png'
+    image side player worry = 'chara/player/player worry.png'
+    image side player pout = 'chara/player/player pout.png'
+
+    # image side player dark = im.MatrixColor('chara/player/player.png', tint_dark)
+    # image side player sunset = im.MatrixColor('chara/player/player.png', tint_sunset)
+    # image side player dim = im.MatrixColor('chara/player/player.png', tint_dim)
 
     # mint
     image mint:
