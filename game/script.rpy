@@ -72,7 +72,7 @@ label start_after_interview:
 
     # TODO: more customization like gender, pronouns, life story
     $ persistent.player_name = ''
-    player pout "(Phew... Looks like I survived the technical questions. Now let's fill in the general information.)"
+    player pout glasses "(Phew... Looks like I survived the technical questions. Now let's fill in the general information.)"
 
     $ player_name = renpy.input("What is your name? {color=[red]}*{/color} (Type something and hit Enter)", default="Lydia")
     $ player_name = player_name.strip()
@@ -313,7 +313,7 @@ label stage2:
     player worry "... I can't sleep with all these thoughts floating around in my head."
     player "What can I do if the kid I'm tutoring cuts down our sessions for his coding classes?"
     player "Ugh. I still need to pay the bills even if my parents are nice enough not to ask me for rent."
-    player "Let's check out the coffee shop next door tomorrow and see if they are hiring."
+    player relieved "Let's check out the coffee shop next door tomorrow and see if they are hiring."
 
 label stage3:
     # Stage 3. Annika
@@ -343,7 +343,7 @@ label stage3:
     player happy "Annika! Geez. When was the last time you called me? When we were moving out after graduation?"
     player laugh "Anyways, it's really nice to hear from you again!"
     annika "Same! How have you been?"
-    player netural "I've been okay. Just new grad blues. You?"
+    player neutral "I've been okay. Just new grad blues. You?"
 
     show annika laugh
     annika "Things are going pretty well for me! I just got my job offer!"
@@ -352,7 +352,7 @@ label stage3:
     annika "It's almost like getting paid for being creative and doing art!"
     player laugh "Yeah. Wow. {bt}Congrats!{/bt}"
     annika "Thanks!"
-    player netural "Hey, if I may ask, how hard was it for you to learn to develop websites?"
+    player smile "Hey Annika, if I may ask, how hard was it for you to learn to develop websites?"
     player pout "I also tried to learn to code for some time but it got too hard and I quit."
 
     show annika neutral
@@ -372,7 +372,7 @@ label stage3:
     show annika neutral
     annika "Oh sorry I've been talking all the time. I must have bored you with this tech talk stuff."
     player "No worries. It does look like you are doing something you enjoy!"
-    player "That must be really cool. I wish I could be like you."
+    player pout "That must be really cool. I wish I could be like you."
     annika "You totally can! Did I give you the link to the {bt}awesome resource{/bt} that I've been using?"
     annika "It's called [freeCodeCamp]. Check that out!"
     player laugh "Thanks. I will."
@@ -417,7 +417,7 @@ label stage4:
     hide girl
     hide boy
 
-    player "Oops. I wasn't intentionally eavesdropping on high school kids, but the {b}hackathon{/b} idea they mentioned is new."
+    player surprised "Oops. I wasn't intentionally eavesdropping on high school kids, but the {b}hackathon{/b} idea they mentioned is new."
     player happy "I believe I can use this piece of information to my advantage. Let's make it a to-do item to ask Annika if she knows about events like this."
 
     $ todo_list.add_todo(todo_ask_hackathon)
@@ -427,10 +427,10 @@ label stage4:
 
     # player goes back home
     scene bg bedroom night with fadehold
-    player pout "Phew... It's been a long day at work."
+    player relieved "Phew... It's been a long day at work."
 
     scene bg laptop_screen night with dissolve
-    player smile "Let's check out the awesome resource that Annika was talking about."
+    player neutral "Let's check out the awesome resource that Annika was talking about."
 
     menu stage4_guess_name:
         player "What was it called again?"
@@ -547,8 +547,8 @@ label stage5:
             $ todo_list.complete_todo(todo_check_fcc)
             show mint
             mint "Meow!"
-            player neutral "You think that's a good idea too, Mint?"
-            player "Okay, let's get some rest today. Tomorrow is another day."
+            player smile "You think that's a good idea too, Mint?"
+            player relieved "Okay, let's get some rest today. Tomorrow is another day."
             hide mint
             hide screen player_stats_screen
             jump stage5_annika
@@ -575,7 +575,11 @@ label stage5_annika:
     $ calendar.next()
     scene bg bedroom with fade
 
+    show smartphone at truecenter
     play sound 'audio/sfx/alarm.wav'
+    pause 1.0
+    hide smartphone
+    
     player pout "Ahhh... my alarm... It's a new day already?"
     player neutral "What's on our To-Do today?"
     show screen player_stats_screen
@@ -631,12 +635,12 @@ label stage5_annika:
     play sound 'audio/sfx/phone_hangup.wav'
     hide annika
 
-    player "Okay. Now I've asked about the curriculum. One To-Do item off the list."
+    player smile "Okay. Now I've asked about the curriculum. One To-Do item off the list."
     $ todo_list.complete_todo(todo_ask_curriculum)
     player "I can ask Annika about other topics another day."
     player "Now my new To-Do would be to ramp up my CS knowledge."
     $ todo_list.add_todo(todo_learn_cs)
-    player "Sounds like a plan!"
+    player happy "Sounds like a plan!"
     player "Time to go work my barista shift."
     hide screen player_stats_screen
 
@@ -646,7 +650,7 @@ label stage5_annika:
     pause 5
     hide coffee
 
-    player "I don't see too many people in the cafe today. Maybe because it's a work day?"
+    player neutral "I don't see too many people in the cafe today. Maybe because it's a work day?"
 
     scene bg cafe dusk with fadehold
     play sound 'audio/sfx/cafe_pour.wav'
@@ -668,7 +672,7 @@ label stage6:
     $ quick_menu = True
 
     scene bg bedroom dusk with fade
-    player "I'm finally home! {w}Let's head over to [developerquiz] and try out some quiz questions."
+    player smile "I'm finally home! {w}Let's head over to [developerquiz] and try out some quiz questions."
     scene bg laptop_screen with dissolve
     player "Looks like I will need to complete four multiple choice questions per session."
     player "Let's do it."
@@ -676,30 +680,34 @@ label stage6:
     call study_session from _call_study_session
 
     scene bg bedroom night with dissolve
-    player "Phew... I'm finally done with these questions. What a day..."
-    player "I think I did okay, but I do feel tired after a day at work."
+    player neutral "Phew... I'm finally done with these questions. What a day..."
+    player pout "I think I did okay, but I do feel tired after a day at work."
     player "Maybe it's best for my productivity if I take an entire day off to study?"
     player "Let's give that a try tomorrow."
     show mint
     mint "Meow~"
-    player "Good night, Mint."
+    player smile "Good night, Mint."
     hide mint
 
     scene bg bedroom with fadehold
     
     # a new day, player studies in the morning, and hangs out with Annika at night
+    show smartphone at truecenter
     play sound 'audio/sfx/alarm.wav'
+    pause 1.0
+    hide smartphone
+
     show mint
     mint "Meow~"
-    player "Yawwwwwn... Good morning to you too, Mint."
-    player "Okay, let's grab a quick breakfast and jump into studying."
+    player relieved "Yawwwwwn... Good morning to you too, Mint."
+    player smile "Okay, let's grab a quick breakfast and jump into studying."
     hide mint
 
     scene bg kitchen with blinds
-    player "Morning, mom. Morning, dad."
+    player happy "Morning, mom. Morning, dad."
     dad "Morning, pumpkin."
     mom "Morning, honey. Did you sleep well?"
-    player "Yep. I'm recharged for a new day."
+    player laugh "Yep. I'm recharged for a new day."
     dad "That's great. Let's start the morning with a nice family breakfast."
 
     show toast at truecenter
@@ -710,14 +718,14 @@ label stage6:
 
     scene bg bedroom with blinds
 
-    player "Okay. Breakfast's done. Let's get to work."
+    player smile "Okay. Breakfast's done. Let's get to work."
     player "Hopefully I can get more questions correct today."
 
     call study_session from _call_study_session_2
 
     scene bg bedroom with dissolve
 
-    player "That's about it for the morning. I feel like I'm much more productive if I can focus on one thing for an entire day."    
+    player happy "That's about it for the morning. I feel like I'm much more productive if I can focus on one thing for an entire day."    
     player "Let's alternate between working whole-day shifts and spending whole days studying."
     player "I can call Annika this afternoon when she's done with her work to chat and ask about things."
 
@@ -731,20 +739,28 @@ label stage6:
 
     show annika
     pause 1.0
-    player "Hey Annika! Is now a good time to talk?"
+    player smile "Hey Annika! Is now a good time to talk?"
+
+    show annika laugh
     annika "Heyya [persistent.player_name]! Now's perfect. I just got back from work."
     annika "How did your first day of studying go?"
     player "I felt pretty productive today. It's nice how the quiz questions give you frequent feedback."
-    player "What about your day? How was work?"
+    player happy "What about your day? How was work?"
     annika "It went well! I'm learning to use the custom web dev framework that my company uses."
     annika "It's pretty different from what I've been using in my own projects, and a little confusing at times, but my colleagues said it gets better with practice."
     player "That sounds like fun!"
+
+    show annika neutral
     annika "Yeah! And I've heard good things about this framework. Mostly from people I ran into at the local Hacker Space."
     annika "It looks like a popular tool for people who want to test out project ideas at hackathons."
-    player "({b}Hackathons{/b}! That reminds me, I should probably ask Annika about this topic.)"
+    player neutral "({b}Hackathons{/b}! That reminds me, I should probably ask Annika about this topic.)"
     player "(And she also just mentioned something called {b}Hacker Space{/b}. That's something worth asking about as well.){p=1.0}{nw}"
+
+    show annika laugh
     annika "Hello? Earth to [persistent.player_name]?"
-    player "Haha no worries I'm here. Just wondering about something."
+    player happy "Haha no worries I'm here. Just wondering about something."
+
+    show annika neutral
     annika "What is it?"
 
     # booleans mark whether a choice has been visited
@@ -763,11 +779,11 @@ label stage6:
             player "What is this Hacker Space you are talking about?"
             annika "It's just a casual meetup place for people interested in tech."
             annika "I highly recommend checking it out if you have time!"
-            player "Hmmm..."
-            annika "Haha don't worry. I know what you must be thinking about. Hacker Space isn't for the cyber criminal type of hackers."
+            player worry "Hmmm..."
+            annika @ laugh "Haha don't worry. I know what you must be thinking about. Hacker Space isn't for the cyber criminal type of hackers."
             annika "It's a chill space for people to gather, work, and build cool projects."
             annika "You know what? At Hacker Space, you might actually find someone like you who's also learning to code. You can totally become study buddies!"
-            player "That sounds nice. I will go there some time."
+            player smile "That sounds nice. I will go there some time."
             annika "Yay! And we should go together some time!"
 
             jump stage6_annika_questions
@@ -776,18 +792,18 @@ label stage6:
             jump stage6_after_annika_questions
 
 label stage6_after_annika_questions:
-    player "That's all I want to know. Thanks so much for answering my questions!"
-    annika "Any time! You will become a pro in those tech culture terms in no time."
+    player laugh "That's all I want to know. Thanks so much for answering my questions!"
+    annika @ laugh "Any time! You will become a pro in those tech culture terms in no time."
     annika "Whelp, I guess you must be tired after a day's studying. Enjoy a relaxing evening!"
-    player "Haha thanks Annika. You as well. Have a good night and a great day at work tomorrow!"
+    player happy "Haha thanks Annika. You as well. Have a good night and a great day at work tomorrow!"
 
     hide annika
     play sound 'audio/sfx/phone_hangup.wav'
 
-    player "Whew. That's a lot of knowledge to unpack."
+    player smile "Whew. That's a lot of knowledge to unpack."
     dad "Dinner's ready, [persistent.player_name]!"
-    player "(Wow. Dad is cooking tonight? He cooks perhaps once or twice a month, but when he cooks, it's usually really good.)"
-    player "Coming!"
+    player surprised "(Wow. Dad is cooking tonight? He cooks perhaps once or twice a month, but when he cooks, it's usually really good.)"
+    player laugh "Coming!"
 
     # dinner scene
     scene bg kitchen night with blinds
@@ -795,20 +811,21 @@ label stage6_after_annika_questions:
     $ show_random_dinner_image()
     mom "Hey honey, how do you like working as a barista? You don't have to go if it distracts too much from your study, you know."
     dad "Your mom's right. We are here to support you if you ever need us."
-    player "Thanks folks, but no worries. I can use an occasional break from studying."
+    player smile "Thanks folks, but no worries. I can use an occasional break from studying."
     player "Plus, a lot of tech people visit the cafe and they talk a lot about cool tech stuff."
     player "Like I heard people talking about a type of event called a hackathon the other day, and I had the chance to ask Annika today."
     dad "That's great to hear, pumpkin. {w}What's Annika been up to? You two were really close at college, weren't you?"
-    player "You won't believe it! She didn't major in CS but now she has this cool tech job...{p=0.5}{nw}"
+    player happy "You won't believe it! She didn't major in CS but now she has this cool tech job...{p=0.5}{nw}"
     player "... And she taught herself everything...{p=0.5}{nw}"
-    player "... I'm gonna work hard just like she did!"
+    with vpunch
+    player laugh "... I'm gonna work hard just like she did!"
     dad "That's the spirit!"
     scene bg kitchen night with fadehold
 
     scene bg bedroom night with blinds
-    player "Yawwwwwn... What a day. My brain certainly enjoyed a great amount of workout today."
+    player pout "Yawwwwwn... What a day. My brain certainly enjoyed a great amount of workout today."
     player "I can barely keep my eyes open. Let's call this a day."
-    player "Good night, Mint."
+    player smile "Good night, Mint."
     show mint
     mint "Meow~"
     hide mint
@@ -830,32 +847,38 @@ label stage6_after_annika_questions:
     pause 2.0
     hide smartphone
 
-    show annika
     pause 1.0
-    annika "Morning, sleepy head!"
-    player "Hey Annika. You are up early."
+    annika @ laugh "Morning, sleepy head!"
+    player happy "Hey Annika. You are up early."
     annika "Yeah! Told you we are going to check out Hacker Space together."
     annika "You ready for the ride?"
-    player "Yes! Lead the way."
+    player laugh "Yes! Lead the way."
 
     scene bg hacker_space with slideright
     play sound 'audio/sfx/office_ambient.wav'
-    annika "Here we are!"
-    player "Wow. This place is huge. And modern."
+
+    show annika
+    annika @ laugh "Here we are!"
+    player surprised "Wow. This place is huge. And modern."
     annika "Yeah! That's why local hackers love to hang out here."
     annika "Why don't we go around and check out what people are working on?"
-    player "Sounds good!"
+    player laugh "Sounds good!"
 
     scene bg hacker_space with fade
+    show boy red
     college_boy "So I was reading this research paper and it occurs to me that we might be able to implement this idea in code..."
 
     scene bg hacker_space with fade
+    show girl purple flipped at left
+    show boy orange at right
     girl "The last hackathon was fun!"
     boy "It was! I feel like we might be able to grow our prototype into something even better."
     girl "Would you like to elaborate on your thoughts?"
     boy "Okay, here's the plan..."
 
     scene bg hacker_space with fade
+    show girl red flipped at left
+    show woman blue at right
     college_girl "I had an interview the other day and it was kinda scary..."
     college_girl "They asked me to write code on the whiteboard and then eyeball-test it without an compiler..."
     female "Don't worry! I'm sure you did well!"
@@ -863,17 +886,18 @@ label stage6_after_annika_questions:
     female "I've worked in recruiting, so I'll let you in on some interviewer secrets..."
 
     scene bg hacker_space dusk with fadehold
-    annika "So what do you think?"
-    player "It's amazing!"
+    show annika
+    annika "What do you think about this place, [persistent.player_name]?"
+    player laugh "It's amazing!"
     player "This place is alive with energy... It's like you won't walk away without something interesting happening."
-    annika "That's the spirit!"
+    annika @ laugh "That's the spirit!"
     annika "Do you think you'll come here occasionally?"
-    player "Definitely!"
+    player happy "Definitely!"
     player "Thanks for taking me here!"
     annika "Any time!"
 
     scene bg bedroom night with slideright
-    player "Wow. I'm so amazed. Hacker Space sure is a cool place. Let's check it out on our own some day."
+    player smile "Wow. I'm so amazed. Hacker Space sure is a cool place. Let's check it out on our own some day."
     player "Now let's call this a day and get some rest."
 
     $ has_visited_hacker_space_with_annika = True
@@ -888,11 +912,11 @@ label stage6_after_annika_questions:
     $ calendar.next_month()
     show screen player_stats_screen
     scene bg bedroom with fadehold
-    player "Now I've been learning to code for an entire month, not only have I been making progress on the curriculum and visiting Hacker Space, but I've also been engaging with the [freeCodeCamp] community online."
+    player smile "Now I've been learning to code for an entire month, not only have I been making progress on the curriculum and visiting Hacker Space, but I've also been engaging with the [freeCodeCamp] community online."
     player "I found this person who taught himself to code from scratch with [freeCodeCamp]."
     player "That's truly a from-zero-to-hero story."
     player "He is now a senior software engineer and has decided to give back to the community."
-    player "He said I can ask him anything so let's give it a shot."    
+    player happy "He said I can ask him anything so let's give it a shot."    
 
 label stage7:
     # this stage is invoked inside label `day_end`
@@ -907,28 +931,46 @@ label stage7:
     $ has_met_marco = True # unlocks Marco's topics_to_ask
 
     scene bg desk with blinds
-    show marco
-    marco "Hi [persistent.player_name]. I'm Marco. I'm a senior engineer at {b}QuicheQueue{\b}."
-    player "Hi Marco. Nice to meet you! I'm [persistent.player_name], a recent grad and developer wannabe."
+    show marco laugh
+    marco "Hi [persistent.player_name]. I'm Marco. I'm a senior engineer at {b}QuicheQubit{\b}."
+    player smile "Hi Marco. Nice to meet you! I'm [persistent.player_name], a recent grad and developer wannabe."
     marco "That sounds good."
+
+    show marco neutral
     marco "Why don't I start by telling you a bit about myself? Then ask whatever you want to know about me, my job, or tech in general."
     player "Sounds good."
+
+    show marco laugh
     marco "It's a long story and a bumpy ride. So buckle up."
-    marco "I graduated from college some ten years ago. I majored in music and design so I worked as a freelance designer straight out of college."
+
+    show marco neutral
+    marco "I graduated from college some ten years ago. I majored in music so I worked as a freelance audio engineer straight out of college."
     marco "Freelancing gives me some freedom and flexibility at first, but I soon discovered that my skills weren't honed enough to attract large, established clients."
+    show marco serious
     marco "And working with small, less established clients doesn't pay well and puts a lot of stress on a newbie freelancer."
+    player worry "(That's so true... That's how I feel about my tutoring gig...)"
     marco "So I decided to upgrade my skills and try something new."
     marco "I learned to design websites and got a job designing websites at a small local company."
+    player surprised "(Now that's a nice turn of the story!)"
+    show marco neutral
     marco "You know, at small companies, everyone does a little bit of everything."
     marco "I was hired for my web design skills, but occasionally I would be asked to write some HTML, CSS, JavaScript to showcase the design I have in mind in action, not just on paper."
     marco "I picked up a little HTML, CSS, JavaScript in those years and found them to be quite interesting."
     marco "I then found out that there is a term for these skills, front-end development."
     marco "I thought, cool, I've done some front-end development, maybe I can become a full-time front-end developer?"
     marco "I started researching and teaching myself front-end dev. The Internet in my days didn't have nearly as many resources as nowadays. So I had to be extremely resourceful and develop my own learning path."
+    player "(Working out an entire learning path sounds really intense to me, but for some reason Marco made it sound easy...)"
     marco "It all paid off when I got my front-end development job at my current company. I've been with the company since. Nice culture, smart people, interesting work."
-    player "Wow."
+    show marco laugh
+    marco "Even better, my job constantly challenges me to learn new skills and grow."
+    marco "Just a year into my role, I found out that my team needed a mobile developer."
+    marco "I thought mobile is really fun, so I talked to my manager and was able to take some paid time off work to learn about mobile development."
+    marco "And after a few pet projects, I switched over to mobile development. So here I am, a mobile developer."
+    player laugh "Wow! That's awesome!"
+    show marco neutral
     marco "Yeah, I know. Looking back it's like a blur."
     marco "So that's my story. Anything you'd like to learn more about?"
+    player smile "(Now it's my change to ask questions!)"
 
     # initialize all choices to False
     default marco_story_choices = set()
@@ -958,14 +1000,16 @@ label stage7:
             jump marco_story_choices
 
         "I'm done asking!":
-            player "I'm done asking! That's all I want to know. Thanks so much for sharing!"
+            player laugh "I'm done asking! That's all I want to know. Thanks so much for sharing!"
+            show marco laugh
             marco "Anytime, [persistent.player_name]. Have fun coding and keep me updated on your progress!"
 
     scene bg bedroom night with slideright
-    player "Marco was certainly a cool guy. I'm so lucky to have him as my mentor."
+    player smile "Marco was certainly a cool guy. I'm so lucky to have him as my mentor."
     player "Now if I have questions about anything, I can either talk to Annika or Marco."
     show mint
-    player "Awww Mint, are you proud of me for making friends in the tech bubble?"
+    player laugh "Awww Mint, are you proud of me for making friends in the tech bubble?"
+    mint "Meow!"
     player "Haha, good night, Mint."
     hide mint
 
@@ -979,10 +1023,11 @@ label stage7:
     $ calendar.next_month()
     show screen player_stats_screen
     scene bg bedroom with fadehold
-    player "It's been two months since I started to learn to code. Time really flies."
+    player smile "It's been two months since I started to learn to code. Time really flies."
     player "I feel like I'm so much more knowledgeable than when I started."
     hide screen player_stats_screen
 
+    window hide
     show smartphone at truecenter
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
@@ -992,18 +1037,23 @@ label stage7:
     show annika
     pause 1.0
     annika "Hey [persistent.player_name]! Are you free today?"
-    player "Hey Annika. Yep, I'm down to hang out. What's up?"
-    annika "Guess what? It's {bt}Hacktober{/bt}. Hacker Space is holding a special hackathon for high school students."
+    player smile "Hey Annika. Yep, I'm down to hang out. What's up?"
+
+    annika @ laugh "Guess what? It's {bt}Hacktober{/bt}. Hacker Space is holding a special hackathon for high school students."
+
+    show annika neutral
     annika "They could use some volunteers to help out."
     annika "Wanna come with me to check it out today?"
-    player "Sounds good! See you in a moment!"
+    player @ laugh "Sounds good! See you in a moment!"
 
     scene bg hacker_space with slideright
     play sound 'audio/sfx/office_ambient.wav'
-    player "It's even more crowded than usual..."
-    annika "Looks like high school kids are all hyped up for the event!"
+    player surprised "It's even more crowded than usual..."
+    annika @ laugh "Looks like high school kids are all hyped up for the event!"
 
-    scene bg hacker_space with fade
+    scene bg hacker_space with blinds
+    show boy blue flipped at left with moveinleft
+    show girl red at right with moveinright
     boy "Now it's finally time for us to give shape to this awesome idea!"
     girl "Yeah yeah, it's been pie in the sky since forever."
     boy "This time we are finally going to code it all up!"
@@ -1015,7 +1065,7 @@ label stage7:
     boy "Cool! Thanks!"
     girl "Now I'm more confident that this is going to come together well!"
 
-    hide layla
+    scene bg hacker_space with blinds
     show annika with moveinright
     annika "Did you see that lady over there mentoring the kids?"
     annika "She looks like she has tons of experience."
@@ -1173,7 +1223,7 @@ label stage8:
     play sound 'audio/sfx/phone_hangup.wav'
     hide marco
 
-    player "Yawwwwwn... Let's call this a day and get back to my routine tomorrow."
+    player relieved "Yawwwwwn... Let's call this a day and get back to my routine tomorrow."
 
     call day_start from _call_day_start_8
     call day_activity_choices from _call_day_activity_choices_8
@@ -1199,8 +1249,10 @@ label stage8:
 
         # receives an email
         scene bg bedroom with fadehold
+        show smartphone at truecenter
         play sound 'audio/sfx/alarm.wav'
         pause 3.0
+        hide smartphone
         play sound 'audio/sfx/social_media_notification.wav'
 
         player "Huh, an email from {b}[interview_company_name]{/b} first thing in the morning? Right, it's been some time since I've applied to their job posting."

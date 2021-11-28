@@ -5,8 +5,10 @@ label day_start:
 
     scene bg bedroom with fadehold
 
+    show smartphone at truecenter
     play sound 'audio/sfx/alarm.wav'
     pause 2.0
+    hide smartphone
     play sound 'audio/sfx/birds.wav'
     pause 3.0
 
@@ -23,18 +25,17 @@ label day_start:
 
 # TODO: special text on days of interview
 label day_start_text1:
-    player "A new day!"
+    player laugh "A new day!"
     show mint
-    # mint "Meow meow~"
     player "Good morning, Mint."
     hide mint
-    player "Hmmm, I don't feel like eating a big breakfast today. I guess a cookie will do."
+    player neutral "Hmmm, I don't feel like eating a big breakfast today. I guess a cookie will do."
 
     scene bg kitchen with blinds
     show cookie at truecenter
     pause 0.2
     play sound 'audio/sfx/chew_food.wav'
-    player "Yum yum."
+    player laugh "Yum yum."
     hide cookie
 
     scene bg bedroom with blinds
@@ -43,7 +44,7 @@ label day_start_text1:
 
 label day_start_text2:
     mom "[persistent.player_name], breakfast's ready!"
-    player "Okay, I'm up!"
+    player laugh "Okay, I'm up!"
 
     scene bg kitchen with blinds
     show toast at truecenter
@@ -62,8 +63,7 @@ label day_start_text2:
 
 label day_start_text3:
     show mint
-    # mint "Meow!"
-    player "Yawwwwwn..."
+    player relieved "Yawwwwwn..."
     player "(I feel like hitting snooze on my alarm...)"
     mint "Meow!"
     player "Ahhh... Mint, are you hungry? Okay I'm getting up and getting you breakfast."

@@ -299,9 +299,13 @@ label day_activity_job_search:
 label day_activity_interview:
     scene bg bedroom with fadehold
     $ day_activity = 'interview'
+
+    show smartphone at truecenter
     play sound 'audio/sfx/alarm.wav'
     pause 3.0
-    player "Today is my big day! I have an interview with {b}[interview_company_name]{/b}."    
+    hide smartphone
+
+    player laugh "Today is my big day! I have an interview with {b}[interview_company_name]{/b}."    
 
     $ interview_room_bg = renpy.random.choice(interview_room_bgs)
     $ renpy.scene()
@@ -309,7 +313,7 @@ label day_activity_interview:
     with slideright
     # the above is equivalent to the below show statement
     # scene interview_room_bg with slideright
-    player "Wow. Their office sure is fancy. I wish I can get my cubicle in a fancy office like this..."
+    player surprised "Wow. Their office sure is fancy. I wish I can get my cubicle in a fancy office like this..."
 
     # TODO
     # $ interviewer_sprite = renpy.random.choice(seq=[])

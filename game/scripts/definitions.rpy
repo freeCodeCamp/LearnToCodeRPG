@@ -235,9 +235,11 @@ init:
     "neutral eyes_blink brows_neutral mouth_smile",
     "smile eyes_blink brows_raised mouth_smile",
     "happy eyes_blink brows_raised mouth_laugh",
+    "surprised eyes_blink brows_raised mouth_oh",
     "laugh eyes_laugh brows_neutral mouth_laugh",
     "worry eyes_blink brows_lowered mouth_frown",
     "pout eyes_blink brows_lowered mouth_pout",
+    "relieved eyes_closed brows_neutral mouth_oh"
     ]
     # major characters except player
     define expressions = [
@@ -249,21 +251,21 @@ init:
     # blink
     image player_eyes_blink = DynamicBlink(
         "images/chara/player/player_eyes_open.png",
-        "images/chara/player/player_eyes_blink.png"
+        "images/chara/player/player_eyes_closed.png"
         )
     image annika_eyes_blink = DynamicBlink(
         "images/chara/annika/annika_eyes_open.png",
-        "images/chara/annika/annika_eyes_blink.png"
+        "images/chara/annika/annika_eyes_closed.png"
         )
 
     image layla_eyes_blink = DynamicBlink(
         "images/chara/layla/layla_eyes_open.png",
-        "images/chara/layla/layla_eyes_blink.png"
+        "images/chara/layla/layla_eyes_closed.png"
         )
 
     image marco_eyes_blink = DynamicBlink(
         "images/chara/marco/marco_eyes_open.png",
-        "images/chara/marco/marco_eyes_blink.png"
+        "images/chara/marco/marco_eyes_closed.png"
         )
 
     # layered character sprites
@@ -280,12 +282,13 @@ init:
             attribute neutral default null
             attribute smile null
             attribute happy null
+            attribute surprised null
             attribute laugh null
             attribute worry null
             attribute pout null
+            attribute relieved null
 
-        if True:
-            "player_glasses"
+        attribute glasses default
 
         attribute_function Picker(player_expressions)
 
@@ -317,8 +320,7 @@ init:
             attribute serious null
             attribute laugh null
 
-        if True:
-            "layla_glasses"
+        attribute glasses default
 
         attribute_function Picker(expressions)
 
@@ -334,7 +336,6 @@ init:
             attribute serious null
             attribute laugh null
 
-        if True:
-            "marco_glasses"
+        attribute glasses default
 
         attribute_function Picker(expressions)
