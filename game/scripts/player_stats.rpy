@@ -8,7 +8,6 @@ init python:
             self.player_stats_map = {
             'Sanity': None, 
             'CS Knowledge': None, 
-            'Developer Skill': None,
             }
 
             # to loop over the dictionary deterministically

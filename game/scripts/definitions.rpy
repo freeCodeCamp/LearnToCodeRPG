@@ -51,10 +51,10 @@ init python:
     # day-night effects
     # https://www.twoandahalfstudios.com/2019/08/tds-making-of-3-day-night-and-sunset-reshading-images-in-renpy-with-im-matrixcolor
 
-    tint_dark = im.matrix.tint(.44, .44, .75) * im.matrix.brightness(-0.02)
-    tint_sunset = im.matrix.tint(.85, .60, .45) * im.matrix.brightness(0.10)
+    tint_dark = im.matrix.tint(0.44, 0.44, 0.75) * im.matrix.brightness(-0.02)
+    tint_sunset = im.matrix.tint(0.85, 0.60, 0.45) * im.matrix.brightness(0.10)
     # late night in front of computer
-    tint_dim = im.matrix.tint(.90, .90, 1) * im.matrix.brightness(-0.1)
+    tint_dim = im.matrix.tint(0.90, 0.90, 1) * im.matrix.brightness(-0.1)
 
     # tint for gray NPC sprites
     tint_red = im.matrix.tint(1, 0.6, 0.6)
@@ -107,8 +107,8 @@ init:
     # major characters
     define player = Character("[persistent.player_name]", image='player')
     define annika = Character("Annika", image='annika')
-    define marco = Character("Marco")
-    define layla = Character("Layla")
+    define marco = Character("Marco", image='marco')
+    define layla = Character("Layla", image='layla')
 
     # minor characters
     define kid = Character("High Schoool Kid")

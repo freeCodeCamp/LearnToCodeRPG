@@ -1197,7 +1197,7 @@ label stage8:
     $ quick_menu = True
 
     scene bg bedroom with fadehold
-    player "Alright! Let's start by applying to jobs!"
+    player smile "Alright! Let's start by applying to jobs!"
     call day_activity_job_search from _call_day_activity_job_search
     player "Now I've applied to my first job, I can check it off my To-Do list."
     $ todo_list.complete_todo(todo_apply_to_jobs)
@@ -1205,13 +1205,13 @@ label stage8:
     player "What's next on my To-Do? Oh right, let's start preparing for coding interviews."
     # now change the day activity text for studying
     $ day_activity_study = todo_interview_prep
-    player "What shall I study? I remember some skills mentioned in the job posting include JavaScript, Web Dev, Algorithms, and System Design."
+    player surprised "What shall I study? I remember some skills mentioned in the job posting include JavaScript, Web Dev, Algorithms, and System Design."
     call study_session_choose_topic from _call_study_session_choose_topic
     call study_session from _call_study_session_3
 
     scene bg bedroom night with fadehold
-    player "Whew... Those questions are harder than CS fundamental questions. Guess I need to put in more studying."
-    player "But this is a good start nonetheless!"
+    player relieved "Whew... Those questions are harder than CS fundamental questions. Guess I need to put in more studying."
+    player smile "But this is a good start nonetheless!"
     $ todo_list.complete_todo(todo_interview_prep)
     player "Now the next big thing on my To-Do list will be to actually pass an interview and get a job."
     $ todo_list.add_todo(todo_get_job)
@@ -1220,17 +1220,17 @@ label stage8:
     # chat with Marco
     play sound 'audio/sfx/social_media_notification.wav'
     show smartphone at truecenter
-    player "Huh. A message from Marco."
+    player surprised "Huh. A message from Marco."
     hide smartphone
     show marco
     marco "Heya [persistent.player_name]! Was it a busy day?"
-    player "Hey Marco! Yeah. I just started preparing for interviews and applying to jobs."
-    marco "That's a good start!"
-    marco "But yeah, companies are usually slow to process the applications. You might need to wait for a week or more to hear back."
+    player happy "Hey Marco! Yeah. I just started preparing for interviews and applying to jobs."
+    marco @ laugh "That's a good start!"
+    marco @ serious "But yeah, companies are usually slow to process the applications. You might need to wait for a week or more to hear back."
     marco "So don't get discouraged if you don't hear back for a while!"
     marco "Keep on applying to jobs, prepping for interview, and going about your routines."
-    marco "Once they have processed your application and gotten the interview process rolling, it's your time to shine!"
-    player "Haha thanks! I'll keep that in mind."
+    marco @ laugh "Once they have processed your application and gotten the interview process rolling, it's your time to shine!"
+    player laugh "Haha thanks! I'll keep that in mind."
     player "Have a great rest of your evening!"
     marco "You as well."
 
@@ -1257,7 +1257,7 @@ label stage8:
             call day_start from _call_day_start_9
             if interview_company_name is None:
                 # go back to job search
-                player "Hey! Looks like there is a new job posting available. Let's check it out."
+                player surprised "Hey! Looks like there is a new job posting available. Let's check it out."
                 call day_activity_job_search from _call_day_activity_job_search_1
                 call day_activity_choices from _call_day_activity_choices_9
 
@@ -1269,7 +1269,7 @@ label stage8:
         hide smartphone
         play sound 'audio/sfx/social_media_notification.wav'
 
-        player "Huh, an email from {b}[interview_company_name]{/b} first thing in the morning? Right, it's been some time since I've applied to their job posting."
+        player surprised "Huh, an email from {b}[interview_company_name]{/b} first thing in the morning? Right, it's been some time since I've applied to their job posting."
         player "The title says 'Application Follow-up'..."
         call screen company_interview_email_screen(interview_company_name)
         player laugh "I made it! I'm going to a coding interview!"
@@ -1290,18 +1290,18 @@ label stage8:
         call day_start from _call_day_start_11
         if offer_company_name is None:
             play sound 'audio/sfx/social_media_notification.wav'
-            player "Huh, an email from {b}[interview_company_name]{/b}? Right, it's been a week since my interview with them."
+            player surprised "Huh, an email from {b}[interview_company_name]{/b}? Right, it's been a week since my interview with them."
             player "The title says 'Interview Follow-up'..."
-            player pout "The last thing I need in my inbox is a rejection letter first thing in the morning..."
-            player "But I have to face it."
+            player worry "The last thing I need in my inbox is a rejection letter first thing in the morning..."
+            player pout "But I have to face it."
             call screen company_rejection_email_screen(interview_company_name)
-            player pout "Well... Guess I need to work harder."
+            player worry "Well... Guess I need to work harder."
             "(Hey you there, don't look so down, okay? Coding interviews are hard and we know it. That's why you should study for it. Why not try out some more mock questions during your study sessions?)"
             show mint
             mint "Meow..."
-            player "... Thanks, Mint. I'm a bit disappointed, but I'll be fine."
+            player relieved "Thanks, Mint. I'm a bit disappointed, but I'll be fine."
             hide mint
-            player "It's no use crying over spilled milk. Let's get on with my day."
+            player smile "It's no use crying over spilled milk. Let's get on with my day."
             call day_activity_choices from _call_day_activity_choices_12
 
         # reset interview_company_name to None so we enter the inner loop again
@@ -1309,24 +1309,24 @@ label stage8:
 
     # once we break out of this loop, show the offer screen
     play sound 'audio/sfx/social_media_notification.wav'
-    player "Huh, an email from {b}[offer_company_name]{/b}? Right, it's been a week since my interview with them."
+    player surprised "Huh, an email from {b}[offer_company_name]{/b}? Right, it's been a week since my interview with them."
     player "The title says 'Interview Follow-up'..."
-    player pout "The last thing I need in my inbox is a rejection letter first thing in the morning..."
+    player worry "The last thing I need in my inbox is a rejection letter first thing in the morning..."
     player "But who knows? It could be a request for follow-up interviews, or even better!"
-    player "(Deep breath...)"
-    player "Okay, I'm ready to take a look."
+    player relieved "(Deep breath...)"
+    player neutral "Okay, I'm ready to take a look."
     call screen company_offer_email_screen(offer_company_name)
-    player "... Is this a dream?"
+    player surprised "Huh?{w} Is this a dream?"
 
     show mint with vpunch
     mint "Meow!"
-    player "Owww Mint... You are heavy... Don't just pounce on me like that, okay?"
-    player "But wait! Mint just crash-landed on me and I felt the impact. This must mean that I'm not dreaming."
+    player pout "Owww Mint... You are heavy... Don't just pounce on me like that, okay?"
+    player surprised "Wait a minute!{w} Mint just crash-landed on me and I felt the impact. This must mean that I'm not dreaming."
     player "So this is real."
     mint "Meow meow!"
     hide mint
 
-    player "Wow. I did it. I'm now a real developer!"
+    player laugh "Wow. I did it. I'm now a real developer!"
     play sound 'audio/sfx/applause.ogg'
     $ todo_list.complete_todo(todo_get_job)
     $ accepted_offer_date = date(calendar.year, calendar.month, calendar.day)
@@ -1338,8 +1338,8 @@ label stage8:
         ok_text="Let's rock my new job!", 
     )
 
-    player "I can't wait to tell my parents! And I should call Annika and Marco to let them know!"
-    player "Let's get everyone together and throw a big party to celebrate!"
+    player happy "I can't wait to tell my parents! And I should call Annika and Marco to let them know!"
+    player laugh "Let's get everyone together and throw a big party to celebrate!"
     # TODO: congrats from Annika, Marco, and family
             
 
@@ -1357,90 +1357,99 @@ label stage14:
     $ quick_menu = True
 
     $ calendar.next_month() # player's start date is in a month
-    $ player_stats.set_stats('Developer Skill', 0)
+    # TODO: maybe in v2
+    # $ player_stats.set_stats('Developer Skill', 0)
 
     scene bg office
-    player "Wow. {w}I still can't believe that I'm working in such a fancy office."
-    player "My orientation email says that my on boarding buddy will be here to pick me up and show me around the office...{p=1.0}{nw}"
+    player surprised "Wow. I still can't believe that starting today, I'll be working in such a fancy office."
+    player smile "My orientation email says that my on boarding buddy will be here to pick me up and show me around the office...{p=1.0}{nw}"
     show layla
 
     layla "Hey [persistent.player_name]. Welcome to the team! I'm Layla, your on boarding buddy."
-    layla "Feel free to ask me anything!"
-    player "(Hmmm... I wonder if we have met before. Layla looks familiar somehow.)"
+    layla @ laugh "Feel free to ask me anything!"
+    player surprised "(Hmmm... I wonder if we have met before. Layla looks familiar somehow.)"
     player "(...Oh! Was that her at Hacker Space mentoring the kids?)"
     player "(If I remembered correctly...)"
     # TODO: flashback fade
     hide screen player_stats_screen
     scene bg hacker_space with fadehold
-    layla "So how's everyone's project going? We mentors are here to answer any question you have!"
+    show layla
+    layla @ laugh "So how's everyone's project going? We mentors are here to answer any question you have!"
 
     scene bg office with dissolve
     show screen player_stats_screen
     show layla with vpunch
     layla "[persistent.player_name]? Are you okay? You are spacing out."
-    player "Ah! I'm fine. I just remembered that we might have met before."
+    player smile "Ah! I'm fine. I just remembered that we might have met before."
     player "You know, at Hacker Space. I used to go there to study and work on projects before I get this job."
     layla "Oh, wow. Yeah. I was at various Hacker Space events. Nice to hear that you enjoyed the place!"
-    layla "Alright, enough small talks! Are you ready to commit your first line of code into production today?"
-    player "(Uhhhh that's fast...)"
-    player "Ahhh... Yes, I'd love to dive into the code base as soon as possible!"
+    layla @ laugh "Alright, enough small talks! Are you ready to commit your first line of code into production today?"
+    player surprised "(Uhhhh that's fast...)"
+    player happy "Ahhh... Yes, I'd love to dive into the code base as soon as possible!"
     layla "Way to go! Our team usually sits around that table, next to the whiteboard."
     play sound 'audio/sfx/keyboard_typing.wav'
 
     scene bg office with fadehold
     show layla
     layla "So how's work going? Have you worked your way through our code base already?"
-    player "... Um..."
+    player pout "... Um..."
     layla "Something on your mind?"
     player "I'm kind of stuck... Or, I guess a more accurate way to put this is, I don't even know where to start."
-    layla "No worries! On boarding could be daunting."
-    layla "Think about it. Teams of talented developers spent months, even years, building out this codebase."
-    player "Haha, thanks. That does make me feel better."
-    layla "How about this? Let's take your mind off this code for a while and go grab coffee?"
-    player "Sure, I'd love to!"
+    layla "No worries! On-boarding could be daunting."
+    layla "Think about it. Teams of talented developers spent months, even years, building out this code base."
+    player smile "Haha, thanks. That does make me feel better."
+    layla @ laugh "How about this? Let's take your mind off this code for a while and go grab coffee?"
+    player happy "Sure, I'd love to!"
 
     scene bg office_cafe with blinds
     show layla
-    layla "Here you go. From bean to coffee, freshly brewed in the office."
-    player "..."
-    player "Hey Layla. Mind if I ask how long you've been with this company and team?"
+    layla @ laugh "Here you go. From bean to coffee, freshly brewed in the office."
+    player pout "..."
+    player neutral "Hey Layla. Mind if I ask how long you've been with this company and team?"
     layla "Of course not! I've been here for two years. I interned here when I was in college and returned full-time right after graduation."
-    player "So you were a CS major?"
+    player surprised "So you were a CS major?"
     layla "Yep."
-    layla "Oh please I know that look. CS kids must have had it the easy way."
-    layla "That's not true, you know."
-    player "Oops, sorry."
-    layla "No big deal."
-    layla "Have you heard of the word, imposter syndrome?"
+    player worry "(No wonder Layla was able to blend in so well...)"
+
+    show layla serious
+    layla "Oh please I know that look. 'CS kids must have had it the easy way breaking in to tech.' Right?"
+    layla "That's just not the whole story, you know."
+    player pout "Oops, sorry."
+    layla @ neutral "No big deal. I can see where you are coming from."
+    layla "Say, have you heard of the word, imposter syndrome?"
     menu:
-        "Yes":
-            player "Yeah. I feel that quite often."
-        "Nope":
-            player "Care to explain?"
+        "Do you know what imposter syndrome is?"
+        "Yes.":
+            player "Yeah. It's the feeling that everyone is better than you and you are an undeserving fraud."
+            player worry "To be honest, I feel that quite often."
+        "Nope.":
+            player surprised "Care to explain?"
             layla "It's when you fee like everyone else is smarter and more competent than you."
             layla "That you are a fraud, despite all of your education and achievements."
-            player "Uhhh... I know that feeling..."
+            player worry "Uhhh... I know that feeling..."
             layla "Not the prettiest feeling, huh?"
-    layla "No worries, you are good. That's almost the norm for people in tech."
+    layla @ neutral "No worries, you are good. That's almost the norm for people in tech."
     layla "Hah. Would you believe me if I tell you that imposter syndrome hits CS students equally hard, if not harder?"
-    player "Ummm... Tell me about it."
+    player surprised "Ummm... Tell me about it."
     layla "It starts the first time we step into a CS classroom, maybe earlier."
     layla "There is always that kid that sits in the front row, who has been coding since five and knows everything the professor has yet to talk about."
-    player "That's... intense."
+    player pout "That's... intense."
     layla "And there is the expectation that CS kids should get big-names internships as early as their freshman year summer."
     layla "Definitely not later than their junior year summer. Otherwise, the myth goes that they are unhirable."
     layla "I spent my freshman and sophomore summers volunteering at a local school teaching kids to code."
     layla "I don't see any problems with that. I mean, I love coding and I love teaching, and being able to convey that to the next generation is an awesome opportunity for me."
-    player "(No wonder Layla's volunteering her time to mentor kids at Hacker Space.)"
+    player smile "(No wonder Layla's volunteering her time to mentor kids at Hacker Space.)"
     layla "But my friends were either interning for big names or building their own startups during the summer."
     layla "They are nice enough not to say anything to my face, but I always feel a strange sense of hollowness when I see them post about their intern perks or startup progress."
     layla "It was a rough time, but my friends and my college advisors were supportive, and I eventually come to terms with being who I am and contributing to causes that I care about."
-    player "(Awww... I would never imagine how hard imposter syndrome hits everyone.)"
+    player pout "(Awww... I would never imagine how hard imposter syndrome hits everyone.)"
+
+    show layla neutral
     layla "Haha sorry for the rant. I didn't mean to scare you away from continuing working in tech."
     layla "It's just that the battle with imposter syndrome is a continuous battle. Every little win is a win."
     layla "In fact, I still grapple with imposter syndrome and have to stop myself from banging my head on the desk whenever I run into a bug I can't fix."
-    player "Wow. Haha. Thanks for sharing. That actually makes me feel a lot better."
-    layla "You are very welcome."
+    player smile "Wow. Haha. Thanks for sharing. That actually makes me feel a lot better."
+    layla @ laugh "You are very welcome."
     layla "So, what else would you like to know about me or my role?"
 
     default layla_story_choices = set()
@@ -1448,7 +1457,7 @@ label stage14:
         set layla_story_choices
         "What was your experience like when you first joined?":
             player "Would you mind telling me about your experience when you first joined this company?"
-            layla "Sure thing!"
+            layla @ laugh "Sure thing!"
             layla "Like you, I also had an on boarding buddy. He was a few years ahead of me. Very knowledgeable and chill guy."
             layla "Per his suggestion, I started with simple bug fixes. Then after a month, I started building small features and getting them approved by the team."
             layla "As I became more familiar with the code base, I had more confidence to take on bigger features."
@@ -1463,32 +1472,30 @@ label stage14:
             layla "Which is not a surprise since the tech world is constantly evolving."
             layla "But that also means that, for the most part, I had to pick up the important things on the job."
             layla "Not a bad experience given that I had a supportive team behind me."
-            player "Awww that's nice!"
-            layla "Yep. Now you are the newbie here, we the team will be here for you."
+            player @ happy "Awww that's nice!"
+            layla @ laugh "Yep. Now you are the newbie here, we the team will be here for you."
             jump layla_story_choices
         "What is our team like?":
             player "So what is our team like?"
             layla "Oh, they are out investigating a customer case today, so it's only you and me here in the office."
             layla "But you will meet them soon. They are all nice and smart people."
             layla "You and I included, we have five developers in total, one scrum manager, one product manager, one UX designer. That makes us a team of eight."
-            player "Sounds cool! Can't wait to meet the team."
+            player @ laugh "Sounds cool! Can't wait to meet the team."
             jump layla_story_choices
         "I'm done asking!":
-            player "I'm done asking! I feel so much better knowing that everyone started from square one."
-            layla "Hehe, [persistent.player_name], you are a fun one. I'm sure you will enjoy your work as a developer."
+            player @ laugh "I'm done asking! I feel so much better knowing that everyone started from square one."
+            layla @ neutral"Hehe, [persistent.player_name], you are a fun one. I'm sure you will enjoy your work as a developer."
 
-    layla "Are we now ready to go back and squash some bugs?"
-    player "Lead the way!"
-
-    jump ending
+    layla @ laugh "Are we now ready to go back and squash some bugs?"
+    player laugh "Lead the way!"
 
 label ending:
     scene bg office with fadehold
-    player happy "Okay, I think my code is good to go! Let's commit it to the server."
+    player happy "Okay, finally, I think my code is good to go! Let's commit it to the server."
     # TODO: system processing animation
     play sound 'audio/sfx/system_processing.wav'
-    player "... {w}And nothing happened."
-    player "Hmm... my changes should at least do something to the code base. Maybe I can check if Layla is in... {p=1.0}{nw}"
+    player neutral "... {w}And nothing happened."
+    player worry "Hmm... my changes should at least do something to the code base. Maybe I can check if Layla is in... {p=1.0}{nw}"
 
     # stop the music here
     $ continue_looping_music = False
