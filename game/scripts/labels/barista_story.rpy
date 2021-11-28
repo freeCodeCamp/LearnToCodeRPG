@@ -1,6 +1,8 @@
 # events that happen when the player visit the cafe
 
 label barista_fullstack:
+    show woman red flipped at left
+    show man blue at right
     female "So I heard that you've moved up to a new role? Congrats!"
     female "What do you do now?"
     male "Whelp, I'm now finally doing full-stack dev. Remember that I used to do front-end dev only? That got boring really fast..."
@@ -10,6 +12,8 @@ label barista_fullstack:
     return    
 
 label barista_devops:
+    show boy blue flipped at left
+    show man red at right
     college_boy "Hey how's it going? Thanks so much for taking time out of your day to meet me!"
     male "No problem. I'm always happy to mentor college kids."
     college_boy "Haha thanks. Okay let's cut to the chase."
@@ -20,6 +24,8 @@ label barista_devops:
     return
 
 label barista_machinelearning:
+    show girl orange flipped at left
+    show boy purple at right
     college_girl "Hey hey hey look at this cool thing we did for the course project!"
     college_girl "Give it a picture of a cat or a dog and it will be able to tell which is in the picture!"
     # TODO: this could actually be a minigame or the player's side project :D
@@ -31,6 +37,8 @@ label barista_machinelearning:
     return
 
 label barista_conference:
+    show woman blue flipped at left
+    show girl blue at right
     college_girl "Ohh hey isn't that my favorite sister?"
     girl "... I'm your only sister."
     college_girl "Oh come on! I'm just trying to lighten up the mood a bit!"
@@ -44,6 +52,8 @@ label barista_conference:
     return
 
 label barista_agile:
+    show man red flipped at left
+    show woman purple at right
     male "So your team is going fully agile?"
     female "Yeah! We had some agile coach coming in to boost our productivity."
     male "We had a coach as well. That was a smooth experience transitioning to a more modern way of developing software..."
@@ -53,6 +63,8 @@ label barista_agile:
     return
 
 label barista_api:
+    show girl purple flipped at left
+    show boy red at right
     college_girl "Here's the requirements for this project."
     college_boy "Woah. We need to come up with our own APIs?"
     college_girl "Maybe. Or we can search online to see if there are public ones we can use."
@@ -66,6 +78,8 @@ label barista_api:
     return
 
 label barista_userexperience:
+    show woman red flipped at left
+    show boy orange at right
     female "Hey there. Nice to meet you!"
     female "You must be our new User Experience intern, right?"
     college_boy "Yes! It's my great pleasure to be on the team!"
@@ -77,6 +91,8 @@ label barista_userexperience:
     return
 
 label barista_versioncontrol:
+    show girl red flipped at left
+    show boy blue at right
     girl "Oh. {w}My. {w}God. {w}Did you just blow up our codebase?"
     boy "Oopsy."
     girl "'Oopsy' is all you can say? Our project deadline is tomorrow, you know!"

@@ -9,6 +9,10 @@ init python:
             self.current_image = args[1]
             self.blink_st = -1.0 # arbitrary number to force normal start
 
+            # cache a random duration b/c calling random on each frame is too heavy
+            # but we don't want multiple on-screen sprites to be always blinking at the same moment
+            self.time_till_next_blink = 2.0 + renpy.random.random() * 5.0
+
             self.used_images = args
             kwargs.update( {
                 '_predict_function' : self.predict_images } )
@@ -27,9 +31,7 @@ init python:
 
                     # time to swap to normal
 
-                    # XXX: renpy.python.rng.random() is too CPU-heavy
-                    # self.blink_st = st + 2.0 + ( renpy.python.rng.random() * 5.0 )
-                    self.blink_st = st + 2.0
+                    self.blink_st = st + self.time_till_next_blink
 
                     self.current_image = args[0]
 
@@ -41,7 +43,7 @@ init python:
 
                     # time to blink
 
-                    self.blink_st = st + 0.1 
+                    self.blink_st = st + 0.2 
 
                     self.current_image = args[1]
 

@@ -140,18 +140,6 @@ init:
 
     ## images
 
-    image side player = 'chara/player/player neutral.png'
-    image side player neutral = 'chara/player/player neutral.png'
-    image side player smile = 'chara/player/player smile.png'
-    image side player happy = 'chara/player/player happy.png'
-    image side player laugh = 'chara/player/player laugh.png'
-    image side player worry = 'chara/player/player worry.png'
-    image side player pout = 'chara/player/player pout.png'
-
-    # image side player dark = im.MatrixColor('chara/player/player.png', tint_dark)
-    # image side player sunset = im.MatrixColor('chara/player/player.png', tint_sunset)
-    # image side player dim = im.MatrixColor('chara/player/player.png', tint_dim)
-
     # mint
     image mint:
         "others/mint/mint1.png"
@@ -235,68 +223,118 @@ init:
         linear 1.0 alpha 0.8  
         linear 1.0 alpha 0.1
         repeat
+
+    # unused tinted sprites
+    # image side player dark = im.MatrixColor('chara/player/player.png', tint_dark)
+    # image side player sunset = im.MatrixColor('chara/player/player.png', tint_sunset)
+    # image side player dim = im.MatrixColor('chara/player/player.png', tint_dim)
     
-    # expressions
+    ## expressions
     # player
-    # define player_expressions = [
-    # "neutral eyes_blink face_no_eyes_neutral",
-    # "happy eyes_blink face_no_eyes_happy",
-    # "confused eyes_blink face_no_eyes_confused",
-    # "awe face_awe",
-    # "cry face_cry",
-    # "distress face_distress",
-    # "laugh face_laugh",
-    # ]
-    # # major characters except player
-    # define expressions = [
-    # "neutral eyes_blink face_no_eyes_neutral",
-    # "happy eyes_blink face_no_eyes_happy",
-    # "confused eyes_blink face_no_eyes_confused",
-    # ]
+    define player_expressions = [
+    "neutral eyes_blink brows_neutral mouth_smile",
+    "smile eyes_blink brows_raised mouth_smile",
+    "happy eyes_blink brows_raised mouth_laugh",
+    "laugh eyes_laugh brows_neutral mouth_laugh",
+    "worry eyes_blink brows_lowered mouth_frown",
+    "pout eyes_blink brows_lowered mouth_pout",
+    ]
+    # major characters except player
+    define expressions = [
+    "neutral eyes_blink brows_neutral mouth_smile",
+    "serious eyes_blink brows_neutral mouth_frown",
+    "laugh eyes_laugh brows_raised mouth_laugh",
+    ]
 
     # blink
     image player_eyes_blink = DynamicBlink(
         "images/chara/player/player_eyes_open.png",
-        "images/chara/player/player_eyes_closed.png"
+        "images/chara/player/player_eyes_blink.png"
         )
     image annika_eyes_blink = DynamicBlink(
         "images/chara/annika/annika_eyes_open.png",
-        "images/chara/annika/annika_eyes_closed.png"
+        "images/chara/annika/annika_eyes_blink.png"
+        )
+
+    image layla_eyes_blink = DynamicBlink(
+        "images/chara/layla/layla_eyes_open.png",
+        "images/chara/layla/layla_eyes_blink.png"
+        )
+
+    image marco_eyes_blink = DynamicBlink(
+        "images/chara/marco/marco_eyes_open.png",
+        "images/chara/marco/marco_eyes_blink.png"
         )
 
     # layered character sprites
     # player should always appear as a side image
-    # layeredimage player:
-    #     always "player_base"
+    layeredimage player:
+        always "player_base"
 
-    #     group eyes auto prefix "eyes"
-    #     group face_no_eyes auto prefix "face_no_eyes"
-    #     group face auto prefix "face"
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
 
-    #     group expressions:
-    #         # need null b/c no prefix
-    #         attribute neutral default null
-    #         attribute happy null
-    #         attribute confused null
-    #         attribute awe null
-    #         attribute cry null
-    #         attribute distress null
-    #         attribute laugh null
+        group expressions:
+            # need null b/c no prefix
+            attribute neutral default null
+            attribute smile null
+            attribute happy null
+            attribute laugh null
+            attribute worry null
+            attribute pout null
 
-    #     attribute_function Picker(player_expressions)
+        if True:
+            "player_glasses"
 
-    # image side player = LayeredImageProxy("player")
+        attribute_function Picker(player_expressions)
 
-    # layeredimage annika:
-    #     always "annika_base"
+    image side player = LayeredImageProxy("player")
 
-    #     group eyes auto prefix "eyes"
-    #     group face_no_eyes auto prefix "face_no_eyes"
-    #     group face auto prefix "face"
+    layeredimage annika:
+        always "annika_base"
 
-    #     group expressions:
-    #         attribute neutral default null
-    #         attribute happy null
-    #         attribute confused null
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
 
-    #     attribute_function Picker(expressions)
+        group expressions:
+            attribute neutral default null
+            attribute serious null
+            attribute laugh null
+
+        attribute_function Picker(expressions)
+
+    layeredimage layla:
+        always "layla_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute serious null
+            attribute laugh null
+
+        if True:
+            "layla_glasses"
+
+        attribute_function Picker(expressions)
+
+    layeredimage marco:
+        always "marco_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute serious null
+            attribute laugh null
+
+        if True:
+            "marco_glasses"
+
+        attribute_function Picker(expressions)

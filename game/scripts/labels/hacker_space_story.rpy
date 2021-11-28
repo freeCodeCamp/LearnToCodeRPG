@@ -34,6 +34,7 @@ label hacker_space_project:
 label hacker_space_open_source:
     player "Looks like there is someone talking about their open-source project."
     player "Let's listen to what they have to say."
+    show man purple
     male "Contributing to open-source is a great way to practice your technical skills, and to beef up your resume."
     player "(Is that so? Then contributing to open-source sounds like a great side project for me.)"
     male "You might be wondering, where do we find open-source projects that could use a hand? Well, they are technically everywhere."
@@ -43,6 +44,7 @@ label hacker_space_open_source:
     return
 
 label hacker_space_playtest:
+    show girl purple
     college_girl "Hey there!"
     player "Huh? Me?"
     college_girl "Yes. Do you have a moment?"
@@ -78,5 +80,6 @@ label hacker_space_playtest:
         "Sorry, but I'll pass.":
             player "Sorry, but I'm not super into arcade games. Best of luck on your project!"
             college_girl "No worries and thanks!"
-    player "Let's check out that other group of people over there."
+    hide girl
+    player "What's next? Let's check out that other group of people over there."
     return

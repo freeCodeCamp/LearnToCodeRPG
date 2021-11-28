@@ -140,6 +140,7 @@ label day_activity_hacker_space:
 
     # hacker space trivia
     if not has_won_hacker_space_trivia:
+        show man
         trivia_guy "Hey, you there! Would you be up to a round of tech trivia?"
         menu:        
             "Sure!":
@@ -147,6 +148,7 @@ label day_activity_hacker_space:
             "Sorry, not feeling like it.":
                 player "Sorry, but I'm not feeling like it."
                 trivia_guy "No problem. Let me know anytime if you are to a challenge."
+                hide man
                 player "(Let's just check out what's happening around here.)"
                 call day_activity_hacker_space_random from _call_day_activity_hacker_space_random
     else:
