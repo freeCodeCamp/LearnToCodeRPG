@@ -84,13 +84,6 @@ init python:
             renpy.image(image_name + ' blue flipped', im.MatrixColor(im.Flip(image_path, horizontal=True), tint_blue))
             renpy.image(image_name + ' purple flipped', im.MatrixColor(im.Flip(image_path, horizontal=True), tint_purple))
 
-    # random interview room bg
-    interview_room_bgs = [
-    'bg interview_room1',
-    'bg interview_room2',
-    'bg interview_room3'
-    ]
-
     ## font replacement
     # font file, boldness, italics
     config.font_replacement_map["fonts/lato/Lato-Regular.ttf", True, False] = ("fonts/lato/Lato-Bold.ttf", False, False)

@@ -58,11 +58,11 @@ init:
 
 init python:
     class QuizQuestion():
-        # TODO: explanation
         '''
         question: a string
         true: a string
         false: a list of strings
+        explanation: an optional string
         code_label: an optional string, see game/quiz_code_snippets.txt
         '''
         def __init__(self, question, true, false, explanation=None, code_label=None):

@@ -23,7 +23,6 @@ label day_start:
         
     return
 
-# TODO: special text on days of interview
 label day_start_text1:
     player laugh "A new day!"
     show mint

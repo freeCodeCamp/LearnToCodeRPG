@@ -10,7 +10,7 @@ label day_activity_choices:
 
     player "What shall we do for the day?"
     menu:
-        # TODO: change this string to study more CS fundamentals
+        # this string goes from 'study CS fundamentals' to 'study more CS fundamentals'
         # when the player has completed the curriculum
         "[day_acitivity_study]":
             # this choice helps grow coding knowledge
@@ -307,7 +307,11 @@ label day_activity_interview:
 
     player laugh "Today is my big day! I have an interview with {b}[interview_company_name]{/b}."    
 
-    $ interview_room_bg = renpy.random.choice(interview_room_bgs)
+    $ interview_room_bg = renpy.random.choice([
+        'bg interview_room1',
+        'bg interview_room2',
+        'bg interview_room3'
+        ])
     $ renpy.scene()
     $ renpy.show(interview_room_bg)
     with slideright
@@ -315,19 +319,22 @@ label day_activity_interview:
     # scene interview_room_bg with slideright
     player surprised "Wow. Their office sure is fancy. I wish I can get my cubicle in a fancy office like this..."
 
-    # TODO
-    # $ interviewer_sprite = renpy.random.choice(seq=[])
-    # show interviewer_sprite
+    $ interviewer_sprite = renpy.random.choice([
+        'man',
+        'woman',
+        ]) + ' ' + renpy.random.choice(['', 'red', 'orange', 'blue', 'purple'])
+    $ renpy.show(interviewer_sprite)
     interviewer "Hello, is that [persistent.player_name]?"
-    player "Yes. Good morning."
+    player smile "Yes. Good morning."
 
     interviewer "Nice to meet you! We are glad that you applied to our job posting."
     interviewer "Alright, since we are here, let's get started with the interview."
     player "Sounds good!"
-    with blinds
     call interview_session from _call_interview_session
 
     interviewer "Thanks for taking your time. We will be in touch about next steps."
+    $ renpy.hide(interviewer_sprite)
+
     player "(... Was that everything? Kudos to myself for surviving...)"
     $ player_stats.change_stats_random('Sanity', -20, -10)
     player "That was as intense as I expected. I hope I did well with all those preparations."

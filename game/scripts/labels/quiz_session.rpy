@@ -169,5 +169,4 @@ label interview_one_question:
     if result == True:
         $ num_correct += 1
 
-    with dissolve
     return
