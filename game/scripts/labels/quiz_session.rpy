@@ -83,7 +83,7 @@ label trivia_session_questions:
         trivia_guy "I'm actually a talent recruiter at {b}CupcakeCPU™{/b}. Feel free to apply to our roles. We welcome talent like you."
         hide business_card
         trivia_guy "Until next time!"
-        hide trivia_guy with dissolve
+        hide man with dissolve
         player "Uhhh... cool? I guess?"
         player "Let's add it to my To-Do list to apply to their company once I'm comfortable with my skill level."
         $ todo_list.add_todo(todo_apply_cupcakecpu)

@@ -111,7 +111,7 @@ init:
     define layla = Character("Layla", image='layla')
 
     # minor characters
-    define kid = Character("High Schoool Kid")
+    define kid = Character("High School Kid")
     define boy = Character("High School Boy")
     define girl = Character("High School Girl")
     define college_boy = Character("College Boy")

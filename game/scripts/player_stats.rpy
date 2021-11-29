@@ -63,7 +63,7 @@ transform alpha_dissolve:
     alpha 0.0
     linear 0.5 alpha 1.0
 
-screen player_stats_screen:
+screen player_stats_screen():
     default todo_expanded = True # screen local variable
     ## Ensure this appears on top of other screens.
     # zorder 100
@@ -123,7 +123,7 @@ screen player_stats_screen:
                 if todo_expanded:
                     use todo_listview
 
-screen todo_listview:
+screen todo_listview():
     viewport:
         xsize 620
         ymaximum 200

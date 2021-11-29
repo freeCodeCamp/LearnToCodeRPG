@@ -14,7 +14,7 @@ label hacker_space_tech_trivia:
 label hacker_space_tech_talk:
     player "Looks like there is someone giving a tech talk!"
     player "Sounds like something cool! Let's go listen."
-    play sound 'audio/sfx/applause.wav'
+    play sound 'audio/sfx/applause.ogg'
     scene bg hacker_space with fadehold
     player "I could only understand some parts of it, but that was cool."
     player "Well, enough tech talk for the day."

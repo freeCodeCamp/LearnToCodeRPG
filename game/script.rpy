@@ -1,4 +1,4 @@
-﻿label start:
+label start:
     default player_stats = PlayerStats()
     default todo_list = ToDoList()
     default calendar = Calendar(day=1, month=8, year=2021) # story starts on Aug 1st, 2021
@@ -78,7 +78,7 @@ label start_after_interview:
     $ player_name = player_name.strip()
     if player_name in vip_names:
         $ vip_profile_url = vip_names[player_name]
-        "[player_name]? What a coincidence! Our VIP team member {a=[vip_profile_url]}[player_name]{/b} will be honored to hear that."
+        "[player_name]? What a coincidence! Our VIP team member {a=[vip_profile_url]}[player_name]{/a} will be honored to hear that."
         # TODO: Easter Egg
     # handle empty string case
     if not player_name:
@@ -123,7 +123,7 @@ label start_after_interview:
         "No":
             pass
     
-    "Thanks for completing your information. We will be in touch about next steps."
+    "Thanks for completing your information. We will be in touch about the next steps."
 
     with fadehold
     player "(Sigh...)"
@@ -932,7 +932,7 @@ label stage7:
 
     scene bg desk with blinds
     show marco laugh
-    marco "Hi [persistent.player_name]. I'm Marco. I'm a senior engineer at {b}QuicheQubit{\b}."
+    marco "Hi [persistent.player_name]. I'm Marco. I'm a senior engineer at {b}QuicheQubit{/b}."
     player smile "Hi Marco. Nice to meet you! I'm [persistent.player_name], a recent grad and developer wannabe."
     marco "That sounds good."
 
@@ -1421,7 +1421,7 @@ label stage14:
         "Do you know what imposter syndrome is?"
         "Yes.":
             player "Yeah. It's the feeling that everyone is better than you and you are an undeserving fraud."
-            player worry "To be honest, I feel that quite often."
+            player worry  "To be honest, I feel that quite often."
         "Nope.":
             player surprised "Care to explain?"
             layla "It's when you fee like everyone else is smarter and more competent than you."
