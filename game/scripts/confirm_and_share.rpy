@@ -3,7 +3,7 @@
 
 screen confirm_and_share_screen(title, message, ok_text, ok_action=Return()):
 
-    # uncommenting this will replace background image
+    # using `game menu root` will make this screen replace background image
     # modal True
     # window:
     #     style "gm_root"

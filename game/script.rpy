@@ -8,7 +8,8 @@ label start:
     scene bg laptop_screen with dissolve
 
     # get some action and conflict in here :)
-    "Hi there. Thanks for applying to our software engineering role! {w}We've reviewed your resume and as a first step in our recruiting process, we'd like to invite you to complete an online assessment."
+    "Hi there. Thanks for applying to our software engineering role!"
+    "We've reviewed your resume and as a first step in our recruiting process, we'd like to invite you to complete an online assessment."
     "Press start whenever you are ready."
 
     menu:
@@ -131,7 +132,7 @@ label start_after_interview:
     player "Geez, coding interviews are hard..."
     with vpunch
     player pout "What made me think I'm capable of getting a software job in the first place?"
-    player "Well... it all started three months ago when I first decided to learn to code and get a real job..."
+    player "Well... it all started some time ago when I first decided to learn to code and get a real job..."
 
     # start the music here
     $ continue_looping_music = True
@@ -140,7 +141,7 @@ label stage1:
     $ quick_menu = False
     scene black with dissolve
     pause 1
-    show text "{size=48}{color=[white]}{i}Three months ago...{i}{/color}{/size}" with dissolve 
+    show text "{size=48}{color=[white]}{i}About two months ago...{i}{/color}{/size}" with dissolve 
     pause 1
     hide text with dissolve
 
@@ -153,6 +154,7 @@ label stage1:
 
     $ stats_unlocked = True # now the quick menu screen show the button to access stats
     scene bg kid_home with dissolve
+    show screen calendar_screen
 
     # Stage 1. player background
     player smile "Okay, so that's it for today's session."

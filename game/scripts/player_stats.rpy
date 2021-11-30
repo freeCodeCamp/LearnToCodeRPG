@@ -64,16 +64,15 @@ transform alpha_dissolve:
     linear 0.5 alpha 1.0
 
 screen player_stats_screen():
-    default todo_expanded = True # screen local variable
     ## Ensure this appears on top of other screens.
     # zorder 100
     on "show" action With(Dissolve(0.5))
     on "hide" action With(Dissolve(0.5))
 
     frame:
-        # top left of screen
-        xalign 0.0
-        yalign 0.0
+        # center of screen
+        xalign 0.5
+        yalign 0.5
         xpadding 30
         ypadding 30
 
@@ -81,11 +80,6 @@ screen player_stats_screen():
 
         vbox:
             spacing 20
-            # calendar
-            hbox:
-                spacing 10
-                text calendar.get_month_string() color gui.accent_color font gui.interface_text_font size gui.name_text_size bold True
-                text calendar.get_day_string() font gui.interface_text_font size gui.name_text_size bold True
 
             hbox:
                 spacing 40
@@ -117,30 +111,25 @@ screen player_stats_screen():
                 null height 10
                 hbox:
                     spacing 40
-                    if todo_unlocked:
-                        textbutton '{icon=list} To-Do' action ToggleScreenVariable('todo_expanded', true_value=True, false_value=False)
+                    text '{icon=list} To-Do'
 
-                if todo_expanded:
-                    use todo_listview
+                viewport:
+                        xsize 620
+                        ymaximum 200
+                        child_size (None, 4000)
+                        scrollbars 'vertical'
+                        spacing 5
+                        draggable True
+                        mousewheel True
+                        arrowkeys True
+                        vscrollbar_xsize 5
+                        vscrollbar_unscrollable "hide"
 
-screen todo_listview():
-    viewport:
-        xsize 620
-        ymaximum 200
-        child_size (None, 4000)
-        scrollbars 'vertical'
-        spacing 5
-        draggable True
-        mousewheel True
-        arrowkeys True
-        vscrollbar_xsize 5
-        vscrollbar_unscrollable "hide"
-
-        vbox:
-            spacing 5
-            for todo in sorted(todo_list.todo_dict):
-                if not todo_list.todo_dict[todo]: # a boolean indicating completion
-                    text '{icon=circle}    ' + todo
-                else:
-                    text '{icon=circle-check}    ' + todo color gui.idle_color
-
+                        vbox:
+                            spacing 5
+                            for todo in sorted(todo_list.todo_dict):
+                                if not todo_list.todo_dict[todo]: # a boolean indicating completion
+                                    text '{icon=circle}    ' + todo
+                                else:
+                                    text '{icon=circle-check}    ' + todo color gui.idle_color
+    
