@@ -8,7 +8,7 @@ label day_activity_choices:
         call day_end from _call_day_end
         return # return to script.rpy
 
-    player "What shall we do for the day?"
+    player smile "What shall we do for the day?"
     menu:
         # this string goes from 'study CS fundamentals' to 'study more CS fundamentals'
         # when the player has completed the curriculum
@@ -39,11 +39,11 @@ label day_activity_choices:
             $ player_stats.change_stats_random('Sanity', -20, -10)
 
             if num_correct == 4:
-                player "But I got all questions right! Way to go!"
+                player @ laugh "But I got all questions right! Way to go!"
             elif num_correct == 3:
-                player "But I got most questions right! At this rate I can make it!"
+                player @ happy "But I got most questions right! At this rate I can make it!"
             elif num_correct == 2:
-                player "I got half of the questions right. I need to put in more work."
+                player @ smile "I got half of the questions right. I need to put in more work."
             elif num_correct == 1:
                 player pout "... I only got one question correct."
                 player neutral "Well, it's better than nothing. I just have to try harder next time!"
@@ -105,13 +105,13 @@ label study_session_choose_topic:
             
 label day_activity_relax:
     # this choice boosts sanity
-    player "Hmmm... Actually, instead of doing something, I feel like I could use some rest today."
+    player neutral "Hmmm... Actually, instead of doing something, I feel like I could use some rest today."
     if player_stats.is_sanity_low():
         "(Whoa! {sc}Slow down, tiger.{/sc} We know you are excited about beefing up your {b}CS Knowledge{/b}, but it's important not to deplete your {b}Sanity{/b}. Why not take some time to recharge?)"
     player pout "...But I have so much work to do..."
     show mint
     mint "Meow~"
-    player neutral "Oh Mint. Are you trying to tell me to take better care of myself?"
+    player smile "Oh Mint. Are you trying to tell me to take better care of myself?"
     player "Awww thanks Mint."
     hide mint
     player "Okay. Let's take a day off and chill. What shall we do?"
@@ -120,6 +120,7 @@ label day_activity_relax:
             player "Let's head out to the park. Too bad I can't take Mint out on a walk. Annika does that with her puppy sometimes and they both love it."
             call day_activity_park from _call_day_activity_park
         "Play some video games":
+            # NOTE
             if renpy.mobile:
                 player "I'd love to play some games, but those are only available on my laptop."
                 "(You won't able to access mini-games when you are playing the mobile or the web version. Please download the desktop version instead.)"
@@ -146,7 +147,7 @@ label day_activity_hacker_space:
             "Sure!":
                 call hacker_space_tech_trivia from _call_hacker_space_tech_trivia
             "Sorry, not feeling like it.":
-                player "Sorry, but I'm not feeling like it."
+                player @ neutral "Sorry, but I'm not feeling like it."
                 trivia_guy "No problem. Let me know anytime if you are to a challenge."
                 hide man
                 player "(Let's just check out what's happening around here.)"
@@ -155,7 +156,7 @@ label day_activity_hacker_space:
         call day_activity_hacker_space_random from _call_day_activity_hacker_space_random_1
 
     scene bg hacker_space dusk with fadehold
-    player "Wow, it's already getting dark? Today's quite an eventful day."
+    player @ surprised "Wow, it's already getting dark? Today's quite an eventful day."
     player "Somehow I feel quite relaxed in this coder-centric atmosphere."
     # bump sanity for a little bit
     $ player_stats.change_stats('Sanity', 5)
@@ -187,7 +188,7 @@ label day_activity_barista:
         player "(It's pretty quiet in the cafe today. Guess I won't get to hear any tech gossips.)"
     else:
         # 70% trigger rate, pick random tech gossip
-        player "(Pssst... Looks like there are people hanging out and having a fun conversation.)"
+        player @ surprised "(Pssst... Looks like there are people hanging out and having a fun conversation.)"
         python:
             available_labels = list(set(barista_event_labels) - seen_barista_events)
             label = renpy.random.choice(available_labels)
@@ -200,7 +201,7 @@ label day_activity_barista:
     pause 5
     hide coffee
 
-    player "My shift is almost over now."
+    player @ relieved "My shift is almost over now."
     player "Serving coffee is no easy work, but somehow I feel refreshed from meeting and greeting people."
     $ player_stats.change_stats('Sanity', 5)
     return
@@ -224,7 +225,7 @@ label day_activity_park:
 
 label day_activity_video_game:
     $ day_activity = 'videogame'
-    player "I recently got this rhythm game everyone's talking about."
+    player @ laugh "I recently got this rhythm game everyone's talking about."
     player "Let's pick a song from the playlist."
     $ choice = renpy.display_menu(list(rhythm_game_beatmaps.items()))
     # start the rhythm game
@@ -260,7 +261,7 @@ label day_activity_video_game:
     $ quick_menu = True
 
     $ num_hits, num_notes = _return
-    player "I hit [num_hits] notes out of [num_notes]. That wasn't bad!"
+    player @ happy "I hit [num_hits] notes out of [num_notes]. That wasn't bad!"
     player "Video games are the best way to let off steam, aren't they?"
     player "Now I feel properly relaxed and fueled for a battle tomorrow!"
     return
@@ -286,7 +287,8 @@ label day_activity_job_search:
             $ interview_company_name = company_name
 
     player "Here is a job posting by {b}[company_name]{/b}."
-    player "They require so many different skills... Looks like I'll need to study hard after applying to this role."
+    player @ pout "They require so many different skills... Looks like I'll need to study hard after applying to this role."
+    # TODO: click button on screen to submit
     play sound 'audio/sfx/button_click.wav'
     player "Application submitted. Let's hope for the best."
 
@@ -297,6 +299,10 @@ label day_activity_job_search:
     return
 
 label day_activity_interview:
+    # this doesn't call `day_start` in advance
+    # so we need to manually increment the calendar day here
+    $ calendar.next()
+
     scene bg bedroom with fadehold
     $ day_activity = 'interview'
 
@@ -305,7 +311,7 @@ label day_activity_interview:
     pause 3.0
     hide smartphone
 
-    player laugh "Today is my big day! I have an interview with {b}[interview_company_name]{/b}."    
+    player smile "Today is my big day! I have an interview with {b}[interview_company_name]{/b}."    
 
     $ interview_room_bg = renpy.random.choice([
         'bg interview_room1',
@@ -335,7 +341,7 @@ label day_activity_interview:
     interviewer "Thanks for taking your time. We will be in touch about next steps."
     $ renpy.hide(interviewer_sprite)
 
-    player "(... Was that everything? Kudos to myself for surviving...)"
+    player relieved "(... Was that everything? Kudos to myself for surviving...)"
     $ player_stats.change_stats_random('Sanity', -20, -10)
     player "That was as intense as I expected. I hope I did well with all those preparations."
     player "I can't wait to go home and just relax now..."

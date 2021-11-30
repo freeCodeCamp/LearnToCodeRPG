@@ -169,7 +169,7 @@ init python:
         true="Any line that starts with 'From:'",
         false=[
         "Any line containing 'From'",
-        "Any line taht starts with 'From'",
+        "Any line that starts with 'From'",
         "Any line containing 'From:'",
         "The lyrics of 'Never Gonna Give You Up'"
         ],

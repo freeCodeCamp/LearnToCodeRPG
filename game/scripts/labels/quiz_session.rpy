@@ -34,10 +34,10 @@ label study_session:
         if result == True:
             $ num_correct += 1
             $ player_stats.change_stats('CS Knowledge', 5)
-            player happy "Correct!"
+            player @ laugh "Correct!"
         else:
             with vpunch
-            player pout "Wrong..."
+            player @ pout "Wrong..."
             # show the correct answer and explanation using a viewport
             call screen quiz_question_answer_explanation_screen(quiz_question)
 
@@ -46,7 +46,7 @@ label study_session:
 
     play sound 'audio/sfx/quiz_complete.wav'
     pause 0.5
-    player neutral "All done!"
+    player @ laugh "All done!"
 
     return
 
@@ -84,8 +84,8 @@ label trivia_session_questions:
         hide business_card
         trivia_guy "Until next time!"
         hide man with dissolve
-        player "Uhhh... cool? I guess?"
-        player "Let's add it to my To-Do list to apply to their company once I'm comfortable with my skill level."
+        player surprised "Uhhh... cool? I guess?"
+        player smile "Let's add it to my To-Do list to apply to their company once I'm comfortable with my skill level."
         $ todo_list.add_todo(todo_apply_cupcakecpu)
         $ has_won_hacker_space_trivia = True
 

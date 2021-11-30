@@ -12,7 +12,7 @@ label hacker_space_tech_trivia:
     return
 
 label hacker_space_tech_talk:
-    player "Looks like there is someone giving a tech talk!"
+    player @ surprised "Looks like there is someone giving a tech talk!"
     player "Sounds like something cool! Let's go listen."
     play sound 'audio/sfx/applause.ogg'
     scene bg hacker_space with fadehold
@@ -21,7 +21,7 @@ label hacker_space_tech_talk:
     return
 
 label hacker_space_project:
-    player "Wow. Whiteboards and sticky notes everywhere..."
+    player @ surprised "Wow. Whiteboards and sticky notes everywhere..."
     player "Looks like people are hard at work on their projects."
     play sound 'audio/sfx/office_ambient.wav'
     player "Let's not disturb them and just watch from a distance."
@@ -32,7 +32,7 @@ label hacker_space_project:
     return
 
 label hacker_space_open_source:
-    player "Looks like there is someone talking about their open-source project."
+    player @ surprised "Looks like there is someone talking about their open-source project."
     player "Let's listen to what they have to say."
     show man purple
     male "Contributing to open-source is a great way to practice your technical skills, and to beef up your resume."
@@ -46,7 +46,7 @@ label hacker_space_open_source:
 label hacker_space_playtest:
     show girl purple
     college_girl "Hey there!"
-    player "Huh? Me?"
+    player @ surprised "Huh? Me?"
     college_girl "Yes. Do you have a moment?"
     college_girl "We are working on a game project for our college CS course, and we'd really appreciate it if you are willing to play-test it."
     college_girl "It's a simple pong game, in case you are wondering."
@@ -71,14 +71,14 @@ label hacker_space_playtest:
                 player "Wow. The computer was really good..."
                 college_girl "Yay! I have a feeling that we are doing well on this project!"
             else:
-                player "That's my victory!"
+                player @ laugh "That's my victory!"
                 college_girl "Wow. Congrats! That was a nice game."
             college_girl "Thanks for your time!"
             player "No problem. Happy to help!"
 
     
         "Sorry, but I'll pass.":
-            player "Sorry, but I'm not super into arcade games. Best of luck on your project!"
+            player @ neutral "Sorry, but I'm not super into arcade games. Best of luck on your project!"
             college_girl "No worries and thanks!"
     hide girl
     player "What's next? Let's check out that other group of people over there."

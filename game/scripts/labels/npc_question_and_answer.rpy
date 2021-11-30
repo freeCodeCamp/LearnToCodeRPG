@@ -2,7 +2,7 @@
 
 label npc_conversation_start:
     $ renpy.show(npc_sprite) # Annika or Marco
-    player "Hello!"
+    player smile "Hello!"
     npc "Hey [persistent.player_name]! What's up?"
     player "Well, I heard some tech buzzwords and would like to learn more about them."
     npc "Sure, what would you like to know?"
