@@ -304,10 +304,15 @@ screen main_menu_navigation():
         spacing gui.navigation_spacing
 
         textbutton _("New Game") action Start():
-            background "gui/button/sticky_note_button_green.png"
+            if not persistent.player_name: # make this stand out!
+                background "gui/button/sticky_note_button_green.png"
+            # else use regular yellow
 
         textbutton _("Continue") action ShowMenu("load"):
-            background "gui/button/sticky_note_button_orange.png"
+            if persistent.player_name: # make this stand out
+                background "gui/button/sticky_note_button_pink.png"
+                text_idle_color '#fff'
+            # else use regular yellow
 
         textbutton _("Settings") action ShowMenu("preferences")
 
@@ -339,6 +344,8 @@ style main_menu_navigation_button:
 
 style main_menu_navigation_button_text:
     properties gui.button_text_properties("navigation_button")
+    idle_color '#0a0a23' # gray90
+    hover_underline True
     text_align 0.5
     xalign 0.5
 
