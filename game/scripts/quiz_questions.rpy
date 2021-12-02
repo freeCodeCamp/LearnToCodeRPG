@@ -18,7 +18,7 @@ init:
             vbox:
                 spacing 10
 
-                textbutton '{icon=close}' xalign 1.0 action Return(True)
+                textbutton '{icon=icon-x}' xalign 1.0 action Return(True)
 
                 viewport:
                     xsize 1000

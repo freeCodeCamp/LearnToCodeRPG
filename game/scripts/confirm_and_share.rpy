@@ -1,7 +1,7 @@
 # https://www.renpy.org/doc/html/screen_special.html
 # based on the confirm screen
 
-screen confirm_and_share_screen(title, message, ok_text, ok_action=Return()):
+screen confirm_and_share_screen(title, message, ok_text, tweet_content_url='https:///www.twitter.com'):
 
     # using `game menu root` will make this screen replace background image
     # modal True
@@ -33,11 +33,9 @@ screen confirm_and_share_screen(title, message, ok_text, ok_action=Return()):
             hbox:
                 spacing 100
                 xalign .5
-                textbutton "{icon=logo-facebook}" action OpenURL('https://www.facebook.com')
-                textbutton "{icon=logo-instagram}" action OpenURL('https://www.instagram.com')
-                textbutton "{icon=logo-twitter}" action OpenURL('https:///www.twitter.com')
+                textbutton "{icon=icon-twitter}" action OpenURL(tweet_content_url)
 
             hbox:
                 spacing 100
                 xalign .5
-                textbutton ok_text action ok_action
+                textbutton ok_text action Return()

@@ -7,7 +7,7 @@ screen ctc(arg=None):
         yalign 0.96
         spacing 10
 
-        text _("{icon=chevrons-down}") at ctc_animation:
+        text _("{icon=icon-chevrons-down}") at ctc_animation:
             size 40  
             color gui.accent_color
 

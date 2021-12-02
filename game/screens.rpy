@@ -255,17 +255,17 @@ screen quick_menu():
             xalign 0.55
             yalign 0.98
 
-            textbutton _("{icon=key-back} Rollback") action Rollback()
-            textbutton _("{icon=ico-map} History") action ShowMenu('history')
-            textbutton _("{icon=key-fast} Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("{icon=key-play} Auto") action Preference("auto-forward", "toggle")
-            textbutton _("{icon=folder-qsave} Save") action ShowMenu('save')
+            textbutton _("{icon=icon-skip-back} Rollback") action Rollback()
+            textbutton _("{icon=icon-book-open} History") action ShowMenu('history')
+            textbutton _("{icon=icon-fast-forward} Skip") action Skip() alternate Skip(fast=True, confirm=True)
+            textbutton _("{icon=icon-play-circle} Auto") action Preference("auto-forward", "toggle")
+            textbutton _("{icon=icon-save} Save") action ShowMenu('save')
             # textbutton _("Q.Save") action QuickSave()
             # textbutton _("Q.Load") action QuickLoad()
-            textbutton _("{icon=ico-settings} Settings ") action ShowMenu('preferences')
+            textbutton _("{icon=icon-settings} Settings ") action ShowMenu('preferences')
 
             if stats_unlocked:
-                textbutton _("{icon=ico-phone} Stats") action ToggleScreen("player_stats_screen")
+                textbutton _("{icon=icon-smartphone} Stats") action ToggleScreen("player_stats_screen")
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
@@ -352,32 +352,32 @@ screen game_menu_navigation():
 
         spacing gui.navigation_spacing
 
-        textbutton _("{icon=ico-map} History") action ShowMenu("history")
+        textbutton _("{icon=icon-book-open} History") action ShowMenu("history")
 
-        textbutton _("{icon=folder-qsave} Save Game") action ShowMenu("save")
+        textbutton _("{icon=icon-save} Save Game") action ShowMenu("save")
 
-        textbutton _("{icon=folder-qload} Load Game") action ShowMenu("load")
+        textbutton _("{icon=icon-bookmark} Load Game") action ShowMenu("load")
 
-        textbutton _("{icon=ico-settings} Settings") action ShowMenu("preferences")
+        textbutton _("{icon=icon-settings} Settings") action ShowMenu("preferences")
 
         if _in_replay:
 
             textbutton _("End Replay") action EndReplay(confirm=True)
 
-        textbutton _("{icon=menu1} Main Menu") action MainMenu()
+        textbutton _("{icon=icon-menu} Main Menu") action MainMenu()
 
-        textbutton _("{icon=ico-bulb} About") action ShowMenu("about")
+        textbutton _("{icon=icon-info} About") action ShowMenu("about")
 
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
             ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("{icon=ico-archive} Help") action ShowMenu("help")
+            textbutton _("{icon=icon-help-circle} Help") action ShowMenu("help")
 
         if renpy.variant("pc"):
 
             ## The quit button is banned on iOS and unnecessary on Android and
             ## Web.
-            textbutton _("{icon=log-out} Quit Game") action Quit(confirm=not main_menu)
+            textbutton _("{icon=icon-x} Quit Game") action Quit(confirm=not main_menu)
 
 style navigation_button is gui_button
 style navigation_button_text is gui_button_text

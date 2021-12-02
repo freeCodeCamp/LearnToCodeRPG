@@ -276,7 +276,7 @@ label stage2:
 
     player "I'll keep track of my progress on my phone."
     show smartphone at truecenter
-    "(Click on the phone icon {icon=ico-phone} on the bottom-right corner of the textbox to show or hide your progress.)"
+    "(Click on the phone icon {icon=icon-smartphone} on the bottom-right corner of the textbox to show or hide your progress.)"
     hide smartphone
 
     player neutral "So Java and JavaScript are different languages? Wait, which one is for web dev again?"
@@ -397,7 +397,7 @@ label stage3:
 
     $ todo_unlocked = True
     $ todo_list.add_todo(todo_check_fcc)
-    "(Click on the To-Do icon {icon=list} to show or hide your To-Do items.)"
+    "(Check your To-Do items on your phone {icon=icon-smartphone}.)"
 
     show annika laugh
     annika "Anyways, what's your plan for the day?"
@@ -1529,7 +1529,7 @@ label ending:
     hide red_flash with dissolve
 
     call screen confirm_and_share_screen(
-        title="{color=[red]}{icon=alert} Attention{/color}",
+        title="{color=[red]}{icon=icon-alert-triangle} Attention{/color}",
         message="Hey [persistent.player_name]... \nThe thing is, it looks like... {sc}{color=[red]}YOU HAVE BROUGHT DOWN THE PRODUCTION SERVER{/color}{/sc}",
         ok_text="Oopsy... Am I... fired?"
     )

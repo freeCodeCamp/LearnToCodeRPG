@@ -57,7 +57,7 @@ screen calendar_screen():
         background "#fffc" # 80% opacity
         hbox:
             spacing 15
-            text '{icon=sun2}'
+            text '{icon=icon-calendar}'
             text calendar.get_month_string():
                 color gui.accent_color
                 font gui.interface_text_font
