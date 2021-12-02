@@ -80,11 +80,14 @@ screen calendar_transition_screen(title_text):
         size gui.chapter_title_text_size
         color white
 
-    timer 3.0 action Return()
+    timer 3.0 action [
+    Hide('calendar_transition_screen', dissolve),
+    Return()
+    ]
 
 transform text_dissolve:
     on show:
         alpha 0.0
         linear 1.0 alpha 1.0
     on hide:
-        linear 0.5 alpha 0.0
+        linear 0.2 alpha 0.0

@@ -126,10 +126,10 @@ label start_after_interview:
         "Would you like to opt into our recruiting email list?"
     
         "Yes":
-            pass
+            "Cool! We'll notify you about all the events and opportunities."
     
         "No":
-            pass
+            "Maybe next time?"
     
     "Thanks for completing your information. We will be in touch about the next steps."
 
@@ -148,19 +148,20 @@ label stage1:
     # $ quick_menu = False
     # scene black with dissolve
     # pause 1
-    # show text "{size=48}{color=[white]}{i}About two months ago...{i}{/color}{/size}" with dissolve 
+    # show text "{size=48}{color=[white]}{i}About two months ago...{/i}{/color}{/size}" with dissolve 
     # pause 1
     # hide text with dissolve
 
-    call screen calendar_transition_screen('{i}About two months ago...{i}')
-
     # scene black with dissolve
     # pause 1
-    # show text "{size=48}{color=[white]}{i}Chapter 1: Let's learn to code!{i}{/color}{/size}" with dissolve 
+    # show text "{size=48}{color=[white]}{i}Chapter 1: Let's learn to code!{/i}{/color}{/size}" with dissolve 
     # pause 1
     # hide text with dissolve
     # $ quick_menu = True
 
+    # the commented out code above is the old way of showing a chapter title text
+    # use call instead of show b/c the screen will return after the timer finishes
+    call screen calendar_transition_screen('{i}About two months ago...{i}')
     call screen calendar_transition_screen("{i}Chapter 1: Let's learn to code!{i}")
 
     $ stats_unlocked = True # now the quick menu screen show the button to access stats
@@ -334,14 +335,16 @@ label stage3:
 
     ## standard for a chapter openin screen
     # hide screen player_stats_screen
-    $ quick_menu = False
-    scene black with dissolve
-    pause 1
-    show text "{size=48}{color=[white]}{i}Chapter 2: A learning buddy to make it better!{i}{/color}{/size}" with dissolve 
-    pause 1
-    hide text with dissolve
-    $ quick_menu = True
+    # $ quick_menu = False
+    # scene black with dissolve
+    # pause 1
+    # show text "{size=48}{color=[white]}{i}Chapter 2: A learning buddy to make it better!{/i}{/color}{/size}" with dissolve 
+    # pause 1
+    # hide text with dissolve
+    # $ quick_menu = True
     ## standard for a chapter openin screen
+
+    call screen calendar_transition_screen('{i}Chapter 2: A learning buddy to make it better!{/i}')
 
     scene bg bedroom with dissolve
     $ calendar.next()

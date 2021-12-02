@@ -66,8 +66,8 @@ transform alpha_dissolve:
 screen player_stats_screen():
     ## Ensure this appears on top of other screens.
     # zorder 100
-    on "show" action With(Dissolve(0.5))
-    on "hide" action With(Dissolve(0.5))
+    on "show" action With(dissolve)
+    on "hide" action With(dissolve)
 
     frame:
         # center of screen
