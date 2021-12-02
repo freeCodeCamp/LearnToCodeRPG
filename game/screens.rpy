@@ -306,19 +306,19 @@ screen main_menu_navigation():
         textbutton _("New Game") action Start():
             background "gui/button/sticky_note_button_green.png"
 
-        textbutton _("Continue Game") action ShowMenu("load"):
+        textbutton _("Continue") action ShowMenu("load"):
             background "gui/button/sticky_note_button_orange.png"
 
-        textbutton _("Game Settings") action ShowMenu("preferences")
+        textbutton _("Settings") action ShowMenu("preferences")
 
         null width 120 # hacky way to adjust spacing
 
-        textbutton _("About This Game") action ShowMenu("about")
+        textbutton _("About") action ShowMenu("about")
 
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
             ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Interface Help") action ShowMenu("help")
+            textbutton _("Help") action ShowMenu("help")
 
         if renpy.variant("pc"):
 
@@ -358,7 +358,7 @@ screen game_menu_navigation():
 
         textbutton _("{icon=folder-qload} Load Game") action ShowMenu("load")
 
-        textbutton _("{icon=ico-settings} Game Settings") action ShowMenu("preferences")
+        textbutton _("{icon=ico-settings} Settings") action ShowMenu("preferences")
 
         if _in_replay:
 
@@ -366,12 +366,12 @@ screen game_menu_navigation():
 
         textbutton _("{icon=menu1} Main Menu") action MainMenu()
 
-        textbutton _("{icon=ico-bulb} About This Game") action ShowMenu("about")
+        textbutton _("{icon=ico-bulb} About") action ShowMenu("about")
 
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
             ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("{icon=ico-archive} Interface Help") action ShowMenu("help")
+            textbutton _("{icon=ico-archive} Help") action ShowMenu("help")
 
         if renpy.variant("pc"):
 
@@ -760,7 +760,7 @@ screen preferences():
 
     tag menu
 
-    use game_menu(_("Game Settings"), scroll="viewport"):
+    use game_menu(_("Settings"), scroll="viewport"):
 
         vbox:
 

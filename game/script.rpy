@@ -10,16 +10,18 @@ label start:
     # get some action and conflict in here :)
     "Hi there. Thanks for applying to our software engineering role!"
     "We've reviewed your resume and as a first step in our recruiting process, we'd like to invite you to complete an online assessment."
-    "Press start whenever you are ready."
 
     menu:
-        "Start":
+        "We'll start whenever you are ready."
+
+        "Guess I have no other options. Let's start!":
             pass
 
     # timed menu
     $ timeout = 5.0
     # Set the label that is jumped to if the player doesn't make a decision.
     $ timeout_label = "start_interview_question2"
+    "First question."
     menu:
         "How do you prove that P = NP in one sentence?"
 
@@ -35,6 +37,7 @@ label start:
 label start_interview_question2:
     with vpunch
     $ timeout_label = "start_interview_question3"
+    "Second question."
     menu:
         "In Python, what is a generator?"
     
@@ -50,6 +53,7 @@ label start_interview_question2:
 label start_interview_question3:
     with hpunch
     $ timeout_label = "start_after_interview"
+    "Third question."
     menu:
         "How do you explain how the Internet works to a five-year old?"
     
@@ -85,6 +89,9 @@ label start_after_interview:
     if not player_name:
         $ player_name = "Lydia"
     $ persistent.player_name = player_name
+
+    # TODO: birthday Easter Egg
+    # "What is your birthday?"
 
     # TODO
     # player_pronouns = renpy.input("What's your preferred pronoun?")
@@ -138,25 +145,30 @@ label start_after_interview:
     $ continue_looping_music = True
 
 label stage1:
-    $ quick_menu = False
-    scene black with dissolve
-    pause 1
-    show text "{size=48}{color=[white]}{i}About two months ago...{i}{/color}{/size}" with dissolve 
-    pause 1
-    hide text with dissolve
+    # $ quick_menu = False
+    # scene black with dissolve
+    # pause 1
+    # show text "{size=48}{color=[white]}{i}About two months ago...{i}{/color}{/size}" with dissolve 
+    # pause 1
+    # hide text with dissolve
 
-    scene black with dissolve
-    pause 1
-    show text "{size=48}{color=[white]}{i}Chapter 1: Let's learn to code!{i}{/color}{/size}" with dissolve 
-    pause 1
-    hide text with dissolve
-    $ quick_menu = True
+    call screen calendar_transition_screen('{i}About two months ago...{i}')
+
+    # scene black with dissolve
+    # pause 1
+    # show text "{size=48}{color=[white]}{i}Chapter 1: Let's learn to code!{i}{/color}{/size}" with dissolve 
+    # pause 1
+    # hide text with dissolve
+    # $ quick_menu = True
+
+    call screen calendar_transition_screen("{i}Chapter 1: Let's learn to code!{i}")
 
     $ stats_unlocked = True # now the quick menu screen show the button to access stats
-    scene bg kid_home with dissolve
+    scene bg kid_home
     show screen calendar_screen
 
     # Stage 1. player background
+    show boy orange
     player smile "Okay, so that's it for today's session."
     kid "Uhh okay, so that's what trigonometry is about?"
     player "Yep. That's the basics of trigonometry."
@@ -1102,7 +1114,7 @@ label stage7:
         "Hmmm... Interesting":
             pass
     annika @ neutral "Coding on a whiteboard requires that you are familiar with the syntax, but don't worry, the company will usually allow you to choose a programming language of your liking."
-    annika "What's more tricky about coding on a whiteboard is that you might need to come up with test cases your self, walk through the execution line-by-line, and validate your results."
+    annika "What's more tricky about coding on a whiteboard is that you might need to come up with test cases yourself, walk through the execution line-by-line, and validate your results."
     annika "If there is a bug in your code, you need to be able to debug on the whiteboard as well, without the convenience of IDE debuggers."
     player worry "(That sounds intense...)"
     annika @ laugh "Haha don't be scared. That's basically the scariest part about coding interviews. Nothing scarier than that!"
