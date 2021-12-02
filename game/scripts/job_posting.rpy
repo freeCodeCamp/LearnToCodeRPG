@@ -50,9 +50,7 @@ screen job_posting_screen(company_name, skill_names):
             text "We are hiring for a candidate with the following skills:"
             vbox:
                 for skill in skill_names:
-                    hbox:
-                        text "{icon=circle-check}  "
-                        text skill
+                    text "•  " + skill
 
 screen company_email_screen(company_name, message, ok_text, has_social_media=False):
 
@@ -86,9 +84,9 @@ screen company_email_screen(company_name, message, ok_text, has_social_media=Fal
                 hbox:
                     spacing 100
                     xalign .5
-                    textbutton "{icon=logo-facebook}" action OpenURL('https://www.facebook.com')
-                    textbutton "{icon=logo-instagram}" action OpenURL('https://www.instagram.com')
-                    textbutton "{icon=logo-twitter}" action OpenURL('https:///www.twitter.com')
+                    # textbutton "{icon=logo-facebook}" action OpenURL('https://www.facebook.com')
+                    # textbutton "{icon=logo-instagram}" action OpenURL('https://www.instagram.com')
+                    # textbutton "{icon=logo-twitter}" action OpenURL('https:///www.twitter.com')
 
             hbox:
                 spacing 100

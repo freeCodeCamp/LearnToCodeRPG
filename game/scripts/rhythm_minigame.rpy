@@ -11,7 +11,7 @@ screen rhythm_game(audio_path, beatmap_path):
         # show the score heads-up display (HUD)
         text 'Hits: ' + str(rhythm_game_displayble.num_hits):
             color '#fff'
-        textbutton '{icon=log-out} Quit' action [
+        textbutton '{icon=icon-x-circle} Quit' action [
         Confirm('Would you like to quit the rhythm game?',
             yes=[
             Stop('rhythm_game'),

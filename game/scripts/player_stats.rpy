@@ -111,7 +111,7 @@ screen player_stats_screen():
                 null height 10
                 hbox:
                     spacing 40
-                    text '{icon=list} To-Do'
+                    text '{icon=icon-list} To-Do'
 
                 viewport:
                         xsize 620
@@ -129,7 +129,7 @@ screen player_stats_screen():
                             spacing 5
                             for todo in sorted(todo_list.todo_dict):
                                 if not todo_list.todo_dict[todo]: # a boolean indicating completion
-                                    text '{icon=circle}    ' + todo
+                                    text '{icon=icon-square}    ' + todo
                                 else:
-                                    text '{icon=circle-check}    ' + todo color gui.idle_color
+                                    text '{icon=icon-check-square}    ' + todo color gui.idle_color
     
