@@ -1,5 +1,5 @@
 init python:
-    calendar_unlocked = False
+    calendar_enabled = False # similar to quick_menu boolean
     stats_unlocked = False
     todo_unlocked = False
 

@@ -20,7 +20,7 @@ init python:
                 if self.month > 12: 
                     self.month = 1 # back to January
                     self.year += 1 # increment year
-            renpy.call_screen('calendar_transition_screen', _('The next day...'))
+            renpy.call_screen('text_over_black_bg_screen', _('The next day...'))
 
         def next_week(self):
             self.day += 7
@@ -30,14 +30,14 @@ init python:
                 if self.month > 12: 
                     self.month = 1 # back to January
                     self.year += 1 # increment year
-            renpy.call_screen('calendar_transition_screen', _('Fast-forwarding a week...'))
+            renpy.call_screen('text_over_black_bg_screen', _('Fast-forwarding a week...'))
 
         def next_month(self):
             self.month += 1
             if self.month > 12: 
                 self.month = 1 # back to January
                 self.year += 1 # increment year
-            renpy.call_screen('calendar_transition_screen', _('Fast-forwarding a month...'))
+            renpy.call_screen('text_over_black_bg_screen', _('Fast-forwarding a month...'))
 
         def get_month_string(self):
             return self.month_names[self.month]
@@ -49,7 +49,7 @@ init python:
 screen calendar_screen():
     ## Ensure this appears on top of other screens like quick_menu and player_stats
     zorder 100
-    if calendar_unlocked:
+    if calendar_enabled:
         frame:
             xpos 20
             ypos 20
@@ -70,7 +70,8 @@ screen calendar_screen():
                     size gui.name_text_size
                     bold True
 
-screen calendar_transition_screen(title_text):
+# this can be used as calendar transition, chapter transition, etc.
+screen text_over_black_bg_screen(title_text):
     ## Ensure this appears on top of other screens like quick_menu and player_stats
     zorder 101
     modal True
@@ -82,7 +83,7 @@ screen calendar_transition_screen(title_text):
         color white
 
     timer 3.0 action [
-    Hide('calendar_transition_screen', dissolve),
+    Hide('text_over_black_bg_screen', dissolve),
     Return()
     ]
 

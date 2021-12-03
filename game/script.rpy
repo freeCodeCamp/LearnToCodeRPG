@@ -145,27 +145,12 @@ label start_after_interview:
     $ continue_looping_music = True
 
 label stage1:
-    # $ quick_menu = False
-    # scene black with dissolve
-    # pause 1
-    # show text "{size=48}{color=[white]}{i}About two months ago...{/i}{/color}{/size}" with dissolve 
-    # pause 1
-    # hide text with dissolve
-
-    # scene black with dissolve
-    # pause 1
-    # show text "{size=48}{color=[white]}{i}Chapter 1: Let's learn to code!{/i}{/color}{/size}" with dissolve 
-    # pause 1
-    # hide text with dissolve
-    # $ quick_menu = True
-
-    # the commented out code above is the old way of showing a chapter title text
     # use call instead of show b/c the screen will return after the timer finishes
-    call screen calendar_transition_screen('{i}About two months ago...{i}')
-    call screen calendar_transition_screen("{i}Chapter 1: Let's learn to code!{i}")
+    call screen text_over_black_bg_screen('About two months ago...')
+    call screen text_over_black_bg_screen("{i}Chapter 1: Let's learn to code!{/i}")
 
     scene bg kid_home
-    $ calendar_unlocked = True
+    $ calendar_enabled = True
     # show screen calendar_screen
 
     # Stage 1. player background
@@ -324,7 +309,6 @@ label stage2:
     player "There might be people who are cut out to do this, but definitely not me."
     player "I guess I better call it a day and go to bed."
 
-    hide screen player_stats_screen
     with fadehold
     player worry "... I can't sleep with all these thoughts floating around in my head."
     player "What can I do if the kid I'm tutoring cuts down our sessions for his coding classes?"
@@ -333,22 +317,10 @@ label stage2:
 
 label stage3:
     # Stage 3. Annika
-
-    ## standard for a chapter openin screen
-    # hide screen player_stats_screen
-    # $ quick_menu = False
-    # scene black with dissolve
-    # pause 1
-    # show text "{size=48}{color=[white]}{i}Chapter 2: A learning buddy to make it better!{/i}{/color}{/size}" with dissolve 
-    # pause 1
-    # hide text with dissolve
-    # $ quick_menu = True
-    ## standard for a chapter openin screen
-
-    call screen calendar_transition_screen('{i}Chapter 2: A learning buddy to make it better!{/i}')
+    call screen text_over_black_bg_screen('{i}Chapter 2: A learning buddy to make it better!{/i}')
+    $ calendar.next()
 
     scene bg bedroom with dissolve
-    $ calendar.next()
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
     show smartphone at truecenter
     player pout "Here goes my phone at this early hour."
@@ -406,7 +378,6 @@ label stage3:
     annika "Cool! Let's catch up some time and get coffee!"
     player "Sure! Chat later!"
     hide annika
-    hide screen player_stats_screen
 
 label stage4:
     scene bg cafe with fadehold
@@ -441,7 +412,6 @@ label stage4:
     $ todo_list.add_todo(todo_ask_hackathon)
     $ topics_to_ask.add('Hackathon')
     player "Alright! Going back to my shift."
-    hide screen player_stats_screen
 
     # player goes back home
     scene bg bedroom night with fadehold
@@ -568,7 +538,6 @@ label stage5:
             player smile "You think that's a good idea too, Mint?"
             player relieved "Okay, let's get some rest today. Tomorrow is another day."
             hide mint
-            hide screen player_stats_screen
             jump stage5_annika
 
 label stage5_cookie:
@@ -660,7 +629,6 @@ label stage5_annika:
     $ todo_list.add_todo(todo_learn_cs)
     player happy "Sounds like a plan!"
     player "Time to go work my barista shift."
-    hide screen player_stats_screen
 
     scene bg cafe with fadehold
     play sound 'audio/sfx/cafe_pour.wav'
@@ -680,14 +648,7 @@ label stage5_annika:
 
 label stage6:
     # Stage 6. Trials
-    hide screen player_stats_screen
-    $ quick_menu = False
-    scene black with dissolve
-    pause 1
-    show text "{size=48}{color=[white]}{i}Chapter 3: Let's hit the books!{i}{/color}{/size}" with dissolve 
-    pause 1
-    hide text with dissolve
-    $ quick_menu = True
+    call screen text_over_black_bg_screen("{i}Chapter 3: Let's hit the books!{/i}")
 
     scene bg bedroom dusk with fade
     player smile "I'm finally home! {w}Let's head over to [developerquiz] and try out some quiz questions."
@@ -928,7 +889,6 @@ label stage6_after_annika_questions:
     call day_activity_choices from _call_day_activity_choices_3
 
     $ calendar.next_month()
-    $ renpy.show_screen('player_stats_screen', _layer='transient')
     scene bg bedroom with fadehold
     player smile "Now I've been learning to code for an entire month, not only have I been making progress on the curriculum and visiting Hacker Space, but I've also been engaging with the [freeCodeCamp] community online."
     player "I found this person who taught himself to code from scratch with [freeCodeCamp]."
@@ -937,14 +897,8 @@ label stage6_after_annika_questions:
     player happy "He said I can ask him anything so let's give it a shot."    
 
 label stage7:
-    # this stage is invoked inside label `day_end`
     # Stage 7. Marco
-    hide screen player_stats_screen
-    scene black with dissolve
-    pause 1
-    show text "{size=48}{color=[white]}{i}Chapter 4: A mentor to lead the way!{i}{/color}{/size}" with dissolve 
-    pause 1
-    hide text with dissolve
+    call screen text_over_black_bg_screen('{i}Chapter 4: A mentor to lead the way!{/i}')
 
     $ has_met_marco = True # unlocks Marco's topics_to_ask
 
@@ -1043,7 +997,6 @@ label stage7:
     scene bg bedroom with fadehold
     player smile "It's been two months since I started to learn to code. Time really flies."
     player "I feel like I'm so much more knowledgeable than when I started."
-    hide screen player_stats_screen
 
     window hide
     show smartphone at truecenter
@@ -1205,14 +1158,7 @@ label stage7:
 
 label stage8:
     # Stage 8. Coding interviews
-    hide screen player_stats_screen
-    $ quick_menu = False
-    scene black with dissolve
-    pause 1
-    show text "{size=48}{color=[white]}{i}Chapter 5: Let's crunch 'em interviews!{i}{/color}{/size}" with dissolve 
-    pause 1
-    hide text with dissolve
-    $ quick_menu = True
+    call screen text_over_black_bg_screen("{i}Chapter 5: Let's crunch 'em interviews!{/i}")
 
     scene bg bedroom with fadehold
     player smile "Alright! Let's start by applying to jobs!"
@@ -1365,14 +1311,7 @@ label stage8:
 
 label stage14:
     # Stage 14. New hire player meets Layla
-    hide screen player_stats_screen
-    $ quick_menu = False
-    scene black with dissolve
-    pause 1
-    show text "{size=48}{color=[white]}{i}Chapter 6: Let's meet my new colleagues!{i}{/color}{/size}" with dissolve 
-    pause 1
-    hide text with dissolve
-    $ quick_menu = True
+    call screen text_over_black_bg_screen("{i}Chapter 6: Let's meet my new colleagues!{/i}")
 
     $ calendar.next_month() # player's start date is in a month
     # TODO: maybe in v2
@@ -1389,7 +1328,6 @@ label stage14:
     player "(...Oh! Was that her at Hacker Space mentoring the kids?)"
     player "(If I remembered correctly...)"
     # TODO: flashback fade
-    hide screen player_stats_screen
     scene bg hacker_space with fadehold
     show layla
     layla @ laugh "So how's everyone's project going? We mentors are here to answer any question you have!"
@@ -1519,7 +1457,6 @@ label ending:
     $ continue_looping_music = False
     stop music
 
-    hide screen player_stats_screen
     # office red alert animation
     show red_flash    
     play sound 'audio/sfx/error.wav'
@@ -1536,14 +1473,15 @@ label ending:
     )
 
     $ quick_menu = False
-
     play sound 'audio/sfx/cartoon_suspense.wav'
     scene black with dissolve
     pause 1
-    show text "{bt}{size=48}{color=[white]}{i}Well, that's another chapter :){i}{/color}{/size}{/bt}" with dissolve 
+    show text "{bt}{size=48}{color=[white]}{i}Well, that's another chapter :){/i}{/color}{/size}{/bt}" with dissolve 
     pause 3
     hide text with dissolve
 
+label ending_splash: # alternative endings also jump to here
+    $ quick_menu = False
     # Learn to Code RPG logo
     scene gray90 with Pause(1)
     play sound 'audio/sfx/title_drop_swoosh.wav'
@@ -1574,5 +1512,7 @@ label ending:
     with dissolve 
     pause 3
     hide text with dissolve
+
+    $ quick_menu = True
 
     return

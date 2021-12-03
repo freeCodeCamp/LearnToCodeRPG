@@ -255,7 +255,7 @@ screen quick_menu():
             xalign 0.55
             yalign 0.98
 
-            textbutton _("{icon=icon-skip-back} Rollback") action Rollback()
+            textbutton _("{icon=icon-skip-back} Back") action Rollback()
             textbutton _("{icon=icon-book-open} History") action ShowMenu('history')
             textbutton _("{icon=icon-fast-forward} Skip") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("{icon=icon-play-circle} Auto") action Preference("auto-forward", "toggle")

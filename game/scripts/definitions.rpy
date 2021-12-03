@@ -123,6 +123,8 @@ init:
     define dad = Character("Dad")
     define mint = Character("Mint", callback=meow_sound_callback) # player's cat
     define interviewer = Character("Interviewer")
+    define host = Character("Host")
+    define journalist = Character("Journalist")
 
     # text displayables
     define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp{/color}{/font}{/a}'
@@ -145,10 +147,10 @@ init:
         1.0
         repeat
 
-    image mint_with_sunglasses = Composite(
+    image mint_with_pixel_sunglasses = Composite(
         (782, 782), # size of mint.png
         (0, 0), 'mint', 
-        (0, 0), 'others/pixel_sunglasses.png')
+        (0, 0), 'others/mint/mint_pixelsunglasses.png')
 
     # cookie
     image cookie:
@@ -251,6 +253,7 @@ init:
         "images/chara/player/player_eyes_open.png",
         "images/chara/player/player_eyes_closed.png"
         )
+
     image annika_eyes_blink = DynamicBlink(
         "images/chara/annika/annika_eyes_open.png",
         "images/chara/annika/annika_eyes_closed.png"
@@ -267,6 +270,7 @@ init:
         )
 
     # layered character sprites
+    default player_pixelsunglasses = False
     # player should always appear as a side image
     layeredimage player:
         always "player_base"
@@ -286,7 +290,10 @@ init:
             attribute pout null
             attribute relieved null
 
-        attribute glasses default
+        if player_pixelsunglasses:
+            "player_pixelsunglasses"
+        else:
+            "player_glasses"
 
         attribute_function Picker(player_expressions)
 
