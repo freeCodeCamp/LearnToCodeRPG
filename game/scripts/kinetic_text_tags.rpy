@@ -473,6 +473,10 @@ init python:
 
 
     ### CUSTOM TAG FUNCTIONS ###
+    # dummy func that doesn't do anything
+    def dummy_tag_func(tag, argument, contents):
+        return contents
+
     # Letters move in a sine wave.
     # height: (int) The amplitude of the text's sine wave motion. How high and low it'll go from it's default position in pixels. Good for jubilent and floaty text.
     # Example: {bt=[height]}Text{/bt}
@@ -778,14 +782,26 @@ init python:
     """
 
     # Define our new text tags
-    config.custom_text_tags["bt"] = bounce_tag
-    config.custom_text_tags["fi"] = fade_in_tag
-    config.custom_text_tags["sc"] = scare_tag
-    config.custom_text_tags["rotat"] = rotate_tag
-    config.custom_text_tags["chaos"] = chaos_tag
-    config.custom_text_tags["swap"] = swap_tag
-    config.custom_text_tags["move"] = move_tag
-    config.custom_text_tags["omega"] = omega_tag
-    config.self_closing_custom_text_tags["para"] = paragraph_tag
+    # if persistent.enable_moving text is False, leave them undefined
+    def configure_text_tags():
+        if persistent.enable_moving_text:
+            config.custom_text_tags["bt"] = bounce_tag
+            config.custom_text_tags["fi"] = fade_in_tag
+            config.custom_text_tags["sc"] = scare_tag
+            config.custom_text_tags["rotat"] = rotate_tag
+            config.custom_text_tags["chaos"] = chaos_tag
+            config.custom_text_tags["swap"] = swap_tag
+            config.custom_text_tags["move"] = move_tag
+            config.custom_text_tags["omega"] = omega_tag
+            config.self_closing_custom_text_tags["para"] = paragraph_tag
+        else:
+            for tag in ["omega", "bt", "fi", "sc", "rotat", "chaos", "move", "swap"]:
+                config.custom_text_tags[tag] = dummy_tag_func
     # Template tag function
     #config.custom_text_tags[""] = _tag
+
+    # first call this function to make sure the tags get defined
+    configure_text_tags()
+
+init:
+    default persistent.enable_moving_text = True
