@@ -42,11 +42,17 @@ This project is open source. You can make suggestions and report bugs {a=https:/
 define credits = _p("""
 Coding & Writing & Misc. Art            {a=https://ruolinzheng08.github.io/}{font=fonts/saxmono.ttf}Lynn Zheng{/font}{/a}
 
-Production & Music                      {a=https://twitter.com/ossia}{font=fonts/saxmono.ttf}Quincy Larson{/font}{/a}
+Background Music                        {a=https://twitter.com/ossia}{font=fonts/saxmono.ttf}Quincy Larson{/font}{/a}
 
-Character Art                           {a=layerto.carrd.co}{font=fonts/saxmono.ttf}Layerto (Noa Trinh){/font}{/a}
+Character Art                           {a=https://layerto.carrd.co}{font=fonts/saxmono.ttf}Layerto (Noa Trinh){/font}{/a}
+
+Quiz Questions                          {a=https://twitter.com/EstefaniaCassN}{font=fonts/saxmono.ttf}Estefania Cassingena Navone{/font}{/a}
+
+                                        {a=https://twitter.com/codergirl1991}{font=fonts/saxmono.ttf}Jessica Wilkins{/font}{/a}
 
 Proofreading                            {a=https://twitter.com/abbeyrenn}{font=fonts/saxmono.ttf}Abbey Rennemeyer{/font}{/a}
+
+Playtesting
 """)
 
 define gui.about = _p(about + """
@@ -57,7 +63,7 @@ define gui.about = _p(about + """
 """ + credits + """
 
 
-{b}{u}{color=#002ead}Engine Information{/color}{/u}{/b}
+{b}{u}{color=#002ead}Engine and License Information{/color}{/u}{/b}
 """)
 
 

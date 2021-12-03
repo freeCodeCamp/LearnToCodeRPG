@@ -145,6 +145,11 @@ init:
         1.0
         repeat
 
+    image mint_with_sunglasses = Composite(
+        (782, 782), # size of mint.png
+        (0, 0), 'mint', 
+        (0, 0), 'others/pixel_sunglasses.png')
+
     # cookie
     image cookie:
         "others/cookie/cookie1.png"

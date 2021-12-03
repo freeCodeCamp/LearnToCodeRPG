@@ -1,4 +1,5 @@
 init python:
+    calendar_unlocked = False
     stats_unlocked = False
     todo_unlocked = False
 

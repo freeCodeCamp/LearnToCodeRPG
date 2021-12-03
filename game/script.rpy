@@ -3,7 +3,7 @@ label start:
     default todo_list = ToDoList()
     default calendar = Calendar(day=1, month=8, year=2021) # story starts on Aug 1st, 2021
     default start_date = date(2021, 8, 1) # this will be used to calculate how many days it took for the player to learn to code
-
+    
     stop music fadeout 2.0
     scene bg laptop_screen with dissolve
 
@@ -126,7 +126,7 @@ label start_after_interview:
         "Would you like to opt into our recruiting email list?"
     
         "Yes":
-            "Cool! We'll notify you about all the events and opportunities."
+            "Way to go! We'll notify you about all the events and opportunities."
     
         "No":
             "Maybe next time?"
@@ -164,9 +164,9 @@ label stage1:
     call screen calendar_transition_screen('{i}About two months ago...{i}')
     call screen calendar_transition_screen("{i}Chapter 1: Let's learn to code!{i}")
 
-    $ stats_unlocked = True # now the quick menu screen show the button to access stats
     scene bg kid_home
-    show screen calendar_screen
+    $ calendar_unlocked = True
+    # show screen calendar_screen
 
     # Stage 1. player background
     show boy orange
@@ -276,6 +276,7 @@ label stage2:
 
     player "I'll keep track of my progress on my phone."
     show smartphone at truecenter
+    $ stats_unlocked = True # now the quick menu screen show the button to access stats
     "(Click on the phone icon {icon=icon-smartphone} on the bottom-right corner of the textbox to show or hide your progress.)"
     hide smartphone
 
@@ -599,7 +600,7 @@ label stage5_annika:
     
     player pout "Ahhh... my alarm... It's a new day already?"
     player neutral "What's on our To-Do today?"
-    show screen player_stats_screen
+    $ renpy.show_screen('player_stats_screen', _layer='transient')
     player smile "Right. Let's give Annika a call and ask about the CS curriculum."
     show smartphone at truecenter
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
@@ -927,7 +928,7 @@ label stage6_after_annika_questions:
     call day_activity_choices from _call_day_activity_choices_3
 
     $ calendar.next_month()
-    show screen player_stats_screen
+    $ renpy.show_screen('player_stats_screen', _layer='transient')
     scene bg bedroom with fadehold
     player smile "Now I've been learning to code for an entire month, not only have I been making progress on the curriculum and visiting Hacker Space, but I've also been engaging with the [freeCodeCamp] community online."
     player "I found this person who taught himself to code from scratch with [freeCodeCamp]."
@@ -1038,7 +1039,7 @@ label stage7:
     call day_activity_choices from _call_day_activity_choices_5
 
     $ calendar.next_month()
-    show screen player_stats_screen
+    $ renpy.show_screen('player_stats_screen', _layer='transient')
     scene bg bedroom with fadehold
     player smile "It's been two months since I started to learn to code. Time really flies."
     player "I feel like I'm so much more knowledgeable than when I started."
@@ -1179,7 +1180,7 @@ label stage7:
     player "But let's first have a movie night to celebrate my progress!"
 
     scene bg bedroom with fadehold
-    show screen player_stats_screen
+    $ renpy.show_screen('player_stats_screen', _layer='transient')
 
     play sound 'audio/sfx/social_media_notification.wav'
     player surprised "Hmm? A notification from my phone? This early in the morning?"
@@ -1259,7 +1260,7 @@ label stage8:
     call day_start from _call_day_start_8
     call day_activity_choices from _call_day_activity_choices_8
     $ calendar.next_week()
-    show screen player_stats_screen
+    $ renpy.show_screen('player_stats_screen', _layer='transient')
 
     # loop routine
     # TODO: refactor past demo if we need offer negotiation
@@ -1269,7 +1270,7 @@ label stage8:
             call day_start from _call_day_start_7
             call day_activity_choices from _call_day_activity_choices_7
             $ calendar.next_week()
-            show screen player_stats_screen
+            $ renpy.show_screen('player_stats_screen', _layer='transient')
 
             call day_start from _call_day_start_9
             if interview_company_name is None:
@@ -1302,7 +1303,7 @@ label stage8:
         call day_start from _call_day_start_10
         call day_activity_choices from _call_day_activity_choices_11
         $ calendar.next_week()
-        show screen player_stats_screen
+        $ renpy.show_screen('player_stats_screen', _layer='transient')
 
         call day_start from _call_day_start_11
         if offer_company_name is None:
@@ -1394,7 +1395,7 @@ label stage14:
     layla @ laugh "So how's everyone's project going? We mentors are here to answer any question you have!"
 
     scene bg office with dissolve
-    show screen player_stats_screen
+    $ renpy.show_screen('player_stats_screen', _layer='transient')
     show layla with vpunch
     layla "[persistent.player_name]? Are you okay? You are spacing out."
     player smile "Ah! I'm fine. I just remembered that we might have met before."

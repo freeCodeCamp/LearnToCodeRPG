@@ -265,13 +265,14 @@ screen quick_menu():
             textbutton _("{icon=icon-settings} Settings ") action ShowMenu('preferences')
 
             if stats_unlocked:
-                textbutton _("{icon=icon-smartphone} Stats") action ToggleScreen("player_stats_screen")
+                textbutton _("{icon=icon-smartphone} Stats") action ShowTransient("player_stats_screen")
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
 ## the player has not explicitly hidden the interface.
 init python:
     config.overlay_screens.append("quick_menu")
+    config.overlay_screens.append('calendar_screen')
 
 default quick_menu = True
 
@@ -359,6 +360,7 @@ screen game_menu_navigation():
 
         spacing gui.navigation_spacing
 
+        # TODO: need to do "{icon=icon-book-open} " + _() for translation
         textbutton _("{icon=icon-book-open} History") action ShowMenu("history")
 
         textbutton _("{icon=icon-save} Save Game") action ShowMenu("save")

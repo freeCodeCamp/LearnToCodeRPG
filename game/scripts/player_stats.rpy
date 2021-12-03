@@ -10,19 +10,16 @@ init python:
             'CS Knowledge': None, 
             }
 
-            # to loop over the dictionary deterministically
-            self.player_stats_name_list = list(self.player_stats_map.keys())
-
         def set_stats(self, stats_name, val):
             # keep between 0 and 100
             if stats_name in self.player_stats_map:
                 clamped_val = min(100, max(0, val))
                 self.player_stats_map[stats_name] = clamped_val
-            renpy.show_screen('player_stats_screen')
+            renpy.show_screen('player_stats_screen', _layer='transient')
 
         def change_stats(self, stats_name, val):
             if not renpy.get_screen('player_stats_screen'):
-                renpy.show_screen('player_stats_screen')
+                renpy.show_screen('player_stats_screen', _layer='transient')
             # keep between 0 and 100
             if stats_name in self.player_stats_map and self.player_stats_map[stats_name] is not None:
                 new_val = self.player_stats_map[stats_name] + val
@@ -32,7 +29,7 @@ init python:
                 if not renpy.sound.is_playing():
                     renpy.sound.play('audio/sfx/stats_change_boop.wav')
                 # show the stats screen
-                renpy.show_screen('player_stats_screen')
+                renpy.show_screen('player_stats_screen', _layer='transient')
 
         def change_stats_random(self, stats_name, min_val, max_val):
             # renpy.random.randint([min], [max]) both ends inclusive
@@ -44,18 +41,20 @@ init python:
 
     class ToDoList():
         def __init__(self):
-            self.todo_dict = {} # maps str todo to boolean indicating completion
+            self.incomplete = []
+            self.completed = []
 
         def add_todo(self, todo):
-            self.todo_dict[todo] = False
-            renpy.show_screen('player_stats_screen')
+            self.incomplete.append(todo)
+            renpy.show_screen('player_stats_screen', _layer='transient')
             if not renpy.sound.is_playing():
                 renpy.sound.play('audio/sfx/smartphone_typing.wav')
 
         def complete_todo(self, todo):
-            if todo in self.todo_dict:
-                self.todo_dict[todo] = True
-                renpy.show_screen('player_stats_screen')
+            if todo in self.incomplete:
+                self.incomplete.remove(todo)
+                self.completed.append(todo)
+                renpy.show_screen('player_stats_screen', _layer='transient')
                 if not renpy.sound.is_playing():
                     renpy.sound.play('audio/sfx/todo_complete.wav')
 
@@ -81,37 +80,42 @@ screen player_stats_screen():
         vbox:
             spacing 20
 
+            text _("Stats") bold True underline True
             hbox:
                 spacing 40
                 # left column shows the stats name
                 vbox:
                     spacing 10
-                    # iterate over the list instead of the map for deterministicity
-                    for stats_name in player_stats.player_stats_name_list:
-                        # if None, not yet initialized/unlocked
-                        if player_stats.player_stats_map[stats_name] is not None:
-                            text stats_name color gui.accent_color
+                    if player_stats.player_stats_map['Sanity'] is not None:
+                        text "{icon=icon-zap}  " + _('Sanity') color gui.accent_color
+
+                    if player_stats.player_stats_map['CS Knowledge'] is not None:
+                        text "{icon=icon-terminal}  " + _('CS Knowledge') color gui.accent_color
+
                 # middle column shows the stats bar
                 vbox:
                     spacing 10
-                    for stats_name in player_stats.player_stats_name_list:
-                        # if None, not yet initialized/unlocked
-                        if player_stats.player_stats_map[stats_name] is not None:
-                            bar value player_stats.player_stats_map[stats_name] range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
+                    if player_stats.player_stats_map['Sanity'] is not None:
+                        $ sanity = player_stats.player_stats_map['Sanity']
+                        bar value sanity range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
+
+                    if player_stats.player_stats_map['CS Knowledge'] is not None:
+                        $ cs_knolwedge = player_stats.player_stats_map['CS Knowledge']
+                        bar value cs_knolwedge range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
 
                 # right column shows the stats value in numbers
                 vbox:
                     spacing 10
-                    for stats_name in player_stats.player_stats_name_list:
-                        # if None, not yet initialized/unlocked
-                        if player_stats.player_stats_map[stats_name] is not None:
-                            text str(player_stats.player_stats_map[stats_name])
+                    if player_stats.player_stats_map['Sanity'] is not None:
+                        $ sanity = player_stats.player_stats_map['Sanity']
+                        text str(sanity)
+                    if player_stats.player_stats_map['CS Knowledge'] is not None:
+                        $ cs_knolwedge = player_stats.player_stats_map['CS Knowledge']
+                        text str(cs_knolwedge)
 
             if todo_unlocked:
                 null height 10
-                hbox:
-                    spacing 40
-                    text '{icon=icon-list} To-Do'
+                text _("To-Do") bold True underline True
 
                 viewport:
                         xsize 620
@@ -127,9 +131,8 @@ screen player_stats_screen():
 
                         vbox:
                             spacing 5
-                            for todo in sorted(todo_list.todo_dict):
-                                if not todo_list.todo_dict[todo]: # a boolean indicating completion
-                                    text '{icon=icon-square}    ' + todo
-                                else:
-                                    text '{icon=icon-check-square}    ' + todo color gui.idle_color
+                            for todo in todo_list.incomplete:
+                                text '    {icon=icon-square}    ' + todo
+                            for todo in todo_list.completed:
+                                text '    {icon=icon-check-square}    ' + todo color gui.idle_color
     

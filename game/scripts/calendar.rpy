@@ -49,25 +49,26 @@ init python:
 screen calendar_screen():
     ## Ensure this appears on top of other screens like quick_menu and player_stats
     zorder 100
-    frame:
-        xpos 20
-        ypos 20
-        xpadding 30
-        ypadding 30
-        background "#fffc" # 80% opacity
-        hbox:
-            spacing 15
-            text '{icon=icon-calendar}'
-            text calendar.get_month_string():
-                color gui.accent_color
-                font gui.interface_text_font
-                size gui.name_text_size
-                bold True
-                underline True
-            text calendar.get_day_string():
-                font gui.interface_text_font
-                size gui.name_text_size
-                bold True
+    if calendar_unlocked:
+        frame:
+            xpos 20
+            ypos 20
+            xpadding 30
+            ypadding 30
+            background "#fffc" # 80% opacity
+            hbox:
+                spacing 15
+                text '{icon=icon-calendar}'
+                text calendar.get_month_string():
+                    color gui.accent_color
+                    font gui.interface_text_font
+                    size gui.name_text_size
+                    bold True
+                    underline True
+                text calendar.get_day_string():
+                    font gui.interface_text_font
+                    size gui.name_text_size
+                    bold True
 
 screen calendar_transition_screen(title_text):
     ## Ensure this appears on top of other screens like quick_menu and player_stats
