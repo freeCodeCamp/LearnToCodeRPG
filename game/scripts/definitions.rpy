@@ -125,6 +125,8 @@ init:
     define interviewer = Character("Interviewer")
     define host = Character("Host")
     define journalist = Character("Journalist")
+    define cafe_manager = Character("Cafe Manager")
+    define office_worker = Character("Office Worker")
 
     # text displayables
     define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp{/color}{/font}{/a}'
@@ -232,7 +234,7 @@ init:
     ## expressions
     # player
     define player_expressions = [
-    "neutral eyes_blink brows_neutral mouth_smile",
+    "neutral eyes_blink brows_neutral mouth_frown",
     "smile eyes_blink brows_raised mouth_smile",
     "happy eyes_blink brows_raised mouth_laugh",
     "surprised eyes_blink brows_raised mouth_oh",
@@ -270,10 +272,16 @@ init:
         )
 
     # layered character sprites
-    default player_pixelsunglasses = False
+    default player_base = 'player_base' # 'player_overall' or 'player_apron'
+    default player_glasses = 'player_glasses' # 'player_pixelsunglasses' or None
     # player should always appear as a side image
     layeredimage player:
-        always "player_base"
+        if player_base == 'player_base':
+            'player_base'
+        elif player_base == 'player_apron':
+            'player_apron'
+        elif player_base == 'player_overall':
+            'player_overall'
 
         group eyes auto prefix "eyes"
         group brows auto prefix "brows"
@@ -290,9 +298,9 @@ init:
             attribute pout null
             attribute relieved null
 
-        if player_pixelsunglasses:
+        if player_glasses == 'player_pixelsunglasses':
             "player_pixelsunglasses"
-        else:
+        elif player_glasses == 'player_glasses':
             "player_glasses"
 
         attribute_function Picker(player_expressions)

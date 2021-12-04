@@ -277,7 +277,8 @@ label day_activity_job_search:
         show screen job_posting_screen('CupcakeCPU', all_skill_names)
         $ has_applied_to_cupcakecpu = True
         # guaranteed interview
-        $ interview_company_name = 'CupcakeCPU'
+        $ company_name = 'CupcakeCPU'
+        $ interview_company_name = company_name # a guaranteed interview
 
     else:
         # apply to some random company

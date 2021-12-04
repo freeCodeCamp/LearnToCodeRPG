@@ -45,6 +45,7 @@ init python:
         def get_day_string(self):
             return str(self.day)
 
+default calendar_enabled = True # similar to quick_menu boolean
 # this screen should always show
 screen calendar_screen():
     ## Ensure this appears on top of other screens like quick_menu and player_stats

@@ -1,8 +1,7 @@
-init python:
-    calendar_enabled = False # similar to quick_menu boolean
-    stats_unlocked = False
-    todo_unlocked = False
+default stats_unlocked = False
+default todo_unlocked = False
 
+init python:
     study_session_questions = general_questions
 
     has_visited_hacker_space_with_annika = False

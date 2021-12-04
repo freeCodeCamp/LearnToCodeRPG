@@ -3,6 +3,8 @@ label start:
     default todo_list = ToDoList()
     default calendar = Calendar(day=1, month=8, year=2021) # story starts on Aug 1st, 2021
     default start_date = date(2021, 8, 1) # this will be used to calculate how many days it took for the player to learn to code
+
+    $ calendar_enabled = False
     
     stop music fadeout 2.0
     scene bg laptop_screen with dissolve
@@ -560,7 +562,7 @@ label stage5_cookie:
 label stage5_annika:
     # the next day
     $ calendar.next()
-    scene bg bedroom with fade
+    scene bg bedroom with fadehold
 
     show smartphone at truecenter
     play sound 'audio/sfx/alarm.wav'
@@ -1332,7 +1334,7 @@ label stage14:
     show layla
     layla @ laugh "So how's everyone's project going? We mentors are here to answer any question you have!"
 
-    scene bg office with dissolve
+    scene bg office with fade
     $ renpy.show_screen('player_stats_screen', _layer='transient')
     show layla with vpunch
     layla "[persistent.player_name]? Are you okay? You are spacing out."
@@ -1513,6 +1515,7 @@ label ending_splash: # alternative endings also jump to here
     pause 3
     hide text with dissolve
 
-    $ quick_menu = True
+    # force return to main menu
+    # $ MainMenu(confirm=False)()
 
-    return
+    return # return to main menu
