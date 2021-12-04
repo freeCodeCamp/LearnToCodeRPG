@@ -30,17 +30,18 @@ init python:
     # play music random looping
     continue_looping_music = False
 
-    all_music = [
-    "audio/bgm/Chasing That Feeling.mp3",
-    "audio/bgm/Never Not Favored.mp3",
-    "audio/bgm/Crystalize That Child in Me.mp3",
-    "audio/bgm/Press Your Advantage.mp3",
-    ]
+    all_music = {
+    'Chasing That Feeling': "audio/bgm/Chasing That Feeling.mp3",
+    'Never Not Favored': "audio/bgm/Never Not Favored.mp3",
+    'Crystalize That Child in Me': "audio/bgm/Crystalize That Child in Me.mp3",
+    'Press Your Advantage': "audio/bgm/Press Your Advantage.mp3",
+    }
 
     def loop_music():
         if continue_looping_music:
-            music = renpy.random.choice(all_music)
-            renpy.music.queue(music, loop=False, fadein=1.0, tight=True)
+            music = renpy.random.choice(all_music.keys())
+            renpy.music.queue(all_music[music], loop=False, fadein=1.0, tight=True)
+            renpy.notify(_('Now playing: ') + music)
 
     renpy.music.set_queue_empty_callback(loop_music)
   

@@ -1264,15 +1264,16 @@ screen skip_indicator():
     style_prefix "skip"
 
     frame:
+        # at top right of textbox, above CTC
+        xalign 0.96
+        yalign 0.8
 
         hbox:
-            spacing 9
-
             text _("Skipping")
-
-            text "▸" at delayed_blink(0.0, 1.0) style "skip_triangle"
-            text "▸" at delayed_blink(0.2, 1.0) style "skip_triangle"
-            text "▸" at delayed_blink(0.4, 1.0) style "skip_triangle"
+            null width 9
+            text "{icon=icon-chevron-right}" at delayed_blink(0.0, 1.0) # style "skip_triangle"
+            text "{icon=icon-chevron-right}" at delayed_blink(0.2, 1.0)
+            text "{icon=icon-chevron-right}" at delayed_blink(0.4, 1.0)
 
 
 ## This transform is used to blink the arrows one after another.
@@ -1295,16 +1296,16 @@ style skip_triangle is skip_text
 
 style skip_frame:
     ypos gui.skip_ypos
-    background Frame("gui/skip.png", gui.skip_frame_borders, tile=gui.frame_tile)
+    # background Frame("gui/skip.png", gui.skip_frame_borders, tile=gui.frame_tile)
     padding gui.skip_frame_borders.padding
 
 style skip_text:
     size gui.notify_text_size
 
-style skip_triangle:
-    ## We have to use a font that has the BLACK RIGHT-POINTING SMALL TRIANGLE
-    ## glyph in it.
-    font "DejaVuSans.ttf"
+# style skip_triangle:
+#     ## We have to use a font that has the BLACK RIGHT-POINTING SMALL TRIANGLE
+#     ## glyph in it.
+#     font "DejaVuSans.ttf"
 
 
 ## Notify screen ###############################################################
@@ -1320,7 +1321,12 @@ screen notify(message):
     style_prefix "notify"
 
     frame at notify_appear:
-        text "[message!tq]"
+        xalign 0.5
+        ypos gui.notify_ypos
+        xpadding 10
+        ypadding 10
+        background "#fffc" # 80% opacity
+        text "[message!tq]" size gui.text_size
 
     timer 3.25 action Hide('notify')
 
@@ -1333,14 +1339,14 @@ transform notify_appear:
         linear .5 alpha 0.0
 
 
-style notify_frame is empty
+# style notify_frame is empty
 style notify_text is gui_text
 
-style notify_frame:
-    ypos gui.notify_ypos
+# style notify_frame:
+#     ypos gui.notify_ypos
 
-    background Frame("gui/notify.png", gui.notify_frame_borders, tile=gui.frame_tile)
-    padding gui.notify_frame_borders.padding
+#     background Frame("gui/notify.png", gui.notify_frame_borders, tile=gui.frame_tile)
+#     padding gui.notify_frame_borders.padding
 
 style notify_text:
     properties gui.text_properties("notify")
