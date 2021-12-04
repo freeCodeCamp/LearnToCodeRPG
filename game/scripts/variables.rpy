@@ -12,39 +12,40 @@ default has_triggered_ending_farmer = False
 
 default has_triggered_ending_today = False
 
+default study_session_questions = general_questions
+
+default has_visited_hacker_space_with_annika = False
+
+# unlocks Marco's topics_to_ask
+default has_met_marco = False
+
+# once this is True, trivia guy no longer appears, and player can get a first round interview w/ CupCakeCPU
+default has_won_hacker_space_trivia = False
+default has_applied_to_cupcakecpu = False
+
+# player_stats.player_stats_map['CS Knowledge'] >= 80
+default has_completed_curriculum = False
+
+default has_received_offer = False
+# TODO: beyond demo version, can do negotiation
+default has_accepted_offer = False
+
+default day_activity = None # set in day_activity_choice.rpy
+
+# interview and offer
+default interview_company_name = None # set in day_activity_choice.rpy
+default offer_company_name = None # set in quiz_session.rpy
+
+# npc Q and A
+default topics_to_ask = set()
+default npc = annika
+default npc_sprite = 'annika'
+
+# seen labels
+default seen_hacker_space_events = set()
+default seen_barista_events = set()
+
 init python:
-    study_session_questions = general_questions
-
-    has_visited_hacker_space_with_annika = False
-
-    # unlocks Marco's topics_to_ask
-    has_met_marco = False
-
-    # once this is True, trivia guy no longer appears, and player can get a first round interview w/ CupCakeCPU
-    has_won_hacker_space_trivia = False
-    has_applied_to_cupcakecpu = False
-
-    # player_stats.player_stats_map['CS Knowledge'] >= 80
-    has_completed_curriculum = False
-
-    has_received_offer = False
-    # TODO: beyond demo version, can do negotiation
-    has_accepted_offer = False
-
-    day_activity = None # set in day_activity_choice.rpy
-    interview_company_name = None # set in day_activity_choice.rpy
-    offer_company_name = None # set in quiz_session.rpy
-
-    topics_to_ask = set()
-    npc = annika
-    npc_sprite = 'annika'
-
-    seen_hacker_space_events = set()
-
-    seen_barista_events = set()
-
-    seen_company_names = set()
-
     ## Non-mutable
 
     # to-do strings
