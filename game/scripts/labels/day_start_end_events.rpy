@@ -113,18 +113,18 @@ label day_end:
     mom "Talk to us if you need anything."
     player laugh "Thanks! You two are the best."
 
-    if not has_triggered_ending_today and \
+    if has_met_layla and not has_triggered_ending_today and \
     not has_triggered_ending_tutor and \
-    renpy.random.random() < 0.1:
-        call ending_tutor
+    renpy.random.random() < 0.05:
+        call ending_tutor from _call_ending_tutor
 
     scene bg bedroom night with blinds
     player happy "Delicious home-cooked dinner as always."
 
     if not has_triggered_ending_today and \
     not has_triggered_ending_office and \
-    has_completed_curriculum and renpy.random.random() < 0.1:
-        call ending_office
+    has_completed_curriculum and renpy.random.random() < 0.05:
+        call ending_office from _call_ending_office
 
     player smile "Hmmm... Let's see. Do I have any cool tech terms I caught during my barista shift that I need to research about?"
     if not topics_to_ask:
@@ -171,8 +171,8 @@ label day_end:
 
     if not has_triggered_ending_today and \
     not has_triggered_ending_cat and \
-    renpy.random.random() < 0.1:
-        call ending_cat
+    renpy.random.random() < 0.05:
+        call ending_cat from _call_ending_cat
 
     return # should return control to script.rpy
 

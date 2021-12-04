@@ -143,9 +143,6 @@ label start_after_interview:
     player pout "What made me think I'm capable of getting a software job in the first place?"
     player "Well... it all started some time ago when I first decided to learn to code and get a real job..."
 
-    # start the music here
-    $ continue_looping_music = True
-
 label stage1:
     # use call instead of show b/c the screen will return after the timer finishes
     call screen text_over_black_bg_screen('About two months ago...')
@@ -153,7 +150,8 @@ label stage1:
 
     scene bg kid_home
     $ calendar_enabled = True
-    # show screen calendar_screen
+    # start the music here
+    $ continue_looping_music = True
 
     # Stage 1. player background
     show boy orange
@@ -168,8 +166,8 @@ label stage1:
     player "(It's not like I don't enjoy tutoring kids. I actually enjoy explaining concepts to others. I just need a full-time job that is more intellectually fulfilling.)"
     player "(Better yet if it pays better...){p=0.5}{nw}"
     kid "Hey [persistent.player_name]?"
-    player neutral "Oh. {w}Hey. {w}Sorry I just spaced out for a bit."
-    player "Do you have any more questions before we wrap up?"
+    player surprised "Oh. {w}Hey. {w}Sorry I just spaced out for a bit."
+    player smile "Do you have any more questions before we wrap up?"
     kid "Nope! I think my project report is good to go. Thanks!"
     player "Good. I'll see you next week."
     kid "Oh sorry, can we do the week after the next?"
@@ -212,7 +210,7 @@ label stage2:
 
     play sound 'audio/sfx/social_media_notification.wav'
     show smartphone at truecenter
-    player neutral "Hmmm... A notification from my phone?  Must be something on social media."
+    player surprised "Hmmm... A notification from my phone?  Must be something on social media."
 
     menu:
         "Check phone":
@@ -222,8 +220,8 @@ label stage2:
             show swag at truecenter with zoomin
             player "{bt}\"Proud intern at {b}DonutDB{/b}. Check out my swaaaag!\"{/bt}"
             hide swag
-            player smile "Oh. wow."
-            player "Should I leave a like or comment on their post?"
+            player "Oh. wow."
+            player smile "Should I leave a like or comment on their post?"
             # no consequence
             menu:
                 "Leave a like":
@@ -237,7 +235,7 @@ label stage2:
 
         "Ignore":
             hide smartphone
-            player "Let's make this evening distraction-free for my sanity."
+            player relieved "Let's make this evening distraction-free for my sanity."
 
     player pout "It's crazy how everyone these days is learning to code and getting high-paying jobs in software."
     player "College itself has been crazy enough for me, and now people are going back to school to complete an online master's program in Computer Science?"
@@ -254,20 +252,18 @@ label stage2:
 
     player neutral "Alright, let's do this."
     player "A bit of research won't hurt. Where shall we start? Maybe some free online resources like everyone else is doing?"
-    player happy "Oh here's a video about the top 10 tech skills worth learning in 2021. Let's check that out!"
+    player surprised "Oh here's a video about the top 10 tech skills worth learning in 2021. Let's check that out!"
 
-    # player starts learning to code, so we initialize CS knowledge to 0
-    $ player_stats.set_stats('Sanity', 100)
-    $ player_stats.set_stats('CS Knowledge', 0)
-    # now the screen should be showing
+    # now the quick menu screen show the button to access stats
+    $ stats_unlocked = True
+    $ stats_knowledge_unlocked = True
 
-    player "I'll keep track of my progress on my phone."
+    player smile "I'll keep track of my progress on my phone."
     show smartphone at truecenter
-    $ stats_unlocked = True # now the quick menu screen show the button to access stats
     "(Click on the phone icon {icon=icon-smartphone} on the bottom-right corner of the textbox to show or hide your progress.)"
     hide smartphone
 
-    player neutral "So Java and JavaScript are different languages? Wait, which one is for web dev again?"
+    player surprised "So Java and JavaScript are different languages? Wait, which one is for web dev again?"
     $ player_stats.change_stats('CS Knowledge', 1)
     $ player_stats.change_stats('Sanity', -5)
 
@@ -332,17 +328,17 @@ label stage3:
 
     show annika
     annika "[persistent.player_name]!"
-    player happy "Annika! Geez. When was the last time you called me? When we were moving out after graduation?"
+    player surprised "Annika! Geez. When was the last time you called me? When we were moving out after graduation?"
     player laugh "Anyways, it's really nice to hear from you again!"
     annika "Same! How have you been?"
-    player neutral "I've been okay. Just new grad blues. You?"
+    player smile "I've been okay. Just new grad blues. You?"
 
     show annika laugh
     annika "Things are going pretty well for me! I just got my job offer!"
     annika "And, like, it's not just any job! It's a web development job!"
     annika "Can you believe it? I get paid generously for building cool websites."
     annika "It's almost like getting paid for being creative and doing art!"
-    player laugh "Yeah. Wow. {bt}Congrats!{/bt}"
+    player surprised "Yeah. Wow. {bt}Congrats!{/bt}"
     annika "Thanks!"
     player smile "Hey Annika, if I may ask, how hard was it for you to learn to develop websites?"
     player pout "I also tried to learn to code for some time but it got too hard and I quit."
@@ -532,7 +528,7 @@ label stage5:
         "Let's just wait until tomorrow and ask Annika for advice":
             player pout "Hmmm... I don't know. They all look equally hard. Let's ask Annika for advice tomorrow."
             $ todo_list.add_todo(todo_ask_curriculum)
-            player "Added it to my To-Do!"
+            player smile "Added it to my To-Do!"
             player "Well, I did accomplish something today. Now at least I know what [freeCodeCamp]'s curriculum is about. That's one item off my To-Do list."
             $ todo_list.complete_todo(todo_check_fcc)
             show mint
@@ -562,7 +558,7 @@ label stage5_cookie:
 label stage5_annika:
     # the next day
     $ calendar.next()
-    scene bg bedroom with fadehold
+    scene bg bedroom with dissolve
 
     show smartphone at truecenter
     play sound 'audio/sfx/alarm.wav'
@@ -570,9 +566,9 @@ label stage5_annika:
     hide smartphone
     
     player pout "Ahhh... my alarm... It's a new day already?"
-    player neutral "What's on our To-Do today?"
+    player smile "What's on our To-Do today?"
     $ renpy.show_screen('player_stats_screen', _layer='transient')
-    player smile "Right. Let's give Annika a call and ask about the CS curriculum."
+    player happy "Right. Let's give Annika a call and ask about the CS curriculum."
     show smartphone at truecenter
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
     hide smartphone
@@ -580,9 +576,9 @@ label stage5_annika:
     show annika neutral
 
     player happy "Morning Annika!"
-    annika laugh "Morning! As energetic as ever, I see."
+    annika @ laugh "Morning! As energetic as ever, I see."
     player "Haha all thanks to you!"
-    annika neutral "What's up?"
+    annika "What's up?"
     player "So I've been checking out [freeCodeCamp] as you suggested."
     player "I think its curriculum looks solid."
     player pout "The thing is, I have no idea what to learn. Web dev, data science, machine learning..."
@@ -673,6 +669,7 @@ label stage6:
     scene bg bedroom with fadehold
     
     # a new day, player studies in the morning, and hangs out with Annika at night
+    $ calendar.next()
     show smartphone at truecenter
     play sound 'audio/sfx/alarm.wav'
     pause 1.0
@@ -820,7 +817,8 @@ label stage6_after_annika_questions:
     call day_activity_choices from _call_day_activity_choices_1
 
     # hacker space story
-    scene bg bedroom with fadehold
+    $ calendar.next()
+    scene bg bedroom
 
     show smartphone at truecenter
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
@@ -891,7 +889,7 @@ label stage6_after_annika_questions:
     call day_activity_choices from _call_day_activity_choices_3
 
     $ calendar.next_month()
-    scene bg bedroom with fadehold
+    scene bg bedroom with dissolve
     player smile "Now I've been learning to code for an entire month, not only have I been making progress on the curriculum and visiting Hacker Space, but I've also been engaging with the [freeCodeCamp] community online."
     player "I found this person who taught himself to code from scratch with [freeCodeCamp]."
     player "That's truly a from-zero-to-hero story."
@@ -1032,6 +1030,7 @@ label stage7:
     boy "This time we are finally going to code it all up!"
     girl "Hmmm... Yeah... We probably need some advice. I heard they have mentors here to guide us..."
 
+    $ has_met_layla = True
     show layla with moveinleft
     layla @ laugh "Hey kids! I heard that you are looking for help from mentors."
     layla "I'm Layla, one of today's mentors. I'd be glad to work with you today."
@@ -1478,7 +1477,7 @@ label ending:
     play sound 'audio/sfx/cartoon_suspense.wav'
     scene black with dissolve
     pause 1
-    show text "{bt}{size=48}{color=[white]}{i}Well, that's another chapter :){/i}{/color}{/size}{/bt}" with dissolve 
+    show text "{bt}{size=48}{color=[white]}{i}Well, that's another chapter that we will bring to you in the future!{/i}{/color}{/size}{/bt}" with dissolve 
     pause 3
     hide text with dissolve
 

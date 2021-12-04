@@ -442,7 +442,7 @@ label ending_farmer:
             hide mint
             player neutral "Alright, that was a nice joke, but an impractical one."
             player "Let's just go take a walk in the park to celebrate mother nature."
-            call day_activity_park
+            call day_activity_park from _call_day_activity_park_2
             $ player_stats.change_stats_random('Sanity', 5, 20)
             return
 
@@ -490,7 +490,16 @@ label second_chance:
     "Do you wish for an ending like that?"
     "Okay, I'm going to let you in on a little secret."
     "If you like, you can wind back the clock and revisit the choice you've made."
-    "Would you like to get a second chance?"
+    "If I may ask, did you remember to {b}Save{/b} your progress before making this choice that has taken you here?"
+    call screen confirm("Did you {b}Save{/b} your progress and wish to {b}Load{/b} and get back in time? (It's okay if you answer no. I'll let you in on another secret.)", 
+        yes_action=[ShowMenu('load'), Return()], 
+        no_action=Return())
+
+    # if the player didn't load, they get down here
+    "Interesting. It looks I have no choice but to let you in on my other little secret."
+    "Listen up, alright? I can offer you a second chance to go back to the day you made the choice that took you here."
+    "That is, if you so wish."
+    "Now answer me, would you like to get a second chance?"
     menu:
         "Would you like to go back in time and revisit your choice?"
     
@@ -501,6 +510,7 @@ label second_chance:
 
             $ player_base = 'player_base'
             $ player_glasses = 'player_glasses'
+            $ calendar_enabled = True
             return # return control to the ending label that it jumped from
     
         "Nah. I'm happy with what I have now.":

@@ -1,49 +1,55 @@
-default stats_unlocked = False
-default todo_unlocked = False
+init:
+    default stats_unlocked = False
+    default stats_knolwedge_unlocked = False # cs knowledge
+    default todo_unlocked = False
 
-# alternative endings
-default has_triggered_ending_barista = False
-default has_triggered_ending_cat = False
-default has_triggered_ending_tutor = False
-default has_triggered_ending_office = False
+    # alternative endings
+    default has_triggered_ending_barista = False
+    default has_triggered_ending_cat = False
+    default has_triggered_ending_tutor = False
+    default has_triggered_ending_office = False
 
-default num_times_sanity_low = 0
-default has_triggered_ending_farmer = False
+    default num_times_sanity_low = 0
+    default has_triggered_ending_farmer = False
 
-default has_triggered_ending_today = False
+    default has_triggered_ending_today = False
 
-default study_session_questions = general_questions
+    # set question type during study session
+    default study_session_questions = general_questions
 
-default has_visited_hacker_space_with_annika = False
+    default has_visited_hacker_space_with_annika = False
 
-# unlocks Marco's topics_to_ask
-default has_met_marco = False
+    # unlocks Marco's topics_to_ask
+    default has_met_marco = False
 
-# once this is True, trivia guy no longer appears, and player can get a first round interview w/ CupCakeCPU
-default has_won_hacker_space_trivia = False
-default has_applied_to_cupcakecpu = False
+    # unlocks teaching alternative ending
+    default has_met_layla = False
 
-# player_stats.player_stats_map['CS Knowledge'] >= 80
-default has_completed_curriculum = False
+    # once this is True, trivia guy no longer appears, and player can get a first round interview w/ CupCakeCPU
+    default has_won_hacker_space_trivia = False
+    default has_applied_to_cupcakecpu = False
 
-default has_received_offer = False
-# TODO: beyond demo version, can do negotiation
-default has_accepted_offer = False
+    # player_stats.player_stats_map['CS Knowledge'] >= 80
+    default has_completed_curriculum = False
 
-default day_activity = None # set in day_activity_choice.rpy
+    default has_received_offer = False
+    # TODO: beyond demo version, can do negotiation
+    default has_accepted_offer = False
 
-# interview and offer
-default interview_company_name = None # set in day_activity_choice.rpy
-default offer_company_name = None # set in quiz_session.rpy
+    default day_activity = None # set in day_activity_choice.rpy
 
-# npc Q and A
-default topics_to_ask = set()
-default npc = annika
-default npc_sprite = 'annika'
+    # interview and offer
+    default interview_company_name = None # set in day_activity_choice.rpy
+    default offer_company_name = None # set in quiz_session.rpy
 
-# seen labels
-default seen_hacker_space_events = set()
-default seen_barista_events = set()
+    # npc Q and A
+    default topics_to_ask = set()
+    default npc = annika
+    default npc_sprite = 'annika'
+
+    # seen labels
+    default seen_hacker_space_events = set()
+    default seen_barista_events = set()
 
 init python:
     ## Non-mutable

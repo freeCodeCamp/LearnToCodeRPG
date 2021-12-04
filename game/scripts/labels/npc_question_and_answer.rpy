@@ -37,6 +37,7 @@ label ask_hackathon:
     player "(Hmmm, so that's what a {b}hackathon{/b} is about.)"
     $ todo_list.complete_todo(todo_ask_hackathon)
     $ topics_to_ask.remove('Hackathon')
+    player "Checked it off my To-Do."
     return
 
 label ask_fullstack:
@@ -55,6 +56,7 @@ label ask_fullstack:
     player "(Hmmm, so that's what {b}full-stack{/b} is about.)"
     $ todo_list.complete_todo(todo_ask + 'Full-Stack')
     $ topics_to_ask.remove('Full-Stack')
+    player "Checked it off my To-Do."
     return
 
 label ask_machinelearning:
@@ -74,6 +76,7 @@ label ask_machinelearning:
     player "(Hmmm, so that's what {b}machine learning{/b} is about.)"
     $ todo_list.complete_todo(todo_ask + 'Machine Learning')
     $ topics_to_ask.remove('Machine Learning')
+    player "Checked it off my To-Do."
     return
 
 label ask_conference:
@@ -92,6 +95,7 @@ label ask_conference:
     player "(Hmmm, so that's what a tech {b}conference{/b} is about.)"
     $ todo_list.complete_todo(todo_ask + 'Conference')
     $ topics_to_ask.remove('Conference')
+    player "Checked it off my To-Do."
     return
 
 label ask_versioncontrol:
@@ -115,6 +119,7 @@ label ask_versioncontrol:
     player "(Hmmm, so that's what {b}version control{/b} is about.)"
     $ todo_list.complete_todo(todo_ask + 'Version Control')
     $ topics_to_ask.remove('Version Control')
+    player "Checked it off my To-Do."
     return
 
 label ask_devops:
@@ -130,6 +135,7 @@ label ask_devops:
     player "(Hmmm, so that's what {b}DevOps{/b} is about.)"
     $ todo_list.complete_todo(todo_ask + 'DevOps')
     $ topics_to_ask.remove('DevOps')
+    player "Checked it off my To-Do."
     return
 
 label ask_agile:
@@ -145,6 +151,7 @@ label ask_agile:
     player "(Hmmm, so that's what {b}agile{/b} development is about.)"
     $ todo_list.complete_todo(todo_ask + 'Agile')
     $ topics_to_ask.remove('Agile')
+    player "Checked it off my To-Do."
     return
 
 label ask_api:
@@ -162,6 +169,7 @@ label ask_api:
     player "(Hmmm, so that's what an {b}API{/b} is about.)"
     $ todo_list.complete_todo(todo_ask + 'API')
     $ topics_to_ask.remove('API')
+    player "Checked it off my To-Do."
     return
 
 label ask_userexperience:
@@ -191,4 +199,5 @@ label ask_userexperience:
     player "(Hmmm, so that's what {b}User Experience{/b} is about.)"
     $ todo_list.complete_todo(todo_ask + 'User Experience')
     $ topics_to_ask.remove('User Experience')
+    player "Checked it off my To-Do."
     return

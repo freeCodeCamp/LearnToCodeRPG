@@ -41,7 +41,8 @@ init python:
         if continue_looping_music:
             music = renpy.random.choice(all_music.keys())
             renpy.music.queue(all_music[music], loop=False, fadein=1.0, tight=True)
-            renpy.notify(_('Now playing: ') + music)
+            # if not renpy.in_rollback():
+            #     renpy.notify('Now playing: ' + music)
 
     renpy.music.set_queue_empty_callback(loop_music)
   

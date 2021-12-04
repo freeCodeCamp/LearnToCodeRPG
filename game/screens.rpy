@@ -265,7 +265,11 @@ screen quick_menu():
             textbutton _("{icon=icon-settings} Settings ") action ShowMenu('preferences')
 
             if stats_unlocked:
-                textbutton _("{icon=icon-smartphone} Stats") action ShowTransient("player_stats_screen")
+                textbutton _("{icon=icon-smartphone} Stats") action If(
+                    renpy.get_screen('player_stats_screen'),
+                    true=ToggleScreen('player_stats_screen'),
+                    false=ShowTransient("player_stats_screen")
+                    )
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
@@ -305,12 +309,12 @@ screen main_menu_navigation():
         spacing gui.navigation_spacing
 
         textbutton _("New Game") action Start():
-            if not persistent.player_name: # make this stand out!
+            if not persistent.player_name: # a new game, make `start` stand out
                 background "gui/button/sticky_note_button_green.png"
             # else use regular yellow
 
         textbutton _("Continue") action ShowMenu("load"):
-            if persistent.player_name: # make this stand out
+            if persistent.player_name: # has some game in progress, make `load` stand out
                 background "gui/button/sticky_note_button_pink.png"
                 text_idle_color '#fff'
             # else use regular yellow
@@ -321,10 +325,16 @@ screen main_menu_navigation():
 
         textbutton _("About") action ShowMenu("about")
 
-        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+        # TODO: v2 achievements, glossary etc.
+        textbutton _("Bonus") action ShowMenu("bonus"):
+            if persistent.player_name: # has some game in progress
+                background "gui/button/sticky_note_button_purple.png"
+                text_idle_color '#fff'
 
-            ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Help") action ShowMenu("help")
+        # if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+
+        #     ## Help isn't necessary or relevant to mobile devices.
+        #     textbutton _("Help") action ShowMenu("help")
 
         if renpy.variant("pc"):
 
@@ -361,32 +371,34 @@ screen game_menu_navigation():
         spacing gui.navigation_spacing
 
         # TODO: need to do "{icon=icon-book-open} " + _() for translation
-        textbutton _("{icon=icon-book-open} History") action ShowMenu("history")
+        textbutton '{icon=icon-book-open} ' + _("History") action ShowMenu("history")
 
-        textbutton _("{icon=icon-save} Save Game") action ShowMenu("save")
+        textbutton '{icon=icon-save} ' + _("Save Game") action ShowMenu("save")
 
-        textbutton _("{icon=icon-bookmark} Load Game") action ShowMenu("load")
+        textbutton '{icon=icon-bookmark} ' + _("Load Game") action ShowMenu("load")
 
-        textbutton _("{icon=icon-settings} Settings") action ShowMenu("preferences")
+        textbutton '{icon=icon-settings} ' + _("Settings") action ShowMenu("preferences")
 
         if _in_replay:
 
             textbutton _("End Replay") action EndReplay(confirm=True)
 
-        textbutton _("{icon=icon-menu} Main Menu") action MainMenu()
+        textbutton '{icon=icon-menu} ' + _("Main Menu") action MainMenu()
 
-        textbutton _("{icon=icon-info} About") action ShowMenu("about")
+        textbutton '{icon=icon-info} ' + _("About") action ShowMenu("about")
 
-        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+        textbutton '{icon=icon-star} ' + _("Bonus") action ShowMenu("bonus")
 
-            ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("{icon=icon-help-circle} Help") action ShowMenu("help")
+        # if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+
+        #     ## Help isn't necessary or relevant to mobile devices.
+        #     textbutton '{icon=icon-help-circle} ' + _("Help") action ShowMenu("help")
 
         if renpy.variant("pc"):
 
             ## The quit button is banned on iOS and unnecessary on Android and
             ## Web.
-            textbutton _("{icon=icon-x-circle} Quit Game") action Quit(confirm=not main_menu)
+            textbutton '{icon=icon-x-circle} ' + _("Quit Game") action Quit(confirm=not main_menu)
 
 style navigation_button is gui_button
 style navigation_button_text is gui_button_text
@@ -1327,8 +1339,9 @@ screen notify(message):
     frame at notify_appear:
         xalign 0.5
         ypos gui.notify_ypos
-        xpadding 10
-        ypadding 10
+        xpadding 30
+        ypadding 30
+        xmaximum 900
         background "#fffc" # 80% opacity
         text "[message!tq]" size gui.text_size
 

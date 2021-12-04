@@ -6,11 +6,12 @@ label day_activity_choices:
     # if the player has low sanity, jump directly to one of the relaxing choices
     if player_stats.is_sanity_low():
         # TODO: notify
+        $ renpy.notify('Your sanity is dropping dangerously low. Why not take some time to relax and recharge?')
         $ num_times_sanity_low += 1
 
         if not has_triggered_ending_farmer and \
-        num_times_sanity_low > 3 and renpy.random.random() < 0.1:
-            call ending_farmer
+        num_times_sanity_low > 5 and renpy.random.random() < 0.05:
+            call ending_farmer from _call_ending_farmer
         else:
             call day_activity_relax from _call_day_activity_relax
 
@@ -115,9 +116,9 @@ label study_session_choose_topic:
 label day_activity_relax:
     # this choice boosts sanity
     player neutral "Hmmm... Actually, instead of doing something, I feel like I could use some rest today."
-    if player_stats.is_sanity_low():
-        "(Whoa! {sc}Slow down, tiger.{/sc} We know you are excited about beefing up your {b}CS Knowledge{/b}, but it's important not to deplete your {b}Sanity{/b}. Why not take some time to recharge?)"
-    player pout "...But I have so much work to do..."
+    # if player_stats.is_sanity_low():
+    #     "(Whoa! {sc}Slow down, tiger.{/sc} We know you are excited about beefing up your {b}CS Knowledge{/b}, but it's important not to deplete your {b}Sanity{/b}. Why not take some time to recharge?)"
+    # player pout "...But I have so much work to do..."
     show mint
     mint "Meow~"
     player smile "Oh Mint. Are you trying to tell me to take better care of myself?"
@@ -214,8 +215,8 @@ label day_activity_barista:
     player "Serving coffee is no easy work, but somehow I feel refreshed from meeting and greeting people."
     $ player_stats.change_stats('Sanity', 5)
 
-    if not has_triggered_ending_barista and renpy.random.random() < 0.1:
-        call ending_barista
+    if not has_triggered_ending_barista and renpy.random.random() < 0.05:
+        call ending_barista from _call_ending_barista
     return
 
 label day_activity_park:
@@ -243,6 +244,7 @@ label day_activity_video_game:
     # start the rhythm game
     # window hide
     $ quick_menu = False
+    $ calendar_enabled = False
 
     # avoid rolling back and losing game state
     $ renpy.block_rollback()
@@ -271,6 +273,7 @@ label day_activity_video_game:
     $ renpy.checkpoint()
 
     $ quick_menu = True
+    $ calendar_enabled = True
 
     $ num_hits, num_notes = _return
     player @ happy "I hit [num_hits] notes out of [num_notes]. That wasn't bad!"

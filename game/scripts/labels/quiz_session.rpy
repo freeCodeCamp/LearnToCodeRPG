@@ -41,9 +41,6 @@ label study_session:
             # show the correct answer and explanation using a viewport
             call screen quiz_question_answer_explanation_screen(quiz_question)
 
-        # hide player stats screen if it was showing so it doesn't obstruct the questions
-        
-
     play sound 'audio/sfx/quiz_complete.wav'
     pause 0.5
     player @ laugh "All done!"
