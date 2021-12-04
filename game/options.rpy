@@ -34,37 +34,41 @@ define config.version = "1.0"
 ## triple-quotes, and leave a blank line between paragraphs.
 
 define about = _p("""
-{b}Learn to Code RPG{/b} was made possible by all the kind people who donate to support freeCodeCamp.org. You can help support our nonprofit's mission {a=https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/}{font=fonts/saxmono.ttf}here{/font}{/a}.
+{b}Learn to Code RPG{/b} was made possible by all the kind people who donate to support freeCodeCamp.org. You can help support our nonprofit's mission {a=https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/}here{/a}.
 
-This project is open source. You can make suggestions and report bugs {a=https://github.com/freeCodeCamp/LearnToCodeRPG}{font=fonts/saxmono.ttf}here on GitHub{/font}{/a}.
+This project is open source. You can make suggestions and report bugs {a=https://github.com/freeCodeCamp/LearnToCodeRPG}here on GitHub{/a}.
 """)
 
 define credits = _p("""
 Coding & Writing & Misc. Art:
-    {a=https://ruolinzheng08.github.io/}{font=fonts/saxmono.ttf}Lynn Zheng{/font}{/a}\n
+    {a=https://ruolinzheng08.github.io/}Lynn Zheng (Ruolin Zheng){/a}
+    {a=https://github.com/RuolinZheng08/}{icon=icon-github}{/a}
+    {a=https://www.youtube.com/channel/UCZ2MeG5jTIqgzEMiByrIzsw}{icon=icon-youtube}{/a}
+    {a=https://www.linkedin.com/in/ruolin-zheng/}{icon=icon-linkedin}{/a}
+    {a=https://twitter.com/lynnzheng08}{icon=icon-twitter}{/a}
+    
 Background Music:
-    {a=https://twitter.com/ossia}{font=fonts/saxmono.ttf}Quincy Larson{/font}{/a}\n
+    {a=https://twitter.com/ossia}Quincy Larson{/a}
+
 Character Art:
-    {a=https://layerto.carrd.co}{font=fonts/saxmono.ttf}Layerto (Noa Trinh){/font}{/a}\n
+    {a=https://layerto.carrd.co}Layerto (Noa Trinh){/a}
+
 Quiz Questions:
-    {a=https://twitter.com/EstefaniaCassN}{font=fonts/saxmono.ttf}Estefania Cassingena Navone{/font}{/a},
-    {a=https://twitter.com/codergirl1991}{font=fonts/saxmono.ttf}Jessica Wilkins{/font}{/a}\n
+    {a=https://twitter.com/EstefaniaCassN}Estefania Cassingena Navone{/a},
+    {a=https://twitter.com/codergirl1991}Jessica Wilkins{/a}
+
 Proofreading:
-    {a=https://twitter.com/abbeyrenn}{font=fonts/saxmono.ttf}Abbey Rennemeyer{/font}{/a}\n
+    {a=https://twitter.com/abbeyrenn}Abbey Rennemeyer{/a}
+
 Special Thanks to:
-    {a=https://www.freecodecamp.org/news/team/}{font=fonts/saxmono.ttf}All freeCodeCamp Staff{/font}{/a}
+    {a=https://www.freecodecamp.org/news/team/}All freeCodeCamp Staff{/a}
 """)
 
 define gui.about = _p(about + """
 
-
 {b}{u}{color=#002ead}Credits{/color}{/u}{/b}
 
-""" + credits + """
-
-
-{b}{u}{color=#002ead}Engine and License Information{/color}{/u}{/b}
-""")
+""" + credits)
 
 
 ## A short name for the game used for executables and directories in the built

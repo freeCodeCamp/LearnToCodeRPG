@@ -616,15 +616,19 @@ screen about():
             if gui.about:
                 text "[gui.about!t]\n"
 
-            text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
+            # text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
 
 
 style about_label is gui_label
 style about_label_text is gui_label_text
-style about_text is gui_text
+style about_text is gui_text:
+    font gui.text_font
 
 style about_label_text:
-    size gui.label_text_size
+    size gui.name_text_size
+    font gui.text_font
+    bold True
+    underline True
 
 
 ## Load and Save screens #######################################################
