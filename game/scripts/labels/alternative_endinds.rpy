@@ -316,7 +316,6 @@ label ending_tutor:
     scene bg classroom with fade
     show layla
     player "(That was definitely her at Hacker Space!)"
-    show layla smile
     layla "Hey there! I'm Layla."
     player smile "Hi Layla. Nice to meet you! I'm [persistent.player_name]. I've been teaching here for a year."
     layla "That's awesome! Teaching is my favorite occupation actually."

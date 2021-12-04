@@ -79,7 +79,7 @@ label start_after_interview:
 
     # TODO: more customization like gender, pronouns, life story
     $ persistent.player_name = ''
-    player pout glasses "(Phew... Looks like I survived the technical questions. Now let's fill in the general information.)"
+    player pout "(Phew... Looks like I survived the technical questions. Now let's fill in the general information.)"
 
     $ player_name = renpy.input("What is your name? {color=[red]}*{/color} (Type something and hit Enter)", default="Lydia")
     $ player_name = player_name.strip()

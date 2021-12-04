@@ -40,19 +40,19 @@ This project is open source. You can make suggestions and report bugs {a=https:/
 """)
 
 define credits = _p("""
-Coding & Writing & Misc. Art            {a=https://ruolinzheng08.github.io/}{font=fonts/saxmono.ttf}Lynn Zheng{/font}{/a}
-
-Background Music                        {a=https://twitter.com/ossia}{font=fonts/saxmono.ttf}Quincy Larson{/font}{/a}
-
-Character Art                           {a=https://layerto.carrd.co}{font=fonts/saxmono.ttf}Layerto (Noa Trinh){/font}{/a}
-
-Quiz Questions                          {a=https://twitter.com/EstefaniaCassN}{font=fonts/saxmono.ttf}Estefania Cassingena Navone{/font}{/a}
-
-                                        {a=https://twitter.com/codergirl1991}{font=fonts/saxmono.ttf}Jessica Wilkins{/font}{/a}
-
-Proofreading                            {a=https://twitter.com/abbeyrenn}{font=fonts/saxmono.ttf}Abbey Rennemeyer{/font}{/a}
-
-Playtesting
+Coding & Writing & Misc. Art:
+    {a=https://ruolinzheng08.github.io/}{font=fonts/saxmono.ttf}Lynn Zheng{/font}{/a}\n
+Background Music:
+    {a=https://twitter.com/ossia}{font=fonts/saxmono.ttf}Quincy Larson{/font}{/a}\n
+Character Art:
+    {a=https://layerto.carrd.co}{font=fonts/saxmono.ttf}Layerto (Noa Trinh){/font}{/a}\n
+Quiz Questions:
+    {a=https://twitter.com/EstefaniaCassN}{font=fonts/saxmono.ttf}Estefania Cassingena Navone{/font}{/a},
+    {a=https://twitter.com/codergirl1991}{font=fonts/saxmono.ttf}Jessica Wilkins{/font}{/a}\n
+Proofreading:
+    {a=https://twitter.com/abbeyrenn}{font=fonts/saxmono.ttf}Abbey Rennemeyer{/font}{/a}\n
+Special Thanks to:
+    {a=https://www.freecodecamp.org/news/team/}{font=fonts/saxmono.ttf}All freeCodeCamp Staff{/font}{/a}
 """)
 
 define gui.about = _p(about + """
