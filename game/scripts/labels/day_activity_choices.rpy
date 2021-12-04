@@ -1,10 +1,19 @@
 label day_activity_choices:
     $ day_activity = None
+    $ has_triggered_ending_today = False
     # this label should end up jumping to day_end
 
-    # if the player has low_energy level, jump directly to one of the relaxing choices
+    # if the player has low sanity, jump directly to one of the relaxing choices
     if player_stats.is_sanity_low():
-        call day_activity_relax from _call_day_activity_relax
+        # TODO: notify
+        $ num_times_sanity_low += 1
+
+        if not has_triggered_ending_farmer and \
+        num_times_sanity_low > 3 and renpy.random.random() < 0.1:
+            call ending_farmer
+        else:
+            call day_activity_relax from _call_day_activity_relax
+
         call day_end from _call_day_end
         return # return to script.rpy
 
@@ -71,7 +80,7 @@ label day_activity_choices:
             call day_activity_relax from _call_day_activity_relax_1
             call day_end from _call_day_end_4
 
-    hide screen player_stats_screen
+    
     return
 
 label study_session_choose_topic:
@@ -204,6 +213,9 @@ label day_activity_barista:
     player @ relieved "My shift is almost over now."
     player "Serving coffee is no easy work, but somehow I feel refreshed from meeting and greeting people."
     $ player_stats.change_stats('Sanity', 5)
+
+    if not has_triggered_ending_barista and renpy.random.random() < 0.1:
+        call ending_barista
     return
 
 label day_activity_park:

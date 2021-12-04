@@ -1,5 +1,8 @@
 label ending_barista:
     # this has a certain probability of being triggered when the player works as a barista
+    $ has_triggered_ending_barista = True
+    $ has_triggered_ending_today = True
+
     scene bg cafe with dissolve
     show man orange
     cafe_manager "Hey [persistent.player_name]. Can I have a word with you?"
@@ -92,8 +95,11 @@ label ending_barista:
 
     return # return control to the label it jumped from
 
-label ending_cat_who_codes:
+label ending_cat:
     # this has a certain probability of being triggered during the night
+    $ has_triggered_ending_cat = True
+    $ has_triggered_ending_today = True
+
     scene bg bedroom night with fade
     play sound 'audio/sfx/keyboard_typing.wav'
     player relieved "Yawwwn...."
@@ -213,8 +219,11 @@ label ending_cat_who_codes:
     
     return
 
-label ending_cs_tutor:
+label ending_tutor:
     # this has a certain prob of being triggered during dinner
+    $ has_triggered_ending_tutor = True
+    $ has_triggered_ending_today = True
+
     scene bg kitchen night with dissolve
     mom "I just remembered something to tell you, [persistent.player_name]."
     mom "Would you be interested in helping kids learn to code?"
@@ -331,9 +340,12 @@ label ending_cs_tutor:
     
     return
 
-label ending_office_worker:
-    # this has a certain prob of being tiggered during the day once the player starts doing coding interviews
-    scene bg bedroom with dissolve
+label ending_office:
+    # this has a certain prob of being tiggered during the evening once the player starts doing coding interviews
+    $ has_triggered_ending_office = True
+    $ has_triggered_ending_today = True
+
+    scene bg bedroom night with dissolve
     play sound 'audio/sfx/social_media_notification.wav'
     show smartphone at truecenter
     player surprised "Hmm... A notification from my phone?"
@@ -406,6 +418,9 @@ label ending_office_worker:
 
 label ending_farmer:
     # this is triggered if sanity is too low
+    $ has_triggered_ending_farmer = True
+    $ has_triggered_ending_today = True
+
     scene bg bedroom with dissolve
     player relieved "I'm so so so tired..."
     player pout "I need a break. A long one."
@@ -457,7 +472,7 @@ label ending_farmer:
     player happy "I'm enjoying this farm life so much that I don't think I will return to the city any time soon..."
 
     play sound 'audio/sfx/alternative_ending.wav'
-    call screen text_over_black_bg_screen("{i}Ending: Friend of the Earth at Heart{/i}")
+    call screen text_over_black_bg_screen("{i}Ending: Nature Lover at Heart{/i}")
 
     # TODO: Twitter share
     jump second_chance

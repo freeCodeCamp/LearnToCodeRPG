@@ -1,6 +1,6 @@
 ## study session in daily activity choices
 label study_session:
-    hide screen player_stats_screen
+    
     scene bg laptop_screen with dissolve
 
     # correct choices increments CS knowledge
@@ -42,7 +42,7 @@ label study_session:
             call screen quiz_question_answer_explanation_screen(quiz_question)
 
         # hide player stats screen if it was showing so it doesn't obstruct the questions
-        hide screen player_stats_screen
+        
 
     play sound 'audio/sfx/quiz_complete.wav'
     pause 0.5

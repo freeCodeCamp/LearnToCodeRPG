@@ -1,5 +1,5 @@
 label day_start:
-    hide screen player_stats_screen
+    
     # this label should end up jumping to day_end, which then returns control to the main game
     $ calendar.next()
 
@@ -78,7 +78,7 @@ label day_start_text3:
     return
 
 label day_end:
-    hide screen player_stats_screen
+    
     scene bg bedroom dusk with slideright
     player relieved "Phew... That was a long day."
 
@@ -113,8 +113,18 @@ label day_end:
     mom "Talk to us if you need anything."
     player laugh "Thanks! You two are the best."
 
+    if not has_triggered_ending_today and \
+    not has_triggered_ending_tutor and \
+    renpy.random.random() < 0.1:
+        call ending_tutor
+
     scene bg bedroom night with blinds
     player happy "Delicious home-cooked dinner as always."
+
+    if not has_triggered_ending_today and \
+    not has_triggered_ending_office and \
+    has_completed_curriculum and renpy.random.random() < 0.1:
+        call ending_office
 
     player smile "Hmmm... Let's see. Do I have any cool tech terms I caught during my barista shift that I need to research about?"
     if not topics_to_ask:
@@ -159,13 +169,15 @@ label day_end:
     player "Haha good night Mint."
     hide mint
 
-    hide screen player_stats_screen
-    # scene black with fadehold
+    if not has_triggered_ending_today and \
+    not has_triggered_ending_cat and \
+    renpy.random.random() < 0.1:
+        call ending_cat
 
     return # should return control to script.rpy
 
 label day_end_interview:
-    hide screen player_stats_screen
+    
     scene bg kitchen night with blinds
     play sound 'audio/sfx/dining_ambient.wav'
     $ show_random_dinner_image()

@@ -1,6 +1,17 @@
 default stats_unlocked = False
 default todo_unlocked = False
 
+# alternative endings
+default has_triggered_ending_barista = False
+default has_triggered_ending_cat = False
+default has_triggered_ending_tutor = False
+default has_triggered_ending_office = False
+
+default num_times_sanity_low = 0
+default has_triggered_ending_farmer = False
+
+default has_triggered_ending_today = False
+
 init python:
     study_session_questions = general_questions
 

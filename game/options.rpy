@@ -243,4 +243,4 @@ init python:
 
 # define build.itch_project = "renpytom/test-project"
 
-define config.mouse_displayable = MouseDisplayable(Text('{color=#000}{size=50}{icon=icon-mouse-pointer}{/size}{/color}'), 0, 0)
+# define config.mouse_displayable = MouseDisplayable(Text('{color=#000}{size=50}{icon=icon-mouse-pointer}{/size}{/color}'), 0, 0)
