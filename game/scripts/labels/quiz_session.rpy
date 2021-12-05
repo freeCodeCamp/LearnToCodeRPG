@@ -33,7 +33,7 @@ label study_session:
 
         if result == True:
             $ num_correct += 1
-            $ player_stats.change_stats('CS Knowledge', 5)
+            $ player_stats.change_stats('CS Knowledge', 2)
             player @ laugh "Correct!"
         else:
             with vpunch

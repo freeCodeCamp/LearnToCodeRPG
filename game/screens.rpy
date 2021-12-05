@@ -815,11 +815,12 @@ screen preferences():
 
                 vbox:
                     style_prefix "check"
-                    label _("Special Effects")
+                    label _("Others")
                     textbutton _("Moving Text") action [
                     ToggleField(persistent, 'enable_moving_text'),
                     Function(configure_text_tags)
                     ]
+                    textbutton _("Save Reminder") action ToggleField(persistent, 'enable_save_reminder')
 
                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
                 ## added here, to add additional creator-defined preferences.

@@ -6,10 +6,16 @@ label npc_conversation_start:
     npc "Hey [persistent.player_name]! What's up?"
     player "Well, I heard some tech buzzwords and would like to learn more about them."
     npc "Sure, what would you like to know?"
-    $ choices = [(topic, ask_npc[topic]) for topic in topics_to_ask]
-    $ label = renpy.display_menu(choices)
-    $ renpy.call(label=label)
-    # remove the asked topic inside each label
+
+    $ label = None
+    while label != 'done':
+        $ choices = [(topic, ask_npc[topic]) for topic in topics_to_ask]
+        $ choices.append(("That's all", 'done'))
+        $ label = renpy.display_menu(choices)
+        if label != 'done':
+            $ renpy.call(label=label)
+            # no need to remove the asked topic here since it's removed inside each label
+            npc "Anything else?"
 
     player "That's all I need to know. Thanks!"
     npc "No problem. Have a good night!"
@@ -17,6 +23,9 @@ label npc_conversation_start:
     play sound 'audio/sfx/phone_hangup.wav'
     $ renpy.hide(npc_sprite)
     return
+
+label npc_choose_question:
+    
 
 label ask_hackathon:
     player "What is a hackathon?"

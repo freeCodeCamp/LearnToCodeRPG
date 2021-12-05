@@ -237,6 +237,14 @@ label stage2:
             hide smartphone
             player relieved "Let's make this evening distraction-free for my sanity."
 
+    "(Hey [persistent.player_name]. It looks like you just made your first in-game choice. That is awesome!)"
+    "(You will encounter many more choices in this game later on. There are no right or wrong choices, only consequences.)"
+    "(So it might be a good idea to save your progress whether you are about to make a choice, start a new chapter, or just when you feel like it.)"
+
+    call save_reminder from _call_save_reminder
+
+    player relieved "..."
+    player surprised "Oops. Did I just doze off? Geez... Where were I? Something about coding interviews?"
     player pout "It's crazy how everyone these days is learning to code and getting high-paying jobs in software."
     player "College itself has been crazy enough for me, and now people are going back to school to complete an online master's program in Computer Science?"
     player "Six months of self-paced learning and then a six-figure job? Talk about the end of craziness."
@@ -267,7 +275,8 @@ label stage2:
     $ player_stats.change_stats('CS Knowledge', 1)
     $ player_stats.change_stats('Sanity', -5)
 
-    player pout "And there are print statements and print() functions. Which is for Python 2 and which is for Python 3? I remember one video saying that Python 2 is outdated but does that mean that I don't have to learn it?"
+    player pout "And there are print statements and print() functions. Which is for Python 2 and which is for Python 3?"
+    player "I remember one video saying that Python 2 is outdated but does that mean that I don't have to learn it?"
     $ player_stats.change_stats('CS Knowledge', 1)
     $ player_stats.change_stats('Sanity', -5)
 
@@ -353,7 +362,8 @@ label stage3:
     show annika serious
     annika "I mean, in school you learn about theories and stuff. Like I did take a Web Dev 101 back in school but we never built an entire website from scratch."
     annika "I never gave web design a second thought after the final exam."
-    annika "I've been self-studying all these months with the help of some awesome free resources. I even built a pet adoption website for a side project and that's when I applied everything I learned about user experience, data models, and so on."
+    annika "I've been self-studying all these months with the help of some awesome free resources."
+    annika "I even built a pet adoption website for a side project and that's when I applied everything I learned about user experience, data models, and so on."
     annika "And there was this bug that I had no idea how to fix until..."
     annika "..."
 
@@ -376,6 +386,8 @@ label stage3:
     annika "Cool! Let's catch up some time and get coffee!"
     player "Sure! Chat later!"
     hide annika
+
+    call save_reminder from _call_save_reminder_1
 
 label stage4:
     scene bg cafe with fadehold
@@ -410,6 +422,8 @@ label stage4:
     $ todo_list.add_todo(todo_ask_hackathon)
     $ topics_to_ask.add('Hackathon')
     player "Alright! Going back to my shift."
+
+    call save_reminder from _call_save_reminder_2
 
     # player goes back home
     scene bg bedroom night with fadehold
@@ -490,7 +504,7 @@ label stage5:
                     pass
 
             with vpunch
-            player pout "Wait. {w}I got distracted. Where was I? Was I browsing the course category or something? Oh. I have this quality assurance tab open."
+            player pout "Wait. I got distracted. Where was I? Was I browsing the course category or something? Oh. I have this quality assurance tab open."
             player "At any rate, I don't think quality assurance is something I want to learn."
             jump stage5_choose_curriculum
 
@@ -553,6 +567,12 @@ label stage5_cookie:
     play sound 'audio/sfx/chew_food.wav'
     player laugh "Mmmm... Mom's cookies are the best."
     hide cookie
+
+    $ persistent.achievements.add(plot_cookie)
+    call screen confirm_and_share_screen(
+        title=plot_cookie,
+        tweet_content_url=all_tweet_map[plot_cookie]
+        )
     return
 
 label stage5_annika:
@@ -628,6 +648,8 @@ label stage5_annika:
     player happy "Sounds like a plan!"
     player "Time to go work my barista shift."
 
+    call save_reminder from _call_save_reminder_3
+
     scene bg cafe with fadehold
     play sound 'audio/sfx/cafe_pour.wav'
     show coffee at truecenter
@@ -665,6 +687,8 @@ label stage6:
     mint "Meow~"
     player smile "Good night, Mint."
     hide mint
+
+    call save_reminder from _call_save_reminder_4
 
     scene bg bedroom with fadehold
     
@@ -807,7 +831,8 @@ label stage6_after_annika_questions:
     show mint
     mint "Meow~"
     hide mint
-    scene black with dissolve
+
+    call save_reminder from _call_save_reminder_5
 
     # two days of activity of the player's choosing
     call day_start from _call_day_start
@@ -815,6 +840,8 @@ label stage6_after_annika_questions:
 
     call day_start from _call_day_start_1
     call day_activity_choices from _call_day_activity_choices_1
+
+    call save_reminder from _call_save_reminder_6
 
     # hacker space story
     $ calendar.next()
@@ -881,12 +908,16 @@ label stage6_after_annika_questions:
 
     $ has_visited_hacker_space_with_annika = True
 
+    call save_reminder from _call_save_reminder_7
+
     # two days of activity of the player's choosing
     call day_start from _call_day_start_2
     call day_activity_choices from _call_day_activity_choices_2
 
     call day_start from _call_day_start_3
     call day_activity_choices from _call_day_activity_choices_3
+
+    call save_reminder from _call_save_reminder_8
 
     $ calendar.next_month()
     scene bg bedroom with dissolve
@@ -985,12 +1016,16 @@ label stage7:
     player "Haha, good night, Mint."
     hide mint
 
+    call save_reminder from _call_save_reminder_9
+
     # two days of activity of the player's choosing
     call day_start from _call_day_start_4
     call day_activity_choices from _call_day_activity_choices_4
 
     call day_start from _call_day_start_5
     call day_activity_choices from _call_day_activity_choices_5
+
+    call save_reminder from _call_save_reminder_10
 
     $ calendar.next_month()
     $ renpy.show_screen('player_stats_screen', _layer='transient')
@@ -1116,6 +1151,8 @@ label stage7:
     annika "No problem! Good luck preparing for those interviews!"
     hide annika
 
+    call save_reminder from _call_save_reminder_11
+
     scene bg bedroom night with slideright
     player relieved "I feel like I've learned so much about the coding interview from Annika today."
     player laugh "So much that I couldn't wait to wrap up my curriculum and jump in to see what a real coding interview is like!"
@@ -1128,6 +1165,8 @@ label stage7:
     while player_stats.player_stats_map['CS Knowledge'] < 80:
         call day_start from _call_day_start_6
         call day_activity_choices from _call_day_activity_choices_6
+
+    call save_reminder from _call_save_reminder_12
 
     # once we are down here, we should have player_stats.player_stats_map['CS Knowledge'] >= 80
     player laugh "Looks like I've made quite some progress! I wonder when I can expect to receive that email."
@@ -1148,6 +1187,9 @@ label stage7:
         message="You completed the coding curriculum in {b}{color=#002ead}[days_between_start_and_curriculum_completion]{/color}{/b} days.\nNow you are ready to rock the coding interview and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
         ok_text="Let's crunch 'em interviews!"
     )
+
+    $ persistent.achievements.add(milestone_complete_curriculum)
+
     player laugh "This is great! Let's check the curriculum off my To-Do list."
     $ todo_list.complete_todo(todo_learn_cs)
     player smile "(Let's also make it a To-Do item to start preparing for coding interviews.)"
@@ -1204,10 +1246,11 @@ label stage8:
 
     player relieved "Yawwwwwn... Let's call this a day and get back to my routine tomorrow."
 
+    call save_reminder from _call_save_reminder_13
+
     call day_start from _call_day_start_8
     call day_activity_choices from _call_day_activity_choices_8
     $ calendar.next_week()
-    $ renpy.show_screen('player_stats_screen', _layer='transient')
 
     # loop routine
     # TODO: refactor past demo if we need offer negotiation
@@ -1217,9 +1260,7 @@ label stage8:
             call day_start from _call_day_start_7
             call day_activity_choices from _call_day_activity_choices_7
             $ calendar.next_week()
-            $ renpy.show_screen('player_stats_screen', _layer='transient')
 
-            call day_start from _call_day_start_9
             if interview_company_name is None:
                 # go back to job search
                 player surprised "Hey! Looks like there is a new job posting available. Let's check it out."
@@ -1250,9 +1291,7 @@ label stage8:
         call day_start from _call_day_start_10
         call day_activity_choices from _call_day_activity_choices_11
         $ calendar.next_week()
-        $ renpy.show_screen('player_stats_screen', _layer='transient')
 
-        call day_start from _call_day_start_11
         if offer_company_name is None:
             play sound 'audio/sfx/social_media_notification.wav'
             player surprised "Huh, an email from {b}[interview_company_name]{/b}? Right, it's been a week since my interview with them."
@@ -1266,8 +1305,7 @@ label stage8:
             mint "Meow..."
             player relieved "Thanks, Mint. I'm a bit disappointed, but I'll be fine."
             hide mint
-            player smile "It's no use crying over spilled milk. Let's get on with my day."
-            call day_activity_choices from _call_day_activity_choices_12
+            player smile "It's no use crying over spilled milk. Let's get some rest today and get on with my routines tomorrow."
 
         # reset interview_company_name to None so we enter the inner loop again
         $ interview_company_name = None
@@ -1294,6 +1332,7 @@ label stage8:
     player laugh "Wow. I did it. I'm now a real developer!"
     play sound 'audio/sfx/applause.ogg'
     $ todo_list.complete_todo(todo_get_job)
+    player "Can't forget to check that off the To-Do list."
     $ accepted_offer_date = date(calendar.year, calendar.month, calendar.day)
     $ days_between_start_and_offer = (accepted_offer_date - start_date).days
     $ days_between_curriculum_compltion_and_offer = (accepted_offer_date - completed_curriculum_date).days
@@ -1302,11 +1341,14 @@ label stage8:
         message="You taught yourself to become a developer in {b}{color=#002ead}[days_between_start_and_offer]{/color}{/b} days, [days_between_curriculum_compltion_and_offer] days after you've completed the coding curriculum.\nNow you are ready to rock your new job!\n Feel free to share your progress with the world!",
         ok_text="Let's rock my new job!", 
     )
+    $ persistent.achievements.add(milestone_sign_offer)
 
     player happy "I can't wait to tell my parents! And I should call Annika and Marco to let them know!"
     player laugh "Let's get everyone together and throw a big party to celebrate!"
     # TODO: congrats from Annika, Marco, and family
-            
+
+    # should be the last save reminder
+    call save_reminder from _call_save_reminder_14
 
 # actually no stages between 8 and 14
 
@@ -1334,7 +1376,6 @@ label stage14:
     layla @ laugh "So how's everyone's project going? We mentors are here to answer any question you have!"
 
     scene bg office with fade
-    $ renpy.show_screen('player_stats_screen', _layer='transient')
     show layla with vpunch
     layla "[persistent.player_name]? Are you okay? You are spacing out."
     player smile "Ah! I'm fine. I just remembered that we might have met before."
@@ -1473,6 +1514,8 @@ label ending:
         ok_text="Oopsy... Am I... fired?"
     )
 
+    $ persistent.achievements.add(ending_dev)
+
     $ quick_menu = False
     play sound 'audio/sfx/cartoon_suspense.wav'
     scene black with dissolve
@@ -1513,6 +1556,9 @@ label ending_splash: # alternative endings also jump to here
     with dissolve 
     pause 3
     hide text with dissolve
+
+    # go to the bonus screen
+    call screen bonus_screen()
 
     # force return to main menu
     # $ MainMenu(confirm=False)()

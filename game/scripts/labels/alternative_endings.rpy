@@ -19,8 +19,12 @@ label ending_barista:
     cafe_manager "Yes. You've been working hard and performing really well."
     cafe_manager "Our customers love you and we would love to have a full-time barista like you."
     cafe_manager "Your new hourly rate will be twice what you have now. What do you say?"
-    player "(That sure sounds like good stuff, but working full-time would also mean that I'll have less time to self-study coding.)"
+    player neutral "(That sure sounds like good stuff, but working full-time would also mean that I'll have less time to self-study coding.)"
     player "(If my job gets too busy, I might need to give up on learning to code all together.)"
+    player "(I feel like this is a really important decision for me to make. I need to think this through.)"
+
+    call save_reminder from _call_save_reminder_15
+
     menu:
         player "(Shall I take up on the full-time barista offer?)"
 
@@ -157,6 +161,10 @@ label ending_cat:
     player neutral "..."
     player "(Mint is still staring determinedly at the laptop and not responding to me.)"
     player smile "Oh, well, I guess this could be Mint's way of telling me to keep this secret?"
+    player "(I better choose my action carefully so as not to upset Mint.)"
+
+    call save_reminder from _call_save_reminder_16
+
     menu:
         player "Shall I keep this as a secret just between Mint and me?"
     
@@ -276,6 +284,10 @@ label ending_tutor:
     player "(But if I need to come in everyday, I won't have time to learn to code and become a developer myself.)"
     player "(That said, am I that hellbent on becoming a developer? Wouldn't it be fun as well to pass on coding knowledge?)"
     player "(Should I stick to learning to code, or to teach coding?)"
+    player "(I feel like this is a really important decision for me to make. I need to think this through.)"
+
+    call save_reminder from _call_save_reminder_17
+
     menu:
         player "(Should I stick to learning to code, or to teach coding?)"
     
@@ -354,7 +366,7 @@ label ending_office:
     player neutral "It reads 'We are hiring!' Maybe it's from some old office job I applied to when I was finishing up college."
     player "Shall I read the email?"
     menu:
-        player "Shall I read the email for an office job application?"
+        player "Shall I read the email about an office job application?"
     
         "Won't hurt if I read it.":
             pass
@@ -368,11 +380,16 @@ label ending_office:
     hide smartphone
 
     player "Won't hurt if I read the email."
-    player "Hmm... Their pay is decent. And it's easy office work as well."
-    player "The most technically complicated thing I need to deal with is probably a spreadsheet."
-    player "Maybe I can apply to the job and see how it goes?"
+    player "Hmm... They said they looked at my application and thought I'm a good fit. Well, it's easy office work, so anyone is a good fit."
+    player "The most technically complicated thing I will need to deal with is probably a spreadsheet."
+    player "But the pay is decent enough..."
+    player "Maybe I can work for a few months and see how it goes?"
+    player "(I feel like this is a really important decision for me to make. I need to think this through.)"
+
+    call save_reminder from _call_save_reminder_18
+
     menu:
-        "Shall I apply to the office job?"
+        "Shall I accept the office job?"
     
         "It pays okay so why not?":
             pass
@@ -430,9 +447,12 @@ label ending_farmer:
     player "Just last night, I read about the guy who quit software engineering because he was burnt out."
     player "He went on to become a farmer. Told the journalist a year later that he had no intention of returning to tech."
     player neutral "Maybe farming is my calling too?"
+    player "But there is probably no going back to where I am if I take up farming. I better think this though..."
+
+    call save_reminder from _call_save_reminder_19
 
     menu:
-        player "Let's give up on learning to code already and embrace mother nature..."
+        player "Shall I really give up on learning to code already and embrace mother nature?"
     
         "Sounds like a plan!":
             pass
@@ -485,6 +505,10 @@ label ending_farmer:
     return
 
 label second_chance:
+    # stop the regular BGM
+    $ continue_looping_music = False
+    stop music
+
     # this label must be used with jump, not call
     scene black with dissolve
     # Note to proofreader: this is an omnipotent narrator, so feel free to change their tone
@@ -516,6 +540,7 @@ label second_chance:
             $ player_base = 'player_base'
             $ player_glasses = 'player_glasses'
             $ calendar_enabled = True
+            $ continue_looping_music = True # resume the BGM
             return # return control to the ending label that it jumped from
     
         "Nah. I'm happy with what I have now.":
@@ -523,6 +548,7 @@ label second_chance:
             "I'm glad that you are happy with where you are."
             "I hope this has been a pleasant ride for you, brave traveler."
             "Until next time!"
+            stop music
             jump ending_splash
 
     return

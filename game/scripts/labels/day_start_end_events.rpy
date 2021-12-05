@@ -121,46 +121,47 @@ label day_end:
     scene bg bedroom night with blinds
     player happy "Delicious home-cooked dinner as always."
 
-    if not has_triggered_ending_today and \
+    if has_met_layla and not has_triggered_ending_today and \
     not has_triggered_ending_office and \
     has_completed_curriculum and renpy.random.random() < 0.05:
         call ending_office from _call_ending_office
 
-    player smile "Hmmm... Let's see. Do I have any cool tech terms I caught during my barista shift that I need to research about?"
-    if not topics_to_ask:
-        player "Looks like there is nothing on my list."
-        # TODO: hint at how to get those tech terms
-    else: # if there are topics to ask about, call Annika or Marco
-        player "I do have something to ask."
-        # randomly decide between Annika and Marco
-        if not has_met_marco:
-            player "Shall I give Annika a call now?"
-            menu:            
-                "Call Annika now":
-                    $ npc = annika
-                    $ npc_sprite = 'annika'
-            
-                "Save the buzzword for later":
-                    player "Hmm... Let's save up on those buzzwords and ask when I've gathered a few of them."
-        else:
-            player "Who should I talk to?"
-            menu:
-                "Who to ask about tech buzzwords?"
-            
-                "Annika":
-                    player "Let's give Annika a call."
-                    $ npc = annika
-                    $ npc_sprite = 'annika'
-                    call npc_conversation_start from _call_npc_conversation_start
-            
-                "Marco":
-                    player "Let's chat with Marco."
-                    $ npc = marco
-                    $ npc_sprite = 'marco'
-                    call npc_conversation_start from _call_npc_conversation_start_1
+    if renpy.random.random() < 0.3:
+        player smile "Hmmm... Let's see. Do I have any cool tech terms I caught during my barista shift that I need to research about?"
+        if not topics_to_ask:
+            player "Looks like there is nothing on my list."
+            # TODO: hint at how to get those tech terms
+        else: # if there are topics to ask about, call Annika or Marco
+            player "I do have something to ask."
+            # randomly decide between Annika and Marco
+            if not has_met_marco:
+                player "Shall I give Annika a call now?"
+                menu:            
+                    "Call Annika now":
+                        $ npc = annika
+                        $ npc_sprite = 'annika'
+                
+                    "Save the buzzword for later":
+                        player "Hmm... Let's save up on those buzzwords and ask when I've gathered a few of them."
+            else:
+                player "Who should I talk to?"
+                menu:
+                    "Who to ask about tech buzzwords?"
+                
+                    "Annika":
+                        player "Let's give Annika a call."
+                        $ npc = annika
+                        $ npc_sprite = 'annika'
+                        call npc_conversation_start from _call_npc_conversation_start
+                
+                    "Marco":
+                        player "Let's chat with Marco."
+                        $ npc = marco
+                        $ npc_sprite = 'marco'
+                        call npc_conversation_start from _call_npc_conversation_start_1
 
-                "Save the buzzword for later":
-                    player "Hmm... Let's save up on those buzzwords and ask when I've gathered a few of them."
+                    "Save the buzzword for later":
+                        player "Hmm... Let's save up on those buzzwords and ask when I've gathered a few of them."
 
     player "Anyways, I feel like I've done a lot today. Let's call it a day and get some rest."
     player "Tomorrow will be another day. Right, Mint?"
@@ -169,7 +170,7 @@ label day_end:
     player "Haha good night Mint."
     hide mint
 
-    if not has_triggered_ending_today and \
+    if has_met_layla and not has_triggered_ending_today and \
     not has_triggered_ending_cat and \
     renpy.random.random() < 0.05:
         call ending_cat from _call_ending_cat

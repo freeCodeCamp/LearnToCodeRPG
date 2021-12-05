@@ -28,7 +28,7 @@ screen achievements_screen():
         style_prefix "bonus"
         vbox:
             spacing 50
-            for category in [plot_bonus, quiz_bonus, ending_achievement]:
+            for category in [plot_achievement, plot_bonus, quiz_bonus, ending_achievement]:
                 vbox:
                     spacing 15
                     label category

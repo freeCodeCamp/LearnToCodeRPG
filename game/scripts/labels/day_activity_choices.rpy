@@ -9,7 +9,7 @@ label day_activity_choices:
         $ renpy.notify('Your sanity is dropping dangerously low. Why not take some time to relax and recharge?')
         $ num_times_sanity_low += 1
 
-        if not has_triggered_ending_farmer and \
+        if has_met_layla and not has_triggered_ending_farmer and \
         num_times_sanity_low > 5 and renpy.random.random() < 0.05:
             call ending_farmer from _call_ending_farmer
         else:
@@ -215,7 +215,7 @@ label day_activity_barista:
     player "Serving coffee is no easy work, but somehow I feel refreshed from meeting and greeting people."
     $ player_stats.change_stats('Sanity', 5)
 
-    if not has_triggered_ending_barista and renpy.random.random() < 0.05:
+    if has_met_layla and not has_triggered_ending_barista and renpy.random.random() < 0.05:
         call ending_barista from _call_ending_barista
     return
 
