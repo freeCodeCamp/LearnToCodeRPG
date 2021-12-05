@@ -204,9 +204,9 @@ init python:
     # master map for easy lookup in script.rpy
     all_tweet_map = {}
     for tweet_map in [
-    milestone_to_tweet_map, 
-    plot_bonus_to_tweet_map, 
-    quiz_bonus_to_tweet_map, 
-    achievement_labels_map
+        milestone_to_tweet_map, 
+        plot_bonus_to_tweet_map, 
+        quiz_bonus_to_tweet_map, 
+        achievement_labels_map
     ]:
         all_tweet_map.update(tweet_map)
