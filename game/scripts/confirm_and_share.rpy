@@ -7,12 +7,45 @@ init python:
     tweet_default = 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.freecodecamp.org%2Flearn-to-code-rpg&text=I%20just%20discovered%20this%20cool%20game%20called%20%23LearnToCodeRPG.%20Play%20it%20here%3A'
     tweet_hackerspace = "https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.freecodecamp.org%2Flearn-to-code-rpg&text=I%20just%20discovered%20the%20Hackerspace%20in%20%23LearnToCodeRPG.%20Play%20it%20here%3A"
 
-label debug:
-    call screen confirm_and_share_screen(
-        title="{bt}Congratulations!{/bt}",
-        message="You taught yourself to become a developer in",
-        ok_text="Let's rock my new job!", 
-    )
+    plot_bonus_to_tweet_map = {
+
+    }
+
+    quiz_bonus_to_tweet_map = {
+
+    }
+
+    ## endings
+    ending_barista = 'Now serving {font=fonts/saxmono.ttf}0xc0ffee{/font}'
+    ending_cat = 'Cat Who Codes'
+    ending_tutor = 'Coding It Forward'
+    ending_office = 'Just Another Day at the Office'
+    ending_farmer = 'Nature Lover at Heart'
+    # TODO
+    # ending_true
+
+    tweet_end_barista = 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.freecodecamp.org%2Flearn-to-code-rpg&text=I%20ended%20up%20becoming%20a%20barista%20in%20%23LearnToCodeRPG.%20Play%20it%20here%3A'
+    tweet_end_cat = 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.freecodecamp.org%2Flearn-to-code-rpg&text=I%20found%20my%20cat%20coding%20on%20my%20laptop%20in%20the%20middle%20of%20thie%20night%20in%20%23LearnToCodeRPG.%20Play%20it%20here%3A'
+    tweet_end_tutor = 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.freecodecamp.org%2Flearn-to-code-rpg&text=I%20ended%20up%20becoming%20a%20CS%20teacher%20in%20%23LearnToCodeRPG.%20Play%20it%20here%3A'
+    tweet_end_office = 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.freecodecamp.org%2Flearn-to-code-rpg&text=I%20ended%20up%20becoming%20an%20office%20worker%20in%20%23LearnToCodeRPG.%20Play%20it%20here%3A'
+    tweet_end_farmer = 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.freecodecamp.org%2Flearn-to-code-rpg&text=I%20ended%20up%20becoming%20a%20farmer%20in%20%23LearnToCodeRPG.%20Play%20it%20here%3A'
+
+    ending_to_tweet_map = {
+        ending_barista: tweet_end_barista,
+        ending_cat: tweet_end_cat,
+        ending_tutor: tweet_end_tutor,
+        ending_office: tweet_end_barista,
+        ending_farmer: tweet_end_farmer,
+    }
+
+    plot_bonus = 'Plot Easter Eggs'
+    quiz_bonus = 'Quiz Question Easter Eggs'
+    ending_achievement = 'Endings'
+    achievement_labels_map = {
+        plot_bonus: plot_bonus_to_tweet_map,
+        quiz_bonus: quiz_bonus_to_tweet_map,
+        ending_achievement: ending_to_tweet_map
+    }
 
 screen confirm_and_share_screen(title, message, ok_text, tweet_content_url=tweet_default):
 

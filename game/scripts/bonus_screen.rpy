@@ -5,7 +5,62 @@ screen bonus_screen():
     ## screen.
     use game_menu(_("Bonus"), scroll="viewport"):
         style_prefix "bonus"
-        # Build your screen here
+        vbox:
+            spacing 15
+            
+            label 'Bonus Contents'
+            textbutton '{icon=icon-award} ' + _("Achievements") action Show('achievements_screen')
+            # TODO: play game trailer from YouTube
+            textbutton '{icon=icon-film} ' + _("Game Trailer") action NullAction()
+            textbutton '{icon=icon-headphones} ' + _("Music Gallery") action NullAction()
+            textbutton '{icon=icon-book-open} ' + _("Glossary") action Show('glossary_screen')
+            textbutton '{icon=icon-code} ' + _("Quiz Questions") action Show('quiz_screen')
+
+            # null height 20
+            # label 'Mini Games'
+            # textbutton '{icon=icon-music} ' + 
+
+            # TODO: mini games, quiz speedrun survival mode etc.
+
+screen achievements_screen():
+    tag menu
+    use game_menu(_("Achievements"), scroll="viewport"):
+        style_prefix "bonus"
+        vbox:
+            spacing 50
+            for category in [plot_bonus, quiz_bonus, ending_achievement]:
+                vbox:
+                    spacing 15
+                    label category
+
+                    $ achievement_to_tweet_map = achievement_labels_map[category]
+                    grid 2 len(achievement_to_tweet_map):
+                        xspacing 60
+
+                        for achievement in sorted(achievement_to_tweet_map.keys()):
+                            $ is_unlocked = (achievement in persistent.achievements)
+
+                            if is_unlocked:
+                                $ tweet = achievement_to_tweet_map[achievement]
+                                text '{icon=icon-unlock} [achievement]'
+                                textbutton '{icon=icon-twitter} Tweet this' action OpenURL(tweet)
+                            else:
+                                text '{icon=icon-lock} ???'
+                                null
+
+# TODO: v2
+screen glossary_screen():
+    tag menu
+    use game_menu(_("Glossary"), scroll="viewport"):
+        style_prefix "bonus"
+        text "Coming in v2!"
+
+# TODO: v2
+screen quiz_screen():
+    tag menu
+    use game_menu(_("Quiz Questions"), scroll="viewport"):
+        style_prefix "bonus"
+        text "Coming in v2!"
 
 style bonus_label is gui_label
 style bonus_label_text is gui_label_text

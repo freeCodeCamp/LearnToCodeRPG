@@ -52,6 +52,9 @@ init:
     default seen_barista_events = set()
 
 init python:
+    if persistent.achievements is None:
+        persistent.achievements = set()
+
     ## Non-mutable
 
     # to-do strings

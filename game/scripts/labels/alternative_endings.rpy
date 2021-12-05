@@ -86,8 +86,9 @@ label ending_barista:
     girl "Wow that'd be awesome! Thanks!"
     player laugh "Alright, here goes. Let's take a look..."
 
+    $ persistent.achievements.add(ending_barista)
     play sound 'audio/sfx/alternative_ending.wav'
-    call screen text_over_black_bg_screen("{i}Ending: Now serving {font=fonts/saxmono.ttf}0xc0ffee{/font}{/i}")
+    call screen text_over_black_bg_screen("{i}Ending: [ending_barista]{/i}")
 
     # TODO: tweet
     jump second_chance
@@ -210,8 +211,9 @@ label ending_cat:
     hide mint_with_pixel_sunglasses
     with pixellate
 
+    $ persistent.achievements.add(ending_cat)
     play sound 'audio/sfx/alternative_ending.wav'
-    call screen text_over_black_bg_screen("{i}Ending: Cat Who Codes{/i}")
+    call screen text_over_black_bg_screen("{i}Ending: [ending_cat]{/i}")
 
     # TODO: Twitter share
     jump second_chance
@@ -330,8 +332,9 @@ label ending_tutor:
     layla @ laugh "Well, sometimes I do wonder what could've happened if I had chosen differently."
     player relieved "(Layla looks content with where she is now. Hmmm... but I do wonder, what could've happened had I chosen differently?)"
 
+    $ persistent.achievements.add(endig_tutor)
     play sound 'audio/sfx/alternative_ending.wav'
-    call screen text_over_black_bg_screen("{i}Ending: Coding It Forward{/i}")
+    call screen text_over_black_bg_screen("{i}Ending: [ending_tutor]{/i}")
 
     # TODO: Twitter share
     jump second_chance
@@ -406,8 +409,9 @@ label ending_office:
     player worry "(Ugh. And making coffee as well.)"
     player relieved "(Guess this is it? Unless?)"
 
+    $ persistent.achievements.add(ending_office)
     play sound 'audio/sfx/alternative_ending.wav'
-    call screen text_over_black_bg_screen("{i}Ending: Just Another Day at the Office{/i}")
+    call screen text_over_black_bg_screen("{i}Ending: [ending_office]{/i}")
 
     # TODO: Twitter share
     jump second_chance
@@ -470,8 +474,9 @@ label ending_farmer:
     player "Sometimes we will have a campfire and S'mores at night."
     player happy "I'm enjoying this farm life so much that I don't think I will return to the city any time soon..."
 
+    $ persistent.achievements.add(ending_farmer)
     play sound 'audio/sfx/alternative_ending.wav'
-    call screen text_over_black_bg_screen("{i}Ending: Nature Lover at Heart{/i}")
+    call screen text_over_black_bg_screen("{i}Ending: [ending_farmer]{/i}")
 
     # TODO: Twitter share
     jump second_chance

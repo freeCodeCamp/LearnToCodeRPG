@@ -255,14 +255,14 @@ screen quick_menu():
             xalign 0.55
             yalign 0.98
 
-            textbutton _("{icon=icon-skip-back} Back") action Rollback()
-            textbutton _("{icon=icon-book-open} History") action ShowMenu('history')
-            textbutton _("{icon=icon-fast-forward} Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("{icon=icon-play-circle} Auto") action Preference("auto-forward", "toggle")
-            textbutton _("{icon=icon-save} Save") action ShowMenu('save')
+            textbutton '{icon=icon-skip-back} ' + _("Back") action Rollback()
+            textbutton '{icon=icon-compass} '+ _("History") action ShowMenu('history')
+            textbutton '{icon=icon-fast-forward} ' + _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+            textbutton '{icon=icon-play-circle} ' + _("Auto") action Preference("auto-forward", "toggle")
+            textbutton '{icon=icon-save} ' + _("Save") action ShowMenu('save')
             # textbutton _("Q.Save") action QuickSave()
             # textbutton _("Q.Load") action QuickLoad()
-            textbutton _("{icon=icon-settings} Settings ") action ShowMenu('preferences')
+            textbutton '{icon=icon-settings} ' + _("Settings ") action ShowMenu('preferences')
 
             if stats_unlocked:
                 textbutton _("{icon=icon-smartphone} Stats") action If(
@@ -370,8 +370,7 @@ screen game_menu_navigation():
 
         spacing gui.navigation_spacing
 
-        # TODO: need to do "{icon=icon-book-open} " + _() for translation
-        textbutton '{icon=icon-book-open} ' + _("History") action ShowMenu("history")
+        textbutton '{icon=icon-compass} ' + _("History") action ShowMenu("history")
 
         textbutton '{icon=icon-save} ' + _("Save Game") action ShowMenu("save")
 
