@@ -126,7 +126,7 @@ label day_end:
     has_completed_curriculum and renpy.random.random() < 0.05:
         call ending_office from _call_ending_office
 
-    if renpy.random.random() < 0.3:
+    if not has_triggered_ending_today:
         player smile "Hmmm... Let's see. Do I have any cool tech terms I caught during my barista shift that I need to research about?"
         if not topics_to_ask:
             player "Looks like there is nothing on my list."
