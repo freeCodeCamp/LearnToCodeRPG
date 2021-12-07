@@ -50,6 +50,10 @@ init python:
     # continue_looping_music = False
     # stop music
 
+    ## images
+
+    renpy.image('main_menu', 'gui/main_menu.png')
+
     # day-night effects
     # https://www.twoandahalfstudios.com/2019/08/tds-making-of-3-day-night-and-sunset-reshading-images-in-renpy-with-im-matrixcolor
 
@@ -138,7 +142,6 @@ init:
     define fadehold = Fade(0.5, 1.0, 0.5)
 
     ## images
-
     # mint
     image mint:
         "others/mint/mint1.png"

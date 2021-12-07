@@ -240,8 +240,12 @@ label day_activity_video_game:
     $ day_activity = 'videogame'
     player laugh "I recently got this rhythm game everyone's talking about."
     player smile "Let's pick a song from the playlist."
+    
     # see rhythm_minigame.rpy    
-    show screen choose_song_screen(rhythm_game_songs)
+    call screen choose_song_screen(rhythm_game_songs)
+    # now the variable `selected_song` has been called
+    call rhythm_game_entry_label
+
     player laugh "That was fun!"
     player smile "Video games are the best way to let off steam, aren't they?"
     player "Now I feel properly relaxed and fueled for a battle tomorrow!"

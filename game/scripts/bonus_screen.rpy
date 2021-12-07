@@ -23,7 +23,7 @@ screen bonus_screen():
 
             null height 20
             label 'Mini Games'
-            textbutton '{icon=icon-music} ' + _("Rhythm Game") action Show('choose_song_screen', songs=rhythm_game_songs)
+            textbutton '{icon=icon-music} ' + _("Rhythm Game") action Call('rhythm_game_entry_from_bonus_screen')
             # TODO: more mini games, quiz speedrun survival mode etc.
 
 screen achievements_screen():

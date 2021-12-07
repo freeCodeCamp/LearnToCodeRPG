@@ -54,13 +54,13 @@ screen choose_song_screen(songs):
                         xysize cell_size
                         action [
                         SetVariable('selected_song', song),
-                        Call('rhythm_game_entry_label')
+                        Return()
                         ]
                     $ highest_score, highest_percent = persistent.rhythm_game_high_scores[song.name]
                     text str(highest_score) xysize cell_size xalign 0.5
                     text '[highest_percent]%' xysize cell_size xalign 0.5
 
-            textbutton 'Close screen' action Hide('choose_song_screen') xalign 0.5
+            textbutton 'Close screen' action Return() xalign 0.5
 
 screen rhythm_game(song):
 
@@ -98,13 +98,14 @@ screen rhythm_game(song):
                 color '#fff'
                 size gui.name_text_size
 
-    # use has_music_started, do not use has_game_started, b/c we are still in silence
-    showif rhythm_game_displayable.has_music_started:
-        bar:
-            xalign 0.5
-            ypos 20
-            xsize 740
-            value AudioPositionValue(channel=CHANNEL_RHYTHM_GAME)
+    ## XXX: for some reason, the bar is not accurate for some audio files
+    # # use has_music_started, do not use has_game_started, b/c we are still in silence
+    # showif rhythm_game_displayable.has_music_started:
+    #     bar:
+    #         xalign 0.5
+    #         ypos 20
+    #         xsize 740
+    #         value AudioPositionValue(channel=CHANNEL_RHYTHM_GAME)
 
     # return the number of hits and total number of notes to the main game
     if rhythm_game_displayable.has_ended:
@@ -477,6 +478,10 @@ init python:
 
 label rhythm_game_entry_label:
 
+    # stop the bgm
+    $ continue_looping_music = False
+    $ renpy.music.stop()
+
     # avoid rolling back and losing game state
     $ renpy.block_rollback()
 
@@ -503,4 +508,15 @@ label rhythm_game_entry_label:
     # restore rollback from this point on
     $ renpy.checkpoint()
 
+    # resume the bgm
+    $ continue_looping_music = True
+
+    return # return control to script.rpy
+
+label rhythm_game_entry_from_bonus_screen:
+    scene main_menu
+    "So you want to play a game of rhythm? Sure, I'll entertain you."
+    call screen choose_song_screen(rhythm_game_songs)
+    # now the variable `selected_song` has been called
+    call rhythm_game_entry_label
     return
