@@ -238,46 +238,12 @@ label day_activity_park:
 
 label day_activity_video_game:
     $ day_activity = 'videogame'
-    player @ laugh "I recently got this rhythm game everyone's talking about."
-    player "Let's pick a song from the playlist."
-    $ choice = renpy.display_menu(list(rhythm_game_beatmaps.items()))
-    # start the rhythm game
-    # window hide
-    $ quick_menu = False
-    $ calendar_enabled = False
-
-    # avoid rolling back and losing game state
-    $ renpy.block_rollback()
-
-    # disable Esc key menu to prevent the player from saving the game
-    $ _game_menu_screen = None
-
-    # stop the bgm
-    $ continue_looping_music = False
-    $ renpy.music.stop()
-
-    # unpack the file paths associated with the chosen song
-    $ audio_path, beatmap_path = choice
-    call screen rhythm_game(audio_path, beatmap_path)
-
-    # resume the bgm
-    $ continue_looping_music = True
-
-    # re-enable the Esc key menu
-    $ _game_menu_screen = 'save'
-
-    # avoid rolling back and entering the chess game again
-    $ renpy.block_rollback()
-
-    # restore rollback from this point on
-    $ renpy.checkpoint()
-
-    $ quick_menu = True
-    $ calendar_enabled = True
-
-    $ num_hits, num_notes = _return
-    player @ happy "I hit [num_hits] notes out of [num_notes]. That wasn't bad!"
-    player "Video games are the best way to let off steam, aren't they?"
+    player laugh "I recently got this rhythm game everyone's talking about."
+    player smile "Let's pick a song from the playlist."
+    # see rhythm_minigame.rpy    
+    show screen choose_song_screen(rhythm_game_songs)
+    player laugh "That was fun!"
+    player smile "Video games are the best way to let off steam, aren't they?"
     player "Now I feel properly relaxed and fueled for a battle tomorrow!"
     return
 

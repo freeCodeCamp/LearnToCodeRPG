@@ -10,17 +10,21 @@ screen bonus_screen():
             
             label 'Bonus Contents'
             textbutton '{icon=icon-award} ' + _("Achievements") action Show('achievements_screen')
-            # TODO: play game trailer from YouTube
-            textbutton '{icon=icon-film} ' + _("Game Trailer") action NullAction()
             textbutton '{icon=icon-headphones} ' + _("Music Gallery") action NullAction()
             textbutton '{icon=icon-book-open} ' + _("Glossary") action Show('glossary_screen')
-            textbutton '{icon=icon-code} ' + _("Quiz Questions") action Show('quiz_screen')
+            textbutton '{icon=icon-code} ' + _("Quiz Collection") action Show('quiz_screen')
 
-            # null height 20
-            # label 'Mini Games'
-            # textbutton '{icon=icon-music} ' + 
+            null height 20
 
-            # TODO: mini games, quiz speedrun survival mode etc.
+            label 'Movies'
+            # TODO: play game trailer from YouTube
+            textbutton '{icon=icon-film} ' + _("Game Trailer") action NullAction()
+            textbutton '{icon=icon-youtube} ' + _("Learn to Code RPG: The Making of") action NullAction()
+
+            null height 20
+            label 'Mini Games'
+            textbutton '{icon=icon-music} ' + _("Rhythm Game") action Show('choose_song_screen', songs=rhythm_game_songs)
+            # TODO: more mini games, quiz speedrun survival mode etc.
 
 screen achievements_screen():
     tag menu
