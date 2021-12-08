@@ -1193,6 +1193,7 @@ label stage7:
     scene bg bedroom with fadehold
     $ renpy.show_screen('player_stats_screen', _layer='transient')
 
+label stage7_complete_curriculum:
     play sound 'audio/sfx/social_media_notification.wav'
     player surprised "Hmm? A notification from my phone? This early in the morning?"
     player "It says {bt}Congratulations!{/bt}...?"
@@ -1528,7 +1529,7 @@ label ending:
 
     call screen confirm_and_share_screen(
         title="{color=[red]}{icon=icon-alert-triangle} Attention{/color}",
-        message="Hey [persistent.player_name]... \nThe thing is, it looks like... {sc}{color=[red]}YOU HAVE BROUGHT DOWN THE PRODUCTION SERVER{/color}{/sc}",
+        message="Hey [persistent.player_name]... \nThe thing is, it looks like... \n{sc}{color=[red]}YOU HAVE BROUGHT DOWN THE PRODUCTION SERVER{/color}{/sc}",
         ok_text="Oopsy... Am I... fired?"
     )
 
@@ -1561,18 +1562,19 @@ label ending_splash: # alternative endings also jump to here
     with Pause(1)
 
     # Credits, like in the About section from options.rpy
+    # use a lighter background because the hyperlinks are dark blue
     scene gray10 with dissolve
     pause 1
     show text "{size=48}[about]{/size}"
     with dissolve 
-    pause 3
+    pause 5
     hide text with dissolve
 
     scene gray10 with dissolve
     pause 1
     show text "{size=48}[credits]{/size}"
     with dissolve 
-    pause 3
+    pause 5
     hide text with dissolve
 
     # go to the bonus screen

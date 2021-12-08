@@ -16,18 +16,15 @@ screen confirm_and_share_screen(title,
 
         xfill True
         xsize 1000
-        xmargin 50
-        ypadding 25
+        # xmargin 50
+        ypadding 30
         yalign .25
 
         vbox:
             xfill True
             spacing 25
 
-            text _(title):
-                text_align 0.5
-                xalign 0.5
-                size gui.name_text_size
+            label _(title) xalign 0.5
 
             text _(message):
                 text_align 0.5

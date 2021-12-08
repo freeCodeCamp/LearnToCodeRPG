@@ -40,12 +40,15 @@ This project is open source. You can make suggestions and report bugs {a=https:/
 """)
 
 define credits = _p("""
-Coding & Writing & Misc. Art:
+Creative Lead:
     {a=https://ruolinzheng08.github.io/}Lynn Zheng (Ruolin Zheng){/a}
     {a=https://github.com/RuolinZheng08/}{icon=icon-github}{/a}
     {a=https://www.youtube.com/channel/UCZ2MeG5jTIqgzEMiByrIzsw}{icon=icon-youtube}{/a}
     {a=https://www.linkedin.com/in/ruolin-zheng/}{icon=icon-linkedin}{/a}
     {a=https://twitter.com/lynnzheng08}{icon=icon-twitter}{/a}
+
+Coding & Writing & Misc. Art:
+    {a=https://ruolinzheng08.github.io/}Lynn Zheng (Ruolin Zheng){/a}
     
 Background Music:
     {a=https://twitter.com/ossia}Quincy Larson{/a}
