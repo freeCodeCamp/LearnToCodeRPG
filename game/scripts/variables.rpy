@@ -205,17 +205,3 @@ init python:
         achievement_labels_map
     ]:
         all_tweet_map.update(tweet_map)
-
-    ## rhythm game
-    # define the song titles and their files
-    rhythm_game_songs = [
-        Song('Chasing That Feeling', 'audio/bgm/Chasing That Feeling.mp3', 'audio/bgm/Chasing That Feeling.beatmap.txt'),
-        Song('Crystalize That Child in Me', 'audio/bgm/Crystalize That Child in Me.mp3', 'audio/bgm/Crystalize That Child in Me.beatmap.txt'),
-        Song('Never Not Favored', 'audio/bgm/Never Not Favored.mp3', 'audio/bgm/Never Not Favored.beatmap.txt'),
-        Song('Press Your Advantage', 'audio/bgm/Press Your Advantage.mp3', 'audio/bgm/Press Your Advantage.beatmap.txt')
-    ]
-    # must be persistent to be able to record the scores
-    if persistent.rhythm_game_high_scores is None:
-        persistent.rhythm_game_high_scores = {
-        song.name: (0, 0) for song in rhythm_game_songs
-    }

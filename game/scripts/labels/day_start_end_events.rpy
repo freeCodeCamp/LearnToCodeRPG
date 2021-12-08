@@ -103,6 +103,8 @@ label day_end:
         player "I was at the park reading a nice book. It was really refreshing."
     elif day_activity == 'videogame':
         player "I played some cool video games today. Hopefully one day I'll able to code up a game myself."
+    elif day_activity == 'music':
+        player "I was listening to some really good music today. Music always helps me relax."
     elif day_activity == 'jobsearch':
         player "I spent my day looking for job openings. I hope that my resume will catch the recruiter's eyes."
     elif day_activity == 'interview':

@@ -127,6 +127,7 @@ label day_activity_relax:
     player "Okay. Let's take a day off and chill. What shall we do?"
     menu day_activity_relax_choices:
         "Take a walk in the park":
+            $ day_activity = 'park'
             player "Let's head out to the park. Too bad I can't take Mint out on a walk. Annika does that with her puppy sometimes and they both love it."
             call day_activity_park from _call_day_activity_park
         "Play some video games":
@@ -137,8 +138,13 @@ label day_activity_relax:
                 player "Let's instead go take a walk in the park."
                 call day_activity_park from _call_day_activity_park_1
             else:
+                $ day_activity = 'videogame'
                 player "Nothing beats some video games."
                 call day_activity_video_game from _call_day_activity_video_game
+        "Listen to music":
+            $ day_activity = 'music'
+            player "Let's listen to some music."
+            call screen music_room_screen_in_script()
     $ player_stats.change_stats_random('Sanity', 5, 20)
     # all relaxing activities converges to the end of the day
     return
@@ -220,7 +226,6 @@ label day_activity_barista:
     return
 
 label day_activity_park:
-    $ day_activity = 'park'
     scene bg park1 with slideright
     play sound 'audio/sfx/birds.wav'
     player happy "It always soothe my nerves to take a walk in the park."
@@ -237,14 +242,11 @@ label day_activity_park:
     return
 
 label day_activity_video_game:
-    $ day_activity = 'videogame'
     player laugh "I recently got this rhythm game everyone's talking about."
     player smile "Let's pick a song from the playlist."
     
     # see rhythm_minigame.rpy    
-    show screen choose_song_screen(rhythm_game_songs)
-    # now the variable `selected_song` has been called
-    # call rhythm_game_entry_label
+    call rhythm_game_entry_label
 
     player laugh "That was fun!"
     player smile "Video games are the best way to let off steam, aren't they?"

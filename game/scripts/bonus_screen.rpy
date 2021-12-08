@@ -11,8 +11,8 @@ screen bonus_screen():
             label 'Bonus Contents'
             textbutton '{icon=icon-award} ' + _("Achievements") action Show('achievements_screen')
             textbutton '{icon=icon-headphones} ' + _("Music Room") action Show('music_room_screen')
-            textbutton '{icon=icon-book-open} ' + _("Glossary") action Show('glossary_screen')
-            textbutton '{icon=icon-code} ' + _("Quiz Collection") action Show('quiz_screen')
+            # textbutton '{icon=icon-book-open} ' + _("Glossary") action Show('glossary_screen')
+            # textbutton '{icon=icon-code} ' + _("Quiz Collection") action Show('quiz_screen')
 
             null height 20
 
@@ -21,10 +21,9 @@ screen bonus_screen():
             textbutton '{icon=icon-film} ' + _("Game Trailer") action NullAction()
             textbutton '{icon=icon-youtube} ' + _("Learn to Code RPG: The Making of") action NullAction()
 
-            # null height 20
-            # label 'Mini Games'
-            # FIXME: the current way the rhythm game is implemented (choose song screen + rhythm game screen) don't allow for access from outside the game
-            textbutton '{icon=icon-music} ' + _("Rhythm Game") action Show('choose_song_screen')
+            null height 20
+            label 'Mini Games'
+            textbutton '{icon=icon-music} ' + _("Rhythm Game") action Start('rhythm_game_entry_label')
             # TODO: more mini games, quiz speedrun survival mode etc.
 
 screen achievements_screen():

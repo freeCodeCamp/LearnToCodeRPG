@@ -7,26 +7,29 @@ define CHANNEL_RHYTHM_GAME = 'CHANNEL_RHYTHM_GAME'
 define SCORE_GOOD = 60
 define SCORE_PERFECT = 100
 
-# the song that the player chooses to play, set in `choose_song_screen` below
+# the song that the player chooses to play, set in `select_song_screen` below
 default selected_song = None
 
-screen choose_song_screen(songs):
-
-    # prevent the player from clicking on the textbox to proceed with the story without closing this screen first
-    modal True
+screen select_song_screen(songs, disable_selection=False):
 
     default cell_size = (380, 80)
 
     frame:
         xalign 0.5
         yalign 0.5
-        xpadding 30
+        xpadding 80
         ypadding 30
+        background "#fffc"
 
         vbox:
             spacing 20
 
-            label "Click on a song to play" xalign 0.5
+            if disable_selection: # show high score only
+                label "Rhythm Game High Scores" xalign 0.5
+            else:
+                label "Click on a song to play" xalign 0.5
+
+            null height 20
 
             vpgrid:
 
@@ -46,28 +49,74 @@ screen choose_song_screen(songs):
                 # header row
                 label '{icon=icon-music} ' + _('Song Name') xysize cell_size
                 label '{icon=icon-chevrons-up} ' + _('Highest Score') xysize cell_size
-                label '{icon=icon-star} ' + _('All Perfect Hits') xysize cell_size
+                label '{icon=icon-star} ' + _('% Perfect Score') xysize cell_size
 
                 # body rows
                 for song in songs:
-                    textbutton song.name:
-                        xysize cell_size
-                        action [
-                        SetVariable('selected_song', song),
-                        Hide('choose_song_screen')
-                        # Return()
-                        ]
+                    if disable_selection: # show text
+                        text song.name xysize cell_size
+                    else: # show textbutton
+                        textbutton song.name:
+                            xysize cell_size
+                            action [
+                            Return(song)
+                            ]
                     $ highest_score, highest_percent = persistent.rhythm_game_high_scores[song.name]
                     text str(highest_score) xysize cell_size xalign 0.5
                     text '[highest_percent]%' xysize cell_size xalign 0.5
 
-            textbutton 'Close screen':
+            textbutton '{icon=icon-x-circle} ' + _("Exit"):
                 xalign 0.5
-                action Hide('choose_song_screen')
+                action Return(None)
+
+screen rhythm_game_high_score_screen(songs):
+
+    default cell_size = (380, 80)
+
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xpadding 80
+        ypadding 30
+        background "#fffc"
+
+        vbox:
+            spacing 20
+
+            
+
+            null height 20
+
+            vpgrid:
+
+                cols 3
+                rows len(songs) + 1
+                spacing 10
+                draggable True
+                mousewheel True
+
+                scrollbars "vertical"
+                vscrollbar_unscrollable "hide"
+
+                # Since we have scrollbars, we have to position the side, rather
+                # than the vpgrid proper.
+                side_xalign 0.5
+
+                # header row
+                label '{icon=icon-music} ' + _('Song Name') xysize cell_size
+                label '{icon=icon-chevrons-up} ' + _('Highest Score') xysize cell_size
+                label '{icon=icon-star} ' + _('% Perfect Score') xysize cell_size
+
+                # body rows
+                for song in songs:
+                    text song.name xysize cell_size
+                    $ highest_score, highest_percent = persistent.rhythm_game_high_scores[song.name]
+                    text str(highest_score) xysize cell_size xalign 0.5
+                    text '[highest_percent]%' xysize cell_size xalign 0.5
 
 screen rhythm_game(song):
 
-    zorder 100 # always on top, covering textbox, quick_menu
+    zorder 103 # always on top, covering textbox, quick_menu, calendar, etc.
 
     # disable the arrow keys from activating the Quit button
     # https://www.renpy.org/doc/html/screens.html#key
@@ -479,47 +528,67 @@ init python:
 
             return active_notes
 
+
+    ## rhythm game
+    # define the song titles and their files
+    rhythm_game_songs = [
+        Song('Chasing That Feeling', 'audio/bgm/Chasing That Feeling.mp3', 'audio/bgm/Chasing That Feeling.beatmap.txt'),
+        Song('Crystalize That Child in Me', 'audio/bgm/Crystalize That Child in Me.mp3', 'audio/bgm/Crystalize That Child in Me.beatmap.txt'),
+        Song('Never Not Favored', 'audio/bgm/Never Not Favored.mp3', 'audio/bgm/Never Not Favored.beatmap.txt'),
+        Song('Press Your Advantage', 'audio/bgm/Press Your Advantage.mp3', 'audio/bgm/Press Your Advantage.beatmap.txt')
+    ]
+    # must be persistent to be able to record the scores
+    if persistent.rhythm_game_high_scores is None:
+        persistent.rhythm_game_high_scores = {
+        song.name: (0, 0) for song in rhythm_game_songs
+    }
+
+## end init python
+
 label rhythm_game_entry_label:
+    scene bg bedroom
+    $ calendar_enabled = False
+    call screen select_song_screen(rhythm_game_songs)
+    $ selected_song = _return
 
-    # stop the bgm
-    $ continue_looping_music = False
-    $ renpy.music.stop()
+    if isinstance(selected_song, Song):
+        # stop the bgm
+        $ continue_looping_music = False
+        $ renpy.music.stop()
 
-    # avoid rolling back and losing game state
-    $ renpy.block_rollback()
+        # avoid rolling back and losing game state
+        $ renpy.block_rollback()
 
-    # disable Esc key menu to prevent the player from saving the game
-    $ _game_menu_screen = None
+        # disable Esc key menu to prevent the player from saving the game
+        $ _game_menu_screen = None
 
-    # the screen is responsible for writing data into selected_song
-    # XXX: for some reason, `call screen rhythm_game(song)` throws a syntax error
-    python:
-        new_score = renpy.call_screen(_screen_name='rhythm_game', song=selected_song)
-        old_score, _ = persistent.rhythm_game_high_scores[selected_song.name]
+        call screen rhythm_game(selected_song)
+        $ new_score = _return
+
+        # XXX: old_percent is not used, but doing `old_score, _` causes pickling error
+        $ old_score, old_percent = persistent.rhythm_game_high_scores[selected_song.name]
         if new_score > old_score:
-            renpy.notify('New high score!')
+
+            $ renpy.notify('New high score!')
             # compute new percent
-            new_percent = selected_song.compute_percent(new_score)
-            persistent.rhythm_game_high_scores[selected_song.name] = (new_score, new_percent)
+            $ new_percent = selected_song.compute_percent(new_score)
+            $ persistent.rhythm_game_high_scores[selected_song.name] = (new_score, new_percent)
 
-    # re-enable the Esc key menu
-    $ _game_menu_screen = 'save'
+        # re-enable the Esc key menu
+        $ _game_menu_screen = 'save'
 
-    # avoid rolling back and entering the game again
-    $ renpy.block_rollback()
+        # avoid rolling back and entering the game again
+        $ renpy.block_rollback()
 
-    # restore rollback from this point on
-    $ renpy.checkpoint()
+        # restore rollback from this point on
+        $ renpy.checkpoint()
 
-    # resume the bgm
-    $ continue_looping_music = True
+        # resume the bgm
+        $ continue_looping_music = True
 
-    return # return control to script.rpy
+        # show high score only, not playable
+        call screen select_song_screen(rhythm_game_songs, disable_selection=True)
 
-label rhythm_game_entry_from_bonus_screen:
-    scene main_menu
-    "So you want to play a game of rhythm? Sure, I'll entertain you."
-    call screen choose_song_screen(rhythm_game_songs)
-    # now the variable `selected_song` has been called
-    call rhythm_game_entry_label
+    $ calendar_enabled = True
+
     return

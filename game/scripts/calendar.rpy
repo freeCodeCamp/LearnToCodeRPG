@@ -49,7 +49,7 @@ default calendar_enabled = True # similar to quick_menu boolean
 # this screen should always show
 screen calendar_screen():
     ## Ensure this appears on top of other screens like quick_menu and player_stats
-    zorder 98 
+    zorder 102
     if calendar_enabled:
         frame:
             xpos 20
@@ -74,7 +74,7 @@ screen calendar_screen():
 # this can be used as calendar transition, chapter transition, etc.
 screen text_over_black_bg_screen(title_text):
     ## Ensure this appears on top of other screens like quick_menu and player_stats
-    zorder 99
+    zorder 101
     modal True
     add black
     text title_text at text_dissolve:
