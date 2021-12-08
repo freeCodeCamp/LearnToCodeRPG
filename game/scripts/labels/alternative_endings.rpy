@@ -536,6 +536,8 @@ label second_chance:
             "You know the rocket ship saying? 'If you're offered a seat on a rocket ship, don't ask what seat.'"
             "Let us rollback in time, brave traveler."
             # TODO: tweet
+            play sound 'audio/sfx/rewind.wav' # 5 sec
+            pause 4.0
 
             $ player_base = 'player_base'
             $ player_glasses = 'player_glasses'

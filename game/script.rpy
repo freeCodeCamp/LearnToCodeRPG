@@ -37,6 +37,7 @@ label start:
             pass
 
 label start_interview_question2:
+    play sound 'audio/sfx/punch.wav'
     with vpunch
     $ timeout_label = "start_interview_question3"
     "Second question."
@@ -53,6 +54,7 @@ label start_interview_question2:
             pass
 
 label start_interview_question3:
+    play sound 'audio/sfx/punch.wav'
     with hpunch
     $ timeout_label = "start_after_interview"
     "Third question."
@@ -70,7 +72,8 @@ label start_interview_question3:
 
 label start_after_interview:
     # reset to non-timed choices
-    $ timeout_label = None    
+    $ timeout_label = None
+    play sound 'audio/sfx/punch.wav'
     with vpunch
 
     "Thanks for taking the time to complete our coding interview."
@@ -139,6 +142,7 @@ label start_after_interview:
     player "(Sigh...)"
     player "That was exhausting. There's no doubt that I bombed the questions."
     player "Geez, coding interviews are hard..."
+    play sound 'audio/sfx/punch.wav'
     with vpunch
     player pout "What made me think I'm capable of getting a software job in the first place?"
     player "Well... it all started some time ago when I first decided to learn to code and get a real job..."
@@ -270,33 +274,43 @@ label stage2:
     show smartphone at truecenter
     "(Click on the phone icon {icon=icon-smartphone} on the bottom-right corner of the textbox to show or hide your progress.)"
     hide smartphone
+    player "Alright. Here goes nothing."
+    player "..."
 
-    player surprised "So Java and JavaScript are different languages? Wait, which one is for web dev again?"
+label stage2_stats_change:
+    player surprised "So Java and JavaScript are different languages?"
     $ player_stats.change_stats('CS Knowledge', 1)
+    player "Wait, which one is for web dev again?"
     $ player_stats.change_stats('Sanity', -5)
 
     player pout "And there are print statements and print() functions. Which is for Python 2 and which is for Python 3?"
+    $ player_stats.change_stats('CS Knowledge', 1)
     player "I remember one video saying that Python 2 is outdated but does that mean that I don't have to learn it?"
-    $ player_stats.change_stats('CS Knowledge', 1)
     $ player_stats.change_stats('Sanity', -5)
 
-    player "Maybe I shouldn't bother with learning Python 3 even. Someone may just decide that Python 3 is too old-fashioned before I even get a chance to learn it."
+    player "Maybe I shouldn't bother with learning Python 3 even."
     $ player_stats.change_stats('CS Knowledge', 1)
+    player "Someone may just decide that Python 3 is too old-fashioned before I even get a chance to learn it."
     $ player_stats.change_stats('Sanity', -5)
 
-    player worry "Java doesn't sound like a good idea either. People are so hyped about Kotlin."
+    player worry "Java doesn't sound like a good idea either. It's really old"
     $ player_stats.change_stats('CS Knowledge', 1)
+    player "People nowadays are so hyped about Kotlin."
     $ player_stats.change_stats('Sanity', -5)
 
     player "JavaScript? TypeScript?"
     $ player_stats.change_stats('CS Knowledge', 1)
+    player "Are they like cousins or something?"
     $ player_stats.change_stats('Sanity', -5)
 
     player "Maybe I can find a job posting I like and start learning their required skills."
+    play sound 'audio/sfx/punch.wav'
     with hpunch
     player pout "But what is front-end, back-end, or full-stack? What are the differences?"
+    play sound 'audio/sfx/punch.wav'
     with hpunch
     player "What are DevOps and Site Reliability Engineering?"
+    play sound 'audio/sfx/punch.wav'
     with hpunch
     player "And why is this company using their pet coding language that nobody else uses?"
 
@@ -317,6 +331,7 @@ label stage2:
     player "I guess I better call it a day and go to bed."
 
     with fadehold
+    play sound 'audio/sfx/wake_up_noise.mp3'
     player worry "... I can't sleep with all these thoughts floating around in my head."
     player "What can I do if the kid I'm tutoring cuts down our sessions for his coding classes?"
     player "Ugh. I still need to pay the bills even if my parents are nice enough not to ask me for rent."
@@ -332,7 +347,7 @@ label stage3:
     show smartphone at truecenter
     player pout "Here goes my phone at this early hour."
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
-    player "Do I merit a personal rejection call from the neighborhood coffee shop?"
+    player "Do I merit a personal rejection call from the neighborhood coffee shop before I even visit them? "
     hide smartphone
 
     show annika
@@ -1341,6 +1356,7 @@ label stage8:
     player surprised "Huh?{w} Is this a dream?"
 
     show mint with vpunch
+    play sound 'audio/sfx/punch.wav'
     mint "Meow!"
     player pout "Owww Mint... You are heavy... Don't just pounce on me like that, okay?"
     player surprised "Wait a minute!{w} Mint just crash-landed on me and I felt the impact. This must mean that I'm not dreaming."
