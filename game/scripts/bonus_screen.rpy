@@ -53,6 +53,73 @@ screen achievements_screen():
                                 text '{icon=icon-lock} ???'
                                 null
 
+# https://www.renpy.org/doc/html/rooms.html
+screen music_room_screen():
+    # this is called from the menu
+    tag menu
+    use game_menu(_("Music Room"), scroll="viewport"):
+        style_prefix "bonus"
+        vbox:
+            spacing 10
+            xalign 0.5
+
+            hbox:
+                spacing 20
+                # Buttons that let us advance tracks.
+                textbutton _("Previous") + ' {icon=icon-arrow-left-circle}' action music_room.Previous()
+                textbutton '{icon=icon-arrow-right-circle} ' + _("Next") action music_room.Next()
+                # textbutton "Pause" action music_room.TogglePause()
+                null width 40
+                textbutton '{icon=icon-stop-circle} ' + _("Stop") action music_room.Stop()
+
+            null height 20
+
+            label _('All Tracks')
+            # The buttons that play each track.
+            for track in all_music_tracks:
+                $ file = all_music_tracks[track]
+                textbutton '{icon=icon-headphones} ' + track action music_room.Play(file)
+
+screen music_room_screen_in_script():
+    # this is called inside renpy scripts
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xpadding 80
+        ypadding 30
+        background "#fffc"
+
+        vbox:
+            spacing 10
+            xalign 0.5
+
+            hbox:
+                spacing 20
+                # Buttons that let us advance tracks.
+                textbutton _("Previous") + ' {icon=icon-arrow-left-circle}' action music_room.Previous()
+                textbutton '{icon=icon-arrow-right-circle} ' + _("Next") action music_room.Next()
+                # textbutton "Pause" action music_room.TogglePause()
+                null width 40
+                textbutton '{icon=icon-stop-circle} ' + _("Stop") action music_room.Stop()
+
+            null height 20
+
+            label _('All Tracks')
+            # The buttons that play each track.
+            for track in all_music_tracks:
+                $ file = all_music_tracks[track]
+                textbutton '{icon=icon-headphones} ' + track action music_room.Play(file)
+
+            null height 20
+            # The button that lets the user exit the music room.
+            textbutton '{icon=icon-x-circle} ' + _("Exit") action Return()
+
+    # # Start the music playing on entry to the music room.
+    # on "replace" action music_room.Play()
+
+    # # Restore the main menu music upon leaving.
+    # on "replaced" action Play("music", config.main_menu_music)
+
 # TODO: v2
 screen glossary_screen():
     tag menu

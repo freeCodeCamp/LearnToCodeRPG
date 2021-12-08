@@ -112,7 +112,7 @@ label start_after_interview:
             "Cool! We are glad that you are here!"
 
         "Referral":
-            $ referral_name = renpy.input("What is the full name of your referral? (Type something and hit Enter)")
+            $ referral_name = renpy.input("What is the first name of your referral? (Type something and hit Enter)")
             # Easter egg :)
             if referral_name in vip_names:
                 "System processing... {w}Looks like you were referred by a VIP team member. That's awesome! We'll highlight this on your profile."
