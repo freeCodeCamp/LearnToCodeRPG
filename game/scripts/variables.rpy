@@ -1,6 +1,6 @@
 init:
     default stats_unlocked = False
-    default stats_knolwedge_unlocked = False # cs knowledge
+    default stats_knowledge_unlocked = False # cs knowledge
     default todo_unlocked = False
 
     # alternative endings

@@ -919,9 +919,18 @@ label stage6_after_annika_questions:
 
     call save_reminder from _call_save_reminder_8
 
-    $ calendar.next_month()
+    # two days of activity of the player's choosing
+    call day_start
+    call day_activity_choices
+
+    call day_start
+    call day_activity_choices
+
+    call save_reminder
+
+    $ calendar.next_week()
     scene bg bedroom with dissolve
-    player smile "Now I've been learning to code for an entire month, not only have I been making progress on the curriculum and visiting Hacker Space, but I've also been engaging with the [freeCodeCamp] community online."
+    player smile "Now I've been learning to code for some time, not only have I been making progress on the curriculum and visiting Hacker Space, but I've also been engaging with the [freeCodeCamp] community online."
     player "I found this person who taught himself to code from scratch with [freeCodeCamp]."
     player "That's truly a from-zero-to-hero story."
     player "He is now a senior software engineer and has decided to give back to the community."
@@ -1026,6 +1035,15 @@ label stage7:
     call day_activity_choices from _call_day_activity_choices_5
 
     call save_reminder from _call_save_reminder_10
+
+    # two days of activity of the player's choosing
+    call day_start
+    call day_activity_choices
+
+    call day_start
+    call day_activity_choices
+
+    call save_reminder
 
     $ calendar.next_month()
     $ renpy.show_screen('player_stats_screen', _layer='transient')

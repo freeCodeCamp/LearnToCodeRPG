@@ -344,7 +344,7 @@ label ending_tutor:
     layla @ laugh "Well, sometimes I do wonder what could've happened if I had chosen differently."
     player relieved "(Layla looks content with where she is now. Hmmm... but I do wonder, what could've happened had I chosen differently?)"
 
-    $ persistent.achievements.add(endig_tutor)
+    $ persistent.achievements.add(ending_tutor)
     play sound 'audio/sfx/alternative_ending.wav'
     call screen text_over_black_bg_screen("{i}Ending: [ending_tutor]{/i}")
 

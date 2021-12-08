@@ -30,7 +30,7 @@ init python:
     # play music random looping
     continue_looping_music = False
 
-    all_music = {
+    all_music_tracks = {
     'Chasing That Feeling': "audio/bgm/Chasing That Feeling.mp3",
     'Never Not Favored': "audio/bgm/Never Not Favored.mp3",
     'Crystalize That Child in Me': "audio/bgm/Crystalize That Child in Me.mp3",
@@ -39,8 +39,8 @@ init python:
 
     def loop_music():
         if continue_looping_music:
-            music = renpy.random.choice(all_music.keys())
-            renpy.music.queue(all_music[music], loop=False, fadein=1.0, tight=True)
+            music = renpy.random.choice(all_music_tracks.keys())
+            renpy.music.queue(all_music_tracks[music], loop=False, fadein=1.0, tight=True)
             # if not renpy.in_rollback():
             #     renpy.notify('Now playing: ' + music)
 
@@ -49,6 +49,13 @@ init python:
     # to stop, set the following
     # continue_looping_music = False
     # stop music
+
+    # music room
+    music_room = MusicRoom(fadeout=1.0)
+
+    for track in all_music_tracks:
+        file = all_music_tracks[track]
+        music_room.add(file, always_unlocked=True)
 
     ## images
 

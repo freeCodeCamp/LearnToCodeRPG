@@ -54,17 +54,20 @@ screen choose_song_screen(songs):
                         xysize cell_size
                         action [
                         SetVariable('selected_song', song),
-                        Return()
+                        Hide('choose_song_screen')
+                        # Return()
                         ]
                     $ highest_score, highest_percent = persistent.rhythm_game_high_scores[song.name]
                     text str(highest_score) xysize cell_size xalign 0.5
                     text '[highest_percent]%' xysize cell_size xalign 0.5
 
-            textbutton 'Close screen' action Return() xalign 0.5
+            textbutton 'Close screen':
+                xalign 0.5
+                action Hide('choose_song_screen')
 
 screen rhythm_game(song):
 
-    zorder 100 # always on top, covering textbox, quick_menuR
+    zorder 100 # always on top, covering textbox, quick_menu
 
     # disable the arrow keys from activating the Quit button
     # https://www.renpy.org/doc/html/screens.html#key
