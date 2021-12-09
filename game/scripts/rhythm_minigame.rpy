@@ -19,7 +19,7 @@ screen select_song_screen(songs, disable_selection=False):
         yalign 0.5
         xpadding 80
         ypadding 30
-        background "#fffc"
+        background white80
 
         vbox:
             spacing 20
@@ -78,7 +78,7 @@ screen rhythm_game_high_score_screen(songs):
         yalign 0.5
         xpadding 80
         ypadding 30
-        background "#fffc"
+        background white80
 
         vbox:
             spacing 20

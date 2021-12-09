@@ -1,60 +1,42 @@
-init:
-    screen quiz_question_answer_explanation_screen(quiz_question):
-        # see code_snippet_example_screen.rpy
+screen quiz_question_answer_explanation_screen(quiz_question):
+    on "show" action With(dissolve)
+    on "hide" action With(dissolve)
 
-        default raw_code = example_code(quiz_question.code_label, raw=True)
-        default code = example_code(quiz_question.code_label)
+    frame:
+        style_prefix "confirm"
 
-        on "show" action With(dissolve)
-        on "hide" action With(dissolve)
+        xfill True
+        xsize 1200
+        xmargin 50
+        ypadding 30
+        yalign .25
+        background '#fffe'
 
-        frame:
-            xalign 0.5
-            yalign 0.5
-            xpadding 80
-            ypadding 30
-            background "#fffc"
+        vbox:
+            xfill True
+            spacing 10
 
-            vbox:
-                spacing 10
+            label 'Question'
+            text quiz_question.question
 
-                textbutton '{icon=icon-x}' xalign 1.0 action Return(True)
+            null height 20
+            label 'Correct answer'
+            text quiz_question.true
 
-                viewport:
-                    xsize 1000
-                    ymaximum 600
-                    child_size (None, 4000)
-                    scrollbars 'vertical'
-                    spacing 5
-                    draggable True
-                    mousewheel True
-                    arrowkeys True
-                    vscrollbar_xsize 5
-                    vscrollbar_unscrollable "hide"
+            null height 20
+            if quiz_question.explanation:
+                label 'Explanation'
+                text quiz_question.explanation
 
-                    vbox spacing 5:
-                        text 'Question Recap' bold True
-                        text quiz_question.question
+            if quiz_question.learn_more_url:
+                textbutton "{icon=icon-help-circle} " + _("Learn More"):
+                    hovered Notify('Learn more about this topic in an article!')
+                    action OpenURL(quiz_question.learn_more_url)
 
-                        # TODO: maybe add copy code feature from screen example
-                        if quiz_question.code_label:
-                            null height 30
-                            frame: # different background color from the primary screen for contrast
-                                background "#d0d0d5cc" # gray15 at 80% opacity
-                                text code:
-                                    alt ""
-                                    size gui.notify_text_size
-                                    color "#000"
-                                    font "fonts/roboto-mono/RobotoMono-Regular.ttf"
-
-                        null height 30
-
-                        text 'Correct answer' bold True
-                        text quiz_question.true
-                        if quiz_question.explanation:
-                            null height 50
-                            text 'Explanation' bold True
-                            text quiz_question.explanation
+            null height 40
+            textbutton "Gotcha! Let's move on.":
+                xalign 0.5
+                action Return()
 
 init python:
     class QuizQuestion():
@@ -65,7 +47,8 @@ init python:
         explanation: an optional string
         code_label: an optional string, see game/quiz_code_snippets.txt
         '''
-        def __init__(self, question, true, false, explanation=None, code_label=None):
+        def __init__(self, question, true, false, category=None, explanation=None, 
+            code_label=None, learn_more_url=None, easter_egg_name=None, difficulty=None):
             choices = {
             true: True
             }
@@ -93,8 +76,36 @@ init python:
 
             self.true = true
             self.question = question
+            self.category = category
             self.explanation = explanation
             self.code_label = code_label
+            self.learn_more_url = learn_more_url
+            self.easter_egg_name = easter_egg_name
+            self.difficulty = difficulty
+
+    # TODO: read csv
+    easter_egg_quiz_questions = [
+    QuizQuestion(
+        question="freeCodeCamp.org first launched in:",
+        true="2014",
+        false=["2001", "1910", "2030"],
+        explanation="The first version of the freeCode",
+        learn_more_url="https://www.freecodecamp.org/news/about/",
+        easter_egg_name="The Launch of freeCodeCamp",
+        difficulty=1
+        )
+    ]
+
+    css_questions = [
+    QuizQuestion(
+        question="What is RGB?",
+        true="A color model",
+        false=["An Internet Protocol", "HTML syntax", "A secret password"],
+        explanation="RGB is an acronym that stands for {b}red{/b} {b}green{/b} {b}blue{/b}. It expresses colors in terms of the amount of red, green, and blue they are made up of and uses a human counting system with integers ranging from 0-255 or a percentage ranging from (0% - 100%).",
+        learn_more_url="https://www.freecodecamp.org/news/rgb-color-html-and-css-guide/",
+        difficulty=1
+        )
+    ]
 
     # we have general_questions, javascript_questions, web_questions, algorithm_questions, and system_questions
 

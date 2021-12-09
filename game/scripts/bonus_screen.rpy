@@ -86,7 +86,7 @@ screen music_room_screen_in_script():
         yalign 0.5
         xpadding 80
         ypadding 30
-        background "#fffc"
+        background white90
 
         vbox:
             spacing 10

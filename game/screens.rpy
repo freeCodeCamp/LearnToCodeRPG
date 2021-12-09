@@ -1336,7 +1336,7 @@ screen notify(message):
         xpadding 30
         ypadding 30
         xmaximum 900
-        background "#fffc" # 80% opacity
+        background white80
         text "[message!tq]" size gui.text_size
 
     timer 3.25 action Hide('notify')

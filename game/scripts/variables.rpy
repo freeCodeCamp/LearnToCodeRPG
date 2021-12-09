@@ -15,7 +15,8 @@ init:
     default has_triggered_ending_today = False
 
     # set question type during study session
-    default study_session_questions = general_questions
+    # default study_session_questions = general_questions
+    default study_session_questions = css_questions
 
     default has_visited_hacker_space_with_annika = False
 
@@ -164,8 +165,11 @@ init python:
     ## quiz
     # questions that have a `wait thats not a cs question` label
     # quiz_fcc_history
-    quiz_bonus_to_tweet_map = {
 
+    quiz_fcc_launch = "The Launch of freeCodeCamp"
+
+    quiz_bonus_to_tweet_map = {
+        quiz_fcc_launch: tweet_default
     }
 
     ## endings
