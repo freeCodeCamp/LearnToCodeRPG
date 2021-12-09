@@ -870,8 +870,8 @@ label stage6_after_annika_questions:
 
     pause 1.0
     annika @ laugh "Morning, sleepy head!"
-    player happy "Hey Annika. You are up early."
-    annika "Yeah! Told you we are going to check out Hacker Space together."
+    player happy "Hey Annika. You're up early."
+    annika "Yeah! Told you we are going to check out the Hacker Space together."
     annika "You ready for the ride?"
     player laugh "Yes! Lead the way."
 
@@ -880,7 +880,7 @@ label stage6_after_annika_questions:
 
     show annika
     annika @ laugh "Here we are!"
-    player surprised "Wow. This place is huge. And modern."
+    player surprised "Wow. This place is huge. Nice and modern."
     annika "Yeah! That's why local hackers love to hang out here."
     annika "Why don't we go around and check out what people are working on?"
     player laugh "Sounds good!"
@@ -894,14 +894,14 @@ label stage6_after_annika_questions:
     show boy orange at right
     girl "The last hackathon was fun!"
     boy "It was! I feel like we might be able to grow our prototype into something even better."
-    girl "Would you like to elaborate on your thoughts?"
+    girl "Yeah for sure - tell me what you're thinking."
     boy "Okay, here's the plan..."
 
     scene bg hacker_space with fade
     show girl red flipped at left
     show woman blue at right
     college_girl "I had an interview the other day and it was kinda scary..."
-    college_girl "They asked me to write code on the whiteboard and then eyeball-test it without an compiler..."
+    college_girl "They asked me to write code on the whiteboard and then eyeball-test it without a compiler..."
     female "Don't worry! I'm sure you did well!"
     college_girl "..."
     female "I've worked in recruiting, so I'll let you in on some interviewer secrets..."
@@ -912,14 +912,14 @@ label stage6_after_annika_questions:
     player laugh "It's amazing!"
     player "This place is alive with energy... It's like you won't walk away without something interesting happening."
     annika @ laugh "That's the spirit!"
-    annika "Do you think you'll come here occasionally?"
+    annika "Do you think you'll come here now and then?"
     player happy "Definitely!"
     player "Thanks for taking me here!"
     annika "Any time!"
 
     scene bg bedroom night with slideright
-    player smile "Wow. I'm so amazed. Hacker Space sure is a cool place. Let's check it out on our own some day."
-    player "Now let's call this a day and get some rest."
+    player smile "Wow. I'm amazed. Hacker Space sure is a cool place. I'll have to check it out on my own someday."
+    player "Now let's call it a day and get some rest."
 
     $ has_visited_hacker_space_with_annika = True
 
@@ -945,7 +945,7 @@ label stage6_after_annika_questions:
 
     $ calendar.next_week()
     scene bg bedroom with dissolve
-    player smile "Now I've been learning to code for some time, not only have I been making progress on the curriculum and visiting Hacker Space, but I've also been engaging with the [freeCodeCamp] community online."
+    player smile "Now that I've been learning to code for some time, not only have I been making progress on the curriculum and visiting Hacker Space, but I've also been engaging with the [freeCodeCamp] community online."
     player "I found this person who taught himself to code from scratch with [freeCodeCamp]."
     player "That's truly a from-zero-to-hero story."
     player "He is now a senior software engineer and has decided to give back to the community."
@@ -971,8 +971,8 @@ label stage7:
     marco "It's a long story and a bumpy ride. So buckle up."
 
     show marco neutral
-    marco "I graduated from college some ten years ago. I majored in music so I worked as a freelance audio engineer straight out of college."
-    marco "Freelancing gives me some freedom and flexibility at first, but I soon discovered that my skills weren't honed enough to attract large, established clients."
+    marco "I graduated from college about ten years ago. I majored in music so I worked as a freelance audio engineer straight out of college."
+    marco "Freelancing gave me some freedom and flexibility at first, but I soon discovered that my skills weren't honed enough to attract large, established clients."
     show marco serious
     marco "And working with small, less established clients doesn't pay well and puts a lot of stress on a newbie freelancer."
     player worry "(That's so true... That's how I feel about my tutoring gig...)"
@@ -981,11 +981,11 @@ label stage7:
     player surprised "(Now that's a nice turn of the story!)"
     show marco neutral
     marco "You know, at small companies, everyone does a little bit of everything."
-    marco "I was hired for my web design skills, but occasionally I would be asked to write some HTML, CSS, JavaScript to showcase the design I have in mind in action, not just on paper."
-    marco "I picked up a little HTML, CSS, JavaScript in those years and found them to be quite interesting."
-    marco "I then found out that there is a term for these skills, front-end development."
-    marco "I thought, cool, I've done some front-end development, maybe I can become a full-time front-end developer?"
-    marco "I started researching and teaching myself front-end dev. The Internet in my days didn't have nearly as many resources as nowadays. So I had to be extremely resourceful and develop my own learning path."
+    marco "I was hired for my web design skills, but occasionally I would be asked to write some HTML, CSS, and JavaScript to showcase the design I had in mind in action, not just on paper."
+    marco "I picked up a little HTML, CSS, and JavaScript in those years and found them to be quite interesting."
+    marco "I then found out that there is a term for these skills – front-end development."
+    marco "I thought, cool, I've done some front-end development, maybe I can become a full-time front-end developer."
+    marco "I started researching and teaching myself front-end dev. The Internet in my days didn't have nearly as many resources as today. So I had to be extremely resourceful and develop my own learning path."
     player "(Working out an entire learning path sounds really intense to me, but for some reason Marco made it sound easy...)"
     marco "It all paid off when I got my front-end development job at my current company. I've been with the company since. Nice culture, smart people, interesting work."
     show marco laugh
@@ -1010,17 +1010,17 @@ label stage7:
 
         "Do you still have much to learn as a senior engineer?":
             player "Do you still have much to learn as a senior engineer?"
-            marco "Of course! I still run into technologies that are novel to me in my day-to-day."
+            marco "Of course! I still run into technologies and tools that I don't know in my day-to-day work."
             jump marco_story_choices
 
-        "What is your experience working with people who have a CS degree versus who don't?":
-            player "What is your experience working with people who have a CS degree versus who don't?"
+        "What is your experience working with people who have a CS degree versus those who don't?":
+            player "What is your experience working with people who have a CS degree versus those who don't?"
             marco "I'd say it's not too different. A CS degree may give you a head start in your first year as a junior developer, but after then, it is up to you to learn, grow, and adapt continuously to new technology."
             jump marco_story_choices
 
         "Do you have a favorite side project?":
             player "Do you have a favorite side project?"
-            marco "There is one I'm working on right now. Top secret. You will know when you see it."
+            marco "There is one I'm working on right now. Top secret. You will know it when you see it."
             marco "Like I said, I majored in design and music in college. Design and music are two things that get me up in the morning."
             marco "Now that I've also learned to code, I think it's prime time to put my passion into use to create something awesome, like a video game. I get to do the art, music, and coding all by myself."
             player "That sure sounds like fun! I'd love to see it one day!"
@@ -1063,7 +1063,7 @@ label stage7:
     $ calendar.next_month()
     $ renpy.show_screen('player_stats_screen', _layer='transient')
     scene bg bedroom with fadehold
-    player smile "It's been two months since I started to learn to code. Time really flies."
+    player smile "It's been two months since I started learning to code. Time really flies."
     player "I feel like I'm so much more knowledgeable than when I started."
 
     window hide
@@ -1083,7 +1083,7 @@ label stage7:
     show annika neutral
     annika "They could use some volunteers to help out."
     annika "Wanna come with me to check it out today?"
-    player @ laugh "Sounds good! See you in a moment!"
+    player @ laugh "Sounds good! See you in a bit!"
 
     scene bg hacker_space with slideright
     play sound 'audio/sfx/office_ambient.wav'
@@ -1094,43 +1094,43 @@ label stage7:
     show boy blue flipped at left with moveinleft
     show girl red at right with moveinright
     boy "Now it's finally time for us to give shape to this awesome idea!"
-    girl "Yeah yeah, it's been pie in the sky since forever."
+    girl "Yeah yeah, it's been a pie in the sky since forever."
     boy "This time we are finally going to code it all up!"
     girl "Hmmm... Yeah... We probably need some advice. I heard they have mentors here to guide us..."
 
     $ has_met_layla = True
     show layla with moveinleft
-    layla @ laugh "Hey kids! I heard that you are looking for help from mentors."
-    layla "I'm Layla, one of today's mentors. I'd be glad to work with you today."
+    layla @ laugh "Hey everyone! I heard that you're looking for some help from mentors."
+    layla "I'm Layla, one of today's mentors. I'd be glad to work with you."
     boy "Cool! Thanks!"
-    girl "Now I'm more confident that this is going to come together well!"
+    girl "Now I really feel like this is going to come together well!"
 
     scene bg hacker_space with blinds
     show annika with moveinright
-    annika "Did you see that lady over there mentoring the kids?"
+    annika "Did you see that woman over there mentoring the high school kids?"
     annika "She looks like she has tons of experience."
     player surprised "And energy!"
-    annika "That too! Mentoring kids looks like fun. I hope one day I get to do that as well."
+    annika "That too! Mentoring kids looks like fun. I hope one day I get to do that, too."
     player smile "Yay! Pass on the torch and give back. I feel like this is a culture thing in tech already."
-    annika @ laugh "Haha now you are talking like you've been in tech for forever. Not a bad thing since you've only started learn to code for two months."
+    annika @ laugh "Haha now you are talking like you've been in tech forever. Not a bad thing since you've only been learning to code for two months."
     annika "You've certainly internalized a lot of the tech culture and values."
     player "Those trips to Hacker Space definitely helped. All thanks to you and my online mentor, Marco."
     annika "Yeah, that reminds me, how's things going with Marco? Are you still regularly checking in?"
     player "Yep. Lately we've been talking about coding interviews. He said I could start applying to jobs once I'm comfortable with my skill level."
     player "Oh and I meant to ask, what was your interview experience like?"
-    annika @ laugh "Haha that's a long story. Shall we go grab a drink first?"
+    annika @ laugh "Haha that's a long story. Let's go grab some coffee first"
 
     scene bg hacker_space_cafe with fadehold
 
     show annika serious
     annika "Okay, so here's my experience with interviewing."
-    annika "I polished my resume and applied to as many online postings as I could."
-    annika "I also had to highlight parts of my resume that are specific to the requirement of the jobs I'm applying to."
-    annika "Then it was a long wait, during which I practiced coding up interview questions on a white board."
+    annika "I polished my résumé and applied to as many online positions as I could."
+    annika "I also had to highlight parts of my résumé that were specific to the requirements of the jobs I was applying to."
+    annika "Then it was a long wait, so during that time I practiced coding up interview questions on a white board."
     player surprised "A whiteboard?"
-    annika @ neutral "Yeah, I almost forgot to mention that. You might think tech companies must be using high-end tech to screen candidates, right?"
+    annika @ neutral "Yeah, I almost forgot to mention that. You might think tech companies use super fancy tools to screen candidates, right?"
     annika "It turns out that a lot of tech companies actually want to test your ability to write code without any assistance."
-    annika "Like without code search, documentations, or support from your IDEs."
+    annika "Like without code search, documentation, or support from your IDEs."
     player "Huh?"
     menu:    
         "Wait, what even is an IDE?":
@@ -1139,12 +1139,12 @@ label stage7:
     
         "Hmmm... Interesting":
             pass
-    annika @ neutral "Coding on a whiteboard requires that you are familiar with the syntax, but don't worry, the company will usually allow you to choose a programming language of your liking."
+    annika @ neutral "Coding on a whiteboard means that you have to be familiar with the syntax, but don't worry, the company will usually allow you to choose a programming language you're comfortable with."
     annika "What's more tricky about coding on a whiteboard is that you might need to come up with test cases yourself, walk through the execution line-by-line, and validate your results."
     annika "If there is a bug in your code, you need to be able to debug on the whiteboard as well, without the convenience of IDE debuggers."
     player worry "(That sounds intense...)"
     annika @ laugh "Haha don't be scared. That's basically the scariest part about coding interviews. Nothing scarier than that!"
-    annika "There's no shortcut to coding interview prep though, I'd say. I know it's cliche but I'll leave you with the phrase, practice makes perfect."
+    annika "There's no shortcut to coding interview prep though, I'd say. I know it's cliché but I'll leave you with the phrase, practice makes perfect."
     player neutral "Hmmm... I see."
 
     show annika neutral
@@ -1160,8 +1160,8 @@ label stage7:
         "What's the entire interview pipeline like?":
             annika "It depends. A company might have multiple rounds of interviews and different recruitment processes."
             annika "Their interview pipeline might start with an online assessment, usually called an OA."
-            annika "This is just like an online IDE where you will solve the given problems."
-            annika "If you manage to solve the problems and perform well on the online assessment, you may receive an update from the recruiter about moving forward onto a phone screen."
+            annika "This is just like an online IDE where you'll solve the problems they give you."
+            annika "If you manage to solve the problems and perform well on the online assessment, you might get an update from the recruiter about moving forward to a phone screen."
             annika "This could either be an information session, a behavior interview with the recruiter or an engineer, or a technical interview with an engineer."
             annika "If you perform well, you will move on to the next steps. Usually, a company will give out more than one rounds of technical interview over the phone."
             annika "And finally, once you manage to pull through these phone screens, the ultimate challenge would be an onsite interview."
