@@ -144,17 +144,21 @@ init python:
     ## plot
     plot_cookie = 'Late-night Cookie Crunch'
     plot_trivia = 'Tech Trivia Guru'
-    plot_quiz_all = 'Got all quiz questions correct in a session'
-    plot_quiz_none = 'Bombed all quiz questions in a session'
+    plot_quiz_all = 'Naied All Quizzes in a Session'
+    plot_quiz_none = 'Bombed All Quizzes in a Session'
     # TODO: vip, barista, hackerspace, minigame, saving up all buzzwords, asking all to Marco or all to Annika
     # too chill etc.
+    plot_weird_job_skill = "Fixing Fax Machine at a Tech Job"
+
+    tweet_weird_job_skill = tweet_default
 
     # TODO: none default tweet
     plot_bonus_to_tweet_map = {
         plot_cookie: tweet_default,
         plot_trivia: tweet_default,
         plot_quiz_all: tweet_default,
-        plot_quiz_none: tweet_default
+        plot_quiz_none: tweet_default,
+        plot_weird_job_skill: tweet_weird_job_skill,
     }
 
     ## quiz

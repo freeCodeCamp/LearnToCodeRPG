@@ -272,7 +272,11 @@ label day_activity_job_search:
     else:
         # apply to some random company
         $ company_name = renpy.random.choice(all_company_names.keys())
-        call screen job_posting_screen(company_name, all_skill_names)
+        if renpy.random.random() < 0.02: # 2% chance of getting Easter Egg
+            $ easter_egg_skill = renpy.random.choice(easter_egg_skills)
+        else:
+            $ easter_egg_skill = None
+        call screen job_posting_screen(company_name, all_skill_names, easter_egg_skill=easter_egg_skill)
         $ has_applied = _return
         if has_applied:
             if renpy.random.random() < 0.8: # 80% chance of interview

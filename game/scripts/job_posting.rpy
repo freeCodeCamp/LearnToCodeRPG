@@ -2,6 +2,15 @@ init python:
     # we have javascript_questions, web_questions, algorithm_questions, and system_questions
     all_skill_names = ['JavaScript', 'Web Development', 'Algorithm', 'System Design']
 
+    easter_egg_skills = [
+    'Brewing coffee',
+    'Fixing fax machines',
+    'Handling angry customers',
+    'Fusing cables',
+    'Retrieving lost passwords',
+    'Pacifying office pets'
+    ]
+
     # company logo files are named as images/others/company/avocado.png etc.
     all_company_names = {
     'AvocadoAPI': 'avocado',
@@ -25,7 +34,7 @@ init python:
     'VanillaVM': 'vanilla',
     }
 
-screen job_posting_screen(company_name, skill_names):
+screen job_posting_screen(company_name, skill_names, easter_egg_skill=None):
     frame:
         style_prefix "confirm"
 
@@ -47,10 +56,22 @@ screen job_posting_screen(company_name, skill_names):
 
             null height 20
 
-            for skill in skill_names:
-                hbox:
-                    null width 40
+            vbox:
+                xfill True
+                xoffset 200
+                for skill in skill_names:
                     text "•  " + skill
+                if easter_egg_skill:
+                    textbutton "•  " + easter_egg_skill:
+                        hovered [
+                        Notify('Wait, is this a technical skill?'),
+                        Function(persistent.achievements.add, plot_weird_job_skill)
+                        ]
+                        action [
+                        OpenURL(tweet_weird_job_skill),
+                        ]
+                        text_font gui.text_font
+                        xoffset -7 # XXX: tweak alignment
 
             null height 40
 
