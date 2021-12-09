@@ -246,7 +246,7 @@ label day_activity_video_game:
     player smile "Let's pick a song from the playlist."
     
     # see rhythm_minigame.rpy    
-    call rhythm_game_entry_label
+    call rhythm_game_entry_label from _call_rhythm_game_entry_label
 
     player laugh "That was fun!"
     player smile "Video games are the best way to let off steam, aren't they?"

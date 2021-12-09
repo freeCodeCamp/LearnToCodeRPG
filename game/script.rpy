@@ -935,13 +935,13 @@ label stage6_after_annika_questions:
     call save_reminder from _call_save_reminder_8
 
     # two days of activity of the player's choosing
-    call day_start
-    call day_activity_choices
+    call day_start from _call_day_start_9
+    call day_activity_choices from _call_day_activity_choices_12
 
-    call day_start
-    call day_activity_choices
+    call day_start from _call_day_start_11
+    call day_activity_choices from _call_day_activity_choices_13
 
-    call save_reminder
+    call save_reminder from _call_save_reminder_20
 
     $ calendar.next_week()
     scene bg bedroom with dissolve
@@ -1052,13 +1052,13 @@ label stage7:
     call save_reminder from _call_save_reminder_10
 
     # two days of activity of the player's choosing
-    call day_start
-    call day_activity_choices
+    call day_start from _call_day_start_12
+    call day_activity_choices from _call_day_activity_choices_14
 
-    call day_start
-    call day_activity_choices
+    call day_start from _call_day_start_13
+    call day_activity_choices from _call_day_activity_choices_15
 
-    call save_reminder
+    call save_reminder from _call_save_reminder_21
 
     $ calendar.next_month()
     $ renpy.show_screen('player_stats_screen', _layer='transient')
