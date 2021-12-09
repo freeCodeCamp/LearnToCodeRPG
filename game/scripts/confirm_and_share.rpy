@@ -1,10 +1,7 @@
 # https://www.renpy.org/doc/html/screen_special.html
 # based on the confirm screen
 
-screen confirm_and_share_screen(title, 
-    message="Now that's an Easter Egg uncovered!", 
-    ok_text='Call me the Egg Hunter!', 
-    tweet_content_url=tweet_default):
+screen confirm_and_share_screen(title, message="Now that's an Easter Egg uncovered!", ok_text='Call me the Egg Hunter!', tweet_content_url=tweet_default):
 
     # using `game menu root` will make this screen replace background image
     # modal True
@@ -16,7 +13,7 @@ screen confirm_and_share_screen(title,
 
         xfill True
         xsize 1000
-        # xmargin 50
+        # xmargin 50 # don't use this, otherwise {sc} tag overflows
         ypadding 30
         yalign .25
 
@@ -27,18 +24,16 @@ screen confirm_and_share_screen(title,
             label _(title) xalign 0.5
 
             text _(message):
-                text_align 0.5
+                text_align 0.5 # align multiline
                 xalign 0.5
 
-            hbox:
-                spacing 100
-                xalign .5
-                textbutton "{icon=icon-twitter} " + _("Tweet this") action OpenURL(tweet_content_url)
+            textbutton "{icon=icon-twitter} " + _("Tweet this"):
+                xalign 0.5
+                action OpenURL(tweet_content_url)
 
-            hbox:
-                spacing 100
-                xalign .5
-                textbutton ok_text action [
+            textbutton ok_text:
+                xalign 0.5
+                action [
                 Notify("This achievement is saved to the Bonus menu. Feel free tweet about it later if you haven't!"),
                 Return()
                 ]

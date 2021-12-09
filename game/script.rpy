@@ -1311,6 +1311,7 @@ label stage8:
 
         player surprised "Huh, an email from {b}[interview_company_name]{/b} first thing in the morning? Right, it's been some time since I've applied to their job posting."
         player "The title says 'Application Follow-up'..."
+        $ num_companies_interviewed += 1
         call screen company_interview_email_screen(interview_company_name)
         player laugh "I made it! I'm going to a coding interview!"
         player "I'm gonna share this with Annika and Marco."
@@ -1327,6 +1328,7 @@ label stage8:
         $ calendar.next_week()
 
         if offer_company_name is None:
+            $ num_companies_rejected += 1
             play sound 'audio/sfx/social_media_notification.wav'
             player surprised "Huh, an email from {b}[interview_company_name]{/b}? Right, it's been a week since my interview with them."
             player "The title says 'Interview Follow-up'..."
@@ -1370,10 +1372,11 @@ label stage8:
     player "Can't forget to check that off the To-Do list."
     $ accepted_offer_date = date(calendar.year, calendar.month, calendar.day)
     $ days_between_start_and_offer = (accepted_offer_date - start_date).days
-    $ days_between_curriculum_compltion_and_offer = (accepted_offer_date - completed_curriculum_date).days
+    $ days_between_curriculum_completion_and_offer = (accepted_offer_date - completed_curriculum_date).days
+
     call screen confirm_and_share_screen(
         title="{bt}Congratulations!{/bt}",
-        message="You taught yourself to become a developer in {b}{color=#002ead}[days_between_start_and_offer]{/color}{/b} days, [days_between_curriculum_compltion_and_offer] days after you've completed the coding curriculum.\nNow you are ready to rock your new job!\n Feel free to share your progress with the world!",
+        message="You taught yourself to become a developer in {b}{color=[dark_blue]}[days_between_start_and_offer]{/color}{/b} days, [days_between_curriculum_completion_and_offer] days after you've completed the coding curriculum.\nYou have applied to [num_jobs_applied] jobs and interviewed for [num_jobs_interviewed] times before landing this offer.\nNow you are ready to rock your new job!\n Feel free to share your progress with the world!",
         ok_text="Let's rock my new job!", 
     )
     $ persistent.achievements.add(milestone_sign_offer)

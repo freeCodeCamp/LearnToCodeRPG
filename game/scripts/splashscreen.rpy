@@ -35,7 +35,7 @@ label splashscreen:
 
         If you notice any bugs or have suggestions about accessibility, the interface, the story, or anything at all, please report them on our {a=https://github.com/freeCodeCamp/LearnToCodeRPG}GitHub repo{/a}.
 
-        If you are enjoying this game, please {icon=icon-award} rate us on itch.io and {icon=icon-star} star our {a=https://github.com/freeCodeCamp/LearnToCodeRPG}GitHub repo{/a}.
+        If you are enjoying this game, please {icon=icon-award} rate and review us on {a=https://freecodecamp.itch.io/learn-to-code-rpg}itch.io{/a} and {icon=icon-star} star our {a=https://github.com/freeCodeCamp/LearnToCodeRPG}GitHub repo{/a}.
         """)
     # use a lighter background because the hyperlinks are dark blue
     scene gray10 with dissolve

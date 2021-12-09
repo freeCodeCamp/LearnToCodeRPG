@@ -261,28 +261,31 @@ label day_activity_job_search:
         player "Here's the business card. It's from CupcakeCPU."
         player "Let's apply to CupcakeCPU."
         hide business_card
-        show screen job_posting_screen('CupcakeCPU', all_skill_names)
-        $ has_applied_to_cupcakecpu = True
-        # guaranteed interview
-        $ company_name = 'CupcakeCPU'
-        $ interview_company_name = company_name # a guaranteed interview
+        call screen job_posting_screen('CupcakeCPU', all_skill_names)
+        $ has_applied = _return
+        if has_applied:
+            $ has_applied_to_cupcakecpu = True
+            # guaranteed interview
+            $ company_name = 'CupcakeCPU'
+            $ interview_company_name = company_name # a guaranteed interview
 
     else:
         # apply to some random company
         $ company_name = renpy.random.choice(all_company_names.keys())
-        show screen job_posting_screen(company_name, all_skill_names)
-        if renpy.random.random() < 0.8: # 80% chance of interview
-            $ interview_company_name = company_name
+        call screen job_posting_screen(company_name, all_skill_names)
+        $ has_applied = _return
+        if has_applied:
+            if renpy.random.random() < 0.8: # 80% chance of interview
+                $ interview_company_name = company_name
 
-    player "Here is a job posting by {b}[company_name]{/b}."
-    player @ pout "They require so many different skills... Looks like I'll need to study hard after applying to this role."
-    # TODO: click button on screen to submit
-    play sound 'audio/sfx/button_click.wav'
-    player "Application submitted. Let's hope for the best."
+    if has_applied:
+        $ num_companies_applied += 1
+        player @ smile "Application submitted. Let's hope for the best."
+    else:
+        player @ pout "I feel like I'm not ready for this job. They require so many skills that I don't yet have."
 
     if has_won_hacker_space_trivia:
         $ todo_list.complete_todo(todo_apply_cupcakecpu)
-    hide screen job_posting_screen
 
     return
 

@@ -36,7 +36,9 @@ define config.version = "1.0"
 define about = _p("""
 {b}Learn to Code RPG{/b} was made possible by all the kind people who donate to support freeCodeCamp.org. You can help support our nonprofit's mission {a=https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/}here{/a}.
 
-This project is open source. You can make suggestions and report bugs {a=https://github.com/freeCodeCamp/LearnToCodeRPG}here on GitHub{/a}.
+This project is open source and is currently in beta. If you notice any bugs or have suggestions about accessibility, the interface, the story, or anything at all, please report them on our {a=https://github.com/freeCodeCamp/LearnToCodeRPG}GitHub repo{/a}.
+
+If you are enjoying this game, please {icon=icon-award} rate and review us on {a=https://freecodecamp.itch.io/learn-to-code-rpg}itch.io{/a} and {icon=icon-star} star our {a=https://github.com/freeCodeCamp/LearnToCodeRPG}GitHub repo{/a}.
 """)
 
 define credits = _p("""

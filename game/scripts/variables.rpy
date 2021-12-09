@@ -32,9 +32,14 @@ init:
     # player_stats.player_stats_map['CS Knowledge'] >= 80
     default has_completed_curriculum = False
 
+    default num_jobs_applied = 0
+    default num_jobs_interviewed = 0
+    default num_jobs_rejected = 0
+    default num_offers = 0 # v2
+
     default has_received_offer = False
     # TODO: beyond demo version, can do negotiation
-    default has_accepted_offer = False
+    default has_accepted_offer = False # v2
 
     default day_activity = None # set in day_activity_choice.rpy
 
