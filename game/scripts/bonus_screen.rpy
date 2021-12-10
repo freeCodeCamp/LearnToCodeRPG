@@ -39,12 +39,18 @@ screen achievements_screen():
     use game_menu(_("Achievements"), scroll="viewport"):
         style_prefix "bonus"
 
-        $ num_achievements = len(persistent.achievements)
-        text _("Number of Easter Eggs unlocked: [num_achievements] / [total_num_achievements]"):
-            xalign 0.5
-
         vbox:
             spacing 50
+
+            vbox:
+                $ num_achievements = len(persistent.achievements)
+                text _("{icon=icon-award} Number of Achievements Unlocked: [num_achievements] / [total_num_achievements]")
+                textbutton "{icon=icon-twitter} Tweet it when you've unlocked all of the achievements!":
+                    action [
+                    SensitiveIf(num_achievements == total_num_achievements), 
+                    OpenURL(tweet_all_achievements_unlocked)
+                ]
+
             for category in [plot_achievement, plot_bonus, quiz_bonus, ending_achievement]:
                 vbox:
                     spacing 15

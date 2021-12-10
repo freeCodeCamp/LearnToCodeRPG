@@ -219,5 +219,6 @@ init python:
     ]:
         all_tweet_map.update(tweet_map)
 
-
     total_num_achievements = len(all_tweet_map)
+    # all achievements unlocked
+    tweet_all_achievements_unlocked = tweet_default
