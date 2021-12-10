@@ -218,3 +218,6 @@ init python:
         achievement_labels_map
     ]:
         all_tweet_map.update(tweet_map)
+
+
+    total_num_achievements = len(all_tweet_map)

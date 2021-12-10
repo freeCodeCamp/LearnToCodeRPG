@@ -32,7 +32,7 @@ init:
     define dark_green = u'#00471b'
 
     image gray90 = gray90
-    image gray10 = gray10
+    image gray05 = gray05
 
     define red = u'#f00'
     define white = u'#fff'

@@ -27,6 +27,10 @@ screen confirm_and_share_screen(title, message="Now that's an Easter Egg uncover
                 text_align 0.5 # align multiline
                 xalign 0.5
 
+            $ num_achievements = len(persistent.achievements)
+            text _("Number of Easter Eggs unlocked: [num_achievements] / [total_num_achievements]"):
+                xalign 0.5
+
             textbutton "{icon=icon-twitter} " + _("Tweet this"):
                 xalign 0.5
                 action OpenURL(tweet_content_url)

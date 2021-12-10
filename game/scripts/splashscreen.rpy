@@ -21,10 +21,10 @@ label splashscreen:
 
         Adjust the volume of music and sound effects on the {icon=icon-settings} Settings screen.
 
-        Press the {b}{u}Esc{/u}{/b} key to access the {icon=icon-menu}Game Menu at any time during the game.
+        Press the {b}{u}Esc{/u}{/b} key to access the {icon=icon-grid}Game Menu at any time during the game.
         """)
     # use a lighter background because the hyperlinks are dark blue
-    scene gray10 with dissolve
+    scene gray05 with dissolve
     pause 1
     show text "{size=48}[accessibility_tips]{/size}"
     with dissolve 
@@ -38,7 +38,7 @@ label splashscreen:
         If you are enjoying this game, please {icon=icon-award} rate and review us on {a=https://freecodecamp.itch.io/learn-to-code-rpg}itch.io{/a} and {icon=icon-star} star our {a=https://github.com/freeCodeCamp/LearnToCodeRPG}GitHub repo{/a}.
         """)
     # use a lighter background because the hyperlinks are dark blue
-    scene gray10 with dissolve
+    scene gray05 with dissolve
     pause 1
     show text "{size=48}[beta_disclaimer]{/size}"
     with dissolve 

@@ -8,7 +8,7 @@ screen bonus_screen():
         vbox:
             spacing 15
             
-            label 'Bonus Contents'
+            label 'Bonus Content'
             textbutton '{icon=icon-award} ' + _("Achievements") action Show('achievements_screen')
             textbutton '{icon=icon-headphones} ' + _("Music Room") action Show('music_room_screen')
             # textbutton '{icon=icon-book-open} ' + _("Glossary") action Show('glossary_screen')
@@ -16,7 +16,7 @@ screen bonus_screen():
 
             null height 20
 
-            label 'Movies'
+            label 'Videos'
             # TODO: play game trailer from YouTube
             textbutton '{icon=icon-film} ' + _("Game Trailer") action NullAction()
             textbutton '{icon=icon-youtube} ' + _("Learn to Code RPG: The Making of") action NullAction()
@@ -26,10 +26,23 @@ screen bonus_screen():
             textbutton '{icon=icon-music} ' + _("Rhythm Game") action Start('rhythm_game_entry_label')
             # TODO: more mini games, quiz speedrun survival mode etc.
 
+            null height 20
+            label 'Awesome freeCodeCamp Resources'
+            textbutton '{icon=icon-youtube} ' + _("freeCodeCamp YouTube Channel") action OpenURL("https://www.youtube.com/channel/UC8butISFwT-Wl7EV0hUK0BQ")
+            textbutton '{icon=icon-map} ' + _("freeCodeCamp Curriculum") action OpenURL("https://www.freecodecamp.org/learn/")
+            textbutton '{icon=icon-compass} ' + _("freeCodeCamp Forum") action OpenURL("https://forum.freecodecamp.org/")
+            textbutton '{icon=icon-coffee} ' + _("freeCodeCamp Code Radio") action OpenURL("https://coderadio.freecodecamp.org/")
+            textbutton '{icon=icon-edit-3} ' + _("freeCodeCamp Style Guide") action OpenURL("https://design-style-guide.freecodecamp.org/")
+
 screen achievements_screen():
     tag menu
     use game_menu(_("Achievements"), scroll="viewport"):
         style_prefix "bonus"
+
+        $ num_achievements = len(persistent.achievements)
+        text _("Number of Easter Eggs unlocked: [num_achievements] / [total_num_achievements]"):
+            xalign 0.5
+
         vbox:
             spacing 50
             for category in [plot_achievement, plot_bonus, quiz_bonus, ending_achievement]:

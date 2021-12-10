@@ -20,26 +20,45 @@ label study_session:
         $ num_questions -= 1
 
         window hide
-        # see cs_questions.rpy
-        $ quiz_question = renpy.random.choice(study_session_questions)
-        if quiz_question.code_label is not None:
-            show screen example(quiz_question.code_label)
+        # see quiz_questions.rpy
+        # Easter Egg: 1% chance of encountering Easter Egg questions
+        if renpy.random.random() < 0.01:
+            $ quiz_question = renpy.random.choice(easter_egg_quiz_questions)
+            $ renpy.notify("A wild Easter Egg question appeared!")
+        else: # regular study session questions
+            $ quiz_question = renpy.random.choice(study_session_questions)
+
+        # # show code if any
+        # if quiz_question.code_label is not None:
+        #     show screen example(quiz_question.code_label)
 
         # display question
         $ renpy.say(None, quiz_question.question, interact=False)
         # result is True or False
         $ result = renpy.display_menu(quiz_question.choices)
-        hide screen example
+
+        # # hide code if any
+        # hide screen example
 
         if result == True:
             $ num_correct += 1
-            $ player_stats.change_stats('CS Knowledge', 2)
+
+            if quiz_question.easter_egg_name is None: # non-Easter Egg question
+                $ player_stats.change_stats('CS Knowledge', 2)
+
             player @ laugh "Correct!"
         else:
             with vpunch
             player @ pout "Wrong..."
             # show the correct answer and explanation using a viewport
             call screen quiz_question_answer_explanation_screen(quiz_question)
+
+        if quiz_question.easter_egg_name is not None: # Easter Egg achievement
+            $ persistent.achievements.add(quiz_question.easter_egg_name)
+            call screen confirm_and_share_screen(
+                title=quiz_question.easter_egg_name,
+                tweet_content_url=all_tweet_map[quiz_question.easter_egg_name]
+                )
 
     play sound 'audio/sfx/quiz_complete.wav'
     pause 0.5
