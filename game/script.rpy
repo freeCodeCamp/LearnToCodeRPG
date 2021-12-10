@@ -84,7 +84,7 @@ label start_after_interview:
     $ persistent.player_name = ''
     player pout "(Phew... Looks like I survived the technical questions. Now let's fill in the general information.)"
 
-    $ player_name = renpy.input("What is your name? {color=[red]}*{/color} (Type something and hit Enter)", default="Lydia")
+    $ player_name = renpy.input("What is your name? {color=[red]}*{/color} (Type your name and hit Enter. This name will be used throughout the game and you cannot change it unless you start a new game.)", default="Lydia")
     $ player_name = player_name.strip()
     if player_name in vip_names:
         $ vip_profile_url = vip_names[player_name]

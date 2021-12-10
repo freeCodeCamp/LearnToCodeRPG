@@ -797,12 +797,12 @@ screen preferences():
                         textbutton _("Window") action Preference("display", "window")
                         textbutton _("Fullscreen") action Preference("display", "fullscreen")
 
-                vbox:
-                    style_prefix "radio"
-                    label _("Rollback Side")
-                    textbutton _("Disable") action Preference("rollback side", "disable")
-                    textbutton _("Left") action Preference("rollback side", "left")
-                    textbutton _("Right") action Preference("rollback side", "right")
+                # vbox:
+                #     style_prefix "radio"
+                #     label _("Rollback Side")
+                #     textbutton _("Disable") action Preference("rollback side", "disable")
+                #     textbutton _("Left") action Preference("rollback side", "left")
+                #     textbutton _("Right") action Preference("rollback side", "right")
 
                 vbox:
                     style_prefix "check"
@@ -833,9 +833,17 @@ screen preferences():
 
                     label _("Text Speed")
 
+                    hbox:
+                        text _("Slower")
+                        text _("Faster") xpos 338
+
                     bar value Preference("text speed")
 
                     label _("Auto-Forward Time")
+
+                    hbox:
+                        text _("Less")
+                        text _("More") xpos 338
 
                     bar value Preference("auto-forward time")
 
@@ -845,11 +853,19 @@ screen preferences():
                         label _("Music Volume")
 
                         hbox:
+                            text _("Lower")
+                            text _("Higher") xpos 338
+
+                        hbox:
                             bar value Preference("music volume")
 
                     if config.has_sound:
 
                         label _("Sound Volume")
+
+                        hbox:
+                            text _("Lower")
+                            text _("Higher") xpos 338
 
                         hbox:
                             bar value Preference("sound volume")

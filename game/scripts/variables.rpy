@@ -1,4 +1,6 @@
-init:
+# creators should use priorities in the range -999 to 999
+# run last
+init 998:
     default stats_unlocked = False
     default stats_knowledge_unlocked = False # cs knowledge
     default todo_unlocked = False
