@@ -264,12 +264,16 @@ screen quick_menu():
             # textbutton _("Q.Load") action QuickLoad()
             textbutton '{icon=icon-settings} ' + _("Settings ") action ShowMenu('preferences')
 
+            # if stats is showing, hide it; else show it
             if stats_unlocked:
-                textbutton _("{icon=icon-smartphone} Stats") action If(
+                textbutton _("{icon=icon-smartphone} Stats") action [
+                SensitiveIf(not renpy.get_screen('player_stats_screen', layer='transient')),
+                If(
                     renpy.get_screen('player_stats_screen'),
                     true=ToggleScreen('player_stats_screen'),
                     false=ShowTransient("player_stats_screen")
                     )
+                ]
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever

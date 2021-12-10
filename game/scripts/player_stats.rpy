@@ -18,8 +18,6 @@ init python:
                 clamped_val = min(100, max(0, val))
                 self.player_stats_map[stats_name] = clamped_val
                 renpy.notify(stats_name + ' is set to ' + str(clamped_val))
-                # if not renpy.get_screen('player_stats_screen'):
-                #     renpy.show_screen('player_stats_screen', _layer='transient', show_todo=False)
 
         def change_stats(self, stats_name, val):
             # keep between 0 and 100
@@ -42,7 +40,7 @@ init python:
                         renpy.sound.play('audio/sfx/stats_change_buzz.wav')
 
                 # show the stats screen
-                if not renpy.get_screen('player_stats_screen'):
+                if not renpy.get_screen('player_stats_screen', layer='transient'):
                     # screen has been cleared, reset previous change directions
                     renpy.show_screen('player_stats_screen', 
                         _layer='transient', show_todo=False, changed_stats=stats_name, change_direction=change_direction)
@@ -62,7 +60,7 @@ init python:
 
         def add_todo(self, todo):
             self.incomplete.append(todo)
-            if not renpy.get_screen('player_stats_screen'):
+            if not renpy.get_screen('player_stats_screen', layer='transient'):
                 renpy.show_screen('player_stats_screen', _layer='transient')
             if not renpy.sound.is_playing():
                 renpy.sound.play('audio/sfx/smartphone_typing.wav')
@@ -71,7 +69,7 @@ init python:
             if todo in self.incomplete:
                 self.incomplete.remove(todo)
                 self.completed.append(todo)
-                if not renpy.get_screen('player_stats_screen'):
+                if not renpy.get_screen('player_stats_screen', layer='transient'):
                     renpy.show_screen('player_stats_screen', _layer='transient')
                 if not renpy.sound.is_playing():
                     renpy.sound.play('audio/sfx/todo_complete.wav')
