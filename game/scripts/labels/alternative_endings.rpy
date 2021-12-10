@@ -263,33 +263,33 @@ label ending_tutor:
     scene bg classroom with fade
     show boy purple with moveinleft
     boy "Everyone shush and get back to their seats!"
-    boy "I heard that we are going to have a new tutor to teach us coding."
+    boy "I heard that we are going to get a new tutor to teach us coding."
     hide boy with moveoutright
     player happy "Hi everyone. I'm [persistent.player_name]. I'm your CS tutor for the day."
     player smile "Let's jump right in! Who can tell me what a computer program is?"
-    girl "I know! Like an App on your phone!"
+    girl "I know! Like an app on your phone!"
     boy "And video games as well!"
     girl "Eh. The video game talk again. Can you talk for one second about something else?"
-    player surprised "(Wow. The kids are surely energetic. And smart, too!)"
+    player surprised "(Wow. The kids sure are energetic. And smart, too!)"
     player "Alright, those are all great answers. Now let me give you this definition of a computer program..."
 
     scene bg classroom dusk with fadehold
-    boy "Thank you so much today! That was fun!"
+    boy "Thank you so much for today! That was fun!"
     girl "We learned a lot! Hope to see you again!"
 
     scene bg kitchen dusk with fadehold
     mom "How did you like teaching, [persistent.player_name]?"
-    mom "I heard that the kids loved you and the school would like you to come everyday if that works for your schedule."
-    player neutral "(That was fun, but it was a lot of commitment as well.)"
-    player "(But if I need to come in everyday, I won't have time to learn to code and become a developer myself.)"
-    player "(That said, am I that hellbent on becoming a developer? Wouldn't it be fun as well to pass on coding knowledge?)"
-    player "(Should I stick to learning to code, or to teach coding?)"
+    mom "I heard that the kids loved you and the school would like you to come every day if that works for your schedule."
+    player neutral "(That was fun, but it was a lot of work as well.)"
+    player "(But if I need to come in every day, I won't have time to learn to code and become a developer myself.)"
+    player "(That said, am I that hellbent on becoming a developer? Wouldn't it be fun to pass along my coding knowledge?)"
+    player "(Should I stick to learning to code, or should I continue to teach coding?)"
     player "(I feel like this is a really important decision for me to make. I need to think this through.)"
 
     call save_reminder from _call_save_reminder_17
 
     menu:
-        player "(Should I stick to learning to code, or to teach coding?)"
+        player "(Should I stick to learning to code, or continue to teach coding?)"
     
         "Let's stick to learning to code and become a developer.":
             player "(Right. I shouldn't forget about my initial goal.)"
@@ -308,41 +308,41 @@ label ending_tutor:
     scene bg classroom with fade
     player happy "So this is how a for loop works. Are we all clear on the definition?"
     boy "This for loop thing is amazing! {b}For{/b} each enemy in the game, I'm gonna beat 'em up!"
-    girl "... {b}For{/b} each of your video game talks, I'm gonna tell you to cut it out."
+    girl "... {b}For{/b} each time you mention video games, I'm gonna tell you to cut it out."
     player laugh "Let's {b}break{/b} out of the for loop and move on, shall we?"
 
     call screen text_over_black_bg_screen("A year later...")
     scene bg classroom with fade
     # actually meets Layla who volunteers here
-    player smile "I heard that we will have a special guest today."
+    player smile "I heard that we're having a special guest today."
     player "She is a developer who loves teaching and volunteering."
-    player "She is going to talk to the class about what it is like to work in software engineering."
+    player "She's going to talk to the class about what it's like to work in software engineering."
     player "(Oh, here she comes!)"
     show layla
     player surprised "(Wait. She looks familiar.)"
     player "(...Oh! Was that her at Hacker Space mentoring the kids?)"
-    player "(If I remembered correctly...)"
+    player "(If I remember correctly...)"
 
     scene bg hacker_space with fadehold
     show layla
-    layla @ laugh "So how's everyone's project going? We mentors are here to answer any question you have!"
+    layla @ laugh "So how's everyone's project going? We mentors are here to answer any questions you have!"
 
     scene bg classroom with fade
     show layla
     player "(That was definitely her at Hacker Space!)"
     layla "Hey there! I'm Layla."
     player smile "Hi Layla. Nice to meet you! I'm [persistent.player_name]. I've been teaching here for a year."
-    layla "That's awesome! Teaching is my favorite occupation actually."
+    layla "That's awesome! Teaching is my favorite thing to do, actually."
     layla "Alright, enough small talk. Is it about time that we address the class?"
     player happy "Yeah sure!"
-    player laugh "Hey class, today we have Layla, a full-time developer, to talk to you about what it is like to work in tech."
+    player laugh "Hey class, today we have Layla, a full-time developer, here to talk to you about what it's like to work in tech."
     layla @ laugh "Thanks for the intro, [persistent.player_name]. I'm Layla."
     layla "Before I start with my story. Let me just tell you this."
     layla "I once had to make a very difficult choice between working in software or teaching coding at a school."
-    player pout "(That sounds familiar. I've been there before as well.)"
+    player pout "(That sounds familiar. I've been there before, too.)"
     layla "I chose the former and here I am."
     layla @ laugh "Well, sometimes I do wonder what could've happened if I had chosen differently."
-    player relieved "(Layla looks content with where she is now. Hmmm... but I do wonder, what could've happened had I chosen differently?)"
+    player relieved "(Layla looks content with where she is now. Hmmm... but I do wonder, what could've happened if I'd chosen differently?)"
 
     $ persistent.achievements.add(ending_tutor)
     play sound 'audio/sfx/alternative_ending.wav'
@@ -364,9 +364,9 @@ label ending_office:
     show smartphone at truecenter
     player surprised "Hmm... A notification from my phone?"
     player neutral "It reads 'We are hiring!' Maybe it's from some old office job I applied to when I was finishing up college."
-    player "Shall I read the email?"
+    player "Should I read the email?"
     menu:
-        player "Shall I read the email about an office job application?"
+        player "Should I read the email about an office job application?"
     
         "Won't hurt if I read it.":
             pass
@@ -381,7 +381,7 @@ label ending_office:
 
     player "Won't hurt if I read the email."
     player "Hmm... They said they looked at my application and thought I'm a good fit. Well, it's easy office work, so anyone is a good fit."
-    player "The most technically complicated thing I will need to deal with is probably a spreadsheet."
+    player "The most technically complicated thing I would need to deal with is probably a spreadsheet."
     player "But the pay is decent enough..."
     player "Maybe I can work for a few months and see how it goes?"
     player "(I feel like this is a really important decision for me to make. I need to think this through.)"
@@ -389,7 +389,7 @@ label ending_office:
     call save_reminder from _call_save_reminder_18
 
     menu:
-        "Shall I accept the office job?"
+        "Should I accept the office job?"
     
         "It pays okay so why not?":
             pass
@@ -413,7 +413,7 @@ label ending_office:
     scene bg cubicle with fade
     player neutral "(It's been a year, and here I am, still at my office job.)"
     player "(The work is boring and mentally draining, so I come home everyday too exhausted to do anything else.)"
-    player @ pout "(Geez, I haven't even had the energy to play video games in a long while, let alone learn to code in my spare time.)"
+    player @ pout "(Geez, I haven't even had the energy to play video games in a long time, let alone learn to code in my spare time.)"
     office_worker "Hey you. Stop daydreaming. The boss wants this presentation slide deck done today."
     player "Oh, sorry, I'll get it done as soon as possible."
 
@@ -452,7 +452,7 @@ label ending_farmer:
     call save_reminder from _call_save_reminder_19
 
     menu:
-        player "Shall I really give up on learning to code already and embrace mother nature?"
+        player "Should I really give up on learning to code already and embrace mother nature?"
     
         "Sounds like a plan!":
             pass
@@ -491,7 +491,7 @@ label ending_farmer:
     scene bg farm dusk with fade
     player laugh "It's so pretty out here on the farm at dusk. The clouds turn a thousand nice warm shades."
     scene bg farm night with fade
-    player "Sometimes we will have a campfire and S'mores at night."
+    player "Sometimes we have a campfire and s'mores at night."
     player happy "I'm enjoying this farm life so much that I don't think I will return to the city any time soon..."
 
     $ persistent.achievements.add(ending_farmer)
@@ -512,13 +512,13 @@ label second_chance:
     # this label must be used with jump, not call
     scene black with dissolve
     # Note to proofreader: this is an omnipotent narrator, so feel free to change their tone
-    "Hey [persistent.player_name]. Kudos to you for coming this far in the story."
+    "Hey [persistent.player_name]. Kudos to you for coming this far in the game."
     "That wasn't a bad way to end the story. Not bad at all."
-    "But say, would you have wanted something different?"
+    "But if you think about it, would you have wanted something different?"
     "Would it be possible to teach yourself to code and fulfill your dream of becoming a developer?"
     "Do you wish for an ending like that?"
     "Okay, I'm going to let you in on a little secret."
-    "If you like, you can wind back the clock and revisit the choice you've made."
+    "If you like, you can wind back the clock and revisit the choices you've made."
     "If I may ask, did you remember to {b}Save{/b} your progress before making this choice that has taken you here?"
     call screen confirm("Did you {b}Save{/b} your progress and wish to {b}Load{/b} and get back in time? (It's okay if you answer no. I'll let you in on another secret.)", 
         yes_action=[ShowMenu('load'), Return()], 
@@ -528,13 +528,13 @@ label second_chance:
     "Interesting. It looks I have no choice but to let you in on my other little secret."
     "Listen up, alright? I can offer you a second chance to go back to the day you made the choice that took you here."
     "That is, if you so wish."
-    "Now answer me, would you like to get a second chance?"
+    "Now answer me this, would you like to get a second chance?"
     menu:
         "Would you like to go back in time and revisit your choice?"
     
         "Time traveling! Let's do it.":
             "You know the rocket ship saying? 'If you're offered a seat on a rocket ship, don't ask what seat.'"
-            "Let us rollback in time, brave traveler."
+            "Let's rollback in time, brave traveler."
             # TODO: tweet
             play sound 'audio/sfx/rewind.wav' # 5 sec
             pause 4.0
