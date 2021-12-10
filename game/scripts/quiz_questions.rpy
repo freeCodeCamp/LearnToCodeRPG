@@ -21,7 +21,7 @@ screen quiz_question_answer_explanation_screen(quiz_question):
 
             null height 20
             label 'Correct answer'
-            text quiz_question.true
+            text '{b}[quiz_question.true]{/b}'
 
             null height 20
             if quiz_question.explanation:
@@ -39,6 +39,7 @@ screen quiz_question_answer_explanation_screen(quiz_question):
                 action Return()
 
 init python:
+
     class QuizQuestion():
         '''
         question: a string
@@ -49,6 +50,11 @@ init python:
         '''
         def __init__(self, question, true, false, category=None, explanation=None, 
             code_label=None, learn_more_url=None, easter_egg_name=None, difficulty=None):
+
+            """
+            tech trivia questions only have question, true, and false, so all other fields are optional
+            """
+
             choices = {
             true: True
             }
@@ -82,654 +88,6 @@ init python:
             self.learn_more_url = learn_more_url
             self.easter_egg_name = easter_egg_name
             self.difficulty = difficulty
-
-    # TODO: read csv
-    easter_egg_quiz_questions = [
-    QuizQuestion(
-        question="freeCodeCamp.org first launched in:",
-        true="2014",
-        false=["2001", "1910", "2030"],
-        explanation="The first version of the freeCode",
-        learn_more_url="https://www.freecodecamp.org/news/about/",
-        easter_egg_name="The Launch of freeCodeCamp",
-        difficulty=1
-        )
-    ]
-
-    css_questions = [
-    QuizQuestion(
-        question="What is RGB?",
-        true="A color model",
-        false=["An Internet Protocol", "HTML syntax", "A secret password"],
-        explanation="RGB is an acronym that stands for {b}red{/b} {b}green{/b} {b}blue{/b}. It expresses colors in terms of the amount of red, green, and blue they are made up of and uses a human counting system with integers ranging from 0-255 or a percentage ranging from (0% - 100%).",
-        learn_more_url="https://www.freecodecamp.org/news/rgb-color-html-and-css-guide/",
-        difficulty=1
-        )
-    ]
-
-    # we have general_questions, javascript_questions, web_questions, algorithm_questions, and system_questions
-
-    general_questions = [
-    
-    QuizQuestion(
-        question="What is the binary representation of 10?",
-        true="1010",
-        false=["0101", "1011", "0010"]
-        ),
-
-    QuizQuestion(
-        question="What is the size of wchar_t in bits?",
-        true="16", 
-        false=["8", "4"]
-        ),
-
-    QuizQuestion(
-        question="How many times is the value of i checked in the following C code?",
-        true="3",
-        false=["2", "4", "1"],
-        code_label='c_code1'
-        ),
-
-    QuizQuestion(
-        question="Which will display `hello world` in JavaScript?",
-        true="console.log('hello world')",
-        false=["console.print('hello world')", "document.write('hello world')"]
-        ),
-
-    QuizQuestion(
-        question="What will this Python code print?",
-        true="3",
-        false=["0", "1", "2", "π"],
-        code_label='py_code1'
-        ),
-
-    QuizQuestion(
-        question="What is the value of 'puzzle' in this line of JavaScript?",
-        true="joke answer",
-        false=["free", "code", "camp", "courses"],
-        code_label='js_code11'
-        ),
-
-    QuizQuestion(
-        question="What will this Python code print?",
-        true="None of the above.",
-        false=["012345", "15", "01234", "10"],
-        code_label='py_code2'
-        ),
-
-    QuizQuestion(
-        question="What should be at the top of most HTML files?",
-        true="<!DOCTYPE html>",
-        false=["<DOCTYPE html>", "<!BEWARE html>"]
-        ),
-
-    QuizQuestion(
-        question="Which is an HTML comment?",
-        true="<!-- comment -->",
-        false=["// comment", "# comment", "-- comment"]
-        ),
-
-    QuizQuestion(
-        question="In Regex, which will match all digits in a string?",
-        true="[[1-9]",
-        false=["/#", "/digits", "/D", "/d"]
-        ),
-
-    QuizQuestion(
-        question="What will the following Python code print?",
-        true="Any line that starts with 'From:'",
-        false=[
-        "Any line containing 'From'",
-        "Any line that starts with 'From'",
-        "Any line containing 'From:'",
-        "The lyrics of 'Never Gonna Give You Up'"
-        ],
-        code_label='py_code3'
-        ),
-
-    QuizQuestion(
-        question="What will print out after running this Python code:",
-        true="4.0",
-        false=["4", "height/3", "5", "opossum"],
-        code_label='py_code4'
-        ),
-
-    QuizQuestion(
-        question="What will be the output of the following JavaScript code?",
-        true="11",
-        false=["11121314", "1112", "12345"],
-        code_label='js_code12'
-        ),
-
-    QuizQuestion(
-        question="How do you access the value for key `Price` in the following Python dictionary?",
-        true='mystock[["Price"]',
-        false=[
-        'mystock[[Price]',
-        'mystock("Price")',
-        'mystock{{"Price"}',
-        'mystock(price)'
-        ],
-        code_label='py_code5'
-        ),
-
-    QuizQuestion(
-        question="Which will create a variable in JavaScript?",
-        true='let me = "in"',
-        false=[
-        'string freeCodeCamp = "amazing";',
-        'language <- "JavaScript"',
-        'variable correct = "answer";',
-        'let there be variable'
-        ]
-        ),
-
-    QuizQuestion(
-        question="What will be the output of the following Java code?",
-        true="Runtime Exception",
-        false=[
-        "Compile time exception",
-        "UnsupportedOperationException",
-        ],
-        code_label='java_code1'
-        ),
-
-    QuizQuestion(
-        question="How do you convert uppercase letters in a string to lowercase letters in Python?",
-        true="lower()",
-        false=["lowercase()", "toLower()", "sudo make lower case"]
-        ),
-
-    QuizQuestion(
-        question="What will be the output of the following Java code?",
-        true="UnsupportedOperationException",
-        false=[
-        "{{11=a}",
-        "{{11=a, 12=b}",
-        "Compile time exception",
-        ],
-        code_label='java_code2'
-        ),
-
-    QuizQuestion(
-        question="Which of the following properly expresses the precedence of operators (using parentheses) in the following expression: 5*3 > 10 and 4+6==11",
-        true="((5*3) > 10) and ((4+6) == 11)",
-        false=[
-        "(5*(3 > 10)) and (4 + (6 == 11))",
-        "((((5*3) > 10) and 4)+6) == 11",
-        "((5*3) > (10 and (4+6))) == 11"
-        ]
-        ),
-
-    QuizQuestion(
-        question="What is the command to list all Node modules that are installed globally?",
-        true="npm ls -g",
-        false=[
-        "npm ls",
-        "node ls -g",
-        "node ls"
-        ]
-        ),
-
-    QuizQuestion(
-        question="Which line of code produces a list of numbers between 1 and 1000 that are divisible by 3?",
-        true="[[x for x in range(1000) if x%3==0]",
-        false=[
-        "[[x in range(1, 1000) if x%3==0]",
-        "[[x%3 for x in range(1, 1000)]",
-        "[[x%3=0 for x in range(1, 1000)]"
-        ]
-        ),
-
-    QuizQuestion(
-        question="What is the output of the following Python program?",
-        true="33",
-        false=["34", "12", "31", "42"],
-        code_label='py_code6'
-        ),
-
-    QuizQuestion(
-        question="What is the result of the following Java code?",
-        true="A will be printed, and then an exception is thrown.",
-        false=[
-        "It only prints B and exits.",
-        "It only prints A and exits.",
-        "It prints A and B with a 1000 seconds delay between them."
-        ]
-        ),
-
-    QuizQuestion(
-        question="Which of the following is not part of Data Analysis?",
-        true="Picking a desired conclusion for the analysis.",
-        false=[
-        "Building statistical models and data visualizations.",
-        "Fixing incorrect values and removing invalid data.",
-        "Transforming data into an appropriate data structure."
-        ]
-        ),
-
-    QuizQuestion(
-        question="What does the shape of our dataframe tell us?",
-        true="How many rows and columns our dataframe has.",
-        false=[
-        "The size in gigabytes the dataframe we loaded into memory is.",
-        "How many rows the source data had before loading.",
-        "How many columns the source data had before loading."
-        ]
-        ),
-
-    QuizQuestion(
-        question="Which statement below is false?",
-        true="Neural networks are modeled after the way the human brain works.",
-        false=[
-        "Computer programs that play tic-tac-toe or chess against human players are examples of simple artificial intelligence.",
-        "Machine learning is a subset of artificial intelligence."
-        ]
-        ),
-
-    QuizQuestion(
-        question="Where are your programs stored when they are running?",
-        true="Memory.",
-        false=["Hard Drive.", "Central Processing Unit."]
-        ),
-
-    QuizQuestion(
-        question="Which data structure ensures the uniqueness of its elements?",
-        true="Set",
-        false=["List", "Array", "Collection", "Heap"]
-        ),
-
-    ]
-
-    # https://github.com/freeCodeCamp/multiple-choice-questions
-    
-    javascript_questions = [
-
-    QuizQuestion(
-        question="Which of the following statements is true of JavaScript?",
-        true="All of these choices are correct",
-        false=[
-        "JavaScript supports object-oriented programming",
-        "JavaScript supports functional programming",
-        "JavaScript supports imperative programming",
-        ]
-        ),
-
-    QuizQuestion(
-        question="Is JavaScript single-threaded or multi-threaded?",
-        true="JavaScript is single-threaded.",
-        false=[
-        "Threading only applies to compiled languages.",
-        "JavaScript is multi-threaded.",
-        "Threading only applies in staticly typed languages.",
-        ]
-        ),
-
-    QuizQuestion(
-        question="What will the following code print to the console?",
-        true="dlroW olleH",
-        false=[
-        "[[ 'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd' ]",
-        "[[ 'd', 'l', 'r', 'o', 'W', ' ', 'o', 'l', 'l', 'e', 'H' ]",
-        "Hello World",
-        ],
-        code_label='js_code1',
-        explanation="You may have expected this code to print Hello World to the console. However, when we define baz, we are not creating a new array. Rather, we are simply creating a reference to the array that was created during the assignment of bar (in fact, both variables are just references to the same object, which is stored in memory behind the scenes). Since baz is just a reference to bar, and not its own array, any operation that is performed on it, is also performed on the original array. So, when we join bar back into a string, the result is a mirror image of what you might have expected! And, of course, the same result that we would have gotten from console.log(baz.join(' '));"
-        ),
-
-    QuizQuestion(
-        question="When executed in a browser's console, what will the following code output?",
-        true="Window {{...}\nundefined",
-        false=[
-        "{{ baz: 'Hello', bar: [[Function: bar] }\nHello",
-        "Window {{...}\nHello",
-        "{{ baz: 'Hello', bar: [[Function: bar] }\nundefined"
-        ],
-        code_label='js_code2',
-        explanation="""
-        You might have expected this code to log the foo object along with Hello to the console, however, arrow function expressions are not ideally suited for method functions. Here's why: arrow functions do not create their own this context, nor do they care how the function is called; rather, they inherit their this value from the enclosing scope. So in this case, this still refers to the global context, in which baz is not defined. Had bar been written with the function keyword, this code would have worked as expected, since typically, when a function is invoked with method invokation, this will always refer to the context, or object, that the function was written in.
-
-        Note that in different environments, the global this value can reference different things. Running this code in a browser's console, as in this example, this will always refer to the global Window object. If we ran this same code in a Node environment, however, the this value would simply be an empty global object: {{}.
-
-        In general, there's no other reason why arrow functions are not an appropriate choice for object methods. So if you use them in this way, just be careful with this!
-        """
-        ),
-
-    QuizQuestion(
-        question="Which of the following is a feature provided by ES6 arrow functions?",
-        true='They "inherit" this from the enclosing lexical context, regardless of how the function is called.',
-        false=[
-        "They allow for functional composition.",
-        "The only advantage is shorter syntax.",
-        "They are prone to fewer memory leaks."
-        ],
-        explanation="""
-        ES6 arrow functions take this from the context where they are written and implicitly bind it to the function. Now, regardless of where that function is called it will retain the original this value. The same result could be accomplished by explicitly binding this (e.g. .bind(this)) to the function in the context you want to bind this. Otherwise, for non-arrow functions, this will be defined by the context in which a function is called.
-        """
-        ),
-
-    QuizQuestion(
-        question="In JS, The use of const prevents the modification of arrays and objects.",
-        true="True, these are now constant values.",
-        false=["False, they are only references. The actual values in the array or object can still be mutated."],
-        explanation="""
-        The use of const prevents a value from being reassigned. Arrays and objects, however, can be modified without being reassigned. If you have a const object dictionary and you write dictionary[[freecodecamp] = true this code will run without error. However, if you were to try to reassign this constant value by writing dictionary = 5, this would throw an error: Uncaught TypeError: Assignment to constant variable. This is an important aspect to keep in mind when working with constant values in JavaScript.
-        """
-        ),
-
-    QuizQuestion(
-        question="Which of the following choices will empty the array foo as well as all references to foo (such as bar)?",
-        true="foo.splice(0, foo.length);",
-        false=[
-        "foo = [[];",
-        "foo.empty();",
-        "foo.slice(0, foo.length);",
-        ],
-        explanation="""
-        JavaScript's native splice method modifies a referenced array in place by removing and (optionally) adding elements. splice's first parameter indicates the index at which to begin removing elements, the second indicates how many elements to remove, while the third can be any number of elements to add to the array in their place. So by invoking splice with 0 and Array.length, and by omitting the 3rd, parameter we can reliably empty an array of any length. Another method of emptying an array that works just as well, is to explicitly set the length of the array to 0, i.e. foo.length = 0;.
-
-        The foo = [[]; method would not truly empty the array. Instead, it would have only reassigned the variable foo to a new array object. The original array that foo used to point to would still exist in memory, and any other references to that array, such as bar in this case, would be unaffected.
-
-        slice is better suited to copying arrays, and is not appropriate for this use case. Array.empty() is not a native JavaScript method, so this solution would fail.
-        """
-        ),
-
-    QuizQuestion(
-        question="What will the following code output to the console?",
-        true="super",
-        false=[
-        "null",
-        "cool",
-        "undefined",
-        ],
-        code_label='js_code3',
-        explanation=_p("""
-        This code logs super to the console even though a is never defined in the inner function bar, because bar has closure over the outer function foo.
-
-        When a function is defined inside of another function, it is said to have "closure" over that function, meaning that it has access to the variables defined in the outer function's scope. When execution reaches the console.log() statement, JavaScript searches bar's scope for a variable called a. When it does not find one, it then searches the scope "bubble" that is the next level up, in this case, the scope created by foo. If a was not defined in foo, the search would continue, moving up to the next scope. If the outer-most, or global scope is reached and a variable is still not found, JavaScript will throw a ReferenceError.
-
-        If the way that these functions are called tripped you up, here's the explanation: foo is an immediately invoked function expression (or IIFE), invoked by the parentheses that contain 'super'. This expression resolves before anything else occurs, and since it resolves to the function bar, the second set of parentheses are simply invoking that function, and thus the console.log() statement is executed.
-        """)
-        ),
-
-    QuizQuestion(
-        question="What will the following code log to the console?",
-        true="true\nfalse",
-        false=[
-        "false\ntrue",
-        "false\nfalse",
-        "true\ntrue"
-        ],
-        code_label='js_code4',
-        explanation="""
-        The first expression will evaluate to true since the == operator performs a non-strict comparison, meaning that if the 2 values are not of the same type, JavaScript will attempt to coerce the values into comparable types. In this case, JavaScript will coerce 0 into to a boolean, and since 0 is falsy in JavaScript, it will coerce to false.
-
-        The === operator, on the other hand, represents strict equality, meaning that no type coercion will take place. To evaluate to true, the values on either side of this symbol must be of the same type and value. This means that the second expression evaluates to false — since false and 0 are not of the same type, no further comparison is necessary.
-
-        Note that these principles hold true for JavaScript's inequality operators as well, non-strict: !=, strict: !==.
-        """
-        ),
-
-    QuizQuestion(
-        question="This code does not work correctly, it simply prints five 5s to the console. How can we use ES6 to fix this problem so that the code works as expected?",
-        true="By replacing the var keyword with let",
-        false=[
-        "By replacing the function keyword with => syntax",
-        "By replacing the var keyword with const",
-        "None of these answers are correct"
-        ],
-        code_label='js_code5',
-        explanation="""
-        The major advantages of the let keyword introduced in the ECMAScript 2015 specification is the ability to "block scope" a variable to a specific block, statement, or expression. This is unlike the var keyword which creates a variable that is scoped globally to the context it is defined in — either a function or the global scope. In the case of this code, replacing var with let block scopes let to the for loop, so that each iteration refers to a new instance of the variable i, and 0-4 is printed to the console as expected.
-
-        Prior to ES6, the best solution for this problem was to create a local scope around or within the setTimeout function and passing in the value of i during each iteration of the loop. For example, by wrapping setTimeout in an IIFE and invoking it with i.
-        """
-        ),
-
-    QuizQuestion(
-        question="What will the following code output to the console?",
-        true='"022"\n"221-1"',
-        false=[
-        '4\n4',
-        '"04"\n"220"',
-        '"022"\n"220"'
-        ],
-        code_label='js_code6',
-        explanation="""
-        What makes this code a bit tricky is the fact that JavaScript is a "weakly" or "loosely" typed language. This means that, in part, JavaScript will allow operations to be performed on values that are not of the same data types, and as a result, it will "coerce" values that are not of the same type in order to accomodate the operation. This has a significant impact on the above code snippets. Let's look at each example in turn.
-
-        Ex: console.log(1 + -"1" + "2" - "2");
-        In JavaScript, the negation symbol, e.g. -x, is treated as a unary operator, and, according to order of operations precedence, is evaluated before the four standard mathematical operators (+, -, /, *). Thus in this snippet, the first operation performed is the negation of "1". Since this value is a string, to accomodate this operation, "1" is converted to a number. From here, the expression is evaluated from left to right, since all other operators are treated equally in precedence. First 1 is added to -1, resulting in 0, followed by 0 + "2" . However, since one of these two values is a string, the remaining value is coerced into a string, and concatenation is performed rather than addition. Now we are left with "02" + "2" , a simple string concatenation with no coersion necessary, giving us the final result of "022"
-
-        Ex: console.log("2" + "2" + 1 + -"1");
-        This example is nearly identical. However, even though "1" is coerced into a number before any other operations are performed, -1 is then coerced back into a string since it is a part of the final evaluation: "2" + "2" results in "22", "22" + 1 results in "221", and "221" + -1 gives us "221-1".
-        """
-        ),
-
-    QuizQuestion(
-        question="What will the following code log to the console?",
-        true="undefined",
-        false=[
-        "ReferenceError: x is not defined",
-        "TypeError: x is not defined",
-        "ReferenceError: x is undefined"
-        ],
-        code_label='js_code7',
-        explanation="""
-        undefined refers to a variable that has been declared but not yet assigned a value. not defined is a ReferenceError, thrown when a variable is encountered that has not yet been declared.
-
-        If you were to comment out the first line var x; and run the code again, ReferenceError: x is not defined would be thrown.
-        """
-        ),
-
-    QuizQuestion(
-        question="What is the difference between == and === in JavaScript?",
-        true="== represent abstract equality and allows type coercion, whereas === uses strict equality and will not coerce its arguments.",
-        false=[
-        "=== can be used to test deep equality of arrays and objects, whereas == cannot.",
-        "None of these are correct.",
-        "These operators are interchangeable and both test for equality."
-        ],
-        explanation="""
-        The difference between these two equality operators is that the first allows type coercion and the second does not. Because JavaScript is a loosely typed language, the abstract equality operator can establish equality between dissimilar types. For instance, "2" == 2 evaluates to true, however, this would fail under a check of strict equality. Generally, strict equality is safer and preferred, but it's good to understand the difference between these two equality operators.
-        """
-        ),
-
-    ]
-
-    web_questions = [
-
-    QuizQuestion(
-        question="What service do CDNs provide?",
-        true="A CDN (content delivery or distribution network) is designed to provide web content with high availability and high performance.",
-        false=[
-        "A CDN makes real-time communication between web clients very efficient.",
-        "CDNs are responsible for routing web requests to destination servers.",
-        "None of these are correct."
-        ],
-        explanation="""
-        A CDN is a content delivery network primarily responsible for serving static web assets in a very performant manner. CDNs can reduce server traffic by handling specific requests and are often geographically distributed in a way to handle requests more efficiently. A large percentage of web traffic is served via CDNs today.
-        """
-        ),
-
-    QuizQuestion(
-        question="Which HTTP status code is reserved for successful responses?",
-        true="200",
-        false=[
-        "500",
-        "404",
-        "303",
-        "505"
-        ],
-        explanation="The 200 status codes are reserved for client requests that are received and successfully processed by a server."
-        ),
-
-    QuizQuestion(
-        question="___ is the HTTP status code for client errors, and ___ is the status code for server errors.",
-        true="400, 500",
-        false=[
-        "200, 400",
-        "200, 500",
-        "200, 300",
-        "300, 500"
-        ],
-        explanation="Any 400 status is used for client errors (unauthorized, bad request, not found, etc), and 500 status is used for servers errors (internal server error, bad gateway, etc.)."
-        ),
-
-    QuizQuestion(
-        question="What role does the Domain Name System play in resolving web traffic?",
-        true="The DNS is responsible for resolving web domain names to the actual IP addresses where the associated service is located.",
-        false=[
-        "The DNS system plays an important role re-routing server traffic when a single server becomes over-loaded.",
-        "The DNS is responsible for breaking internet traffic into small packets to be sent to web clients.",
-        "The DNS system is responsible for verifying SSL security certificates."
-        ],
-        explanation="""
-        The Domain Name System maps domain names to the underlying IP addresses which are responsible for actually serving web traffic. This allows web addresses to be represented by a single, human-readable domain (e.g. freecodecamp.com), while behind the scenes freeCodeCamp servers may exist at one or more IP addresses which are mapped to the domain name by the DNS system when a user visits freecodecamp.com.
-        """
-        ),
-
-    QuizQuestion(
-        question="How many classes of HTTP status codes are there?",
-        true="Five",
-        false=["Two", "Three", "Four", "One"],
-        explanation="""
-        There are five different classes of HTTP status codes, represented by 100, 200, 300, 400, and 500. Each is used to specify a different server response to a client during use of the Hypertext Transfer Protocol (HTTP). 
-        """
-        ),
-
-    ]
-
-    algorithm_questions = [
-
-    QuizQuestion(
-        question="What is the distinguishing characteristic of a `pure function`?",
-        true="A pure function has no side effects and given the same arguments always returns the same result.",
-        false=[
-        "A pure function directly returns a result without calling any other functions.",
-        "A pure function is a function that modifies a global variable, and does nothing else.",
-        "A function is `pure` if it only accepts a single argument.",
-        "None of these answers are correct."
-        ],
-        explanation="""
-        Pure functions are crucial elements of functional programming. In this paradigm, a pure function is conceptually similar to a mathematical function. It will determine a result solely based on its input values, and given those same input parameters again, it will return the same result. This property allows a pure function to exist independently of the state of system surrounding it. It doesn't rely on the state of outside variables and it also does not directly modify any variables in its outer scope. This property also means the function can be memoized, which is a common method of improving performance. 
-        """
-        ),
-
-    QuizQuestion(
-        question="What principle does the following function illustrate?",
-        true="Recursion",
-        false=[
-        "Dynamic Programming",
-        "Memoization",
-        "Object-Oriented Programming",
-        "Imperative Programming"
-        ],
-        code_label='js_code8',
-        explanation="""
-        This demonstrates recursion, a programming technique where a function calls itself. Here, we are searching through a binary tree structure looking for a node. At each node, if we can't find the target value and that node has child nodes, we call the parent function again with the appropriate child node as input. This continues until the function finds the target node or reaches a leaf node and terminates.
-        """
-        ),
-
-    QuizQuestion(
-        question="What is the time complexity of the following function?",
-        true="O(n)",
-        false=["O(log(n))", "O(1)", "O(n*log(n))", "O(n^2)"],
-        code_label='js_code9',
-        explanation="""
-        This function takes an array and a target element and searches for the element in the array. It iterates through the array with a for-loop, and in the worst case must visit every item in the array. This gives this function linear time complexity. That is, the time complexity will increase in a linear manner in relation to the size of the input. If the input increases by 1000, this solution may loop 1000 times more — there is a linear relationship between the algorithm's performance and the size of the input.
-        """
-        ),
-
-    QuizQuestion(
-        question="What principle does the following function illustrate?",
-        true="Memoization",
-        false=[
-        "Recursion",
-        "Prototypal Inheritance",
-        "Object Composition"
-        ],
-        code_label='js_code10',
-        explanation="""
-        This code demonstrates memoization. createSearchFunction returns a new function that has closure over a cache, which is simply a fast, constant-time lookup table. The function sees if a parameter exists in the cache as a key, if it does it returns the associated value. If not, it computes the value, saves the parameter and result in the cache, and then returns the result. In this way, if it subsequently encounters the same parameter again, it can quickly return the cached result and forego the expensive computation. This pattern is a very useful way to improve the performance of computationally expensive functions.         """
-        ),
-
-    QuizQuestion(
-        question="A complex problem which can be broken down into repeating sub-problems can be solved by a method known as:",
-        true="Dynamic Programming",
-        false=["Recursion", "Functional Composition", "Multithreaded Programming"],
-        explanation="""
-        Some complex problems can be divded into smaller, repeating sub-problems. These are ideal candidates for the method of dynamic programming, in which the sub-problems are solved and used to dynamically build up a solution to the more complex problem. This is a more advanced programming method but can be very useful in solving problems which otherwise would not be possible by brute force approaches.
-        """
-        ),
-
-    ]
-
-    system_questions = [
-
-    QuizQuestion(
-        question="What problem does a load balancer solve?",
-        true="Load balancers can distribute incoming traffic to one of many servers, allowing one to scale a server architecture to support a high volume of traffic.",
-        false=[
-        "A load balancer determines how to route requests between clients and servers.",
-        "None of these are correct.",
-        "If traffic reaches a certain level load balancers will start throttling traffic to prevent servers from crashing."
-        ],
-        explanation="Load balancers optimize resource use by distributing requests or traffic evenly among many computers. This is commonly used in serving web traffic to a number of servers after the point where a single server is unable to handle the amount of incoming traffic. The load balancer acts as an intermediary which distributes incoming requests to one of many servers, and in this way is an important scaleability tool."
-        ),
-
-    QuizQuestion(
-        question="Caching is an important method to improve web application performance. Which of the following are popular caching technologies that exist at the server/database interface?",
-        true="Redis and Memcached",
-        false=["CDNs", "Docker", "Kubernetes", "Elasticsearch"],
-        explanation="""
-        Redis and Memcached are two of the most common caching solutions for database queries. They are key-value pair in-memory datastores that allow you to cache the results of database queries to prevent subsequent requests from performing the same database query again. The use of these technologies can often offer sizable performance improvements to database heavy web applications.
-        """
-        ),
-
-    QuizQuestion(
-        question="When scaling a server architecture, it is important to use redundancy to protect against: ",
-        true="Single points of failture",
-        false=[
-        "System fragility",
-        "Network vulnerabilities",
-        "Security exploits"
-        ],
-        explanation="""
-        Introducing a load balancer, for instance, creates a single point that, if compromised, could compromise the entire system. Because of this, it is important to use redundancy to guard against these single points of failure. Now, if one of these components fails the backup system could be transitioned in through a process known as "failover".
-        """
-        ),
-
-    QuizQuestion(
-        question="What is continuous integration?",
-        true="Continuous integration is a software development practice that involves frequent incorporation of code changes to a shared repository, and usually involves an automated build and testing process.",
-        false=[
-        "None of these are correct.",
-        "Continuous integration is a process where tests are written for a project and all subsequent code is written in order to pass the tests.",
-        "Continuous integration is the agile methodology practice of deploying production code frequently, usually at least once per sprint."
-        ],
-        explanation="""
-        Continuous integration (CI) is the practice of frequently integrating local code changes with a shared code repository. The main idea is to speed up the development/release lifecycle and improve the ability of developers to identify and address bugs. CI is often associated with an automated build and testing process, which additionally helps to catch bugs quickly and earlier.
-        """
-        ),
-
-    QuizQuestion(
-        question="A system designed with several different services that are all isolated and managed independently is referred to as",
-        true="A microservices architecture.",
-        false=[
-        "A dynamic architecture.",
-        "A monolithic architecture.",
-        "A component architecture."
-        ],
-        explanation="""
-        Microservices are commonly contrasted with the so-called monolithic architecture. In the former, different tasks or services are broken up into independent, isolated services, all of which interact with each other. In the other approach, everything involved in an application is consolidated into one architecture. Both approaches have their own advantages and disadvantages.
-        """
-        ),
-
-    ]
-
-    # TODO: more fine-grained category
-    interview_questions = javascript_questions + web_questions + algorithm_questions + system_questions
 
     ## Hacker Space Tech Trivia
     trivia_questions = [
@@ -805,4 +163,845 @@ init python:
         ]
         ),
 
+    ]
+
+    # TODO: read csv
+    easter_egg_quiz_questions = [
+    QuizQuestion(
+        question="freeCodeCamp.org first launched in:",
+        true="2014",
+        false=["2001", "1910", "2030"],
+        explanation="The first version of the freeCode",
+        learn_more_url="https://www.freecodecamp.org/news/about/",
+        easter_egg_name="The Launch of freeCodeCamp",
+        difficulty=1
+        )
+    ]
+
+    css_questions = [
+    
+        QuizQuestion(
+        question="What is RGB?",
+        true="A color model",
+        false=["An Internet Protocol", "HTML syntax", "A secret password"],
+        explanation="RGB is an acronym that stands for {b}red{/b} {b}green{/b} {b}blue{/b}. It expresses colors in terms of the amount of red, green, and blue they are made up of and uses a human counting system with integers ranging from 0-255 or a percentage ranging from (0% - 100%).",
+        learn_more_url="https://www.freecodecamp.org/news/rgb-color-html-and-css-guide/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What color would rgb(255,0,0) give?",
+        true="Red",
+        false=["Green", "Blue", "Yellow"],
+        explanation="Each parameter defines the intensity of each color, rgb(red, green, and blue), with an integer number ranging from 0-255. The minimum value of 0 represents that none of the color is being shown, so it is at its darkest. On the other hand, the maximum value of 255 represents that the full amount of color and the full intensity is on display",
+        learn_more_url="https://www.freecodecamp.org/news/rgb-color-html-and-css-guide/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What do R, G, and B in RGB stand for?",
+        true="Red, green, and blue",
+        false=["Red, gray, and black ", "Red, green, and black", "Red, gray, and blue"],
+        explanation="RGB is an acronym that stands for {b}red{/b} {b}green{/b} {b}blue{/b}",
+        learn_more_url="https://www.freecodecamp.org/news/rgb-color-html-and-css-guide/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What color would rgb(255,255,255) give?",
+        true="White",
+        false=["Red", "Black", "Blue"],
+        explanation="The maximum value of 255 represents that the full amount of all colors and their full intensity is on display.",
+        learn_more_url="https://www.freecodecamp.org/news/rgb-color-html-and-css-guide/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the role of media queries in CSS?",
+        true="They help create responsive websites",
+        false=["They create links to other webpages", "They add interactivity to a static webpage", "They change the font of text"],
+        explanation="{b}CSS media queries{/b} allow you to create responsive websites across all screen sizes, ranging from desktop to mobile",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-media-queries-by-building-projects/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What are the conditions that decide if a media rule is applied?",
+        true="Breakpoints",
+        false=["Breaks", "Points", "Keys"],
+        explanation="A breakpoint is a key to determine when to change the layout and adapt the new rules inside the media queries",
+        learn_more_url="https://www.freecodecamp.org/news/css-media-queries-breakpoints-media-types-standard-resolutions-and-more/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="How do you change the background-image of an element in CSS?",
+        true="background-image: url(\"path_to_image\");",
+        false=["background-img: url(\"path_to_image\");", "background_image: url(\"path_to_image\");", "background-image: (\"path_to_image\")"],
+        explanation="The background-image CSS property allows you to place an image behind any HTML element you wish. Immediately after the property you add a colon. Then, url() is used to tell CSS where the image is located. Inside the parentheses the path to the image is listed in opening and closing double quotes. This lets the browser know what URL to pull. Lastly, don't forget the semicolon to end the statement!",
+        learn_more_url="https://www.freecodecamp.org/news/css-background-image-with-html-example-code/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="How do you create a flexbox container in CSS?",
+        true="display:flex;",
+        false=["display:flexbox;", "display:flexcontainer;", "display:flexB;"],
+        explanation="You can apply flexbox to an HTML container by using display:flex;",
+        learn_more_url="https://www.freecodecamp.org/news/flexbox-the-ultimate-css-flex-cheatsheet/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="How do you set the flex container to arrange the items in a column?",
+        true="flex-direction: column;",
+        false=["flex-direction: row;", "flex-column: column;", "flex-direction: set-column;"],
+        explanation="In CSS, you can apply flex-direction: column; to the container whose items you want arrange in a column",
+        learn_more_url="https://www.freecodecamp.org/news/flexbox-the-ultimate-css-flex-cheatsheet/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="How do you set the flex container to reverse the items in a row?",
+        true="flex-direction: row-reverse;",
+        false=["flex-direction: reverse-row;", "flex-row: row-reverse;", "flex-direction: set-row-reverse;"],
+        explanation="In CSS, you can apply flex-direction: row-reverse; to the container whose items you want to display in a row, with their order reversed.",
+        learn_more_url="https://www.freecodecamp.org/news/flexbox-the-ultimate-css-flex-cheatsheet/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="How do you set the flex container to reverse the items in a column?",
+        true="flex-direction: column-reverse;",
+        false=["flex-direction: reverse-c;", "flex-direction: column-r;", "flex-direction: column-rev;"],
+        explanation="In CSS, you can apply flex-direction: column-reverse; to the container whose items you want to display in a column, with their order reversed.",
+        learn_more_url="https://www.freecodecamp.org/news/flexbox-the-ultimate-css-flex-cheatsheet/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does justify-content do in flexbox?",
+        true="aligns the items along the main axis",
+        false=["aligns the items to right of the y axis", "aligns the items to the left of  the x and y axis", "aligns the items to the right of the x axis"],
+        explanation="In flexbox, justify-content is used to align the items in the container along the main axis",
+        learn_more_url="https://www.freecodecamp.org/news/flexbox-the-ultimate-css-flex-cheatsheet/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="Which one is NOT used with justify-content?",
+        true="flex-middle",
+        false=["flex-start", "flex-end", "space-around"],
+        explanation="In flexbox, some of the options for justify-content include space-around, flex-end, flex-start and space-between",
+        learn_more_url="https://www.freecodecamp.org/news/flexbox-the-ultimate-css-flex-cheatsheet/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does align-items do in flexbox?",
+        true="aligns the items along the cross axis",
+        false=["aligns the items to the right of the y axis", "aligns the items to the right of the x axis", "aligns the items to the right of the z axis"],
+        explanation="In flexbox, align-items aligns the items along the cross axis",
+        learn_more_url="https://www.freecodecamp.org/news/flexbox-the-ultimate-css-flex-cheatsheet/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="Which one is NOT used with align-items?",
+        true="align-middle",
+        false=["flex-end", "flex-start", "baseline"],
+        explanation="In flexbox, some of the options for align-items include flex-start, flex-end, baseline and stretch",
+        learn_more_url="https://www.freecodecamp.org/news/flexbox-the-ultimate-css-flex-cheatsheet/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does align-self do in flexbox?",
+        true="adjusts the alignment for an element",
+        false=["adjust the alignment for all elements", "adjusts the alignment for hr elements", "adjusts the alignment for an img element"],
+        explanation="In flexbox, align-self adjusts the alignment for an element",
+        learn_more_url="https://www.freecodecamp.org/news/flexbox-the-ultimate-css-flex-cheatsheet/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="How do you allow items to move to a new line in flexbox?",
+        true="flex-wrap: wrap;",
+        false=["flex: wrap;", "flex-wrap: wrap-items;", "flex-wrap: item-wrap;"],
+        explanation="In flexbox, flex-wrap: wrap; will tell the computer to move items to a new line if there is not enough space",
+        learn_more_url="https://www.freecodecamp.org/news/flexbox-the-ultimate-css-flex-cheatsheet/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="Which one is NOT used with align-content?",
+        true="align-bottom",
+        false=["center", "space-around", "stretch"],
+        explanation="In flexbox, some of the options for align-content include center, stretch, space-around and space-between",
+        learn_more_url="https://www.freecodecamp.org/news/flexbox-the-ultimate-css-flex-cheatsheet/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the default position property in CSS?",
+        true="position: static;",
+        false=["position: relative;", "position: top;", "position: absolute;"],
+        explanation="The default property in CSS is position: static; which means it follows the order of the HTML",
+        learn_more_url="https://www.freecodecamp.org/news/css-positioning-position-absolute-and-relative/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="How do you change the background color in CSS?",
+        true="background-color: pink;",
+        false=["bg-color: pink;", "backgroundColor: pink;", "b-color: pink;"],
+        explanation="You can use the background property in CSS to change the background color of an element",
+        learn_more_url="https://www.freecodecamp.org/news/css-background-color-how-to-change-the-background-color-in-html/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the rule that will override CSS style for an element?",
+        true="!important",
+        false=["!override", "!change", "!specific"],
+        explanation="The !important rule will override the other CSS style rules for that element",
+        learn_more_url="https://www.freecodecamp.org/news/10-css-tricks-for-your-next-coding-project/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="How do you make all of the text for an element uppercase?",
+        true="text-transform: uppercase;",
+        false=["text-transform: toUpper;", "text-transform: upper;", "text-transform: set-upper;"],
+        explanation="You can use the text-transform: uppercase; to make all of the text for that element uppercase",
+        learn_more_url="https://www.freecodecamp.org/news/10-css-tricks-for-your-next-coding-project/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="How do you make the text for an element all lowercase?",
+        true="text-transform: lowercase;",
+        false=["text-transform: lower;", "text-transform: to-lower;", "text-transform: set-lower;"],
+        explanation="You can use the text-transform: lowercase; to make all of the text for that element lowercase",
+        learn_more_url="https://www.freecodecamp.org/news/10-css-tricks-for-your-next-coding-project/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="How do you add content before an element?",
+        true="::before",
+        false=["::add-content", "::before-content", "::after"],
+        explanation="You can use the ::before selector to add content before an element",
+        learn_more_url="https://www.freecodecamp.org/news/10-css-tricks-for-your-next-coding-project/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="How do you add content after an element?",
+        true="::after",
+        false=["::after-content", "::add", "::before"],
+        explanation="You can use the ::after selector to add content after an element",
+        learn_more_url="https://www.freecodecamp.org/news/10-css-tricks-for-your-next-coding-project/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="How do you add a smooth scroll to the html element?",
+        true="scroll-behavior: smooth;",
+        false=["scroll-behavior: smooth-scroll;", "scroll: smooth;", "behavior: smooth;"],
+        explanation="You can use scroll-behavior: smooth; to add a smooth scroll to the html element",
+        learn_more_url="https://www.freecodecamp.org/news/10-css-tricks-for-your-next-coding-project/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="The amount of space between an element's content and its border is known as...",
+        true="Padding",
+        false=["Margin", "White Space", "Indentation"],
+        explanation="The padding is the amount of space between the element's content and its border.",
+        learn_more_url="https://www.freecodecamp.org/news/css-margins/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="The amount of space between an element's border and its surrounding elements is known as...",
+        true="Margin",
+        false=["Padding", "White Space", "Indentation"],
+        explanation="The margin is the amount of space between an element's border and its surrounding elements.",
+        learn_more_url="https://www.freecodecamp.org/news/css-margins/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="How do you make an image circular or oval?",
+        true="border-radius: 50%;",
+        false=["border-radius: 10%;", "border-radius: 0;", "border-radius: 3px;"],
+        explanation="You can use the CSS property border-radius with a value of 50% to make an image circular or oval.",
+        learn_more_url="https://forum.freecodecamp.org/t/freecodecamp-challenge-guide-make-circular-images-with-a-border-radius/18229",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What CSS selector would you use to select all elements with the class blue-text?",
+        true=".blue-text",
+        false=["#blue-text", "a[blue-text]", "blue-text"],
+        explanation="In CSS, you can select all the elements with a given class with a dot before its name.",
+        learn_more_url="https://www.freecodecamp.org/news/use-css-selectors-to-style-webpage/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does CSS stand for?",
+        true="Cascading Style Sheets",
+        false=["Complex Style Sheets", "Complete Synchronizes Sheets", "Community Stylish System"],
+        explanation="CSS stands for Cascading Style Sheets",
+        learn_more_url="https://www.freecodecamp.org/news/best-css-and-css3-tutorial/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does the A in RGBA stand for?",
+        true="Alpha",
+        false=["Alphabetical", "Ambiguous", "Ancient"],
+        explanation="The A in RGBA stands for Alpha. This value represents the transparency of the color.",
+        learn_more_url="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/rgba()",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="Type of CSS unit that is relative to another length value.",
+        true="Relative",
+        false=["Absolute", "Fixed", "Dynamic"],
+        explanation="In CSS, relative units are relative to other length values. Several of the relative units depend on the viweport size.",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-units-em-rem-vh-vw-with-code-examples/#why-learn-css-relative-units",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="Type of CSS unit that is tied to physical units of length. ",
+        true="Absolute",
+        false=["Relative", "Fixed", "Dynamic"],
+        explanation="In CSS, absolute units are tied to physical units of length. ",
+        learn_more_url="https://www.freecodecamp.org/news/css-unit-guide/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="How can you abbreviate the following Hex code? #FF0000",
+        true="#F00",
+        false=["#0F0", "#00F", "#0FF0"],
+        explanation="To abbreviate a Hex code in CSS, include one digit of each pair of digits in the code. ",
+        learn_more_url="https://www.freecodecamp.org/news/how-hex-code-colors-work-how-to-choose-colors-without-a-color-picker/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the main purpose of CSS in a website?",
+        true="Style",
+        false=["Structure", "Functionality", "Sound"],
+        explanation="CSS is used to define the style of the elements in a website.",
+        learn_more_url="https://www.freecodecamp.org/news/best-css-and-css3-tutorial/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does list-style-type: circle; do in CSS?",
+        true="applies circles to all of the list items in an unordered list",
+        false=["applies discs to all of the list items in an unordered list", "applies decimals to all of the list items in an unordered list", "applies squares to all of the list items in an unordered list"],
+        explanation="list-style-type: circle; will apply circles to all of the list items for the unordered list",
+        learn_more_url="https://www.freecodecamp.org/news/html-bullet-points-how-to-create-an-unordered-list-with-the-ul-tag-example/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="Which one of these values does NOT apply to the CSS all shorthand property?",
+        true="position",
+        false=["unset", "initial", "revert"],
+        explanation="The all CSS shorthand property can accept the following values: initial, inherit, unset, revert",
+        learn_more_url="https://developer.mozilla.org/en-US/docs/Web/CSS/all",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does the animation-name property do in CSS?",
+        true="a name used to describe the animation applied to the element",
+        false=["sets the duration for the animation", "sets a delay for the animation to start", "sets how many times an animation should run"],
+        explanation="The animation-name is used to describe the animation applied to the element",
+        learn_more_url="https://www.freecodecamp.org/news/a-quick-introduction-to-css-animations-a1655375ec90/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does the animation-duration property do in CSS?",
+        true="determines how long an animation should last in seconds",
+        false=["is used to style the element after the animation ends", "sets the direction for the element", "pauses the animation if the animation is running"],
+        explanation="The animation-duration is used to determine how long an animation should last in seconds",
+        learn_more_url="https://www.freecodecamp.org/news/a-quick-introduction-to-css-animations-a1655375ec90/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does the animation-timing-function do in CSS?",
+        true="determines when the animation should speed up or slow down",
+        false=["sets the direction for the element", "is used to style the element after the animation ends", "a name used to describe the animation applied to the element"],
+        explanation="The animation-timing-function  is used to determine when the animation should speed up or slow down",
+        learn_more_url="https://www.freecodecamp.org/news/a-quick-introduction-to-css-animations-a1655375ec90/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does the animation-delay  do in CSS?",
+        true="sets a delay for the animation to start",
+        false=["determines how long an animation should last in seconds", "pauses the animation if the animation is running", "determines when the animation should speed up or slow down"],
+        explanation="The animation-delay is used to set a delay for the animation to start",
+        learn_more_url="https://www.freecodecamp.org/news/a-quick-introduction-to-css-animations-a1655375ec90/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does the animation-iteration-count do in CSS?",
+        true="sets how many times an animation should run",
+        false=["a name used to describe the animation applied to the element", "determines how long an animation should last in seconds", "sets a delay for the animation to start"],
+        explanation="The animation-iteration-count sets how many times the animation should run",
+        learn_more_url="https://www.freecodecamp.org/news/a-quick-introduction-to-css-animations-a1655375ec90/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does the animation-direction  do in CSS?",
+        true="sets the direction for the animation",
+        false=["sets how many times an animation should run", "is used to style the element after the animation ends", "pauses the animation if the animation is running"],
+        explanation="The animation-direction sets the direction for the animation",
+        learn_more_url="https://www.freecodecamp.org/news/a-quick-introduction-to-css-animations-a1655375ec90/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does the animation-fill-mode do in the CSS?",
+        true="is used to style the element after the animation ends",
+        false=["sets a delay for the animation to start", "sets how many times an animation should run", "determines how long an animation should last in seconds"],
+        explanation="The animation-fill-mode is used to style the element after the animation ends",
+        learn_more_url="https://www.freecodecamp.org/news/a-quick-introduction-to-css-animations-a1655375ec90/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does the animation-play-state do in CSS?",
+        true="is used to pause the animation if set to paused",
+        false=["determines how long an animation should last in seconds", "is used to style the element after the animation ends", "sets the direction for the animation"],
+        explanation="The animation-play-state is used to pause the animation if set to paused",
+        learn_more_url="https://www.freecodecamp.org/news/a-quick-introduction-to-css-animations-a1655375ec90/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is an at-rule in CSS?",
+        true="rules that dictate what the CSS will look like based on certain conditions",
+        false=["rules to dictate how to format the HTML", "rules to dictate javascript functions", "rules to that only apply to how p elements are styled"],
+        explanation="An at-rule in CSS will dictate what the CSS will look like based on certain conditions",
+        learn_more_url="https://www.freecodecamp.org/news/media-query-css-example-max-and-min-screen-width-for-mobile-responsive-design/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is a media type in CSS?",
+        true="the category of media for the device",
+        false=["set of rules only applied to mobile devices", "category only for print media", "category only for speech"],
+        explanation="A media type refers to the category of media for the device",
+        learn_more_url="https://www.freecodecamp.org/news/media-query-css-example-max-and-min-screen-width-for-mobile-responsive-design/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the all media type in CSS?",
+        true="works for all devices",
+        false=["only works for mobile devices", "only works for print media", "only works for tablets"],
+        explanation="The all media type will work for all media devices",
+        learn_more_url="https://www.freecodecamp.org/news/media-query-css-example-max-and-min-screen-width-for-mobile-responsive-design/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the print media type in CSS?",
+        true="works for devices where the media is in print preview mode",
+        false=["a type of media only for 4k monitors", "a type of media that only works for desktop computers", "set of rules only applied to mobile devices"],
+        explanation="The print media type works for devices where the media is in print preview mode",
+        learn_more_url="https://www.freecodecamp.org/news/media-query-css-example-max-and-min-screen-width-for-mobile-responsive-design/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the screen media type in CSS?",
+        true="works for devices with screens",
+        false=["works for media in print preview mode", "works for devices without screens", "only works for tablets"],
+        explanation="The screen media type works for devices with screens",
+        learn_more_url="https://www.freecodecamp.org/news/media-query-css-example-max-and-min-screen-width-for-mobile-responsive-design/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the speech media type in CSS?",
+        true="works for devices like screen readers where the content is read out loud to the user",
+        false=["works for devices with screens", "works for devices where the media is in print preview mode", "only works for mobile devices"],
+        explanation="The speech media type works for devices like screen readers where the content is read out loud to the user",
+        learn_more_url="https://www.freecodecamp.org/news/media-query-css-example-max-and-min-screen-width-for-mobile-responsive-design/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="How is the and operator used in a media query?",
+        true="join multiple media features",
+        false=["reverses a true query into a false", "separate multiple media features by commas", "splits media queries into separate ones"],
+        explanation="The and operator is used to join multiple media features in a media query",
+        learn_more_url="https://www.freecodecamp.org/news/media-query-css-example-max-and-min-screen-width-for-mobile-responsive-design/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="How is the not operator used in a media query?",
+        true="reverses a true query into a false and a false query into a true",
+        false=["join multiple media features", "splits media queries into separate ones", "separate multiple media features by commas"],
+        explanation="The not operator is used to reverse a true query into a false and a false query into a true",
+        learn_more_url="https://www.freecodecamp.org/news/media-query-css-example-max-and-min-screen-width-for-mobile-responsive-design/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="How is the comma operator used in a media query?",
+        true="separates multiple media features by commas and apply the styles inside the curly brace if one of the conditions is true",
+        false=["reverses a true query into a false and a false query into a true", "join multiple media features", "splits media queries into separate ones"],
+        explanation="The comma operator is used to separate multiple media features by commas and apply the styles inside the curly brace if one of the conditions is true",
+        learn_more_url="https://www.freecodecamp.org/news/media-query-css-example-max-and-min-screen-width-for-mobile-responsive-design/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is a common breakpoint range used for mobile devices in a media query?",
+        true="320px - 480px",
+        false=["1000px - 5000px", "100px - 150px", "200px - 4000px"],
+        explanation="The range of 320px — 480px can be used to target mobile devices in a media query",
+        learn_more_url="https://www.freecodecamp.org/news/media-query-css-example-max-and-min-screen-width-for-mobile-responsive-design/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is a common breakpoint range used for tablet devices in a media query?",
+        true="481px - 768px",
+        false=["300px - 7000px", "2px - 68px", "81px - 700px"],
+        explanation="The range of 481px - 768px can be used to target table devices in a media query",
+        learn_more_url="https://www.freecodecamp.org/news/media-query-css-example-max-and-min-screen-width-for-mobile-responsive-design/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is a common breakpoint range used for laptop devices in a media query?",
+        true="769px -1024px",
+        false=["7px -10px", "69px -124px", "769px -10,024px"],
+        explanation="The range of 769px -1024px can be used to target laptop devices ina media query",
+        learn_more_url="https://www.freecodecamp.org/news/media-query-css-example-max-and-min-screen-width-for-mobile-responsive-design/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is a common breakpoint range used for desktop and larger screens in a media query?",
+        true="1025px - 1200px",
+        false=["25px - 120px", "125px - 12,000px", "5px - 12px"],
+        explanation="The range of 1025px - 1200px can be used to target desktop and larger screen  in a media query",
+        learn_more_url="https://www.freecodecamp.org/news/media-query-css-example-max-and-min-screen-width-for-mobile-responsive-design/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the CSS property that sets the opacity for an HTML element",
+        true="opacity",
+        false=["margin", "padding", "border"],
+        explanation="The opacity property is used to set the opacity for an HTML element",
+        learn_more_url="https://www.freecodecamp.org/news/transparent-background-image-opacity-in-css-and-html/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the code used to create a CSS grid container?",
+        true="display: grid;",
+        false=["display: flex;", "display: grid-box;", "display: grid-container;"],
+        explanation="You can use display: grid; to create a new CSS grid container",
+        learn_more_url="https://www.freecodecamp.org/news/css-grid-tutorial-with-cheatsheet/#css-grid-architecture",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of grid property used to set the number and width of columns?",
+        true="grid-template-columns",
+        false=["grid-columns", "flex-template-columns", "template-columns-grid"],
+        explanation="The grid-template-columns property is used to set the number and width for the columns",
+        learn_more_url="https://www.freecodecamp.org/news/css-grid-tutorial-with-cheatsheet/#css-grid-architecture",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the function to set the width for all columns in CSS grid?",
+        true="repeat",
+        false=["set-width", "width-all", "width-container"],
+        explanation="The repeat() function is used to set the width for all of the columns in in the grid container",
+        learn_more_url="https://www.freecodecamp.org/news/css-grid-tutorial-with-cheatsheet/#css-grid-architecture",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does fr stand for in CSS grid?",
+        true="fraction unit",
+        false=["font units", "flex unit", "fit unit"],
+        explanation="fr stands for fraction unit in CSS grid",
+        learn_more_url="https://www.freecodecamp.org/news/css-grid-tutorial-with-cheatsheet/#css-grid-architecture",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the grid property used to set the number and height for the rows?",
+        true="grid-template-rows",
+        false=["grid-template-columns", "grid-rows", "grid-unit-rows"],
+        explanation="The grid-template-rows property is used to set the number and height for the rows",
+        learn_more_url="https://www.freecodecamp.org/news/css-grid-tutorial-with-cheatsheet/#css-grid-architecture",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the grid property used to set the space for grid cells in rows and columns?",
+        true="grid-template-areas",
+        false=["grid-template-rows", "fraction unit", "repeat"],
+        explanation="The grid-template-areas property is used to set the space for grid cells in rows and columns",
+        learn_more_url="https://www.freecodecamp.org/news/css-grid-tutorial-with-cheatsheet/#css-grid-architecture",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the grid property used to create gaps between columns?",
+        true="column-gap",
+        false=["set-width", "fit unit", "grid-template-columns"],
+        explanation="The column-gap property is used to create gaps between columns",
+        learn_more_url="https://www.freecodecamp.org/news/css-grid-tutorial-with-cheatsheet/#css-grid-architecture",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the grid property used to create gaps between rows?",
+        true="row-gap",
+        false=["grid-template-rows", "grid-columns", "repeat"],
+        explanation="The row-gap property is used to create gaps between rows",
+        learn_more_url="https://www.freecodecamp.org/news/css-grid-tutorial-with-cheatsheet/#css-grid-architecture",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the grid property used to position items inside the container along the main axis?",
+        true="justify-items",
+        false=["justify-content", "justify-rows", "justify-columns"],
+        explanation="The justify-items property is used to position items within a grid container along the x-axis",
+        learn_more_url="https://www.freecodecamp.org/news/css-grid-tutorial-with-cheatsheet/#css-grid-architecture",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="Which one of these options is NOT a value used for the justify-items property?",
+        true="gap",
+        false=["start", "end", "stretch"],
+        explanation="The four values that can be used for the justify-items property are start, end, center, and stretch",
+        learn_more_url="https://www.freecodecamp.org/news/css-grid-tutorial-with-cheatsheet/#css-grid-architecture",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the property used to position items inside the container along the y-axis?",
+        true="align-items",
+        false=["grid-columns", "grid-template-columns", "fraction unit"],
+        explanation="The align-items property is used to position items in the container along the y-axis",
+        learn_more_url="https://www.freecodecamp.org/news/css-grid-tutorial-with-cheatsheet/#css-grid-architecture",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the property used to position the grid inside the container along the x-axis?",
+        true="justify-content",
+        false=["grid-template-areas", "grid-template-rows", "row-gap"],
+        explanation="The justify-content property is used to position the grid in the container along the x-axis",
+        learn_more_url="https://www.freecodecamp.org/news/css-grid-tutorial-with-cheatsheet/#css-grid-architecture",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="Which one of these options is NOT a value used for the justify-content property?",
+        true="repeat",
+        false=["space-around", "space-between", "space-evenly"],
+        explanation="The justify-content property can accept seven values including space-around, space-between, start and end",
+        learn_more_url="https://www.freecodecamp.org/news/css-grid-tutorial-with-cheatsheet/#css-grid-architecture",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the property used to position the grid inside the container along the y-axis?",
+        true="align-content",
+        false=["justify-content", "end", "grid-unit-rows"],
+        explanation="The align-content property is used to position the grid in the container along the y-axis",
+        learn_more_url="https://www.freecodecamp.org/news/css-grid-tutorial-with-cheatsheet/#css-grid-architecture",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="Which one of these options is NOT a value used for the align-content property?",
+        true="row-gap",
+        false=["space-between", "center", "start"],
+        explanation="The align-content property can accept seven values including space-around, space-between, start and end",
+        learn_more_url="https://www.freecodecamp.org/news/css-grid-tutorial-with-cheatsheet/#css-grid-architecture",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the property used to position one grid item in a container along the x-axis?",
+        true="justify-self",
+        false=["align-content", "grid-template-areas", "justify-rows"],
+        explanation="The justify-self property is used to position one grid item in a container along the x-axis",
+        learn_more_url="https://www.freecodecamp.org/news/css-grid-tutorial-with-cheatsheet/#css-grid-architecture",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the property used to position one grid item in a container along the y-axis?",
+        true="align-self",
+        false=["grid-columns", "space-around", "grid-template-columns"],
+        explanation="The align-self property is used to position one grid item in a container along the y-axis",
+        learn_more_url="https://www.freecodecamp.org/news/css-grid-tutorial-with-cheatsheet/#css-grid-architecture",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the property used to adjust the size for a background image in CSS?",
+        true="background-size",
+        false=["background-repeat", "background-origin", "background-position"],
+        explanation="The background-size property is used to adjust the size for a background image",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-background-properties/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the property used to repeat a background image?",
+        true="background-repeat",
+        false=["background-position-x", "background-position-y", "background-origin"],
+        explanation="The background-repeat property is used to repeat the background image",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-background-properties/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="Which one of these values is NOT used for the background-repeat property?",
+        true="repeat-z-axis",
+        false=["no-repeat", "repeat", "repeat-x"],
+        explanation="The background-repeat property can take in seven values include no-repeat, repeat, repeat-x and repeat-y",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-background-properties/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does the repeat-x value do in the background-repeat property?",
+        true="repeats the image along the x-axis",
+        false=["repeats the image along the y-axis", "repeats the image along the z-axis", "repeats the image along both of the x-axis and y-axis"],
+        explanation="The repeat-x value repeats the image along the x-axis",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-background-properties/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does the repeat-y value do in the background-repeat property?",
+        true="repeats the image along the y-axis",
+        false=["repeats the image along the x-axis", "repeats the image along both of the x-axis and y-axis", "repeats the image along the z-axis"],
+        explanation="The repeat-y value repeats the image along the y-axis",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-background-properties/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does the no-repeat value do in the background-repeat property?",
+        true="sets no repetition for the background image",
+        false=["repeats the image along the z-axis", "repeats the image along the y-axis", "repeats the image along the x-axis"],
+        explanation="The no-repeat value sets no repetition for the background image",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-background-properties/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the value that evenly distributes space in the background-repeat property?",
+        true="space",
+        false=["repeat", "no-repeat", "repeat-x"],
+        explanation="The space value is used to evenly distributes the space in the background-repeat property",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-background-properties/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the value that stretches the repeated images in the background-repeat property?",
+        true="round",
+        false=["space", "around", "rounding"],
+        explanation="The round value is used to stretch the repeated images in the background-repeat property",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-background-properties/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the property used to change the position of the background image?",
+        true="background-position",
+        false=["background-clip", "background-color", "background-origin"],
+        explanation="The background-position is used to change the position of the background image",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-background-properties/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="Which one of these values is NOT used for the background-position property?",
+        true="side-left",
+        false=["top", "bottom", "right"],
+        explanation="The background-position property can take in many values including of top, right, left and bottom",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-background-properties/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the property used to change the origin of the background image?",
+        true="background-origin",
+        false=["background-position", "background-clip", "background-color"],
+        explanation="The background-origin property is used to set the origin for the background image",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-background-properties/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="Which one of these values is NOT used for the background-origin property?",
+        true="box-sizing",
+        false=["border-box", "padding-box", "content-box"],
+        explanation="The background-origin property can use following value border-box, padding-box, inherit, content-box",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-background-properties/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the property that clips the background image to inside the container?",
+        true="background-clip",
+        false=["background-color", "background-position", "background-size"],
+        explanation="The background-clip property is used to clip the background image to inside the container",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-background-properties/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the property that determines if the background image is in a scroll or fixed position?",
+        true="background-attachment",
+        false=["background-origin", "background-clip", "background-position"],
+        explanation="The background-attachment property is used to determine if the background image is in a scroll or fixed position",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-background-properties/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="Which one of these values is NOT used for the background-attachment property?",
+        true="inherit",
+        false=["local", "scroll", "fixed"],
+        explanation="The background-attachment property can take in the fixed, scroll and local values",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-background-properties/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="Which one is NOT an example of a relative unit in CSS?",
+        true="px",
+        false=["rem", "em", "vh"],
+        explanation="Relative units in CSS include rem, em, vh, and vw",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-units-em-rem-vh-vw-with-code-examples/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="How many pixels are equivalent to 1 rem unit?",
+        true="16",
+        false=["32", "12", "6"],
+        explanation="One rem unit is equivalent to 16 pixels",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-units-em-rem-vh-vw-with-code-examples/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the relative unit that based on the root element's font size?",
+        true="rem",
+        false=["em", "px", "vw"],
+        explanation="The rem unit is based off of the root element's font size",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-units-em-rem-vh-vw-with-code-examples/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What is the name of the relative unit that is based its parent's font size",
+        true="em",
+        false=["rem", "vh", "vw"],
+        explanation="The em unit is based off of the parent's font size",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-units-em-rem-vh-vw-with-code-examples/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does the vw unit stand for?",
+        true="viewport width",
+        false=["view width height", "viewport weight", "viewport height"],
+        explanation="The vw unit stands for viewport width",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-units-em-rem-vh-vw-with-code-examples/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="Which one of these values represents 10% of the viewport width?",
+        true="10vw",
+        false=["10vh", "100vw", "1000vw"],
+        explanation="10vw is equivalent to 10% of the viewport width",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-units-em-rem-vh-vw-with-code-examples/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What does the vh unit stand for?",
+        true="viewport height",
+        false=["viewport width", "view heights", "viewing height"],
+        explanation="The vh unit stands for viewport height",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-units-em-rem-vh-vw-with-code-examples/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="Which one of these values represents 20% of the viewport height?",
+        true="20vh",
+        false=["200vh", "2vh", "2000vh"],
+        explanation="20vh is equivalent to 20% of the viewport height",
+        learn_more_url="https://www.freecodecamp.org/news/learn-css-units-em-rem-vh-vw-with-code-examples/",
+        difficulty=1
+        ),
+        QuizQuestion(
+        question="What CSS property is used to customize the marker of a list item?",
+        true="list-style-type",
+        false=["list-style", "list-marker-type", "list-markers"],
+        explanation="The list-style-type property is used to set the marker of a list item. ",
+        learn_more_url="https://www.freecodecamp.org/news/how-to-style-lists-with-css/",
+        difficulty=2
+        ),
+        QuizQuestion(
+        question="What is the universal selector in CSS?",
+        true="*",
+        false=["#", "$", "@"],
+        explanation="The asterisk * is the universal selector in CSS. It selects all elements of any type.",
+        learn_more_url="https://www.freecodecamp.org/news/use-css-selectors-to-style-webpage/",
+        difficulty=2
+        ),
+        QuizQuestion(
+        question="Fonts that are generally available across most browsers and operating systems are known as...",
+        true="Web safe fonts",
+        false=["General fonts", "Universal fonts", "Web Fonts"],
+        explanation="Web safe fonts are the fonts that are generally available across most browsers and operating systems.",
+        learn_more_url="https://www.freecodecamp.org/news/web-safe-fonts/",
+        difficulty=2
+        )
     ]

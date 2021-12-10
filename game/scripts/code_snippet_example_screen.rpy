@@ -574,6 +574,7 @@ init python hide:
     import os.path
     import re
 
+    # TODO: if we need to bring back code snippets
     # # A list of files we will be scanning.
     # files = [ ]
 
@@ -582,7 +583,8 @@ init python hide:
     #     if i.endswith(".rpy"):
     #         files.append(os.path.join(script_dir, i))
 
-    files = [os.path.join(config.gamedir, 'quiz_code_snippets.txt')]
+    # files = [os.path.join(config.gamedir, 'quiz_code_snippets.txt')]
+    files = []
 
     for fn in files:
 
