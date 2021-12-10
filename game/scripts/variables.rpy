@@ -221,4 +221,18 @@ init python:
 
     total_num_achievements = len(all_tweet_map)
     # all achievements unlocked
-    tweet_all_achievements_unlocked = tweet_default
+    tweet_all_achievements_unlocked = tweet_default    
+
+    # skills
+    all_questions_map = {
+    'CSS': css_questions,
+    'HTML': html_questions,
+    'Git': git_questions,
+    'IT': it_questions,
+    'JavaScript': javascript_questions,
+    'Linux': linux_questions,
+    'Python': python_questions,
+    'SQL': sql_questions
+    }
+
+    all_skills = list(all_questions_map.keys())

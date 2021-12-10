@@ -1,7 +1,4 @@
 init python:
-    # we have javascript_questions, web_questions, algorithm_questions, and system_questions
-    all_skill_names = ['JavaScript', 'Web Development', 'Algorithm', 'System Design']
-
     easter_egg_skills = [
     'Brewing coffee',
     'Fixing fax machines',
