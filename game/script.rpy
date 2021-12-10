@@ -788,7 +788,7 @@ label stage6:
 
         "What topic to ask Annika about?"
 
-        "Hackthon":
+        "Hackathon":
             call ask_hackathon from _call_ask_hackathon
             jump stage6_annika_questions
 
