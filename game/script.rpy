@@ -1163,18 +1163,18 @@ label stage7:
             annika "This is just like an online IDE where you'll solve the problems they give you."
             annika "If you manage to solve the problems and perform well on the online assessment, you might get an update from the recruiter about moving forward to a phone screen."
             annika "This could either be an information session, a behavior interview with the recruiter or an engineer, or a technical interview with an engineer."
-            annika "If you perform well, you will move on to the next steps. Usually, a company will give out more than one rounds of technical interview over the phone."
+            annika "If you perform well, you'll move on to the next steps. Usually, a company will give out more than one round of technical interviews over the phone."
             annika "And finally, once you manage to pull through these phone screens, the ultimate challenge would be an onsite interview."
-            annika "Usually you will interview for an entire day onsite, with engineers and engineer managers."
+            annika "Usually you will interview for an entire day onsite, with engineers and engineering managers."
             annika "Onsite interviews might sound daunting but it's actually a good way for you to learn about the company's culture and the engineer's day-to-day."
             annika "That's about it for the pipeline."
             jump stage7_coding_interview_questions
     
         "What happens after an interview?":
             annika "Usually, you can expect to hear back from the recruiter in a few days."
-            annika "It's best to just wait and not rush to email the recruiter for results if you don't hear back immediately. However, there is an exception."
+            annika "It's best to just wait and not rush to email the recruiter for results if you don't hear back immediately. But there is an exception."
             annika "If you need an immediate response because of pending offers or other concurrent interviews, feel free to reach out to the recruiter."
-            annika "That's what happened to me. I had an offer with another company but was still in the interview pipeline with my current one, so I reached out to ask them to expedite the proces. And here am I, at my dream company!"
+            annika "That's what happened to me. I had an offer with another company but was still in the interview pipeline with my current one, so I reached out to ask them to expedite the proces. And here I am, at my dream company!"
             jump stage7_coding_interview_questions
 
         "I'm done asking!":
@@ -1187,12 +1187,12 @@ label stage7:
     call save_reminder from _call_save_reminder_11
 
     scene bg bedroom night with slideright
-    player relieved "I feel like I've learned so much about the coding interview from Annika today."
-    player laugh "So much that I couldn't wait to wrap up my curriculum and jump in to see what a real coding interview is like!"
-    player smile "I heard that [developerquiz] will send an email notification to those who have made significant progress in their curriculum."
+    player relieved "I feel like I've learned so much about the coding interview process from Annika today."
+    player laugh "So much that I can't wait to wrap up my curriculum and jump in to see what a real coding interview is like!"
+    player smile "I heard that [developerquiz] will send an email notification to people who have made significant progress in their curriculum."
     player "Let's check to see my progress."
     if player_stats.player_stats_map['CS Knowledge'] < 80:
-        player "Hmmm... I think I still need to ramp up more on my CS knowledge. Let's resume studying tomorrow."
+        player "Hmmm... I think I still need to ramp up more on my CS knowledge. I'll get back to studying tomorrow."
         "(Try bumping your {b}CS Knowledge{/b} to above 80 by completing more quizzes.)"
 
     while player_stats.player_stats_map['CS Knowledge'] < 80:
@@ -1202,15 +1202,15 @@ label stage7:
     call save_reminder from _call_save_reminder_12
 
     # once we are down here, we should have player_stats.player_stats_map['CS Knowledge'] >= 80
-    player laugh "Looks like I've made quite some progress! I wonder when I can expect to receive that email."
-    player "But let's first have a movie night to celebrate my progress!"
+    player laugh "Looks like I've made quite a bit of progress! I wonder when I can expect to receive that email."
+    player "But let's first have a movie night to celebrate what I've gotten done!"
 
     scene bg bedroom with fadehold
     $ renpy.show_screen('player_stats_screen', _layer='transient')
 
 label stage7_complete_curriculum:
     play sound 'audio/sfx/social_media_notification.wav'
-    player surprised "Hmm? A notification from my phone? This early in the morning?"
+    player surprised "Hmm... A notification from my phone? This early in the morning?"
     player "It says {bt}Congratulations!{/bt}...?"
     $ has_completed_curriculum = True
 
@@ -1218,8 +1218,8 @@ label stage7_complete_curriculum:
     $ days_between_start_and_curriculum_completion = (completed_curriculum_date - start_date).days
     call screen confirm_and_share_screen(
         title="{bt}Congratulations!{/bt}",
-        message="You completed the coding curriculum in {b}{color=#002ead}[days_between_start_and_curriculum_completion]{/color}{/b} days.\nNow you are ready to rock the coding interview and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
-        ok_text="Let's crunch 'em interviews!"
+        message="You completed the coding curriculum in {b}{color=#002ead}[days_between_start_and_curriculum_completion]{/color}{/b} days.\nNow you are ready to rock your coding interviews and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
+        ok_text="Let's crush those interviews!"
     )
 
     $ persistent.achievements.add(milestone_complete_curriculum)
@@ -1231,28 +1231,28 @@ label stage7_complete_curriculum:
     player happy "(And to start applying to jobs as well!)"
     $ todo_list.add_todo(todo_apply_to_jobs)
     player laugh "I'm feeling great about my decision to learn to code!"
-    player "Let's crunch the interviews!"
+    player "Let's crush the interviews!"
 
 label stage8:
     # Stage 8. Coding interviews
-    call screen text_over_black_bg_screen("{i}Chapter 5: Let's crunch 'em interviews!{/i}")
+    call screen text_over_black_bg_screen("{i}Chapter 5: Let's crush those interviews!{/i}")
 
     scene bg bedroom with fadehold
     player smile "Alright! Let's start by applying to jobs!"
     call day_activity_job_search from _call_day_activity_job_search
-    player "Now I've applied to my first job, I can check it off my To-Do list."
+    player "Now that I've applied to my first job, I can check it off my To-Do list."
     $ todo_list.complete_todo(todo_apply_to_jobs)
 
     player "What's next on my To-Do? Oh right, let's start preparing for coding interviews."
     # now change the day activity text for studying
     $ day_activity_study = todo_interview_prep
-    player surprised "What shall I study? I remember some skills mentioned in the job posting include JavaScript, Web Dev, Algorithms, and System Design."
+    player surprised "What should I study? I remember some skills mentioned in the job posting included JavaScript, Web Dev, Algorithms, and System Design."
     call study_session_choose_topic from _call_study_session_choose_topic
     call study_session from _call_study_session_3
 
     scene bg bedroom night with fadehold
     player relieved "Whew... Those questions are harder than CS fundamental questions. Guess I need to put in more studying."
-    player smile "But this is a good start nonetheless!"
+    player smile "But this is still a good start!"
     $ todo_list.complete_todo(todo_interview_prep)
     player "Now the next big thing on my To-Do list will be to actually pass an interview and get a job."
     $ todo_list.add_todo(todo_get_job)
@@ -1269,16 +1269,16 @@ label stage8:
     marco @ laugh "That's a good start!"
     marco @ serious "But yeah, companies are usually slow to process the applications. You might need to wait for a week or more to hear back."
     marco "So don't get discouraged if you don't hear back for a while!"
-    marco "Keep on applying to jobs, prepping for interview, and going about your routines."
+    marco "Keep on applying to jobs, prepping for interviews, and going about your routines."
     marco @ laugh "Once they have processed your application and gotten the interview process rolling, it's your time to shine!"
     player laugh "Haha thanks! I'll keep that in mind."
     player "Have a great rest of your evening!"
-    marco "You as well."
+    marco "You too."
 
     play sound 'audio/sfx/phone_hangup.wav'
     hide marco
 
-    player relieved "Yawwwwwn... Let's call this a day and get back to my routine tomorrow."
+    player relieved "Yawwwwwn... Let's call it a day and get back to my routine tomorrow."
 
     call save_reminder from _call_save_reminder_13
 
@@ -1297,7 +1297,7 @@ label stage8:
 
             if interview_company_name is None:
                 # go back to job search
-                player surprised "Hey! Looks like there is a new job posting available. Let's check it out."
+                player surprised "Hey! Looks like there's a new job posting available. Let's check it out."
                 call day_activity_job_search from _call_day_activity_job_search_1
                 call day_activity_choices from _call_day_activity_choices_9
 
@@ -1309,7 +1309,7 @@ label stage8:
         hide smartphone
         play sound 'audio/sfx/social_media_notification.wav'
 
-        player surprised "Huh, an email from {b}[interview_company_name]{/b} first thing in the morning? Right, it's been some time since I've applied to their job posting."
+        player surprised "Huh, an email from {b}[interview_company_name]{/b} first thing in the morning? Right, it's been a while since I applied to their job posting."
         player "The title says 'Application Follow-up'..."
         $ num_companies_interviewed += 1
         call screen company_interview_email_screen(interview_company_name)
@@ -1336,7 +1336,7 @@ label stage8:
             player pout "But I have to face it."
             call screen company_rejection_email_screen(interview_company_name)
             player worry "Well... Guess I need to work harder."
-            "(Hey you there, don't look so down, okay? Coding interviews are hard and we know it. That's why you should study for it. Why not try out some more mock questions during your study sessions?)"
+            "(Hey you there, don't look so down, okay? Coding interviews are hard and we know it. That's why you should study for them. Why not try out some more mock questions during your study sessions?)"
             show mint
             mint "Meow..."
             player relieved "Thanks, Mint. I'm a bit disappointed, but I'll be fine."
@@ -1381,7 +1381,7 @@ label stage8:
     )
     $ persistent.achievements.add(milestone_sign_offer)
 
-    player happy "I can't wait to tell my parents! And I should call Annika and Marco to let them know!"
+    player happy "I can't wait to tell my parents! And I should call Annika and Marco to let them know."
     player laugh "Let's get everyone together and throw a big party to celebrate!"
     # TODO: congrats from Annika, Marco, and family
 
@@ -1400,10 +1400,10 @@ label stage14:
 
     scene bg office
     player surprised "Wow. I still can't believe that starting today, I'll be working in such a fancy office."
-    player smile "My orientation email says that my on boarding buddy will be here to pick me up and show me around the office...{p=1.0}{nw}"
+    player smile "My orientation email says that my onboarding buddy will be here to pick me up and show me around the office...{p=1.0}{nw}"
     show layla
 
-    layla "Hey [persistent.player_name]. Welcome to the team! I'm Layla, your on boarding buddy."
+    layla "Hey [persistent.player_name]. Welcome to the team! I'm Layla, your onboarding buddy."
     layla @ laugh "Feel free to ask me anything!"
     player surprised "(Hmmm... I wonder if we have met before. Layla looks familiar somehow.)"
     player "(...Oh! Was that her at Hacker Space mentoring the kids?)"
@@ -1411,15 +1411,15 @@ label stage14:
     # TODO: flashback fade
     scene bg hacker_space with fadehold
     show layla
-    layla @ laugh "So how's everyone's project going? We mentors are here to answer any question you have!"
+    layla @ laugh "So how's everyone's project going? We mentors are here to answer any questions you have!"
 
     scene bg office with fade
     show layla with vpunch
     layla "[persistent.player_name]? Are you okay? You are spacing out."
     player smile "Ah! I'm fine. I just remembered that we might have met before."
-    player "You know, at Hacker Space. I used to go there to study and work on projects before I get this job."
-    layla "Oh, wow. Yeah. I was at various Hacker Space events. Nice to hear that you enjoyed the place!"
-    layla @ laugh "Alright, enough small talks! Are you ready to commit your first line of code into production today?"
+    player "You know, at Hacker Space. I used to go there to study and work on projects before I got this job."
+    layla "Oh, wow. Yeah. I was at a few of those Hacker Space events. Nice to hear that you enjoyed the place!"
+    layla @ laugh "Alright, enough small talk! Are you ready to commit your first line of code into production today?"
     player surprised "(Uhhhh that's fast...)"
     player happy "Ahhh... Yes, I'd love to dive into the code base as soon as possible!"
     layla "Way to go! Our team usually sits around that table, next to the whiteboard."
@@ -1431,10 +1431,10 @@ label stage14:
     player pout "... Um..."
     layla "Something on your mind?"
     player "I'm kind of stuck... Or, I guess a more accurate way to put this is, I don't even know where to start."
-    layla "No worries! On-boarding could be daunting."
+    layla "No worries! Onboarding can be daunting."
     layla "Think about it. Teams of talented developers spent months, even years, building out this code base."
     player smile "Haha, thanks. That does make me feel better."
-    layla @ laugh "How about this? Let's take your mind off this code for a while and go grab coffee?"
+    layla @ laugh "How about this? Let's take your mind off this code for a while and go grab coffee."
     player happy "Sure, I'd love to!"
 
     scene bg office_cafe with blinds
@@ -1442,7 +1442,7 @@ label stage14:
     layla @ laugh "Here you go. From bean to coffee, freshly brewed in the office."
     player pout "..."
     player neutral "Hey Layla. Mind if I ask how long you've been with this company and team?"
-    layla "Of course not! I've been here for two years. I interned here when I was in college and returned full-time right after graduation."
+    layla "Sure thing. I've been here for two years. I interned here when I was in college and returned full-time right after graduation."
     player surprised "So you were a CS major?"
     layla "Yep."
     player worry "(No wonder Layla was able to blend in so well...)"
@@ -1452,7 +1452,7 @@ label stage14:
     layla "That's just not the whole story, you know."
     player pout "Oops, sorry."
     layla @ neutral "No big deal. I can see where you are coming from."
-    layla "Say, have you heard of the word, imposter syndrome?"
+    layla "Have you heard of the term imposter syndrome?"
     menu:
         "Do you know what imposter syndrome is?"
         "Yes.":
@@ -1460,28 +1460,28 @@ label stage14:
             player worry  "To be honest, I feel that quite often."
         "Nope.":
             player surprised "Care to explain?"
-            layla "It's when you fee like everyone else is smarter and more competent than you."
+            layla "It's when you feel like everyone else is smarter and more competent than you."
             layla "That you are a fraud, despite all of your education and achievements."
             player worry "Uhhh... I know that feeling..."
-            layla "Not the prettiest feeling, huh?"
+            layla "Not the best feeling, huh?"
     layla @ neutral "No worries, you are good. That's almost the norm for people in tech."
-    layla "Hah. Would you believe me if I tell you that imposter syndrome hits CS students equally hard, if not harder?"
+    layla "Hah. Would you believe me if I told you that imposter syndrome hits CS students equally hard, if not harder?"
     player surprised "Ummm... Tell me about it."
     layla "It starts the first time we step into a CS classroom, maybe earlier."
     layla "There is always that kid that sits in the front row, who has been coding since five and knows everything the professor has yet to talk about."
     player pout "That's... intense."
-    layla "And there is the expectation that CS kids should get big-names internships as early as their freshman year summer."
+    layla "And there's this expectation that CS kids should get big-name internships as early as their freshman year summer."
     layla "Definitely not later than their junior year summer. Otherwise, the myth goes that they are unhirable."
     layla "I spent my freshman and sophomore summers volunteering at a local school teaching kids to code."
-    layla "I don't see any problems with that. I mean, I love coding and I love teaching, and being able to convey that to the next generation is an awesome opportunity for me."
+    layla "And I mean I didn't see any problem with that. I love coding and I love teaching, and being able to convey that to the next generation is an awesome opportunity for me."
     player smile "(No wonder Layla's volunteering her time to mentor kids at Hacker Space.)"
-    layla "But my friends were either interning for big names or building their own startups during the summer."
-    layla "They are nice enough not to say anything to my face, but I always feel a strange sense of hollowness when I see them post about their intern perks or startup progress."
+    layla "But my friends were either interning for big name companies or building their own startups during the summer."
+    layla "They were nice enough not to say anything to my face, but I always felt a strange sense of hollowness when I saw them post about their intern perks or startup progress."
     layla "It was a rough time, but my friends and my college advisors were supportive, and I eventually come to terms with being who I am and contributing to causes that I care about."
-    player pout "(Awww... I would never imagine how hard imposter syndrome hits everyone.)"
+    player pout "(Awww... I never imagined how hard imposter syndrome hits everyone.)"
 
     show layla neutral
-    layla "Haha sorry for the rant. I didn't mean to scare you away from continuing working in tech."
+    layla "Haha sorry for the rant. I don't want to scare you away from continuing working in tech."
     layla "It's just that the battle with imposter syndrome is a continuous battle. Every little win is a win."
     layla "In fact, I still grapple with imposter syndrome and have to stop myself from banging my head on the desk whenever I run into a bug I can't fix."
     player smile "Wow. Haha. Thanks for sharing. That actually makes me feel a lot better."
@@ -1495,21 +1495,21 @@ label stage14:
             player "Would you mind telling me about your experience when you first joined this company?"
             layla @ laugh "Sure thing!"
             layla "Like you, I also had an on boarding buddy. He was a few years ahead of me. Very knowledgeable and chill guy."
-            layla "Per his suggestion, I started with simple bug fixes. Then after a month, I started building small features and getting them approved by the team."
+            layla "At his suggestion, I started with simple bug fixes. Then after a month, I started building small features and getting them approved by the team."
             layla "As I became more familiar with the code base, I had more confidence to take on bigger features."
-            layla "And before I know it, here I am, two years in already."
+            layla "And before I knew it, here I am, two years in already."
             player "Wow. Time sure flies."
-            layla "It sure does. You will be navigating our code base like a pro before you realize it."
+            layla "It really does. You'll be navigating our code base like a pro before you realize it."
             jump layla_story_choices
         "How was your transition from college to work?":
             player "How was your transition from college to work? Was it any easier because of your CS background?"
             layla "Yes and no. My CS background helps a little in that it gave me a general sense of what to expect in the workplace."
-            layla "However, there is few college CS curriculum that can cover the modern principles and best practices in the world of software."
+            layla "But there are few college CS curricula that can cover the modern principles and best practices in the world of software."
             layla "Which is not a surprise since the tech world is constantly evolving."
             layla "But that also means that, for the most part, I had to pick up the important things on the job."
             layla "Not a bad experience given that I had a supportive team behind me."
             player @ happy "Awww that's nice!"
-            layla @ laugh "Yep. Now you are the newbie here, we the team will be here for you."
+            layla @ laugh "Yep. Now that you're the newbie here, the tean and I will be here for you."
             jump layla_story_choices
         "What is our team like?":
             player "So what is our team like?"

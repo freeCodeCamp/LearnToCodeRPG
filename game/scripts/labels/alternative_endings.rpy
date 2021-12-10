@@ -7,7 +7,7 @@ label ending_barista:
     show man orange
     cafe_manager "Hey [persistent.player_name]. Can I have a word with you?"
     player surprised "!"
-    player worry "(Did I do anything wrong? Served a wrong order and got customer complaints maybe?)"
+    player worry "(Did I do anything wrong? Served the wrong order and got some customer complaints maybe?)"
     player "(Am I gonna get fired? Why am I unable to hold even a simple barista gig?)"
     with hpunch
     player surprised "!"
@@ -19,29 +19,29 @@ label ending_barista:
     cafe_manager "Yes. You've been working hard and performing really well."
     cafe_manager "Our customers love you and we would love to have a full-time barista like you."
     cafe_manager "Your new hourly rate will be twice what you have now. What do you say?"
-    player neutral "(That sure sounds like good stuff, but working full-time would also mean that I'll have less time to self-study coding.)"
+    player neutral "(That sure sounds like good stuff, but working full-time would also mean that I'll have less time to study coding.)"
     player "(If my job gets too busy, I might need to give up on learning to code all together.)"
     player "(I feel like this is a really important decision for me to make. I need to think this through.)"
 
     call save_reminder from _call_save_reminder_15
 
     menu:
-        player "(Shall I take up on the full-time barista offer?)"
+        player "(Should I take them up on the full-time barista offer?)"
 
         "Why not? I need cash and learning to code can wait.":
             pass
 
         "Nope. I really need to carve out more time to study and become a developer.":
-            player "Thanks, but I kinda have my plate full at the moment for a full-time role."
+            player "Thanks, but my plate's a bit too full at the moment for a full-time role."
             cafe_manager "No problem. We are happy enough to have you help out part-time."
             cafe_manager "Best of luck with whatever it is that you are doing. You'll do great."
             hide man
             return # return control to the script that called this label
 
     player happy "I'd love to work full-time here."
-    cafe_manager "Great! I know this is an offer that you can't turn down."
+    cafe_manager "Great! I was hoping that this would be an offer that you can't turn down."
     cafe_manager "Okay, starting tomorrow, I'm hoping to see you here from nine to five."
-    player "Sure thing! Being punctual is one of my biggest strengths during college."
+    player "Sure thing! Being punctual was one of my biggest strengths during college."
     cafe_manager "That's great news to our customers. Keep up the great work."
     hide man
     player smile "Okay, I guess I have a full-time job now."
@@ -53,14 +53,14 @@ label ending_barista:
     call screen text_over_black_bg_screen("A year later...")
     scene bg cafe with fade
     player neutral "So I've been working full-time as a barista for a whole year now."
-    player "The work is quite busy every day, and I don't have much time left by the end of the day to learn to code."
+    player "The work keeps me quite busy every day, and I don't have much time left by the end of the day to learn to code."
     player smile "But coming in every day, greeting people on their way to work, seeing them leave the cafe with a smile on their face - those are really precious moments."
     player "Plus I still get to hear about cool things happening in tech every now and then."
     show woman purple
     female "Hey [persistent.player_name]. How was your day?"
-    player surprised "(My customers even know me by the name now...)"
-    player smile "My day's been well! What about yours?"
-    female "Good. I just heard about this new app that is trending in the developer community..."
+    player surprised "(My customers even know me by name now...)"
+    player smile "My day's been great! What about yours?"
+    female "Good. I just heard about this new app that's trending in the developer community..."
 
     scene bg cafe dusk with fade
     player happy "(Well, I'm happy with where I am now, I think.)"
@@ -69,8 +69,8 @@ label ending_barista:
     scene bg cafe with fade
     player neutral "Same old day. I've been working full-time here at this cafe for two years now."
     player smile "Well, there is one thing that's different: I got promoted to the cafe manager."
-    player "Turns out that the cafe is doing so well that it needs to open up new chain stores, so the old cafe manager who offered me this full-time barista position switched store."
-    player "Now that I'm managing this cafe, there is even more responsibility on me."
+    player "Turns out that the cafe is doing so well that it needs to open up new chain stores, so the old cafe manager who offered me this full-time barista position switched stores."
+    player "Now that I'm managing this cafe, I have even more responsibilities."
     player worry "I feel like I won't be getting back to learning to code any time soon."
     player neutral "But that in itself isn't a bad thing...{p=1.0}{nw}"
     show girl blue with moveinleft
@@ -78,7 +78,7 @@ label ending_barista:
     player "..."
     player "(It looks like she is talking on the phone.)"
     girl "I'm at the cafe now."
-    girl "What? You won't be here until the next hour because you are stuck in traffic?"
+    girl "What? You won't be here for an hour because you're stuck in traffic?"
     girl "But we need to figure out this bug as soon as possible so we can unblock the team who depends on our API!"
     girl "Grrrrgggghhhhh..."
     player surprised "(It looks like they are stuck on some coding project.)"
@@ -108,18 +108,18 @@ label ending_cat:
     scene bg bedroom night with fade
     play sound 'audio/sfx/keyboard_typing.wav'
     player relieved "Yawwwn...."
-    player worry "I heard some strange noise coming from under my bed. Maybe Mint is hungry and woke up?"
+    player worry "I heard some strange noises coming from under my bed. Maybe Mint is hungry and woke up?"
     player surprised "Mint? Is that you?"
     player neutral "..."
-    player worry "Mint didn't show up. Shall I check what's happening?"
+    player worry "Mint didn't show up. Should I check what's happening?"
     menu:
-        player "Shall I check what's happening?"
+        player "Should I check what's happening?"
 
         "Check under the bed.":
             pass # continue with the plot
 
         "Just go back to sleep.":
-            player "Nah. Mint's a good cat and won't do damage."
+            player "Nah. Mint's a good cat and won't do any damage."
             player relieved "I could use more sleep so that I'll wake up energized for a new day."
             return # return control to the script that called this label
 
@@ -135,19 +135,19 @@ label ending_cat:
     player "(Mint looks absorbed while ardently typing on my laptop.)"
     player "(It looks like Mint has a text editor open. For what? Writing code?)"
     player surprised "(Hang on. Mint is pulling up a terminal now. Maybe the code is done and ready to deploy?)"
-    player pout "(Geez... I don't even know if I'm more curious about what Mint has coded up or how a cat is able to do any of these in the first place.)"
+    player pout "(Geez... I don't even know if I'm more curious about what Mint has coded up or how a cat is able to do any of these things in the first place.)"
     player surprised "(Oh! The website is coming up live!)"
     player "(Wait. I think I know this interface...)"
     player "(Isn't that just [developerquiz]?!)"
     player "(Wait wait wait. So Mint was the one who coded up [developerquiz], the go-to website for aspiring developers?)"
-    player pout "(My logic is failing me at this stage...)"
+    player pout "(My logic is failing me at this point...)"
     player relieved "(Maybe this is all a dream?)"
     menu:
         player "Maybe this is all a dream?"
 
         "I must be dreaming. Let's go back to sleep.":
-            player worry "I must be too exhausted and anxious about the coding stuff that I'm hallucinating about Mint writing code."
-            player relieved "Let's go get more sleep before my {b}Sanity{/b} hits the ground."
+            player worry "I must be so exhausted and anxious about the coding stuff that I'm hallucinating about Mint writing code."
+            player relieved "Let's go get more sleep before my {b}Sanity{/b} hits the floor."
             hide mint_with_pixel_sunglasses
             return # return control to the script that called this label
 
@@ -169,7 +169,7 @@ label ending_cat:
         player "Shall I keep this as a secret just between Mint and me?"
     
         "Let's keep this a secret and say goodnight to Mint.":
-            player "Alright Mint. You are awesome. Keep up what you are doing."
+            player "Alright Mint. You are awesome. Keep doing what you're doing."
             player "One day I'll catch up to you."
             player laugh "Good night!"
             hide mint_with_pixel_sunglasses
@@ -183,11 +183,11 @@ label ending_cat:
     player "Here, here. I even got matching sunglasses."
 
     $ player_pixelsunglasses = True
-    player laugh "How does that look on me?"
+    player laugh "How do these look on me?"
     mint "Meow! (Looks great!)"
-    player "You like it? Thanks Mint!"
+    player "You like them? Thanks Mint!"
     mint "Meow! (Now let's get to work!)"
-    player "And you are telling me to get to work now? Okay, I'll give it my best shot!"
+    player "And you're telling me to get to work now? Okay, I'll give it my best shot!"
     $ calendar_enabled = False
 
     call screen text_over_black_bg_screen("A month later...")
@@ -195,7 +195,7 @@ label ending_cat:
     host "And now let's give a round of applause to our hackathon winner: {b}Cat Who Codes{/b}!"
     play sound 'audio/sfx/applause.ogg'
     show mint_with_pixel_sunglasses
-    player laugh "Wow... We managed to win the first place all thanks to Mint. This is awesome!"
+    player laugh "Wow... We managed to win first place all thanks to Mint. This is awesome!"
     host "We hope to see you at our next hackathon as well!"
 
     call screen text_over_black_bg_screen("A year later...")
@@ -237,17 +237,17 @@ label ending_tutor:
     scene bg kitchen night with dissolve
     mom "I just remembered something to tell you, [persistent.player_name]."
     mom "Would you be interested in helping kids learn to code?"
-    mom "A high school afflicted with the one I'm teaching at is looking to expand their CS curriculum."
+    mom "A high school affiliated with the one where I'm teaching is looking to expand their CS curriculum."
     mom "They are looking for a tutor. It's a temporary position for now, but may eventually turn into a full-time teaching contract."
     player surprised "That sounds cool..."
-    mom "I know you are busy teaching yourself to code and this may take time away from you."
+    mom "I know you are busy teaching yourself to code and this may take time away from your studies."
     mom "The decision is all up to you. No pressure."
     player smile "(Mom's as considerate and resourceful as always.)"
 
     menu:
-        player "(Shall I take up the CS tutor gig?)"
+        player "(Should I take up the CS tutor gig?)"
     
-        "Why not? Teaching is the best way of learning!":    
+        "Why not? Teaching is the best way to learn!":    
             pass
     
         "Nah. I'm too busy teaching myself already.":

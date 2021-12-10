@@ -96,7 +96,7 @@ screen player_stats_screen(show_stats=True, show_todo=True, changed_stats=None, 
         xpadding 30
         ypadding 30
 
-        background white90
+        background white80
 
         vbox:
             spacing 20
