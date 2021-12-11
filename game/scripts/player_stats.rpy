@@ -30,20 +30,20 @@ init python:
                 change_direction = None
                 if val > 0:
                     change_direction = CHANGE_DIRECTION_INC
-                    if not renpy.sound.is_playing():
-                        renpy.sound.play('audio/sfx/stats_change_boop.wav')
+                    # if not renpy.sound.is_playing():
+                    renpy.sound.play('audio/sfx/stats_change_boop.wav')
                     renpy.notify(stats_name + ' increased by ' + str(val))
                 elif val < 0:
                     change_direction = CHANGE_DIRECTION_DEC                    
                     renpy.notify(stats_name + ' decreased by ' + str(-val))
-                    if not renpy.sound.is_playing():
-                        renpy.sound.play('audio/sfx/stats_change_buzz.wav')
+                    # if not renpy.sound.is_playing():
+                    renpy.sound.play('audio/sfx/stats_change_buzz.wav')
 
                 # show the stats screen
                 if not renpy.get_screen('player_stats_todo_screen', layer='transient'):
                     # screen has been cleared, reset previous change directions
                     renpy.show_screen('player_stats_todo_screen', 
-                        _layer='transient', show_todo=False, changed_stats=stats_name, change_direction=change_direction)
+                        _layer='transient', changed_stats=stats_name, change_direction=change_direction)
 
         def change_stats_random(self, stats_name, min_val, max_val):
             # renpy.random.randint([min], [max]) both ends inclusive
@@ -61,7 +61,7 @@ init python:
         def add_todo(self, todo):
             self.incomplete.append(todo)
             if not renpy.get_screen('player_stats_todo_screen', layer='transient'):
-                renpy.show_screen('player_stats_todo_screen', _layer='transient')
+                renpy.show_screen('player_stats_todo_screen', _layer='transient', show_todo=True)
             if not renpy.sound.is_playing():
                 renpy.sound.play('audio/sfx/smartphone_typing.wav')
 
@@ -70,9 +70,17 @@ init python:
                 self.incomplete.remove(todo)
                 self.completed.append(todo)
                 if not renpy.get_screen('player_stats_todo_screen', layer='transient'):
-                    renpy.show_screen('player_stats_todo_screen', _layer='transient')
+                    renpy.show_screen('player_stats_todo_screen', _layer='transient', show_todo=True)
                 if not renpy.sound.is_playing():
                     renpy.sound.play('audio/sfx/todo_complete.wav')
+
+    def get_stats_change_direction_icon(stats, changed_stats, change_direction):
+        if stats == changed_stats:
+            if change_direction == CHANGE_DIRECTION_INC:
+                return '{icon=icon-chevrons-up}'
+            elif change_direction == CHANGE_DIRECTION_DEC:
+                return '{icon=icon-chevrons-down}'
+        return ''
 
 transform alpha_dissolve:
     alpha 0.0
@@ -98,14 +106,17 @@ screen player_stats_todo_screen(show_todo=False, changed_stats=None, change_dire
         has vbox
         spacing 10
 
-        if show_todo_local:
-            textbutton _("Show Stats {icon=icon-toggle-right} Show To-Do"):
+        hbox:
+            spacing 30
+            xalign 0.5
+            style_prefix "radio"
+            textbutton _("Show Stats"):
                 action ToggleScreenVariable(name='show_todo_local', true_value=False, false_value=True)
-                xalign 0.5
-        else:
-            textbutton _("Show Stats {icon=icon-toggle-left} Show To-Do"):
-                action ToggleScreenVariable(name='show_todo_local', true_value=True, false_value=False)
-                xalign 0.5
+            textbutton _("Show To-Do"):
+                action [
+                SensitiveIf(todo_unlocked),
+                ToggleScreenVariable(name='show_todo_local', true_value=True, false_value=False)
+                ]
 
         viewport:
             xsize 620
@@ -123,57 +134,49 @@ screen player_stats_todo_screen(show_todo=False, changed_stats=None, change_dire
                 use todo_screen()
             else: # show stats by default
                 use player_stats_screen(changed_stats, change_direction)
-     
-# used as a component in screen player_stats_screen
-screen change_direction_component(stats, changed_stats, change_direction):
-    if stats != changed_stats:
-        null height gui.text_size # empty
-    else:
-        if change_direction == CHANGE_DIRECTION_INC:
-            text '{icon=icon-chevrons-up}'
-        elif change_direction == CHANGE_DIRECTION_DEC:
-            text '{icon=icon-chevrons-down}'
-        else:
-            null height gui.text_size
 
 screen player_stats_screen(changed_stats, change_direction):
-    vbox:
-        spacing 20
-        text _("Stats") bold True underline True
-        grid 4 len(all_skills) + 2:
-            xspacing 10
-            yspacing 5
+    # vbox:
+    #     spacing 20
+    #     text _("Stats") bold True underline True
+    python:
+        num_rows = 1 # Sanity
+        if stats_knowledge_unlocked:
+            num_rows += 1
+        if stats_subcategory_unlocked:
+            num_rows += len(all_skills)
 
-            # Sanity
-            $ sanity = player_stats.player_stats_map['Sanity']
-            text "{icon=icon-zap}  " + _('Sanity') color gui.accent_color
-            bar value sanity range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
-            text str(sanity)
-            use change_direction_component('Sanity', changed_stats, change_direction)
+    grid 3 num_rows:
+        xspacing 10
+        yspacing 5
 
-            # CS Knowledge
-            if stats_knowledge_unlocked:
-                $ cs_knolwedge = player_stats.player_stats_map['CS Knowledge']
-                text "{icon=icon-terminal}  " + _('CS Knowledge') color gui.accent_color
-                bar value cs_knolwedge range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
-                text str(cs_knolwedge)
-                use change_direction_component('CS Knowledge', changed_stats, change_direction)
+        # Sanity
+        $ sanity = player_stats.player_stats_map['Sanity']
+        text "{icon=icon-zap}  " + _('Sanity') color gui.accent_color
+        bar value sanity range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
+        text str(sanity) + '  ' + get_stats_change_direction_icon('Sanity',changed_stats, change_direction)
 
-            # Subcategory CS Stats
-            if stats_subcategory_unlocked:
-                for skill in all_skills:
-                    text "    {icon=icon-code} " + _(skill) color gui.accent_color
-                    bar value 0 range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
-                    text str(0)
-                    use change_direction_component(skill, changed_stats, change_direction)
+        # CS Knowledge
+        if stats_knowledge_unlocked:
+            $ cs_knolwedge = player_stats.player_stats_map['CS Knowledge']
+            text "{icon=icon-terminal}  " + _('CS Knowledge') color gui.accent_color
+            bar value cs_knolwedge range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
+            text str(cs_knolwedge) + '  ' + get_stats_change_direction_icon('CS Knowledge',changed_stats, change_direction)
+
+        # Subcategory CS Stats
+        if stats_subcategory_unlocked:
+            for skill in all_skills:
+                text "    {icon=icon-code} " + _(skill) color gui.accent_color
+                bar value 0 range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
+                text str(0) + '  ' + change_direction_component(skill, changed_stats, change_direction)
 
 screen todo_screen():
+    # vbox:
+    #     spacing 20
+    #     text _("To-Do") bold True underline True
     vbox:
-        spacing 20
-        text _("To-Do") bold True underline True
-        vbox:
-            spacing 5
-            for todo in todo_list.incomplete:
-                text '    {icon=icon-square}    ' + todo
-            for todo in todo_list.completed:
-                text '    {icon=icon-check-square}    ' + todo color gui.idle_color
+        spacing 5
+        for todo in todo_list.incomplete:
+            text '    {icon=icon-square}    ' + todo
+        for todo in todo_list.completed:
+            text '    {icon=icon-check-square}    ' + todo color gui.idle_color

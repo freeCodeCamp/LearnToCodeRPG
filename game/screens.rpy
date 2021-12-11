@@ -1351,7 +1351,7 @@ screen notify(message):
     style_prefix "notify"
 
     frame at notify_appear:
-        xalign 0.5
+        xalign 0.
         ypos gui.notify_ypos
         xpadding 30
         ypadding 30
