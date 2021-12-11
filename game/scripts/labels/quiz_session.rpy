@@ -24,7 +24,7 @@ label study_session:
         # Easter Egg: 1% chance of encountering Easter Egg questions
         if renpy.random.random() < 0.01:
             $ quiz_question = renpy.random.choice(easter_egg_quiz_questions)
-            $ renpy.notify("A wild Easter Egg question appeared!")
+            $ renpy.notify("A wild Easter Egg question has appeared!")
         else: # regular study session questions
             $ quiz_question = renpy.random.choice(study_session_questions)
 
