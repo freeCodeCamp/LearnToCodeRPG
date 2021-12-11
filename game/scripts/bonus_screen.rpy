@@ -68,7 +68,7 @@ screen achievements_screen():
                                 text '{icon=icon-unlock} [achievement]'
                                 textbutton '{icon=icon-twitter} Tweet this' action OpenURL(tweet)
                             else:
-                                text '{icon=icon-lock} ???'
+                                text '{icon=icon-lock} ???' color gui.insensitive_color
                                 null
 
 # https://www.renpy.org/doc/html/rooms.html

@@ -22,13 +22,17 @@ label splashscreen:
         Adjust the volume of music and sound effects on the {icon=icon-settings} Settings screen.
 
         Press the {b}{u}Esc{/u}{/b} key to access the {icon=icon-grid}Game Menu at any time during the game.
+
+        (Click anywhere to dismiss this message)
         """)
     # use a lighter background because the hyperlinks are dark blue
-    scene gray05 with dissolve
+    scene main_menu with dissolve
+    show white80 zorder 100 with dissolve
     pause 1
-    show text "{size=48}[accessibility_tips]{/size}"
-    with dissolve 
-    pause 8
+    show text "{size=48}[accessibility_tips]{/size}" zorder 101
+    with dissolve
+    pause
+    hide text with dissolve
 
     $ beta_disclaimer = _p("""
         This game, {b}Learn to Code RPG{/b}, is currently in beta.
@@ -36,13 +40,15 @@ label splashscreen:
         If you notice any bugs or have suggestions about accessibility, the interface, the story, or anything at all, please report them on our {a=https://github.com/freeCodeCamp/LearnToCodeRPG}GitHub repo{/a}.
 
         If you are enjoying this game, please {icon=icon-award} rate and review us on {a=https://freecodecamp.itch.io/learn-to-code-rpg}itch.io{/a} and {icon=icon-star} star our {a=https://github.com/freeCodeCamp/LearnToCodeRPG}GitHub repo{/a}.
+
+        (Click anywhere to dismiss this message)
         """)
     # use a lighter background because the hyperlinks are dark blue
-    scene gray05 with dissolve
-    pause 1
-    show text "{size=48}[beta_disclaimer]{/size}"
+    show text "{size=48}[beta_disclaimer]{/size}" zorder 101
     with dissolve 
-    pause 8
+    pause
+    hide text with dissolve
+    hide white80 with dissolve
 
     # return control to the `start` label
 

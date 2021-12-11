@@ -42,3 +42,4 @@ init:
 
     # https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4
     define white80 = u'#fffc' # 80% opacity
+    image white80 = white80

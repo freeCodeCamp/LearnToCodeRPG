@@ -60,6 +60,7 @@ init python:
     ## images
 
     renpy.image('main_menu', 'gui/main_menu.png')
+    renpy.image('main_menu sepia', im.Sepia('gui/main_menu.png'))
 
     # day-night effects
     # https://www.twoandahalfstudios.com/2019/08/tds-making-of-3-day-night-and-sunset-reshading-images-in-renpy-with-im-matrixcolor

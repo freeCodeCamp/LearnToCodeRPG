@@ -238,4 +238,14 @@ init python:
     'SQL': sql_questions
     }
 
-    all_skills = list(all_questions_map.keys())
+    # the order is important
+    all_skills = [
+    'HTML',
+    'CSS',
+    'JavaScript',
+    'Python',
+    'Linux',
+    'Git',
+    'SQL',
+    'IT',
+    ]

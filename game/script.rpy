@@ -1589,19 +1589,19 @@ label ending_splash: # alternative endings also jump to here
 
     # Credits, like in the About section from options.rpy
     # use a lighter background because the hyperlinks are dark blue
-    scene gray05 with dissolve
+    scene main_menu with dissolve
+    show white80 zorder 100
     pause 1
     show text "{size=48}[about]{/size}"
     with dissolve 
     pause 5
     hide text with dissolve
 
-    scene gray05 with dissolve
-    pause 1
     show text "{size=48}[credits]{/size}"
     with dissolve 
     pause 5
     hide text with dissolve
+    hide white80 with dissolve
 
     # go to the bonus screen
     call screen bonus_screen()

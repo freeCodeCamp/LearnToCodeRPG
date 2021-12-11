@@ -85,31 +85,48 @@ label day_activity_choices:
 
 label study_session_choose_topic:
     menu:
-        "Which topic to study for the coding interview?"
+        "Which topic to study?"
 
         "General CS concepts":
-            player "It's never a bad idea to go back to CS fundamentals!"
+            player "It's never a bad idea to go back to CS (Computer Science) fundamentals!"
             $ study_session_questions = general_questions
 
+        "HTML":
+            player "HTML (HyperText Markup Language) is useful for web development. Let's go with that!"
+            $ study_session_questions = html_questions
+
+        "CSS":
+            player "CSS (Cascading Style Sheets) is useful for web development. Let's go with that!"
+            $ study_session_questions = css_questions
+
         "JavaScript":
-            player "I feel like crunching some JavaScript questions today!"
+            player "JavaScript is useful for web development and a lot of other things. Let's go with that!"
             $ study_session_questions = javascript_questions
 
-        "Web Development":
-            player "Let's buckle up and go with Web Dev!"
-            $ study_session_questions = web_questions
+        "Python":
+            player "Python is useful for things like data science and machine learning. Let's go with that!"
+            $ study_session_questions = python_questions
 
-        "Algorithms":
-            player "I wonder if I can develop a better algorithm to streamline my interview prep process?"
-            $ study_session_questions = algorithm_questions
+        "Linux":
+            player "Linux is a family of open-source Unix-like operating systems. It has some cool commands that every cool developer should know. Let's go with that!"
+            $ study_session_questions = linux_questions
 
-        "System Design":
-            player "Let's do some high-level system design!"
-            $ study_session_questions = system_questions
+        "Git":
+            player "Git is a useful version control system. Let's go with that!"
+            $ study_session_questions = git_questions
 
-        "Mix and match all topics":
-            player "How about mixing and matching all topics? That sounds more realistic in an interview setting."
-            $ study_session_questions = interview_questions
+        "SQL":
+            player "SQL (Structured Query Language) is useful for database operations. Let's go with that!"
+            $ study_session_questions = sql_questions
+
+        "IT":
+            player "It's never a bad idea to go back to IT (Information Technology) fundamentals!"
+            $ study_session_questions = it_questions
+
+        # TODO: need to look up which category the question belongs to
+        # "Mix and match all topics":
+        #     player "How about mixing and matching all topics? That sounds more realistic in an interview setting."
+        #     $ study_session_questions = interview_questions
     return
             
 label day_activity_relax:

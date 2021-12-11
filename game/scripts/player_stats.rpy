@@ -179,4 +179,4 @@ screen todo_screen():
         for todo in todo_list.incomplete:
             text '    {icon=icon-square}    ' + todo
         for todo in todo_list.completed:
-            text '    {icon=icon-check-square}    ' + todo color gui.idle_color
+            text '    {icon=icon-check-square}    ' + todo color gui.insensitive_color
