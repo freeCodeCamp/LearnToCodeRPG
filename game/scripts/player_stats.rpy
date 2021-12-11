@@ -168,7 +168,7 @@ screen player_stats_screen(changed_stats, change_direction):
             for skill in all_skills:
                 text "    {icon=icon-code} " + _(skill) color gui.accent_color
                 bar value 0 range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
-                text str(0) + '  ' + change_direction_component(skill, changed_stats, change_direction)
+                text str(0) + '  ' + get_stats_change_direction_icon(skill, changed_stats, change_direction)
 
 screen todo_screen():
     # vbox:

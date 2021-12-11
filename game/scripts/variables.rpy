@@ -68,6 +68,7 @@ init python:
 
     ## Non-mutable
 
+    ## Note to proofreader: please proofread these; they show up as To-Do items
     # to-do strings
     todo_check_fcc = 'Check out [freeCodeCamp]'
     todo_ask_curriculum = 'Ask Annika about CS curriculum'
@@ -79,8 +80,7 @@ init python:
     todo_ask_hackathon = 'Learn about Hackathon'
     todo_ask = 'Learn about ' # should be concatenated with vocabs from barista story
 
-    day_acitivity_study = 'Study CS Fundamentals' # will later change into todo_interview_prep
-
+    ## Note to proofreader: please do not change these labels
     # story labels for hacker space and barista
     hacker_space_event_labels = [
     'hacker_space_tech_talk',

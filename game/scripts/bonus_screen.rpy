@@ -7,7 +7,12 @@ screen bonus_screen():
         style_prefix "bonus"
         vbox:
             spacing 15
+
+            label 'Mini Games'
+            textbutton '{icon=icon-music} ' + _("Rhythm Game") action Start('rhythm_game_entry_label')
+            # TODO: more mini games, quiz speedrun survival mode etc.
             
+            null height 20
             label 'Bonus Content'
             textbutton '{icon=icon-award} ' + _("Achievements") action Show('achievements_screen')
             textbutton '{icon=icon-headphones} ' + _("Music Room") action Show('music_room_screen')
@@ -20,11 +25,6 @@ screen bonus_screen():
             # TODO: play game trailer from YouTube
             textbutton '{icon=icon-film} ' + _("Game Trailer") action NullAction()
             textbutton '{icon=icon-youtube} ' + _("Learn to Code RPG: The Making of") action NullAction()
-
-            null height 20
-            label 'Mini Games'
-            textbutton '{icon=icon-music} ' + _("Rhythm Game") action Start('rhythm_game_entry_label')
-            # TODO: more mini games, quiz speedrun survival mode etc.
 
             null height 20
             label 'Awesome freeCodeCamp Resources'

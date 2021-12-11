@@ -330,7 +330,11 @@ screen main_menu_navigation():
         textbutton _("About") action ShowMenu("about")
 
         # TODO: v2 achievements, glossary etc.
-        textbutton _("Bonus") action ShowMenu("bonus"):
+        textbutton _("Bonus"):
+            action [
+            SensitiveIf(persistent.player_name),
+            ShowMenu("bonus")
+            ]
             if persistent.player_name: # has some game in progress
                 background "gui/button/sticky_note_button_purple.png"
                 text_idle_color '#fff'
