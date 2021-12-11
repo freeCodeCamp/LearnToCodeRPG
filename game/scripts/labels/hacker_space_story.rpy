@@ -1,9 +1,9 @@
 label hacker_space_tech_trivia:
     player "(Maybe I won't get a prize for doing this, but it sounds like fun!)"
-    trivia_guy "Glad that you are interested!"
+    trivia_guy "Glad to hear you're interested!"
     trivia_guy "I have a prize for you if you get all questions correct."
     trivia_guy "Don't worry if you can't get all of them correct this time."
-    trivia_guy "I ask the same eight questions to everyone here, until someone gets all correct."
+    trivia_guy "I ask the same eight questions to everyone here until someone gets them all correct."
     trivia_guy "Are you ready?"
     player "Yes, let's do this!"
 
@@ -27,7 +27,7 @@ label hacker_space_project:
     player "Let's not disturb them and just watch from a distance."
     scene bg hacker_space with fadehold
     player "Their app idea is really cool even if it's still nothing but mocks."
-    player "I guess that's a nice skill to have if I want to develop my project one day."
+    player "I guess that's a nice skill to have if I want to develop my own project one day."
     player "Well, enough people-watching for the day."
     return
 
@@ -35,7 +35,7 @@ label hacker_space_open_source:
     player @ surprised "Looks like there is someone talking about their open-source project."
     player "Let's listen to what they have to say."
     show man purple
-    male "Contributing to open-source is a great way to practice your technical skills, and to beef up your resume."
+    male "Contributing to open-source is a great way to practice your technical skills, and to make your résumé more impressive."
     player "(Is that so? Then contributing to open-source sounds like a great side project for me.)"
     male "You might be wondering, where do we find open-source projects that could use a hand? Well, they are technically everywhere."
     male "Check out these websites as a starter!"
@@ -48,13 +48,13 @@ label hacker_space_playtest:
     college_girl "Hey there!"
     player @ surprised "Huh? Me?"
     college_girl "Yes. Do you have a moment?"
-    college_girl "We are working on a game project for our college CS course, and we'd really appreciate it if you are willing to play-test it."
+    college_girl "We are working on a game project for our college CS course, and we'd really appreciate it if you'd be willing to play-test it."
     college_girl "It's a simple pong game, in case you are wondering."
     menu:
         "Shall we play-test the pong game?"
     
         "Yes!":
-            window hide  # Hide the window and  quick menu while in pong
+            window hide  # Hide the window and quick menu while in pong
             $ quick_menu = False
             # avoid rolling back and losing minigame state
             $ renpy.block_rollback()
