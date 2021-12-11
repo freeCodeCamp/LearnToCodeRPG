@@ -22,7 +22,7 @@ label day_activity_choices:
     menu:
         # this string goes from 'study CS fundamentals' to 'study more CS fundamentals'
         # when the player has completed the curriculum
-        "[day_acitivity_study]":
+        "Study CS fundamentals":
             # this choice helps grow coding knowledge
             python:
                 day_activity = 'study'
@@ -33,8 +33,7 @@ label day_activity_choices:
                     ])
                 renpy.say(player, text)
 
-            if has_completed_curriculum: # can choose a topic to study
-                call study_session_choose_topic from _call_study_session_choose_topic_1
+            call study_session_choose_topic from _call_study_session_choose_topic_1
 
             call study_session from _call_study_session_1
 
@@ -88,7 +87,7 @@ label study_session_choose_topic:
     menu:
         "Which topic to study for the coding interview?"
 
-        "General CS knowledge":
+        "General CS concepts":
             player "It's never a bad idea to go back to CS fundamentals!"
             $ study_session_questions = general_questions
 

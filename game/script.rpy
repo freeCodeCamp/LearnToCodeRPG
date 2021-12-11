@@ -84,7 +84,7 @@ label start_after_interview:
     $ persistent.player_name = ''
     player pout "(Phew... Looks like I survived the technical questions. Now let's fill in the general information.)"
 
-    $ player_name = renpy.input("What is your name? {color=[red]}*{/color} (Type something and hit Enter)", default="Lydia")
+    $ player_name = renpy.input("What is your name? {color=[red]}*{/color} (Type your name and hit Enter. This name will be used throughout the game and you cannot change it unless you start a new game.)", default="Lydia")
     $ player_name = player_name.strip()
     if player_name in vip_names:
         $ vip_profile_url = vip_names[player_name]
@@ -188,7 +188,8 @@ label stage2:
     dad "Welcome home, pumpkin. How was your day?"
     player happy "(That's my mom and dad. {w} Mom is a high school teacher, which is why she could find me this tutoring gig. {w}Dad is a mechanical engineer, but I never got too into engineering.)"
     player "(Not to brag, but they are the nicest parents I know.)"
-    player "My day was okay. I'm tutoring this smart kid who wants to take up coding classes. I can't believe that came from a high school student."
+    player "My day was okay."
+    player "I'm tutoring this smart kid who wants to take up coding classes. I can't believe that came from a high school student."
     mom "That's interesting. I heard that a lot of high schools are rolling out coding curricula."
     mom "That must be a trendy thing right now."
     dad "Yeah, remember our neighbor, the guy who moved away last month? I heard his kid is majoring in Computer Science at college."
@@ -602,7 +603,7 @@ label stage5_annika:
     
     player pout "Ahhh... my alarm... It's a new day already?"
     player smile "What's on our To-Do list today?"
-    $ renpy.show_screen('player_stats_screen', _layer='transient')
+    $ renpy.show_screen('player_stats_todo_screen', _layer='transient')
     player happy "Right. Let's give Annika a call and ask about the CS curriculum."
     show smartphone at truecenter
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
@@ -788,7 +789,7 @@ label stage6:
 
         "What topic to ask Annika about?"
 
-        "Hackthon":
+        "Hackathon":
             call ask_hackathon from _call_ask_hackathon
             jump stage6_annika_questions
 
@@ -1061,7 +1062,7 @@ label stage7:
     call save_reminder from _call_save_reminder_21
 
     $ calendar.next_month()
-    $ renpy.show_screen('player_stats_screen', _layer='transient')
+    $ renpy.show_screen('player_stats_todo_screen', _layer='transient')
     scene bg bedroom with fadehold
     player smile "It's been two months since I started learning to code. Time really flies."
     player "I feel like I'm so much more knowledgeable than when I started."
@@ -1206,7 +1207,7 @@ label stage7:
     player "But let's first have a movie night to celebrate what I've gotten done!"
 
     scene bg bedroom with fadehold
-    $ renpy.show_screen('player_stats_screen', _layer='transient')
+    $ renpy.show_screen('player_stats_todo_screen', _layer='transient')
 
 label stage7_complete_curriculum:
     play sound 'audio/sfx/social_media_notification.wav'
@@ -1219,7 +1220,9 @@ label stage7_complete_curriculum:
     call screen confirm_and_share_screen(
         title="{bt}Congratulations!{/bt}",
         message="You completed the coding curriculum in {b}{color=#002ead}[days_between_start_and_curriculum_completion]{/color}{/b} days.\nNow you are ready to rock your coding interviews and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
-        ok_text="Let's crush those interviews!"
+        ok_text="Let's crush those interviews!",
+        tweet_content_url=all_tweet_map[milestone_complete_curriculum],
+        show_easter_egg_count=False
     )
 
     $ persistent.achievements.add(milestone_complete_curriculum)
@@ -1377,7 +1380,9 @@ label stage8:
     call screen confirm_and_share_screen(
         title="{bt}Congratulations!{/bt}",
         message="You taught yourself to become a developer in {b}{color=[dark_blue]}[days_between_start_and_offer]{/color}{/b} days, [days_between_curriculum_completion_and_offer] days after you've completed the coding curriculum.\nYou have applied to [num_jobs_applied] jobs and interviewed for [num_jobs_interviewed] times before landing this offer.\nNow you are ready to rock your new job!\n Feel free to share your progress with the world!",
-        ok_text="Let's rock my new job!", 
+        ok_text="Let's rock my new job!",
+        tweet_content_url=all_tweet_map[milestone_sign_offer],
+        show_easter_egg_count=False
     )
     $ persistent.achievements.add(milestone_sign_offer)
 
@@ -1549,7 +1554,9 @@ label ending:
     call screen confirm_and_share_screen(
         title="{color=[red]}{icon=icon-alert-triangle} Attention{/color}",
         message="Hey [persistent.player_name]... \nThe thing is, it looks like... \n{sc}{color=[red]}YOU HAVE BROUGHT DOWN THE PRODUCTION SERVER{/color}{/sc}",
-        ok_text="Oopsy... Am I... fired?"
+        ok_text="Oopsy... Am I... fired?",
+        tweet_content_url=all_tweet_map[ending_dev],
+        show_easter_egg_count=False
     )
 
     $ persistent.achievements.add(ending_dev)

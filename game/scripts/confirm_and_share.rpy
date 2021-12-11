@@ -1,7 +1,7 @@
 # https://www.renpy.org/doc/html/screen_special.html
 # based on the confirm screen
 
-screen confirm_and_share_screen(title, message="Now that's an Easter Egg uncovered!", ok_text='Call me the Egg Hunter!', tweet_content_url=tweet_default):
+screen confirm_and_share_screen(title, message="Now that's an Easter Egg uncovered!", ok_text='Call me the Egg Hunter!', tweet_content_url=tweet_default, show_easter_egg_count=True):
 
     # using `game menu root` will make this screen replace background image
     # modal True
@@ -27,9 +27,10 @@ screen confirm_and_share_screen(title, message="Now that's an Easter Egg uncover
                 text_align 0.5 # align multiline
                 xalign 0.5
 
-            $ num_achievements = len(persistent.achievements)
-            text _("Number of Easter Eggs unlocked: [num_achievements] / [total_num_achievements]"):
-                xalign 0.5
+            if show_easter_egg_count:
+                $ num_achievements = len(persistent.achievements)
+                text _("Number of Achievements Unlocked: [num_achievements] / [total_num_achievements]"):
+                    xalign 0.5
 
             textbutton "{icon=icon-twitter} " + _("Tweet this"):
                 xalign 0.5

@@ -264,12 +264,16 @@ screen quick_menu():
             # textbutton _("Q.Load") action QuickLoad()
             textbutton '{icon=icon-settings} ' + _("Settings ") action ShowMenu('preferences')
 
+            # if stats is showing, hide it; else show it
             if stats_unlocked:
-                textbutton _("{icon=icon-smartphone} Stats") action If(
-                    renpy.get_screen('player_stats_screen'),
-                    true=ToggleScreen('player_stats_screen'),
-                    false=ShowTransient("player_stats_screen")
+                textbutton _("{icon=icon-smartphone} Stats") action [
+                SensitiveIf(not renpy.get_screen('player_stats_todo_screen', layer='transient')),
+                If(
+                    renpy.get_screen('player_stats_todo_screen'),
+                    true=ToggleScreen('player_stats_todo_screen'),
+                    false=ShowTransient('player_stats_todo_screen')
                     )
+                ]
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
@@ -326,7 +330,11 @@ screen main_menu_navigation():
         textbutton _("About") action ShowMenu("about")
 
         # TODO: v2 achievements, glossary etc.
-        textbutton _("Bonus") action ShowMenu("bonus"):
+        textbutton _("Bonus"):
+            action [
+            SensitiveIf(persistent.player_name),
+            ShowMenu("bonus")
+            ]
             if persistent.player_name: # has some game in progress
                 background "gui/button/sticky_note_button_purple.png"
                 text_idle_color '#fff'
@@ -793,12 +801,12 @@ screen preferences():
                         textbutton _("Window") action Preference("display", "window")
                         textbutton _("Fullscreen") action Preference("display", "fullscreen")
 
-                vbox:
-                    style_prefix "radio"
-                    label _("Rollback Side")
-                    textbutton _("Disable") action Preference("rollback side", "disable")
-                    textbutton _("Left") action Preference("rollback side", "left")
-                    textbutton _("Right") action Preference("rollback side", "right")
+                # vbox:
+                #     style_prefix "radio"
+                #     label _("Rollback Side")
+                #     textbutton _("Disable") action Preference("rollback side", "disable")
+                #     textbutton _("Left") action Preference("rollback side", "left")
+                #     textbutton _("Right") action Preference("rollback side", "right")
 
                 vbox:
                     style_prefix "check"
@@ -829,9 +837,17 @@ screen preferences():
 
                     label _("Text Speed")
 
+                    hbox:
+                        text _("Slower")
+                        text _("Faster") xpos 338
+
                     bar value Preference("text speed")
 
                     label _("Auto-Forward Time")
+
+                    hbox:
+                        text _("Less")
+                        text _("More") xpos 338
 
                     bar value Preference("auto-forward time")
 
@@ -841,11 +857,19 @@ screen preferences():
                         label _("Music Volume")
 
                         hbox:
+                            text _("Lower")
+                            text _("Higher") xpos 338
+
+                        hbox:
                             bar value Preference("music volume")
 
                     if config.has_sound:
 
                         label _("Sound Volume")
+
+                        hbox:
+                            text _("Lower")
+                            text _("Higher") xpos 338
 
                         hbox:
                             bar value Preference("sound volume")
@@ -1331,7 +1355,7 @@ screen notify(message):
     style_prefix "notify"
 
     frame at notify_appear:
-        xalign 0.5
+        xalign 0.
         ypos gui.notify_ypos
         xpadding 30
         ypadding 30

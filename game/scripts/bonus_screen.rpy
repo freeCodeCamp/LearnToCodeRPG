@@ -7,7 +7,12 @@ screen bonus_screen():
         style_prefix "bonus"
         vbox:
             spacing 15
+
+            label 'Mini Games'
+            textbutton '{icon=icon-music} ' + _("Rhythm Game") action Start('rhythm_game_entry_label')
+            # TODO: more mini games, quiz speedrun survival mode etc.
             
+            null height 20
             label 'Bonus Content'
             textbutton '{icon=icon-award} ' + _("Achievements") action Show('achievements_screen')
             textbutton '{icon=icon-headphones} ' + _("Music Room") action Show('music_room_screen')
@@ -22,11 +27,6 @@ screen bonus_screen():
             textbutton '{icon=icon-youtube} ' + _("Learn to Code RPG: The Making of") action NullAction()
 
             null height 20
-            label 'Mini Games'
-            textbutton '{icon=icon-music} ' + _("Rhythm Game") action Start('rhythm_game_entry_label')
-            # TODO: more mini games, quiz speedrun survival mode etc.
-
-            null height 20
             label 'Awesome freeCodeCamp Resources'
             textbutton '{icon=icon-youtube} ' + _("freeCodeCamp YouTube Channel") action OpenURL("https://www.youtube.com/channel/UC8butISFwT-Wl7EV0hUK0BQ")
             textbutton '{icon=icon-map} ' + _("freeCodeCamp Curriculum") action OpenURL("https://www.freecodecamp.org/learn/")
@@ -39,12 +39,18 @@ screen achievements_screen():
     use game_menu(_("Achievements"), scroll="viewport"):
         style_prefix "bonus"
 
-        $ num_achievements = len(persistent.achievements)
-        text _("Number of Easter Eggs unlocked: [num_achievements] / [total_num_achievements]"):
-            xalign 0.5
-
         vbox:
             spacing 50
+
+            vbox:
+                $ num_achievements = len(persistent.achievements)
+                text _("{icon=icon-award} Number of Achievements Unlocked: [num_achievements] / [total_num_achievements]")
+                textbutton "{icon=icon-twitter} Tweet it when you've unlocked all of the achievements!":
+                    action [
+                    SensitiveIf(num_achievements == total_num_achievements), 
+                    OpenURL(tweet_all_achievements_unlocked)
+                ]
+
             for category in [plot_achievement, plot_bonus, quiz_bonus, ending_achievement]:
                 vbox:
                     spacing 15
@@ -108,8 +114,8 @@ screen music_room_screen_in_script():
             hbox:
                 spacing 20
                 # Buttons that let us advance tracks.
-                textbutton _("Previous") + ' {icon=icon-arrow-left-circle}' action music_room.Previous()
-                textbutton '{icon=icon-arrow-right-circle} ' + _("Next") action music_room.Next()
+                textbutton _("Previous Track") + ' {icon=icon-arrow-left-circle}' action music_room.Previous()
+                textbutton '{icon=icon-arrow-right-circle} ' + _("Next Track") action music_room.Next()
                 # textbutton "Pause" action music_room.TogglePause()
                 null width 40
                 textbutton '{icon=icon-stop-circle} ' + _("Stop") action music_room.Stop()

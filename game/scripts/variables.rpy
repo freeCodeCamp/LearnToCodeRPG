@@ -1,6 +1,9 @@
-init:
+# creators should use priorities in the range -999 to 999
+# run last
+init 998:
     default stats_unlocked = False
     default stats_knowledge_unlocked = False # cs knowledge
+    default stats_subcategory_unlocked = False # subcategory of cs knowledge
     default todo_unlocked = False
 
     # alternative endings
@@ -65,6 +68,7 @@ init python:
 
     ## Non-mutable
 
+    ## Note to proofreader: please proofread these; they show up as To-Do items
     # to-do strings
     todo_check_fcc = 'Check out [freeCodeCamp]'
     todo_ask_curriculum = 'Ask Annika about CS curriculum'
@@ -76,8 +80,7 @@ init python:
     todo_ask_hackathon = 'Learn about Hackathon'
     todo_ask = 'Learn about ' # should be concatenated with vocabs from barista story
 
-    day_acitivity_study = 'Study CS Fundamentals' # will later change into todo_interview_prep
-
+    ## Note to proofreader: please do not change these labels
     # story labels for hacker space and barista
     hacker_space_event_labels = [
     'hacker_space_tech_talk',
@@ -219,5 +222,20 @@ init python:
     ]:
         all_tweet_map.update(tweet_map)
 
-
     total_num_achievements = len(all_tweet_map)
+    # all achievements unlocked
+    tweet_all_achievements_unlocked = tweet_default    
+
+    # skills
+    all_questions_map = {
+    'CSS': css_questions,
+    'HTML': html_questions,
+    'Git': git_questions,
+    'IT': it_questions,
+    'JavaScript': javascript_questions,
+    'Linux': linux_questions,
+    'Python': python_questions,
+    'SQL': sql_questions
+    }
+
+    all_skills = list(all_questions_map.keys())

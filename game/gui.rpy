@@ -26,11 +26,11 @@ init python:
 define gui.accent_color = u'#002ead' # dark blue
 
 ## The color used for a text button when it is neither selected nor hovered.
-define gui.idle_color = u'#999999'
+define gui.idle_color = u'#777777'
 
 ## The small color is used for small text, which needs to be brighter/darker to
 ## achieve the same effect.
-define gui.idle_small_color = u'#888888'
+define gui.idle_small_color = u'#666666'
 
 ## The color that is used for buttons and bars that are hovered.
 define gui.hover_color = gui.accent_color
@@ -40,7 +40,7 @@ define gui.hover_color = gui.accent_color
 define gui.selected_color = u'#333333'
 
 ## The color used for a text button when it cannot be selected.
-define gui.insensitive_color = u'#aaaaaa7f'
+define gui.insensitive_color = u'#aaaaaa'
 
 ## Colors used for the portions of bars that are not filled in. These are not
 ## used directly, but are used when re-generating bar image files.
@@ -254,7 +254,7 @@ define gui.navigation_xpos = 60
 define gui.skip_ypos = 15
 
 ## The vertical position of the notify screen.
-define gui.notify_ypos = 68
+define gui.notify_ypos = 168
 
 ## The spacing between menu choices.
 define gui.choice_spacing = 33

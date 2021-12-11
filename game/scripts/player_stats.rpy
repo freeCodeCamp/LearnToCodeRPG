@@ -18,8 +18,6 @@ init python:
                 clamped_val = min(100, max(0, val))
                 self.player_stats_map[stats_name] = clamped_val
                 renpy.notify(stats_name + ' is set to ' + str(clamped_val))
-                # if not renpy.get_screen('player_stats_screen'):
-                #     renpy.show_screen('player_stats_screen', _layer='transient', show_todo=False)
 
         def change_stats(self, stats_name, val):
             # keep between 0 and 100
@@ -32,20 +30,20 @@ init python:
                 change_direction = None
                 if val > 0:
                     change_direction = CHANGE_DIRECTION_INC
-                    if not renpy.sound.is_playing():
-                        renpy.sound.play('audio/sfx/stats_change_boop.wav')
+                    # if not renpy.sound.is_playing():
+                    renpy.sound.play('audio/sfx/stats_change_boop.wav')
                     renpy.notify(stats_name + ' increased by ' + str(val))
                 elif val < 0:
                     change_direction = CHANGE_DIRECTION_DEC                    
                     renpy.notify(stats_name + ' decreased by ' + str(-val))
-                    if not renpy.sound.is_playing():
-                        renpy.sound.play('audio/sfx/stats_change_buzz.wav')
+                    # if not renpy.sound.is_playing():
+                    renpy.sound.play('audio/sfx/stats_change_buzz.wav')
 
                 # show the stats screen
-                if not renpy.get_screen('player_stats_screen'):
+                if not renpy.get_screen('player_stats_todo_screen', layer='transient'):
                     # screen has been cleared, reset previous change directions
-                    renpy.show_screen('player_stats_screen', 
-                        _layer='transient', show_todo=False, changed_stats=stats_name, change_direction=change_direction)
+                    renpy.show_screen('player_stats_todo_screen', 
+                        _layer='transient', changed_stats=stats_name, change_direction=change_direction)
 
         def change_stats_random(self, stats_name, min_val, max_val):
             # renpy.random.randint([min], [max]) both ends inclusive
@@ -62,8 +60,8 @@ init python:
 
         def add_todo(self, todo):
             self.incomplete.append(todo)
-            if not renpy.get_screen('player_stats_screen'):
-                renpy.show_screen('player_stats_screen', _layer='transient')
+            if not renpy.get_screen('player_stats_todo_screen', layer='transient'):
+                renpy.show_screen('player_stats_todo_screen', _layer='transient', show_todo=True)
             if not renpy.sound.is_playing():
                 renpy.sound.play('audio/sfx/smartphone_typing.wav')
 
@@ -71,23 +69,30 @@ init python:
             if todo in self.incomplete:
                 self.incomplete.remove(todo)
                 self.completed.append(todo)
-                if not renpy.get_screen('player_stats_screen'):
-                    renpy.show_screen('player_stats_screen', _layer='transient')
+                if not renpy.get_screen('player_stats_todo_screen', layer='transient'):
+                    renpy.show_screen('player_stats_todo_screen', _layer='transient', show_todo=True)
                 if not renpy.sound.is_playing():
                     renpy.sound.play('audio/sfx/todo_complete.wav')
+
+    def get_stats_change_direction_icon(stats, changed_stats, change_direction):
+        if stats == changed_stats:
+            if change_direction == CHANGE_DIRECTION_INC:
+                return '{icon=icon-chevrons-up}'
+            elif change_direction == CHANGE_DIRECTION_DEC:
+                return '{icon=icon-chevrons-down}'
+        return ''
 
 transform alpha_dissolve:
     alpha 0.0
     linear 0.5 alpha 1.0
 
-screen player_stats_screen(show_stats=True, show_todo=True, changed_stats=None, change_direction=None):
-    # show_change_directions: ex. {'Sanity': 'up', 'CS Knowledge': 'down'}
+screen player_stats_todo_screen(show_todo=False, changed_stats=None, change_direction=None):
     ## Ensure this appears on top of other screens.
     # zorder 100
     on "show" action With(dissolve)
     on "hide" action With(dissolve)
 
-    default vbox_spacing = 10
+    default show_todo_local = show_todo
 
     frame:
         # center of screen
@@ -98,73 +103,80 @@ screen player_stats_screen(show_stats=True, show_todo=True, changed_stats=None, 
 
         background white80
 
-        vbox:
-            spacing 20
+        has vbox
+        spacing 10
 
-            text _("Stats") bold True underline True
-            hbox:
-                spacing 40
-                # left column shows the stats name
-                vbox:
-                    spacing vbox_spacing
-                    text "{icon=icon-zap}  " + _('Sanity') color gui.accent_color
+        hbox:
+            spacing 30
+            xalign 0.5
+            style_prefix "radio"
+            textbutton _("Show Stats"):
+                action ToggleScreenVariable(name='show_todo_local', true_value=False, false_value=True)
+            textbutton _("Show To-Do"):
+                action [
+                SensitiveIf(todo_unlocked),
+                ToggleScreenVariable(name='show_todo_local', true_value=True, false_value=False)
+                ]
 
-                    if stats_knowledge_unlocked:
-                        text "{icon=icon-terminal}  " + _('CS Knowledge') color gui.accent_color
+        viewport:
+            xsize 620
+            ymaximum 550
+            child_size (None, 4000)
+            scrollbars 'vertical'
+            spacing 5
+            draggable True
+            mousewheel True
+            arrowkeys True
+            vscrollbar_xsize 5
+            vscrollbar_unscrollable "hide"
+                
+            if todo_unlocked and show_todo_local:
+                use todo_screen()
+            else: # show stats by default
+                use player_stats_screen(changed_stats, change_direction)
 
-                # middle column shows the stats bar
-                vbox:
-                    spacing vbox_spacing
-                    $ sanity = player_stats.player_stats_map['Sanity']
-                    bar value sanity range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
+screen player_stats_screen(changed_stats, change_direction):
+    # vbox:
+    #     spacing 20
+    #     text _("Stats") bold True underline True
+    python:
+        num_rows = 1 # Sanity
+        if stats_knowledge_unlocked:
+            num_rows += 1
+        if stats_subcategory_unlocked:
+            num_rows += len(all_skills)
 
-                    if stats_knowledge_unlocked:
-                        $ cs_knolwedge = player_stats.player_stats_map['CS Knowledge']
-                        bar value cs_knolwedge range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
+    grid 3 num_rows:
+        xspacing 10
+        yspacing 5
 
-                # right column shows the stats value in numbers
-                vbox:
-                    spacing vbox_spacing
-                    $ sanity = player_stats.player_stats_map['Sanity']
-                    text str(sanity)
-                    if stats_knowledge_unlocked:
-                        $ cs_knolwedge = player_stats.player_stats_map['CS Knowledge']
-                        text str(cs_knolwedge)
+        # Sanity
+        $ sanity = player_stats.player_stats_map['Sanity']
+        text "{icon=icon-zap}  " + _('Sanity') color gui.accent_color
+        bar value sanity range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
+        text str(sanity) + '  ' + get_stats_change_direction_icon('Sanity',changed_stats, change_direction)
 
-                # rightmost column is optional and shows direction of change when called from inside `player_stats.change_stats`
-                vbox:
-                    spacing vbox_spacing
-                    for stats in ['Sanity', 'CS Knowledge']:
-                        if stats != changed_stats:
-                            null height gui.text_size # empty
-                        else:
-                            if change_direction == CHANGE_DIRECTION_INC:
-                                text '{icon=icon-chevrons-up}'
-                            elif change_direction == CHANGE_DIRECTION_DEC:
-                                text '{icon=icon-chevrons-down}'
-                            else:
-                                null height gui.text_size
+        # CS Knowledge
+        if stats_knowledge_unlocked:
+            $ cs_knolwedge = player_stats.player_stats_map['CS Knowledge']
+            text "{icon=icon-terminal}  " + _('CS Knowledge') color gui.accent_color
+            bar value cs_knolwedge range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
+            text str(cs_knolwedge) + '  ' + get_stats_change_direction_icon('CS Knowledge',changed_stats, change_direction)
 
-            if todo_unlocked and show_todo:
-                null height 10
-                text _("To-Do") bold True underline True
+        # Subcategory CS Stats
+        if stats_subcategory_unlocked:
+            for skill in all_skills:
+                text "    {icon=icon-code} " + _(skill) color gui.accent_color
+                bar value 0 range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
+                text str(0) + '  ' + get_stats_change_direction_icon(skill, changed_stats, change_direction)
 
-                viewport:
-                        xsize 620
-                        ymaximum 200
-                        child_size (None, 4000)
-                        scrollbars 'vertical'
-                        spacing 5
-                        draggable True
-                        mousewheel True
-                        arrowkeys True
-                        vscrollbar_xsize 5
-                        vscrollbar_unscrollable "hide"
-
-                        vbox:
-                            spacing 5
-                            for todo in todo_list.incomplete:
-                                text '    {icon=icon-square}    ' + todo
-                            for todo in todo_list.completed:
-                                text '    {icon=icon-check-square}    ' + todo color gui.idle_color
-    
+screen todo_screen():
+    # vbox:
+    #     spacing 20
+    #     text _("To-Do") bold True underline True
+    vbox:
+        spacing 5
+        for todo in todo_list.incomplete:
+            text '    {icon=icon-square}    ' + todo
+        for todo in todo_list.completed:
+            text '    {icon=icon-check-square}    ' + todo color gui.idle_color
