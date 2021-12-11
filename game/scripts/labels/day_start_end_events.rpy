@@ -51,7 +51,7 @@ label day_start_text2:
     play sound 'audio/sfx/chew_food.wav'
     player laugh "Yum yum."
     hide toast
-    player smile "I'm done. Gotta go and prepare for the day."
+    player smile "I'm done. Gotta go and get ready for the day."
     player "Have a good day at work!"
     dad "You too, [persistent.player_name]!"
     mom "See you later, honey!"
@@ -106,9 +106,9 @@ label day_end:
     elif day_activity == 'music':
         player "I was listening to some really good music today. Music always helps me relax."
     elif day_activity == 'jobsearch':
-        player "I spent my day looking for job openings. I hope that my resume will catch the recruiter's eyes."
+        player "I spent my day looking for job openings. I hope that my résumé will catch the recruiter's eye."
     elif day_activity == 'interview':
-        player "I had an interview today. I wouldn't say it wasn't stressful, but I felt like I've given it my best shot."
+        player "I had an interview today. I wouldn't say it wasn't stressful, but I felt like I gave it my best shot."
     else:
         player "I just chilled for the day."
     dad "Sounds like you enjoyed your day."
@@ -129,22 +129,22 @@ label day_end:
         call ending_office from _call_ending_office
 
     if not has_triggered_ending_today:
-        player smile "Hmmm... Let's see. Do I have any cool tech terms I caught during my barista shift that I need to research about?"
+        player smile "Hmmm... Let's see. Do I have any cool tech terms I caught during my barista shift that I need to research?"
         if not topics_to_ask:
-            player "Looks like there is nothing on my list."
+            player "Looks like there's nothing on my list."
             # TODO: hint at how to get those tech terms
         else: # if there are topics to ask about, call Annika or Marco
             player "I do have something to ask."
             # randomly decide between Annika and Marco
             if not has_met_marco:
-                player "Shall I give Annika a call now?"
+                player "Should I give Annika a call now?"
                 menu:            
                     "Call Annika now":
                         $ npc = annika
                         $ npc_sprite = 'annika'
                 
                     "Save the buzzword for later":
-                        player "Hmm... Let's save up on those buzzwords and ask when I've gathered a few of them."
+                        player "Hmm... Let's save up those buzzwords and ask when I've gathered a few more of them."
             else:
                 player "Who should I talk to?"
                 menu:
@@ -163,7 +163,7 @@ label day_end:
                         call npc_conversation_start from _call_npc_conversation_start_1
 
                     "Save the buzzword for later":
-                        player "Hmm... Let's save up on those buzzwords and ask when I've gathered a few of them."
+                        player "Hmm... Let's save up those buzzwords and ask when I've gathered a few more of them."
 
     player "Anyways, I feel like I've done a lot today. Let's call it a day and get some rest."
     player "Tomorrow will be another day. Right, Mint?"
@@ -186,16 +186,16 @@ label day_end_interview:
     $ show_random_dinner_image()
 
     mom "How was your day, honey? How did the interview go?"
-    player smile "Well, I wouldn't say it wasn't stressful, but I felt like I've given it my best shot."
+    player smile "Well, I wouldn't say it wasn't stressful, but I felt like I gave it my best shot."
     player "I also feel like I need to work harder on interview prep."
     dad "That's the spirit."
     mom "We are proud of you, honey."
     dad "Let us know if you need anything."
-    player happy "Thanks, I will. It's awesome to have you two behind my back!"
+    player happy "Thanks, I will. It's awesome to know that you two have my back!"
     dad "Any time, pumpkin."
 
     scene bg bedroom night with blinds
-    player relieved "Phew... What a day. I can't wait to go to catch some zzzz's already..."
+    player relieved "Phew... What a day. I can't wait to go catch some zzzz's already..."
     play sound 'audio/sfx/social_media_notification.wav'
     show smartphone at truecenter
     player surprised "Oh. Here's a text from Annika."
@@ -215,6 +215,6 @@ label day_end_interview:
     player laugh "Awww Mint, now you too?"
     hide mint
     player smile "I'm lucky to have mom, dad, Annika, Marco, and Mint supporting me."
-    player relieved "Yawwwwwn... Let's call this a day and wake up to a brand new tomorrow..."
+    player relieved "Yawwwwwn... Let's call it a day and wake up to a brand new tomorrow..."
 
     return
