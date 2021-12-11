@@ -1,4 +1,4 @@
-# events that happen when the player visit the cafe
+# events that happen when the player visits the cafe
 
 label barista_fullstack:
     show woman red flipped at left
@@ -17,7 +17,7 @@ label barista_devops:
     college_boy "Hey how's it going? Thanks so much for taking time out of your day to meet me!"
     male "No problem. I'm always happy to mentor college kids."
     college_boy "Haha thanks. Okay let's cut to the chase."
-    college_boy "I'm really interested in getting a role in DevOps, is there any resource you'd recommend?"
+    college_boy "I'm really interested in getting a role in DevOps, are there any resources you'd recommend?"
     player @ surprised "{b}DevOps{/b}... What is that? I better take notes so I can learn more about it."
     $ todo_list.add_todo(todo_ask + 'DevOps')
     $ topics_to_ask.add('DevOps')
@@ -26,11 +26,11 @@ label barista_devops:
 label barista_machinelearning:
     show girl orange flipped at left
     show boy purple at right
-    college_girl "Hey hey hey look at this cool thing we did for the course project!"
-    college_girl "Give it a picture of a cat or a dog and it will be able to tell which is in the picture!"
+    college_girl "Hey hey hey look at this cool thing we did for our course project!"
+    college_girl "If you show it a picture of a cat or a dog it will be able to tell which is in the picture!"
     # TODO: this could actually be a minigame or the player's side project :D
     college_boy "That's cool! Did you use Machine Learning for that?"
-    college_girl "Yeah! And there are a lot of new techniques that we can add onto this..."
+    college_girl "Yeah! And there are a lot of new techniques that we can add to this..."
     player @ surprised "{b}Machine Learning{/b}... What is that? I better take notes so I can learn more about it."
     $ todo_list.add_todo(todo_ask + 'Machine Learning')
     $ topics_to_ask.add('Machine Learning')
@@ -55,7 +55,7 @@ label barista_agile:
     show man red flipped at left
     show woman purple at right
     male "So your team is going fully agile?"
-    female "Yeah! We had some agile coach coming in to boost our productivity."
+    female "Yeah! We have some agile coach coming in to boost our productivity."
     male "We had a coach as well. That was a smooth experience transitioning to a more modern way of developing software..."
     player @ surprised "{b}Agile{/b}... What is that? I better take notes so I can learn more about it."
     $ todo_list.add_todo(todo_ask + 'Agile')
@@ -82,7 +82,7 @@ label barista_userexperience:
     show boy orange at right
     female "Hey there. Nice to meet you!"
     female "You must be our new User Experience intern, right?"
-    college_boy "Yes! It's my great pleasure to be on the team!"
+    college_boy "Yes! I'm really excited to be on the team!"
     female "Good, good. Now tell me a bit about yourself. Why did you get into UX? What UX projects have you done?"
     college_boy "Sure! So it all started with this program at my school..."
     player @ surprised "{b}User Experience{/b}... What is that? I better take notes so I can learn more about it."
