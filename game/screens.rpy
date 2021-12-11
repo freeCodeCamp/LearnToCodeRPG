@@ -267,11 +267,11 @@ screen quick_menu():
             # if stats is showing, hide it; else show it
             if stats_unlocked:
                 textbutton _("{icon=icon-smartphone} Stats") action [
-                SensitiveIf(not renpy.get_screen('player_stats_screen', layer='transient')),
+                SensitiveIf(not renpy.get_screen('player_stats_todo_screen', layer='transient')),
                 If(
-                    renpy.get_screen('player_stats_screen'),
-                    true=ToggleScreen('player_stats_screen'),
-                    false=ShowTransient("player_stats_screen")
+                    renpy.get_screen('player_stats_todo_screen'),
+                    true=ToggleScreen('player_stats_todo_screen'),
+                    false=ShowTransient('player_stats_todo_screen')
                     )
                 ]
 

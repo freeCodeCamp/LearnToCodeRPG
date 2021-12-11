@@ -114,8 +114,8 @@ screen music_room_screen_in_script():
             hbox:
                 spacing 20
                 # Buttons that let us advance tracks.
-                textbutton _("Previous") + ' {icon=icon-arrow-left-circle}' action music_room.Previous()
-                textbutton '{icon=icon-arrow-right-circle} ' + _("Next") action music_room.Next()
+                textbutton _("Previous Track") + ' {icon=icon-arrow-left-circle}' action music_room.Previous()
+                textbutton '{icon=icon-arrow-right-circle} ' + _("Next Track") action music_room.Next()
                 # textbutton "Pause" action music_room.TogglePause()
                 null width 40
                 textbutton '{icon=icon-stop-circle} ' + _("Stop") action music_room.Stop()
