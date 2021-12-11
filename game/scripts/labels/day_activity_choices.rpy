@@ -18,7 +18,7 @@ label day_activity_choices:
         call day_end from _call_day_end
         return # return to script.rpy
 
-    player smile "What shall we do for the day?"
+    player smile "What should we do for the day?"
     menu:
         # this string goes from 'study CS fundamentals' to 'study more CS fundamentals'
         # when the player has completed the curriculum
@@ -29,7 +29,7 @@ label day_activity_choices:
                 text = renpy.random.choice([
                     "Let's hit the books!",
                     "Let's head over to [developerquiz]!",
-                    "Let's ramp up on my CS knowledge!"
+                    "Let's ramp up my CS knowledge!"
                     ])
                 renpy.say(player, text)
 
@@ -49,7 +49,7 @@ label day_activity_choices:
             $ player_stats.change_stats_random('Sanity', -20, -10)
 
             if num_correct == 4:
-                player @ laugh "But I got all questions right! Way to go!"
+                player @ laugh "I got all questions my right! Way to go!"
             elif num_correct == 3:
                 player @ happy "But I got most questions right! At this rate I can make it!"
             elif num_correct == 2:
@@ -58,7 +58,7 @@ label day_activity_choices:
                 player pout "... I only got one question correct."
                 player neutral "Well, it's better than nothing. I just have to try harder next time!"
             elif num_correct == 0:
-                player pout "... I got all questions wrong..."
+                player pout "... I got all the questions wrong..."
                 player neutral "But it will get better with practice, won't it?"
 
             call day_end from _call_day_end_1
@@ -73,7 +73,7 @@ label day_activity_choices:
         "Hang out at Hacker Space" if has_visited_hacker_space_with_annika:
             # this choice progresses the Hacker Space side story
             $ day_activity = 'hackerspace'
-            player "I'm feeling adventurous. Why not check out Hacker Space for some adventures?"
+            player "I'm feeling adventurous. Why not check out Hacker Space and meet some other people who are learning to code?"
             call day_activity_hacker_space from _call_day_activity_hacker_space
             call day_end from _call_day_end_3
 
@@ -124,7 +124,7 @@ label day_activity_relax:
     player smile "Oh Mint. Are you trying to tell me to take better care of myself?"
     player "Awww thanks Mint."
     hide mint
-    player "Okay. Let's take a day off and chill. What shall we do?"
+    player "Okay. Let's take a day off and chill. What should we do?"
     menu day_activity_relax_choices:
         "Take a walk in the park":
             $ day_activity = 'park'
@@ -135,7 +135,7 @@ label day_activity_relax:
             if renpy.mobile:
                 player "I'd love to play some games, but those are only available on my laptop."
                 "(You won't able to access mini-games when you are playing the mobile or the web version. Please download the desktop version instead.)"
-                player "Let's instead go take a walk in the park."
+                player "Let's go take a walk in the park instead."
                 call day_activity_park from _call_day_activity_park_1
             else:
                 $ day_activity = 'videogame'
@@ -146,7 +146,7 @@ label day_activity_relax:
             player "Let's listen to some music."
             call screen music_room_screen_in_script()
     $ player_stats.change_stats_random('Sanity', 5, 20)
-    # all relaxing activities converges to the end of the day
+    # all relaxing activities converge to the end of the day
     return
 
 label day_activity_hacker_space:
@@ -158,13 +158,13 @@ label day_activity_hacker_space:
     # hacker space trivia
     if not has_won_hacker_space_trivia:
         show man
-        trivia_guy "Hey, you there! Would you be up to a round of tech trivia?"
+        trivia_guy "Hey, you there! Would you be up for a round of tech trivia?"
         menu:        
             "Sure!":
                 call hacker_space_tech_trivia from _call_hacker_space_tech_trivia
             "Sorry, not feeling like it.":
                 player @ neutral "Sorry, but I'm not feeling like it."
-                trivia_guy "No problem. Let me know anytime if you are to a challenge."
+                trivia_guy "No problem. Let me know anytime if you want a challenge."
                 hide man
                 player "(Let's just check out what's happening around here.)"
                 call day_activity_hacker_space_random from _call_day_activity_hacker_space_random
@@ -172,7 +172,7 @@ label day_activity_hacker_space:
         call day_activity_hacker_space_random from _call_day_activity_hacker_space_random_1
 
     scene bg hacker_space dusk with fadehold
-    player @ surprised "Wow, it's already getting dark? Today's quite an eventful day."
+    player @ surprised "Wow, it's already getting dark? Today's been quite an eventful day."
     player "Somehow I feel quite relaxed in this coder-centric atmosphere."
     # bump sanity for a little bit
     $ player_stats.change_stats('Sanity', 5)
@@ -193,7 +193,7 @@ label day_activity_hacker_space_random:
 
 label day_activity_barista:
     scene bg cafe with slideright
-    player "Alright, let's serve some coffee to help get people started on their day!"
+    player "Alright, let's serve some coffee to help get people started with their day!"
     play sound 'audio/sfx/cafe_pour.wav'
     show coffee at truecenter
     pause 5
@@ -201,7 +201,7 @@ label day_activity_barista:
     player "Here's your mocha latte. Enjoy your day!"
     # if all seen, skip
     if len(seen_barista_events) == len(barista_event_labels) or renpy.random.random() < 0.3:
-        player "(It's pretty quiet in the cafe today. Guess I won't get to hear any tech gossips.)"
+        player "(It's pretty quiet in the cafe today. Guess I won't get to hear any tech gossip.)"
     else:
         # 70% trigger rate, pick random tech gossip
         player @ surprised "(Pssst... Looks like there are people hanging out and having a fun conversation.)"
@@ -228,7 +228,7 @@ label day_activity_barista:
 label day_activity_park:
     scene bg park1 with slideright
     play sound 'audio/sfx/birds.wav'
-    player happy "It always soothe my nerves to take a walk in the park."
+    player happy "It always soothes my nerves to take a walk in the park."
     scene bg park2 with fadehold
     pause 2.0
     scene bg park3 with fadehold
@@ -242,7 +242,7 @@ label day_activity_park:
     return
 
 label day_activity_video_game:
-    player laugh "I recently got this rhythm game everyone's talking about."
+    player laugh "I recently got this rhythm game everyone's been talking about."
     player smile "Let's pick a song from the playlist."
     
     # see rhythm_minigame.rpy    
@@ -250,7 +250,7 @@ label day_activity_video_game:
 
     player laugh "That was fun!"
     player smile "Video games are the best way to let off steam, aren't they?"
-    player "Now I feel properly relaxed and fueled for a battle tomorrow!"
+    player "Now I feel properly relaxed and refueled for a battle tomorrow!"
     return
 
 label day_activity_job_search:
@@ -318,7 +318,7 @@ label day_activity_interview:
     with slideright
     # the above is equivalent to the below show statement
     # scene interview_room_bg with slideright
-    player surprised "Wow. Their office sure is fancy. I wish I can get my cubicle in a fancy office like this..."
+    player surprised "Wow. Their office sure is fancy. I hope I can get my cubicle in a fancy office like this..."
 
     $ interviewer_sprite = renpy.random.choice([
         'man',
@@ -328,16 +328,16 @@ label day_activity_interview:
     interviewer "Hello, is that [persistent.player_name]?"
     player smile "Yes. Good morning."
 
-    interviewer "Nice to meet you! We are glad that you applied to our job posting."
-    interviewer "Alright, since we are here, let's get started with the interview."
+    interviewer "Nice to meet you! We're glad that you applied to our job posting."
+    interviewer "Alright, since we're all here, let's get started with the interview."
     player "Sounds good!"
     call interview_session from _call_interview_session
 
     interviewer "Thanks for taking your time. We will be in touch about next steps."
     $ renpy.hide(interviewer_sprite)
 
-    player relieved "(... Was that everything? Kudos to myself for surviving...)"
+    player relieved "(... Was that everything? Kudos to me for surviving...)"
     $ player_stats.change_stats_random('Sanity', -20, -10)
-    player "That was as intense as I expected. I hope I did well with all those preparations."
+    player "That was as intense as I expected. I hope I did well with all my preparations."
     player "I can't wait to go home and just relax now..."
     return
