@@ -34,7 +34,6 @@ label day_activity_choices:
                 renpy.say(player, text)
 
             call study_session_choose_topic from _call_study_session_choose_topic_1
-
             call study_session from _call_study_session_1
 
             python:
@@ -84,48 +83,54 @@ label day_activity_choices:
     return
 
 label study_session_choose_topic:
+    # TODO: v2, show a different screen using checkboxes where you can mix-and-match any number of categories
     menu:
-        "Which topic to study?"
+        player "Should I study for a specific category or mix-and-match all categories?"
 
-        "General CS concepts":
-            player "It's never a bad idea to go back to CS (Computer Science) fundamentals!"
-            $ study_session_questions = general_questions
+        "Let's choose a specific category":
+            menu:
+                "Which category to study?"
 
-        "HTML":
-            player "HTML (HyperText Markup Language) is useful for web development. Let's go with that!"
-            $ study_session_questions = html_questions
+                "General CS concepts":
+                    player "It's never a bad idea to go back to CS (Computer Science) fundamentals!"
+                    $ study_session_questions = general_questions
 
-        "CSS":
-            player "CSS (Cascading Style Sheets) is useful for web development. Let's go with that!"
-            $ study_session_questions = css_questions
+                "HTML":
+                    player "HTML (HyperText Markup Language) is useful for web development. Let's go with that!"
+                    $ study_session_questions = html_questions
 
-        "JavaScript":
-            player "JavaScript is useful for web development and a lot of other things. Let's go with that!"
-            $ study_session_questions = javascript_questions
+                "CSS":
+                    player "CSS (Cascading Style Sheets) is useful for web development. Let's go with that!"
+                    $ study_session_questions = css_questions
 
-        "Python":
-            player "Python is useful for things like data science and machine learning. Let's go with that!"
-            $ study_session_questions = python_questions
+                "JavaScript":
+                    player "JavaScript is useful for web development and a lot of other things. Let's go with that!"
+                    $ study_session_questions = javascript_questions
 
-        "Linux":
-            player "Linux is a family of open-source Unix-like operating systems. It has some cool commands that every cool developer should know. Let's go with that!"
-            $ study_session_questions = linux_questions
+                "Python":
+                    player "Python is useful for things like data science and machine learning. Let's go with that!"
+                    $ study_session_questions = python_questions
 
-        "Git":
-            player "Git is a useful version control system. Let's go with that!"
-            $ study_session_questions = git_questions
+                "Linux":
+                    player "Linux is a family of open-source Unix-like operating systems. It has some cool commands that every cool developer should know. Let's go with that!"
+                    $ study_session_questions = linux_questions
 
-        "SQL":
-            player "SQL (Structured Query Language) is useful for database operations. Let's go with that!"
-            $ study_session_questions = sql_questions
+                "Git":
+                    player "Git is a useful version control system. Let's go with that!"
+                    $ study_session_questions = git_questions
 
-        "IT":
-            player "It's never a bad idea to go back to IT (Information Technology) fundamentals!"
-            $ study_session_questions = it_questions
+                "SQL":
+                    player "SQL (Structured Query Language) is useful for database operations. Let's go with that!"
+                    $ study_session_questions = sql_questions
 
-        "Mix and match all topics":
-            player "How about mixing and matching all topics? That sounds more realistic in an interview setting."
+                "IT":
+                    player "It's never a bad idea to go back to IT (Information Technology) fundamentals!"
+                    $ study_session_questions = it_questions
+
+        "Let's mix and match all categories":
+            player "Mixing and matching all categories sounds like fun. Let's bring in the potpourri!"
             $ study_session_questions = all_quiz_questions
+
     return
             
 label day_activity_relax:
@@ -319,7 +324,7 @@ label day_activity_job_search:
                         interview_questions.extend(all_questions_map[skill])
 
     if has_applied:
-        $ num_companies_applied += 1
+        $ num_jobs_applied += 1
         player @ smile "Application submitted. Let's hope for the best."
     else:
         player @ pout "I feel like I'm not ready for this job. They require so many skills that I don't yet have."

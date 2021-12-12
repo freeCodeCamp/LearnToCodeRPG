@@ -33,7 +33,8 @@ init 998:
     default has_won_hacker_space_trivia = False
     default has_applied_to_cupcakecpu = False
 
-    # player_stats.player_stats_map['CS Knowledge'] >= 80
+    define cs_stats_threshold = 60 # need 60 CS Knowledge to pass the curriculum
+    # player_stats.player_stats_map['CS Knowledge'] >= cs_stats_threshold
     default has_completed_curriculum = False
 
     default num_jobs_applied = 0
@@ -72,7 +73,7 @@ init python:
     # to-do strings
     todo_check_fcc = 'Check out [freeCodeCamp]'
     todo_ask_curriculum = 'Ask Annika about CS curriculum'
-    todo_learn_cs = 'Bump {b}CS Knowledge{/b} to 80+'
+    todo_learn_cs = 'Bump {b}CS Knowledge{/b} to [cs_stats_threshold]+'
     todo_apply_cupcakecpu = 'Apply to CupcakeCPU'
     todo_apply_to_jobs = 'Start applying to jobs'
     todo_interview_prep = 'Start preparing for coding interviews'
@@ -236,12 +237,7 @@ init python:
 
     # master map for easy lookup in script.rpy
     all_tweet_map = {}
-    for tweet_map in [
-        milestone_to_tweet_map, 
-        plot_bonus_to_tweet_map, 
-        quiz_bonus_to_tweet_map, 
-        achievement_labels_map
-    ]:
+    for tweet_map in achievement_labels_map.values():
         all_tweet_map.update(tweet_map)
 
     total_num_achievements = len(all_tweet_map)
@@ -268,7 +264,7 @@ init python:
 
     # master list of questions for mix-and-match
     all_quiz_questions = []
-    for question_list in all_questions_map.items():
+    for question_list in all_questions_map.values():
         all_quiz_questions.extend(question_list)
 
     # the order is important

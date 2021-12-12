@@ -26,9 +26,14 @@ init python:
 
         def change_stats(self, stats_name, val):
             # keep between 0 and 100
-            new_val = self.player_stats_map[stats_name] + val
+            if stats_name in self.player_stats_map:
+                map_pointer = self.player_stats_map
+            elif stats_name in self.subcategory_stats_map:
+                map_pointer = self.subcategory_stats_map
+
+            new_val = map_pointer[stats_name] + val
             clamped_val = min(100, max(0, new_val))
-            self.player_stats_map[stats_name] = clamped_val
+            map_pointer[stats_name] = clamped_val
             
             # TODO: play different sound depending on the stats and direction of change
             change_direction = None
@@ -36,20 +41,26 @@ init python:
                 change_direction = CHANGE_DIRECTION_INC
                 # if not renpy.sound.is_playing():
                 renpy.sound.play('audio/sfx/stats_change_boop.wav')
-                renpy.notify(stats_name + ' increased by ' + str(val))
+                if stats_name in self.subcategory_stats_map:
+                    renpy.notify(stats_name + ' knowledge increased by ' + str(val))
+                else:
+                    renpy.notify(stats_name + ' increased by ' + str(val))
             elif val < 0:
                 change_direction = CHANGE_DIRECTION_DEC                    
-                renpy.notify(stats_name + ' decreased by ' + str(-val))
                 # if not renpy.sound.is_playing():
                 renpy.sound.play('audio/sfx/stats_change_buzz.wav')
+                if stats_name in self.subcategory_stats_map:
+                    renpy.notify(stats_name + ' knowledge decreased by ' + str(-val))
+                else:
+                    renpy.notify(stats_name + ' decreased by ' + str(-val))
 
-            # show the stats screen
-            if not renpy.get_screen('player_stats_todo_screen', layer='transient'):
-                # screen has been cleared, reset previous change directions
-                renpy.show_screen('player_stats_todo_screen', 
-                    _layer='transient', changed_stats=stats_name, change_direction=change_direction)
+            # # show the stats screen
+            # if not renpy.get_screen('player_stats_todo_screen', layer='transient'):
+            renpy.show_screen('player_stats_todo_screen', 
+                _layer='transient', changed_stats=stats_name, change_direction=change_direction)
 
-            self.compute_cs_knowledge()
+            if stats_name in self.subcategory_stats_map:
+                self.compute_cs_knowledge()
 
         def change_stats_random(self, stats_name, min_val, max_val):
             # renpy.random.randint([min], [max]) both ends inclusive
@@ -60,7 +71,9 @@ init python:
             return self.player_stats_map['Sanity'] < 50
 
         def compute_cs_knowledge(self):
-            self.player_stats_map['CS Knowledge'] = sum(subcategory_stats_map.items()) / len(subcategory_stats_map)            
+            val = sum(self.subcategory_stats_map.values()) / float(len(self.subcategory_stats_map))
+            val = int(round(val))
+            self.player_stats_map['CS Knowledge'] = val
 
     class ToDoList():
         def __init__(self):
@@ -175,9 +188,10 @@ screen player_stats_screen(changed_stats, change_direction):
         # Subcategory CS Stats
         if stats_subcategory_unlocked:
             for skill in all_skills:
+                $ val = player_stats.subcategory_stats_map[skill]
                 text "    {icon=icon-code} " + _(skill) color gui.accent_color
-                bar value 0 range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
-                text str(0) + '  ' + get_stats_change_direction_icon(skill, changed_stats, change_direction)
+                bar value val range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
+                text str(val) + '  ' + get_stats_change_direction_icon(skill, changed_stats, change_direction)
 
 screen todo_screen():
     # vbox:

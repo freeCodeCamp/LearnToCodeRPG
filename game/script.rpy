@@ -149,7 +149,7 @@ label start_after_interview:
 
 label stage1:
     # use call instead of show b/c the screen will return after the timer finishes
-    call screen text_over_black_bg_screen('About two months ago...')
+    call screen text_over_black_bg_screen('About three months ago...')
     call screen text_over_black_bg_screen("{i}Chapter 1: Let's learn to code!{/i}")
 
     scene bg kid_home
@@ -273,7 +273,7 @@ label stage2:
 
     player smile "I'll keep track of my progress on my phone."
     show smartphone at truecenter
-    "(Click on the phone icon {icon=icon-smartphone} on the bottom-right corner of the textbox to show or hide your progress.)"
+    "(Click on the {icon=icon-smartphone} {b}Stats{/b} button on the bottom-right corner of the textbox to view your progress.)"
     hide smartphone
     player "Alright. Here goes nothing."
     player "..."
@@ -394,7 +394,7 @@ label stage3:
 
     $ todo_unlocked = True
     $ todo_list.add_todo(todo_check_fcc)
-    "(Check your To-Do items on your phone {icon=icon-smartphone}.)"
+    "(On the {icon=icon-smartphone} {b}Stats{/b} screen, you may toggle between showing your stats and showing your To-Do list.)"
 
     show annika laugh
     annika "Anyways, what's your plan for the day?"
@@ -558,7 +558,7 @@ label stage5:
         "Let's just wait until tomorrow and ask Annika for advice":
             player pout "Hmmm... I don't know. They all look equally hard. Let's ask Annika for advice tomorrow."
             $ todo_list.add_todo(todo_ask_curriculum)
-            player smile "Added it to my To-Dos!"
+            player smile "Added it to my To-Do list!"
             player "Well, I did accomplish something today. Now at least I know what [freeCodeCamp]'s curriculum is about. That's one item off my To-Do list."
             $ todo_list.complete_todo(todo_check_fcc)
             show mint
@@ -689,9 +689,16 @@ label stage6:
     scene bg bedroom dusk with fade
     player smile "I'm finally home! {w}Let's head over to [developerquiz] and try out some quiz questions."
     scene bg laptop_screen with dissolve
-    player "Looks like I'll need to complete four multiple choice questions per session."
-    player "Let's do it."
+    player surprised "Looks like they even divided the questions into subcategories like HTML, CSS, and JavaScript."
 
+    $ stats_subcategory_unlocked = True
+    $ renpy.show_screen('player_stats_todo_screen', _layer='transient')
+
+    player smile "Well, guess I need to track my progress for each subcategory."
+    player "For each session, I'll need to complete four multiple choice questions from the chosen category."
+    player happy "Let's give it a go!"
+
+    call study_session_choose_topic
     call study_session from _call_study_session
 
     scene bg bedroom night with dissolve
@@ -739,6 +746,7 @@ label stage6:
     player smile "Okay. Breakfast's done. Let's get to work."
     player "Hopefully I can get more questions correct today."
 
+    call study_session_choose_topic
     call study_session from _call_study_session_2
 
     scene bg bedroom with dissolve
@@ -1043,28 +1051,25 @@ label stage7:
 
     call save_reminder from _call_save_reminder_9
 
-    # two days of activity of the player's choosing
-    call day_start from _call_day_start_4
-    call day_activity_choices from _call_day_activity_choices_4
+    $ num_three_day_sessions = 0
+    while num_three_day_sessions < 3:
+        $ num_three_day_sessions += 1
+        # three days of activity of the player's choosing
+        call day_start
+        call day_activity_choices
 
-    call day_start from _call_day_start_5
-    call day_activity_choices from _call_day_activity_choices_5
+        call day_start
+        call day_activity_choices
 
-    call save_reminder from _call_save_reminder_10
+        call day_start
+        call day_activity_choices
 
-    # two days of activity of the player's choosing
-    call day_start from _call_day_start_12
-    call day_activity_choices from _call_day_activity_choices_14
-
-    call day_start from _call_day_start_13
-    call day_activity_choices from _call_day_activity_choices_15
-
-    call save_reminder from _call_save_reminder_21
+        call save_reminder from _call_save_reminder_10
 
     $ calendar.next_month()
     $ renpy.show_screen('player_stats_todo_screen', _layer='transient')
     scene bg bedroom with fadehold
-    player smile "It's been two months since I started learning to code. Time really flies."
+    player smile "It's been almost two months since I started learning to code. Time really flies."
     player "I feel like I'm so much more knowledgeable than when I started."
 
     window hide
@@ -1192,17 +1197,17 @@ label stage7:
     player laugh "So much that I can't wait to wrap up my curriculum and jump in to see what a real coding interview is like!"
     player smile "I heard that [developerquiz] will send an email notification to people who have made significant progress in their curriculum."
     player "Let's check to see my progress."
-    if player_stats.player_stats_map['CS Knowledge'] < 80:
+    if player_stats.player_stats_map['CS Knowledge'] < cs_stats_threshold:
         player "Hmmm... I think I still need to ramp up more on my CS knowledge. I'll get back to studying tomorrow."
-        "(Try bumping your {b}CS Knowledge{/b} to above 80 by completing more quizzes.)"
+        "(Try bumping your {b}CS Knowledge{/b} to above [cs_stats_threshold] by completing more quizzes.)"
 
-    while player_stats.player_stats_map['CS Knowledge'] < 80:
+    while player_stats.player_stats_map['CS Knowledge'] < cs_stats_threshold:
         call day_start from _call_day_start_6
         call day_activity_choices from _call_day_activity_choices_6
 
     call save_reminder from _call_save_reminder_12
 
-    # once we are down here, we should have player_stats.player_stats_map['CS Knowledge'] >= 80
+    # once we are down here, we should have player_stats.player_stats_map['CS Knowledge'] >= cs_stats_threshold
     player laugh "Looks like I've made quite a bit of progress! I wonder when I can expect to receive that email."
     player "But let's first have a movie night to celebrate what I've gotten done!"
 
@@ -1250,6 +1255,7 @@ label stage8:
     # now change the day activity text for studying
     $ day_activity_study = todo_interview_prep
     player surprised "What should I study? I remember some skills mentioned in the job posting included JavaScript, Web Dev, Algorithms, and System Design."
+
     call study_session_choose_topic from _call_study_session_choose_topic
     call study_session from _call_study_session_3
 
@@ -1300,7 +1306,9 @@ label stage8:
 
             if interview_company_name is None:
                 # go back to job search
-                player surprised "Hey! Looks like there's a new job posting available. Let's check it out."
+                scene bg bedroom with fadehold
+                player "Let's search for some job postings today."
+                player surprised "Looks like there's a new job posting available. Let's check it out."
                 call day_activity_job_search from _call_day_activity_job_search_1
                 call day_activity_choices from _call_day_activity_choices_9
 
@@ -1314,7 +1322,7 @@ label stage8:
 
         player surprised "Huh, an email from {b}[interview_company_name]{/b} first thing in the morning? Right, it's been a while since I applied to their job posting."
         player "The title says 'Application Follow-up'..."
-        $ num_companies_interviewed += 1
+        $ num_jobs_interviewed += 1
         call screen company_interview_email_screen(interview_company_name)
         player laugh "I made it! I'm going to a coding interview!"
         player "I'm gonna share this with Annika and Marco."
@@ -1331,7 +1339,8 @@ label stage8:
         $ calendar.next_week()
 
         if offer_company_name is None:
-            $ num_companies_rejected += 1
+            scene bg bedroom with fadehold
+            $ num_jobs_rejected += 1
             play sound 'audio/sfx/social_media_notification.wav'
             player surprised "Huh, an email from {b}[interview_company_name]{/b}? Right, it's been a week since my interview with them."
             player "The title says 'Interview Follow-up'..."
@@ -1562,6 +1571,7 @@ label ending:
     $ persistent.achievements.add(ending_dev)
 
     $ quick_menu = False
+    $ calendar_enabled = False
     play sound 'audio/sfx/cartoon_suspense.wav'
     scene black with dissolve
     pause 1

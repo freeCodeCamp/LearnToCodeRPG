@@ -44,7 +44,7 @@ label study_session:
             $ num_correct += 1
 
             if quiz_question.category is not None: # non-Easter Egg question
-                $ player_stats.change_stats(quiz_question.category, 2)
+                $ player_stats.change_stats(quiz_question.category, 10)
 
             player @ laugh "Correct!"
         else:

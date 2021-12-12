@@ -69,7 +69,7 @@ init python:
         QuizQuestion(
         question="A special symbol used to perform arithmetic or logical computations is known as...",
         true="Operator",
-        false=["Operand", "", ""],
+        false=["Operand"],
         explanation="A special symbol used to perform arithmetic or logical computations is known as operator.",
         learn_more_url="https://en.wikipedia.org/wiki/Operator_(computer_programming)",
         difficulty=1
@@ -77,7 +77,7 @@ init python:
         QuizQuestion(
         question="The values that an operator operates on are known as...",
         true="Operands",
-        false=["Operators", "", ""],
+        false=["Operators"],
         explanation="The values that an operator operates on are known as operands.",
         learn_more_url="https://en.wikipedia.org/wiki/Operand",
         difficulty=1
@@ -3618,7 +3618,7 @@ init python:
         QuizQuestion(
         question="Who invented the World Wide Web?",
         true="Tim Berners-Lee",
-        false=["Ada Lovelace", "Alan Turing", ""],
+        false=["Ada Lovelace", "Alan Turing"],
         explanation="Tim Berners-Lee invented the World Wide Web in 1989.",
         learn_more_url="https://en.wikipedia.org/wiki/Tim_Berners-Lee",
         difficulty=1
@@ -3718,7 +3718,7 @@ init python:
         QuizQuestion(
         question="What is the JavaScript keyword used to define a constant?",
         true="const",
-        false=["var", "let", ""],
+        false=["var", "let"],
         explanation="The keyword const is used to define a constant in JavaScript. The value of a constant can't be changed through reassignment.",
         learn_more_url="https://www.freecodecamp.org/news/javascript-variables-beginners-guide/",
         difficulty=1
@@ -3814,7 +3814,7 @@ init python:
         QuizQuestion(
         question="Which one of these types of loops will always run at least once in JavaScript?",
         true="Do... While Loop",
-        false=["While Loop", "For Loop", ""],
+        false=["While Loop", "For Loop"],
         explanation="The sequence of statements in a do..while loop runs at least once because the condition is evaluated after running the statements. ",
         learn_more_url="https://www.freecodecamp.org/news/javascript-loops-explained-for-loop-for/",
         difficulty=1
@@ -4062,7 +4062,7 @@ init python:
         QuizQuestion(
         question="Are semicolons strictly required in JavaScript?",
         true="No",
-        false=["Yes", "", ""],
+        false=["Yes"],
         explanation="JavaScript does not require strict use of semicolons because it inserts them where they are needed through a process called Automatic Semicolon Insertion.",
         learn_more_url="https://www.freecodecamp.org/news/lets-talk-about-semicolons-in-javascript-f1fe08ab4e53/#:~:text=This%20is%20all%20possible%20because%20JavaScript%20does%20not%20strictly%20require%20semicolons.&text=It's%20important%20to%20know%20the,not%20behave%20like%20you%20expect.",
         difficulty=1
@@ -4474,7 +4474,7 @@ init python:
         QuizQuestion(
         question="With which wildcard can you select ALL files in a directory?",
         true="*",
-        false=["?", "[]", "!"],
+        false=["?", "[[]", "!"],
         explanation="You can use the wildcard (*) to select all files in a directory. For example the ls * command would list ALL files in the current directory",
         learn_more_url="https://www.freecodecamp.org/news/grep-command-tutorial-how-to-search-for-a-file-in-linux-and-unix/",
         difficulty=2
@@ -4570,7 +4570,7 @@ init python:
         QuizQuestion(
         question="Which of the following is the pipe symbol in Linux?",
         true="|",
-        false=["/", "\\", "[]"],
+        false=["/", "\\", "[[]"],
         explanation="With the pipe symbol (|), the output of one command serves as the input to another",
         learn_more_url="https://www.freecodecamp.org/news/the-linux-commands-handbook/#the-linux-cd-command",
         difficulty=1
@@ -4582,7 +4582,7 @@ init python:
         QuizQuestion(
         question="What logical operator in Python returns True if both operands are True?",
         true="and",
-        false=["or", "not", ""],
+        false=["or", "not"],
         explanation="The logical operator and returns True if both operands are True and False otherwise.",
         learn_more_url="https://www.freecodecamp.org/news/basic-operators-in-python-with-examples/",
         difficulty=1
@@ -4590,7 +4590,7 @@ init python:
         QuizQuestion(
         question="What logical operator in Python returns True if any of the operands is True?",
         true="or",
-        false=["and", "not", ""],
+        false=["and", "not"],
         explanation="The logical operator or returns True if any of the operands is True. ",
         learn_more_url="https://www.freecodecamp.org/news/basic-operators-in-python-with-examples/",
         difficulty=1
@@ -4598,7 +4598,7 @@ init python:
         QuizQuestion(
         question="What logical operator in Python returns True if the operand is False?",
         true="not",
-        false=["and", "or", ""],
+        false=["and", "or"],
         explanation="The logical operator not returns True if the operand is False and False if the operand is True.",
         learn_more_url="https://www.freecodecamp.org/news/basic-operators-in-python-with-examples/",
         difficulty=1
@@ -4758,7 +4758,7 @@ init python:
         QuizQuestion(
         question="In Python, strings are...",
         true="Immutable",
-        false=["Mutable", "", ""],
+        false=["Mutable"],
         explanation="Strings are immutable, so we can’t update or remove their characters after they have been defined in the program. ",
         learn_more_url="https://www.freecodecamp.org/news/python-code-examples-sample-script-coding-tutorial-for-beginners/#-data-types-and-built-in-data-structures-in-python",
         difficulty=2
@@ -4782,7 +4782,7 @@ init python:
         QuizQuestion(
         question="Are tuples mutable or immutable in Python?",
         true="Immutable",
-        false=["Mutable", "", ""],
+        false=["Mutable"],
         explanation="Tuples are immutable built-in data structures in Python. This means that you cannot add new elements to a tuple, you cannot update existing elements and you cannot remove elements from a tuple. ",
         learn_more_url="https://www.freecodecamp.org/news/python-code-examples-sample-script-coding-tutorial-for-beginners/#-data-types-and-built-in-data-structures-in-python",
         difficulty=1
@@ -4790,7 +4790,7 @@ init python:
         QuizQuestion(
         question="Are lists mutable or immutable in Python?",
         true="Mutable",
-        false=["Immutable", "", ""],
+        false=["Immutable"],
         explanation="Lists are mutable built-in data structures in Python. This means that you can add new elements to a list, update the elements of a list, and remove elements from a list.",
         learn_more_url="https://www.freecodecamp.org/news/python-code-examples-sample-script-coding-tutorial-for-beginners/#-data-types-and-built-in-data-structures-in-python",
         difficulty=1
@@ -4869,8 +4869,8 @@ init python:
         ),
         QuizQuestion(
         question="How can you create an empty list in Python?",
-        true="[]",
-        false=["dict()", "{}", "()"],
+        true="[[]",
+        false=["dict()", "{{}", "()"],
         explanation="You can create an empty list with [] or with list() in Python.",
         learn_more_url="https://www.freecodecamp.org/news/python-empty-list-tutorial-how-to-create-an-empty-list-in-python/",
         difficulty=1
@@ -4878,15 +4878,15 @@ init python:
         QuizQuestion(
         question="How can you create an empty set in Python?",
         true="set()",
-        false=["{}", "dict()", "()"],
+        false=["{{}", "dict()", "()"],
         explanation="You must call the set() function to create empty set in Python.",
         learn_more_url="https://www.freecodecamp.org/news/python-sets-detailed-visual-introduction/",
         difficulty=1
         ),
         QuizQuestion(
         question="How can you create an empty dictionary in Python?",
-        true="{}",
-        false=["[]", "()", "list()"],
+        true="{{}",
+        false=["[[]", "()", "list()"],
         explanation="You can create an empty dictionary with {} in Python.",
         learn_more_url="https://www.freecodecamp.org/news/python-dictionaries-detailed-visual-introduction/",
         difficulty=1
@@ -4894,7 +4894,7 @@ init python:
         QuizQuestion(
         question="In Python, the keys of a dictionary must be...",
         true="Immutable",
-        false=["Mutable", "Both will work", ""],
+        false=["Mutable", "Both will work"],
         explanation="The keys of a Python dictionary must be immutable.",
         learn_more_url="https://www.freecodecamp.org/news/python-dictionaries-detailed-visual-introduction/",
         difficulty=1
@@ -4902,7 +4902,7 @@ init python:
         QuizQuestion(
         question="In Python, the values of a dictionary must be...",
         true="They can be immutable or mutable",
-        false=["Immutable", "Mutable", ""],
+        false=["Immutable", "Mutable"],
         explanation="The values of a Python dictionary can be either mutable or immutable. Both will work correctly. ",
         learn_more_url="https://www.freecodecamp.org/news/python-dictionaries-detailed-visual-introduction/",
         difficulty=1
@@ -4958,7 +4958,7 @@ init python:
         QuizQuestion(
         question="Empty sequences, collections and the number 0 are...",
         true="Falsy",
-        false=["Truthy", "", ""],
+        false=["Truthy"],
         explanation="Empty sequences, collections, and the number 0 are falsy values in Python.",
         learn_more_url="https://www.freecodecamp.org/news/truthy-and-falsy-values-in-python/",
         difficulty=1
@@ -4966,7 +4966,7 @@ init python:
         QuizQuestion(
         question="Non-empty sequences, non-empty collections, and numerical values different from 0 are...",
         true="Truthy",
-        false=["Falsy", "", ""],
+        false=["Falsy"],
         explanation="Non-empty sequences, collections, and numerical values different from 0 are truthy values.",
         learn_more_url="https://www.freecodecamp.org/news/truthy-and-falsy-values-in-python/",
         difficulty=1
@@ -5242,7 +5242,7 @@ init python:
         QuizQuestion(
         question="A computer programming language used to inserting, deleting, and updating data in a database is known as...",
         true="Data Manipulation Language",
-        false=["Data Definition Language", "Data Control Language", ""],
+        false=["Data Definition Language", "Data Control Language"],
         explanation="A computer programming language used to inserting, deleting, and updating data in a database is known as Data Manipulation Language.",
         learn_more_url="https://en.wikipedia.org/wiki/Data_manipulation_language",
         difficulty=2
@@ -5250,7 +5250,7 @@ init python:
         QuizQuestion(
         question="What does DDL stand for?",
         true="Data Definition Language",
-        false=["Data Manipulation Language", "Data Control Language", ""],
+        false=["Data Manipulation Language", "Data Control Language"],
         explanation="DDL stands for Data Definition Language. ",
         learn_more_url="https://en.wikipedia.org/wiki/Data_definition_language",
         difficulty=2
@@ -5258,7 +5258,7 @@ init python:
         QuizQuestion(
         question="What does DML stand for?",
         true="Data Manipulation Language",
-        false=["Data Definition Language", "Data Control Language", ""],
+        false=["Data Definition Language", "Data Control Language"],
         explanation="DML stands for Data Manipulation Language.",
         learn_more_url="https://en.wikipedia.org/wiki/Data_manipulation_language",
         difficulty=2
@@ -5266,7 +5266,7 @@ init python:
         QuizQuestion(
         question="What does DCL stand for?",
         true="Data Control Language",
-        false=["Data Manipulation Language", "Data Definition Language", ""],
+        false=["Data Manipulation Language", "Data Definition Language"],
         explanation="DCL stands for Data Control Language.",
         learn_more_url="https://en.wikipedia.org/wiki/Data_control_language",
         difficulty=2

@@ -1298,9 +1298,10 @@ screen skip_indicator():
     style_prefix "skip"
 
     frame:
-        # at top right of textbox, above CTC
-        xalign 0.96
-        yalign 0.8
+        # top right above textbox
+        xalign 1.0
+        ypos 720
+        background white80
 
         hbox:
             text _("Skipping")
