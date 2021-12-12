@@ -123,7 +123,7 @@ init python:
     }
 
     # Note to proofreader: please proofread the tweet content
-    tweet_default = generate_tweet_intent('I just discovered this cool game called #LearnToCodeRPG. Play it here: ')
+    tweet_default = generate_tweet_intent('I just discovered this cool game called #LearnToCodeRPG. Play the game here: ')
 
     # Note to proofreader: these are achievement strings displayed on the Achievements screen. Please proofread
     # Please check the casing of the title
@@ -132,29 +132,44 @@ init python:
     milestone_first_interview = 'Got My First Interview!'
     milestone_first_offer = 'Got My First Offer!'
     # TODO: v2 can have multiple offers
-    milestone_sign_offer = 'Now Streaming: My Dream Dev Job'
+    milestone_onboarding = 'Now Streaming: My Dream Dev Job'
 
-    tweet_complete_curriculum = tweet_default
-    tweet_first_interview = tweet_default
-    tweet_first_offer = tweet_default
-    tweet_sign_offer = tweet_default
+    tweet_complete_curriculum = 'I nailed the CS curriculum in #LearnToCodeRPG. Play the game here: '
+    tweet_first_interview = 'I got my first technical interview in #LearnToCodeRPG. Play the game here: '
+    tweet_first_offer = 'I got my first dev job in #LearnToCodeRPG. Play the game here: '
+    tweet_onboarding = 'I started the onboarding process for my dream dev job in #LearnToCodeRPG. Play the game here: '
 
     milestone_to_tweet_map = {
-        milestone_complete_curriculum: tweet_complete_curriculum,
-        milestone_first_interview: tweet_first_interview,
-        milestone_first_offer: tweet_first_offer,
-        milestone_sign_offer: tweet_sign_offer
+        milestone_complete_curriculum: generate_tweet_intent(tweet_complete_curriculum),
+        milestone_first_interview: generate_tweet_intent(tweet_first_interview),
+        milestone_first_offer: generate_tweet_intent(tweet_first_offer),
+        milestone_onboarding: generate_tweet_intent(tweet_onboarding)
     }
 
     ## plot easter eggs
+    plot_vip = 'Referred by a VIP Member'
     plot_cookie = 'Late-night Cookie Crunch'
-    plot_trivia = 'Tech Trivia Guru'
     plot_quiz_all = 'Nailed All Quizzes in a Session'
-    plot_quiz_none = 'Bombed All Quizzes in a Session'
-    plot_hackerspace = 'Hanging out at the Hacker Space'
+    plot_quiz_none = 'Flunked All Quizzes in a Session'
+    # first time barista
+    plot_barista_discover = 'Barista is My Undercover for Collecting Buzzwords'
+    plot_all_buzzwords = 'Tech Buzzword Encyclopedia'
+    # first time hackerspace
+    plot_hackerspace_discover = 'Hanging out at the Hacker Space'
+    plot_hackerspace_all_events = 'The Hacker Space is My Second Home'
+    plot_trivia = 'Tech Trivia Guru'
+    plot_win_pong = 'Beat Up AI at Pong'
+    plot_lose_pong = 'Got Beaten Up by AI at Pong'
+    # first time music room
+    plot_music_discover = 'Chill Beats to Code to'
+    # first time rhythm game
+    plot_rhythm_discover = 'Chill Beats to Smash Keyboard to'
+    plot_rhythm_highscore = 'Set a New High Score in the Rhythm Game'
+    plot_rhythm_perfect = 'Scored Perfect on My Favorite Music Track'
+    plot_rhythm_perfect_all = 'Scored Perfect on ALL Music Tracks' # super hard
+    # first time park
+    plot_park = 'I Might Get a Puppy Just So I Can Go to the Park'
 
-    # TODO: vip, barista, hackerspace, minigame, saving up all buzzwords, asking all to Marco or all to Annika
-    # too chill etc.
     plot_skill_coffee = 'This Job Needs Me to Brew Coffee?'
     plot_skill_fax = 'This Job Needs Me to Fix Fax Machiens?'
     plot_skill_customer = 'This Job Needs Me to Handle Angry Customers?'
@@ -164,21 +179,62 @@ init python:
 
     plot_double_check = 'You Can Never Be Too Careful with Prod'
 
-    tweet_hackerspace = generate_tweet_intent('I just discovered the Hackerspace in #LearnToCodeRPG. Play it here: ')
-    tweet_weird_job_skill = tweet_default
+    # tweets
+    tweet_vip = 'I got referred by a VIP member in #LearnToCodeRPG. Play the game here: '
+    tweet_cookie = 'I snuck out of a late-night coding session for a cookie in #LearnToCodeRPG. Play the game here: '
+    tweet_quiz_all = 'I nailed all quiz questions in #LearnToCodeRPG. Play the game here: '
+    tweet_quiz_none = 'I flunked all quiz questions in #LearnToCodeRPG. Play the game here: '
+    tweet_barista_discover = 'I just took up a barista gig to collect tech buzzwords in #LearnToCodeRPG. Play the game here: '
+    tweet_all_buzzwords = 'I found tons of tech buzzwords during my barista gig in #LearnToCodeRPG. Play the game here: '
+    tweet_hackerspace_discover = 'I just discovered the Hacker Space in #LearnToCodeRPG. Play the game here: '
+    tweet_hackerspace_all_events = 'I participated in all Hacker Space events in #LearnToCodeRPG. Play the game here: '
+    tweet_trivia = 'I nailed all the tech trivia questions in #LearnToCodeRPG. Play the game here: '
+    tweet_win_pong = 'I just won against the AI in a Pong game in #LearnToCodeRPG. Play the game here: '
+    tweet_lose_pong = 'I just lost against the AI in a Pong game in #LearnToCodeRPG. Play the game here: '
+    tweet_music_discover = 'I just discovered the Music Room in #LearnToCodeRPG. Play the game here: '
+    tweet_rhythm_discover = 'I just discovered the Rhythm Game in #LearnToCodeRPG. Play the game here: '
+    tweet_rhythm_highscore = 'I just set a new high score in the Rhythm Game in #LearnToCodeRPG. Play the game here: '
+    tweet_rhythm_perfect = 'I scored perfect on a song in the Rhythm Game in #LearnToCodeRPG. Play the game here: '
+    # Dev note: if anyone is actually capable of getting all perfect. wow
+    tweet_rhythm_perfect_all = 'I scored perfect on every song in the Rhythm Game in #LearnToCodeRPG. Play the game here: '
+    tweet_park = 'I just discovered the perfect park for hanging out in #LearnToCodeRPG. Play the game here: '
+    tweet_skill_coffee = 'I saw a dev job that requires the skill of brewing coffee in #LearnToCodeRPG. Play the game here: '
+    tweet_skill_fax = 'I saw a dev job that requires the skill of fixing fax machines in #LearnToCodeRPG. Play the game here: '
+    tweet_skill_customer = 'I saw a dev job that requires the skill of handling angry customers in #LearnToCodeRPG. Play the game here: '
+    tweet_skill_cable = 'I saw a dev job that requires the skill of fusing cables in #LearnToCodeRPG. Play the game here: '
+    tweet_skill_password = 'I saw a dev job that requires the skill of retrieving lost passwords in #LearnToCodeRPG. Play the game here: '
+    tweet_skill_pet = 'I saw a dev job that requires the skill of pacifying office pets in #LearnToCodeRPG. Play the game here: '
+    tweet_double_check = 'I double-checked, triple-cheked, quadruple-checked my code until I lost count in #LearnToCodeRPG. Play the game here: '
 
     # TODO: none default tweet
     plot_bonus_to_tweet_map = {
-        plot_cookie: tweet_default,
-        plot_trivia: tweet_default,
-        plot_quiz_all: tweet_default,
-        plot_quiz_none: tweet_default,
+        plot_vip: generate_tweet_intent(tweet_vip),
+        plot_cookie: generate_tweet_intent(tweet_cookie), 
+        plot_quiz_all: generate_tweet_intent(tweet_quiz_all), 
+        plot_quiz_none: generate_tweet_intent(tweet_quiz_none), 
+        plot_barista_discover: generate_tweet_intent(tweet_barista_discover), 
+        plot_all_buzzwords: generate_tweet_intent(tweet_all_buzzwords), 
+        plot_hackerspace_discover: generate_tweet_intent(tweet_hackerspace_discover), 
+        plot_hackerspace_all_events: generate_tweet_intent(tweet_hackerspace_all_events), 
+        plot_trivia: generate_tweet_intent(tweet_trivia), 
+        plot_win_pong: generate_tweet_intent(tweet_win_pong), 
+        plot_lose_pong: generate_tweet_intent(tweet_lose_pong), 
+        plot_music_discover: generate_tweet_intent(tweet_music_discover), 
+        plot_rhythm_discover: generate_tweet_intent(tweet_rhythm_discover), 
+        plot_rhythm_highscore: generate_tweet_intent(tweet_rhythm_highscore), 
+        plot_rhythm_perfect: generate_tweet_intent(tweet_rhythm_perfect), 
+        plot_rhythm_perfect_all: generate_tweet_intent(tweet_rhythm_perfect_all), 
+        plot_park: generate_tweet_intent(tweet_park), 
+        plot_skill_coffee: generate_tweet_intent(tweet_skill_coffee), 
+        plot_skill_fax: generate_tweet_intent(tweet_skill_fax), 
+        plot_skill_customer: generate_tweet_intent(tweet_skill_customer), 
+        plot_skill_cable: generate_tweet_intent(tweet_skill_cable), 
+        plot_skill_password: generate_tweet_intent(tweet_skill_password), 
+        plot_skill_pet: generate_tweet_intent(tweet_skill_pet), 
+        plot_double_check: generate_tweet_intent(tweet_double_check),
     }
 
     ## quiz
-    # questions that have a `wait thats not a cs question` label
-    # quiz_fcc_history
-
     quiz_fcc_launch = "The Launch of freeCodeCamp"
     quiz_fcc_mission = "The Mission of freeCodeCamp"
     quiz_code_radio = "Hello, Earth to Code Radio!"
@@ -190,17 +246,28 @@ init python:
     quiz_fcc_chat = 'freeCodeCamp Has a Chat Server? Fancy!'
     quiz_fcc_mascot = 'freeCodeCamp Has a Mascot? Cute!'
 
+    tweet_fcc_launch = 'I got an Easter Egg quiz question about the launch year of freeCodeCamp in #Learning. Play the game here: '
+    tweet_fcc_mission = 'I got an Easter Egg quiz question about the mission of freeCodeCamp in #Learning. Play the game here: '
+    tweet_code_radio = 'I got an Easter Egg quiz question about the freeCodeCamp Code Radio in #Learning. Play the game here: '
+    tweet_devdocs = 'I got an Easter Egg quiz question about Devdocs.io in #Learning. Play the game here: '
+    tweet_fcc_opensource = 'I got an Easter Egg quiz question about freeCodeCamp and Open Source in #Learning. Play the game here: '
+    tweet_fcc_language = 'I got an Easter Egg quiz question asking what coding language the freeCodeCamp site is built with in #Learning. Play the game here: '
+    tweet_fcc_inspiration = 'I got an Easter Egg quiz question asking what project inspired freeCodeCamp in #Learning. Play the game here: '
+    tweet_fcc_forum = 'I got an Easter Egg quiz question about the freeCodeCamp Forum in #Learning. Play the game here: '
+    tweet_fcc_chat = 'I got an Easter Egg quiz question about the freeCodeCamp Chat in #Learning. Play the game here: '
+    tweet_fcc_mascot = 'I got an Easter Egg quiz question about the freeCodeCamp Mascot in #Learning. Play the game here: '
+
     quiz_bonus_to_tweet_map = {
-        quiz_fcc_launch: tweet_default,
-        quiz_fcc_mission: tweet_default,
-        quiz_code_radio: tweet_default,
-        quiz_devdocs: tweet_default,
-        quiz_fcc_opensource: tweet_default,
-        quiz_fcc_language: tweet_default,
-        quiz_fcc_inspiration: tweet_default,
-        quiz_fcc_forum: tweet_default,
-        quiz_fcc_chat: tweet_default,
-        quiz_fcc_mascot: tweet_default
+        quiz_fcc_launch: generate_tweet_intent(tweet_fcc_launch),
+        quiz_fcc_mission: generate_tweet_intent(tweet_fcc_mission),
+        quiz_code_radio: generate_tweet_intent(tweet_code_radio),
+        quiz_devdocs: generate_tweet_intent(tweet_devdocs),
+        quiz_fcc_opensource: generate_tweet_intent(tweet_fcc_opensource),
+        quiz_fcc_language: generate_tweet_intent(tweet_fcc_language),
+        quiz_fcc_inspiration: generate_tweet_intent(tweet_fcc_inspiration),
+        quiz_fcc_forum: generate_tweet_intent(tweet_fcc_forum),
+        quiz_fcc_chat: generate_tweet_intent(tweet_fcc_chat),
+        quiz_fcc_mascot: generate_tweet_intent(tweet_fcc_mascot),
     }
 
     ## endings
@@ -211,20 +278,20 @@ init python:
     ending_farmer = 'Nature Lover at Heart'
     ending_dev = 'Dev Who Brought Down Prod on the First Day'
 
-    tweet_end_barista = 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.freecodecamp.org%2Flearn-to-code-rpg&text=I%20ended%20up%20becoming%20a%20barista%20in%20%23LearnToCodeRPG.%20Play%20it%20here%3A'
-    tweet_end_cat = 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.freecodecamp.org%2Flearn-to-code-rpg&text=I%20found%20my%20cat%20coding%20on%20my%20laptop%20in%20the%20middle%20of%20the%20night%20in%20%23LearnToCodeRPG.%20Play%20it%20here%3A'
-    tweet_end_tutor = 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.freecodecamp.org%2Flearn-to-code-rpg&text=I%20ended%20up%20becoming%20a%20CS%20teacher%20in%20%23LearnToCodeRPG.%20Play%20it%20here%3A'
-    tweet_end_office = 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.freecodecamp.org%2Flearn-to-code-rpg&text=I%20ended%20up%20becoming%20an%20office%20worker%20in%20%23LearnToCodeRPG.%20Play%20it%20here%3A'
-    tweet_end_farmer = 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.freecodecamp.org%2Flearn-to-code-rpg&text=I%20ended%20up%20becoming%20a%20farmer%20in%20%23LearnToCodeRPG.%20Play%20it%20here%3A'
-    tweet_end_dev = 'https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.freecodecamp.org%2Flearn-to-code-rpg&text=I%20taught%20myself%20to%20code%2C%20got%20a%20tech%20job%2C%20and%20brought%20down%20prod%20on%20my%20first%20day%20of%20work%20in%20%23LearnToCodeRPG.%20Play%20it%20here%3A'
+    tweet_end_barista = 'I ended up becoming a barista instead of a developer in #LearnToCodeRPG. Play the game here: '
+    tweet_end_cat = 'I found my cat coding on my laptop in the middle of the night in #LearnToCodeRPG. Play it here: '
+    tweet_end_tutor = 'I ended up becoming a CS teacher instead of a developer in #LearnToCodeRPG. Play the game here: '
+    tweet_end_office = 'I ended up becoming an office worker instead of a developer in #LearnToCodeRPG. Play the game here: '
+    tweet_end_farmer = 'I ended up working on a farm to embrace my nature-loving self instead of becoming a developer in #LearnToCodeRPG. Play the game here: '
+    tweet_end_dev = 'I taught myself to code, got a tech job, and brought down prod on my first day of work in #LearnToCodeRPG. Play the game here: '
 
     ending_to_tweet_map = {
-        ending_barista: tweet_end_barista,
-        ending_cat: tweet_end_cat,
-        ending_tutor: tweet_end_tutor,
-        ending_office: tweet_end_barista,
-        ending_farmer: tweet_end_farmer,
-        ending_dev: tweet_end_dev,
+        ending_barista: generate_tweet_intent(tweet_end_barista),
+        ending_cat: generate_tweet_intent(tweet_end_cat),
+        ending_tutor: generate_tweet_intent(tweet_end_tutor),
+        ending_office: generate_tweet_intent(tweet_end_barista),
+        ending_farmer: generate_tweet_intent(tweet_end_farmer),
+        ending_dev: generate_tweet_intent(tweet_end_dev),
     }
 
     ## master labels and maps

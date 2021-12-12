@@ -72,10 +72,13 @@ screen achievements_screen():
 
                             if is_unlocked:
                                 $ tweet = achievement_to_tweet_map[achievement]
-                                text '{icon=icon-unlock} [achievement]'
+                                text '{icon=icon-unlock} [achievement]':
+                                    font gui.text_font
                                 textbutton '{icon=icon-twitter} Tweet this' action OpenURL(tweet)
                             else:
-                                text '{icon=icon-lock} ???' color gui.insensitive_color
+                                text '{icon=icon-lock} ???':
+                                    font gui.text_font
+                                    color gui.insensitive_color
                                 null
 
 # https://www.renpy.org/doc/html/rooms.html
