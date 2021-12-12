@@ -314,7 +314,15 @@ label day_activity_job_search:
         call screen job_posting_screen(company_name, company_required_skills, easter_egg_skill=easter_egg_skill)
         $ has_applied = _return
         if has_applied:
-            if renpy.random.random() < 0.8: # 80% chance of interview
+            # TODO: need the three required skill to each be above 60
+            python:
+                meets_criteria = True
+                for skill in company_required_skills:
+                    if player_stats.subcategory_stats_map[skill] < cs_knowledge_threshold:
+                        meets_criteria &= False
+                    else:
+                        meets_criteria &= True
+            if meets_criteria or renpy.random.random() < 0.2: # even if criteria not met, 20% of getting interview
                 $ interview_company_name = company_name
 
                 # set up interview questions
@@ -328,6 +336,7 @@ label day_activity_job_search:
         player @ smile "Application submitted. Let's hope for the best."
     else:
         player @ pout "I feel like I'm not ready for this job. They require so many skills that I don't yet have."
+        player "Let's keep looking."
 
     if has_won_hacker_space_trivia:
         $ todo_list.complete_todo(todo_apply_cupcakecpu)

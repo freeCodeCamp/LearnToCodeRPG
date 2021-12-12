@@ -33,8 +33,8 @@ init 998:
     default has_won_hacker_space_trivia = False
     default has_applied_to_cupcakecpu = False
 
-    define cs_stats_threshold = 60 # need 60 CS Knowledge to pass the curriculum
-    # player_stats.player_stats_map['CS Knowledge'] >= cs_stats_threshold
+    define cs_knowledge_threshold = 60 # need 60 CS Knowledge to pass the curriculum
+    # player_stats.player_stats_map['CS Knowledge'] >= cs_knowledge_threshold
     default has_completed_curriculum = False
 
     default num_jobs_applied = 0
@@ -73,7 +73,7 @@ init python:
     # to-do strings
     todo_check_fcc = 'Check out [freeCodeCamp]'
     todo_ask_curriculum = 'Ask Annika about CS curriculum'
-    todo_learn_cs = 'Bump {b}CS Knowledge{/b} to [cs_stats_threshold]+'
+    todo_learn_cs = 'Bump {b}CS Knowledge{/b} to [cs_knowledge_threshold]+'
     todo_apply_cupcakecpu = 'Apply to CupcakeCPU'
     todo_apply_to_jobs = 'Start applying to jobs'
     todo_interview_prep = 'Start preparing for coding interviews'
