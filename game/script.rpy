@@ -695,6 +695,7 @@ label stage6:
     $ renpy.show_screen('player_stats_todo_screen', _layer='transient')
 
     player smile "Well, guess I need to track my progress for each subcategory."
+    "(Your {b}CS Knowledge{/b} is calculated as the average of all subcategories. So make sure to study for each of the categories!)"
     player "For each session, I'll need to complete four multiple choice questions from the chosen category."
     player happy "Let's give it a go!"
 

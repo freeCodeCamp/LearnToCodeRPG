@@ -51,7 +51,8 @@ screen achievements_screen():
 
             vbox:
                 $ num_achievements = len(persistent.achievements)
-                text _("{icon=icon-award} Number of Achievements Unlocked: [num_achievements] / [total_num_achievements]")
+                text _("{icon=icon-award} Number of Achievements Unlocked: [num_achievements] / [total_num_achievements]"):
+                    font gui.text_font
                 textbutton "{icon=icon-twitter} Tweet it when you've unlocked all of the achievements!":
                     action [
                     SensitiveIf(num_achievements == total_num_achievements), 
@@ -76,7 +77,7 @@ screen achievements_screen():
                                     font gui.text_font
                                 textbutton '{icon=icon-twitter} Tweet this' action OpenURL(tweet)
                             else:
-                                text '{icon=icon-lock} ???':
+                                text '{icon=icon-lock} ? ? ?':
                                     font gui.text_font
                                     color gui.insensitive_color
                                 null

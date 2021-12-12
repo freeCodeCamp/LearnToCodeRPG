@@ -123,24 +123,32 @@ init python:
     }
 
     # Note to proofreader: please proofread the tweet content
-    tweet_default = generate_tweet_intent('I just discovered this cool game called #LearnToCodeRPG. Play the game here: ')
+    tweet_default = 'I just discovered this cool game called #LearnToCodeRPG. Play the game here: '
 
     # Note to proofreader: these are achievement strings displayed on the Achievements screen. Please proofread
     # Please check the casing of the title
     ## milestone
+    milestone_start_curriculum = '3, 2, 1, Learn to Code, Action!'
     milestone_complete_curriculum = 'Nailed the Curriculum!'
+    milestone_start_interview_prep = 'Gotta Crush Those Technical Interviews!'
+    milestone_first_application = 'Submitted My First Dev Job Application!'
     milestone_first_interview = 'Got My First Interview!'
     milestone_first_offer = 'Got My First Offer!'
     # TODO: v2 can have multiple offers
     milestone_onboarding = 'Now Streaming: My Dream Dev Job'
 
+    tweet_start_curriculum = 'I just started teaching myself to code in #LearnToCodeRPG. Play the game here: '
     tweet_complete_curriculum = 'I nailed the CS curriculum in #LearnToCodeRPG. Play the game here: '
+    tweet_start_interview_prep = 'I just started prepping for coding interviews in #LearnToCodeRPG. Play the game here: '
+    tweet_first_application = 'I just submitted my first application for a dev job in #LearnToCodeRPG. Play the game here: '
     tweet_first_interview = 'I got my first technical interview in #LearnToCodeRPG. Play the game here: '
     tweet_first_offer = 'I got my first dev job in #LearnToCodeRPG. Play the game here: '
     tweet_onboarding = 'I started the onboarding process for my dream dev job in #LearnToCodeRPG. Play the game here: '
 
     milestone_to_tweet_map = {
+        milestone_start_curriculum: generate_tweet_intent(tweet_start_curriculum),
         milestone_complete_curriculum: generate_tweet_intent(tweet_complete_curriculum),
+        milestone_start_interview_prep: generate_tweet_intent(tweet_start_curriculum),
         milestone_first_interview: generate_tweet_intent(tweet_first_interview),
         milestone_first_offer: generate_tweet_intent(tweet_first_offer),
         milestone_onboarding: generate_tweet_intent(tweet_onboarding)
@@ -151,13 +159,21 @@ init python:
     plot_cookie = 'Late-night Cookie Crunch'
     plot_quiz_all = 'Nailed All Quizzes in a Session'
     plot_quiz_none = 'Flunked All Quizzes in a Session'
+    plot_stats_full = 'Maxed Out One CS Knowledge Stats'
+    plot_stats_all = 'Maxed Out ALL CS Knowledge Stats'
+    # application rejections
+    plot_rejection = 'Rejected? Well, The First One Seldom Works Out'
+    plot_third_rejection = 'Rejected Again? I Though Third Time is the Charm'
     # first time barista
     plot_barista_discover = 'Barista is My Undercover for Collecting Buzzwords'
+    plot_buzzword_ask = 'Asked My Tech-Savvy Friends about Tech Buzzwords'
+    # asked, not just collected all tech buzzwords
     plot_all_buzzwords = 'Tech Buzzword Encyclopedia'
     # first time hackerspace
     plot_hackerspace_discover = 'Hanging out at the Hacker Space'
-    plot_hackerspace_all_events = 'The Hacker Space is My Second Home'
+    plot_hackerspace_all_events = 'The Hacker Space is My Second Home Now'
     plot_trivia = 'Tech Trivia Guru'
+    plot_cupcakecpu = 'Applied to CupcakeCPU Through a Recruiter'
     plot_win_pong = 'Beat Up AI at Pong'
     plot_lose_pong = 'Got Beaten Up by AI at Pong'
     # first time music room
@@ -179,12 +195,19 @@ init python:
 
     plot_double_check = 'You Can Never Be Too Careful with Prod'
 
+    plot_rewind_time = 'Travel in Time and SAVE the World'
+
     # tweets
     tweet_vip = 'I got referred by a VIP member in #LearnToCodeRPG. Play the game here: '
     tweet_cookie = 'I snuck out of a late-night coding session for a cookie in #LearnToCodeRPG. Play the game here: '
     tweet_quiz_all = 'I nailed all quiz questions in #LearnToCodeRPG. Play the game here: '
     tweet_quiz_none = 'I flunked all quiz questions in #LearnToCodeRPG. Play the game here: '
+    tweet_stats_full = 'I maxed out my CS knowledge in #LearnToCodeRPG. Play the game here: '
+    tweet_stats_all = 'I maxed out my CS knowledge in topics like HTML, CSS, JavaScript, Python, and more in #LearnToCodeRPG. Play the game here: '
+    tweet_rejection = 'I got rejected by the first dev job I applied to in #LearnToCodeRPG. Can you do better? Play the game here: '
+    tweet_third_rejection = 'I got rejected from dev jobs for the third time in #LearnToCodeRPG. Can you do better? Play the game here: '
     tweet_barista_discover = 'I just took up a barista gig to collect tech buzzwords in #LearnToCodeRPG. Play the game here: '
+    tweet_buzzword_ask = 'I just hung out with my tech-savvy friend and asked about tech buzzwords in #LearnToCodeRPG. Play the game here: '
     tweet_all_buzzwords = 'I found tons of tech buzzwords during my barista gig in #LearnToCodeRPG. Play the game here: '
     tweet_hackerspace_discover = 'I just discovered the Hacker Space in #LearnToCodeRPG. Play the game here: '
     tweet_hackerspace_all_events = 'I participated in all Hacker Space events in #LearnToCodeRPG. Play the game here: '
@@ -205,6 +228,7 @@ init python:
     tweet_skill_password = 'I saw a dev job that requires the skill of retrieving lost passwords in #LearnToCodeRPG. Play the game here: '
     tweet_skill_pet = 'I saw a dev job that requires the skill of pacifying office pets in #LearnToCodeRPG. Play the game here: '
     tweet_double_check = 'I double-checked, triple-cheked, quadruple-checked my code until I lost count in #LearnToCodeRPG. Play the game here: '
+    tweet_rewind_time = 'I went back in time to discover all of the alternative endings in #LearnToCodeRPG. Play the game here: '
 
     # TODO: none default tweet
     plot_bonus_to_tweet_map = {
@@ -212,7 +236,12 @@ init python:
         plot_cookie: generate_tweet_intent(tweet_cookie), 
         plot_quiz_all: generate_tweet_intent(tweet_quiz_all), 
         plot_quiz_none: generate_tweet_intent(tweet_quiz_none), 
+        plot_stats_full: generate_tweet_intent(tweet_stats_full),
+        plot_stats_all: generate_tweet_intent(tweet_stats_all),
+        plot_rejection: generate_tweet_intent(tweet_rejection),
+        plot_third_rejection: generate_tweet_intent(tweet_third_rejection),
         plot_barista_discover: generate_tweet_intent(tweet_barista_discover), 
+        plot_buzzword_ask: generate_tweet_intent(tweet_buzzword_ask),
         plot_all_buzzwords: generate_tweet_intent(tweet_all_buzzwords), 
         plot_hackerspace_discover: generate_tweet_intent(tweet_hackerspace_discover), 
         plot_hackerspace_all_events: generate_tweet_intent(tweet_hackerspace_all_events), 
@@ -232,6 +261,7 @@ init python:
         plot_skill_password: generate_tweet_intent(tweet_skill_password), 
         plot_skill_pet: generate_tweet_intent(tweet_skill_pet), 
         plot_double_check: generate_tweet_intent(tweet_double_check),
+        plot_rewind_time: generate_tweet_intent(tweet_rewind_time),
     }
 
     ## quiz
@@ -314,7 +344,7 @@ init python:
 
     total_num_achievements = len(all_tweet_map)
     # all achievements unlocked
-    tweet_all_achievements_unlocked = tweet_default    
+    tweet_all_achievements_unlocked = generate_tweet_intent('Hooray! I unlocked all of the achievements in #LearnToCodeRPG, bagging all alternative endings, Easter Eggs, and minigame high scores. Play the game here: ')
 
     # skills
     all_questions_map = {
