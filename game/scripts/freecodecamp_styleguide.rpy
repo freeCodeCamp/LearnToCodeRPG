@@ -29,7 +29,6 @@ init:
     define dark_purple = u'#5a01a7'
     define dark_yellow = u'#4d3800'
     define dark_blue = u'#002ead'
-    define dark_blue = u'#002ead'
     define dark_green = u'#00471b'
 
     image gray90 = gray90
