@@ -1,12 +1,14 @@
-init python:
-    easter_egg_skills = [
-    'Brewing coffee',
-    'Fixing fax machines',
-    'Handling angry customers',
-    'Fusing cables',
-    'Retrieving lost passwords',
-    'Pacifying office pets'
-    ]
+init 998 python:
+    easter_egg_skill_achievement_map = {
+    'Brewing coffee': plot_skill_coffee,
+    'Fixing fax machines': plot_skill_fax,
+    'Handling angry customers': plot_skill_customer,
+    'Fusing cables': plot_skill_cable,
+    'Retrieving lost passwords': plot_skill_password,
+    'Pacifying office pets': plot_skill_pet
+    }
+
+    easter_egg_skills = list(easter_egg_skill_achievement_map.keys())
 
     # company logo files are named as images/others/company/avocado.png etc.
     all_company_names = {
@@ -59,13 +61,14 @@ screen job_posting_screen(company_name, skill_names, easter_egg_skill=None):
                 for skill in skill_names:
                     text "•  " + skill
                 if easter_egg_skill:
+                    $ achievement_name = easter_egg_skill_achievement_map[easter_egg_skill]
                     textbutton "•  " + easter_egg_skill:
                         hovered [
                         Notify('Wait, is this a technical skill?'),
-                        Function(persistent.achievements.add, plot_weird_job_skill)
+                        Function(persistent.achievements.add, achievement_name)
                         ]
                         action [
-                        OpenURL(tweet_weird_job_skill),
+                        OpenURL(all_tweet_map[achievement_name]),
                         ]
                         text_font gui.text_font
                         xoffset -7 # XXX: tweak alignment
