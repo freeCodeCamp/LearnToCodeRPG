@@ -43,8 +43,8 @@ label study_session:
         if result == True:
             $ num_correct += 1
 
-            if quiz_question.easter_egg_name is None: # non-Easter Egg question
-                $ player_stats.change_stats('CS Knowledge', 2)
+            if quiz_question.category is not None: # non-Easter Egg question
+                $ player_stats.change_stats(quiz_question.category, 2)
 
             player @ laugh "Correct!"
         else:

@@ -5,45 +5,51 @@ init python:
     CHANGE_DIRECTION_DEC = 'dec'
 
     class PlayerStats():
-        def __init__(self):
+        def __init__(self, all_skills):
+            # all_skills is defined in variables.rpy
+
             # map string names to stats
             self.player_stats_map = {
             'Sanity': 100, 
             'CS Knowledge': 0, 
             }
 
+            self.subcategory_stats_map = {
+            stats_name: 0 for stats_name in all_skills
+            }
+
         def set_stats(self, stats_name, val):
             # keep between 0 and 100
-            if stats_name in self.player_stats_map:
-                clamped_val = min(100, max(0, val))
-                self.player_stats_map[stats_name] = clamped_val
-                renpy.notify(stats_name + ' is set to ' + str(clamped_val))
+            clamped_val = min(100, max(0, val))
+            self.player_stats_map[stats_name] = clamped_val
+            renpy.notify(stats_name + ' is set to ' + str(clamped_val))
 
         def change_stats(self, stats_name, val):
             # keep between 0 and 100
-            if stats_name in self.player_stats_map:
-                new_val = self.player_stats_map[stats_name] + val
-                clamped_val = min(100, max(0, new_val))
-                self.player_stats_map[stats_name] = clamped_val
-                
-                # TODO: play different sound depending on the stats and direction of change
-                change_direction = None
-                if val > 0:
-                    change_direction = CHANGE_DIRECTION_INC
-                    # if not renpy.sound.is_playing():
-                    renpy.sound.play('audio/sfx/stats_change_boop.wav')
-                    renpy.notify(stats_name + ' increased by ' + str(val))
-                elif val < 0:
-                    change_direction = CHANGE_DIRECTION_DEC                    
-                    renpy.notify(stats_name + ' decreased by ' + str(-val))
-                    # if not renpy.sound.is_playing():
-                    renpy.sound.play('audio/sfx/stats_change_buzz.wav')
+            new_val = self.player_stats_map[stats_name] + val
+            clamped_val = min(100, max(0, new_val))
+            self.player_stats_map[stats_name] = clamped_val
+            
+            # TODO: play different sound depending on the stats and direction of change
+            change_direction = None
+            if val > 0:
+                change_direction = CHANGE_DIRECTION_INC
+                # if not renpy.sound.is_playing():
+                renpy.sound.play('audio/sfx/stats_change_boop.wav')
+                renpy.notify(stats_name + ' increased by ' + str(val))
+            elif val < 0:
+                change_direction = CHANGE_DIRECTION_DEC                    
+                renpy.notify(stats_name + ' decreased by ' + str(-val))
+                # if not renpy.sound.is_playing():
+                renpy.sound.play('audio/sfx/stats_change_buzz.wav')
 
-                # show the stats screen
-                if not renpy.get_screen('player_stats_todo_screen', layer='transient'):
-                    # screen has been cleared, reset previous change directions
-                    renpy.show_screen('player_stats_todo_screen', 
-                        _layer='transient', changed_stats=stats_name, change_direction=change_direction)
+            # show the stats screen
+            if not renpy.get_screen('player_stats_todo_screen', layer='transient'):
+                # screen has been cleared, reset previous change directions
+                renpy.show_screen('player_stats_todo_screen', 
+                    _layer='transient', changed_stats=stats_name, change_direction=change_direction)
+
+            self.compute_cs_knowledge()
 
         def change_stats_random(self, stats_name, min_val, max_val):
             # renpy.random.randint([min], [max]) both ends inclusive
@@ -52,6 +58,9 @@ init python:
 
         def is_sanity_low(self):
             return self.player_stats_map['Sanity'] < 50
+
+        def compute_cs_knowledge(self):
+            self.player_stats_map['CS Knowledge'] = sum(subcategory_stats_map.items()) / len(subcategory_stats_map)            
 
     class ToDoList():
         def __init__(self):

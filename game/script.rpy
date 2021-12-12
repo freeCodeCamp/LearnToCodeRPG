@@ -1,5 +1,5 @@
 label start:
-    default player_stats = PlayerStats()
+    default player_stats = PlayerStats(all_skills)
     default todo_list = ToDoList()
     default calendar = Calendar(day=1, month=8, year=2021) # story starts on Aug 1st, 2021
     default start_date = date(2021, 8, 1) # this will be used to calculate how many days it took for the player to learn to code

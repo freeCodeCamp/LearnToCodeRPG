@@ -156,7 +156,7 @@ init python:
     plot_quiz_none = 'Bombed All Quizzes in a Session'
     # TODO: vip, barista, hackerspace, minigame, saving up all buzzwords, asking all to Marco or all to Annika
     # too chill etc.
-    plot_weird_job_skill = "Fixing Fax Machine at a Tech Job"
+    plot_weird_job_skill = "Fixing Fax Machines at a Tech Job?"
 
     tweet_weird_job_skill = tweet_default
 
@@ -174,9 +174,27 @@ init python:
     # quiz_fcc_history
 
     quiz_fcc_launch = "The Launch of freeCodeCamp"
+    quiz_fcc_mission = "The Mission of freeCodeCamp"
+    quiz_code_radio = "Hello! Earth to Code Radio!"
+    quiz_devdocs = "Dr. DevDocs.io"
+    quiz_fcc_opensource = 'Contribute to Open Source with freeCodeCamp!'
+    quiz_fcc_language = 'The Tech Stack of freeCodeCamp'
+    quiz_fcc_inspiration = 'What inspired freeCodeCamp?'
+    quiz_fcc_forum = 'freeCodeCamp Has a Forum? Neat!'
+    quiz_fcc_chat = 'freeCodeCamp Has a Chat Server? Fancy!'
+    quiz_fcc_mascot = 'freeCodeCamp Has a Mascot? Cute!'
 
     quiz_bonus_to_tweet_map = {
-        quiz_fcc_launch: tweet_default
+        quiz_fcc_launch: tweet_default,
+        quiz_fcc_mission: tweet_default,
+        quiz_code_radio: tweet_default,
+        quiz_devdocs: tweet_default,
+        quiz_fcc_opensource: tweet_default,
+        quiz_fcc_language: tweet_default,
+        quiz_fcc_inspiration: tweet_default,
+        quiz_fcc_forum: tweet_default,
+        quiz_fcc_chat: tweet_default,
+        quiz_fcc_mascot: tweet_default
     }
 
     ## endings
@@ -241,6 +259,17 @@ init python:
     'Python': python_questions,
     'SQL': sql_questions
     }
+
+    # assign category to questions
+    # 
+    for category in all_questions_map:
+        for question in all_questions_map[category]:
+            question.category = category
+
+    # master list of questions for mix-and-match
+    all_quiz_questions = []
+    for question_list in all_questions_map.items():
+        all_quiz_questions.extend(question_list)
 
     # the order is important
     all_skills = [

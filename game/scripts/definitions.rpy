@@ -1,5 +1,6 @@
 init python:
     import re
+    import random # renpy.random doesn't have sample
 
     class Picker(object):
         def __init__(self, options):

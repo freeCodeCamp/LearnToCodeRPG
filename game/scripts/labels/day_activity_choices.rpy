@@ -123,10 +123,9 @@ label study_session_choose_topic:
             player "It's never a bad idea to go back to IT (Information Technology) fundamentals!"
             $ study_session_questions = it_questions
 
-        # TODO: need to look up which category the question belongs to
-        # "Mix and match all topics":
-        #     player "How about mixing and matching all topics? That sounds more realistic in an interview setting."
-        #     $ study_session_questions = interview_questions
+        "Mix and match all topics":
+            player "How about mixing and matching all topics? That sounds more realistic in an interview setting."
+            $ study_session_questions = all_quiz_questions
     return
             
 label day_activity_relax:
@@ -277,26 +276,47 @@ label day_activity_job_search:
         player "Here's the business card. It's from CupcakeCPU."
         player "Let's apply to CupcakeCPU."
         hide business_card
-        call screen job_posting_screen('CupcakeCPU', all_skill_names)
+
+        $ company_name = 'CupcakeCPU'
+        # choose 3 skills, sampling w/o replacement
+        $ company_required_skills = random.sample(all_skills, 3)
+
+        call screen job_posting_screen(company_name, company_required_skills)
         $ has_applied = _return
+
         if has_applied:
             $ has_applied_to_cupcakecpu = True
             # guaranteed interview
-            $ company_name = 'CupcakeCPU'
             $ interview_company_name = company_name # a guaranteed interview
+
+            # set up interview questions
+            python:
+                interview_questions = []
+                for skill in company_required_skills:
+                    interview_questions.extend(all_questions_map[skill])
 
     else:
         # apply to some random company
         $ company_name = renpy.random.choice(all_company_names.keys())
+
+        # choose 3 skills, sampling w/o replacement
+        $ company_required_skills = random.sample(all_skills, 3)
+
+        $ easter_egg_skill = None
         if renpy.random.random() < 0.02: # 2% chance of getting Easter Egg
             $ easter_egg_skill = renpy.random.choice(easter_egg_skills)
-        else:
-            $ easter_egg_skill = None
-        call screen job_posting_screen(company_name, all_skill_names, easter_egg_skill=easter_egg_skill)
+
+        call screen job_posting_screen(company_name, company_required_skills, easter_egg_skill=easter_egg_skill)
         $ has_applied = _return
         if has_applied:
             if renpy.random.random() < 0.8: # 80% chance of interview
                 $ interview_company_name = company_name
+
+                # set up interview questions
+                python:
+                    interview_questions = []
+                    for skill in company_required_skills:
+                        interview_questions.extend(all_questions_map[skill])
 
     if has_applied:
         $ num_companies_applied += 1
