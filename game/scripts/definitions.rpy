@@ -61,6 +61,11 @@ init python:
 
     renpy.image('main_menu', 'gui/main_menu.png')
     renpy.image('main_menu sepia', im.Sepia('gui/main_menu.png'))
+    renpy.image('main_menu overlay', Composite(
+        (1920, 1080), # size of main_menu.png
+        (0, 0), 'main_menu', 
+        (0, 0), 'white80')
+    )
 
     # day-night effects
     # https://www.twoandahalfstudios.com/2019/08/tds-making-of-3-day-night-and-sunset-reshading-images-in-renpy-with-im-matrixcolor
@@ -145,6 +150,8 @@ init:
     # text displayables
     define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp{/color}{/font}{/a}'
     define developerquiz = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}http://developerquiz.org/{/color}{/font}{/a}'
+    define learn_to_code_rpg_on_itch = '{a=https://freecodecamp.itch.io/learn-to-code-rpg}{font=fonts/saxmono.ttf}{color=#002ead}Learn to Code RPG on itch.io{/color}{/font}{/a}'
+    define learn_to_code_rpg_on_github = '{a=https://github.com/freeCodeCamp/LearnToCodeRPG}{font=fonts/saxmono.ttf}{color=#002ead}Learn to Code RPG on itch.io{/color}{/font}{/a}'
 
     # transitions
     define fadehold = Fade(0.5, 1.0, 0.5)

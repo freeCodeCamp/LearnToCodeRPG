@@ -8,10 +8,10 @@ screen bonus_screen():
         vbox:
             spacing 15
 
-            label 'Mini Games'
+            label 'Minigames'
             textbutton '{icon=icon-music} ' + _("Rhythm Game") action Start('rhythm_game_entry_label')
             # TODO: more mini games, quiz speedrun survival mode etc.
-            
+
             null height 20
             label 'Bonus Content'
             textbutton '{icon=icon-award} ' + _("Achievements") action Show('achievements_screen')
@@ -19,12 +19,19 @@ screen bonus_screen():
             # textbutton '{icon=icon-book-open} ' + _("Glossary") action Show('glossary_screen')
             # textbutton '{icon=icon-code} ' + _("Quiz Collection") action Show('quiz_screen')
 
-            null height 20
+            # TODO: uncomment when we have the YouTube video links
+            # null height 20
+            # label 'Videos'
+            # # TODO: play game trailer from YouTube
+            # textbutton '{icon=icon-film} ' + _("Game Trailer") action NullAction()
+            # textbutton '{icon=icon-youtube} ' + _("Learn to Code RPG: The Making of") action NullAction()
 
-            label 'Videos'
-            # TODO: play game trailer from YouTube
-            textbutton '{icon=icon-film} ' + _("Game Trailer") action NullAction()
-            textbutton '{icon=icon-youtube} ' + _("Learn to Code RPG: The Making of") action NullAction()
+            # TODO: other links
+            null height 20
+            label 'Other Links'
+            textbutton '{icon=icon-thumbs-up} ' + _("Rate and Review This Game on itch.io") action OpenURL(itch_url)
+            textbutton '{icon=icon-github} ' + _("Check out This Game's Source Code on GitHub") action OpenURL(github_url)
+            textbutton '{icon=icon-heart} ' + _("Support Us by Donating to freeCodeCamp") action OpenURL('https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/')
 
             null height 20
             label 'Awesome freeCodeCamp Resources'
