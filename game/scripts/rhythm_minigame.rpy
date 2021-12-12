@@ -10,7 +10,7 @@ define SCORE_PERFECT = 100
 # the song that the player chooses to play, set in `select_song_screen` below
 default selected_song = None
 
-screen select_song_screen(songs, disable_selection=False):
+screen select_song_screen(songs):
 
     default cell_size = (380, 80)
 
@@ -24,10 +24,7 @@ screen select_song_screen(songs, disable_selection=False):
         vbox:
             spacing 20
 
-            if disable_selection: # show high score only
-                label "Rhythm Game High Scores" xalign 0.5
-            else:
-                label "Click on a song to play" xalign 0.5
+            label "Click on a song to play" xalign 0.5
 
             null height 20
 
@@ -53,14 +50,11 @@ screen select_song_screen(songs, disable_selection=False):
 
                 # body rows
                 for song in songs:
-                    if disable_selection: # show text
-                        text song.name xysize cell_size
-                    else: # show textbutton
-                        textbutton song.name:
-                            xysize cell_size
-                            action [
-                            Return(song)
-                            ]
+                    textbutton song.name:
+                        xysize cell_size
+                        action [
+                        Return(song)
+                        ]
                     $ highest_score, highest_percent = persistent.rhythm_game_high_scores[song.name]
                     text str(highest_score) xysize cell_size xalign 0.5
                     text '[highest_percent]%' xysize cell_size xalign 0.5
@@ -505,7 +499,6 @@ init python:
             # play slience first, followed by music
             renpy.music.queue([self.silence_start, self.audio_path], channel=CHANNEL_RHYTHM_GAME, loop=False)
             self.has_game_started = True
-            renpy.notify('Use the arrow keys on your keyboard to hit the notes as they reach the end of the tracks. Good luck!')
 
         def get_active_notes_per_track(self, current_time):
             active_notes = {
@@ -547,21 +540,25 @@ init python:
 
 label rhythm_game_entry_label:
     scene bg bedroom
-    $ calendar_enabled = False
+
+    # stop the bgm
+    $ continue_looping_music = False
+    $ renpy.music.stop()
+
     call screen select_song_screen(rhythm_game_songs)
     $ selected_song = _return
 
-    if isinstance(selected_song, Song):
-        # stop the bgm
-        $ continue_looping_music = False
-        $ renpy.music.stop()
-
+    # the select_song_screen will show at the bottom of this loop
+    # if the player exits, selected_song becomes None and we exit out of the loop
+    while isinstance(selected_song, Song):
+        
         # avoid rolling back and losing game state
         $ renpy.block_rollback()
 
         # disable Esc key menu to prevent the player from saving the game
         $ _game_menu_screen = None
 
+        $ renpy.notify('Use the arrow keys on your keyboard to hit the notes as they reach the end of the tracks. Good luck!')
         call screen rhythm_game(selected_song)
         $ new_score = _return
 
@@ -583,12 +580,11 @@ label rhythm_game_entry_label:
         # restore rollback from this point on
         $ renpy.checkpoint()
 
-        # resume the bgm
-        $ continue_looping_music = True
-
         # show high score only, not playable
-        call screen select_song_screen(rhythm_game_songs, disable_selection=True)
+        call screen select_song_screen(rhythm_game_songs)
+        $ selected_song = _return
 
-    $ calendar_enabled = True
+    # resume the bgm
+    $ continue_looping_music = True
 
     return

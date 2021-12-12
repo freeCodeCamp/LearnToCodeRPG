@@ -1351,7 +1351,7 @@ style skip_text:
 
 screen notify(message):
 
-    zorder 100
+    zorder 105
     style_prefix "notify"
 
     frame at notify_appear:

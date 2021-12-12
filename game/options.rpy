@@ -33,8 +33,12 @@ define config.version = "1.0"
 ## Text that is placed on the game's about screen. Place the text between the
 ## triple-quotes, and leave a blank line between paragraphs.
 
+define intro = _p("""
+{b}Learn to Code RPG{/b} is a game where you teaches yourself to code, makes friends in the tech industry, and pursues your dream to become a developer.
+""")
+
 define about = _p("""
-{b}Learn to Code RPG{/b} was made possible by all the kind people who donate to support freeCodeCamp.org. You can help support our nonprofit's mission {a=https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/}here{/a}.
+This game was made possible by all the kind people who donate to support freeCodeCamp.org. You can help support our nonprofit's mission {a=https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/}here{/a}.
 
 This project is open source and is currently in beta. If you notice any bugs or have suggestions about accessibility, the interface, the story, or anything at all, please report them on our {a=https://github.com/freeCodeCamp/LearnToCodeRPG}GitHub repo{/a}.
 
@@ -69,7 +73,7 @@ Special Thanks to:
     {a=https://www.freecodecamp.org/news/team/}All freeCodeCamp Staff{/a}
 """)
 
-define gui.about = _p(about + """
+define gui.about = _p(intro + "\n\n" + about + """
 
 {b}{u}{color=#002ead}Credits{/color}{/u}{/b}
 
