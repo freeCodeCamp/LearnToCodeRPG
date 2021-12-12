@@ -698,7 +698,7 @@ label stage6:
     player "For each session, I'll need to complete four multiple choice questions from the chosen category."
     player happy "Let's give it a go!"
 
-    call study_session_choose_topic
+    call study_session_choose_topic from _call_study_session_choose_topic_2
     call study_session from _call_study_session
 
     scene bg bedroom night with dissolve
@@ -746,7 +746,7 @@ label stage6:
     player smile "Okay. Breakfast's done. Let's get to work."
     player "Hopefully I can get more questions correct today."
 
-    call study_session_choose_topic
+    call study_session_choose_topic from _call_study_session_choose_topic_3
     call study_session from _call_study_session_2
 
     scene bg bedroom with dissolve
@@ -1055,14 +1055,14 @@ label stage7:
     while num_three_day_sessions < 3:
         $ num_three_day_sessions += 1
         # three days of activity of the player's choosing
-        call day_start
-        call day_activity_choices
+        call day_start from _call_day_start_4
+        call day_activity_choices from _call_day_activity_choices_4
 
-        call day_start
-        call day_activity_choices
+        call day_start from _call_day_start_5
+        call day_activity_choices from _call_day_activity_choices_5
 
-        call day_start
-        call day_activity_choices
+        call day_start from _call_day_start_12
+        call day_activity_choices from _call_day_activity_choices_14
 
         call save_reminder from _call_save_reminder_10
 
@@ -1541,7 +1541,34 @@ label stage14:
 
 label ending:
     scene bg office with fadehold
-    player happy "Okay, finally, I think my code is good to go! Let's commit it to the server."
+    player relieved "Okay, finally, I think my code is good to go! Let's commit it to the server."
+    player neutral "Hmmm... Maybe it's a good idea to double-check?"
+
+    $ checks = ['double', 'triple', 'quadruple', 'quintuple', 'sextuple', 'septuple', 'octuple']
+    $ check_counter = 0
+
+label ending_check_code:
+    $ check_str = checks[check_counter]
+    menu:
+        player "Should I check my code some more?"
+
+        "Let's [check_str]-check the code!" if check_counter < len(checks):
+            $ check_counter += 1
+            player "..."
+            player "Looks good to me."
+            if check_counter < len(checks):
+                $ check_str = checks[check_counter]
+                player "But maybe I should still [check_str]-check it?"
+                jump ending_check_code
+
+            else:
+                player relieved "I've checked it so many times that I've lost count..."
+                player smile "It should be good to go, right?"
+
+        "Looks good to go!":
+            player laugh "I'm confident that it's good to go!"
+
+    player "Let's commit it to the server."
     # TODO: system processing animation
     play sound 'audio/sfx/system_processing.wav'
     player neutral "... {w}And nothing happened."
