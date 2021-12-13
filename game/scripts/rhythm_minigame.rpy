@@ -588,12 +588,13 @@ label rhythm_game_entry_label:
                         )
 
                 # check if all perfect
-                $ all_perfect = True
-                for score, percent in persistent.rhythm_game_high_scores.values():
-                    if not percent == 100:
-                        $ all_perfect &= False
-                    else:
-                        $ all_perfect &= True
+                python:
+                    all_perfect = True
+                    for score, percent in persistent.rhythm_game_high_scores.values():
+                        if not percent == 100:
+                            all_perfect &= False
+                        else:
+                            all_perfect &= True
                 if all_perfect and \
                 not plot_rhythm_perfect_all in persistent.achievements:
                     $ persistent.achievements.add(plot_rhythm_perfect_all)

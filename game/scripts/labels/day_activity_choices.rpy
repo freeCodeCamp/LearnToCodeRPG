@@ -223,20 +223,19 @@ label day_activity_hacker_space:
 
 label day_activity_hacker_space_random:
     scene bg hacker_space with blinds
-    python:
-        if len(seen_hacker_space_events) == len(hacker_space_event_labels): # all seen, now pick random
-            if not plot_hackerspace_all_events in persistent.achievements:
-                $ persistent.achievements.add(plot_hackerspace_all_events)
-                call screen confirm_and_share_screen(
-                    title=plot_hackerspace_all_events,
-                    tweet_content_url=all_tweet_map[plot_hackerspace_all_events]
-                    )
-            label = renpy.random.choice(hacker_space_event_labels)
-        else: # just add the next one
-            label = hacker_space_event_labels[len(seen_hacker_space_events)]
-            seen_hacker_space_events.add(label)
+    if len(seen_hacker_space_events) == len(hacker_space_event_labels): # all seen, now pick random
+        if not plot_hackerspace_all_events in persistent.achievements:
+            $ persistent.achievements.add(plot_hackerspace_all_events)
+            call screen confirm_and_share_screen(
+                title=plot_hackerspace_all_events,
+                tweet_content_url=all_tweet_map[plot_hackerspace_all_events]
+                )
+        $ label = renpy.random.choice(hacker_space_event_labels)
+    else: # just add the next one
+        $ label = hacker_space_event_labels[len(seen_hacker_space_events)]
+        $ seen_hacker_space_events.add(label)
 
-        renpy.call(label)
+    $ renpy.call(label)
     return
 
 label day_activity_barista:
