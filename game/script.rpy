@@ -59,7 +59,7 @@ label start_interview_question3:
     $ timeout_label = "start_after_interview"
     "Third question."
     menu:
-        "How do you explain how the Internet works to a five-year old?"
+        "How do you explain how the Internet works to a five year old?"
     
         "Banana nuts":
             pass
@@ -127,14 +127,14 @@ label start_after_interview:
                     tweet_content_url=all_tweet_map[plot_vip]
                     )                
             else:
-                "Hmmm... We aren't able to locate that person in our employee database. Maybe you had a typo?"
+                "Hmmm... We aren't able to locate that person in our employee database. Maybe you made a typo?"
 
         "Others (Please specify)":
             $ renpy.input("How did you hear about us? (Type something and hit Enter)")
             "Well, we aren't sure how you came across this opportunity through the portal you specified, but we're glad you're here!"
 
     menu:
-        "Would you like to opt into our recruiting email list?"
+        "Would you like to opt in to our recruiting email list?"
     
         "Yes":
             "Way to go! We'll notify you about all the events and opportunities."
@@ -217,7 +217,7 @@ label stage2:
     player "I'm up for anything!{p=0.5}{nw}"
 
     scene bg bedroom night with blinds
-    player happy "That was an awesome dinner...I'm stuffed. Mom's the best cook I know."
+    player happy "That was an awesome dinner... I'm stuffed. Mom's the best cook I know."
 
     play sound 'audio/sfx/social_media_notification.wav'
     show smartphone at truecenter
@@ -226,7 +226,7 @@ label stage2:
     menu:
         "Check phone":
             player "Looks like someone from my junior high school. I don't even remember who they are."
-            player "What did they post to get this crazy many likes?"
+            player "What did they post to get this crazy number of likes?"
             hide smartphone
             show swag at truecenter with zoomin
             player "{bt}\"Proud intern at {b}DonutDB{/b}. Check out my swaaaag!\"{/bt}"
@@ -257,7 +257,7 @@ label stage2:
     player relieved "..."
     player surprised "Oops. Did I just doze off? Geez... Where was I? Something about coding interviews?"
     player pout "It's crazy how everyone these days is learning to code and getting high-paying jobs in software."
-    player "College itself has been crazy enough for me, and now people are going back to school to complete an online master's program in Computer Science?"
+    player "College itself has been crazy enough for me, and now people are going back to school to complete online master's programs in Computer Science?"
     player "Six months of self-paced learning and then a six-figure job? Talk about the end of craziness."
     player "Hmm, but I can see the appeal in that."
     player laugh "Maybe I can learn to code as well."
@@ -292,7 +292,7 @@ label stage2_stats_change:
 
     player pout "And there are print statements and print() functions. Which is for Python 2 and which is for Python 3?"
     $ player_stats.change_stats('CS Knowledge', 1)
-    player "I remember one video saying that Python 2 is outdated but does that mean that I don't have to learn it?"
+    player "I remember one video saying that Python 2 is outdated. Does that mean that I don't have to learn it?"
     $ player_stats.change_stats('Sanity', -5)
 
     player "Maybe I shouldn't even bother with learning Python 3."
@@ -372,17 +372,17 @@ label stage3:
     player surprised "Yeah. Wow. {bt}Congrats!{/bt}"
     annika "Thanks!"
     player smile "Hey Annika, how hard was it for you to learn to develop websites?"
-    player pout "I also tried to learn to code for a while but it got too hard and I quit."
+    player pout "I also tried to learn to code for a while, but it got too hard and I quit."
 
     show annika neutral
-    annika "I'm sorry to hear that but you should give coding another try!"
+    annika "I'm sorry to hear that, but you should give coding another try!"
     annika "Hey, hear me out."
     annika "It wasn't like easy peasy for me either. Like neither of us majored in CS. The CS kids have a way easier time getting a tech job."
     player "You did take some CS electives in school, didn't you?"
-    annika "Yeah but those skills are pretty rusty. And honestly, what you learn in school is so different from real-world software engineering."
+    annika "Yeah, but those skills are pretty rusty. And, honestly, what you learn in school is so different from real-world software engineering."
 
     show annika serious
-    annika "I mean, in school you learn about theories and stuff. Like I did take Web Dev 101 back in school but we never built an entire website from scratch."
+    annika "I mean, in school you learn about theories and stuff. Like I did take Web Dev 101 back in school, but we never built an entire website from scratch."
     annika "I never gave web design a second thought after the final exam."
     annika "I've been self-studying all these months using some awesome free resources."
     annika "I even built a pet adoption website as a side project and that's when I applied everything I learned about user experience, data models, and so on."
@@ -396,15 +396,15 @@ label stage3:
     annika "You totally can! Did I give you the link to the {bt}awesome resource{/bt} that I've been using?"
     annika "It's called [freeCodeCamp]. Check that out!"
     player laugh "Thanks. I will."
-    player "(Let's add it to my to-do list.)"
+    player "(Let's add it to my To-Do list.)"
 
     $ todo_unlocked = True
     $ todo_list.add_todo(todo_check_fcc)
-    "(On the {icon=icon-smartphone} {b}Stats{/b} screen, you may toggle between showing your stats and showing your To-Do list.)"
+    "(On the {icon=icon-smartphone} {b}Stats{/b} screen, you can toggle between showing your stats and showing your To-Do list.)"
 
     show annika laugh
     annika "Anyways, what's your plan for the day?"
-    player "Um, I need to check out the coffee shop around the neighborhood."
+    player "Um, I need to check out the neighborhood coffee shop."
     annika "Cool! Let's catch up sometime and get coffee."
     player "Sure! Chat later!"
     hide annika
@@ -420,14 +420,14 @@ label stage4:
     player "An additional perk is that I get first-hand knowledge of interesting things happening on campus."
     player "That might also be true for this place. Looking around, I see quite a few people with their laptops."
     player "It's totally possible that some of them are working on the next million-dollar startup."
-    player "Not totally out of scope given that the tech scene is booming in our quite little town."
+    player "Not impossible given that the tech scene is booming in our quiet little town."
     player "Or at least they might be talking about something interesting happening in the tech industry."
 
     show girl flipped red at left
     show boy orange at right
     girl "Hey hey! Did you hear that our school is getting a computer club?"
     boy "Wow. Really? What would you do at a computer club? Play video games?"
-    girl "Well that, and more – we can code stuff, maybe build a video game ourselves!"
+    girl "Well that and more – we can code stuff, maybe build a video game ourselves!"
     girl "I heard that we'll have a dedicated teacher to lead the club. They'll even host hackathons and stuff."
     boy "Hmmm, what are hackathons for?"
     girl "You know, like a marathon, but you hack away at some project instead of running around."
@@ -439,7 +439,7 @@ label stage4:
     hide boy
 
     player surprised "Oops. I wasn't intentionally eavesdropping on high school kids, but the {b}hackathon{/b} idea they mentioned is new."
-    player happy "I think I can use this piece of information to my advantage. Let's make it a to-do item to ask Annika if she knows about events like this."
+    player happy "I think I can use this piece of information to my advantage. Let's make it a To-Do item to ask Annika if she knows about events like this."
 
     $ todo_list.add_todo(todo_ask_hackathon)
     $ topics_to_ask.add('Hackathon')
@@ -541,7 +541,7 @@ label stage5:
 
         "Data Analysis with Python":
             player "Data analysis sounds cool..."
-            player pout "But I don't know anything about Python. Plus I didn't do a lot of math in college."
+            player pout "But I don't know anything about Python. Plus, I didn't do a lot of math in college."
             player "That's probably too hard for me right now."
             player "Let's find something else."
             jump stage5_choose_curriculum
