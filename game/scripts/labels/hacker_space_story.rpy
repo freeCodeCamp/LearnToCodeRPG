@@ -70,9 +70,22 @@ label hacker_space_playtest:
             if _return == "computer":
                 player "Wow. The computer was really good..."
                 college_girl "Yay! I have a feeling that we are doing well on this project!"
+                if not plot_lose_pong in persistent.achievements:
+                    $ persistent.achievements.add(plot_lose_pong)
+                    call screen confirm_and_share_screen(
+                        title=plot_lose_pong,
+                        tweet_content_url=all_tweet_map[plot_lose_pong]
+                        )
             else:
                 player @ laugh "That's my victory!"
                 college_girl "Wow. Congrats! That was a nice game."
+                if not plot_win_pong in persistent.achievements:
+                    $ persistent.achievements.add(plot_win_pong)
+                    call screen confirm_and_share_screen(
+                        title=plot_win_pong,
+                        tweet_content_url=all_tweet_map[plot_win_pong]
+                        )
+                
             college_girl "Thanks for your time!"
             player "No problem. Happy to help!"
 

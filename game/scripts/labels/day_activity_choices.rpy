@@ -48,6 +48,14 @@ label day_activity_choices:
 
             if num_correct == 4:
                 player @ laugh "I got all questions my right! Way to go!"
+
+                if not plot_quiz_all in persistent.achievements:
+                    $ persistent.achievements.add(plot_quiz_all)
+                    call screen confirm_and_share_screen(
+                        title=plot_quiz_all,
+                        tweet_content_url=all_tweet_map[plot_quiz_all]
+                        )
+
             elif num_correct == 3:
                 player @ happy "But I got most questions right! At this rate I can make it!"
             elif num_correct == 2:
@@ -58,6 +66,13 @@ label day_activity_choices:
             elif num_correct == 0:
                 player pout "... I got all the questions wrong..."
                 player neutral "But it will get better with practice, won't it?"
+
+                if not plot_quiz_none in persistent.achievements:
+                    $ persistent.achievements.add(plot_quiz_none)
+                    call screen confirm_and_share_screen(
+                        title=plot_quiz_none,
+                        tweet_content_url=all_tweet_map[plot_quiz_none]
+                        )
 
             call day_end from _call_day_end_1
         
@@ -165,6 +180,13 @@ label day_activity_relax:
             $ day_activity = 'music'
             player "Let's listen to some music."
             call screen music_room_screen_in_script()
+            if not plot_music_discover in persistent.achievements:
+                $ persistent.achievements.add(plot_music_discover)
+                call screen confirm_and_share_screen(
+                    title=plot_music_discover,
+                    tweet_content_url=all_tweet_map[plot_music_discover]
+                    )
+
     $ player_stats.change_stats_random('Sanity', 5, 20)
     # all relaxing activities converge to the end of the day
     return
@@ -203,6 +225,12 @@ label day_activity_hacker_space_random:
     scene bg hacker_space with blinds
     python:
         if len(seen_hacker_space_events) == len(hacker_space_event_labels): # all seen, now pick random
+            if not plot_hackerspace_all_events in persistent.achievements:
+                $ persistent.achievements.add(plot_hackerspace_all_events)
+                call screen confirm_and_share_screen(
+                    title=plot_hackerspace_all_events,
+                    tweet_content_url=all_tweet_map[plot_hackerspace_all_events]
+                    )
             label = renpy.random.choice(hacker_space_event_labels)
         else: # just add the next one
             label = hacker_space_event_labels[len(seen_hacker_space_events)]
@@ -220,7 +248,16 @@ label day_activity_barista:
     hide coffee
     player "Here's your mocha latte. Enjoy your day!"
     # if all seen, skip
-    if len(seen_barista_events) == len(barista_event_labels) or renpy.random.random() < 0.3:
+    if len(seen_barista_events) == len(barista_event_labels):
+        player "(It's pretty quiet in the cafe today. Guess I won't get to hear any tech gossip.)"
+        if not plot_all_buzzwords in persistent.achievements:
+            "(Or maybe you've collected most of the tech buzzwords already?)"
+            $ persistent.achievements.add(plot_all_buzzwords)
+            call screen confirm_and_share_screen(
+                title=plot_all_buzzwords,
+                tweet_content_url=all_tweet_map[plot_all_buzzwords]
+                )
+    elif renpy.random.random() < 0.3: # even if not all labels are exhausted, still chance that nothing happens
         player "(It's pretty quiet in the cafe today. Guess I won't get to hear any tech gossip.)"
     else:
         # 70% trigger rate, pick random tech gossip
@@ -259,6 +296,12 @@ label day_activity_park:
     scene bg park1 dusk with fadehold
     pause 2.0
     player "Time really flies when I'm relaxing in nature... Let's head home now."
+    if not plot_park in persistent.achievements:
+        $ persistent.achievements.add(plot_park)
+        call screen confirm_and_share_screen(
+            title=plot_park,
+            tweet_content_url=all_tweet_map[plot_park]
+            )
     return
 
 label day_activity_video_game:
@@ -299,6 +342,12 @@ label day_activity_job_search:
                 interview_questions = []
                 for skill in company_required_skills:
                     interview_questions.extend(all_questions_map[skill])
+
+            $ persistent.achievements.add(plot_cupcakecpu)
+            call screen confirm_and_share_screen(
+                title=plot_cupcakecpu,
+                tweet_content_url=all_tweet_map[plot_cupcakecpu]
+                )
 
     else:
         # apply to some random company

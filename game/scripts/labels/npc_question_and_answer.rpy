@@ -22,6 +22,14 @@ label npc_conversation_start:
     player "You as well!"
     play sound 'audio/sfx/phone_hangup.wav'
     $ renpy.hide(npc_sprite)
+
+    if not plot_buzzword_ask in persistent.achievements:
+        $ persistent.achievements.add(plot_buzzword_ask)
+        call screen confirm_and_share_screen(
+            title=plot_buzzword_ask,
+            tweet_content_url=all_tweet_map[plot_buzzword_ask]
+            )
+
     return
 
 label npc_choose_question:

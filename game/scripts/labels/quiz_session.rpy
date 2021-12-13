@@ -94,6 +94,12 @@ label trivia_session_questions:
         trivia_guy "Could this be...?"
         play sound 'audio/sfx/hacker_space_trivia_win.wav'
         trivia_guy "You are the first person to get everything correct! Congratulations!"
+        $ persistent.achievements.add(plot_trivia)
+        call screen confirm_and_share_screen(
+            title=plot_trivia,
+            tweet_content_url=all_tweet_map[plot_trivia]
+            )
+
         trivia_guy "Now about the award..."
         show business_card at truecenter with zoomin
         trivia_guy "I'm actually a talent recruiter at {b}CupcakeCPU™{/b}. Feel free to apply to our roles. We welcome talent like you."
@@ -104,7 +110,7 @@ label trivia_session_questions:
         player smile "Let's add it to my To-Do list to apply to their company once I'm comfortable with my skill level."
         $ todo_list.add_todo(todo_apply_cupcakecpu)
         $ has_won_hacker_space_trivia = True
-
+        
     else:
         trivia_guy "You missed some of the questions there, but it was close."
         trivia_guy "Better luck next time. I'll be here waiting."
@@ -132,7 +138,7 @@ label trivia_one_question:
     else:
         with vpunch
         trivia_guy "Nope."
-        trivia_guy "The correct answer was {b}[quiz_question.true]{/b}"
+        trivia_guy "The correct answer was {b}[quiz_question.true]{/b}. Keep that in mind."
 
     return
 

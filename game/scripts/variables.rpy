@@ -120,6 +120,8 @@ init python:
     'Quincy': 'https://twitter.com/ossia', 
     'Lynn': 'https://ruolinzheng08.github.io/',
     'Abbey': 'https://twitter.com/abbeyrenn', 
+    'Estefania': 'https://twitter.com/EstefaniaCassN',
+    'Jessica': 'https://twitter.com/codergirl1991'
     }
 
     # Note to proofreader: please proofread the tweet content
@@ -167,7 +169,7 @@ init python:
     # first time barista
     plot_barista_discover = 'Barista is My Undercover for Collecting Buzzwords'
     plot_buzzword_ask = 'Asked My Tech-Savvy Friends about Tech Buzzwords'
-    # asked, not just collected all tech buzzwords
+    # collected all tech buzzwords, no need to ask all
     plot_all_buzzwords = 'Tech Buzzword Encyclopedia'
     # first time hackerspace
     plot_hackerspace_discover = 'Hanging out at the Hacker Space'
@@ -212,6 +214,7 @@ init python:
     tweet_hackerspace_discover = 'I just discovered the Hacker Space in #LearnToCodeRPG. Play the game here: '
     tweet_hackerspace_all_events = 'I participated in all Hacker Space events in #LearnToCodeRPG. Play the game here: '
     tweet_trivia = 'I nailed all the tech trivia questions in #LearnToCodeRPG. Play the game here: '
+    tweet_cupcakecpu = 'Iapplied to a company called CupcakeCPU through a recruiter in #LearnToCodeRPG. Play the game here: '
     tweet_win_pong = 'I just won against the AI in a Pong game in #LearnToCodeRPG. Play the game here: '
     tweet_lose_pong = 'I just lost against the AI in a Pong game in #LearnToCodeRPG. Play the game here: '
     tweet_music_discover = 'I just discovered the Music Room in #LearnToCodeRPG. Play the game here: '
@@ -246,6 +249,7 @@ init python:
         plot_hackerspace_discover: generate_tweet_intent(tweet_hackerspace_discover), 
         plot_hackerspace_all_events: generate_tweet_intent(tweet_hackerspace_all_events), 
         plot_trivia: generate_tweet_intent(tweet_trivia), 
+        plot_cupcakecpu: generate_tweet_intent(tweet_cupcakecpu),
         plot_win_pong: generate_tweet_intent(tweet_win_pong), 
         plot_lose_pong: generate_tweet_intent(tweet_lose_pong), 
         plot_music_discover: generate_tweet_intent(tweet_music_discover), 

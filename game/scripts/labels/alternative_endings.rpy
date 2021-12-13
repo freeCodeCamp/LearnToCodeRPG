@@ -535,6 +535,14 @@ label second_chance:
         "Time traveling! Let's do it.":
             "You know the rocket ship saying? 'If you're offered a seat on a rocket ship, don't ask what seat.'"
             "Let's rollback in time, brave traveler."
+
+            if not plot_rewind_time in persistent.achievements:
+                $ persistent.achievements.add(plot_rewind_time)
+                call screen confirm_and_share_screen(
+                    title=plot_rewind_time,
+                    tweet_content_url=all_tweet_map[plot_rewind_time]
+                    )
+                    
             # TODO: tweet
             play sound 'audio/sfx/rewind.wav' # 5 sec
             pause 4.0

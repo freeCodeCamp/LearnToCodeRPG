@@ -60,6 +60,15 @@ init python:
                 _layer='transient', changed_stats=stats_name, change_direction=change_direction)
 
             if stats_name in self.subcategory_stats_map:
+                # check if max
+                if self.subcategory_stats_map[stats_name] == 100 and \
+                not plot_stats_full in persistent.achievements:
+                    $ persistent.achievements.add(plot_stats_full)
+                    call screen confirm_and_share_screen(
+                        title=plot_stats_full,
+                        tweet_content_url=all_tweet_map[plot_stats_full]
+                        )
+
                 self.compute_cs_knowledge()
 
         def change_stats_random(self, stats_name, min_val, max_val):
@@ -71,7 +80,18 @@ init python:
             return self.player_stats_map['Sanity'] < 50
 
         def compute_cs_knowledge(self):
-            val = sum(self.subcategory_stats_map.values()) / float(len(self.subcategory_stats_map))
+            # total
+            val = sum(self.subcategory_stats_map.values())
+            if val == 100 * len(self.subcategory_stats_map) and \
+            not plot_stats_all in persistent.achievements:
+                $ persistent.achievements.add(plot_stats_all)
+                call screen confirm_and_share_screen(
+                    title=plot_stats_all,
+                    tweet_content_url=all_tweet_map[plot_stats_all]
+                    )
+            # take average
+            val /= float(len(self.subcategory_stats_map))
+            # round to int
             val = int(round(val))
             self.player_stats_map['CS Knowledge'] = val
 

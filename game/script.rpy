@@ -118,8 +118,14 @@ label start_after_interview:
             $ referral_name = renpy.input("What is the first name of your referral? (Type something and hit Enter)")
             # Easter egg :)
             if referral_name in vip_names:
+                $ vip_profile_url
                 "System processing... {w}Looks like you were referred by a VIP team member. That's awesome! We'll highlight this on your profile."
-                # TODO: Easter Egg Twitter
+                "And we'll make sure to let our VIP team member {a=[vip_profile_url]}[player_name]{/a} know!"
+                $ persistent.achievements.add(plot_vip)
+                call screen confirm_and_share_screen(
+                    title=plot_vip,
+                    tweet_content_url=all_tweet_map[plot_vip]
+                    )                
             else:
                 "Hmmm... We aren't able to locate that person in our employee database. Maybe you had a typo?"
 
@@ -439,7 +445,11 @@ label stage4:
     $ topics_to_ask.add('Hackathon')
     player "Alright! Going back to my shift."
 
-    call save_reminder from _call_save_reminder_2
+    $ persistent.achievements.add(plot_barista_discover)
+    call screen confirm_and_share_screen(
+        title=plot_barista_discover,
+        tweet_content_url=all_tweet_map[plot_barista_discover]
+        )
 
     # player goes back home
     scene bg bedroom night with fadehold
@@ -566,6 +576,9 @@ label stage5:
             player smile "You think that's a good idea too, Mint?"
             player relieved "Okay, let's get some rest. Tomorrow is another day."
             hide mint
+
+            call save_reminder from _call_save_reminder_2
+
             jump stage5_annika
 
 label stage5_cookie:
@@ -702,6 +715,12 @@ label stage6:
     call study_session_choose_topic from _call_study_session_choose_topic_2
     call study_session from _call_study_session
 
+    $ persistent.achievements.add(milestone_start_curriculum)
+    call screen confirm_and_share_screen(
+        title=milestone_start_curriculum,
+        tweet_content_url=all_tweet_map[milestone_start_curriculum]
+        )
+
     scene bg bedroom night with dissolve
     player neutral "Phew... I'm finally done with these questions. What a day..."
     player pout "I think I did okay, but I do feel tired after a long day at work."
@@ -709,7 +728,8 @@ label stage6:
     player "Let's give that a try tomorrow."
     show mint
     mint "Meow~"
-    player smile "Good night, Mint."
+    player smile "Are you trying to say 'Good work' to me? Awww thanks, Mint."
+    player "Good night, Mint."
     hide mint
 
     call save_reminder from _call_save_reminder_4
@@ -927,6 +947,12 @@ label stage6_after_annika_questions:
     player "Thanks for taking me here!"
     annika "Any time!"
 
+    $ persistent.achievements.add(plot_hackerspace_discover)
+    call screen confirm_and_share_screen(
+        title=plot_hackerspace_discover,
+        tweet_content_url=all_tweet_map[plot_hackerspace_discover]
+        )
+
     scene bg bedroom night with slideright
     player smile "Wow. I'm amazed. Hacker Space sure is a cool place. I'll have to check it out on my own someday."
     player "Now let's call it a day and get some rest."
@@ -1085,7 +1111,7 @@ label stage7:
     annika "Hey [persistent.player_name]! Are you free today?"
     player smile "Hey Annika. Yep, I'm down to hang out. What's up?"
 
-    annika @ laugh "Guess what? It's {bt}Hacktober{/bt}. Hacker Space is holding a special hackathon for high school students."
+    annika @ laugh "Guess what? It's {bt}Hacktober{/bt}. The Hacker Space is holding a special hackathon for high school students."
 
     show annika neutral
     annika "They could use some volunteers to help out."
@@ -1260,6 +1286,12 @@ label stage8:
     call study_session_choose_topic from _call_study_session_choose_topic
     call study_session from _call_study_session_3
 
+    $ persistent.achievements.add(milestone_start_interview_prep)
+    call screen confirm_and_share_screen(
+        title=milestone_start_interview_prep,
+        tweet_content_url=all_tweet_map[milestone_start_interview_prep]
+        )
+
     scene bg bedroom night with fadehold
     player relieved "Whew... Those questions are harder than CS fundamental questions. Guess I need to put in more studying."
     player smile "But this is still a good start!"
@@ -1311,6 +1343,14 @@ label stage8:
                 player "Let's search for some job postings today."
                 player surprised "Looks like there's a new job posting available. Let's check it out."
                 call day_activity_job_search from _call_day_activity_job_search_1
+
+                if num_jobs_applied == 1:
+                    $ persistent.achievements.add(milestone_first_application)
+                    call screen confirm_and_share_screen(
+                        title=milestone_first_application,
+                        tweet_content_url=all_tweet_map[milestone_first_application]
+                        )
+
                 call day_activity_choices from _call_day_activity_choices_9
 
         # receives an email
@@ -1324,6 +1364,14 @@ label stage8:
         player surprised "Huh, an email from {b}[interview_company_name]{/b} first thing in the morning? Right, it's been a while since I applied to their job posting."
         player "The title says 'Application Follow-up'..."
         $ num_jobs_interviewed += 1
+
+        if num_jobs_interviewed == 1:
+            $ persistent.achievements.add(milestone_first_interview)
+            call screen confirm_and_share_screen(
+                title=milestone_first_interview,
+                tweet_content_url=all_tweet_map[milestone_first_interview]
+                )
+
         call screen company_interview_email_screen(interview_company_name)
         player laugh "I made it! I'm going to a coding interview!"
         player "I'm gonna share this with Annika and Marco."
@@ -1355,6 +1403,20 @@ label stage8:
             player relieved "Thanks, Mint. I'm a bit disappointed, but I'll be fine."
             hide mint
             player smile "It's no use crying over spilled milk. Let's get some rest today and get on with my routines tomorrow."
+
+            if num_jobs_rejected == 1:
+                $ persistent.achievements.add(plot_rejection)
+                call screen confirm_and_share_screen(
+                    title=plot_rejection,
+                    tweet_content_url=all_tweet_map[plot_rejection]
+                    )
+
+            elif num_jobs_rejected == 3:
+                $ persistent.achievements.add(plot_third_rejection)
+                call screen confirm_and_share_screen(
+                    title=plot_third_rejection,
+                    tweet_content_url=all_tweet_map[plot_third_rejection]
+                    )
 
         # reset interview_company_name to None so we enter the inner loop again
         $ interview_company_name = None
@@ -1391,10 +1453,10 @@ label stage8:
         title="{bt}Congratulations!{/bt}",
         message="You taught yourself to become a developer in {b}{color=[dark_blue]}[days_between_start_and_offer]{/color}{/b} days, [days_between_curriculum_completion_and_offer] days after you've completed the coding curriculum.\nYou have applied to [num_jobs_applied] jobs and interviewed for [num_jobs_interviewed] times before landing this offer.\nNow you are ready to rock your new job!\n Feel free to share your progress with the world!",
         ok_text="Let's rock my new job!",
-        tweet_content_url=all_tweet_map[milestone_sign_offer],
+        tweet_content_url=all_tweet_map[milestone_first_offer],
         show_achievements_count=False
     )
-    $ persistent.achievements.add(milestone_sign_offer)
+    $ persistent.achievements.add(milestone_first_offer)
 
     player happy "I can't wait to tell my parents! And I should call Annika and Marco to let them know."
     player laugh "Let's get everyone together and throw a big party to celebrate!"
@@ -1438,7 +1500,14 @@ label stage14:
     player surprised "(Uhhhh that's fast...)"
     player happy "Ahhh... Yes, I'd love to dive into the code base as soon as possible!"
     layla "Way to go! Our team usually sits around that table, next to the whiteboard."
+    player "Gotcha! I'll get started right now!"
     play sound 'audio/sfx/keyboard_typing.wav'
+
+    $ persistent.achievements.add(milestone_onboarding)
+    call screen confirm_and_share_screen(
+        title=milestone_onboarding,
+        tweet_content_url=all_tweet_map[milestone_onboarding]
+        )
 
     scene bg office with fadehold
     show layla
@@ -1564,6 +1633,13 @@ label ending_check_code:
 
             else:
                 player relieved "I've checked it so many times that I've lost count..."
+
+                $ persistent.achievements.add(plot_double_check)
+                call screen confirm_and_share_screen(
+                    title=plot_double_check,
+                    tweet_content_url=all_tweet_map[plot_double_check]
+                    )
+                
                 player smile "It should be good to go, right?"
 
         "Looks good to go!":
