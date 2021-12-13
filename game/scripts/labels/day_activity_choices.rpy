@@ -349,6 +349,7 @@ label day_activity_job_search:
                 )
 
     else:
+        "(Having trouble getting an interview? Make sure that your stats value is above [cs_knowledge_threshold] for each of the skills required by the company.)"
         # apply to some random company
         $ company_name = renpy.random.choice(all_company_names.keys())
 

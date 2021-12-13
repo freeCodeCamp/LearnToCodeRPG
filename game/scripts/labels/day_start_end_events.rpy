@@ -142,7 +142,7 @@ label day_end:
                     "Call Annika now":
                         $ npc = annika
                         $ npc_sprite = 'annika'
-                        call npc_conversation_start
+                        call npc_conversation_start from _call_npc_conversation_start_2
                 
                     "Save the buzzword for later":
                         player "Hmm... Let's save up those buzzwords and ask when I've gathered a few more of them."
