@@ -67,8 +67,13 @@ Quiz Questions:
     {a=https://twitter.com/codergirl1991}Jessica Wilkins{/a}
 
 Proofreading:
-    {a=https://twitter.com/abbeyrenn}Abbey Rennemeyer{/a}
+    {a=https://twitter.com/abbeyrenn}Abbey Rennemeyer{/a},
+    {a=https://github.com/ojeytonwilliams/}Oliver Eyton-Williams{/a}
 
+Playtesting:
+    {a=https://twitter.com/ieahleen}Ilenia Magoni{/a},
+    {a=https://twitter.com/EstefaniaCassN}Estefania Cassingena Navone{/a}
+    
 Special Thanks to:
     {a=https://www.freecodecamp.org/news/team/}All freeCodeCamp Staff{/a}
 """)

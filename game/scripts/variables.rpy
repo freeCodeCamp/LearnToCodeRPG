@@ -121,7 +121,9 @@ init python:
     'Lynn': 'https://ruolinzheng08.github.io/',
     'Abbey': 'https://twitter.com/abbeyrenn', 
     'Estefania': 'https://twitter.com/EstefaniaCassN',
-    'Jessica': 'https://twitter.com/codergirl1991'
+    'Jessica': 'https://twitter.com/codergirl1991',
+    'Oliver': 'https://github.com/ojeytonwilliams/',
+    'Ilenia': 'https://twitter.com/ieahleen'
     }
 
     # Note to proofreader: please proofread the tweet content
