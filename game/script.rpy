@@ -118,9 +118,9 @@ label start_after_interview:
             $ referral_name = renpy.input("What is the first name of your referral? (Type something and hit Enter)")
             # Easter egg :)
             if referral_name in vip_names:
-                $ vip_profile_url = vip_names[player_name]
+                $ vip_profile_url = vip_names[referral_name]
                 "System processing... {w}Looks like you were referred by a VIP team member. That's awesome! We'll highlight this on your profile."
-                "And we'll make sure to let our VIP team member {a=[vip_profile_url]}[player_name]{/a} know!"
+                "And we'll make sure to let our VIP team member {a=[vip_profile_url]}[referral_name]{/a} know!"
                 $ persistent.achievements.add(plot_vip)
                 call screen confirm_and_share_screen(
                     title=plot_vip,
@@ -1111,7 +1111,7 @@ label stage7:
     annika "Hey [persistent.player_name]! Are you free today?"
     player smile "Hey Annika. Yep, I'm down to hang out. What's up?"
 
-    annika @ laugh "Guess what? It's {bt}Hacktober{/bt}. The Hacker Space is holding a special hackathon for high school students."
+    annika @ laugh "Guess what? It's almost {bt}Hacktober{/bt}. The Hacker Space is holding a special hackathon for high school students."
 
     show annika neutral
     annika "They could use some volunteers to help out."
@@ -1224,17 +1224,17 @@ label stage7:
     player laugh "So much that I can't wait to wrap up my curriculum and jump in to see what a real coding interview is like!"
     player smile "I heard that [developerquiz] will send an email notification to people who have made significant progress in their curriculum."
     player "Let's check to see my progress."
-    if player_stats.player_stats_map['CS Knowledge'] < cs_stats_threshold:
+    if player_stats.player_stats_map['CS Knowledge'] < cs_knowledge_threshold:
         player "Hmmm... I think I still need to ramp up more on my CS knowledge. I'll get back to studying tomorrow."
-        "(Try bumping your {b}CS Knowledge{/b} to above [cs_stats_threshold] by completing more quizzes.)"
+        "(Try bumping your {b}CS Knowledge{/b} to above [cs_knowledge_threshold] by completing more quizzes.)"
 
-    while player_stats.player_stats_map['CS Knowledge'] < cs_stats_threshold:
+    while player_stats.player_stats_map['CS Knowledge'] < cs_knowledge_threshold:
         call day_start from _call_day_start_6
         call day_activity_choices from _call_day_activity_choices_6
 
     call save_reminder from _call_save_reminder_12
 
-    # once we are down here, we should have player_stats.player_stats_map['CS Knowledge'] >= cs_stats_threshold
+    # once we are down here, we should have player_stats.player_stats_map['CS Knowledge'] >= cs_knowledge_threshold
     player laugh "Looks like I've made quite a bit of progress! I wonder when I can expect to receive that email."
     player "But let's first have a movie night to celebrate what I've gotten done!"
 
@@ -1705,7 +1705,7 @@ label ending_splash: # alternative endings also jump to here
     # use a lighter background because the hyperlinks are dark blue
     scene main_menu overlay with dissolve
     pause 1
-    show text "{size=48}[about]{/size}"
+    show text "{size=48}Thanks for playing {b}Learn to Code RPG{/b}!\n\n[about]{/size}"
     with dissolve 
     show screen ctc() # click to continue
     pause

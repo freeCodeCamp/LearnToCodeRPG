@@ -370,7 +370,7 @@ label day_activity_job_search:
                         meets_criteria &= False
                     else:
                         meets_criteria &= True
-            if meets_criteria or renpy.random.random() < 0.2: # even if criteria not met, 20% of getting interview
+            if meets_criteria or renpy.random.random() < 0.2: # even if criteria not met, 20% chance of getting interview
                 $ interview_company_name = company_name
 
                 # set up interview questions

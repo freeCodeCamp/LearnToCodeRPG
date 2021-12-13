@@ -64,6 +64,7 @@ screen job_posting_screen(company_name, skill_names, easter_egg_skill=None):
                     $ achievement_name = easter_egg_skill_achievement_map[easter_egg_skill]
                     textbutton "•  " + easter_egg_skill:
                         hovered [
+                        Play('audio/sfx/confirm_and_share.wav'),
                         Notify('Wait, is this a technical skill?'),
                         Function(persistent.achievements.add, achievement_name)
                         ]
@@ -82,7 +83,7 @@ screen job_posting_screen(company_name, skill_names, easter_egg_skill=None):
                 textbutton '{icon=icon-send} ' + _("Apply") action Return(True)
 
 # see confirm_and_share.rpy
-screen company_email_screen(company_name, message, ok_text, tweet_content_url=None):
+screen company_email_screen(company_name, message, ok_text):
     frame:
         style_prefix "confirm"
 
@@ -102,10 +103,10 @@ screen company_email_screen(company_name, message, ok_text, tweet_content_url=No
 
             text _(message)
 
-            if tweet_content_url:
-                textbutton "{icon=icon-twitter} " + _("Tweet this"):
-                    xalign 0.5
-                    action OpenURL(tweet_content_url)
+            # if tweet_content_url:
+            #     textbutton "{icon=icon-twitter} " + _("Tweet this"):
+            #         xalign 0.5
+            #         action OpenURL(tweet_content_url)
 
             null height 20
 
@@ -159,5 +160,4 @@ screen company_offer_email_screen(company_name):
         Your future colleagues at [company_name]
         """,
         'Accept Offer',
-        tweet_content_url=tweet_first_offer
         )

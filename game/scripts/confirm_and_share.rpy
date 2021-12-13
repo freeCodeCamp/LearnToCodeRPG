@@ -1,12 +1,14 @@
 # https://www.renpy.org/doc/html/screen_special.html
 # based on the confirm screen
 
-screen confirm_and_share_screen(title, message="Now that's an Easter Egg uncovered!", ok_text='Call me the Egg Hunter!', tweet_content_url=tweet_default, show_achievements_count=True):
+screen confirm_and_share_screen(title, message="Now that's an achievement unlocked!", ok_text="Gotta Unlock 'Em All!", tweet_content_url=tweet_default, show_achievements_count=True):
 
     # using `game menu root` will make this screen replace background image
     # modal True
     # window:
     #     style "gm_root"
+
+    on "show" action renpy.sound.play('audio/sfx/confirm_and_share.wav')
 
     frame:
         style_prefix "confirm"
@@ -21,11 +23,16 @@ screen confirm_and_share_screen(title, message="Now that's an Easter Egg uncover
             xfill True
             spacing 25
 
-            label _(title) xalign 0.5
+            text _(title):
+                xalign 0.5
+                text_align 0.5
+                color gui.accent_color
+                size gui.label_text_size
+                font gui.interface_text_font
 
             text _(message):
-                text_align 0.5 # align multiline
                 xalign 0.5
+                text_align 0.5
 
             if show_achievements_count:
                 $ num_achievements = len(persistent.achievements)
