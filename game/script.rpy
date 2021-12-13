@@ -118,7 +118,7 @@ label start_after_interview:
             $ referral_name = renpy.input("What is the first name of your referral? (Type something and hit Enter)")
             # Easter egg :)
             if referral_name in vip_names:
-                $ vip_profile_url
+                $ vip_profile_url = vip_names[player_name]
                 "System processing... {w}Looks like you were referred by a VIP team member. That's awesome! We'll highlight this on your profile."
                 "And we'll make sure to let our VIP team member {a=[vip_profile_url]}[player_name]{/a} know!"
                 $ persistent.achievements.add(plot_vip)
@@ -1688,7 +1688,7 @@ label ending_splash: # alternative endings also jump to here
     # Learn to Code RPG logo
     scene gray90 with Pause(1)
     play sound 'audio/sfx/title_drop_swoosh.wav'
-    show learn_to_code_splash at truecenter with dissolve
+    show learn_to_code_rpg_logo at truecenter with dissolve
     with Pause(2)
     scene gray90 with dissolve
     with Pause(1)
@@ -1696,7 +1696,7 @@ label ending_splash: # alternative endings also jump to here
     # freeCodeCamp logo
     scene gray90 with Pause(1)
     play sound 'audio/sfx/title_drop_swoosh.wav'
-    show fcc_splash at truecenter with dissolve
+    show fcc_logo at truecenter with dissolve
     with Pause(2)
     scene gray90 with dissolve
     with Pause(1)
