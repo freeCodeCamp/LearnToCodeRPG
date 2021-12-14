@@ -1732,7 +1732,7 @@ label ending_splash: # alternative endings also jump to here
     default post_game_choices = set()
     menu post_game_choice:
         set post_game_choices
-        "Here are some fun things that you can do now that you've finished the game."
+        "Here are some fun things that you can do now that you've finished the game. Select an option to learn more."
 
         "Rate and review this game on itch.io {icon=icon-thumbs-up}":
             "Help us improve the game by rating and reviewing [learn_to_code_rpg_on_itch]."
@@ -1768,7 +1768,7 @@ label ending_splash: # alternative endings also jump to here
                     "Of course! Take your time to explore and enjoy the game. You can visit this link anytime from the {b}Bonus{/b} screen."
             jump post_game_choice
 
-        "Support this game and other freeCodeCamp projects by donating {icon=icon-heart}":
+        "Support this game and other freeCodeCamp.org projects by donating {icon=icon-heart}":
             "This game was made possible by all the kind people who donate to support [freeCodeCamp]."
             "You can help support our nonprofit's mission {a=https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/}by donating to us here{/a}."
             "Remember you can visit link anytime from the {b}Bonus{/b} screen."
@@ -1800,7 +1800,7 @@ label ending_splash: # alternative endings also jump to here
             "Make sure to {b}Save{/b} your progress often if you want to unlock all of them!"
             jump post_game_choice
 
-        "I'm ready to explore on my own!":
+        "Gotcha. I'm ready to explore on my own!":
             "Great to hear! Hope you enjoyed the ride!"
             
     return # return to main menu

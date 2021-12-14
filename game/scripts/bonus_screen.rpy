@@ -31,10 +31,10 @@ screen bonus_screen():
             label 'Other Links'
             textbutton '{icon=icon-thumbs-up} ' + _("Rate and Review This Game on itch.io") action OpenURL(itch_url)
             textbutton '{icon=icon-github} ' + _("Check out This Game's Source Code on GitHub") action OpenURL(github_url)
-            textbutton '{icon=icon-heart} ' + _("Support Us by Donating to freeCodeCamp") action OpenURL('https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/')
+            textbutton '{icon=icon-heart} ' + _("Support Us by Donating to freeCodeCamp.org") action OpenURL('https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/')
 
             null height 20
-            label 'Awesome freeCodeCamp Resources'
+            label 'Awesome freeCodeCamp.org Resources'
             textbutton '{icon=icon-youtube} ' + _("freeCodeCamp YouTube Channel") action OpenURL("https://www.youtube.com/channel/UC8butISFwT-Wl7EV0hUK0BQ")
             textbutton '{icon=icon-map} ' + _("freeCodeCamp Curriculum") action OpenURL("https://www.freecodecamp.org/learn/")
             textbutton '{icon=icon-compass} ' + _("freeCodeCamp Forum") action OpenURL("https://forum.freecodecamp.org/")

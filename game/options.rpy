@@ -75,7 +75,7 @@ Playtesting:
     {a=https://twitter.com/EstefaniaCassN}Estefania Cassingena Navone{/a}
     
 Special Thanks to:
-    {a=https://www.freecodecamp.org/news/team/}All freeCodeCamp Staff{/a}
+    {a=https://www.freecodecamp.org/news/team/}All freeCodeCamp.org Staff{/a}
 """)
 
 define gui.about = _p(intro + "\n\n" + about + """
