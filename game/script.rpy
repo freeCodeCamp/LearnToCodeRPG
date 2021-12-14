@@ -257,7 +257,7 @@ label stage2:
     player relieved "..."
     player surprised "Oops. Did I just doze off? Geez... Where was I? Something about coding interviews?"
     player pout "It's crazy how everyone these days is learning to code and getting high-paying jobs in software."
-    player "College itself has been crazy enough for me, and now people are going back to school to complete online master's programs in Computer Science?"
+    player "College itself was intense enough for me, and now people are going back to school to complete online master's programs in Computer Science?"
     player "Six months of self-paced learning and then a six-figure job? Talk about the end of craziness."
     player "Hmm, but I can see the appeal in that."
     player laugh "Maybe I can learn to code as well."
@@ -637,7 +637,7 @@ label stage5_annika:
     annika "Oh, I did the web design one. What was it? {a=https://www.freecodecamp.org/learn/responsive-web-design/}Responsive Web Design{/a}?"
     annika "If I remembered anything from my college CS minor, it's those web markup languages."
     player "Ahh I see."
-    player pout "(So Annika managed to pull through the curriculum because she had some experience from college. Plus she has really good designer eyes.)"
+    player pout "(So Annika managed to pull through the curriculum because she had some experience from college. Plus she has a real gift for design.)"
     player worry "(I'm not like that... There's no way I can do this...)"
 
     annika "Hey [persistent.player_name], don't get discouraged, okay?"
@@ -728,7 +728,7 @@ label stage6:
     player "Let's give that a try tomorrow."
     show mint
     mint "Meow~"
-    player smile "Are you trying to say 'Good work' to me? Awww thanks, Mint."
+    player smile "Are you trying to say 'Good job' to me? Awww thanks, Mint."
     player "Good night, Mint."
     hide mint
 
@@ -774,7 +774,7 @@ label stage6:
 
     player happy "That's about it for the morning. I feel like I'm much more productive if I can focus on one thing for an entire day."    
     player "Let's alternate between working whole-day shifts and spending whole days studying."
-    player "I can call Annika this afternoon when she's done with her work to chat and ask about things."
+    player "I can call Annika this afternoon when she's done with her work. It'll be good to chat and ask her about things."
 
     scene bg bedroom dusk with fadehold
 
@@ -791,7 +791,7 @@ label stage6:
     show annika laugh
     annika "Heyya [persistent.player_name]! Now's perfect. I just got back from work."
     annika "How did your first day of studying go?"
-    player "I felt pretty productive today. It's nice how the quiz questions give you frequent feedback."
+    player "I felt pretty productive today. It's nice how the quiz questions give you instant feedback."
     player happy "What about your day? How was work?"
     annika "It went well! I'm learning to use the custom web dev framework that my company uses."
     annika "It's pretty different from what I've been using in my own projects, and a little confusing at times, but my colleagues say it gets better with practice."
@@ -859,7 +859,7 @@ label stage6_after_annika_questions:
     mom "Hey honey, how do you like working as a barista? You don't have to go if it distracts too much from your studies, you know."
     dad "Your mom's right. We are here to support you if you ever need us."
     player smile "Thanks folks, but no worries. I can use an occasional break from studying."
-    player "Plus, a lot of tech people visit the cafe and they talk about a lot of cool tech stuff."
+    player "Plus, a lot of tech people visit the cafe and they talk about a loads of cool stuff."
     player "Like I heard people talking about a type of event called a hackathon the other day, and I had the chance to ask Annika about it today."
     dad "That's great to hear, pumpkin. {w}What's Annika been up to? You two were really close at college, weren't you?"
     player happy "You won't believe it! She didn't major in CS but now she has this cool tech job...{p=0.5}{nw}"
@@ -940,7 +940,7 @@ label stage6_after_annika_questions:
     show annika
     annika "What do you think about this place, [persistent.player_name]?"
     player laugh "It's amazing!"
-    player "This place is alive with energy... It's like you won't walk away without something interesting happening."
+    player "This place is alive with energy... It's like you can't take a step without seeing something interesting."
     annika @ laugh "That's the spirit!"
     annika "Do you think you'll come here now and then?"
     player happy "Definitely!"
@@ -1013,15 +1013,15 @@ label stage7:
     marco "And working with small, less established clients doesn't pay well and puts a lot of stress on a newbie freelancer."
     player worry "(That's so true... That's how I feel about my tutoring gig...)"
     marco "So I decided to upgrade my skills and try something new."
-    marco "I learned to design websites and got a job designing websites at a small local company."
+    marco "I learned to design websites and got a job doing that at a small local company."
     player surprised "(Now that's a nice turn of the story!)"
     show marco neutral
-    marco "You know, at small companies, everyone does a little bit of everything."
-    marco "I was hired for my web design skills, but occasionally I would be asked to write some HTML, CSS, and JavaScript to showcase the design I had in mind in action, not just on paper."
+    marco "You know, in small companies, everyone does a little bit of everything."
+    marco "I was hired for my web design skills, but occasionally I would be asked to write some HTML, CSS, and JavaScript to showcase the design in action, not just on paper."
     marco "I picked up a little HTML, CSS, and JavaScript in those years and found them to be quite interesting."
     marco "I then found out that there is a term for these skills – front-end development."
     marco "I thought, cool, I've done some front-end development, maybe I can become a full-time front-end developer."
-    marco "I started researching and teaching myself front-end dev. The Internet in my days didn't have nearly as many resources as today. So I had to be extremely resourceful and develop my own learning path."
+    marco "I started researching and teaching myself front-end dev. The Internet in my days didn't have nearly as many resources as today. So I had to be extremely self-sufficient and develop my own learning path."
     player "(Working out an entire learning path sounds really intense to me, but for some reason Marco made it sound easy...)"
     marco "It all paid off when I got my front-end development job at my current company. I've been with the company since. Nice culture, smart people, interesting work."
     show marco laugh
@@ -1033,7 +1033,7 @@ label stage7:
     show marco neutral
     marco "Yeah, I know. Looking back it's like a blur."
     marco "So that's my story. Anything you'd like to learn more about?"
-    player smile "(Now it's my change to ask questions!)"
+    player smile "(Now it's my chance to ask questions!)"
 
     # initialize all choices to False
     default marco_story_choices = set()
@@ -1057,8 +1057,8 @@ label stage7:
         "Do you have a favorite side project?":
             player "Do you have a favorite side project?"
             marco "There is one I'm working on right now. Top secret. You will know it when you see it."
-            marco "Like I said, I majored in design and music in college. Design and music are two things that get me up in the morning."
-            marco "Now that I've also learned to code, I think it's prime time to put my passion into use to create something awesome, like a video game. I get to do the art, music, and coding all by myself."
+            marco "Like I said, I majored in design and music in college. Those are two things that get me up in the morning."
+            marco "Now that I've also learned to code, I think it's the perfect time to put my passion to work and create something awesome, like a video game. I get to do the art, music, and coding all by myself."
             player "That sure sounds like fun! I'd love to see it one day!"
             jump marco_story_choices
 
@@ -1127,7 +1127,7 @@ label stage7:
     show boy blue flipped at left with moveinleft
     show girl red at right with moveinright
     boy "Now it's finally time for us to give shape to this awesome idea!"
-    girl "Yeah yeah, it's been a pie in the sky since forever."
+    girl "Yeah yeah, it's been pie in the sky since forever."
     boy "This time we are finally going to code it all up!"
     girl "Hmmm... Yeah... We probably need some advice. I heard they have mentors here to guide us..."
 
@@ -1199,7 +1199,7 @@ label stage7:
             annika "If you perform well, you'll move on to the next steps. Usually, a company will give out more than one round of technical interviews over the phone."
             annika "And finally, once you manage to pull through these phone screens, the ultimate challenge would be an onsite interview."
             annika "Usually you will interview for an entire day onsite, with engineers and engineering managers."
-            annika "Onsite interviews might sound daunting but it's actually a good way for you to learn about the company's culture and the engineer's day-to-day."
+            annika "Onsite interviews might sound daunting, but it's actually a good way for you to learn about the company's culture and the engineer's day-to-day."
             annika "That's about it for the pipeline."
             jump stage7_coding_interview_questions
     
@@ -1338,7 +1338,7 @@ label stage8:
             $ calendar.next_week()
             scene black with dissolve
             "(Does it feels like time is flying by without your doing much?)"
-            "(Well, this is quite the reality when you are navigating the stress of applying to jobs, waiting for application follow-up, going to interviews, waiting for interview follow-up, and {b}Repeat{/b}.)"
+            "(Well, this is the reality of navigating the stress of applying to jobs, waiting for application follow-up, going to interviews, waiting for interview follow-up, and {b}Repeat{/b}.)"
             "(Hang in there, alright?)"
 
             if interview_company_name is None:
@@ -1536,7 +1536,7 @@ label stage14:
     player worry "(No wonder Layla was able to blend in so well...)"
 
     show layla serious
-    layla "Oh please I know that look. 'CS kids must have had it the easy way breaking in to tech.' Right?"
+    layla "Oh please I know that look. 'CS kids must have had it easy breaking into tech.' Right?"
     layla "That's just not the whole story, you know."
     player pout "Oops, sorry."
     layla @ neutral "No big deal. I can see where you are coming from."
