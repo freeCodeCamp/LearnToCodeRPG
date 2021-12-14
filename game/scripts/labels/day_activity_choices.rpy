@@ -5,7 +5,6 @@ label day_activity_choices:
 
     # if the player has low sanity, jump directly to one of the relaxing choices
     if player_stats.is_sanity_low():
-        # TODO: notify
         $ renpy.notify('Your sanity is dropping dangerously low. Why not take some time to relax and recharge?')
         $ num_times_sanity_low += 1
 

@@ -180,9 +180,8 @@ label ending_cat:
 
     player happy "(It's a waste if Mint's talent goes unnoticed. Together we can make history!)"
     player "Hey Mint! Mind if I join you and learn to code from you?"
-    player "Here, here. I even got matching sunglasses."
-
     $ player_pixelsunglasses = True
+    player "Here, here. I even got matching sunglasses."
     player laugh "How do these look on me?"
     mint "Meow! (Looks great!)"
     player "You like them? Thanks Mint!"

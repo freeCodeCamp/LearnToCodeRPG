@@ -153,6 +153,7 @@ init python:
         milestone_start_curriculum: generate_tweet_intent(tweet_start_curriculum),
         milestone_complete_curriculum: generate_tweet_intent(tweet_complete_curriculum),
         milestone_start_interview_prep: generate_tweet_intent(tweet_start_curriculum),
+        milestone_first_application: generate_tweet_intent(tweet_first_application),
         milestone_first_interview: generate_tweet_intent(tweet_first_interview),
         milestone_first_offer: generate_tweet_intent(tweet_first_offer),
         milestone_onboarding: generate_tweet_intent(tweet_onboarding)
@@ -343,7 +344,7 @@ init python:
         ending_achievement: ending_to_tweet_map
     }
 
-    # master map for easy lookup in script.rpy
+    # master map for easy lookup in script.rpy, sanity check len(all_tweet_map) == num of achievements
     all_tweet_map = {}
     for tweet_map in achievement_labels_map.values():
         all_tweet_map.update(tweet_map)
