@@ -163,7 +163,7 @@ init:
     define office_worker = Character("Office Worker")
 
     # text displayables
-    define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp{/color}{/font}{/a}'
+    define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp.org{/color}{/font}{/a}'
     define developerquiz = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}http://developerquiz.org/{/color}{/font}{/a}'
     define learn_to_code_rpg_on_itch = '{a=https://freecodecamp.itch.io/learn-to-code-rpg}{font=fonts/saxmono.ttf}{color=#002ead}Learn to Code RPG on itch.io{/color}{/font}{/a}'
     define learn_to_code_rpg_on_github = '{a=https://github.com/freeCodeCamp/LearnToCodeRPG}{font=fonts/saxmono.ttf}{color=#002ead}Learn to Code RPG on itch.io{/color}{/font}{/a}'
