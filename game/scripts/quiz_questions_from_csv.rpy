@@ -345,7 +345,7 @@ init python:
         QuizQuestion(
         question="What CSS selector would you use to select all elements with the class blue-text?",
         true=".blue-text",
-        false=["#blue-text", "a[blue-text]", "blue-text"],
+        false=["#blue-text", "a[[blue-text]", "blue-text"],
         explanation="In CSS, you can select all the elements with a given class with a dot before its name.",
         learn_more_url="https://www.freecodecamp.org/news/use-css-selectors-to-style-webpage/",
         difficulty=1
@@ -1174,7 +1174,7 @@ init python:
         QuizQuestion(
         question="What CSS selector would you use to select all elements with the class blue-text?",
         true=".blue-text",
-        false=["#blue-text", "a[blue-text]", "blue-text"],
+        false=["#blue-text", "a[[blue-text]", "blue-text"],
         explanation="In CSS, you can select all the elements with a given class with a dot before its name.",
         learn_more_url="https://www.freecodecamp.org/news/use-css-selectors-to-style-webpage/",
         difficulty=1
@@ -4137,8 +4137,8 @@ init python:
         ),
         QuizQuestion(
         question="How to print all columns in a file named demo.txt using the awk command?",
-        true="awk '{print $0}' demo.txt",
-        false=["awk '{print $1}' demo.txt", "awk '{print $1, $2}' demo.txt", "awk '/^print/' demo.txt"],
+        true="awk '{{print $0}' demo.txt",
+        false=["awk '{{print $1}' demo.txt", "awk '{{print $1, $2}' demo.txt", "awk '/^print/' demo.txt"],
         explanation="To print all columns and more so all the contents of a file using the awk command, the action you specify inside the curly braces is print $0.",
         learn_more_url="https://www.freecodecamp.org/news/the-linux-awk-command-linux-and-unix-usage-syntax-examples/",
         difficulty=2
@@ -4871,7 +4871,7 @@ init python:
         question="How can you create an empty list in Python?",
         true="[[]",
         false=["dict()", "{{}", "()"],
-        explanation="You can create an empty list with [] or with list() in Python.",
+        explanation="You can create an empty list with [[] or with list() in Python.",
         learn_more_url="https://www.freecodecamp.org/news/python-empty-list-tutorial-how-to-create-an-empty-list-in-python/",
         difficulty=1
         ),
@@ -4887,7 +4887,7 @@ init python:
         question="How can you create an empty dictionary in Python?",
         true="{{}",
         false=["[[]", "()", "list()"],
-        explanation="You can create an empty dictionary with {} in Python.",
+        explanation="You can create an empty dictionary with {{} in Python.",
         learn_more_url="https://www.freecodecamp.org/news/python-dictionaries-detailed-visual-introduction/",
         difficulty=1
         ),
