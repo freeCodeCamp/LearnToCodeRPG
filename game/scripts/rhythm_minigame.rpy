@@ -142,7 +142,7 @@ screen rhythm_game(song):
         showif rhythm_game_displayable.has_game_started:
             text 'Score: ' + str(rhythm_game_displayable.score):
                 color '#fff'
-                size gui.name_text_size
+                size 40
 
     ## XXX: for some reason, the bar is not accurate for some audio files
     # # use has_music_started, do not use has_game_started, b/c we are still in silence
@@ -191,7 +191,7 @@ init python:
             self.max_score = len(self.onset_times) * SCORE_PERFECT
 
         def compute_percent(self, score):
-            return math.ceil(score / float(self.max_score))
+            return math.ceil(score / float(self.max_score)) * 100
     
     class RhythmGameDisplayable(renpy.Displayable):
 
@@ -297,9 +297,9 @@ init python:
             }
 
             # define the drawables
-            self.miss_text_drawable = Text('Miss!', color='#fff', size=gui.text_size)
-            self.good_text_drawable = Text('Good!', color='#fff', size=gui.text_size)
-            self.perfect_text_drawable = Text('Perfect!', color='#fff', size=gui.text_size)
+            self.miss_text_drawable = Text('Miss!', color='#fff', size=40)
+            self.good_text_drawable = Text('Good!', color='#fff', size=50)
+            self.perfect_text_drawable = Text('Perfect!', color='#fff', size=60)
             self.track_bar_drawable = Solid('#fff', xsize=self.track_bar_width, ysize=self.track_bar_height)
             self.horizontal_bar_drawable = Solid('#fff', xsize=config.screen_width, ysize=self.horizontal_bar_height)
             # map track_idx to the note drawable
@@ -525,10 +525,10 @@ init python:
     ## rhythm game
     # define the song titles and their files
     rhythm_game_songs = [
-        Song('Chasing That Feeling', 'audio/bgm/Chasing That Feeling.mp3', 'audio/bgm/Chasing That Feeling.beatmap.txt'),
-        Song('Crystalize That Child in Me', 'audio/bgm/Crystalize That Child in Me.mp3', 'audio/bgm/Crystalize That Child in Me.beatmap.txt'),
-        Song('Never Not Favored', 'audio/bgm/Never Not Favored.mp3', 'audio/bgm/Never Not Favored.beatmap.txt'),
-        Song('Press Your Advantage', 'audio/bgm/Press Your Advantage.mp3', 'audio/bgm/Press Your Advantage.beatmap.txt')
+        # Song('Chasing That Feeling', 'audio/bgm/Chasing That Feeling.mp3', 'audio/bgm/Chasing That Feeling.beatmap.txt'),
+        # Song('Crystalize That Child in Me', 'audio/bgm/Crystalize That Child in Me.mp3', 'audio/bgm/Crystalize That Child in Me.beatmap.txt'),
+        Song('Never Not Favored', 'audio/rhythm_game/Never Not Favored - trimmed.mp3', 'audio/rhythm_game/Never Not Favored - trimmed.beatmap.txt'),
+        # Song('Press Your Advantage', 'audio/bgm/Press Your Advantage.mp3', 'audio/bgm/Press Your Advantage.beatmap.txt')
     ]
     # must be persistent to be able to record the scores
     if persistent.rhythm_game_high_scores is None:
@@ -543,7 +543,6 @@ label rhythm_game_entry_label:
 
     # stop the bgm
     $ continue_looping_music = False
-    $ renpy.music.stop()
 
     call screen select_song_screen(rhythm_game_songs)
     $ selected_song = _return

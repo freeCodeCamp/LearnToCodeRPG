@@ -1449,7 +1449,7 @@ label stage14:
     player surprised "(Hmmm... I wonder if we have met before. Layla looks familiar somehow.)"
     player "(...Oh! Was that her at Hacker Space mentoring the kids?)"
     player "(If I remembered correctly...)"
-    # TODO: flashback fade
+    # TODO: flashback sepia fade
     scene bg hacker_space with fadehold
     show layla
     layla @ laugh "So how's everyone's project going? We mentors are here to answer any questions you have!"

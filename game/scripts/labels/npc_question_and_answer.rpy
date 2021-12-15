@@ -46,7 +46,6 @@ label ask_hackathon:
     player "That's awesome! I'll check that out when I get a bit better at coding."
 
     # TODO: todo_list.add_todo('Try out hackathons'), needs more writing
-    # TODO: refactor and add to topics_to_ask
     player "(Hmmm, so that's what a {b}hackathon{/b} is about.)"
     $ todo_list.complete_todo(todo_ask_hackathon)
     $ topics_to_ask.remove('Hackathon')

@@ -337,7 +337,6 @@ label day_activity_job_search:
         call screen job_posting_screen(company_name, company_required_skills, easter_egg_skill=easter_egg_skill)
         $ has_applied = _return
         if has_applied:
-            # TODO: need the three required skill to each be above 60
             python:
                 meets_criteria = True
                 for skill in company_required_skills:

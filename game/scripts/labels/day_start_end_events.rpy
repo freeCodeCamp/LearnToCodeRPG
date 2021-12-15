@@ -90,7 +90,6 @@ label day_end:
 
     mom "How was your day, honey?"
     player "Good, good."
-    # TODO: different text according to the day activity
     if day_activity == 'study':
         player "I spent today studying and learned a lot!"
     elif day_activity == 'barista':
