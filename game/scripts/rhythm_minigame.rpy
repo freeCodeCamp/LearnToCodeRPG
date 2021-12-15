@@ -136,6 +136,11 @@ screen rhythm_game(rhythm_game_displayable):
             # force the button text to be white when hovered
             text_hover_color '#fff'
 
+        text rhythm_game_displayable.song_name:
+            color '#fff'
+            size 30
+            xmaximum 300
+
         # can also use has_music_started so this won't show during the silence
         showif rhythm_game_displayable.has_game_started:
             text 'Score: ' + str(rhythm_game_displayable.score):
@@ -199,6 +204,7 @@ init python:
             super(RhythmGameDisplayable, self).__init__()
 
             self.audio_path = song.audio_path
+            self.song_name = song.name
 
             self.has_game_started = False
             self.has_music_started = False # this happens after `self.silence_offset_start`
@@ -294,9 +300,9 @@ init python:
             }
 
             # define the drawables
-            self.miss_text_drawable = Text('Miss!', color='#fff', size=40)
-            self.good_text_drawable = Text('Good!', color='#fff', size=50)
-            self.perfect_text_drawable = Text('Perfect!', color='#fff', size=60)
+            self.miss_text_drawable = Text('Miss!', color='#fff', size=30)
+            self.good_text_drawable = Text('Good!', color='#fff', size=40)
+            self.perfect_text_drawable = Text('Perfect!', color='#fff', size=50)
             self.track_bar_drawable = Solid('#fff', xsize=self.track_bar_width, ysize=self.track_bar_height)
             self.horizontal_bar_drawable = Solid('#fff', xsize=config.screen_width, ysize=self.horizontal_bar_height)
             # map track_idx to the note drawable
