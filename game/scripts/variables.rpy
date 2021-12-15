@@ -168,14 +168,14 @@ init python:
     plot_stats_all = 'Maxed Out ALL CS Knowledge Stats'
     # application rejections
     plot_rejection = 'Rejected? Well, The First One Seldom Works Out'
-    plot_third_rejection = 'Rejected Again? I Though Third Time is the Charm'
+    plot_third_rejection = 'Rejected Again? I Thought Third Time Was the Charm'
     # first time barista
     plot_barista_discover = 'Barista is My Undercover for Collecting Buzzwords'
     plot_buzzword_ask = 'Asked My Tech-Savvy Friends about Tech Buzzwords'
     # collected all tech buzzwords, no need to ask all
     plot_all_buzzwords = 'Tech Buzzword Encyclopedia'
     # first time hackerspace
-    plot_hackerspace_discover = 'Hanging out at the Hacker Space'
+    plot_hackerspace_discover = 'Hanging Out at the Hacker Space'
     plot_hackerspace_all_events = 'The Hacker Space is My Second Home Now'
     plot_trivia = 'Tech Trivia Guru'
     plot_cupcakecpu = 'Applied to CupcakeCPU Through a Recruiter'
@@ -186,8 +186,8 @@ init python:
     # first time rhythm game
     plot_rhythm_discover = 'Chill Beats to Smash Keyboard to'
     plot_rhythm_highscore = 'Set a New High Score in the Rhythm Game'
-    plot_rhythm_perfect = 'Scored Perfect on My Favorite Music Track'
-    plot_rhythm_perfect_all = 'Scored Perfect on ALL Music Tracks' # super hard
+    plot_rhythm_perfect = 'Got a Perfect Score on My Favorite Music Track'
+    plot_rhythm_perfect_all = 'Got a Perfect Score on ALL Music Tracks' # super hard
     # first time park
     plot_park = 'I Might Get a Puppy Just So I Can Go to the Park'
 
@@ -213,19 +213,19 @@ init python:
     tweet_third_rejection = 'I got rejected from dev jobs for the third time in #LearnToCodeRPG. Can you do better? Play the game here: '
     tweet_barista_discover = 'I just took up a barista gig to collect tech buzzwords in #LearnToCodeRPG. Play the game here: '
     tweet_buzzword_ask = 'I just hung out with my tech-savvy friend and asked about tech buzzwords in #LearnToCodeRPG. Play the game here: '
-    tweet_all_buzzwords = 'I found tons of tech buzzwords during my barista gig in #LearnToCodeRPG. Play the game here: '
+    tweet_all_buzzwords = 'I learned tons of tech buzzwords during my barista gig in #LearnToCodeRPG. Play the game here: '
     tweet_hackerspace_discover = 'I just discovered the Hacker Space in #LearnToCodeRPG. Play the game here: '
     tweet_hackerspace_all_events = 'I participated in all Hacker Space events in #LearnToCodeRPG. Play the game here: '
     tweet_trivia = 'I nailed all the tech trivia questions in #LearnToCodeRPG. Play the game here: '
-    tweet_cupcakecpu = 'Iapplied to a company called CupcakeCPU through a recruiter in #LearnToCodeRPG. Play the game here: '
+    tweet_cupcakecpu = 'I applied to a company called CupcakeCPU through a recruiter in #LearnToCodeRPG. Play the game here: '
     tweet_win_pong = 'I just won against the AI in a Pong game in #LearnToCodeRPG. Play the game here: '
     tweet_lose_pong = 'I just lost against the AI in a Pong game in #LearnToCodeRPG. Play the game here: '
     tweet_music_discover = 'I just discovered the Music Room in #LearnToCodeRPG. Play the game here: '
     tweet_rhythm_discover = 'I just discovered the Rhythm Game in #LearnToCodeRPG. Play the game here: '
     tweet_rhythm_highscore = 'I just set a new high score in the Rhythm Game in #LearnToCodeRPG. Play the game here: '
-    tweet_rhythm_perfect = 'I scored perfect on a song in the Rhythm Game in #LearnToCodeRPG. Play the game here: '
+    tweet_rhythm_perfect = 'I got a perfect score on a song in the Rhythm Game in #LearnToCodeRPG. Play the game here: '
     # Dev note: if anyone is actually capable of getting all perfect. wow
-    tweet_rhythm_perfect_all = 'I scored perfect on every song in the Rhythm Game in #LearnToCodeRPG. Play the game here: '
+    tweet_rhythm_perfect_all = 'I got a perfect score on every song in the Rhythm Game in #LearnToCodeRPG. Play the game here: '
     tweet_park = 'I just discovered the perfect park for hanging out in #LearnToCodeRPG. Play the game here: '
     tweet_skill_coffee = 'I saw a dev job that requires the skill of brewing coffee in #LearnToCodeRPG. Play the game here: '
     tweet_skill_fax = 'I saw a dev job that requires the skill of fixing fax machines in #LearnToCodeRPG. Play the game here: '
@@ -233,7 +233,7 @@ init python:
     tweet_skill_cable = 'I saw a dev job that requires the skill of fusing cables in #LearnToCodeRPG. Play the game here: '
     tweet_skill_password = 'I saw a dev job that requires the skill of retrieving lost passwords in #LearnToCodeRPG. Play the game here: '
     tweet_skill_pet = 'I saw a dev job that requires the skill of pacifying office pets in #LearnToCodeRPG. Play the game here: '
-    tweet_double_check = 'I double-checked, triple-cheked, quadruple-checked my code until I lost count in #LearnToCodeRPG. Play the game here: '
+    tweet_double_check = 'I double-checked, triple-cheked, and quadruple-checked my code until I lost count in #LearnToCodeRPG. Play the game here: '
     tweet_rewind_time = 'I went back in time to discover all of the alternative endings in #LearnToCodeRPG. Play the game here: '
 
     # TODO: none default tweet
@@ -285,13 +285,13 @@ init python:
 
     tweet_fcc_launch = 'I got an Easter Egg quiz question about the launch year of freeCodeCamp in #Learning. Play the game here: '
     tweet_fcc_mission = 'I got an Easter Egg quiz question about the mission of freeCodeCamp in #Learning. Play the game here: '
-    tweet_code_radio = 'I got an Easter Egg quiz question about the freeCodeCamp Code Radio in #Learning. Play the game here: '
+    tweet_code_radio = 'I got an Easter Egg quiz question about freeCodeCamp's Code Radio in #Learning. Play the game here: '
     tweet_devdocs = 'I got an Easter Egg quiz question about Devdocs.io in #Learning. Play the game here: '
     tweet_fcc_opensource = 'I got an Easter Egg quiz question about freeCodeCamp and Open Source in #Learning. Play the game here: '
     tweet_fcc_language = 'I got an Easter Egg quiz question asking what coding language the freeCodeCamp site is built with in #Learning. Play the game here: '
     tweet_fcc_inspiration = 'I got an Easter Egg quiz question asking what project inspired freeCodeCamp in #Learning. Play the game here: '
     tweet_fcc_forum = 'I got an Easter Egg quiz question about the freeCodeCamp Forum in #Learning. Play the game here: '
-    tweet_fcc_chat = 'I got an Easter Egg quiz question about the freeCodeCamp Chat in #Learning. Play the game here: '
+    tweet_fcc_chat = 'I got an Easter Egg quiz question about freeCodeCamp Chat in #Learning. Play the game here: '
     tweet_fcc_mascot = 'I got an Easter Egg quiz question about the freeCodeCamp Mascot in #Learning. Play the game here: '
 
     quiz_bonus_to_tweet_map = {
