@@ -35,7 +35,6 @@ init python:
             clamped_val = min(100, max(0, new_val))
             map_pointer[stats_name] = clamped_val
             
-            # TODO: play different sound depending on the stats and direction of change
             change_direction = None
             if val > 0:
                 change_direction = CHANGE_DIRECTION_INC

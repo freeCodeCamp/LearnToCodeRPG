@@ -26,7 +26,6 @@ screen bonus_screen():
             # textbutton '{icon=icon-film} ' + _("Game Trailer") action NullAction()
             # textbutton '{icon=icon-youtube} ' + _("Learn to Code RPG: The Making of") action NullAction()
 
-            # TODO: other links
             null height 20
             label 'Other Links'
             textbutton '{icon=icon-thumbs-up} ' + _("Rate and Review This Game on itch.io") action OpenURL(itch_url)

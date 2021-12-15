@@ -236,7 +236,6 @@ init python:
     tweet_double_check = 'I double-checked, triple-cheked, quadruple-checked my code until I lost count in #LearnToCodeRPG. Play the game here: '
     tweet_rewind_time = 'I went back in time to discover all of the alternative endings in #LearnToCodeRPG. Play the game here: '
 
-    # TODO: none default tweet
     plot_bonus_to_tweet_map = {
         plot_vip: generate_tweet_intent(tweet_vip),
         plot_cookie: generate_tweet_intent(tweet_cookie), 

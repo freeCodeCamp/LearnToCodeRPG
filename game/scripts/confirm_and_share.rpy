@@ -1,6 +1,8 @@
 # https://www.renpy.org/doc/html/screen_special.html
 # based on the confirm screen
 
+define alternative_endind_message = "Congratulations! You just discovered an alternative ending."
+
 screen confirm_and_share_screen(title, message=None, ok_text=None, tweet_content_url=tweet_default, show_achievements_count=True):
 
     # using `game menu root` will make this screen replace background image

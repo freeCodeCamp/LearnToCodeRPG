@@ -90,11 +90,15 @@ label ending_barista:
     girl "Wow that'd be awesome! Thanks!"
     player laugh "Alright, here goes. Let's take a look..."
 
-    $ persistent.achievements.add(ending_barista)
     play sound 'audio/sfx/alternative_ending.wav'
     call screen text_over_black_bg_screen("{i}Ending: [ending_barista]{/i}")
 
-    # TODO: tweet
+    scene bg cafe
+    $ add_achievement(
+        achievement_name=ending_barista,
+        message=alternative_endind_message
+        )
+
     jump second_chance
     scene bg cafe with dissolve
 
@@ -180,7 +184,9 @@ label ending_cat:
 
     player happy "(It's a waste if Mint's talent goes unnoticed. Together we can make history!)"
     player "Hey Mint! Mind if I join you and learn to code from you?"
-    $ player_pixelsunglasses = True
+
+    $ player_glasses = 'player_pixelsunglasses'
+
     player "Here, here. I even got matching sunglasses."
     player laugh "How do these look on me?"
     mint "Meow! (Looks great!)"
@@ -191,7 +197,7 @@ label ending_cat:
 
     call screen text_over_black_bg_screen("A month later...")
     scene bg hall with fade
-    host "And now let's give a round of applause to our hackathon winner: {b}Cat Who Codes{/b}!"
+    host "And now let's give a round of applause to our hackathon winner team: {b}Cat Who Codes{/b}!"
     play sound 'audio/sfx/applause.ogg'
     show mint_with_pixel_sunglasses
     player laugh "Wow... We managed to win first place all thanks to Mint. This is awesome!"
@@ -218,11 +224,13 @@ label ending_cat:
     hide mint_with_pixel_sunglasses
     with pixellate
 
-    $ persistent.achievements.add(ending_cat)
     play sound 'audio/sfx/alternative_ending.wav'
     call screen text_over_black_bg_screen("{i}Ending: [ending_cat]{/i}")
 
-    # TODO: Twitter share
+    $ add_achievement(
+        achievement_name=ending_cat,
+        message=alternative_endind_message
+        )
     jump second_chance
     scene bg bedroom night with dissolve
     
@@ -343,11 +351,14 @@ label ending_tutor:
     layla @ laugh "Well, sometimes I do wonder what could've happened if I had chosen differently."
     player relieved "(Layla looks content with where she is now. Hmmm... but I do wonder, what could've happened if I'd chosen differently?)"
 
-    $ persistent.achievements.add(ending_tutor)
     play sound 'audio/sfx/alternative_ending.wav'
     call screen text_over_black_bg_screen("{i}Ending: [ending_tutor]{/i}")
 
-    # TODO: Twitter share
+    scene bg classroom
+    $ add_achievement(
+        achievement_name=ending_tutor,
+        message=alternative_endind_message
+        )
     jump second_chance
     scene bg kitchen night with dissolve
     
@@ -423,13 +434,16 @@ label ending_office:
     player "(At this point, it's not like I have an opinion anymore about staying here or quitting.)"
     player pout "(I mean, making spreadsheets and slides is the only skill I have.)"
     player worry "(Ugh. And making coffee as well.)"
-    player relieved "(Guess this is it? Unless?)"
+    player relieved "(Guess this is it? Unless...)"
 
-    $ persistent.achievements.add(ending_office)
     play sound 'audio/sfx/alternative_ending.wav'
     call screen text_over_black_bg_screen("{i}Ending: [ending_office]{/i}")
 
-    # TODO: Twitter share
+    scene bg cubicle
+    $ add_achievement(
+        achievement_name=ending_office,
+        message=alternative_endind_message
+        )
     jump second_chance
     scene bg bedroom with dissolve
     
@@ -493,11 +507,13 @@ label ending_farmer:
     player "Sometimes we have a campfire and s'mores at night."
     player happy "I'm enjoying this farm life so much that I don't think I will return to the city any time soon..."
 
-    $ persistent.achievements.add(ending_farmer)
     play sound 'audio/sfx/alternative_ending.wav'
     call screen text_over_black_bg_screen("{i}Ending: [ending_farmer]{/i}")
 
-    # TODO: Twitter share
+    $ add_achievement(
+        achievement_name=ending_farmer,
+        message=alternative_endind_message
+        )
     jump second_chance
     scene bg bedroom with dissolve
 
@@ -509,7 +525,7 @@ label second_chance:
     stop music
 
     # this label must be used with jump, not call
-    scene black with dissolve
+    scene bg chaos with dissolve
     # Note to proofreader: this is an omnipotent narrator, so feel free to change their tone
     "Hey [persistent.player_name]. Kudos to you for coming this far in the game."
     "That wasn't a bad way to end the story. Not bad at all."
@@ -519,7 +535,7 @@ label second_chance:
     "Okay, I'm going to let you in on a little secret."
     "If you like, you can wind back the clock and revisit the choices you've made."
     "If I may ask, did you remember to {b}Save{/b} your progress before making this choice that has taken you here?"
-    call screen confirm("Did you {b}Save{/b} your progress and wish to {b}Load{/b} and get back in time? (It's okay if you answer no. I'll let you in on another secret.)", 
+    call screen confirm("Did you SAVE your progress and wish to LOAD and get back in time? (It's okay if you answer no. I'll let you in on another secret.)", 
         yes_action=[ShowMenu('load'), Return()], 
         no_action=Return())
 
@@ -534,12 +550,13 @@ label second_chance:
         "Time traveling! Let's do it.":
             "You know the rocket ship saying? 'If you're offered a seat on a rocket ship, don't ask what seat.'"
             "Let's rollback in time, brave traveler."
+            scene bg tunnel with fadehold
+
+            play sound 'audio/sfx/rewind.wav' # 5 sec
+            pause 4.0
 
             if not plot_rewind_time in persistent.achievements:
                 $ add_achievement(plot_rewind_time)
-                    
-            play sound 'audio/sfx/rewind.wav' # 5 sec
-            pause 4.0
 
             $ player_base = 'player_base'
             $ player_glasses = 'player_glasses'
