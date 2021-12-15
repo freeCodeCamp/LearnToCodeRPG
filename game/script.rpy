@@ -1691,7 +1691,7 @@ label ending_splash: # alternative endings also jump to here
     $ quick_menu = False
     # Learn to Code RPG logo
     scene gray90 with Pause(1)
-    play sound 'audio/sfx/title_drop_swoosh.wav'
+    play sound 'audio/sfx/title_fire_swoosh.ogg'
     show learn_to_code_rpg_logo at truecenter with dissolve
     with Pause(2)
     scene gray90 with dissolve
@@ -1699,7 +1699,7 @@ label ending_splash: # alternative endings also jump to here
 
     # freeCodeCamp logo
     scene gray90 with Pause(1)
-    play sound 'audio/sfx/title_drop_swoosh.wav'
+    play sound 'audio/sfx/title_fire_swoosh.ogg'
     show fcc_logo at truecenter with dissolve
     with Pause(2)
     scene gray90 with dissolve
