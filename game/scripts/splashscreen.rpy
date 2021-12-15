@@ -14,7 +14,8 @@ label splashscreen:
     with Pause(1)
 
     $ accessibility_tips = _p("""
-        Accessibility Tips: Press the {b}{u}v{/u}{/b} key to enable auto-voicing of the text.
+        Accessibility Tips: To enable auto-voicing of the text, please first configure the speech synthesis settings (speaker gender, accent, etc.) on your computer according to {a=https://www.renpy.org/doc/html/self_voicing.html#speech-synthesis}these instructions{/a}.
+        Back to the game, you may press the {b}{u}v{/u}{/b} key to switch on auto-voicing.
 
         Adjust the volume of music and sound effects on the {icon=icon-settings} Settings screen.
 

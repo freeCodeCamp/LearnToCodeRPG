@@ -15,7 +15,11 @@ screen bonus_screen():
             null height 20
             label 'Bonus Content'
             textbutton '{icon=icon-award} ' + _("Achievements") action Show('achievements_screen')
-            textbutton '{icon=icon-headphones} ' + _("Music Room") action Show('music_room_screen')
+            textbutton '{icon=icon-headphones} ' + _("Music Room"):
+                action [
+                Notify('There might be a lag before the selected track starts to play. Please be patient.'),
+                Show('music_room_screen')
+                ]
             # textbutton '{icon=icon-book-open} ' + _("Glossary") action Show('glossary_screen')
             # textbutton '{icon=icon-code} ' + _("Quiz Collection") action Show('quiz_screen')
 
@@ -89,13 +93,12 @@ screen music_room_screen():
         style_prefix "bonus"
         vbox:
             spacing 10
-            xalign 0.5
 
             hbox:
                 spacing 20
                 # Buttons that let us advance tracks.
-                textbutton _("Previous") + ' {icon=icon-arrow-left-circle}' action music_room.Previous()
-                textbutton '{icon=icon-arrow-right-circle} ' + _("Next") action music_room.Next()
+                textbutton _("Previous Track") + ' {icon=icon-arrow-left-circle}' action music_room.Previous()
+                textbutton '{icon=icon-arrow-right-circle} ' + _("Next Track") action music_room.Next()
                 # textbutton "Pause" action music_room.TogglePause()
                 null width 40
                 textbutton '{icon=icon-stop-circle} ' + _("Stop") action music_room.Stop()

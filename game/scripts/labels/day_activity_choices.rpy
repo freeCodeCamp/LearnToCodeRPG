@@ -170,6 +170,7 @@ label day_activity_relax:
         "Listen to music":
             $ day_activity = 'music'
             player "Let's listen to some music."
+            $ renpy.notify('There might be a lag before the selected track starts to play. Please be patient.')
             call screen music_room_screen_in_script()
             if not plot_music_discover in persistent.achievements:
                 $ add_achievement(plot_music_discover)
