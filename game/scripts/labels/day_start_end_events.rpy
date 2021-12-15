@@ -3,12 +3,10 @@ label day_start:
     # this label should end up jumping to day_end, which then returns control to the main game
     $ calendar.next()
 
-    scene bg bedroom with fadehold
-
-    show smartphone at truecenter
+    scene black
     play sound 'audio/sfx/alarm.wav'
     pause 2.0
-    hide smartphone
+    scene bg bedroom with eyeopen
     play sound 'audio/sfx/birds.wav'
     pause 3.0
 

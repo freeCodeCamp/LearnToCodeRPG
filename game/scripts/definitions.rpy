@@ -148,6 +148,12 @@ init python:
 
         renpy.call_screen('confirm_and_share_screen', title=title, **kwargs)
 
+    # first-person blink
+    def eyewarp(x):
+        return x ** 1.33
+
+    eyeopen = ImageDissolve("others/eye.png", 2, ramplen=128, reverse=False, time_warp=eyewarp)
+
 init:
     # major characters
     define player = Character("[persistent.player_name]", image='player')
@@ -185,7 +191,7 @@ init:
     ## images
     # mint
     image mint:
-        "others/mint/mint1.png"
+        "others/mint/mint1.png" # can simply use `mint1`
         1.0
         "others/mint/mint2.png"
         1.0
@@ -272,6 +278,7 @@ init:
         linear 1.0 alpha 0.1
         repeat
 
+    # TODO: tint sprites in code
     # unused tinted sprites
     # image side player dark = im.MatrixColor('chara/player/player.png', tint_dark)
     # image side player sunset = im.MatrixColor('chara/player/player.png', tint_sunset)
