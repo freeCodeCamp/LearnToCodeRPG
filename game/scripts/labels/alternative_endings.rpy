@@ -520,9 +520,8 @@ label ending_farmer:
     return
 
 label second_chance:
-    # stop the regular BGM
-    $ continue_looping_music = False
-    stop music
+    # stop the regular bgm
+    stop music fadeout 1.0
 
     # this label must be used with jump, not call
     scene bg chaos with dissolve
@@ -561,7 +560,10 @@ label second_chance:
             $ player_base = 'player_base'
             $ player_glasses = 'player_glasses'
             $ calendar_enabled = True
-            $ continue_looping_music = True # resume the BGM
+            # resume the bgm
+            # $ continue_looping_music = True
+            $ renpy.music.queue(all_music_tracks.values(), loop=True, fadein=1.0, tight=True)
+
             return # return control to the ending label that it jumped from
     
         "Nah. I'm happy with what I have now.":

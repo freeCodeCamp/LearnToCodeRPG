@@ -159,7 +159,8 @@ label stage1:
     scene bg kid_home
     $ calendar_enabled = True
     # start the music here
-    $ continue_looping_music = True
+    # $ continue_looping_music = True
+    $ renpy.music.queue(all_music_tracks.values(), loop=True, fadein=1.0, tight=True)
 
     # Stage 1. player background
     show boy orange
@@ -1608,8 +1609,8 @@ label ending_check_code:
     player worry "Hmm... my changes should at least do something to the code base. Maybe I can check if Layla is in... {p=1.0}{nw}"
 
     # stop the music here
-    $ continue_looping_music = False
-    stop music
+    # $ continue_looping_music = False
+    stop music fadeout 1.0
 
     # office red alert animation
     show red_flash    

@@ -108,7 +108,7 @@ screen rhythm_game_high_score_screen(songs):
                     text str(highest_score) xysize cell_size xalign 0.5
                     text '[highest_percent]%' xysize cell_size xalign 0.5
 
-screen rhythm_game(song):
+screen rhythm_game(rhythm_game_displayable):
 
     zorder 103 # always on top, covering textbox, quick_menu, calendar, etc.
 
@@ -118,8 +118,6 @@ screen rhythm_game(song):
     key 'K_UP' action NullAction()
     key 'K_DOWN' action NullAction()
     key 'K_RIGHT' action NullAction()
-
-    default rhythm_game_displayable = RhythmGameDisplayable(song)
 
     add Solid('#000')
     add rhythm_game_displayable
@@ -146,12 +144,12 @@ screen rhythm_game(song):
 
     ## XXX: for some reason, the bar is not accurate for some audio files
     # # use has_music_started, do not use has_game_started, b/c we are still in silence
-    # showif rhythm_game_displayable.has_music_started:
-    #     bar:
-    #         xalign 0.5
-    #         ypos 20
-    #         xsize 740
-    #         value AudioPositionValue(channel=CHANNEL_RHYTHM_GAME)
+    showif rhythm_game_displayable.has_music_started:
+        bar:
+            xalign 0.5
+            ypos 20
+            xsize 740
+            value AudioPositionValue(channel=CHANNEL_RHYTHM_GAME)
 
     # return the number of hits and total number of notes to the main game
     if rhythm_game_displayable.has_ended:
@@ -166,7 +164,6 @@ init python:
     renpy.music.register_channel(CHANNEL_RHYTHM_GAME)
 
     import os
-    import math
     import pygame
 
     # util func
@@ -191,7 +188,7 @@ init python:
             self.max_score = len(self.onset_times) * SCORE_PERFECT
 
         def compute_percent(self, score):
-            return math.ceil(score / float(self.max_score)) * 100
+            return round(score / float(self.max_score) * 100)
     
     class RhythmGameDisplayable(renpy.Displayable):
 
@@ -525,10 +522,18 @@ init python:
     ## rhythm game
     # define the song titles and their files
     rhythm_game_songs = [
-        # Song('Chasing That Feeling', 'audio/bgm/Chasing That Feeling.mp3', 'audio/bgm/Chasing That Feeling.beatmap.txt'),
-        # Song('Crystalize That Child in Me', 'audio/bgm/Crystalize That Child in Me.mp3', 'audio/bgm/Crystalize That Child in Me.beatmap.txt'),
-        Song('Never Not Favored', 'audio/rhythm_game/Never Not Favored - trimmed.mp3', 'audio/rhythm_game/Never Not Favored - trimmed.beatmap.txt'),
-        # Song('Press Your Advantage', 'audio/bgm/Press Your Advantage.mp3', 'audio/bgm/Press Your Advantage.beatmap.txt')
+        Song('Chasing That Feeling', 
+            'audio/rhythm_game/Chasing That Feeling - trimmed.mp3', 
+            'audio/rhythm_game/Chasing That Feeling - trimmed.beatmap.txt'),
+        Song('Crystalize That Child in Me', 
+            'audio/rhythm_game/Crystalize That Child in Me - trimmed.mp3', 
+            'audio/rhythm_game/Crystalize That Child in Me - trimmed.beatmap.txt'),
+        Song('Never Not Favored', 
+            'audio/rhythm_game/Never Not Favored - trimmed.mp3', 
+            'audio/rhythm_game/Never Not Favored - trimmed.beatmap.txt'),
+        Song('Press Your Advantage', 
+            'audio/rhythm_game/Press Your Advantage - trimmed.mp3', 
+            'audio/rhythm_game/Press Your Advantage - trimmed.beatmap.txt')
     ]
     # must be persistent to be able to record the scores
     if persistent.rhythm_game_high_scores is None:
@@ -542,7 +547,8 @@ label rhythm_game_entry_label:
     scene bg bedroom
 
     # stop the bgm
-    $ continue_looping_music = False
+    # $ continue_looping_music = False
+    stop music fadeout 1.0
 
     call screen select_song_screen(rhythm_game_songs)
     $ selected_song = _return
@@ -558,8 +564,10 @@ label rhythm_game_entry_label:
         $ _game_menu_screen = None
 
         $ renpy.notify('Use the arrow keys on your keyboard to hit the notes as they reach the end of the tracks. Good luck!')
-        call screen rhythm_game(selected_song)
+        $ rhythm_game_displayable = RhythmGameDisplayable(selected_song)
+        call screen rhythm_game(rhythm_game_displayable)
         $ new_score = _return
+        $ del rhythm_game_displayable
 
         # XXX: old_percent is not used, but doing `old_score, _` causes pickling error
         $ old_score, old_percent = persistent.rhythm_game_high_scores[selected_song.name]
@@ -609,6 +617,7 @@ label rhythm_game_entry_label:
         $ add_achievement(plot_rhythm_discover)
 
     # resume the bgm
-    $ continue_looping_music = True
+    # $ continue_looping_music = True
+    $ renpy.music.queue(all_music_tracks.values(), loop=True, fadein=1.0, tight=True)
 
     return

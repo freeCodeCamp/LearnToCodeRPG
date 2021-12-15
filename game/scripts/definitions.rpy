@@ -30,7 +30,7 @@ init python:
             renpy.sound.play(meow, loop=False)
 
     # play music random looping
-    continue_looping_music = False
+    # continue_looping_music = False
 
     all_music_tracks = {
     'Chasing That Feeling': "audio/bgm/Chasing That Feeling.mp3",
@@ -46,7 +46,7 @@ init python:
             # if not renpy.in_rollback():
             #     renpy.notify('Now playing: ' + music)
 
-    renpy.music.set_queue_empty_callback(loop_music)
+    # renpy.music.set_queue_empty_callback(loop_music)
   
     # to stop, set the following
     # continue_looping_music = False
