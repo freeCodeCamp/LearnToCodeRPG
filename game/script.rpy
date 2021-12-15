@@ -119,13 +119,11 @@ label start_after_interview:
             # Easter egg :)
             if referral_name in vip_names:
                 $ vip_profile_url = vip_names[referral_name]
+                play sound 'audio/sfx/system_processing.wav'
                 "System processing... {w}Looks like you were referred by a VIP team member. That's awesome! We'll highlight this on your profile."
                 "And we'll make sure to let our VIP team member {a=[vip_profile_url]}[referral_name]{/a} know!"
-                $ persistent.achievements.add(plot_vip)
-                call screen confirm_and_share_screen(
-                    title=plot_vip,
-                    tweet_content_url=all_tweet_map[plot_vip]
-                    )                
+           
+                $ add_achievement(plot_vip)
             else:
                 "Hmmm... We aren't able to locate that person in our employee database. Maybe you made a typo?"
 
@@ -445,11 +443,7 @@ label stage4:
     $ topics_to_ask.add('Hackathon')
     player "Alright! Going back to my shift."
 
-    $ persistent.achievements.add(plot_barista_discover)
-    call screen confirm_and_share_screen(
-        title=plot_barista_discover,
-        tweet_content_url=all_tweet_map[plot_barista_discover]
-        )
+    $ add_achievement(plot_barista_discover)
 
     # player goes back home
     scene bg bedroom night with fadehold
@@ -597,11 +591,7 @@ label stage5_cookie:
     player laugh "Mmmm... Mom's cookies are the best."
     hide cookie
 
-    $ persistent.achievements.add(plot_cookie)
-    call screen confirm_and_share_screen(
-        title=plot_cookie,
-        tweet_content_url=all_tweet_map[plot_cookie]
-        )
+    $ add_achievement(plot_cookie)
     return
 
 label stage5_annika:
@@ -715,11 +705,7 @@ label stage6:
     call study_session_choose_topic from _call_study_session_choose_topic_2
     call study_session from _call_study_session
 
-    $ persistent.achievements.add(milestone_start_curriculum)
-    call screen confirm_and_share_screen(
-        title=milestone_start_curriculum,
-        tweet_content_url=all_tweet_map[milestone_start_curriculum]
-        )
+    $ add_achievement(milestone_start_curriculum)
 
     scene bg bedroom night with dissolve
     player neutral "Phew... I'm finally done with these questions. What a day..."
@@ -947,11 +933,7 @@ label stage6_after_annika_questions:
     player "Thanks for taking me here!"
     annika "Any time!"
 
-    $ persistent.achievements.add(plot_hackerspace_discover)
-    call screen confirm_and_share_screen(
-        title=plot_hackerspace_discover,
-        tweet_content_url=all_tweet_map[plot_hackerspace_discover]
-        )
+    $ add_achievement(plot_hackerspace_discover)
 
     scene bg bedroom night with slideright
     player smile "Wow. I'm amazed. Hacker Space sure is a cool place. I'll have to check it out on my own someday."
@@ -1249,15 +1231,14 @@ label stage7_complete_curriculum:
 
     $ completed_curriculum_date = date(calendar.year, calendar.month, calendar.day)
     $ days_between_start_and_curriculum_completion = (completed_curriculum_date - start_date).days
-    call screen confirm_and_share_screen(
+
+    $ add_achievement(
+        achievement_name=milestone_complete_curriculum,
         title="{bt}Congratulations!{/bt}",
         message="You completed the coding curriculum in {b}{color=#002ead}[days_between_start_and_curriculum_completion]{/color}{/b} days.\nNow you are ready to rock your coding interviews and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
         ok_text="Let's crush those interviews!",
-        tweet_content_url=all_tweet_map[milestone_complete_curriculum],
         show_achievements_count=False
-    )
-
-    $ persistent.achievements.add(milestone_complete_curriculum)
+        )
 
     player laugh "This is great! Let's check the curriculum off my To-Do list."
     $ todo_list.complete_todo(todo_learn_cs)
@@ -1286,11 +1267,7 @@ label stage8:
     call study_session_choose_topic from _call_study_session_choose_topic
     call study_session from _call_study_session_3
 
-    $ persistent.achievements.add(milestone_start_interview_prep)
-    call screen confirm_and_share_screen(
-        title=milestone_start_interview_prep,
-        tweet_content_url=all_tweet_map[milestone_start_interview_prep]
-        )
+    $ add_achievement(milestone_start_interview_prep)
 
     scene bg bedroom night with fadehold
     player relieved "Whew... Those questions are harder than CS fundamental questions. Guess I need to put in more studying."
@@ -1348,12 +1325,8 @@ label stage8:
                 player surprised "Looks like there's a new job posting available. Let's check it out."
                 call day_activity_job_search from _call_day_activity_job_search_1
 
-                if num_jobs_applied == 1:
-                    $ persistent.achievements.add(milestone_first_application)
-                    call screen confirm_and_share_screen(
-                        title=milestone_first_application,
-                        tweet_content_url=all_tweet_map[milestone_first_application]
-                        )
+                if num_jobs_applied == 1 and not milestone_first_application in persistent.achievements:
+                    $ add_achievement(milestone_first_application)
 
                 call day_activity_choices from _call_day_activity_choices_9
 
@@ -1369,12 +1342,8 @@ label stage8:
         player "The title says 'Application Follow-up'..."
         $ num_jobs_interviewed += 1
 
-        if num_jobs_interviewed == 1:
-            $ persistent.achievements.add(milestone_first_interview)
-            call screen confirm_and_share_screen(
-                title=milestone_first_interview,
-                tweet_content_url=all_tweet_map[milestone_first_interview]
-                )
+        if num_jobs_interviewed == 1 and not milestone_first_interview in persistent.achievements:
+            $ add_achievement(milestone_first_interview)
 
         call screen company_interview_email_screen(interview_company_name)
         player laugh "I made it! I'm going to a coding interview!"
@@ -1408,19 +1377,11 @@ label stage8:
             hide mint
             player smile "It's no use crying over spilled milk. Let's get some rest today and get on with my routines tomorrow."
 
-            if num_jobs_rejected == 1:
-                $ persistent.achievements.add(plot_rejection)
-                call screen confirm_and_share_screen(
-                    title=plot_rejection,
-                    tweet_content_url=all_tweet_map[plot_rejection]
-                    )
+            if num_jobs_rejected == 1 and not plot_rejection in persistent.achievements:
+                $ add_achievement(plot_rejection)
 
-            elif num_jobs_rejected == 3:
-                $ persistent.achievements.add(plot_third_rejection)
-                call screen confirm_and_share_screen(
-                    title=plot_third_rejection,
-                    tweet_content_url=all_tweet_map[plot_third_rejection]
-                    )
+            elif num_jobs_rejected == 3 and not plot_third_rejection in persistent.achievements:
+                $ add_achievement(plot_third_rejection)
 
         # reset interview_company_name to None so we enter the inner loop again
         $ interview_company_name = None
@@ -1453,14 +1414,13 @@ label stage8:
     $ days_between_start_and_offer = (accepted_offer_date - start_date).days
     $ days_between_curriculum_completion_and_offer = (accepted_offer_date - completed_curriculum_date).days
 
-    call screen confirm_and_share_screen(
+    $ add_achievement(
+        achievement_name=milestone_first_offer,
         title="{bt}Congratulations!{/bt}",
         message="You taught yourself to become a developer in {b}{color=[dark_blue]}[days_between_start_and_offer]{/color}{/b} days, [days_between_curriculum_completion_and_offer] days after you've completed the coding curriculum.\nYou have applied to [num_jobs_applied] jobs and interviewed for [num_jobs_interviewed] times before landing this offer.\nNow you are ready to rock your new job!\n Feel free to share your progress with the world!",
         ok_text="Let's rock my new job!",
-        tweet_content_url=all_tweet_map[milestone_first_offer],
         show_achievements_count=False
-    )
-    $ persistent.achievements.add(milestone_first_offer)
+        )
 
     player happy "I can't wait to tell my parents! And I should call Annika and Marco to let them know."
     player laugh "Let's get everyone together and throw a big party to celebrate!"
@@ -1507,11 +1467,7 @@ label stage14:
     player "Gotcha! I'll get started right now!"
     play sound 'audio/sfx/keyboard_typing.wav'
 
-    $ persistent.achievements.add(milestone_onboarding)
-    call screen confirm_and_share_screen(
-        title=milestone_onboarding,
-        tweet_content_url=all_tweet_map[milestone_onboarding]
-        )
+    $ add_achievement(milestone_onboarding)
 
     scene bg office with fadehold
     show layla
@@ -1638,11 +1594,7 @@ label ending_check_code:
             else:
                 player relieved "I've checked it so many times that I've lost count..."
 
-                $ persistent.achievements.add(plot_double_check)
-                call screen confirm_and_share_screen(
-                    title=plot_double_check,
-                    tweet_content_url=all_tweet_map[plot_double_check]
-                    )
+                $ add_achievement(plot_double_check)
                 
                 player smile "It should be good to go, right?"
 
@@ -1668,15 +1620,13 @@ label ending_check_code:
     pause 4.0
     hide red_flash with dissolve
 
-    call screen confirm_and_share_screen(
+    $ add_achievement(
+        achievement_name=ending_dev,
         title="{color=[red]}{icon=icon-alert-triangle} Attention{/color}",
         message="Hey [persistent.player_name]... \nThe thing is, it looks like... \n{sc}{color=[red]}YOU HAVE BROUGHT DOWN THE PRODUCTION SERVER{/color}{/sc}",
         ok_text="Oopsy... Am I... fired?",
-        tweet_content_url=all_tweet_map[ending_dev],
         show_achievements_count=False
-    )
-
-    $ persistent.achievements.add(ending_dev)
+        )
 
     $ quick_menu = False
     $ calendar_enabled = False

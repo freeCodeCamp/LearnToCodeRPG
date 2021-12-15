@@ -536,13 +536,8 @@ label second_chance:
             "Let's rollback in time, brave traveler."
 
             if not plot_rewind_time in persistent.achievements:
-                $ persistent.achievements.add(plot_rewind_time)
-                call screen confirm_and_share_screen(
-                    title=plot_rewind_time,
-                    tweet_content_url=all_tweet_map[plot_rewind_time]
-                    )
+                $ add_achievement(plot_rewind_time)
                     
-            # TODO: tweet
             play sound 'audio/sfx/rewind.wav' # 5 sec
             pause 4.0
 

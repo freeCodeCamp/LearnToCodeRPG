@@ -24,11 +24,7 @@ label npc_conversation_start:
     $ renpy.hide(npc_sprite)
 
     if not plot_buzzword_ask in persistent.achievements:
-        $ persistent.achievements.add(plot_buzzword_ask)
-        call screen confirm_and_share_screen(
-            title=plot_buzzword_ask,
-            tweet_content_url=all_tweet_map[plot_buzzword_ask]
-            )
+        $ add_achievement(plot_buzzword_ask)
 
     return
 

@@ -186,8 +186,8 @@ init python:
     # first time rhythm game
     plot_rhythm_discover = 'Chill Beats to Smash Keyboard to'
     plot_rhythm_highscore = 'Set a New High Score in the Rhythm Game'
-    plot_rhythm_perfect = 'Scored Perfect on My Favorite Music Track'
-    plot_rhythm_perfect_all = 'Scored Perfect on ALL Music Tracks' # super hard
+    plot_rhythm_perfect = 'Scored Nearly Perfect on My Favorite Music Track'
+    plot_rhythm_perfect_all = 'Scored Nearly Perfect on ALL Music Tracks' # super hard
     # first time park
     plot_park = 'I Might Get a Puppy Just So I Can Go to the Park'
 

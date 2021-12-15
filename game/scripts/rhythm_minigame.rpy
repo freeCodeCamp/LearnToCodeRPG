@@ -572,20 +572,13 @@ label rhythm_game_entry_label:
             $ persistent.rhythm_game_high_scores[selected_song.name] = (new_score, new_percent)
 
             if not plot_rhythm_highscore in persistent.achievements:
-                $ persistent.achievements.add(plot_rhythm_highscore)
-                call screen confirm_and_share_screen(
-                    title=plot_rhythm_highscore,
-                    tweet_content_url=all_tweet_map[plot_rhythm_highscore]
-                    )
+                $ add_achievement(plot_rhythm_highscore)
 
-            if new_percent == 100:
+            # to get to 90 percent, need 3/4 perfect (100 pt each) and 1/4 good (60 pt each)
+            if new_percent == 90:
                 # check if one perfect
                 if not plot_rhythm_perfect in persistent.achievements:
-                    $ persistent.achievements.add(plot_rhythm_perfect)
-                    call screen confirm_and_share_screen(
-                        title=plot_rhythm_perfect,
-                        tweet_content_url=all_tweet_map[plot_rhythm_perfect]
-                        )
+                    $ add_achievement(plot_rhythm_perfect)
 
                 # check if all perfect
                 python:
@@ -597,11 +590,7 @@ label rhythm_game_entry_label:
                             all_perfect &= True
                 if all_perfect and \
                 not plot_rhythm_perfect_all in persistent.achievements:
-                    $ persistent.achievements.add(plot_rhythm_perfect_all)
-                    call screen confirm_and_share_screen(
-                        title=plot_rhythm_perfect_all,
-                        tweet_content_url=all_tweet_map[plot_rhythm_perfect_all]
-                        )
+                    $ add_achievement(plot_rhythm_perfect_all)
 
         # re-enable the Esc key menu
         $ _game_menu_screen = 'save'
@@ -618,11 +607,7 @@ label rhythm_game_entry_label:
 
     # first time
     if not plot_rhythm_discover in persistent.achievements:
-        $ persistent.achievements.add(plot_rhythm_discover)
-        call screen confirm_and_share_screen(
-            title=plot_rhythm_discover,
-            tweet_content_url=all_tweet_map[plot_rhythm_discover]
-            )
+        $ add_achievement(plot_rhythm_discover)
 
     # resume the bgm
     $ continue_looping_music = True

@@ -137,6 +137,17 @@ init python:
         ret = 'https://twitter.com/intent/tweet?url=' + url_enc + '&text=' + content_enc
         return ret
 
+    def add_achievement(achievement_name, title=None, **kwargs):
+        persistent.achievements.add(achievement_name)
+        if title is None:
+            title = achievement_name
+        kwargs['tweet_content_url'] = all_tweet_map[achievement_name]
+
+        # play sound, cannot play on screen show b/c screen code results in multiple plays
+        renpy.sound.play('audio/sfx/confirm_and_share.wav')
+
+        renpy.call_screen('confirm_and_share_screen', title=title, **kwargs)
+
 init:
     # major characters
     define player = Character("[persistent.player_name]", image='player')

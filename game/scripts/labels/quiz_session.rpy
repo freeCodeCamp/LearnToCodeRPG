@@ -54,11 +54,7 @@ label study_session:
             call screen quiz_question_answer_explanation_screen(quiz_question)
 
         if quiz_question.easter_egg_name is not None: # Easter Egg achievement
-            $ persistent.achievements.add(quiz_question.easter_egg_name)
-            call screen confirm_and_share_screen(
-                title=quiz_question.easter_egg_name,
-                tweet_content_url=all_tweet_map[quiz_question.easter_egg_name]
-                )
+            $ add_achievement(quiz_question.easter_egg_name)
 
     play sound 'audio/sfx/quiz_complete.wav'
     pause 0.5
@@ -94,11 +90,7 @@ label trivia_session_questions:
         trivia_guy "Could this be...?"
         play sound 'audio/sfx/hacker_space_trivia_win.wav'
         trivia_guy "You are the first person to get everything correct! Congratulations!"
-        $ persistent.achievements.add(plot_trivia)
-        call screen confirm_and_share_screen(
-            title=plot_trivia,
-            tweet_content_url=all_tweet_map[plot_trivia]
-            )
+        $ add_achievement(plot_trivia)
 
         trivia_guy "Now about the award..."
         show business_card at truecenter with zoomin

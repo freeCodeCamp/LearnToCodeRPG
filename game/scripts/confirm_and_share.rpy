@@ -1,15 +1,12 @@
 # https://www.renpy.org/doc/html/screen_special.html
 # based on the confirm screen
 
-screen confirm_and_share_screen(title, message="Now that's an achievement unlocked!", ok_text="Gotta Unlock 'Em All!", tweet_content_url=tweet_default, show_achievements_count=True):
+screen confirm_and_share_screen(title, message=None, ok_text=None, tweet_content_url=tweet_default, show_achievements_count=True):
 
     # using `game menu root` will make this screen replace background image
     # modal True
     # window:
     #     style "gm_root"
-
-    on "show" action renpy.sound.play('audio/sfx/confirm_and_share.wav')
-
     frame:
         style_prefix "confirm"
 
@@ -30,6 +27,8 @@ screen confirm_and_share_screen(title, message="Now that's an achievement unlock
                 size gui.label_text_size
                 font gui.interface_text_font
 
+            if message is None:
+                $ message = "Now that's an achievement unlocked!"
             text _(message):
                 xalign 0.5
                 text_align 0.5
@@ -43,6 +42,8 @@ screen confirm_and_share_screen(title, message="Now that's an achievement unlock
                 xalign 0.5
                 action OpenURL(tweet_content_url)
 
+            if ok_text is None:
+                $ ok_text = "Gotta Unlock 'Em All!"
             textbutton ok_text:
                 xalign 0.5
                 action [
