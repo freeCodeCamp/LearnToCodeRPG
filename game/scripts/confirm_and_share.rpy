@@ -49,6 +49,6 @@ screen confirm_and_share_screen(title, message=None, ok_text=None, tweet_content
             textbutton ok_text:
                 xalign 0.5
                 action [
-                Notify("This achievement is saved to the Bonus menu. Feel free tweet about it later if you haven't!"),
+                Notify("This achievement is saved to the Bonus menu. Feel free to tweet about it later if you haven't!"),
                 Return()
                 ]

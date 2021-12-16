@@ -49,9 +49,13 @@ label save_reminder:
     if persistent.enable_save_reminder == False: # not None
         return # return control to whatever label that called this
 
-    # first time player will have persistent.enable_save_reminder is None
-    if persistent.enable_save_reminder: # is True
+    elif persistent.enable_save_reminder: # is True
         "(Hello from your friendly {b}Save Reminder{/b}!)"
+        
+    # first time player will have persistent.enable_save_reminder is None
+    elif persistent.enable_save_reminder is None:
+        # set to True so the toggle on the screen is True by default
+        $ persistent.enable_save_reminder = True        
 
     "(Would you like to {b}Save{/b} your progress up to now?)"
 
