@@ -1685,6 +1685,14 @@ label ending_splash: # alternative endings also jump to here
         set post_game_choices
         "Here are some fun things that you can do now that you've finished the game. Select an option to learn more."
 
+        "Check out your achievements and tweet {icon=icon-twitter}":
+            "Let's get social! You've made a lot of progress throughout the game and it's time to spread the words."
+            "You can view your achievements on the {b}Bonus > Achievements{/b} screen. Click on the {b}Tweet{/b} button next to the achievement to tweet it."
+            "If you see a lock next to the achievement, backtrack to some point in the game, try different choices, and see if you can unlock it."
+            call screen achievements_screen()
+            "Will you be able to unlock all of the achievements? Now that's a dare."
+            jump post_game_choice
+
         "Rate and review this game on itch.io {icon=icon-thumbs-up}":
             "Help us improve the game by rating and reviewing [learn_to_code_rpg_on_itch]."
             show itch_rate at truecenter with zoomin
@@ -1702,7 +1710,7 @@ label ending_splash: # alternative endings also jump to here
                     "Of course! Take your time to explore and enjoy the game. You can visit this link anytime from the {b}Bonus{/b} screen."
             jump post_game_choice
 
-        "Find the game's source code on GitHub {icon=icon-github}":
+        "Star the game's source code on GitHub {icon=icon-star}":
             "Interested in learning about how this game is built? Take a peek into our source code by visiting [learn_to_code_rpg_on_github]."
             show github_star at truecenter with zoomin
             "Better yet, {b}Star{/b} our repository for your reference and {b}Watch{/b} for updates!"
@@ -1724,15 +1732,7 @@ label ending_splash: # alternative endings also jump to here
             "You can help support our nonprofit's mission {a=https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/}by donating to us here{/a}."
             "Remember you can visit link anytime from the {b}Bonus{/b} screen."
             jump post_game_choice
-    
-        "Check out your achievements and tweet {icon=icon-twitter}":
-            "Let's get social! You've made a lot of progress throughout the game and it's time to spread the words."
-            "You can view your achievements on the {b}Bonus > Achievements{/b} screen. Click on the {b}Tweet{/b} button next to the achievement to tweet it."
-            "If you see a lock next to the achievement, backtrack to some point in the game, try different choices, and see if you can unlock it."
-            call screen achievements_screen()
-            "Will you be able to unlock all of the achievements? Now that's a dare."
-            jump post_game_choice
-    
+        
         "Check out the bonus screen for minigames, resources, and more {icon=icon-award}":
             "Did you have the chance to enjoy the rhythm minigame while you were busy learning to code, visiting the Hacker Space, and serving coffee?"
             "Are you interested in checking out the actual [freeCodeCamp] curriculum and teach yourself to code in real life?"
