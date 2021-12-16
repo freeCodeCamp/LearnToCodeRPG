@@ -164,13 +164,13 @@ init python:
     plot_cookie = 'Late-night Cookie Crunch'
     plot_quiz_all = 'Nailed All Quizzes in a Session'
     plot_quiz_none = 'Flunked All Quizzes in a Session'
-    plot_stats_full = 'Maxed Out One CS Knowledge Stats'
+    plot_stats_full = 'Maxed Out One CS Knowledge Stat'
     plot_stats_all = 'Maxed Out ALL CS Knowledge Stats'
     # application rejections
     plot_rejection = 'Rejected? Well, The First One Seldom Works Out'
     plot_third_rejection = 'Rejected Again? I Thought Third Time Was the Charm'
     # first time barista
-    plot_barista_discover = 'Barista is My Undercover for Collecting Buzzwords'
+    plot_barista_discover = 'Barista is My Undercover Identity for Collecting Buzzwords'
     plot_buzzword_ask = 'Asked My Tech-Savvy Friends about Tech Buzzwords'
     # collected all tech buzzwords, no need to ask all
     plot_all_buzzwords = 'Tech Buzzword Encyclopedia'
@@ -284,7 +284,7 @@ init python:
 
     tweet_fcc_launch = 'I got an Easter Egg quiz question about the launch year of freeCodeCamp in #Learning. Play the game here: '
     tweet_fcc_mission = 'I got an Easter Egg quiz question about the mission of freeCodeCamp in #Learning. Play the game here: '
-    tweet_code_radio = 'I got an Easter Egg quiz question about freeCodeCamp's Code Radio in #Learning. Play the game here: '
+    tweet_code_radio = "I got an Easter Egg quiz question about freeCodeCamp's Code Radio in #Learning. Play the game here: "
     tweet_devdocs = 'I got an Easter Egg quiz question about Devdocs.io in #Learning. Play the game here: '
     tweet_fcc_opensource = 'I got an Easter Egg quiz question about freeCodeCamp and Open Source in #Learning. Play the game here: '
     tweet_fcc_language = 'I got an Easter Egg quiz question asking what coding language the freeCodeCamp site is built with in #Learning. Play the game here: '
