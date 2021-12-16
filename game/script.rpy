@@ -120,7 +120,7 @@ label start_after_interview:
             if referral_name in vip_names:
                 $ vip_profile_url = vip_names[referral_name]
                 play sound 'audio/sfx/system_processing.wav'
-                "System processing... {w}Looks like you were referred by a VIP team member. That's awesome! We'll highlight this on your profile."
+                "System processing... Looks like you were referred by a VIP team member. That's awesome! We'll highlight this on your profile."
                 "And we'll make sure to let our VIP team member {a=[vip_profile_url]}[referral_name]{/a} know!"
            
                 $ add_achievement(plot_vip)
@@ -173,9 +173,9 @@ label stage1:
     player "(I just graduated from college but it's so hard to get a serious full-time job.)"
     player "(I did apply to some consulting firms and banks. And I've heard back from none of them.)"
     player "(It's not like I don't enjoy tutoring kids. I actually enjoy explaining concepts to others. I just need a full-time job that is more intellectually fulfilling.)"
-    player "(Better yet if it pays more...){p=0.5}{nw}"
+    player "(Better yet if it pays more...)"
     kid "Hey [persistent.player_name]?"
-    player surprised "Oh. {w}Hey. {w}Sorry I just spaced out for a bit."
+    player surprised "Oh. Hey. Sorry I just spaced out for a bit."
     player smile "Do you have any more questions before we wrap up?"
     kid "Nope! I think my project report is good to go. Thanks!"
     player "Good. I'll see you next week."
@@ -191,7 +191,7 @@ label stage2:
     player laugh "I'm home!"
     mom "Hey sweetie. Welcome back!"
     dad "Welcome home, pumpkin. How was your day?"
-    player happy "(That's my mom and dad. {w} Mom is a high school teacher, which is why she could find me this tutoring gig. {w}Dad is a mechanical engineer, but I never got too into engineering.)"
+    player happy "(That's my mom and dad.  Mom is a high school teacher, which is why she could find me this tutoring gig. Dad is a mechanical engineer, but I never got too into engineering.)"
     player "(Not to brag, but they are the nicest parents I know.)"
     player "My day was okay."
     player "I'm tutoring this smart kid who wants to take up coding classes. I can't believe that came from a high school student."
@@ -210,10 +210,10 @@ label stage2:
     scene bg kitchen night with blinds
     play sound 'audio/sfx/dining_ambient.wav'
     $ show_random_dinner_image()
-    dad "So here's the best part about my day...{p=0.5}{nw}"
-    player laugh "Haha that's hilarious!{p=0.5}{nw}"
-    mom "So what plans do we have for the weekend?{p=0.5}{nw}"
-    player "I'm up for anything!{p=0.5}{nw}"
+    dad "So here's the best part about my day..."
+    player laugh "Haha that's hilarious!"
+    mom "What plans do we have for the weekend?"
+    player "I'm up for anything!"
 
     scene bg bedroom night with blinds
     player happy "That was an awesome dinner... I'm stuffed. Mom's the best cook I know."
@@ -238,7 +238,7 @@ label stage2:
                     player "Liked. Wow. They've got 1k+ likes already? Guess I'm one of them now."
             
                 "Post a comment":
-                    player "{i}Congrats!{/i} {w}Posted. Now I'm one of their 100+ comments."
+                    player "{i}Congrats!{/i} Posted. Now I'm one of their 100+ comments."
 
                 "Do nothing":
                     player "Meh, they are just bragging. I don't even know them that well."
@@ -472,7 +472,7 @@ label stage4:
 label stage5:
     player smile "[freeCodeCamp]. That sounds right! Let's check it out."
     show fcc_curriculum at truecenter with dissolve
-    player happy "Wow. Their curriculum is super comprehensive. {w}They also offer certifications that I can showcase on my résumé. Neat!"
+    player happy "Wow. Their curriculum is super comprehensive. They also offer certifications that I can showcase on my résumé. Neat!"
     player "What should I start with?"
     hide fcc_curriculum
 
@@ -551,7 +551,7 @@ label stage5:
         "Machine Learning with Python":
             player happy "Machine Learning. Wow. That sounds cool."
             player "I'm really interested in teaching machines to learn."
-            player "Just think about it. Teaching machines to chat like humans. {w}Wow."
+            player "Just think about it. Teaching machines to chat like humans. Wow."
             player "No wonder everyone is hyped about Artificial Intelligence these days."
             player "..."
             player pout "But it looks hard. I know nothing about machine learning, except that there are so many memes about how machine learning is nothing but math."
@@ -691,7 +691,7 @@ label stage6:
     call screen text_over_black_bg_screen("{i}Chapter 3: Let's hit the books!{/i}")
 
     scene bg bedroom dusk with fade
-    player smile "I'm finally home! {w}Let's head over to [developerquiz] and try out some quiz questions."
+    player smile "I'm finally home! Let's head over to [developerquiz] and try out some quiz questions."
     scene bg laptop_screen with dissolve
     player surprised "Looks like they even divided the questions into subcategories like HTML, CSS, and JavaScript."
 
@@ -788,7 +788,7 @@ label stage6:
     annika "Yeah! And I've heard good things about this framework. Mostly from people I ran into at the local Hacker Space."
     annika "It looks like a popular tool for people who want to test out project ideas at hackathons."
     player neutral "({b}Hackathons{/b}! That reminds me, I should probably ask Annika about this topic.)"
-    player "(And she also just mentioned something called a {b}Hacker Space{/b}. That's something worth asking about as well.){p=1.0}{nw}"
+    player "(And she also just mentioned something called a {b}Hacker Space{/b}. That's something worth asking about as well.)"
 
     show annika laugh
     annika "Hello? Earth to [persistent.player_name]?"
@@ -848,9 +848,9 @@ label stage6_after_annika_questions:
     player smile "Thanks folks, but no worries. I can use an occasional break from studying."
     player "Plus, a lot of tech people visit the cafe and they talk about a loads of cool stuff."
     player "Like I heard people talking about a type of event called a hackathon the other day, and I had the chance to ask Annika about it today."
-    dad "That's great to hear, pumpkin. {w}What's Annika been up to? You two were really close at college, weren't you?"
-    player happy "You won't believe it! She didn't major in CS but now she has this cool tech job...{p=0.5}{nw}"
-    player "... And she taught herself everything...{p=0.5}{nw}"
+    dad "That's great to hear, pumpkin. What's Annika been up to? You two were really close at college, weren't you?"
+    player happy "You won't believe it! She didn't major in CS but now she has this cool tech job..."
+    player "... And she taught herself everything..."
     with vpunch
     player laugh "... I'm gonna work hard just like she did!"
     dad "That's the spirit!"
@@ -1396,13 +1396,13 @@ label stage8:
     player relieved "(Deep breath...)"
     player neutral "Okay, I'm ready to take a look."
     call screen company_offer_email_screen(offer_company_name)
-    player surprised "Huh?{w} Is this a dream?"
+    player surprised "Huh? Is this a dream?"
 
     show mint with vpunch
     play sound 'audio/sfx/punch.wav'
     mint "Meow!"
     player pout "Owww Mint... You are heavy... Don't just pounce on me like that, okay?"
-    player surprised "Wait a minute!{w} Mint just crash-landed on me and I felt the impact. This must mean that I'm not dreaming."
+    player surprised "Wait a minute! Mint just crash-landed on me and I felt the impact. This must mean that I'm not dreaming."
     player "So this is real."
     mint "Meow meow!"
     hide mint
@@ -1442,7 +1442,7 @@ label stage14:
 
     scene bg office
     player surprised "Wow. I still can't believe that starting today, I'll be working in such a fancy office."
-    player smile "My orientation email says that my onboarding buddy will be here to pick me up and show me around the office...{p=1.0}{nw}"
+    player smile "My orientation email says that my onboarding buddy will be here to pick me up and show me around the office..."
     show layla
 
     layla "Hey [persistent.player_name]. Welcome to the team! I'm Layla, your onboarding buddy."
@@ -1605,8 +1605,8 @@ label ending_check_code:
     player "Let's commit it to the server."
     # TODO: system processing animation
     play sound 'audio/sfx/system_processing.wav'
-    player neutral "... {w}And nothing happened."
-    player worry "Hmm... my changes should at least do something to the code base. Maybe I can check if Layla is in... {p=1.0}{nw}"
+    player neutral "... And nothing happened."
+    player worry "Hmm... my changes should at least do something to the code base. Maybe I can check if Layla is in... "
 
     # stop the music here
     # $ continue_looping_music = False
@@ -1615,8 +1615,8 @@ label ending_check_code:
     # office red alert animation
     show red_flash    
     play sound 'audio/sfx/error.wav'
-    layla "[persistent.player_name]? Was that your change a few seconds ago?{p=2.0}{nw}"
-    layla "Oh don't tell me... I think we have some problems here...{p=2.0}{nw}"
+    layla "[persistent.player_name]? Was that your change a few seconds ago?"
+    layla "Oh don't tell me... I think we have some problems here..."
     window hide
     pause 4.0
     hide red_flash with dissolve
