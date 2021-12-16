@@ -282,16 +282,16 @@ init python:
     quiz_fcc_chat = 'freeCodeCamp Has a Chat Server? Fancy!'
     quiz_fcc_mascot = 'freeCodeCamp Has a Mascot? Cute!'
 
-    tweet_fcc_launch = 'I got an Easter Egg quiz question about the launch year of freeCodeCamp in #Learning. Play the game here: '
-    tweet_fcc_mission = 'I got an Easter Egg quiz question about the mission of freeCodeCamp in #Learning. Play the game here: '
-    tweet_code_radio = "I got an Easter Egg quiz question about freeCodeCamp's Code Radio in #Learning. Play the game here: "
-    tweet_devdocs = 'I got an Easter Egg quiz question about Devdocs.io in #Learning. Play the game here: '
-    tweet_fcc_opensource = 'I got an Easter Egg quiz question about freeCodeCamp and Open Source in #Learning. Play the game here: '
-    tweet_fcc_language = 'I got an Easter Egg quiz question asking what coding language the freeCodeCamp site is built with in #Learning. Play the game here: '
-    tweet_fcc_inspiration = 'I got an Easter Egg quiz question asking what project inspired freeCodeCamp in #Learning. Play the game here: '
-    tweet_fcc_forum = 'I got an Easter Egg quiz question about the freeCodeCamp Forum in #Learning. Play the game here: '
-    tweet_fcc_chat = 'I got an Easter Egg quiz question about freeCodeCamp Chat in #Learning. Play the game here: '
-    tweet_fcc_mascot = 'I got an Easter Egg quiz question about the freeCodeCamp Mascot in #Learning. Play the game here: '
+    tweet_fcc_launch = 'I got an Easter Egg quiz question about the launch year of freeCodeCamp in #LearnToCodeRPG. Play the game here: '
+    tweet_fcc_mission = 'I got an Easter Egg quiz question about the mission of freeCodeCamp in #LearnToCodeRPG. Play the game here: '
+    tweet_code_radio = "I got an Easter Egg quiz question about freeCodeCamp's Code Radio in #LearnToCodeRPG. Play the game here: "
+    tweet_devdocs = 'I got an Easter Egg quiz question about Devdocs.io in #LearnToCodeRPG. Play the game here: '
+    tweet_fcc_opensource = 'I got an Easter Egg quiz question about freeCodeCamp and Open Source in #LearnToCodeRPG. Play the game here: '
+    tweet_fcc_language = 'I got an Easter Egg quiz question asking what coding language the freeCodeCamp site is built with in #LearnToCodeRPG. Play the game here: '
+    tweet_fcc_inspiration = 'I got an Easter Egg quiz question asking what project inspired freeCodeCamp in #LearnToCodeRPG. Play the game here: '
+    tweet_fcc_forum = 'I got an Easter Egg quiz question about the freeCodeCamp Forum in #LearnToCodeRPG. Play the game here: '
+    tweet_fcc_chat = 'I got an Easter Egg quiz question about freeCodeCamp Chat in #LearnToCodeRPG. Play the game here: '
+    tweet_fcc_mascot = 'I got an Easter Egg quiz question about the freeCodeCamp Mascot in #LearnToCodeRPG. Play the game here: '
 
     quiz_bonus_to_tweet_map = {
         quiz_fcc_launch: generate_tweet_intent(tweet_fcc_launch),
