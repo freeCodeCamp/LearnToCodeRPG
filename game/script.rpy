@@ -193,7 +193,7 @@ label stage2:
     dad "Welcome home, pumpkin. How was your day?"
     player happy "(That's my mom and dad.  Mom is a high school teacher, which is why she could find me this tutoring gig. Dad is a mechanical engineer, but I never got too into engineering.)"
     player "(Not to brag, but they are the nicest parents I know.)"
-    player "My day was okay."
+    player "I had an okay day."
     player "I'm tutoring this smart kid who wants to take up coding classes. I can't believe that came from a high school student."
     mom "That's interesting. I heard that a lot of high schools are rolling out coding curricula."
     mom "That must be a trendy thing right now."
@@ -336,8 +336,10 @@ label stage2_stats_change:
     player "There might be people who are cut out to do this, but definitely not me."
     player "I guess I better call it a day and go to bed."
 
-    with fadehold
+    scene black with dissolve
     play sound 'audio/sfx/wake_up_noise.mp3'
+    pause 2.0    
+    scene bg bedroom night with eyeopen
     player worry "... I can't sleep with all these thoughts floating around in my head."
     player "What can I do if the kid I'm tutoring cuts down our sessions for his coding classes?"
     player "Ugh. I still need to pay the bills even if my parents are nice enough not to ask me for rent."
@@ -347,7 +349,7 @@ label stage3:
     # Stage 3. Annika
     call screen text_over_black_bg_screen('{i}Chapter 2: A learning buddy to make it better!{/i}')
     $ calendar.next()
-
+    
     scene bg bedroom with dissolve
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
     show smartphone at truecenter
