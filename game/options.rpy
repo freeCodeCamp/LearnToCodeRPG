@@ -62,17 +62,22 @@ Background Music:
 Character Art:
     {a=https://layerto.carrd.co}Layerto (Noa Trinh){/a}
 
-Quiz Questions:
-    {a=https://twitter.com/EstefaniaCassN}Estefania Cassingena Navone{/a},
-    {a=https://twitter.com/codergirl1991}Jessica Wilkins{/a}
+Game Trailer:
+    {a=https://twitter.com/beaucarnes}Beau Carnes{/a}
 
-Proofreading:
+Quiz Questions & Proofreading:
     {a=https://twitter.com/abbeyrenn}Abbey Rennemeyer{/a},
-    {a=https://github.com/ojeytonwilliams/}Oliver Eyton-Williams{/a}
+    {a=https://github.com/ojeytonwilliams/}Oliver Eyton-Williams{/a},
+    {a=https://twitter.com/EstefaniaCassN}Estefania Cassingena Navone{/a},
+    {a=https://twitter.com/codergirl1991}Jessica Wilkins{/a},
+    {a=https://twitter.com/deniselemonaki}Dionysia Lemonaki{/a}
 
 Playtesting:
     {a=https://twitter.com/ieahleen}Ilenia Magoni{/a},
-    {a=https://twitter.com/EstefaniaCassN}Estefania Cassingena Navone{/a}
+    {a=https://twitter.com/EstefaniaCassN}Estefania Cassingena Navone{/a},
+    {a=https://twitter.com/nhcarrigan}Nicholas Carrigan{/a},
+    {a=https://twitter.com/_sidemt}Yoko Matsuda{/a},
+    {a=https://twitter.com/Daniel__Rosa}Daniel Rosa{/a}
     
 Special Thanks to:
     {a=https://www.freecodecamp.org/news/team/}All freeCodeCamp.org Staff{/a}
