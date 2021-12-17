@@ -40,9 +40,9 @@ screen bonus_screen():
             label 'Awesome freeCodeCamp.org Resources'
             textbutton '{icon=icon-youtube} ' + _("freeCodeCamp YouTube Channel") action OpenURL("https://www.youtube.com/channel/UC8butISFwT-Wl7EV0hUK0BQ")
             textbutton '{icon=icon-map} ' + _("freeCodeCamp Curriculum") action OpenURL("https://www.freecodecamp.org/learn/")
-            textbutton '{icon=icon-compass} ' + _("freeCodeCamp Forum") action OpenURL("https://forum.freecodecamp.org/")
+            # textbutton '{icon=icon-compass} ' + _("freeCodeCamp Forum") action OpenURL("https://forum.freecodecamp.org/")
             textbutton '{icon=icon-coffee} ' + _("freeCodeCamp Code Radio") action OpenURL("https://coderadio.freecodecamp.org/")
-            textbutton '{icon=icon-edit-3} ' + _("freeCodeCamp Style Guide") action OpenURL("https://design-style-guide.freecodecamp.org/")
+            # textbutton '{icon=icon-edit-3} ' + _("freeCodeCamp Style Guide") action OpenURL("https://design-style-guide.freecodecamp.org/")
 
 screen achievements_screen():
     tag menu

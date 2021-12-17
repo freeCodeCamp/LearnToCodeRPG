@@ -1729,20 +1729,20 @@ label ending_splash: # alternative endings also jump to here
                     "Of course! Take your time to explore and enjoy the game. You can visit this link anytime from the {b}Bonus{/b} screen."
             jump post_game_choice
 
-        "Support this game and other freeCodeCamp.org projects by donating {icon=icon-heart}":
-            "This game was made possible by all the kind people who donate to support [freeCodeCamp]."
-            "You can help support our nonprofit's mission {a=https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/}by donating to us here{/a}."
-            "Remember you can visit link anytime from the {b}Bonus{/b} screen."
-            jump post_game_choice
+        # "Support this game and other freeCodeCamp.org projects by donating {icon=icon-heart}":
+        #     "This game was made possible by all the kind people who donate to support [freeCodeCamp]."
+        #     "You can help support our nonprofit's mission {a=https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/}by donating to us here{/a}."
+        #     "Remember you can visit link anytime from the {b}Bonus{/b} screen."
+        #     jump post_game_choice
         
-        "Check out the bonus screen for minigames, resources, and more {icon=icon-award}":
-            "Did you have the chance to enjoy the rhythm minigame while you were busy learning to code, visiting the Hacker Space, and serving coffee?"
-            "Are you interested in checking out the actual [freeCodeCamp] curriculum and teach yourself to code in real life?"
-            "Well, you are in luck. The {b}Bonus{/b} screen has everything that you'll possibly need."
-            # go to the bonus screen
-            call screen bonus_screen()
-            "I'm sure you will make good use of the bonus content!"
-            jump post_game_choice
+        # "Check out the bonus screen for minigames, resources, and more {icon=icon-award}":
+        #     "Did you have the chance to enjoy the rhythm minigame while you were busy learning to code, visiting the Hacker Space, and serving coffee?"
+        #     "Are you interested in checking out the actual [freeCodeCamp] curriculum and teach yourself to code in real life?"
+        #     "Well, you are in luck. The {b}Bonus{/b} screen has everything that you'll possibly need."
+        #     # go to the bonus screen
+        #     call screen bonus_screen()
+        #     "I'm sure you will make good use of the bonus content!"
+        #     jump post_game_choice
 
         "Discover alternative endings {icon=icon-map}":
             "Which ending took you here, if I may ask?"

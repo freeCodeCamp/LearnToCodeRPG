@@ -42,7 +42,7 @@ This game was made possible by all the kind people who donate to support freeCod
 
 This project is open source and is currently in beta. If you notice any bugs or have suggestions about accessibility, the interface, the story, or anything at all, please report them on our {a=https://github.com/freeCodeCamp/LearnToCodeRPG}GitHub repo{/a}.
 
-If you are enjoying this game, please {icon=icon-thumbs-up} rate and review us on {a=https://freecodecamp.itch.io/learn-to-code-rpg}itch.io{/a} and {icon=icon-star} star our {a=https://github.com/freeCodeCamp/LearnToCodeRPG}GitHub repo{/a}.
+If you are enjoying this game, please {icon=icon-thumbs-up} rate and review us on {a=https://freecodecamp.itch.io/learn-to-code-rpg}itch.io{/a}.
 """)
 
 define credits = _p("""
@@ -56,14 +56,11 @@ Creative Lead:
 Coding & Writing & Misc. Art:
     {a=https://ruolinzheng08.github.io/}Lynn Zheng (Ruolin Zheng){/a}
     
-Background Music:
+Music:
     {a=https://twitter.com/ossia}Quincy Larson{/a}
 
 Character Art:
     {a=https://layerto.carrd.co}Layerto (Noa Trinh){/a}
-
-Game Trailer:
-    {a=https://twitter.com/beaucarnes}Beau Carnes{/a}
 
 Quiz Questions & Proofreading:
     {a=https://twitter.com/abbeyrenn}Abbey Rennemeyer{/a},
@@ -77,10 +74,10 @@ Playtesting:
     {a=https://twitter.com/EstefaniaCassN}Estefania Cassingena Navone{/a},
     {a=https://twitter.com/nhcarrigan}Nicholas Carrigan{/a},
     {a=https://twitter.com/_sidemt}Yoko Matsuda{/a},
-    {a=https://twitter.com/Daniel__Rosa}Daniel Rosa{/a}
+    {a=https://twitter.com/Daniel__Rosa}Daniel Rosa{/a},
+    {a=https://twitter.com/beaucarnes}Beau Carnes{/a}
     
-Special Thanks to:
-    {a=https://www.freecodecamp.org/news/team/}All freeCodeCamp.org Staff{/a}
+And thank you for playing the game :)
 """)
 
 define gui.about = _p(intro + "\n\n" + about + """
