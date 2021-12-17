@@ -33,12 +33,20 @@ init python:
     # continue_looping_music = False
 
     all_music_tracks = {
+    "Can't Stop Me. Can't Even Slow Me Down": "audio/bgm/Can't Stop Me. Can't Even Slow Me Down.mp3",
     'Chasing That Feeling': "audio/bgm/Chasing That Feeling.mp3",
+    # 'Cruising for a Musing': 'audio/bgm/Cruising for a Musing.mp3',
+    'Crystalize That Inner Child': "audio/bgm/Crystalize That Inner Child.mp3",
+    'From the Ground Up': 'audio/bgm/From the Ground Up.mp3',
     'Never Not Favored': "audio/bgm/Never Not Favored.mp3",
-    'Crystalize That Child in Me': "audio/bgm/Crystalize That Child in Me.mp3",
     'Press Your Advantage': "audio/bgm/Press Your Advantage.mp3",
+    'Scratching The Surface': 'audio/bgm/Scratching The Surface.mp3',
+    'Still Learning': 'audio/bgm/Still Learning.mp3',
+    'We Are Going to Make it': 'audio/bgm/We Are Going to Make it.mp3',
     }
 
+    # UNUSED FUNCTION
+    # continue_looping_music = False
     def loop_music():
         if continue_looping_music:
             music = renpy.random.choice(all_music_tracks.keys())

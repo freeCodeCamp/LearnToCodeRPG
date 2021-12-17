@@ -16,7 +16,7 @@ screen select_song_screen(songs):
 
     frame:
         xalign 0.5
-        yalign 0.5
+        yalign 0.25
         xpadding 80
         ypadding 30
         background white80
@@ -35,6 +35,7 @@ screen select_song_screen(songs):
                 spacing 10
                 draggable True
                 mousewheel True
+                ymaximum 760
 
                 scrollbars "vertical"
                 vscrollbar_unscrollable "hide"
@@ -62,51 +63,6 @@ screen select_song_screen(songs):
             textbutton '{icon=icon-x-circle} ' + _("Exit"):
                 xalign 0.5
                 action Return(None)
-
-screen rhythm_game_high_score_screen(songs):
-
-    default cell_size = (380, 80)
-
-    frame:
-        xalign 0.5
-        yalign 0.5
-        xpadding 80
-        ypadding 30
-        background white80
-
-        vbox:
-            spacing 20
-
-            
-
-            null height 20
-
-            vpgrid:
-
-                cols 3
-                rows len(songs) + 1
-                spacing 10
-                draggable True
-                mousewheel True
-
-                scrollbars "vertical"
-                vscrollbar_unscrollable "hide"
-
-                # Since we have scrollbars, we have to position the side, rather
-                # than the vpgrid proper.
-                side_xalign 0.5
-
-                # header row
-                label '{icon=icon-music} ' + _('Song Name') xysize cell_size
-                label '{icon=icon-chevrons-up} ' + _('Highest Score') xysize cell_size
-                label '{icon=icon-star} ' + _('% Perfect Score') xysize cell_size
-
-                # body rows
-                for song in songs:
-                    text song.name xysize cell_size
-                    $ highest_score, highest_percent = persistent.rhythm_game_high_scores[song.name]
-                    text str(highest_score) xysize cell_size xalign 0.5
-                    text '[highest_percent]%' xysize cell_size xalign 0.5
 
 screen rhythm_game(rhythm_game_displayable):
 
@@ -528,18 +484,56 @@ init python:
     ## rhythm game
     # define the song titles and their files
     rhythm_game_songs = [
-        Song('Chasing That Feeling', 
-            'audio/rhythm_game/Chasing That Feeling - trimmed.mp3', 
-            'audio/rhythm_game/Chasing That Feeling - trimmed.beatmap.txt'),
-        Song('Crystalize That Child in Me', 
-            'audio/rhythm_game/Crystalize That Child in Me - trimmed.mp3', 
-            'audio/rhythm_game/Crystalize That Child in Me - trimmed.beatmap.txt'),
-        Song('Never Not Favored', 
-            'audio/rhythm_game/Never Not Favored - trimmed.mp3', 
-            'audio/rhythm_game/Never Not Favored - trimmed.beatmap.txt'),
-        Song('Press Your Advantage', 
-            'audio/rhythm_game/Press Your Advantage - trimmed.mp3', 
-            'audio/rhythm_game/Press Your Advantage - trimmed.beatmap.txt')
+    Song(
+        "Can't Stop Me. Can't Even Slow Me Down",
+        "audio/rhythm_game/Can't Stop Me. Can't Even Slow Me Down.mp3", 
+        "audio/rhythm_game/Can't Stop Me. Can't Even Slow Me Down.beatmap.txt", 
+        ),
+    Song(
+        'Chasing That Feeling', 
+        'audio/rhythm_game/Chasing That Feeling.mp3', 
+        'audio/rhythm_game/Chasing That Feeling.beatmap.txt'
+        ),
+    # Song(
+    #     'Cruising for a Musing', 
+    #     'audio/rhythm_game/Cruising for a Musing.mp3', 
+    #     'audio/rhythm_game/Cruising for a Musing.beatmap.txt'
+    #     ),
+    Song(
+        'Crystalize That Inner Child', 
+        'audio/rhythm_game/Crystalize That Inner Child.mp3', 
+        'audio/rhythm_game/Crystalize That Inner Child.beatmap.txt'
+        ),
+    Song(
+        'From the Ground Up', 
+        'audio/rhythm_game/From the Ground Up.mp3', 
+        'audio/rhythm_game/From the Ground Up.beatmap.txt'
+        ),
+    Song(
+        'Never Not Favored', 
+        'audio/rhythm_game/Never Not Favored.mp3', 
+        'audio/rhythm_game/Never Not Favored.beatmap.txt'
+        ),
+    Song(
+        'Press Your Advantage', 
+        'audio/rhythm_game/Press Your Advantage.mp3', 
+        'audio/rhythm_game/Press Your Advantage.beatmap.txt'
+        ),
+    Song(
+        'Scratching The Surface', 
+        'audio/rhythm_game/Scratching The Surface.mp3', 
+        'audio/rhythm_game/Scratching The Surface.beatmap.txt'
+        ),
+    Song(
+        'Still Learning', 
+        'audio/rhythm_game/Still Learning.mp3', 
+        'audio/rhythm_game/Still Learning.beatmap.txt'
+        ),
+    Song(
+        'We Are Going to Make it', 
+        'audio/rhythm_game/We Are Going to Make it.mp3', 
+        'audio/rhythm_game/We Are Going to Make it.beatmap.txt'
+        ),
     ]
     # must be persistent to be able to record the scores
     if persistent.rhythm_game_high_scores is None:
