@@ -1,6 +1,6 @@
 # Learn to Code RPG
 
-**Learn to Code RPG** is a visual novel game developed by **freeCodeCamp.org**. In this game, you teaches yourself to code, makes friends in the tech industry, and pursues your dream to become a developer 🎯
+**Learn to Code RPG** is a visual novel game developed by **freeCodeCamp.org**. In this game, you teach yourself to code, make friends in the tech industry, and pursue your dream to become a developer 🎯
 
 The game features:
 - 2 hr+ gameplay 🎮

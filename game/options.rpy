@@ -34,7 +34,7 @@ define config.version = "1.0"
 ## triple-quotes, and leave a blank line between paragraphs.
 
 define intro = _p("""
-{b}Learn to Code RPG{/b} is a game where you teaches yourself to code, makes friends in the tech industry, and pursues your dream to become a developer.
+{b}Learn to Code RPG{/b} is a game where you teach yourself to code, make friends in the tech industry, and pursue your dream to become a developer.
 """)
 
 define about = _p("""
