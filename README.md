@@ -22,6 +22,8 @@ This project is open source and is currently in beta. If you notice any bugs or 
 
 If you are enjoying this game, please rate and review us on [itch.io](https://freecodecamp.itch.io/learn-to-code-rpg).
 
+If you are interested in how we made this game, check out [this article (a Let's Play video included)](https://www.freecodecamp.org/news/learn-to-code-rpg/).
+
 ## Credits
 
 | Creative Lead                 | [Lynn Zheng](https://ruolinzheng08.github.io/) |
