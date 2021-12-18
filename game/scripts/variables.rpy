@@ -18,8 +18,7 @@ init 998:
     default has_triggered_ending_today = False
 
     # set question type during study session
-    # default study_session_questions = general_questions
-    default study_session_questions = css_questions
+    default study_session_questions = general_cs_questions
 
     default has_visited_hacker_space_with_annika = False
 
@@ -354,14 +353,15 @@ init python:
 
     # skills
     all_questions_map = {
-    'CSS': css_questions,
+    'General': general_cs_questions,
     'HTML': html_questions,
-    'Git': git_questions,
-    'IT': it_questions,
+    'CSS': css_questions,
     'JavaScript': javascript_questions,
-    'Linux': linux_questions,
     'Python': python_questions,
-    'SQL': sql_questions
+    'Linux': linux_questions,
+    'Git': git_questions,
+    'SQL': sql_questions,
+    'IT': it_questions,
     }
 
     # assign category to questions
@@ -376,6 +376,7 @@ init python:
 
     # the order is important
     all_skills = [
+    'General',
     'HTML',
     'CSS',
     'JavaScript',

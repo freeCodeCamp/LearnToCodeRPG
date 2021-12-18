@@ -95,11 +95,9 @@ label study_session_choose_topic:
 
         "Let's choose a specific category":
             menu:
-                "Which category to study?"
-
                 "General CS concepts":
                     player "It's never a bad idea to go back to CS (Computer Science) fundamentals!"
-                    $ study_session_questions = general_questions
+                    $ study_session_questions = general_cs_questions
 
                 "HTML":
                     player "HTML (HyperText Markup Language) is useful for web development. Let's go with that!"
