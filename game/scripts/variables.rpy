@@ -122,7 +122,12 @@ init python:
     'Estefania': 'https://twitter.com/EstefaniaCassN',
     'Jessica': 'https://twitter.com/codergirl1991',
     'Oliver': 'https://github.com/ojeytonwilliams/',
-    'Ilenia': 'https://twitter.com/ieahleen'
+    'Ilenia': 'https://twitter.com/ieahleen',
+    'Dionysia': 'https://twitter.com/deniselemonaki',
+    'Nick': 'https://twitter.com/nhcarrigan',
+    'Yoko': 'https://twitter.com/_sidemt',
+    'Daniel': 'https://twitter.com/Daniel__Rosa',
+    'Beau': 'https://twitter.com/beaucarnes'
     }
 
     # Note to proofreader: please proofread the tweet content
