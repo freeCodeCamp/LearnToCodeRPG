@@ -34,7 +34,7 @@ screen bonus_screen():
             label 'Other Links'
             textbutton '{icon=icon-thumbs-up} ' + _("Rate and Review This Game on itch.io") action OpenURL(itch_url)
             textbutton '{icon=icon-github} ' + _("Check out This Game's Source Code on GitHub") action OpenURL(github_url)
-            textbutton '{icon=icon-file-text}' + _("Learn about how This Game is Made in This Article and Watch a Let's Play Video") action OpenURL(article_url)
+            textbutton '{icon=icon-file-text} ' + _("Read Our Dev Log Article (a Let's Play Video Included)") action OpenURL(article_url)
             textbutton '{icon=icon-heart} ' + _("Support Us by Donating to freeCodeCamp.org") action OpenURL('https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/')
 
             null height 20
