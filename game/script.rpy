@@ -1642,6 +1642,7 @@ label ending_check_code:
 
 label ending_splash: # alternative endings also jump to here
     $ quick_menu = False
+    $ calendar_enabled = False
     # Learn to Code RPG logo
     scene gray90 with Pause(1)
     play sound 'audio/sfx/title_fire_swoosh.ogg'
