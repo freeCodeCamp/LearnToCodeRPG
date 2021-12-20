@@ -171,7 +171,7 @@ screen player_stats_todo_screen(show_todo=False, changed_stats=None, change_dire
             vscrollbar_xsize 5
             vscrollbar_unscrollable "hide"
                 
-            if todo_unlocked and show_todo_local:
+            if show_todo_local:
                 use todo_screen()
             else: # show stats by default
                 use player_stats_screen(changed_stats, change_direction)

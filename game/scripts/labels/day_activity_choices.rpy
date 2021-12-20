@@ -368,13 +368,14 @@ label day_activity_interview:
     # so we need to manually increment the calendar day here
     $ calendar.next()
 
-    scene bg bedroom with fadehold
     $ day_activity = 'interview'
 
-    show smartphone at truecenter
+    scene black
     play sound 'audio/sfx/alarm.wav'
+    pause 2.0
+    scene bg bedroom with eyeopen
+    play sound 'audio/sfx/birds.wav'
     pause 3.0
-    hide smartphone
 
     player smile "Today is my big day! I have an interview with {b}[interview_company_name]{/b}."    
 

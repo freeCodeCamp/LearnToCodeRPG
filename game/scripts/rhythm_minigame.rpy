@@ -240,7 +240,7 @@ init python:
             # miss if you hit the note too early, 0.1 second window before note becomes hittable
             self.prehit_miss_threshold = 0.4 # seconds
             self.hit_threshold = 0.3 # seconds
-            self.perfect_threshold = 0.1 # seconds
+            self.perfect_threshold = 0.2 # seconds
             # therefore good is btw/ hit and perfect
 
             ## visual explanation
@@ -571,18 +571,19 @@ label rhythm_game_entry_label:
 
         # XXX: old_percent is not used, but doing `old_score, _` causes pickling error
         $ old_score, old_percent = persistent.rhythm_game_high_scores[selected_song.name]
-        if new_score > old_score:
 
-            $ renpy.notify('New high score!')
+        if new_score > old_score:
             # compute new percent
             $ new_percent = selected_song.compute_percent(new_score)
             $ persistent.rhythm_game_high_scores[selected_song.name] = (new_score, new_percent)
 
-            if not plot_rhythm_highscore in persistent.achievements:
-                $ add_achievement(plot_rhythm_highscore)
+            if old_score != 0: # high score only counts if we have a non-zero old score
+                $ renpy.notify('New high score!')
+                if not plot_rhythm_highscore in persistent.achievements:
+                    $ add_achievement(plot_rhythm_highscore)
 
             # to get to 90 percent, need 3/4 perfect (100 pt each) and 1/4 good (60 pt each)
-            if new_percent == 90:
+            if new_percent > 95:
                 # check if one perfect
                 if not plot_rhythm_perfect in persistent.achievements:
                     $ add_achievement(plot_rhythm_perfect)
@@ -591,7 +592,7 @@ label rhythm_game_entry_label:
                 python:
                     all_perfect = True
                     for score, percent in persistent.rhythm_game_high_scores.values():
-                        if not percent == 100:
+                        if not percent > 95:
                             all_perfect &= False
                         else:
                             all_perfect &= True

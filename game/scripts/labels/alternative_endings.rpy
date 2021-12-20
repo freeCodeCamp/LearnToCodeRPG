@@ -109,7 +109,8 @@ label ending_cat:
     $ has_triggered_ending_cat = True
     $ has_triggered_ending_today = True
 
-    scene bg bedroom night with fade
+    scene black
+    scene bg bedroom night with eyeopen
     play sound 'audio/sfx/keyboard_typing.wav'
     player relieved "Yawwwn...."
     player worry "I heard some strange noises coming from under my bed. Maybe Mint is hungry and woke up?"

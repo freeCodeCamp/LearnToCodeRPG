@@ -3300,7 +3300,7 @@ init python:
     QuizQuestion(
     question="Are semicolons strictly required in JavaScript?",
     true="No",
-    false=["Yes", "", ""],
+    false=["Yes"],
     explanation="JavaScript does not require strict use of semicolons because it inserts them where they are needed through a process called Automatic Semicolon Insertion.",
     learn_more_url="https://www.freecodecamp.org/news/lets-talk-about-semicolons-in-javascript-f1fe08ab4e53/#:~:text=This%%20is%%20all%%20possible%%20because%%20JavaScript%%20does%%20not%%20strictly%%20require%%20semicolons.&text=It's%%20important%%20to%%20know%%20the,not%%20behave%%20like%%20you%%20expect.",
     difficulty=1,

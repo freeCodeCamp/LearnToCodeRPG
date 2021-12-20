@@ -170,6 +170,8 @@ label day_end:
     player "Haha good night Mint."
     hide mint
 
+    scene black with eyeclose
+
     if has_met_layla and not has_triggered_ending_today and \
     not has_triggered_ending_cat and \
     renpy.random.random() < 0.05:
@@ -214,5 +216,7 @@ label day_end_interview:
     hide mint
     player smile "I'm lucky to have mom, dad, Annika, Marco, and Mint supporting me."
     player relieved "Yawwwwwn... Let's call it a day and wake up to a brand new tomorrow..."
+
+    scene black with eyeclose
 
     return

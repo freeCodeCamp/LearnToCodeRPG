@@ -336,7 +336,8 @@ label stage2_stats_change:
     player "There might be people who are cut out to do this, but definitely not me."
     player "I guess I better call it a day and go to bed."
 
-    scene black with dissolve
+    scene black with eyeclose
+
     play sound 'audio/sfx/wake_up_noise.mp3'
     pause 2.0    
     scene bg bedroom night with eyeopen
@@ -349,8 +350,9 @@ label stage3:
     # Stage 3. Annika
     call screen text_over_black_bg_screen('{i}Chapter 2: A learning buddy to make it better!{/i}')
     $ calendar.next()
-    
-    scene bg bedroom with dissolve
+    scene black
+    scene bg bedroom with eyeopen
+
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
     show smartphone at truecenter
     player pout "Here goes my phone at this early hour."
@@ -600,7 +602,8 @@ label stage5_cookie:
 label stage5_annika:
     # the next day
     $ calendar.next()
-    scene bg bedroom with dissolve
+    scene black
+    scene bg bedroom with eyeopen
 
     show smartphone at truecenter
     play sound 'audio/sfx/alarm.wav'
@@ -609,8 +612,8 @@ label stage5_annika:
     
     player pout "Ahhh... my alarm... It's a new day already?"
     player smile "What's on our To-Do list today?"
-    $ renpy.show_screen('player_stats_todo_screen', _layer='transient')
-    player happy "Right. Let's give Annika a call and ask about the CS curriculum."
+    $ renpy.show_screen('player_stats_todo_screen', _layer='transient', show_todo=True)
+    player happy "Right. Let's give Annika a call and ask about the CS cu rriculum."
     show smartphone at truecenter
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
     hide smartphone
@@ -721,12 +724,15 @@ label stage6:
     player "Good night, Mint."
     hide mint
 
+    scene black with eyeclose
+
     call save_reminder from _call_save_reminder_4
 
-    scene bg bedroom with fadehold
-    
     # a new day, player studies in the morning, and hangs out with Annika at night
     $ calendar.next()
+    scene black
+    scene bg bedroom with eyeopen
+
     show smartphone at truecenter
     play sound 'audio/sfx/alarm.wav'
     pause 1.0
@@ -866,6 +872,8 @@ label stage6_after_annika_questions:
     mint "Meow~"
     hide mint
 
+    scene black with eyeclose
+
     call save_reminder from _call_save_reminder_5
 
     # two days of activity of the player's choosing
@@ -879,7 +887,8 @@ label stage6_after_annika_questions:
 
     # hacker space story
     $ calendar.next()
-    scene bg bedroom
+    scene black
+    scene bg bedroom with eyeopen
 
     show smartphone at truecenter
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
@@ -1060,6 +1069,8 @@ label stage7:
     mint "Meow!"
     player "Haha, good night, Mint."
     hide mint
+
+    scene black with eyeclose
 
     call save_reminder from _call_save_reminder_9
 
@@ -1301,6 +1312,8 @@ label stage8:
     hide marco
 
     player relieved "Yawwwwwn... Let's call it a day and get back to my routine tomorrow."
+
+    scene black with eyeclose
 
     call save_reminder from _call_save_reminder_13
 

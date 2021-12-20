@@ -161,7 +161,9 @@ init python:
     def eyewarp(x):
         return x ** 1.33
 
+    # ATL transition
     eyeopen = ImageDissolve("others/eye.png", 2, ramplen=128, reverse=False, time_warp=eyewarp)
+    eyeclose = ImageDissolve("others/eye.png", 2, ramplen=128, reverse=True, time_warp=eyewarp)
 
 init:
     # major characters
@@ -190,7 +192,7 @@ init:
 
     # text displayables
     define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp.org{/color}{/font}{/a}'
-    define developerquiz = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}http://developerquiz.org/{/color}{/font}{/a}'
+    define developerquiz = '{font=fonts/saxmono.ttf}{color=#002ead}http://developerquiz.org/{/color}{/font}'
     define learn_to_code_rpg_on_itch = '{a=https://freecodecamp.itch.io/learn-to-code-rpg}{font=fonts/saxmono.ttf}{color=#002ead}Learn to Code RPG on itch.io{/color}{/font}{/a}'
     define learn_to_code_rpg_on_github = '{a=https://github.com/freeCodeCamp/LearnToCodeRPG}{font=fonts/saxmono.ttf}{color=#002ead}Learn to Code RPG on itch.io{/color}{/font}{/a}'
 
@@ -241,11 +243,13 @@ init:
 
     # coffee
     image coffee:
-        'others/coffee/coffee1.png'
+        'coffee1'
         0.8
-        'others/coffee/coffee2.png'
+        'coffee2'
         0.8
-        'others/coffee/coffee3.png'
+        'coffee3'
+        0.8
+        'coffee4'
         0.8
         repeat
 
