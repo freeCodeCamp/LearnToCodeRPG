@@ -240,7 +240,7 @@ init python:
             # miss if you hit the note too early, 0.1 second window before note becomes hittable
             self.prehit_miss_threshold = 0.4 # seconds
             self.hit_threshold = 0.3 # seconds
-            self.perfect_threshold = 0.2 # seconds
+            self.perfect_threshold = 0.18 # seconds
             # therefore good is btw/ hit and perfect
 
             ## visual explanation
@@ -494,11 +494,11 @@ init python:
         'audio/rhythm_game/Chasing That Feeling.mp3', 
         'audio/rhythm_game/Chasing That Feeling.beatmap.txt'
         ),
-    # Song(
-    #     'Cruising for a Musing', 
-    #     'audio/rhythm_game/Cruising for a Musing.mp3', 
-    #     'audio/rhythm_game/Cruising for a Musing.beatmap.txt'
-    #     ),
+    Song(
+        'Cruising for a Musing', 
+        'audio/rhythm_game/Cruising for a Musing.mp3', 
+        'audio/rhythm_game/Cruising for a Musing.beatmap.txt'
+        ),
     Song(
         'Crystalize That Inner Child', 
         'audio/rhythm_game/Crystalize That Inner Child.mp3', 
@@ -619,6 +619,7 @@ label rhythm_game_entry_label:
 
     # resume the bgm
     # $ continue_looping_music = True
-    $ renpy.music.queue(all_music_tracks.values(), loop=True, fadein=1.0, tight=True)
+    $ random.shuffle(all_music_files)
+    $ renpy.music.queue(all_music_files, loop=True, fadein=1.0, tight=True)
 
     return

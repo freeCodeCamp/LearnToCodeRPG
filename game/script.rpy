@@ -160,7 +160,7 @@ label stage1:
     $ calendar_enabled = True
     # start the music here
     # $ continue_looping_music = True
-    $ renpy.music.queue(all_music_tracks.values(), loop=True, fadein=1.0, tight=True)
+    $ renpy.music.queue(all_music_files, loop=True, fadein=1.0, tight=True)
 
     # Stage 1. player background
     show boy orange

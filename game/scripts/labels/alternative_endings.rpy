@@ -563,7 +563,8 @@ label second_chance:
             $ calendar_enabled = True
             # resume the bgm
             # $ continue_looping_music = True
-            $ renpy.music.queue(all_music_tracks.values(), loop=True, fadein=1.0, tight=True)
+            $ random.shuffle(all_music_files)
+            $ renpy.music.queue(all_music_files, loop=True, fadein=1.0, tight=True)
 
             return # return control to the ending label that it jumped from
     
