@@ -11,11 +11,11 @@ label study_session:
         if num_questions == 4:
             player neutral "First question."
         elif num_questions == 3:
-            player neutral "Second question. Halfway through!"
+            player neutral "Second question."
         elif num_questions == 2:
-            player neutral "Third question. Almost there!"
+            player neutral "Third question. Halfway through!"
         elif num_questions == 1:
-            player neutral "Last question. Hang in there!"
+            player neutral "Last question."
 
         $ num_questions -= 1
 

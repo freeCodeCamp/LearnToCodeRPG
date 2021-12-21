@@ -613,7 +613,7 @@ label stage5_annika:
     player pout "Ahhh... my alarm... It's a new day already?"
     player smile "What's on our To-Do list today?"
     $ renpy.show_screen('player_stats_todo_screen', _layer='transient', show_todo=True)
-    player happy "Right. Let's give Annika a call and ask about the CS cu rriculum."
+    player happy "Right. Let's give Annika a call and ask about the CS curriculum."
     show smartphone at truecenter
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
     hide smartphone

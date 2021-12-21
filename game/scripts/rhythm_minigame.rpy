@@ -540,6 +540,10 @@ init python:
         persistent.rhythm_game_high_scores = {
         song.name: (0, 0) for song in rhythm_game_songs
     }
+    else: # in case we need to add songs
+        for song in rhythm_game_songs:
+            if not song in persistent.rhythm_game_high_scores:
+                persistent.rhythm_game_high_scores[song.name] = (0, 0)
 
 ## end init python
 
