@@ -1569,7 +1569,7 @@ label stage14:
             layla "But that also means that, for the most part, I had to pick up the important things on the job."
             layla "Not a bad experience given that I had a supportive team behind me."
             player @ happy "Awww that's nice!"
-            layla @ laugh "Yep. Now that you're the newbie here, the tean and I will be here for you."
+            layla @ laugh "Yep. Now that you're the newbie here, the team and I will be here for you."
             jump layla_story_choices
         "What is our team like?":
             player "So what is our team like?"

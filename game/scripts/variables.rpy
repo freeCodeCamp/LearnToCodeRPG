@@ -289,7 +289,7 @@ init python:
     tweet_fcc_launch = 'I found an Easter Egg quiz question about the launch year of freeCodeCamp in #LearnToCodeRPG. Play the game here: '
     tweet_fcc_mission = 'I found an Easter Egg quiz question about the mission of freeCodeCamp in #LearnToCodeRPG. Play the game here: '
     tweet_code_radio = "I found an Easter Egg quiz question about freeCodeCamp's Code Radio in #LearnToCodeRPG. Play the game here: "
-    tweet_devdocs = 'I found an Easter Egg quiz question about Devdocs.io in #LearnToCodeRPG. Play the game here: '
+    tweet_devdocs = 'I found an Easter Egg quiz question about @DevDocs in #LearnToCodeRPG. Play the game here: '
     tweet_fcc_opensource = 'I found an Easter Egg quiz question about freeCodeCamp and Open Source in #LearnToCodeRPG. Play the game here: '
     tweet_fcc_language = 'I found an Easter Egg quiz question asking what coding language the freeCodeCamp site is built with in #LearnToCodeRPG. Play the game here: '
     tweet_fcc_inspiration = 'I found an Easter Egg quiz question asking what project inspired freeCodeCamp in #LearnToCodeRPG. Play the game here: '

@@ -9,6 +9,7 @@ label barista_fullstack:
     player @ surprised "{b}Full-stack{/b}... What is that? I better take notes so I can learn more about it."
     $ todo_list.add_todo(todo_ask + 'Full-Stack')
     $ topics_to_ask.add('Full-Stack')
+    player @ smile "Added it to my To-Do list!"
     return    
 
 label barista_devops:
@@ -21,6 +22,7 @@ label barista_devops:
     player @ surprised "{b}DevOps{/b}... What is that? I better take notes so I can learn more about it."
     $ todo_list.add_todo(todo_ask + 'DevOps')
     $ topics_to_ask.add('DevOps')
+    player @ smile "Added it to my To-Do list!"
     return
 
 label barista_machinelearning:
@@ -34,6 +36,7 @@ label barista_machinelearning:
     player @ surprised "{b}Machine Learning{/b}... What is that? I better take notes so I can learn more about it."
     $ todo_list.add_todo(todo_ask + 'Machine Learning')
     $ topics_to_ask.add('Machine Learning')
+    player @ smile "Added it to my To-Do list!"
     return
 
 label barista_conference:
@@ -49,6 +52,7 @@ label barista_conference:
     player @ surprised "A tech {b}conference{/b}... That sounds like a place for elite developers. I better take notes so I can learn more about it."
     $ todo_list.add_todo(todo_ask + 'Conference')
     $ topics_to_ask.add('Conference')
+    player @ smile "Added it to my To-Do list!"
     return
 
 label barista_agile:
@@ -60,6 +64,7 @@ label barista_agile:
     player @ surprised "{b}Agile{/b}... What is that? I better take notes so I can learn more about it."
     $ todo_list.add_todo(todo_ask + 'Agile')
     $ topics_to_ask.add('Agile')
+    player @ smile "Added it to my To-Do list!"
     return
 
 label barista_api:
@@ -75,6 +80,7 @@ label barista_api:
     player @ surprised "An {b}API{/b}... What is that? I better take notes so I can learn more about it."
     $ todo_list.add_todo(todo_ask + 'API')
     $ topics_to_ask.add('API')
+    player @ smile "Added it to my To-Do list!"
     return
 
 label barista_userexperience:
@@ -88,6 +94,7 @@ label barista_userexperience:
     player @ surprised "{b}User Experience{/b}... What is that? I better take notes so I can learn more about it."
     $ todo_list.add_todo(todo_ask + 'User Experience')
     $ topics_to_ask.add('User Experience')
+    player @ smile "Added it to my To-Do list!"
     return
 
 label barista_versioncontrol:
@@ -104,4 +111,5 @@ label barista_versioncontrol:
     player @ surprised "{b}Version Control{/b}... What is that? I better take notes so I can learn more about it."
     $ todo_list.add_todo(todo_ask + 'Version Control')
     $ topics_to_ask.add('Version Control')
+    player @ smile "Added it to my To-Do list!"
     return
