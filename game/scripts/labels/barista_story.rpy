@@ -93,7 +93,7 @@ label barista_userexperience:
 label barista_versioncontrol:
     show girl red flipped at left
     show boy blue at right
-    girl "Oh. {w}My. {w}God. {w}Did you just blow up our codebase?"
+    girl "Oh. My. God. Did you just blow up our codebase?"
     boy "Oopsy."
     girl "'Oopsy' is all you can say? Our project deadline is tomorrow, you know!"
     boy "Relax, will you? We have version control, don't we?"

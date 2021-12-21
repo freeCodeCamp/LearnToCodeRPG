@@ -34,7 +34,7 @@ label npc_choose_question:
 label ask_hackathon:
     player "What is a hackathon?"
     npc "It's an event where people come together to design and implement cool tech projects."
-    npc "Hackathons aren't usually too long. Most last for one or two days. {w}Now imagine people hacking away at their laptops overnight! You get the idea."
+    npc "Hackathons aren't usually too long. Most last for one or two days. Now imagine people hacking away at their laptops overnight! You get the idea."
     npc "People usually form small teams to collaborate. It's especially cool when the team consists of people with different expertise, not just software engineers, but graphic designers and product managers as well."
     npc "It's a great way to brainstorm, prototype, and test out ideas that might one day evolve into full-fledged products."
     player "That sounds cool!"
