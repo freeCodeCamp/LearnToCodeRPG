@@ -33,3 +33,27 @@ If you are interested in how we made this game, check out [this article (a Let's
 | Character Art                 | [Layerto (Noa Trinh)](https://layerto.carrd.co) |
 | Quiz Questions & Proofreading | [Abbey Rennemeyer](https://twitter.com/abbeyrenn) <br /> [Oliver Eyton-Williams](https://github.com/ojeytonwilliams/) <br /> [Estefania Cassingena Navone](https://twitter.com/EstefaniaCassN) <br /> [Jessica Wilkins](https://twitter.com/codergirl1991) <br /> [Dionysia Lemonaki](https://twitter.com/deniselemonaki) <br /> |
 | Playtesting                   | [Ilenia Magoni](https://twitter.com/ieahleen) <br /> [Estefania Cassingena Navone](https://twitter.com/EstefaniaCassN) <br /> [Nicholas Carrigan](https://twitter.com/nhcarrigan) <br /> [Yoko Matsuda](https://twitter.com/_sidemt) <br /> [Daniel Rosa](https://twitter.com/Daniel__Rosa) <br /> [Beau Carnes](https://twitter.com/beaucarnes) <br /> |
+
+### How to contribute
+
+This open source project is a work in progress and ever evolving.
+
+We welcome all contributions, suggestions and ideas for improvement from the community.
+
+You can contribute by adding  new quiz questions or making changes to the code.
+
+Make sure to first read through the [Code of Conduct](https://www.freecodecamp.org/news/code-of-conduct/).
+
+Then, see the ways you can contribute [here](https://contribute.freecodecamp.org/#/).
+
+### How to report bugs
+
+Found a bug while playing?
+
+Read through [this helpful article](https://forum.freecodecamp.org/t/how-to-report-a-bug-to-the-freecodecamp-open-source-community/19543) on how to report bugs.
+
+Then, report them by opening a **GitHub Issue**.
+
+### License
+
+Copyright © 2021 freeCodeCamp.org, All rights reserved.
