@@ -12,7 +12,7 @@ The game features:
 - Minigames! 👾
 
 
-<div><img src="https://github.com/freeCodeCamp/LearnToCodeRPG/blob/df44a3b66015021f939ef210af039d0ade1ca33a/badge-bw.png" alt="Available on itch.io" width="400"/></div>
+<div><a href="https://freecodecamp.itch.io/learn-to-code-rpg"><img src="https://github.com/freeCodeCamp/LearnToCodeRPG/blob/df44a3b66015021f939ef210af039d0ade1ca33a/badge-bw.png" alt="Available on itch.io" width="400"/></a></div>
 
 <div><img src="https://github.com/freeCodeCamp/LearnToCodeRPG/blob/b2313a272536f5fd8ef653162cc97dd46e185745/game/gui/main_menu.png" alt="Learn to Code RPG Splash Image" width="600"/></div>
 
