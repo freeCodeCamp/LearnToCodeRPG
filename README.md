@@ -40,7 +40,7 @@ This open source project is a work in progress and ever evolving. We will publis
 
 We welcome all contributions, suggestions and ideas for improvement from the community.
 
-You can contribute by adding  new quiz questions or making changes to the code.
+You can contribute by adding new quiz questions to [developerquiz.org](https://github.com/freeCodeCamp/Developer_Quiz_Site), catching typos, and volunteering to localize this game into other languages.
 
 Make sure to first read through the [Code of Conduct](https://www.freecodecamp.org/news/code-of-conduct/).
 
