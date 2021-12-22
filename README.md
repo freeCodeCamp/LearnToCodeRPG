@@ -3,10 +3,10 @@
 **Learn to Code RPG** is a visual novel game developed by **freeCodeCamp.org**. In this game, you will teach yourself to code, make friends in the tech industry, and pursue your dream to become a developer 🎯
 
 The game features:
-- 2 hr+ gameplay 🎮
+- Hours of gameplay 🎮
 - Original art & music 🎨
-- 600+ CS quiz questions 📚
-- 50+ Easter Eggs you can tweet about 🚀
+- 600+ Computer Science quiz questions 📚
+- 50+ Easter Eggs you can discover 🚀
 - 6 different endings 👀
 - Friendly characters and an adorable cat 🐱
 - Minigames! 👾
@@ -36,7 +36,7 @@ If you are interested in how we made this game, check out [this article (a Let's
 
 ### How to contribute
 
-This open source project is a work in progress and ever evolving.
+This open source project is a work in progress and ever evolving. We will publish major expansions to this game in the coming months, including new music and characters.
 
 We welcome all contributions, suggestions and ideas for improvement from the community.
 
