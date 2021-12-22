@@ -1,0 +1,34 @@
+name: Bug Report
+description: Report a bug with the game.
+body:
+  - type: markdown
+    attributes:
+      value: "# Bug report"
+  - type: textarea
+    id: bugdescription
+    attributes:
+      label: What bug did you encounter?
+      description: Please provide a clear description of the issue.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Describe what you did to encounter this bug.
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Attach any relevant screenshots here.
+    validations:
+      required: false
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional Information
+      description: Is there anything else we should know?
+    validations:
+      required: false
