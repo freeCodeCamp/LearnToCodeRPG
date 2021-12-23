@@ -1504,7 +1504,7 @@ init python:
     QuizQuestion(
     question="What is the HTML character entity for the ampersand sign?",
     true="&amp;",
-    false=["&amper;", "&and;", "&ampsand;"],
+    false=["&amper;", "&and;", "&ampsand;"],
     explanation="The &amp; character entity is used to display the ampersand sign in HTML.",
     learn_more_url="https://www.freecodecamp.org/news/ascii-table-hex-to-ascii-value-character-code-chart-2/",
     difficulty=1,
