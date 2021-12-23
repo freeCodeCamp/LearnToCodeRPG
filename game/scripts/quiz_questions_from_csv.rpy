@@ -4107,9 +4107,9 @@ init python:
     ),
     QuizQuestion(
     question="What is the new line character in Python?",
-    true="\n",
-    false=["\s", "\new", "\m"],
-    explanation="\n is the newline character in Python.",
+    true="\\n",
+    false=["\s", "\\new", "\m"],
+    explanation="\\n is the newline character in Python.",
     learn_more_url="https://www.freecodecamp.org/news/python-new-line-and-how-to-python-print-without-a-newline/",
     difficulty=1,
     ),
@@ -4404,7 +4404,7 @@ init python:
     QuizQuestion(
     question="Which one of the following options prints \"Hello, World!\" without starting a new line at the end?",
     true="print(\"Hello, World!\", end=\"\")",
-    false=["print(\"Hello, World!\")", "print(\"Hello, World!\", end=\"\n\")", "print(\"Hello, World!\", end=\"\r\")"],
+    false=["print(\"Hello, World!\")", "print(\"Hello, World!\", end=\"\\n\")", "print(\"Hello, World!\", end=\"\\r\")"],
     explanation="Adding end=\"\" as the second argument will print the string without adding a new line character at the end. An empty string will be used instead.",
     learn_more_url="https://www.freecodecamp.org/news/python-new-line-and-how-to-python-print-without-a-newline/",
     difficulty=1,
