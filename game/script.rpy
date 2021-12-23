@@ -1735,7 +1735,7 @@ label ending_splash: # alternative endings also jump to here
             menu:
                 "Would you like to check out our GitHub repository?"
                 "Sure thing! Take me to the page.":
-                    "Thanks! Here's the link to []."
+                    "Thanks! Here's the link to [learn_to_code_rpg_on_github]."
                 "I've done that already!" if not persistent.has_visited_github:
                     "Awesome. Enjoy digging through the source code!"
                     $ persistent.has_visited_github = True
