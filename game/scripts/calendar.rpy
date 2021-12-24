@@ -25,7 +25,7 @@ init python:
         def next_week(self):
             self.day += 7
             if self.day > self.days_count[self.month]:
-                self.day = self.day - self.days_count[self.month] - 1
+                self.day = self.day - self.days_count[self.month]
                 self.month += 1 # new month
                 if self.month > 12: 
                     self.month = 1 # back to January
