@@ -27,6 +27,8 @@ init python:
             if self.day > self.days_count[self.month]:
                 self.day = self.day - self.days_count[self.month] - 1
                 self.month += 1 # new month
+                if self.day <= 0:
+                    self.day = 1
                 if self.month > 12: 
                     self.month = 1 # back to January
                     self.year += 1 # increment year
