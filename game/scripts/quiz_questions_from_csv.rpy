@@ -4810,7 +4810,7 @@ init python:
     difficulty=1,
     ),
     QuizQuestion(
-    question="The set of instructions that specifies a computation in known as...",
+    question="The set of instructions that specifies a computation is known as...",
     true="Program",
     false=["Syntax", "Recursion", "API"],
     explanation="The set of instructions that specifies a computation is known as a program.",
