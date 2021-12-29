@@ -1854,7 +1854,7 @@ init python:
     difficulty=1,
     ),
     QuizQuestion(
-    question="What HTML tag is used to taget specific inline content such as text?",
+    question="What HTML tag is used to target specific inline content such as text?",
     true="<span>",
     false=["<div>", "<s>", "<i>"],
     explanation="The <span> tag is used to target specific inline content such as text. This is helpful when you want to style only certains parts of the text.",
