@@ -46,7 +46,7 @@ label day_activity_choices:
             $ player_stats.change_stats_random('Sanity', -20, -10)
 
             if num_correct == 4:
-                player @ laugh "I got all questions my right! Way to go!"
+                player @ laugh "I got all questions right! Way to go!"
 
                 if not plot_quiz_all in persistent.achievements:
                     $ add_achievement(plot_quiz_all)
