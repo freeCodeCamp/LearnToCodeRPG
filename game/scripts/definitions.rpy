@@ -170,33 +170,33 @@ init python:
 init:
     # major characters
     define player = Character("[persistent.player_name]", image='player')
-    define annika = Character("Annika", image='annika')
-    define marco = Character("Marco", image='marco')
-    define layla = Character("Layla", image='layla')
+    define annika = Character(_("Annika"), image='annika')
+    define marco = Character(_("Marco"), image='marco')
+    define layla = Character(_("Layla"), image='layla')
 
     # minor characters
-    define kid = Character("High School Kid")
-    define boy = Character("High School Boy")
-    define girl = Character("High School Girl")
-    define college_boy = Character("College Boy")
-    define college_girl = Character("College Girl")
-    define male = Character("Young Male")
-    define female = Character("Young Female")
-    define trivia_guy = Character("Trivia Guy") # trivia guy at hacker space
-    define mom = Character("Mom")
-    define dad = Character("Dad")
-    define mint = Character("Mint", callback=meow_sound_callback) # player's cat
-    define interviewer = Character("Interviewer")
-    define host = Character("Host")
-    define journalist = Character("Journalist")
-    define cafe_manager = Character("Cafe Manager")
-    define office_worker = Character("Office Worker")
+    define kid = Character(_("High School Kid"))
+    define boy = Character(_("High School Boy"))
+    define girl = Character(_("High School Girl"))
+    define college_boy = Character(_("College Boy"))
+    define college_girl = Character(_("College Girl"))
+    define male = Character(_("Young Male"))
+    define female = Character(_("Young Female"))
+    define trivia_guy = Character(_("Trivia Guy")) # trivia guy at hacker space
+    define mom = Character(_("Mom"))
+    define dad = Character(_("Dad"))
+    define mint = Character(_("Mint"), callback=meow_sound_callback) # player's cat
+    define interviewer = Character(_("Interviewer"))
+    define host = Character(_("Host"))
+    define journalist = Character(_("Journalist"))
+    define cafe_manager = Character(_("Cafe Manager"))
+    define office_worker = Character(_("Office Worker"))
 
     # text displayables
     define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp.org{/color}{/font}{/a}'
     define developerquiz = '{font=fonts/saxmono.ttf}{color=#002ead}https://developerquiz.org/{/color}{/font}'
-    define learn_to_code_rpg_on_itch = '{a=https://freecodecamp.itch.io/learn-to-code-rpg}{font=fonts/saxmono.ttf}{color=#002ead}Learn to Code RPG on itch.io{/color}{/font}{/a}'
-    define learn_to_code_rpg_on_github = '{a=https://github.com/freeCodeCamp/LearnToCodeRPG}{font=fonts/saxmono.ttf}{color=#002ead}Learn to Code RPG on GitHub{/color}{/font}{/a}'
+    define learn_to_code_rpg_on_itch = '{a=https://freecodecamp.itch.io/learn-to-code-rpg}{font=fonts/saxmono.ttf}{color=#002ead}' + _("Learn to Code RPG on itch.io") + '{/color}{/font}{/a}'
+    define learn_to_code_rpg_on_github = '{a=https://github.com/freeCodeCamp/LearnToCodeRPG}{font=fonts/saxmono.ttf}{color=#002ead}' + _("Learn to Code RPG on GitHub") + '{/color}{/font}{/a}'
 
     # transitions
     define fadehold = Fade(0.5, 1.0, 0.5)
