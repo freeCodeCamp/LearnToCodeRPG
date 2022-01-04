@@ -329,7 +329,7 @@ label day_activity_job_search:
         $ company_required_skills = random.sample(all_skills, 3)
 
         $ easter_egg_skill = None
-        if renpy.random.random() < 0.02: # 2% chance of getting Easter Egg
+        if renpy.random.random() < 0.05: # 5% chance of getting Easter Egg
             $ easter_egg_skill = renpy.random.choice(easter_egg_skills)
 
         call screen job_posting_screen(company_name, company_required_skills, easter_egg_skill=easter_egg_skill)

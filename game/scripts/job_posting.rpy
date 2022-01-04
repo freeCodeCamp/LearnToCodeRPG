@@ -63,8 +63,8 @@ screen job_posting_screen(company_name, skill_names, easter_egg_skill=None):
                 if easter_egg_skill:
                     $ achievement_name = easter_egg_skill_achievement_map[easter_egg_skill]
                     textbutton "•  " + easter_egg_skill:
+                        activate_sound 'audio/sfx/confirm_and_share.wav'
                         hovered [
-                        Play('audio/sfx/confirm_and_share.wav'),
                         Notify('Wait, is this a technical skill?'),
                         Function(persistent.achievements.add, achievement_name)
                         ]
