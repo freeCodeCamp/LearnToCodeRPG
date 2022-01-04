@@ -7,6 +7,7 @@ label study_session:
     $ timeout_label = None # no time limit
     $ num_questions = 4 # ask 4 questions each time
     $ num_correct = 0
+    $ questions_asked = set()  # keep track of questions asked
     while num_questions > 0:
         if num_questions == 4:
             player neutral "First question."
@@ -26,7 +27,11 @@ label study_session:
             $ quiz_question = renpy.random.choice(easter_egg_quiz_questions)
             $ renpy.notify("A wild Easter Egg question has appeared!")
         else: # regular study session questions
-            $ quiz_question = renpy.random.choice(study_session_questions)
+            $ quiz_question = None
+            # only show a question not seen in the same session
+            while not quiz_question or quiz_question.question in questions_asked:
+                $ quiz_question = renpy.random.choice(study_session_questions)
+            $ questions_asked.add(quiz_question.question)
 
         # # show code if any
         # if quiz_question.code_label is not None:
