@@ -1,7 +1,7 @@
 # https://www.renpy.org/doc/html/screen_special.html
 # based on the confirm screen
 
-define alternative_endind_message = "Congratulations! You just discovered an alternative ending."
+define alternative_endind_message = _("Congratulations! You just discovered an alternative ending.")
 
 screen confirm_and_share_screen(title, message=None, ok_text=None, tweet_content_url=tweet_default, show_achievements_count=True):
 
@@ -30,14 +30,14 @@ screen confirm_and_share_screen(title, message=None, ok_text=None, tweet_content
                 font gui.interface_text_font
 
             if message is None:
-                $ message = "Now that's an achievement unlocked!"
+                $ message = _("Now that's an achievement unlocked!")
             text _(message):
                 xalign 0.5
                 text_align 0.5
 
             if show_achievements_count:
                 $ num_achievements = len(persistent.achievements)
-                text _("Number of Achievements Unlocked: [num_achievements] / [total_num_achievements]"):
+                text _("Number of Achievements Unlocked:") + " [num_achievements] / [total_num_achievements]":
                     xalign 0.5
 
             textbutton "{icon=icon-twitter} " + _("Tweet this"):
@@ -45,7 +45,7 @@ screen confirm_and_share_screen(title, message=None, ok_text=None, tweet_content
                 action OpenURL(tweet_content_url)
 
             if ok_text is None:
-                $ ok_text = "Gotta Unlock 'Em All!"
+                $ ok_text = _("Gotta Unlock 'Em All!")
             textbutton ok_text:
                 xalign 0.5
                 action [

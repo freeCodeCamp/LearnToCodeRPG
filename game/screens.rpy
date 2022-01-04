@@ -262,11 +262,11 @@ screen quick_menu():
             textbutton '{icon=icon-save} ' + _("Save") action ShowMenu('save')
             # textbutton _("Q.Save") action QuickSave()
             # textbutton _("Q.Load") action QuickLoad()
-            textbutton '{icon=icon-settings} ' + _("Settings ") action ShowMenu('preferences')
+            textbutton '{icon=icon-settings} ' + _("Settings") action ShowMenu('preferences')
 
             # if stats is showing, hide it; else show it
             if stats_unlocked:
-                textbutton _("{icon=icon-smartphone} Stats") action [
+                textbutton '{icon=icon-smartphone} ' + _("Stats") action [
                 SensitiveIf(not renpy.get_screen('player_stats_todo_screen', layer='transient')),
                 If(
                     renpy.get_screen('player_stats_todo_screen'),
@@ -815,17 +815,24 @@ screen preferences():
                     textbutton _("After Choices") action Preference("after choices", "toggle")
                     textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
 
+                ## Additional vboxes of type "radio_pref" or "check_pref" can be
+                ## added here, to add additional creator-defined preferences.
+
                 vbox:
                     style_prefix "check"
-                    label _("Others")
+                    label _("Features")
                     textbutton _("Moving Text") action [
                     ToggleField(persistent, 'enable_moving_text'),
                     Function(configure_text_tags)
                     ]
                     textbutton _("Save Reminder") action ToggleField(persistent, 'enable_save_reminder')
 
-                ## Additional vboxes of type "radio_pref" or "check_pref" can be
-                ## added here, to add additional creator-defined preferences.
+                vbox:
+                    style_prefix "radio"
+                    label _("Language")
+                    textbutton _("English") action Language(None)
+                    textbutton _("{font=fonts/simplified_chinese/NotoSansSC-Regular.otf}中文{/font}") action Language("simplified_chinese")
+
 
             null height (4 * gui.pref_spacing)
 

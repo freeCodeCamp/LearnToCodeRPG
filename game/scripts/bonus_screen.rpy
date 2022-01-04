@@ -8,12 +8,12 @@ screen bonus_screen():
         vbox:
             spacing 15
 
-            label 'Minigames'
+            label _('Minigames')
             textbutton '{icon=icon-music} ' + _("Rhythm Game") action Start('rhythm_game_entry_label')
             # TODO: more mini games, quiz speedrun survival mode etc.
 
             null height 20
-            label 'Bonus Content'
+            label _('Bonus Content')
             textbutton '{icon=icon-award} ' + _("Achievements") action Show('achievements_screen')
             textbutton '{icon=icon-headphones} ' + _("Music Room"):
                 action [
@@ -31,14 +31,14 @@ screen bonus_screen():
             # textbutton '{icon=icon-youtube} ' + _("Learn to Code RPG: The Making of") action NullAction()
 
             null height 20
-            label 'Other Links'
+            label _('Other Links')
             textbutton '{icon=icon-thumbs-up} ' + _("Rate and Review This Game on itch.io") action OpenURL(itch_url)
             textbutton '{icon=icon-github} ' + _("Check out This Game's Source Code on GitHub") action OpenURL(github_url)
             textbutton '{icon=icon-file-text} ' + _("Read Our Dev Log Article (a Let's Play Video Included)") action OpenURL(article_url)
             textbutton '{icon=icon-heart} ' + _("Support Us by Donating to freeCodeCamp.org") action OpenURL('https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/')
 
             null height 20
-            label 'Awesome freeCodeCamp.org Resources'
+            label _('Awesome freeCodeCamp.org Resources')
             textbutton '{icon=icon-youtube} ' + _("freeCodeCamp YouTube Channel") action OpenURL("https://www.youtube.com/channel/UC8butISFwT-Wl7EV0hUK0BQ")
             textbutton '{icon=icon-map} ' + _("freeCodeCamp Curriculum") action OpenURL("https://www.freecodecamp.org/learn/")
             # textbutton '{icon=icon-compass} ' + _("freeCodeCamp Forum") action OpenURL("https://forum.freecodecamp.org/")
@@ -55,9 +55,9 @@ screen achievements_screen():
 
             vbox:
                 $ num_achievements = len(persistent.achievements)
-                text _("{icon=icon-award} Number of Achievements Unlocked: [num_achievements] / [total_num_achievements]"):
+                text "{icon=icon-award} " + _('Number of Achievements Unlocked:') + ' [num_achievements] / [total_num_achievements]':
                     font gui.text_font
-                textbutton "{icon=icon-twitter} Tweet it when you've unlocked all of the achievements!":
+                textbutton "{icon=icon-twitter} " + _("Tweet it when you've unlocked all of the achievements!"):
                     action [
                     SensitiveIf(num_achievements == total_num_achievements), 
                     OpenURL(tweet_all_achievements_unlocked)
@@ -79,7 +79,7 @@ screen achievements_screen():
                                 $ tweet = achievement_to_tweet_map[achievement]
                                 text '{icon=icon-unlock} [achievement]':
                                     font gui.text_font
-                                textbutton '{icon=icon-twitter} Tweet this' action OpenURL(tweet)
+                                textbutton '{icon=icon-twitter} ' + _("Tweet this") action OpenURL(tweet)
                             else:
                                 text '{icon=icon-lock} ? ? ?':
                                     font gui.text_font

@@ -420,3 +420,9 @@ init:
         attribute glasses default
 
         attribute_function Picker(expressions)
+
+## translation styles
+translate simplified_chinese python:
+    gui.text_font = "fonts/simplified_chinese/NotoSansSC-Regular.otf"
+    gui.name_text_font = "fonts/simplified_chinese/NotoSansSC-Regular.otf"
+    gui.interface_text_font = "fonts/simplified_chinese/NotoSansSC-Regular.otf"

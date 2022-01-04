@@ -13,6 +13,15 @@ label splashscreen:
     scene gray90 with dissolve
     with Pause(1)
 
+    if not persistent.language_selected:
+        scene black
+        menu:
+            "English":
+                $renpy.change_language(None)
+            "{font=fonts/simplified_chinese/NotoSansSC-Regular.otf}中文{/font}":
+                $renpy.change_language("simplified_chinese")
+        $ persistent.language_selected = True
+
     $ accessibility_tips = _p("""
         Accessibility Tips: To enable auto-voicing of the text, please first configure the speech synthesis settings (speaker gender, accent, etc.) on your computer according to {a=https://www.renpy.org/doc/html/self_voicing.html#speech-synthesis}these instructions{/a}.
         Back to the game, you may press the {b}{u}v{/u}{/b} key to switch on auto-voicing.

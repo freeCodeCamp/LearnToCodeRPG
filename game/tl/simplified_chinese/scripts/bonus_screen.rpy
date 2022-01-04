@@ -74,3 +74,31 @@ translate simplified_chinese strings:
     old "Quiz Questions"
     new ""
 
+# TODO: Translation updated at 2022-01-03 20:49
+
+translate simplified_chinese strings:
+
+    # game/scripts/bonus_screen.rpy:11
+    old "Minigames"
+    new ""
+
+    # game/scripts/bonus_screen.rpy:16
+    old "Bonus Content"
+    new ""
+
+    # game/scripts/bonus_screen.rpy:34
+    old "Other Links"
+    new ""
+
+    # game/scripts/bonus_screen.rpy:41
+    old "Awesome freeCodeCamp.org Resources"
+    new ""
+
+    # game/scripts/bonus_screen.rpy:58
+    old "Number of Achievements Unlocked:"
+    new ""
+
+    # game/scripts/bonus_screen.rpy:60
+    old "Tweet it when you've unlocked all of the achievements!"
+    new ""
+

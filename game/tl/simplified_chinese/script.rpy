@@ -910,7 +910,7 @@ translate simplified_chinese stage3_f9405dd3:
 translate simplified_chinese stage3_34606360:
 
     # annika "Anyways, what's your plan for the day?"
-    annika ""
+    annika "你今天有什么计划？"
 
 # game/script.rpy:410
 translate simplified_chinese stage3_4f550dd2:
