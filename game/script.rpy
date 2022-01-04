@@ -270,7 +270,7 @@ label stage2:
 
     player neutral "Alright, let's do this."
     player "A bit of research won't hurt. Where shall we start? Maybe I should find some free online resources like everyone else is doing?"
-    player surprised "Oh here's a video about the top 10 tech skills worth learning in 2022. Let's check that out!"
+    player surprised "Oh here's a video about the top 10 tech skills worth learning this year. Let's check that out!"
 
     # now the quick menu screen show the button to access stats
     $ stats_unlocked = True
