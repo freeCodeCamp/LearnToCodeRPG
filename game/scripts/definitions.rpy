@@ -57,7 +57,7 @@ init python:
             #     renpy.notify('Now playing: ' + music)
 
     # renpy.music.set_queue_empty_callback(loop_music)
-  
+
     # to stop, set the following
     # continue_looping_music = False
     # stop music
@@ -75,7 +75,7 @@ init python:
     renpy.image('main_menu sepia', im.Sepia('gui/main_menu.png'))
     renpy.image('main_menu overlay', Composite(
         (1920, 1080), # size of main_menu.png
-        (0, 0), 'main_menu', 
+        (0, 0), 'main_menu',
         (0, 0), 'white80')
     )
 
@@ -92,19 +92,19 @@ init python:
     tint_orange = im.matrix.tint(0.9, 0.6, 0.4)
     tint_blue = im.matrix.tint(0.7, 0.8, 1)
     tint_purple = im.matrix.tint(0.8, 0.6, 1)
-    
+
     # programmatically apply effects
     for file in renpy.list_files():
-        # bg images inside game/images/bg 
+        # bg images inside game/images/bg
         if file.startswith('images/bg'):
             image_path = re.sub(r'images/', '', file) # remove the `images/` prefix
-            image_name = re.match(r'images/bg/(.+).png', file).group(1) # ex. images/bg/(bg living_room).png
+            image_name = re.match(r'images/bg/(.+).png', file, re.I).group(1) # ex. images/bg/(bg living_room).png
             renpy.image(image_name + ' night', im.MatrixColor(image_path, tint_dark))
             renpy.image(image_name + ' dusk', im.MatrixColor(image_path, tint_sunset))
         # npc sprites
         if file.startswith('images/chara/npc'):
             image_path = re.sub(r'images/', '', file) # remove the `images/` prefix
-            image_name = re.match(r'images/chara/npc/(.+).png', file).group(1) # ex. images/bg/(bg living_room).png
+            image_name = re.match(r'images/chara/npc/(.+).png', file, re.I).group(1) # ex. images/bg/(bg living_room).png
             renpy.image(image_name + ' red', im.MatrixColor(image_path, tint_red))
             renpy.image(image_name + ' orange', im.MatrixColor(image_path, tint_orange))
             renpy.image(image_name + ' blue', im.MatrixColor(image_path, tint_blue))
@@ -216,7 +216,7 @@ init:
 
     image mint_with_pixel_sunglasses = Composite(
         (782, 782), # size of mint.png
-        (0, 0), 'mint', 
+        (0, 0), 'mint',
         (0, 0), 'others/mint/mint_pixelsunglasses.png')
 
     # cookie
@@ -289,7 +289,7 @@ init:
     image red_flash:
         '#f00'
         alpha 0.0
-        linear 1.0 alpha 0.8  
+        linear 1.0 alpha 0.8
         linear 1.0 alpha 0.1
         repeat
 
@@ -298,7 +298,7 @@ init:
     # image side player dark = im.MatrixColor('chara/player/player.png', tint_dark)
     # image side player sunset = im.MatrixColor('chara/player/player.png', tint_sunset)
     # image side player dim = im.MatrixColor('chara/player/player.png', tint_dim)
-    
+
     ## expressions
     # player
     define player_expressions = [
