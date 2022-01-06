@@ -4,6 +4,7 @@ label start:
     default calendar = Calendar(day=1, month=8, year=2021) # story starts on Aug 1st, 2021
     default start_date = date(2021, 8, 1) # this will be used to calculate how many days it took for the player to learn to code
 
+    $ persistent.has_started_game = True
     $ calendar_enabled = False
     
     stop music fadeout 2.0
@@ -81,7 +82,7 @@ label start_after_interview:
     "The fields marked with {color=[red]}*{/color} are required."
 
     # TODO: more customization like gender, pronouns, life story
-    $ persistent.player_name = ''
+    $ player_name = ''
     player pout "(Phew... Looks like I survived the technical questions. Now let's fill in the general information.)"
 
     $ player_name = renpy.input("What is your name? {color=[red]}*{/color} (Type your name and hit Enter. This name will be used throughout the game and you cannot change it unless you start a new game.)", default="Lydia")
@@ -93,7 +94,6 @@ label start_after_interview:
     # handle empty string case
     if not player_name:
         $ player_name = "Lydia"
-    $ persistent.player_name = player_name
 
     # TODO: birthday Easter Egg
     # "What is your birthday?"
@@ -174,7 +174,7 @@ label stage1:
     player "(I did apply to some consulting firms and banks. And I've heard back from none of them.)"
     player "(It's not like I don't enjoy tutoring kids. I actually enjoy explaining concepts to others. I just need a full-time job that is more intellectually fulfilling.)"
     player "(Better yet if it pays more...)"
-    kid "Hey [persistent.player_name]?"
+    kid "Hey [player_name]?"
     player surprised "Oh. Hey. Sorry I just spaced out for a bit."
     player smile "Do you have any more questions before we wrap up?"
     kid "Nope! I think my project report is good to go. Thanks!"
@@ -247,7 +247,7 @@ label stage2:
             hide smartphone
             player relieved "Let's make this evening distraction-free for my sanity."
 
-    "(Hey [persistent.player_name]. It looks like you just made your first in-game choice. That is awesome!)"
+    "(Hey [player_name]. It looks like you just made your first in-game choice. That is awesome!)"
     "(You will encounter many more choices in this game later on. There are no right or wrong choices, only consequences.)"
     "(So it might be a good idea to save your progress when you are about to make a choice, start a new chapter, or just when you feel like it.)"
 
@@ -361,7 +361,7 @@ label stage3:
     hide smartphone
 
     show annika
-    annika "[persistent.player_name]!"
+    annika "[player_name]!"
     player surprised "Annika! Geez. When was the last time you called me? When we were moving out after graduation?"
     player laugh "Anyways, it's really nice to hear from you again!"
     annika "Same! How have you been?"
@@ -636,7 +636,7 @@ label stage5_annika:
     player pout "(So Annika managed to pull through the curriculum because she had some experience from college. Plus she has a real gift for design.)"
     player worry "(I'm not like that... There's no way I can do this...)"
 
-    annika "Hey [persistent.player_name], don't get discouraged, okay?"
+    annika "Hey [player_name], don't get discouraged, okay?"
     annika "It's already a big step forward now that you've checked out their curriculum!"
 
     show annika serious
@@ -784,7 +784,7 @@ label stage6:
     player smile "Hey Annika! Is now a good time to talk?"
 
     show annika laugh
-    annika "Heyya [persistent.player_name]! Now's perfect. I just got back from work."
+    annika "Heyya [player_name]! Now's perfect. I just got back from work."
     annika "How did your first day of studying go?"
     player "I felt pretty productive today. It's nice how the quiz questions give you instant feedback."
     player happy "What about your day? How was work?"
@@ -799,7 +799,7 @@ label stage6:
     player "(And she also just mentioned something called a {b}Hacker Space{/b}. That's something worth asking about as well.)"
 
     show annika laugh
-    annika "Hello? Earth to [persistent.player_name]?"
+    annika "Hello? Earth to [player_name]?"
     player happy "Haha no worries I'm here. Just wondering about something."
 
     show annika neutral
@@ -843,7 +843,7 @@ label stage6_after_annika_questions:
     play sound 'audio/sfx/phone_hangup.wav'
 
     player smile "Whew. That's a lot of knowledge to unpack."
-    dad "Dinner's ready, [persistent.player_name]!"
+    dad "Dinner's ready, [player_name]!"
     player surprised "(Wow. Dad is cooking tonight? He cooks maybe once or twice a month, but when he cooks, it's usually really good.)"
     player laugh "Coming!"
 
@@ -936,7 +936,7 @@ label stage6_after_annika_questions:
 
     scene bg hacker_space dusk with fadehold
     show annika
-    annika "What do you think about this place, [persistent.player_name]?"
+    annika "What do you think about this place, [player_name]?"
     player laugh "It's amazing!"
     player "This place is alive with energy... It's like you can't take a step without seeing something interesting."
     annika @ laugh "That's the spirit!"
@@ -989,8 +989,8 @@ label stage7:
 
     scene bg desk with blinds
     show marco laugh
-    marco "Hi [persistent.player_name]. I'm Marco. I'm a senior engineer at {b}QuicheQubit{/b}."
-    player smile "Hi Marco. Nice to meet you! I'm [persistent.player_name], a recent grad and developer wannabe."
+    marco "Hi [player_name]. I'm Marco. I'm a senior engineer at {b}QuicheQubit{/b}."
+    player smile "Hi Marco. Nice to meet you! I'm [player_name], a recent grad and developer wannabe."
     marco "That sounds good."
 
     show marco neutral
@@ -1059,7 +1059,7 @@ label stage7:
         "I'm done asking!":
             player laugh "I'm done asking! That's all I want to know. Thanks so much for sharing!"
             show marco laugh
-            marco "Any time, [persistent.player_name]. Have fun coding and keep me updated on your progress!"
+            marco "Any time, [player_name]. Have fun coding and keep me updated on your progress!"
 
     scene bg bedroom night with slideright
     player smile "Marco was certainly a cool guy. I'm so lucky to have him as my mentor."
@@ -1104,7 +1104,7 @@ label stage7:
 
     show annika
     pause 1.0
-    annika "Hey [persistent.player_name]! Are you free today?"
+    annika "Hey [player_name]! Are you free today?"
     player smile "Hey Annika. Yep, I'm down to hang out. What's up?"
 
     annika @ laugh "Guess what? It's almost {bt}Hacktober{/bt}. The Hacker Space is holding a special hackathon for high school students."
@@ -1297,7 +1297,7 @@ label stage8:
     player surprised "Huh. A message from Marco."
     hide smartphone
     show marco
-    marco "Heya [persistent.player_name]! Was it a busy day?"
+    marco "Heya [player_name]! Was it a busy day?"
     player happy "Hey Marco! Yeah. I just started preparing for interviews and applying to jobs."
     marco @ laugh "That's a good start!"
     marco @ serious "But yeah, companies are usually slow to process the applications. You might need to wait for a week or more to hear back."
@@ -1460,7 +1460,7 @@ label stage14:
     player smile "My orientation email says that my onboarding buddy will be here to pick me up and show me around the office..."
     show layla
 
-    layla "Hey [persistent.player_name]. Welcome to the team! I'm Layla, your onboarding buddy."
+    layla "Hey [player_name]. Welcome to the team! I'm Layla, your onboarding buddy."
     layla @ laugh "Feel free to ask me anything!"
     player surprised "(Hmmm... I wonder if we have met before. Layla looks familiar somehow.)"
     player "(...Oh! Was that her at Hacker Space mentoring the kids?)"
@@ -1472,7 +1472,7 @@ label stage14:
 
     scene bg office with fade
     show layla with vpunch
-    layla "[persistent.player_name]? Are you okay? You are spacing out."
+    layla "[player_name]? Are you okay? You are spacing out."
     player smile "Ah! I'm fine. I just remembered that we might have met before."
     player "You know, at Hacker Space. I used to go there to study and work on projects before I got this job."
     layla "Oh, wow. Yeah. I was at a few of those Hacker Space events. Nice to hear that you enjoyed the place!"
@@ -1580,7 +1580,7 @@ label stage14:
             jump layla_story_choices
         "I'm done asking!":
             player @ laugh "I'm done asking! I feel so much better knowing that everyone started from square one."
-            layla @ neutral"Hehe, [persistent.player_name], you are a fun one. I'm sure you will enjoy your work as a developer."
+            layla @ neutral"Hehe, [player_name], you are a fun one. I'm sure you will enjoy your work as a developer."
 
     layla @ laugh "Are we now ready to go back and squash some bugs?"
     player laugh "Lead the way!"
@@ -1630,7 +1630,7 @@ label ending_check_code:
     # office red alert animation
     show red_flash    
     play sound 'audio/sfx/error.wav'
-    layla "[persistent.player_name]? Was that your change a few seconds ago?"
+    layla "[player_name]? Was that your change a few seconds ago?"
     layla "Oh don't tell me... I think we have some problems here..."
     window hide
     pause 4.0
@@ -1639,7 +1639,7 @@ label ending_check_code:
     $ add_achievement(
         achievement_name=ending_dev,
         title="{color=[red]}{icon=icon-alert-triangle} Attention{/color}",
-        message="Hey [persistent.player_name]... \nThe thing is, it looks like... \n{sc}{color=[red]}YOU HAVE BROUGHT DOWN THE PRODUCTION SERVER{/color}{/sc}",
+        message="Hey [player_name]... \nThe thing is, it looks like... \n{sc}{color=[red]}YOU HAVE BROUGHT DOWN THE PRODUCTION SERVER{/color}{/sc}",
         ok_text="Oopsy... Am I... fired?",
         show_achievements_count=False
         )
@@ -1691,7 +1691,7 @@ label ending_splash: # alternative endings also jump to here
     $ quick_menu = True
     scene main_menu sepia with dissolve
 
-    "Hey [persistent.player_name]. Congratulations on reaching the end of the game!"
+    "Hey [player_name]. Congratulations on reaching the end of the game!"
     "Hope you enjoyed the ride!"
     "You might be wondering, what's next?"
     "Well, here are a bunch of things you can do."

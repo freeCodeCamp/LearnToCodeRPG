@@ -396,7 +396,7 @@ label day_activity_interview:
         'woman',
         ]) + ' ' + renpy.random.choice(['', 'red', 'orange', 'blue', 'purple'])
     $ renpy.show(interviewer_sprite)
-    interviewer "Hello, is that [persistent.player_name]?"
+    interviewer "Hello, is that [player_name]?"
     player smile "Yes. Good morning."
 
     interviewer "Nice to meet you! We're glad that you applied to our job posting."

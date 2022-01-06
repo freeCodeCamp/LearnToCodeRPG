@@ -5,7 +5,7 @@ label ending_barista:
 
     scene bg cafe with dissolve
     show man orange
-    cafe_manager "Hey [persistent.player_name]. Can I have a word with you?"
+    cafe_manager "Hey [player_name]. Can I have a word with you?"
     player surprised "!"
     player worry "(Did I do anything wrong? Served the wrong order and got some customer complaints maybe?)"
     player "(Am I gonna get fired? Why am I unable to hold even a simple barista gig?)"
@@ -57,7 +57,7 @@ label ending_barista:
     player smile "But coming in every day, greeting people on their way to work, seeing them leave the cafe with a smile on their face - those are really precious moments."
     player "Plus I still get to hear about cool things happening in tech every now and then."
     show woman purple
-    female "Hey [persistent.player_name]. How was your day?"
+    female "Hey [player_name]. How was your day?"
     player surprised "(My customers even know me by name now...)"
     player smile "My day's been great! What about yours?"
     female "Good. I just heard about this new app that's trending in the developer community..."
@@ -83,7 +83,7 @@ label ending_barista:
     girl "Grrrrgggghhhhh..."
     player surprised "(It looks like they are stuck on some coding project.)"
     player "(Maybe I can help?)"
-    player happy "Hey, excuse me. I'm [persistent.player_name]. I work at this cafe."
+    player happy "Hey, excuse me. I'm [player_name]. I work at this cafe."
     player "Sorry that I overheard your conversation, but if it's something related to coding, maybe I can help."
     player "I might not look like much but I used to be an aspiring developer!"
     player pout "(Well, not anymore...)"
@@ -243,7 +243,7 @@ label ending_tutor:
     $ has_triggered_ending_today = True
 
     scene bg kitchen night with dissolve
-    mom "I just remembered something to tell you, [persistent.player_name]."
+    mom "I just remembered something to tell you, [player_name]."
     mom "Would you be interested in helping kids learn to code?"
     mom "A high school affiliated with the one where I'm teaching is looking to expand their CS curriculum."
     mom "They are looking for a tutor. It's a temporary position for now, but may eventually turn into a full-time teaching contract."
@@ -273,7 +273,7 @@ label ending_tutor:
     boy "Everyone shush and get back to their seats!"
     boy "I heard that we are going to get a new tutor to teach us coding."
     hide boy with moveoutright
-    player happy "Hi everyone. I'm [persistent.player_name]. I'm your CS tutor for the day."
+    player happy "Hi everyone. I'm [player_name]. I'm your CS tutor for the day."
     player smile "Let's jump right in! Who can tell me what a computer program is?"
     girl "I know! Like an app on your phone!"
     boy "And video games as well!"
@@ -286,7 +286,7 @@ label ending_tutor:
     girl "We learned a lot! Hope to see you again!"
 
     scene bg kitchen dusk with fadehold
-    mom "How did you like teaching, [persistent.player_name]?"
+    mom "How did you like teaching, [player_name]?"
     mom "I heard that the kids loved you and the school would like you to come every day if that works for your schedule."
     player neutral "(That was fun, but it was a lot of work as well.)"
     player "(But if I need to come in every day, I won't have time to learn to code and become a developer myself.)"
@@ -339,12 +339,12 @@ label ending_tutor:
     show layla
     player "(That was definitely her at Hacker Space!)"
     layla "Hey there! I'm Layla."
-    player smile "Hi Layla. Nice to meet you! I'm [persistent.player_name]. I've been teaching here for a year."
+    player smile "Hi Layla. Nice to meet you! I'm [player_name]. I've been teaching here for a year."
     layla "That's awesome! Teaching is my favorite thing to do, actually."
     layla "Alright, enough small talk. Is it about time that we address the class?"
     player happy "Yeah sure!"
     player laugh "Hey class, today we have Layla, a full-time developer, here to talk to you about what it's like to work in tech."
-    layla @ laugh "Thanks for the intro, [persistent.player_name]. I'm Layla."
+    layla @ laugh "Thanks for the intro, [player_name]. I'm Layla."
     layla "Before I start with my story. Let me just tell you this."
     layla "I once had to make a very difficult choice between working in software or teaching coding at a school."
     player pout "(That sounds familiar. I've been there before, too.)"
@@ -527,7 +527,7 @@ label second_chance:
     # this label must be used with jump, not call
     scene bg chaos with dissolve
     # Note to proofreader: this is an omnipotent narrator, so feel free to change their tone
-    "Hey [persistent.player_name]. Kudos to you for coming this far in the game."
+    "Hey [player_name]. Kudos to you for coming this far in the game."
     "That wasn't a bad way to end the story. Not bad at all."
     "But if you think about it, would you have wanted something different?"
     "Would it be possible to teach yourself to code and fulfill your dream of becoming a developer?"

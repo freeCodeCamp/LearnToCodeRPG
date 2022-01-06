@@ -40,7 +40,7 @@ label day_start_text1:
     return
 
 label day_start_text2:
-    mom "[persistent.player_name], breakfast's ready!"
+    mom "[player_name], breakfast's ready!"
     player happy "Okay, I'm up!"
 
     scene bg kitchen with blinds
@@ -51,7 +51,7 @@ label day_start_text2:
     hide toast
     player smile "I'm done. Gotta go and get ready for the day."
     player "Have a good day at work!"
-    dad "You too, [persistent.player_name]!"
+    dad "You too, [player_name]!"
     mom "See you later, honey!"
     
     scene bg bedroom with blinds
@@ -81,7 +81,7 @@ label day_end:
     player relieved "Phew... That was a long day."
 
     # dinner
-    mom "[persistent.player_name], dinner's ready!"
+    mom "[player_name], dinner's ready!"
     player happy "Coming, mom!"
 
     scene bg kitchen night with blinds
@@ -215,7 +215,7 @@ label day_end_interview:
     play sound 'audio/sfx/social_media_notification.wav'
     player surprised "Hmm? Wow. A text from Marco as well?"
     show marco
-    player "It reads {i}'Hey [persistent.player_name]! How did the interview go? Hopefully it wasn't too stressful for ya. Just keep in mind that we have all been there before. You can do it if you put in the work!{/i}"
+    player "It reads {i}'Hey [player_name]! How did the interview go? Hopefully it wasn't too stressful for ya. Just keep in mind that we have all been there before. You can do it if you put in the work!{/i}"
     hide marco
     player happy "That's so considerate of Marco..."
     show mint

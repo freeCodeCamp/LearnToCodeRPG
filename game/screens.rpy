@@ -313,12 +313,12 @@ screen main_menu_navigation():
         spacing gui.navigation_spacing
 
         textbutton _("New Game") action Start():
-            if not persistent.player_name: # a new game, make `start` stand out
+            if not persistent.has_started_game: # a new game, make `start` stand out
                 background "gui/button/sticky_note_button_green.png"
             # else use regular yellow
 
         textbutton _("Continue") action ShowMenu("load"):
-            if persistent.player_name: # has some game in progress, make `load` stand out
+            if persistent.has_started_game: # has some game in progress, make `load` stand out
                 background "gui/button/sticky_note_button_pink.png"
                 text_idle_color '#fff'
             # else use regular yellow
@@ -332,10 +332,10 @@ screen main_menu_navigation():
         # TODO: v2 achievements, glossary etc.
         textbutton _("Bonus"):
             action [
-            SensitiveIf(persistent.player_name),
+            SensitiveIf(persistent.has_started_game),
             ShowMenu("bonus")
             ]
-            if persistent.player_name: # has some game in progress
+            if persistent.has_started_game: # has some game in progress
                 background "gui/button/sticky_note_button_purple.png"
                 text_idle_color '#fff'
 

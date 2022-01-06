@@ -169,7 +169,7 @@ init python:
 
 init:
     # major characters
-    define player = Character("[persistent.player_name]", image='player')
+    define player = Character("[player_name]", image='player')
     define annika = Character(_("Annika"), image='annika')
     define marco = Character(_("Marco"), image='marco')
     define layla = Character(_("Layla"), image='layla')

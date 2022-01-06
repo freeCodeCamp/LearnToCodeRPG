@@ -16,7 +16,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("Learn to Code RPG")
+define config.name = _("Learn to Code RPG{#App window title}")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set

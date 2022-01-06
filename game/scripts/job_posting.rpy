@@ -118,7 +118,7 @@ screen company_interview_email_screen(company_name):
     use company_email_screen(
         company_name,
         """
-        Hey [persistent.player_name],
+        Hey [player_name],
 
         Thanks for applying to our job posting.
 
@@ -134,7 +134,7 @@ screen company_rejection_email_screen(company_name):
     use company_email_screen(
         company_name,
         """
-        Hey [persistent.player_name],
+        Hey [player_name],
 
         Thanks for taking the time to interview with us.
 
@@ -150,7 +150,7 @@ screen company_offer_email_screen(company_name):
     use company_email_screen(
         company_name,
         """
-        Hey [persistent.player_name],
+        Hey [player_name],
 
         You did great in our interivew and we'd like to extend you this offer for an entry-level software engineer role.
 
