@@ -1,6 +1,8 @@
 # creators should use priorities in the range -999 to 999
 # run last
 init 998:
+    default player_name = ''
+    
     default stats_unlocked = False
     default stats_knowledge_unlocked = False # cs knowledge
     default stats_subcategory_unlocked = False # subcategory of cs knowledge

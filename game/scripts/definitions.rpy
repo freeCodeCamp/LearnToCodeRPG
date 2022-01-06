@@ -194,7 +194,7 @@ init:
 
     # text displayables
     define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp.org{/color}{/font}{/a}'
-    define developerquiz = '{font=fonts/saxmono.ttf}{color=#002ead}https://developerquiz.org/{/color}{/font}'
+    define developerquiz = 'https://developerquiz.org/'
     define learn_to_code_rpg_on_itch = '{a=https://freecodecamp.itch.io/learn-to-code-rpg}{font=fonts/saxmono.ttf}{color=#002ead}' + _("Learn to Code RPG on itch.io") + '{/color}{/font}{/a}'
     define learn_to_code_rpg_on_github = '{a=https://github.com/freeCodeCamp/LearnToCodeRPG}{font=fonts/saxmono.ttf}{color=#002ead}' + _("Learn to Code RPG on GitHub") + '{/color}{/font}{/a}'
 
