@@ -5,7 +5,7 @@ label day_activity_choices:
 
     # if the player has low sanity, jump directly to one of the relaxing choices
     if player_stats.is_sanity_low():
-        $ renpy.notify('Your sanity is dropping dangerously low. Why not take some time to relax and recharge?')
+        $ renpy.notify(_('Your sanity is dropping dangerously low. Why not take some time to relax and recharge?'))
         $ num_times_sanity_low += 1
 
         if has_met_layla and not has_triggered_ending_farmer and \
@@ -168,7 +168,7 @@ label day_activity_relax:
         "Listen to music":
             $ day_activity = 'music'
             player "Let's listen to some music."
-            $ renpy.notify('There might be a lag before the selected track starts to play. Please be patient.')
+            $ renpy.notify(_('There might be a lag before the selected track starts to play. Please be patient.'))
             call screen music_room_screen_in_script()
             if not plot_music_discover in persistent.achievements:
                 $ add_achievement(plot_music_discover)

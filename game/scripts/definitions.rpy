@@ -47,21 +47,6 @@ init python:
 
     all_music_files = list(all_music_tracks.values())
 
-    # UNUSED FUNCTION
-    # continue_looping_music = False
-    def loop_music():
-        if continue_looping_music:
-            music = renpy.random.choice(all_music_tracks.keys())
-            renpy.music.queue(all_music_tracks[music], loop=False, fadein=1.0, tight=True)
-            # if not renpy.in_rollback():
-            #     renpy.notify('Now playing: ' + music)
-
-    # renpy.music.set_queue_empty_callback(loop_music)
-  
-    # to stop, set the following
-    # continue_looping_music = False
-    # stop music
-
     # music room
     music_room = MusicRoom(fadeout=1.0)
 

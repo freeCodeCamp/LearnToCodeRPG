@@ -57,7 +57,7 @@ screen select_song_screen(songs):
                         Return(song)
                         ]
                     $ highest_score, highest_percent = persistent.rhythm_game_high_scores[song.name]
-                    text str(highest_score) xysize cell_size xalign 0.5
+                    text '[highest_score]' xysize cell_size xalign 0.5
                     text '[highest_percent]%' xysize cell_size xalign 0.5
 
             textbutton _("{icon=icon-x-circle} Exit"):
