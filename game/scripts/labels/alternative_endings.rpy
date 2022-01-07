@@ -535,7 +535,7 @@ label second_chance:
     "Okay, I'm going to let you in on a little secret."
     "If you like, you can wind back the clock and revisit the choices you've made."
     "If I may ask, did you remember to {b}Save{/b} your progress before making this choice that has taken you here?"
-    call screen confirm("Did you SAVE your progress and wish to LOAD and get back in time? (It's okay if you answer no. I'll let you in on another secret.)", 
+    call screen confirm(_("Did you SAVE your progress and wish to LOAD and get back in time? (It's okay if you answer no. I'll let you in on another secret.)"), 
         yes_action=[ShowMenu('load'), Return()], 
         no_action=Return())
 
