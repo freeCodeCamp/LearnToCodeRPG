@@ -16,25 +16,25 @@ screen quiz_question_answer_explanation_screen(quiz_question):
             xfill True
             spacing 10
 
-            label 'Question'
+            label _('Question')
             text quiz_question.question
 
             null height 20
-            label 'Correct answer'
-            text '{b}[quiz_question.true]{/b}'
+            label _('Correct answer')
+            text _('{b}[quiz_question.true!t]{/b}')
 
             null height 20
             if quiz_question.explanation:
-                label 'Explanation'
+                label _('Explanation')
                 text quiz_question.explanation
 
             if quiz_question.learn_more_url:
-                textbutton "{icon=icon-help-circle} " + _("Learn More"):
-                    hovered Notify('Learn more about this topic in an article!')
+                textbutton _("{icon=icon-help-circle} Learn More"):
+                    hovered Notify(_('Learn more about this topic in an article!'))
                     action OpenURL(quiz_question.learn_more_url)
 
             null height 40
-            textbutton "Gotcha! Let's move on.":
+            textbutton _("Gotcha! Let's move on."):
                 xalign 0.5
                 action Return()
 
