@@ -9,13 +9,13 @@ screen bonus_screen():
             spacing 15
 
             label _('Minigames')
-            textbutton '{icon=icon-music} ' + _("Rhythm Game") action Start('rhythm_game_entry_label')
+            textbutton _("{icon=icon-music} Rhythm Game") action Start('rhythm_game_entry_label')
             # TODO: more mini games, quiz speedrun survival mode etc.
 
             null height 20
             label _('Bonus Content')
-            textbutton '{icon=icon-award} ' + _("Achievements") action Show('achievements_screen')
-            textbutton '{icon=icon-headphones} ' + _("Music Room"):
+            textbutton _("{icon=icon-award} Achievements") action Show('achievements_screen')
+            textbutton _("{icon=icon-headphones} Music Room"):
                 action [
                 Notify('There might be a lag before the selected track starts to play. Please be patient.'),
                 Show('music_room_screen')
@@ -32,17 +32,17 @@ screen bonus_screen():
 
             null height 20
             label _('Other Links')
-            textbutton '{icon=icon-thumbs-up} ' + _("Rate and Review This Game on itch.io") action OpenURL(itch_url)
-            textbutton '{icon=icon-github} ' + _("Check out This Game's Source Code on GitHub") action OpenURL(github_url)
-            textbutton '{icon=icon-file-text} ' + _("Read Our Dev Log Article (a Let's Play Video Included)") action OpenURL(article_url)
-            textbutton '{icon=icon-heart} ' + _("Support Us by Donating to freeCodeCamp.org") action OpenURL('https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/')
+            textbutton _("{icon=icon-thumbs-up} Rate and Review This Game on itch.io") action OpenURL(itch_url)
+            textbutton _("{icon=icon-github} Check out This Game's Source Code on GitHub") action OpenURL(github_url)
+            textbutton _("{icon=icon-file-text} Read Our Dev Log Article (a Let's Play Video Included)") action OpenURL(article_url)
+            textbutton _("{icon=icon-heart} Support Us by Donating to freeCodeCamp.org") action OpenURL('https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/')
 
             null height 20
             label _('Awesome freeCodeCamp.org Resources')
-            textbutton '{icon=icon-youtube} ' + _("freeCodeCamp YouTube Channel") action OpenURL("https://www.youtube.com/channel/UC8butISFwT-Wl7EV0hUK0BQ")
-            textbutton '{icon=icon-map} ' + _("freeCodeCamp Curriculum") action OpenURL("https://www.freecodecamp.org/learn/")
+            textbutton _("{icon=icon-youtube} freeCodeCamp YouTube Channel") action OpenURL("https://www.youtube.com/channel/UC8butISFwT-Wl7EV0hUK0BQ")
+            textbutton _("{icon=icon-map} freeCodeCamp Curriculum") action OpenURL("https://www.freecodecamp.org/learn/")
             # textbutton '{icon=icon-compass} ' + _("freeCodeCamp Forum") action OpenURL("https://forum.freecodecamp.org/")
-            textbutton '{icon=icon-coffee} ' + _("freeCodeCamp Code Radio") action OpenURL("https://coderadio.freecodecamp.org/")
+            textbutton _("{icon=icon-coffee} freeCodeCamp Code Radio") action OpenURL("https://coderadio.freecodecamp.org/")
             # textbutton '{icon=icon-edit-3} ' + _("freeCodeCamp Style Guide") action OpenURL("https://design-style-guide.freecodecamp.org/")
 
 screen achievements_screen():
@@ -55,9 +55,9 @@ screen achievements_screen():
 
             vbox:
                 $ num_achievements = len(persistent.achievements)
-                text "{icon=icon-award} " + _('Number of Achievements Unlocked:') + ' [num_achievements] / [total_num_achievements]':
+                text _('{icon=icon-award} Number of Achievements Unlocked:') + ' [num_achievements] / [total_num_achievements]':
                     font gui.text_font
-                textbutton "{icon=icon-twitter} " + _("Tweet it when you've unlocked all of the achievements!"):
+                textbutton _("{icon=icon-twitter} Tweet it when you've unlocked all of the achievements!"):
                     action [
                     SensitiveIf(num_achievements == total_num_achievements), 
                     OpenURL(tweet_all_achievements_unlocked)
@@ -77,11 +77,11 @@ screen achievements_screen():
 
                             if is_unlocked:
                                 $ tweet = achievement_to_tweet_map[achievement]
-                                text '{icon=icon-unlock} [achievement]':
+                                text '{icon=icon-unlock} [achievement!t]':
                                     font gui.text_font
-                                textbutton '{icon=icon-twitter} ' + _("Tweet this") action OpenURL(tweet)
+                                textbutton '' + _("{icon=icon-twitter} Tweet this") action OpenURL(tweet)
                             else:
-                                text '{icon=icon-lock} ? ? ?':
+                                text _('{icon=icon-lock} ? ? ?'):
                                     font gui.text_font
                                     color gui.insensitive_color
                                 null
@@ -98,11 +98,11 @@ screen music_room_screen():
             hbox:
                 spacing 20
                 # Buttons that let us advance tracks.
-                textbutton _("Previous Track") + ' {icon=icon-arrow-left-circle}' action music_room.Previous()
-                textbutton '{icon=icon-arrow-right-circle} ' + _("Next Track") action music_room.Next()
+                textbutton _("Previous Track  {icon=icon-arrow-left-circle}") action music_room.Previous()
+                textbutton _("{icon=icon-arrow-right-circle} Next Track") action music_room.Next()
                 # textbutton "Pause" action music_room.TogglePause()
                 null width 40
-                textbutton '{icon=icon-stop-circle} ' + _("Stop") action music_room.Stop()
+                textbutton _("{icon=icon-stop-circle} Stop") action music_room.Stop()
 
             null height 20
 
@@ -110,7 +110,8 @@ screen music_room_screen():
             # The buttons that play each track.
             for track in all_music_tracks:
                 $ file = all_music_tracks[track]
-                textbutton '{icon=icon-headphones} ' + track action music_room.Play(file)
+                # no need to translate the track name so no need for [track!t]
+                textbutton '{icon=icon-headphones} [track]' action music_room.Play(file)
 
 screen music_room_screen_in_script():
     # this is called inside renpy scripts
@@ -128,11 +129,11 @@ screen music_room_screen_in_script():
             hbox:
                 spacing 20
                 # Buttons that let us advance tracks.
-                textbutton _("Previous Track") + ' {icon=icon-arrow-left-circle}' action music_room.Previous()
-                textbutton '{icon=icon-arrow-right-circle} ' + _("Next Track") action music_room.Next()
+                textbutton _("Previous Track {icon=icon-arrow-left-circle}") action music_room.Previous()
+                textbutton _("{icon=icon-arrow-right-circle} Next Track") action music_room.Next()
                 # textbutton "Pause" action music_room.TogglePause()
                 null width 40
-                textbutton '{icon=icon-stop-circle} ' + _("Stop") action music_room.Stop()
+                textbutton _("{icon=icon-stop-circle} Stop") action music_room.Stop()
 
             null height 20
 
@@ -140,11 +141,12 @@ screen music_room_screen_in_script():
             # The buttons that play each track.
             for track in all_music_tracks:
                 $ file = all_music_tracks[track]
-                textbutton '{icon=icon-headphones} ' + track action music_room.Play(file)
+                # no need to translate the track name
+                textbutton '{icon=icon-headphones} [track]' action music_room.Play(file)
 
             null height 20
             # The button that lets the user exit the music room.
-            textbutton '{icon=icon-x-circle} ' + _("Exit") action Return()
+            textbutton _("{icon=icon-x-circle} Exit") action Return()
 
     # # Start the music playing on entry to the music room.
     # on "replace" action music_room.Play()

@@ -378,3 +378,55 @@ translate simplified_chinese strings:
     new "{icon=icon-skip-back} 后退"
 
 
+# TODO: Translation updated at 2022-01-06 18:16
+
+translate simplified_chinese strings:
+
+    # game/screens.rpy:260
+    old "{icon=icon-compass} History"
+    new ""
+
+    # game/screens.rpy:261
+    old "{icon=icon-fast-forward} Skip"
+    new ""
+
+    # game/screens.rpy:262
+    old "{icon=icon-play-circle} Auto"
+    new ""
+
+    # game/screens.rpy:263
+    old "{icon=icon-save} Save"
+    new ""
+
+    # game/screens.rpy:266
+    old "{icon=icon-settings} Settings"
+    new ""
+
+    # game/screens.rpy:270
+    old "{icon=icon-smartphone} Stats"
+    new ""
+
+    # game/screens.rpy:384
+    old "{icon=icon-save} Save Game"
+    new ""
+
+    # game/screens.rpy:386
+    old "{icon=icon-bookmark} Load Game"
+    new ""
+
+    # game/screens.rpy:394
+    old "{icon=icon-menu} Main Menu"
+    new ""
+
+    # game/screens.rpy:396
+    old "{icon=icon-info} About"
+    new ""
+
+    # game/screens.rpy:398
+    old "{icon=icon-star} Bonus"
+    new ""
+
+    # game/screens.rpy:409
+    old "{icon=icon-x-circle} Quit Game"
+    new ""
+
