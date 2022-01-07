@@ -85,7 +85,7 @@ label start_after_interview:
     $ player_name = ''
     player pout "(Phew... Looks like I survived the technical questions. Now let's fill in the general information.)"
 
-    $ player_name = renpy.input("What is your name? {color=[red]}*{/color} (Type your name and hit Enter. This name will be used throughout the game and you cannot change it unless you start a new game.)", default="Lydia")
+    $ player_name = renpy.input(_("What is your name? {color=[red]}*{/color} (Type your name and hit Enter. This name will be used throughout the game and you cannot change it unless you start a new game.)"), default=_("Lydia"))
     $ player_name = player_name.strip()
     if player_name in vip_names:
         $ vip_profile_url = vip_names[player_name]
@@ -93,7 +93,7 @@ label start_after_interview:
         # TODO: Easter Egg
     # handle empty string case
     if not player_name:
-        $ player_name = "Lydia"
+        $ player_name = _("Lydia")
 
     # TODO: birthday Easter Egg
     # "What is your birthday?"
@@ -115,7 +115,7 @@ label start_after_interview:
             "Cool! We're glad that you're here!"
 
         "Referral":
-            $ referral_name = renpy.input("What is the first name of your referral? (Type something and hit Enter)")
+            $ referral_name = renpy.input(_("What is the first name of your referral? (Type something and hit Enter)"))
             # Easter egg :)
             if referral_name in vip_names:
                 $ vip_profile_url = vip_names[referral_name]
@@ -128,7 +128,7 @@ label start_after_interview:
                 "Hmmm... We aren't able to locate that person in our employee database. Maybe you made a typo?"
 
         "Others (Please specify)":
-            $ renpy.input("How did you hear about us? (Type something and hit Enter)")
+            $ renpy.input(_("How did you hear about us? (Type something and hit Enter)"))
             "Well, we aren't sure how you came across this opportunity through the portal you specified, but we're glad you're here!"
 
     menu:
@@ -153,8 +153,8 @@ label start_after_interview:
 
 label stage1:
     # use call instead of show b/c the screen will return after the timer finishes
-    call screen text_over_black_bg_screen('About three months ago...')
-    call screen text_over_black_bg_screen("{i}Chapter 1: Let's learn to code!{/i}")
+    call screen text_over_black_bg_screen(_('About three months ago...'))
+    call screen text_over_black_bg_screen(_("{i}Chapter 1: Let's learn to code!{/i}"))
 
     scene bg kid_home
     $ calendar_enabled = True
@@ -348,7 +348,7 @@ label stage2_stats_change:
 
 label stage3:
     # Stage 3. Annika
-    call screen text_over_black_bg_screen('{i}Chapter 2: A learning buddy to make it better!{/i}')
+    call screen text_over_black_bg_screen(_('{i}Chapter 2: A learning buddy to make it better!{/i}'))
     $ calendar.next()
     scene black
     scene bg bedroom with eyeopen
@@ -693,7 +693,7 @@ label stage5_annika:
 
 label stage6:
     # Stage 6. Trials
-    call screen text_over_black_bg_screen("{i}Chapter 3: Let's hit the books!{/i}")
+    call screen text_over_black_bg_screen(_("{i}Chapter 3: Let's hit the books!{/i}"))
 
     scene bg bedroom dusk with fade
     player smile "I'm finally home! Let's head over to [developerquiz] and try out some quiz questions."
@@ -983,7 +983,7 @@ label stage6_after_annika_questions:
 
 label stage7:
     # Stage 7. Marco
-    call screen text_over_black_bg_screen('{i}Chapter 4: A mentor to lead the way!{/i}')
+    call screen text_over_black_bg_screen(_('{i}Chapter 4: A mentor to lead the way!{/i}'))
 
     $ has_met_marco = True # unlocks Marco's topics_to_ask
 
@@ -1265,7 +1265,7 @@ label stage7_complete_curriculum:
 
 label stage8:
     # Stage 8. Coding interviews
-    call screen text_over_black_bg_screen("{i}Chapter 5: Let's crush those interviews!{/i}")
+    call screen text_over_black_bg_screen(_("{i}Chapter 5: Let's crush those interviews!{/i}"))
 
     scene bg bedroom with fadehold
     player smile "Alright! Let's start by applying to jobs!"
@@ -1449,7 +1449,7 @@ label stage8:
 
 label stage14:
     # Stage 14. New hire player meets Layla
-    call screen text_over_black_bg_screen("{i}Chapter 6: Let's meet my new colleagues!{/i}")
+    call screen text_over_black_bg_screen(_("{i}Chapter 6: Let's meet my new colleagues!{/i}"))
 
     $ calendar.next_month() # player's start date is in a month
     # TODO: maybe in v2
@@ -1655,7 +1655,7 @@ label ending:
     play sound 'audio/sfx/cartoon_suspense.wav'
     scene black with dissolve
     pause 1
-    show text "{bt}{size=48}{color=[white]}{i}Well, that's another chapter that we will bring to you in the future!{/i}{/color}{/size}{/bt}" with dissolve 
+    show text _("{bt}{size=48}{color=[white]}{i}Well, that's another chapter that we will bring to you in the future!{/i}{/color}{/size}{/bt}") with dissolve 
     pause 3
     hide text with dissolve
 
@@ -1682,13 +1682,13 @@ label ending_splash: # alternative endings also jump to here
     # use a lighter background because the hyperlinks are dark blue
     scene main_menu overlay with dissolve
     pause 1
-    show text "{size=48}Thanks for playing {b}Learn to Code RPG{/b}!\n\n[about]{/size}"
+    show text _("{size=48}Thanks for playing {b}Learn to Code RPG{/b}!\n\n[about!t]{/size}")
     with dissolve 
     show screen ctc() # click to continue
     pause
     hide text with dissolve
 
-    show text "{size=48}[credits]{/size}"
+    show text "{size=48}[credits!t]{/size}"
     with dissolve 
     pause
     hide screen ctc

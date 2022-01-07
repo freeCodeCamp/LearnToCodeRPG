@@ -80,13 +80,6 @@ Playtesting:
 And thank you for playing the game :)
 """)
 
-define gui.about = _p(intro + "\n\n" + about + """
-
-{b}{u}{color=#002ead}Credits{/color}{/u}{/b}
-
-""" + credits)
-
-
 ## A short name for the game used for executables and directories in the built
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
