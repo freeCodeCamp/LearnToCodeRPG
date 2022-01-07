@@ -1590,32 +1590,38 @@ label ending:
     player relieved "Okay, finally, I think my code is good to go! Let's commit it to the server."
     player neutral "Hmmm... Maybe it's a good idea to double-check?"
 
-    $ checks = ['double', 'triple', 'quadruple', 'quintuple', 'sextuple', 'septuple', 'octuple']
-    $ check_counter = 0
-
-label ending_check_code:
-    $ check_str = checks[check_counter]
-    menu:
+    $ check_counter = 2 # start on double-checking, go thru double, triple, quadruple
+    menu ending_check_code:
         player "Should I check my code some more?"
 
-        "Let's [check_str]-check the code!" if check_counter < len(checks):
+        "Let's double-check the code!" if check_counter == 2:
             $ check_counter += 1
             player "..."
             player "Looks good to me."
-            if check_counter < len(checks):
-                $ check_str = checks[check_counter]
-                player "But maybe I should still [check_str]-check it?"
-                jump ending_check_code
+            player "But maybe I should still triple-check it?"
+            jump ending_check_code
 
-            else:
-                player relieved "I've checked it so many times that I've lost count..."
+        "Let's triple-check the code!" if check_counter == 3:
+            $ check_counter += 1
+            player "..."
+            player "Looks good to me."
+            player "But maybe I should still quadruple-check it?"
+            jump ending_check_code
 
-                $ add_achievement(plot_double_check)
-                
-                player smile "It should be good to go, right?"
+        "Let's quadruple-check the code!" if check_counter == 4:
+            $ check_counter += 1
+            player "..."
+            player "Looks good to me."
+            player relieved "I've checked it so many times that I've lost count..."
+
+            $ add_achievement(plot_double_check)
+            
+            player smile "It should be good to go, right?"
+            # proceed with plot
 
         "Looks good to go!":
             player laugh "I'm confident that it's good to go!"
+            # proceed with plot
 
     player "Let's commit it to the server."
     # TODO: system processing animation
