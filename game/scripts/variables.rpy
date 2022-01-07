@@ -80,7 +80,14 @@ init python:
     todo_interview_prep = _('Start preparing for coding interviews')
     todo_get_job = _('Get a developer job')
     todo_ask_hackathon = _('Learn about Hackathon')
-    todo_ask = _('Learn about ') # should be concatenated with vocabs from barista story
+    todo_ask_fullstack = _('Learn about Full-Stack')
+    todo_ask_devops = _('Learn about DevOps')
+    todo_ask_conference = _('Learn about Conference')
+    todo_ask_versioncontrol = _('Learn about Version Control')
+    todo_ask_machinelearning = _('Learn about Machine Learning')
+    todo_ask_agile = _('Learn about Agile')
+    todo_ask_api = _('Learn about API')
+    todo_ask_userexperience = _('Learn about User Experience')
 
     ## Note to proofreader: please do not change these labels
     # story labels for hacker space and barista
