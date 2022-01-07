@@ -1248,9 +1248,9 @@ label stage7_complete_curriculum:
 
     $ add_achievement(
         achievement_name=milestone_complete_curriculum,
-        title="{bt}Congratulations!{/bt}",
-        message="You completed the coding curriculum in {b}{color=#002ead}[days_between_start_and_curriculum_completion]{/color}{/b} days.\nNow you are ready to rock your coding interviews and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
-        ok_text="Let's crush those interviews!",
+        title=_("{bt}Congratulations!{/bt}"),
+        message=_("You completed the coding curriculum in {b}{color=#002ead}[days_between_start_and_curriculum_completion]{/color}{/b} days.\nNow you are ready to rock your coding interviews and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!"),
+        ok_text=_("Let's crush those interviews!"),
         show_achievements_count=False
         )
 
@@ -1432,9 +1432,9 @@ label stage8:
 
     $ add_achievement(
         achievement_name=milestone_first_offer,
-        title="{bt}Congratulations!{/bt}",
-        message="You taught yourself to become a developer in {b}{color=[dark_blue]}[days_between_start_and_offer]{/color}{/b} days, [days_between_curriculum_completion_and_offer] days after you've completed the coding curriculum.\nYou have applied to [num_jobs_applied] jobs and interviewed for [num_jobs_interviewed] times before landing this offer.\nNow you are ready to rock your new job!\n Feel free to share your progress with the world!",
-        ok_text="Let's rock my new job!",
+        title=_("{bt}Congratulations!{/bt}"),
+        message=_("You taught yourself to become a developer in {b}{color=[dark_blue]}[days_between_start_and_offer]{/color}{/b} days, [days_between_curriculum_completion_and_offer] days after you've completed the coding curriculum.\nYou have applied to [num_jobs_applied] jobs and interviewed for [num_jobs_interviewed] times before landing this offer.\nNow you are ready to rock your new job!\n Feel free to share your progress with the world!"),
+        ok_text=_("Let's rock my new job!"),
         show_achievements_count=False
         )
 
@@ -1644,9 +1644,9 @@ label ending:
 
     $ add_achievement(
         achievement_name=ending_dev,
-        title="{color=[red]}{icon=icon-alert-triangle} Attention{/color}",
-        message="Hey [player_name]... \nThe thing is, it looks like... \n{sc}{color=[red]}YOU HAVE BROUGHT DOWN THE PRODUCTION SERVER{/color}{/sc}",
-        ok_text="Oopsy... Am I... fired?",
+        title=_("{color=[red]}{icon=icon-alert-triangle} Attention{/color}"),
+        message=_("Hey [player_name]... \nThe thing is, it looks like... \n{sc}{color=[red]}YOU HAVE BROUGHT DOWN THE PRODUCTION SERVER{/color}{/sc}"),
+        ok_text=_("Oopsy... Am I... fired?"),
         show_achievements_count=False
         )
 

@@ -57,6 +57,7 @@ screen calendar_screen():
             xpadding 30
             ypadding 30
             background white80
+
             hbox:
                 spacing 15
                 text '{icon=icon-calendar}'

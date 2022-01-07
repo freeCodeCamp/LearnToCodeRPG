@@ -37,10 +37,10 @@ screen confirm_and_share_screen(title, message=None, ok_text=None, tweet_content
 
             if show_achievements_count:
                 $ num_achievements = len(persistent.achievements)
-                text _("Number of Achievements Unlocked:") + " [num_achievements] / [total_num_achievements]":
+                text _("Number of Achievements Unlocked: [num_achievements] / [total_num_achievements]"):
                     xalign 0.5
 
-            textbutton "{icon=icon-twitter} " + _("Tweet this"):
+            textbutton _("{icon=icon-twitter} Tweet this"):
                 xalign 0.5
                 action OpenURL(tweet_content_url)
 
@@ -49,6 +49,6 @@ screen confirm_and_share_screen(title, message=None, ok_text=None, tweet_content
             textbutton ok_text:
                 xalign 0.5
                 action [
-                Notify("This achievement is saved to the Bonus menu. Feel free to tweet about it later if you haven't!"),
+                Notify(_("This achievement is saved to the Bonus menu. Feel free to tweet about it later if you haven't!")),
                 Return()
                 ]
