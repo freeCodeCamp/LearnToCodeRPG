@@ -9,11 +9,13 @@ init python:
             # all_skills is defined in variables.rpy
 
             # map string names to stats
+            # DO NOT TRANSLATE THESE TWO
             self.player_stats_map = {
             'Sanity': 100, 
             'CS Knowledge': 0, 
             }
 
+            # these are translated as defined in variables.rpy
             self.subcategory_stats_map = {
             stats_name: 0 for stats_name in all_skills
             }
@@ -22,7 +24,8 @@ init python:
             # keep between 0 and 100
             clamped_val = min(100, max(0, val))
             self.player_stats_map[stats_name] = clamped_val
-            renpy.notify(stats_name + ' is set to ' + str(clamped_val))
+            clamped_val_str = str(clamped_val)
+            renpy.notify(_('[stats_name!t] is set to [clamped_val_str]'))
 
         def change_stats(self, stats_name, val):
             # keep between 0 and 100
@@ -38,23 +41,21 @@ init python:
             change_direction = None
             if val > 0:
                 change_direction = CHANGE_DIRECTION_INC
-                # if not renpy.sound.is_playing():
+                val_str = str(val)
                 renpy.sound.play('audio/sfx/stats_change_boop.wav')
-                if stats_name in self.subcategory_stats_map:
-                    renpy.notify(stats_name + ' knowledge increased by ' + str(val))
-                else:
-                    renpy.notify(stats_name + ' increased by ' + str(val))
+                if stats_name in self.subcategory_stats_map: # skill name + the word `knowledge`
+                    renpy.notify(_('[stats_name!t] knowledge increased by [val_str]'))
+                else: # just plain string `Sanity` or `CS Knowledge`
+                    renpy.notify(_('[stats_name!t] increased by [val_str]'))
             elif val < 0:
                 change_direction = CHANGE_DIRECTION_DEC                    
-                # if not renpy.sound.is_playing():
+                val_str = str(-val)
                 renpy.sound.play('audio/sfx/stats_change_buzz.wav')
                 if stats_name in self.subcategory_stats_map:
-                    renpy.notify(stats_name + ' knowledge decreased by ' + str(-val))
+                    renpy.notify(_('[stats_name!t] knowledge decreased by [val_str]'))
                 else:
-                    renpy.notify(stats_name + ' decreased by ' + str(-val))
+                    renpy.notify(_('[stats_name!t] knowledge decreased by [val_str]'))
 
-            # # show the stats screen
-            # if not renpy.get_screen('player_stats_todo_screen', layer='transient'):
             renpy.show_screen('player_stats_todo_screen', 
                 _layer='transient', changed_stats=stats_name, change_direction=change_direction)
 
@@ -177,9 +178,6 @@ screen player_stats_todo_screen(show_todo=False, changed_stats=None, change_dire
                 use player_stats_screen(changed_stats, change_direction)
 
 screen player_stats_screen(changed_stats, change_direction):
-    # vbox:
-    #     spacing 20
-    #     text _("Stats") bold True underline True
     python:
         num_rows = 1 # Sanity
         if stats_knowledge_unlocked:
@@ -193,14 +191,14 @@ screen player_stats_screen(changed_stats, change_direction):
 
         # Sanity
         $ sanity = player_stats.player_stats_map['Sanity']
-        text "{icon=icon-zap}  " + _('Sanity') color gui.accent_color
+        text _('{icon=icon-zap} Sanity') color gui.accent_color
         bar value sanity range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
         text str(sanity) + '  ' + get_stats_change_direction_icon('Sanity',changed_stats, change_direction)
 
         # CS Knowledge
         if stats_knowledge_unlocked:
             $ cs_knolwedge = player_stats.player_stats_map['CS Knowledge']
-            text "{icon=icon-terminal}  " + _('CS Knowledge') color gui.accent_color
+            text _('{icon=icon-terminal} CS Knowledge') color gui.accent_color
             bar value cs_knolwedge range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
             text str(cs_knolwedge) + '  ' + get_stats_change_direction_icon('CS Knowledge',changed_stats, change_direction)
 
@@ -208,17 +206,14 @@ screen player_stats_screen(changed_stats, change_direction):
         if stats_subcategory_unlocked:
             for skill in all_skills:
                 $ val = player_stats.subcategory_stats_map[skill]
-                text "    {icon=icon-code} " + _(skill) color gui.accent_color
+                text "    {icon=icon-code} [skill!t]" color gui.accent_color
                 bar value val range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
                 text str(val) + '  ' + get_stats_change_direction_icon(skill, changed_stats, change_direction)
 
 screen todo_screen():
-    # vbox:
-    #     spacing 20
-    #     text _("To-Do") bold True underline True
     vbox:
         spacing 5
         for todo in todo_list.incomplete:
-            text '    {icon=icon-square}    ' + todo
+            text '    {icon=icon-square}    [todo!t]'
         for todo in todo_list.completed:
-            text '    {icon=icon-check-square}    ' + todo color gui.insensitive_color
+            text '    {icon=icon-check-square}    [todo!t]' color gui.insensitive_color
