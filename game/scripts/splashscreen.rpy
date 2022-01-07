@@ -33,7 +33,7 @@ label splashscreen:
     # use a lighter background because the hyperlinks are dark blue
     scene main_menu overlay with dissolve
     pause 1
-    show text "{size=48}[accessibility_tips]{/size}"
+    show text "{size=48}[accessibility_tips!t]{/size}"
     with dissolve
     show screen ctc() # click to continue
     pause
@@ -47,7 +47,7 @@ label splashscreen:
         If you are enjoying this game, please {icon=icon-thumbs-up} rate and review us on {a=https://freecodecamp.itch.io/learn-to-code-rpg}itch.io{/a} and {icon=icon-star} star our {a=https://github.com/freeCodeCamp/LearnToCodeRPG}GitHub repo{/a}.
         """)
     # use a lighter background because the hyperlinks are dark blue
-    show text "{size=48}[beta_disclaimer]{/size}"
+    show text "{size=48}[beta_disclaimer!t]{/size}"
     with dissolve 
     pause
     hide screen ctc
