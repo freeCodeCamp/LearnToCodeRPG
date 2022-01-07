@@ -18,7 +18,7 @@ label splashscreen:
         menu:
             "English":
                 $renpy.change_language(None)
-            "{font=fonts/simplified_chinese/NotoSansSC-Regular.otf}中文{/font}":
+            "{font=fonts/simplified_chinese/NotoSansSC-Regular.otf}简体中文{/font}":
                 $renpy.change_language("simplified_chinese")
         $ persistent.language_selected = True
 

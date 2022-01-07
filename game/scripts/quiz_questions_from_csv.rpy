@@ -3826,6 +3826,14 @@ init python:
     python_questions = [
 
     QuizQuestion(
+    question="In Python, what is the name of a value associated with an object that can be referenced by its name using dot notation?",
+    true="Attribute",
+    false=["Property", "Characteristic", "Method"],
+    explanation="An attribute is a value associated with an object that can be referenced by its name using dot notation.",
+    learn_more_url="https://docs.python.org/3/glossary.html",
+    difficulty=1,
+    ),
+    QuizQuestion(
     question="What logical operator in Python returns True if both operands are True?",
     true="and",
     false=["or", "not", "list"],
@@ -4831,14 +4839,6 @@ init python:
     false=["Parameter", "Return value", "Class"],
     explanation="An argument is a value passed to a function (or method) when the function or method is called.",
     learn_more_url="https://www.freecodecamp.org/news/python-function-examples-how-to-declare-and-invoke-with-parameters-2/",
-    difficulty=1,
-    ),
-    QuizQuestion(
-    question="A value associated with an object that can be referenced by its name using dot notation is know as...",
-    true="Attribute",
-    false=["Property", "Characteristic", "Method"],
-    explanation="An attribute is a value associated with an object that can be referenced by its name using dot notation.",
-    learn_more_url="https://docs.python.org/3/glossary.html",
     difficulty=1,
     ),
     QuizQuestion(

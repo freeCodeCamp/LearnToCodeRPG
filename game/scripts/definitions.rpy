@@ -422,7 +422,10 @@ init:
         attribute_function Picker(expressions)
 
 ## translation styles
+# https://www.renpy.org/doc/html/gui.html#translation-and-gui-variables
 translate simplified_chinese python:
     gui.text_font = "fonts/simplified_chinese/NotoSansSC-Regular.otf"
     gui.name_text_font = "fonts/simplified_chinese/NotoSansSC-Regular.otf"
     gui.interface_text_font = "fonts/simplified_chinese/NotoSansSC-Regular.otf"
+    gui.button_text_font = "fonts/simplified_chinese/NotoSansSC-Regular.otf"
+    gui.choice_button_text_font = "fonts/simplified_chinese/NotoSansSC-Regular.otf"
