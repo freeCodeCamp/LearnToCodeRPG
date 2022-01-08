@@ -152,7 +152,7 @@ screen company_offer_email_screen(company_name):
         """
         Hey [persistent.player_name],
 
-        You did great in our interivew and we'd like to extend you this offer for an entry-level software engineer role.
+        You did great in our interview and we'd like to extend you this offer for an entry-level software engineer role.
 
         Please click {b}Accept Offer{/b} below to confirm. We look forward to your joining us!
         
