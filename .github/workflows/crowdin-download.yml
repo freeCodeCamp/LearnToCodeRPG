@@ -94,7 +94,7 @@ jobs:
           PLUGIN: "pull-request"
           GH_TOKEN: ${{ secrets.CROWDIN_CAMPERBOT_PAT }}
           BRANCH: "i18n-sync"
-          REPOSITORY: "freecodecamp/freecodecamp"
+          REPOSITORY: "freecodecamp/learntocoderpg"
           BASE: "main"
           TITLE: "chore(i18n,docs): processed translations"
           BODY: "This PR was opened auto-magically by Crowdin."
