@@ -4,6 +4,7 @@ label start:
     default calendar = Calendar(day=1, month=8, year=2021) # story starts on Aug 1st, 2021
     default start_date = date(2021, 8, 1) # this will be used to calculate how many days it took for the player to learn to code
 
+    $ persistent.has_started_game = True
     $ calendar_enabled = False
     
     stop music fadeout 2.0
@@ -81,10 +82,10 @@ label start_after_interview:
     "The fields marked with {color=[red]}*{/color} are required."
 
     # TODO: more customization like gender, pronouns, life story
-    $ persistent.player_name = ''
+    $ player_name = ''
     player pout "(Phew... Looks like I survived the technical questions. Now let's fill in the general information.)"
 
-    $ player_name = renpy.input("What is your name? {color=[red]}*{/color} (Type your name and hit Enter. This name will be used throughout the game and you cannot change it unless you start a new game.)", default="Lydia")
+    $ player_name = renpy.input(_("What is your name? {color=[red]}*{/color} (Type your name and hit Enter. This name will be used throughout the game and you cannot change it unless you start a new game.)"), default=_("Lydia"))
     $ player_name = player_name.strip()
     if player_name in vip_names:
         $ vip_profile_url = vip_names[player_name]
@@ -92,8 +93,7 @@ label start_after_interview:
         # TODO: Easter Egg
     # handle empty string case
     if not player_name:
-        $ player_name = "Lydia"
-    $ persistent.player_name = player_name
+        $ player_name = _("Lydia")
 
     # TODO: birthday Easter Egg
     # "What is your birthday?"
@@ -115,7 +115,7 @@ label start_after_interview:
             "Cool! We're glad that you're here!"
 
         "Referral":
-            $ referral_name = renpy.input("What is the first name of your referral? (Type something and hit Enter)")
+            $ referral_name = renpy.input(_("What is the first name of your referral? (Type something and hit Enter)"))
             # Easter egg :)
             if referral_name in vip_names:
                 $ vip_profile_url = vip_names[referral_name]
@@ -128,7 +128,7 @@ label start_after_interview:
                 "Hmmm... We aren't able to locate that person in our employee database. Maybe you made a typo?"
 
         "Others (Please specify)":
-            $ renpy.input("How did you hear about us? (Type something and hit Enter)")
+            $ renpy.input(_("How did you hear about us? (Type something and hit Enter)"))
             "Well, we aren't sure how you came across this opportunity through the portal you specified, but we're glad you're here!"
 
     menu:
@@ -153,8 +153,8 @@ label start_after_interview:
 
 label stage1:
     # use call instead of show b/c the screen will return after the timer finishes
-    call screen text_over_black_bg_screen('About three months ago...')
-    call screen text_over_black_bg_screen("{i}Chapter 1: Let's learn to code!{/i}")
+    call screen text_over_black_bg_screen(_('About three months ago...'))
+    call screen text_over_black_bg_screen(_("{i}Chapter 1: Let's learn to code!{/i}"))
 
     scene bg kid_home
     $ calendar_enabled = True
@@ -174,7 +174,7 @@ label stage1:
     player "(I did apply to some consulting firms and banks. And I've heard back from none of them.)"
     player "(It's not like I don't enjoy tutoring kids. I actually enjoy explaining concepts to others. I just need a full-time job that is more intellectually fulfilling.)"
     player "(Better yet if it pays more...)"
-    kid "Hey [persistent.player_name]?"
+    kid "Hey [player_name]?"
     player surprised "Oh. Hey. Sorry I just spaced out for a bit."
     player smile "Do you have any more questions before we wrap up?"
     kid "Nope! I think my project report is good to go. Thanks!"
@@ -247,7 +247,7 @@ label stage2:
             hide smartphone
             player relieved "Let's make this evening distraction-free for my sanity."
 
-    "(Hey [persistent.player_name]. It looks like you just made your first in-game choice. That is awesome!)"
+    "(Hey [player_name]. It looks like you just made your first in-game choice. That is awesome!)"
     "(You will encounter many more choices in this game later on. There are no right or wrong choices, only consequences.)"
     "(So it might be a good idea to save your progress when you are about to make a choice, start a new chapter, or just when you feel like it.)"
 
@@ -348,7 +348,7 @@ label stage2_stats_change:
 
 label stage3:
     # Stage 3. Annika
-    call screen text_over_black_bg_screen('{i}Chapter 2: A learning buddy to make it better!{/i}')
+    call screen text_over_black_bg_screen(_('{i}Chapter 2: A learning buddy to make it better!{/i}'))
     $ calendar.next()
     scene black
     scene bg bedroom with eyeopen
@@ -361,7 +361,7 @@ label stage3:
     hide smartphone
 
     show annika
-    annika "[persistent.player_name]!"
+    annika "[player_name]!"
     player surprised "Annika! Geez. When was the last time you called me? When we were moving out after graduation?"
     player laugh "Anyways, it's really nice to hear from you again!"
     annika "Same! How have you been?"
@@ -636,7 +636,7 @@ label stage5_annika:
     player pout "(So Annika managed to pull through the curriculum because she had some experience from college. Plus she has a real gift for design.)"
     player worry "(I'm not like that... There's no way I can do this...)"
 
-    annika "Hey [persistent.player_name], don't get discouraged, okay?"
+    annika "Hey [player_name], don't get discouraged, okay?"
     annika "It's already a big step forward now that you've checked out their curriculum!"
 
     show annika serious
@@ -693,7 +693,7 @@ label stage5_annika:
 
 label stage6:
     # Stage 6. Trials
-    call screen text_over_black_bg_screen("{i}Chapter 3: Let's hit the books!{/i}")
+    call screen text_over_black_bg_screen(_("{i}Chapter 3: Let's hit the books!{/i}"))
 
     scene bg bedroom dusk with fade
     player smile "I'm finally home! Let's head over to [developerquiz] and try out some quiz questions."
@@ -784,7 +784,7 @@ label stage6:
     player smile "Hey Annika! Is now a good time to talk?"
 
     show annika laugh
-    annika "Heyya [persistent.player_name]! Now's perfect. I just got back from work."
+    annika "Heyya [player_name]! Now's perfect. I just got back from work."
     annika "How did your first day of studying go?"
     player "I felt pretty productive today. It's nice how the quiz questions give you instant feedback."
     player happy "What about your day? How was work?"
@@ -799,7 +799,7 @@ label stage6:
     player "(And she also just mentioned something called a {b}Hacker Space{/b}. That's something worth asking about as well.)"
 
     show annika laugh
-    annika "Hello? Earth to [persistent.player_name]?"
+    annika "Hello? Earth to [player_name]?"
     player happy "Haha no worries I'm here. Just wondering about something."
 
     show annika neutral
@@ -843,7 +843,7 @@ label stage6_after_annika_questions:
     play sound 'audio/sfx/phone_hangup.wav'
 
     player smile "Whew. That's a lot of knowledge to unpack."
-    dad "Dinner's ready, [persistent.player_name]!"
+    dad "Dinner's ready, [player_name]!"
     player surprised "(Wow. Dad is cooking tonight? He cooks maybe once or twice a month, but when he cooks, it's usually really good.)"
     player laugh "Coming!"
 
@@ -936,7 +936,7 @@ label stage6_after_annika_questions:
 
     scene bg hacker_space dusk with fadehold
     show annika
-    annika "What do you think about this place, [persistent.player_name]?"
+    annika "What do you think about this place, [player_name]?"
     player laugh "It's amazing!"
     player "This place is alive with energy... It's like you can't take a step without seeing something interesting."
     annika @ laugh "That's the spirit!"
@@ -983,14 +983,14 @@ label stage6_after_annika_questions:
 
 label stage7:
     # Stage 7. Marco
-    call screen text_over_black_bg_screen('{i}Chapter 4: A mentor to lead the way!{/i}')
+    call screen text_over_black_bg_screen(_('{i}Chapter 4: A mentor to lead the way!{/i}'))
 
     $ has_met_marco = True # unlocks Marco's topics_to_ask
 
     scene bg desk with blinds
     show marco laugh
-    marco "Hi [persistent.player_name]. I'm Marco. I'm a senior engineer at {b}QuicheQubit{/b}."
-    player smile "Hi Marco. Nice to meet you! I'm [persistent.player_name], a recent grad and developer wannabe."
+    marco "Hi [player_name]. I'm Marco. I'm a senior engineer at {b}QuicheQubit{/b}."
+    player smile "Hi Marco. Nice to meet you! I'm [player_name], a recent grad and developer wannabe."
     marco "That sounds good."
 
     show marco neutral
@@ -1059,7 +1059,7 @@ label stage7:
         "I'm done asking!":
             player laugh "I'm done asking! That's all I want to know. Thanks so much for sharing!"
             show marco laugh
-            marco "Any time, [persistent.player_name]. Have fun coding and keep me updated on your progress!"
+            marco "Any time, [player_name]. Have fun coding and keep me updated on your progress!"
 
     scene bg bedroom night with slideright
     player smile "Marco was certainly a cool guy. I'm so lucky to have him as my mentor."
@@ -1104,7 +1104,7 @@ label stage7:
 
     show annika
     pause 1.0
-    annika "Hey [persistent.player_name]! Are you free today?"
+    annika "Hey [player_name]! Are you free today?"
     player smile "Hey Annika. Yep, I'm down to hang out. What's up?"
 
     annika @ laugh "Guess what? It's almost {bt}Hacktober{/bt}. The Hacker Space is holding a special hackathon for high school students."
@@ -1248,9 +1248,9 @@ label stage7_complete_curriculum:
 
     $ add_achievement(
         achievement_name=milestone_complete_curriculum,
-        title="{bt}Congratulations!{/bt}",
-        message="You completed the coding curriculum in {b}{color=#002ead}[days_between_start_and_curriculum_completion]{/color}{/b} days.\nNow you are ready to rock your coding interviews and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!",
-        ok_text="Let's crush those interviews!",
+        title=_("{bt}Congratulations!{/bt}"),
+        message=_("You completed the coding curriculum in {b}{color=#002ead}[days_between_start_and_curriculum_completion]{/color}{/b} days.\nNow you are ready to rock your coding interviews and realize your dream of becoming a software engineer.\n Feel free to share your progress with the world!"),
+        ok_text=_("Let's crush those interviews!"),
         show_achievements_count=False
         )
 
@@ -1265,7 +1265,7 @@ label stage7_complete_curriculum:
 
 label stage8:
     # Stage 8. Coding interviews
-    call screen text_over_black_bg_screen("{i}Chapter 5: Let's crush those interviews!{/i}")
+    call screen text_over_black_bg_screen(_("{i}Chapter 5: Let's crush those interviews!{/i}"))
 
     scene bg bedroom with fadehold
     player smile "Alright! Let's start by applying to jobs!"
@@ -1297,7 +1297,7 @@ label stage8:
     player surprised "Huh. A message from Marco."
     hide smartphone
     show marco
-    marco "Heya [persistent.player_name]! Was it a busy day?"
+    marco "Heya [player_name]! Was it a busy day?"
     player happy "Hey Marco! Yeah. I just started preparing for interviews and applying to jobs."
     marco @ laugh "That's a good start!"
     marco @ serious "But yeah, companies are usually slow to process the applications. You might need to wait for a week or more to hear back."
@@ -1432,9 +1432,9 @@ label stage8:
 
     $ add_achievement(
         achievement_name=milestone_first_offer,
-        title="{bt}Congratulations!{/bt}",
-        message="You taught yourself to become a developer in {b}{color=[dark_blue]}[days_between_start_and_offer]{/color}{/b} days, [days_between_curriculum_completion_and_offer] days after you've completed the coding curriculum.\nYou have applied to [num_jobs_applied] jobs and interviewed for [num_jobs_interviewed] times before landing this offer.\nNow you are ready to rock your new job!\n Feel free to share your progress with the world!",
-        ok_text="Let's rock my new job!",
+        title=_("{bt}Congratulations!{/bt}"),
+        message=_("You taught yourself to become a developer in {b}{color=[dark_blue]}[days_between_start_and_offer]{/color}{/b} days, [days_between_curriculum_completion_and_offer] days after you've completed the coding curriculum.\nYou have applied to [num_jobs_applied] jobs and interviewed for [num_jobs_interviewed] times before landing this offer.\nNow you are ready to rock your new job!\n Feel free to share your progress with the world!"),
+        ok_text=_("Let's rock my new job!"),
         show_achievements_count=False
         )
 
@@ -1449,7 +1449,7 @@ label stage8:
 
 label stage14:
     # Stage 14. New hire player meets Layla
-    call screen text_over_black_bg_screen("{i}Chapter 6: Let's meet my new colleagues!{/i}")
+    call screen text_over_black_bg_screen(_("{i}Chapter 6: Let's meet my new colleagues!{/i}"))
 
     $ calendar.next_month() # player's start date is in a month
     # TODO: maybe in v2
@@ -1460,7 +1460,7 @@ label stage14:
     player smile "My orientation email says that my onboarding buddy will be here to pick me up and show me around the office..."
     show layla
 
-    layla "Hey [persistent.player_name]. Welcome to the team! I'm Layla, your onboarding buddy."
+    layla "Hey [player_name]. Welcome to the team! I'm Layla, your onboarding buddy."
     layla @ laugh "Feel free to ask me anything!"
     player surprised "(Hmmm... I wonder if we have met before. Layla looks familiar somehow.)"
     player "(...Oh! Was that her at Hacker Space mentoring the kids?)"
@@ -1472,7 +1472,7 @@ label stage14:
 
     scene bg office with fade
     show layla with vpunch
-    layla "[persistent.player_name]? Are you okay? You are spacing out."
+    layla "[player_name]? Are you okay? You are spacing out."
     player smile "Ah! I'm fine. I just remembered that we might have met before."
     player "You know, at Hacker Space. I used to go there to study and work on projects before I got this job."
     layla "Oh, wow. Yeah. I was at a few of those Hacker Space events. Nice to hear that you enjoyed the place!"
@@ -1580,7 +1580,7 @@ label stage14:
             jump layla_story_choices
         "I'm done asking!":
             player @ laugh "I'm done asking! I feel so much better knowing that everyone started from square one."
-            layla @ neutral"Hehe, [persistent.player_name], you are a fun one. I'm sure you will enjoy your work as a developer."
+            layla @ neutral"Hehe, [player_name], you are a fun one. I'm sure you will enjoy your work as a developer."
 
     layla @ laugh "Are we now ready to go back and squash some bugs?"
     player laugh "Lead the way!"
@@ -1590,32 +1590,38 @@ label ending:
     player relieved "Okay, finally, I think my code is good to go! Let's commit it to the server."
     player neutral "Hmmm... Maybe it's a good idea to double-check?"
 
-    $ checks = ['double', 'triple', 'quadruple', 'quintuple', 'sextuple', 'septuple', 'octuple']
-    $ check_counter = 0
-
-label ending_check_code:
-    $ check_str = checks[check_counter]
-    menu:
+    $ check_counter = 2 # start on double-checking, go thru double, triple, quadruple
+    menu ending_check_code:
         player "Should I check my code some more?"
 
-        "Let's [check_str]-check the code!" if check_counter < len(checks):
+        "Let's double-check the code!" if check_counter == 2:
             $ check_counter += 1
             player "..."
             player "Looks good to me."
-            if check_counter < len(checks):
-                $ check_str = checks[check_counter]
-                player "But maybe I should still [check_str]-check it?"
-                jump ending_check_code
+            player "But maybe I should still triple-check it?"
+            jump ending_check_code
 
-            else:
-                player relieved "I've checked it so many times that I've lost count..."
+        "Let's triple-check the code!" if check_counter == 3:
+            $ check_counter += 1
+            player "..."
+            player "Looks good to me."
+            player "But maybe I should still quadruple-check it?"
+            jump ending_check_code
 
-                $ add_achievement(plot_double_check)
-                
-                player smile "It should be good to go, right?"
+        "Let's quadruple-check the code!" if check_counter == 4:
+            $ check_counter += 1
+            player "..."
+            player "Looks good to me."
+            player relieved "I've checked it so many times that I've lost count..."
+
+            $ add_achievement(plot_double_check)
+            
+            player smile "It should be good to go, right?"
+            # proceed with plot
 
         "Looks good to go!":
             player laugh "I'm confident that it's good to go!"
+            # proceed with plot
 
     player "Let's commit it to the server."
     # TODO: system processing animation
@@ -1630,7 +1636,7 @@ label ending_check_code:
     # office red alert animation
     show red_flash    
     play sound 'audio/sfx/error.wav'
-    layla "[persistent.player_name]? Was that your change a few seconds ago?"
+    layla "[player_name]? Was that your change a few seconds ago?"
     layla "Oh don't tell me... I think we have some problems here..."
     window hide
     pause 4.0
@@ -1638,9 +1644,9 @@ label ending_check_code:
 
     $ add_achievement(
         achievement_name=ending_dev,
-        title="{color=[red]}{icon=icon-alert-triangle} Attention{/color}",
-        message="Hey [persistent.player_name]... \nThe thing is, it looks like... \n{sc}{color=[red]}YOU HAVE BROUGHT DOWN THE PRODUCTION SERVER{/color}{/sc}",
-        ok_text="Oopsy... Am I... fired?",
+        title=_("{color=[red]}{icon=icon-alert-triangle} Attention{/color}"),
+        message=_("Hey [player_name]... \nThe thing is, it looks like... \n{sc}{color=[red]}YOU HAVE BROUGHT DOWN THE PRODUCTION SERVER{/color}{/sc}"),
+        ok_text=_("Oopsy... Am I... fired?"),
         show_achievements_count=False
         )
 
@@ -1649,7 +1655,7 @@ label ending_check_code:
     play sound 'audio/sfx/cartoon_suspense.wav'
     scene black with dissolve
     pause 1
-    show text "{bt}{size=48}{color=[white]}{i}Well, that's another chapter that we will bring to you in the future!{/i}{/color}{/size}{/bt}" with dissolve 
+    show text _("{bt}{size=48}{color=[white]}{i}Well, that's another chapter that we will bring to you in the future!{/i}{/color}{/size}{/bt}") with dissolve 
     pause 3
     hide text with dissolve
 
@@ -1676,13 +1682,13 @@ label ending_splash: # alternative endings also jump to here
     # use a lighter background because the hyperlinks are dark blue
     scene main_menu overlay with dissolve
     pause 1
-    show text "{size=48}Thanks for playing {b}Learn to Code RPG{/b}!\n\n[about]{/size}"
+    show text _("{size=48}Thanks for playing {b}Learn to Code RPG{/b}!\n\n[about!t]{/size}")
     with dissolve 
     show screen ctc() # click to continue
     pause
     hide text with dissolve
 
-    show text "{size=48}[credits]{/size}"
+    show text "{size=48}[credits!t]{/size}"
     with dissolve 
     pause
     hide screen ctc
@@ -1691,7 +1697,7 @@ label ending_splash: # alternative endings also jump to here
     $ quick_menu = True
     scene main_menu sepia with dissolve
 
-    "Hey [persistent.player_name]. Congratulations on reaching the end of the game!"
+    "Hey [player_name]. Congratulations on reaching the end of the game!"
     "Hope you enjoyed the ride!"
     "You might be wondering, what's next?"
     "Well, here are a bunch of things you can do."

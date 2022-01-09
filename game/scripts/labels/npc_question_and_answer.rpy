@@ -3,16 +3,17 @@
 label npc_conversation_start:
     $ renpy.show(npc_sprite) # Annika or Marco
     player smile "Hello!"
-    npc "Hey [persistent.player_name]! What's up?"
+    npc "Hey [player_name]! What's up?"
     player "Well, I learned some tech buzzwords and would like to learn more about them."
     npc "Sure, what would you like to know?"
 
     $ label = None
-    while label != 'done':
+    $ done_label = 'DONE'
+    while label != done_label:
         $ choices = [(topic, ask_npc[topic]) for topic in topics_to_ask]
-        $ choices.append(("That's all", 'done'))
+        $ choices.append((_("That's all"), done_label))
         $ label = renpy.display_menu(choices)
-        if label != 'done':
+        if label != done_label:
             $ renpy.call(label=label)
             # no need to discard the asked topic here since it's discarded inside each label
             npc "Anything else?"
@@ -33,7 +34,7 @@ label npc_choose_question:
 
 label ask_hackathon:
     # use `discard` instead of `remove` to prevent the exception in case the player rolls back
-    $ topics_to_ask.discard('Hackathon')
+    $ topics_to_ask.discard(_('Hackathon'))
     player "What is a hackathon?"
     npc "It's an event where people come together to design and implement cool tech projects."
     npc "Hackathons aren't usually too long. Most last for one or two days. Now imagine people hacking away at their laptops overnight! You get the idea."
@@ -54,7 +55,7 @@ label ask_hackathon:
     return
 
 label ask_fullstack:
-    $ topics_to_ask.discard('Full-Stack')
+    $ topics_to_ask.discard(_('Full-Stack'))
     player "What is a full-stack developer?"
     npc "A full-stack developer usually refers to a full-stack web developer. It's a role for people who can develop both client and server software."
     npc "You might have heard about front-end and back-end already. Full-stack is front-end and back-end put together."
@@ -68,12 +69,12 @@ label ask_fullstack:
 
     # TODO: add glossary
     player "(Hmmm, so that's what {b}full-stack{/b} is about.)"
-    $ todo_list.complete_todo(todo_ask + 'Full-Stack')
+    $ todo_list.complete_todo(todo_ask_fullstack)
     player "Checked it off my To-Do."
     return
 
 label ask_machinelearning:
-    $ topics_to_ask.discard('Machine Learning')
+    $ topics_to_ask.discard(_('Machine Learning'))
     player "What is Machine Learning?"
     npc "By definition, Machine Learning is a method of data analysis that automates analytical model building."
     npc "Basically, our goal is to build a model based on the data we observe."
@@ -88,12 +89,12 @@ label ask_machinelearning:
     player "Sounds awesome! Thanks for sharing!"
 
     player "(Hmmm, so that's what {b}machine learning{/b} is about.)"
-    $ todo_list.complete_todo(todo_ask + 'Machine Learning')
+    $ todo_list.complete_todo(todo_ask_machinelearning)
     player "Checked it off my To-Do."
     return
 
 label ask_conference:
-    $ topics_to_ask.discard('Conference')
+    $ topics_to_ask.discard(_('Conference'))
     player "What is a tech conference?"
     npc "Tech conferences are places for developers to gather and learn about the cutting-edge advances in the field of software."
     npc "There are usually talks given by speakers who are subject experts in their respective fields."
@@ -107,12 +108,12 @@ label ask_conference:
     player "I sure will!"
 
     player "(Hmmm, so that's what a tech {b}conference{/b} is about.)"
-    $ todo_list.complete_todo(todo_ask + 'Conference')
+    $ todo_list.complete_todo(todo_ask_conference)
     player "Checked it off my To-Do."
     return
 
 label ask_versioncontrol:
-    $ topics_to_ask.discard('Version Control')
+    $ topics_to_ask.discard(_('Version Control'))
     player "What is version control?"
     player "(And why should I care?)"
     npc "That's a great question to ask. Let me tell you what version control is, and, yes, why you should care."
@@ -131,12 +132,12 @@ label ask_versioncontrol:
     player "Thanks for the tip!"
 
     player "(Hmmm, so that's what {b}version control{/b} is about.)"
-    $ todo_list.complete_todo(todo_ask + 'Version Control')
+    $ todo_list.complete_todo(todo_ask_versioncontrol)
     player "Checked it off my To-Do."
     return
 
 label ask_devops:
-    $ topics_to_ask.discard('DevOps')
+    $ topics_to_ask.discard(_('DevOps'))
     player "What is DevOps?"
     npc "By definition, DevOps is the combination of cultural philosophies, practices, and tools for better software delivery."
     npc "Some of its core principles include Continuous Improvement and Automate Everything You Can."
@@ -147,12 +148,12 @@ label ask_devops:
     player "Alright, I'll do my own research. Thanks."
 
     player "(Hmmm, so that's what {b}DevOps{/b} is about.)"
-    $ todo_list.complete_todo(todo_ask + 'DevOps')
+    $ todo_list.complete_todo(todo_ask_devops)
     player "Checked it off my To-Do."
     return
 
 label ask_agile:
-    $ topics_to_ask.discard('Agile')
+    $ topics_to_ask.discard(_('Agile'))
     player "What is agile development?"
     npc "The definition might be boring but here it goes: Agile is an iterative approach to project management and software development."
     npc "Teams work in fast iterations, deliver frequent builds, and receive frequent feedback in order to build better software."
@@ -163,12 +164,12 @@ label ask_agile:
     player "Haha I can see how this mindset is helpful in lifelong learning. That's awesome."
 
     player "(Hmmm, so that's what {b}agile{/b} development is about.)"
-    $ todo_list.complete_todo(todo_ask + 'Agile')
+    $ todo_list.complete_todo(todo_ask_agile)
     player "Checked it off my To-Do."
     return
 
 label ask_api:
-    $ topics_to_ask.discard('API')
+    $ topics_to_ask.discard(_('API'))
     player "What is an API?"
     player "(And why is everyone going around using those three-letter acronyms?)"
     npc "API stands for application programing interface."
@@ -181,12 +182,12 @@ label ask_api:
     player "Yeah... but I think I get the idea now."
 
     player "(Hmmm, so that's what an {b}API{/b} is about.)"
-    $ todo_list.complete_todo(todo_ask + 'API')
+    $ todo_list.complete_todo(todo_ask_api)
     player "Checked it off my To-Do."
     return
 
 label ask_userexperience:
-    $ topics_to_ask.discard('User Experience')
+    $ topics_to_ask.discard(_('User Experience'))
     player "What is User Experience?"
     npc "Thinking ahead of just writing code, aren't you? You might have it in you to become a product manager!"
     player "(Uh, thanks, I guess?)"
@@ -211,6 +212,6 @@ label ask_userexperience:
     player "Will do!"
 
     player "(Hmmm, so that's what {b}User Experience{/b} is about.)"
-    $ todo_list.complete_todo(todo_ask + 'User Experience')
+    $ todo_list.complete_todo(todo_ask_userexperience)
     player "Checked it off my To-Do."
     return

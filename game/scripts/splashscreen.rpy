@@ -13,6 +13,15 @@ label splashscreen:
     scene gray90 with dissolve
     with Pause(1)
 
+    # if not persistent.language_selected:
+    #     scene black
+    #     menu:
+    #         "English":
+    #             $renpy.change_language(None)
+    #         "{font=fonts/simplified_chinese/NotoSansSC-Regular.otf}简体中文{/font}":
+    #             $renpy.change_language("simplified_chinese")
+    #     $ persistent.language_selected = True
+
     $ accessibility_tips = _p("""
         Accessibility Tips: To enable auto-voicing of the text, please first configure the speech synthesis settings (speaker gender, accent, etc.) on your computer according to {a=https://www.renpy.org/doc/html/self_voicing.html#speech-synthesis}these instructions{/a}.
         Back to the game, you may press the {b}{u}v{/u}{/b} key to switch on auto-voicing.
@@ -24,7 +33,7 @@ label splashscreen:
     # use a lighter background because the hyperlinks are dark blue
     scene main_menu overlay with dissolve
     pause 1
-    show text "{size=48}[accessibility_tips]{/size}"
+    show text "{size=48}[accessibility_tips!t]{/size}"
     with dissolve
     show screen ctc() # click to continue
     pause
@@ -38,7 +47,7 @@ label splashscreen:
         If you are enjoying this game, please {icon=icon-thumbs-up} rate and review us on {a=https://freecodecamp.itch.io/learn-to-code-rpg}itch.io{/a} and {icon=icon-star} star our {a=https://github.com/freeCodeCamp/LearnToCodeRPG}GitHub repo{/a}.
         """)
     # use a lighter background because the hyperlinks are dark blue
-    show text "{size=48}[beta_disclaimer]{/size}"
+    show text "{size=48}[beta_disclaimer!t]{/size}"
     with dissolve 
     pause
     hide screen ctc

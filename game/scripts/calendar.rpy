@@ -8,8 +8,8 @@ init python:
             self.month = month
             self.year = year
             
-            self.month_names = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July',
-                                               'August', 'September', 'October', 'November', 'December']
+            self.month_names = ['', _('January'), _('February'), _('March'), _('April'), _('May'), _('June'), _('July'),
+                                               _('August'), _('September'), _('October'), _('November'), _('December')]
             self.days_count = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
                         
         def next(self):
@@ -57,6 +57,7 @@ screen calendar_screen():
             xpadding 30
             ypadding 30
             background white80
+
             hbox:
                 spacing 15
                 text '{icon=icon-calendar}'

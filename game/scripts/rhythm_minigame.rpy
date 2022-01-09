@@ -24,7 +24,7 @@ screen select_song_screen(songs):
         vbox:
             spacing 20
 
-            label "Click on a song to play" xalign 0.5
+            label _("Click on a song to play") xalign 0.5
 
             null height 20
 
@@ -45,9 +45,9 @@ screen select_song_screen(songs):
                 side_xalign 0.5
 
                 # header row
-                label '{icon=icon-music} ' + _('Song Name') xysize cell_size
-                label '{icon=icon-chevrons-up} ' + _('Highest Score') xysize cell_size
-                label '{icon=icon-star} ' + _('% Perfect Score') xysize cell_size
+                label _('{icon=icon-music} Song Name') xysize cell_size
+                label _('{icon=icon-chevrons-up} Highest Score') xysize cell_size
+                label _('{icon=icon-star} % Perfect Score') xysize cell_size
 
                 # body rows
                 for song in songs:
@@ -57,10 +57,10 @@ screen select_song_screen(songs):
                         Return(song)
                         ]
                     $ highest_score, highest_percent = persistent.rhythm_game_high_scores[song.name]
-                    text str(highest_score) xysize cell_size xalign 0.5
+                    text '[highest_score]' xysize cell_size xalign 0.5
                     text '[highest_percent]%' xysize cell_size xalign 0.5
 
-            textbutton '{icon=icon-x-circle} ' + _("Exit"):
+            textbutton _("{icon=icon-x-circle} Exit"):
                 xalign 0.5
                 action Return(None)
 
@@ -83,8 +83,8 @@ screen rhythm_game(rhythm_game_displayable):
         ypos 50
         spacing 20
 
-        textbutton '{icon=icon-x-circle} Quit' action [
-        Confirm('Would you like to quit the rhythm game?',
+        textbutton _('{icon=icon-x-circle} Quit') action [
+        Confirm(_('Would you like to quit the rhythm game?'),
             yes=[
             Stop(CHANNEL_RHYTHM_GAME), # stop the music on this channel
             Return(rhythm_game_displayable.score)
@@ -99,7 +99,8 @@ screen rhythm_game(rhythm_game_displayable):
 
         # can also use has_music_started so this won't show during the silence
         showif rhythm_game_displayable.has_game_started:
-            text 'Score: ' + str(rhythm_game_displayable.score):
+            $ score_str = str(rhythm_game_displayable.score)
+            text _('Score: [score+str]'):
                 color '#fff'
                 size 40
 
@@ -567,7 +568,7 @@ label rhythm_game_entry_label:
         # disable Esc key menu to prevent the player from saving the game
         $ _game_menu_screen = None
 
-        $ renpy.notify('Use the arrow keys on your keyboard to hit the notes as they reach the end of the tracks. Good luck!')
+        $ renpy.notify(_('Use the arrow keys on your keyboard to hit the notes as they reach the end of the tracks. Good luck!'))
         $ rhythm_game_displayable = RhythmGameDisplayable(selected_song)
         call screen rhythm_game(rhythm_game_displayable)
         $ new_score = _return
@@ -582,7 +583,7 @@ label rhythm_game_entry_label:
             $ persistent.rhythm_game_high_scores[selected_song.name] = (new_score, new_percent)
 
             if old_score != 0: # high score only counts if we have a non-zero old score
-                $ renpy.notify('New high score!')
+                $ renpy.notify(_('New high score!'))
                 if not plot_rhythm_highscore in persistent.achievements:
                     $ add_achievement(plot_rhythm_highscore)
 

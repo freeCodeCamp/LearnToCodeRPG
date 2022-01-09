@@ -59,7 +59,7 @@ label save_reminder:
 
     "(Would you like to {b}Save{/b} your progress up to now?)"
 
-    call screen save_reminder_screen("Would you like to save your progress up to now?", 
+    call screen save_reminder_screen(_("Would you like to save your progress up to now?"), 
         yes_action=[ShowMenu('save'), Return()], 
         no_action=Return())
 

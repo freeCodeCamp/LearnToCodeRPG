@@ -255,14 +255,15 @@ screen quick_menu():
             xalign 0.55
             yalign 0.98
 
-            textbutton '{icon=icon-skip-back} ' + _("Back") action Rollback()
-            textbutton '{icon=icon-compass} '+ _("History") action ShowMenu('history')
-            textbutton '{icon=icon-fast-forward} ' + _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton '{icon=icon-play-circle} ' + _("Auto") action Preference("auto-forward", "toggle")
-            textbutton '{icon=icon-save} ' + _("Save") action ShowMenu('save')
+            textbutton _("{icon=icon-skip-back} Back") action Rollback()
+
+            textbutton _("{icon=icon-compass} History") action ShowMenu('history')
+            textbutton _("{icon=icon-fast-forward} Skip") action Skip() alternate Skip(fast=True, confirm=True)
+            textbutton _("{icon=icon-play-circle} Auto") action Preference("auto-forward", "toggle")
+            textbutton _("{icon=icon-save} Save") action ShowMenu('save')
             # textbutton _("Q.Save") action QuickSave()
             # textbutton _("Q.Load") action QuickLoad()
-            textbutton '{icon=icon-settings} ' + _("Settings ") action ShowMenu('preferences')
+            textbutton _("{icon=icon-settings} Settings") action ShowMenu('preferences')
 
             # if stats is showing, hide it; else show it
             if stats_unlocked:
@@ -313,12 +314,12 @@ screen main_menu_navigation():
         spacing gui.navigation_spacing
 
         textbutton _("New Game") action Start():
-            if not persistent.player_name: # a new game, make `start` stand out
+            if not persistent.has_started_game: # a new game, make `start` stand out
                 background "gui/button/sticky_note_button_green.png"
             # else use regular yellow
 
         textbutton _("Continue") action ShowMenu("load"):
-            if persistent.player_name: # has some game in progress, make `load` stand out
+            if persistent.has_started_game: # has some game in progress, make `load` stand out
                 background "gui/button/sticky_note_button_pink.png"
                 text_idle_color '#fff'
             # else use regular yellow
@@ -332,10 +333,10 @@ screen main_menu_navigation():
         # TODO: v2 achievements, glossary etc.
         textbutton _("Bonus"):
             action [
-            SensitiveIf(persistent.player_name),
+            SensitiveIf(persistent.has_started_game),
             ShowMenu("bonus")
             ]
-            if persistent.player_name: # has some game in progress
+            if persistent.has_started_game: # has some game in progress
                 background "gui/button/sticky_note_button_purple.png"
                 text_idle_color '#fff'
 
@@ -378,23 +379,23 @@ screen game_menu_navigation():
 
         spacing gui.navigation_spacing
 
-        textbutton '{icon=icon-compass} ' + _("History") action ShowMenu("history")
+        textbutton _("{icon=icon-compass} History") action ShowMenu("history")
 
-        textbutton '{icon=icon-save} ' + _("Save Game") action ShowMenu("save")
+        textbutton _("{icon=icon-save} Save Game") action ShowMenu("save")
 
-        textbutton '{icon=icon-bookmark} ' + _("Load Game") action ShowMenu("load")
+        textbutton _("{icon=icon-bookmark} Load Game") action ShowMenu("load")
 
-        textbutton '{icon=icon-settings} ' + _("Settings") action ShowMenu("preferences")
+        textbutton _("{icon=icon-settings} Settings") action ShowMenu("preferences")
 
         if _in_replay:
 
             textbutton _("End Replay") action EndReplay(confirm=True)
 
-        textbutton '{icon=icon-menu} ' + _("Main Menu") action MainMenu()
+        textbutton _("{icon=icon-menu} Main Menu") action MainMenu()
 
-        textbutton '{icon=icon-info} ' + _("About") action ShowMenu("about")
+        textbutton _("{icon=icon-info} About") action ShowMenu("about")
 
-        textbutton '{icon=icon-star} ' + _("Bonus") action ShowMenu("bonus")
+        textbutton _("{icon=icon-star} Bonus") action ShowMenu("bonus")
 
         # if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
@@ -405,7 +406,7 @@ screen game_menu_navigation():
 
             ## The quit button is banned on iOS and unnecessary on Android and
             ## Web.
-            textbutton '{icon=icon-x-circle} ' + _("Quit Game") action Quit(confirm=not main_menu)
+            textbutton _("{icon=icon-x-circle} Quit Game") action Quit(confirm=not main_menu)
 
 style navigation_button is gui_button
 style navigation_button_text is gui_button_text
@@ -620,15 +621,21 @@ screen about():
 
         style_prefix "about"
 
-        vbox:
+        vbox spacing 10:
 
             label "[config.name!t]"
             text _("Version [config.version!t]\n")
 
-            ## gui.about is usually set in options.rpy.
-            if gui.about:
-                text "[gui.about!t]\n"
+            text intro
 
+            text about
+
+            null height 20
+
+            label _("Credits")
+            text credits
+
+            text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].")
             # text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
 
 
@@ -815,17 +822,24 @@ screen preferences():
                     textbutton _("After Choices") action Preference("after choices", "toggle")
                     textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
 
+                ## Additional vboxes of type "radio_pref" or "check_pref" can be
+                ## added here, to add additional creator-defined preferences.
+
                 vbox:
                     style_prefix "check"
-                    label _("Others")
+                    label _("Features")
                     textbutton _("Moving Text") action [
                     ToggleField(persistent, 'enable_moving_text'),
                     Function(configure_text_tags)
                     ]
                     textbutton _("Save Reminder") action ToggleField(persistent, 'enable_save_reminder')
 
-                ## Additional vboxes of type "radio_pref" or "check_pref" can be
-                ## added here, to add additional creator-defined preferences.
+                # vbox:
+                #     style_prefix "radio"
+                #     label _("Language")
+                #     textbutton _("English") action Language(None)
+                #     textbutton _("{font=fonts/simplified_chinese/NotoSansSC-Regular.otf}简体中文{/font}") action Language("simplified_chinese")
+
 
             null height (4 * gui.pref_spacing)
 
@@ -1554,7 +1568,7 @@ style nvl_window:
 
 style main_menu_frame:
     variant "small"
-    background "gui/phone/overlay/main_menu.png"
+    # background "gui/phone/overlay/main_menu.png"
 
 style game_menu_outer_frame:
     variant "small"

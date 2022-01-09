@@ -1,16 +1,17 @@
 init 998 python:
     easter_egg_skill_achievement_map = {
-    'Brewing coffee': plot_skill_coffee,
-    'Fixing fax machines': plot_skill_fax,
-    'Handling angry customers': plot_skill_customer,
-    'Fusing cables': plot_skill_cable,
-    'Retrieving lost passwords': plot_skill_password,
-    'Pacifying office pets': plot_skill_pet
+    _('Brewing coffee'): plot_skill_coffee,
+    _('Fixing fax machines'): plot_skill_fax,
+    _('Handling angry customers'): plot_skill_customer,
+    _('Fusing cables'): plot_skill_cable,
+    _('Retrieving lost passwords'): plot_skill_password,
+    _('Pacifying office pets'): plot_skill_pet,
     }
 
     easter_egg_skills = list(easter_egg_skill_achievement_map.keys())
 
     # company logo files are named as images/others/company/avocado.png etc.
+    # DO NOT TRANSLATE THE COMPANY NAMES
     all_company_names = {
     'AvocadoAPI': 'avocado',
     'AioliAI': 'aioli',
@@ -51,7 +52,7 @@ screen job_posting_screen(company_name, skill_names, easter_egg_skill=None):
             $ company_logo = 'images/others/company/%s.png' % all_company_names[company_name]
             add company_logo xalign 0.5
 
-            text "{b}[company_name]{/b} is hiring for a candidate with the following skills:"
+            text _("{b}[company_name]{/b} is hiring for a candidate with the following skills:")
 
             null height 20
 
@@ -59,13 +60,13 @@ screen job_posting_screen(company_name, skill_names, easter_egg_skill=None):
                 xfill True
                 xoffset 200
                 for skill in skill_names:
-                    text "•  " + skill
+                    text "•  [skill!t]"
                 if easter_egg_skill:
                     $ achievement_name = easter_egg_skill_achievement_map[easter_egg_skill]
-                    textbutton "•  " + easter_egg_skill:
+                    textbutton "•  [easter_egg_skill!t]":
                         activate_sound 'audio/sfx/confirm_and_share.wav'
                         hovered [
-                        Notify('Wait, is this a technical skill?'),
+                        Notify(_('Wait, is this a technical skill?')),
                         Function(persistent.achievements.add, achievement_name)
                         ]
                         action [
@@ -79,8 +80,8 @@ screen job_posting_screen(company_name, skill_names, easter_egg_skill=None):
             hbox:
                 spacing 100
                 xalign .5
-                textbutton '{icon=icon-minus-circle} ' + _("Pass") action Return(False) # boolean return indicating whether the player decides to apply
-                textbutton '{icon=icon-send} ' + _("Apply") action Return(True)
+                textbutton _("{icon=icon-minus-circle} Pass") action Return(False) # boolean return indicating whether the player decides to apply
+                textbutton _("{icon=icon-send} Apply") action Return(True)
 
 # see confirm_and_share.rpy
 screen company_email_screen(company_name, message, ok_text):
@@ -103,11 +104,6 @@ screen company_email_screen(company_name, message, ok_text):
 
             text _(message)
 
-            # if tweet_content_url:
-            #     textbutton "{icon=icon-twitter} " + _("Tweet this"):
-            #         xalign 0.5
-            #         action OpenURL(tweet_content_url)
-
             null height 20
 
             textbutton ok_text:
@@ -117,8 +113,8 @@ screen company_email_screen(company_name, message, ok_text):
 screen company_interview_email_screen(company_name):
     use company_email_screen(
         company_name,
-        """
-        Hey [persistent.player_name],
+        _("""
+        Hey [player_name],
 
         Thanks for applying to our job posting.
 
@@ -126,15 +122,15 @@ screen company_interview_email_screen(company_name):
 
         Best,
         [company_name]
-        """,
-        'Confirm Interview'
+        """),
+        _('Confirm Interview')
         )
 
 screen company_rejection_email_screen(company_name):
     use company_email_screen(
         company_name,
-        """
-        Hey [persistent.player_name],
+        _("""
+        Hey [player_name],
 
         Thanks for taking the time to interview with us.
 
@@ -142,15 +138,15 @@ screen company_rejection_email_screen(company_name):
 
         Best,
         [company_name]
-        """,
-        "Okay, I guess [company_name] isn't my muse",
+        """),
+        _("Okay, I guess [company_name] isn't my muse"),
         )
 
 screen company_offer_email_screen(company_name):
     use company_email_screen(
         company_name,
-        """
-        Hey [persistent.player_name],
+        _("""
+        Hey [player_name],
 
         You did great in our interview and we'd like to extend you this offer for an entry-level software engineer role.
 
@@ -158,6 +154,6 @@ screen company_offer_email_screen(company_name):
         
         Best,
         Your future colleagues at [company_name]
-        """,
-        'Accept Offer',
+        """),
+        _('Accept Offer'),
         )

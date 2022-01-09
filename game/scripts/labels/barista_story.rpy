@@ -7,8 +7,8 @@ label barista_fullstack:
     female "What do you do now?"
     male "Whelp, I'm now finally doing full-stack dev. Remember that I used to do front-end dev only? That got boring really fast..."
     player @ surprised "{b}Full-stack{/b}... What is that? I better take notes so I can learn more about it."
-    $ todo_list.add_todo(todo_ask + 'Full-Stack')
-    $ topics_to_ask.add('Full-Stack')
+    $ todo_list.add_todo(todo_ask_fullstack)
+    $ topics_to_ask.add(_('Full-Stack'))
     player @ smile "Added it to my To-Do list!"
     return    
 
@@ -20,8 +20,8 @@ label barista_devops:
     college_boy "Haha thanks. Okay let's cut to the chase."
     college_boy "I'm really interested in getting a role in DevOps, are there any resources you'd recommend?"
     player @ surprised "{b}DevOps{/b}... What is that? I better take notes so I can learn more about it."
-    $ todo_list.add_todo(todo_ask + 'DevOps')
-    $ topics_to_ask.add('DevOps')
+    $ todo_list.add_todo(todo_ask_devops)
+    $ topics_to_ask.add(_('DevOps'))
     player @ smile "Added it to my To-Do list!"
     return
 
@@ -34,8 +34,8 @@ label barista_machinelearning:
     college_boy "That's cool! Did you use Machine Learning for that?"
     college_girl "Yeah! And there are a lot of new techniques that we can add to this..."
     player @ surprised "{b}Machine Learning{/b}... What is that? I better take notes so I can learn more about it."
-    $ todo_list.add_todo(todo_ask + 'Machine Learning')
-    $ topics_to_ask.add('Machine Learning')
+    $ todo_list.add_todo(todo_ask_machinelearning)
+    $ topics_to_ask.add(_('Machine Learning'))
     player @ smile "Added it to my To-Do list!"
     return
 
@@ -50,8 +50,8 @@ label barista_conference:
     college_girl "You'll be fine! Conferences are fun! There are talks, poster sessions, and even career fairs!"
     girl "Oh... That doesn't sound too bad. What exactly can I expect?"
     player @ surprised "A tech {b}conference{/b}... That sounds like a place for elite developers. I better take notes so I can learn more about it."
-    $ todo_list.add_todo(todo_ask + 'Conference')
-    $ topics_to_ask.add('Conference')
+    $ todo_list.add_todo(todo_ask_conference)
+    $ topics_to_ask.add(_('Conference'))
     player @ smile "Added it to my To-Do list!"
     return
 
@@ -62,7 +62,7 @@ label barista_agile:
     female "Yeah! We have some agile coach coming in to boost our productivity."
     male "We had a coach as well. That was a smooth experience transitioning to a more modern way of developing software..."
     player @ surprised "{b}Agile{/b}... What is that? I better take notes so I can learn more about it."
-    $ todo_list.add_todo(todo_ask + 'Agile')
+    $ todo_list.add_todo(todo_ask_agile)
     $ topics_to_ask.add('Agile')
     player @ smile "Added it to my To-Do list!"
     return
@@ -78,8 +78,8 @@ label barista_api:
     college_boy "Ouch. Don't be so mean. I'm only doing this so we can avoid {bt}reinventing the wheel.{/bt}"
     college_girl "... Okay. Whatever you say. Let's get to work."
     player @ surprised "An {b}API{/b}... What is that? I better take notes so I can learn more about it."
-    $ todo_list.add_todo(todo_ask + 'API')
-    $ topics_to_ask.add('API')
+    $ todo_list.add_todo(todo_ask_api)
+    $ topics_to_ask.add(_('API'))
     player @ smile "Added it to my To-Do list!"
     return
 
@@ -92,8 +92,8 @@ label barista_userexperience:
     female "Good, good. Now tell me a bit about yourself. Why did you get into UX? What UX projects have you done?"
     college_boy "Sure! So it all started with this program at my school..."
     player @ surprised "{b}User Experience{/b}... What is that? I better take notes so I can learn more about it."
-    $ todo_list.add_todo(todo_ask + 'User Experience')
-    $ topics_to_ask.add('User Experience')
+    $ todo_list.add_todo(todo_ask_userexperience)
+    $ topics_to_ask.add(_('User Experience'))
     player @ smile "Added it to my To-Do list!"
     return
 
@@ -109,7 +109,7 @@ label barista_versioncontrol:
     boy "And remember to thank the genius who first suggested that we set up version control."
     girl "... I'm not thanking you for breaking the code, you know."
     player @ surprised "{b}Version Control{/b}... What is that? I better take notes so I can learn more about it."
-    $ todo_list.add_todo(todo_ask + 'Version Control')
-    $ topics_to_ask.add('Version Control')
+    $ todo_list.add_todo(todo_ask_versioncontrol)
+    $ topics_to_ask.add(_('Version Control'))
     player @ smile "Added it to my To-Do list!"
     return
