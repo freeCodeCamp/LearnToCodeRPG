@@ -67,7 +67,7 @@ jobs:
           CROWDIN_API_URL: "https://freecodecamp.crowdin.com/api/v2/"
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID_CURRICULUM }}
           PLUGIN: "convert-chinese"
-          FILE_PATHS: '["/docs/i18n/chinese/"]'
+          FILE_PATHS: '["/game/tl/chinese/"]'
 
       # Create Commit
       - name: Commit Changes
