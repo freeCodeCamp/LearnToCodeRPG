@@ -834,11 +834,11 @@ screen preferences():
                     ]
                     textbutton _("Save Reminder") action ToggleField(persistent, 'enable_save_reminder')
 
-                vbox:
-                    style_prefix "radio"
-                    label _("Language")
-                    textbutton _("English") action Language(None)
-                    textbutton _("{font=fonts/simplified_chinese/NotoSansSC-Regular.otf}简体中文{/font}") action Language("simplified_chinese")
+                # vbox:
+                #     style_prefix "radio"
+                #     label _("Language")
+                #     textbutton _("English") action Language(None)
+                #     textbutton _("{font=fonts/simplified_chinese/NotoSansSC-Regular.otf}简体中文{/font}") action Language("simplified_chinese")
 
 
             null height (4 * gui.pref_spacing)
