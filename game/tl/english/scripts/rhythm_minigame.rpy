@@ -1,4 +1,4 @@
-﻿# TODO: Translation updated at 2022-01-11 21:38
+﻿# TODO: Translation updated at 2022-01-11 21:45
 
 translate english strings:
 
@@ -27,8 +27,8 @@ translate english strings:
     new "Would you like to quit the rhythm game?"
 
     # game/scripts/rhythm_minigame.rpy:103
-    old "Score: [score+str]"
-    new "Score: [score+str]"
+    old "Score: [score_str]"
+    new "Score: [score_str]"
 
     # game/scripts/rhythm_minigame.rpy:571
     old "Use the arrow keys on your keyboard to hit the notes as they reach the end of the tracks. Good luck!"

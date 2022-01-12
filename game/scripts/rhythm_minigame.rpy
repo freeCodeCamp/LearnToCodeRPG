@@ -100,7 +100,7 @@ screen rhythm_game(rhythm_game_displayable):
         # can also use has_music_started so this won't show during the silence
         showif rhythm_game_displayable.has_game_started:
             $ score_str = str(rhythm_game_displayable.score)
-            text _('Score: [score+str]'):
+            text _('Score: [score_str]'):
                 color '#fff'
                 size 40
 
