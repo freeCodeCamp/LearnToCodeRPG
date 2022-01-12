@@ -1,4 +1,4 @@
-﻿# TODO: Translation updated at 2022-01-08 18:58
+﻿# TODO: Translation updated at 2022-01-11 21:38
 
 translate english strings:
 
@@ -7,16 +7,20 @@ translate english strings:
     new "[stats_name!t] is set to [clamped_val_str]"
 
     # game/scripts/player_stats.rpy:47
-    old "[stats_name!t] knowledge increased by [val_str]"
-    new "[stats_name!t] knowledge increased by [val_str]"
+    old " knowledge increased by "
+    new " knowledge increased by "
 
     # game/scripts/player_stats.rpy:49
-    old "[stats_name!t] increased by [val_str]"
-    new "[stats_name!t] increased by [val_str]"
+    old " increased by "
+    new " increased by "
 
     # game/scripts/player_stats.rpy:55
-    old "[stats_name!t] knowledge decreased by [val_str]"
-    new "[stats_name!t] knowledge decreased by [val_str]"
+    old " knowledge decreased by "
+    new " knowledge decreased by "
+
+    # game/scripts/player_stats.rpy:57
+    old " decreased by "
+    new " decreased by "
 
     # game/scripts/player_stats.rpy:155
     old "Show Stats"

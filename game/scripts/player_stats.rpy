@@ -44,17 +44,17 @@ init python:
                 val_str = str(val)
                 renpy.sound.play('audio/sfx/stats_change_boop.wav')
                 if stats_name in self.subcategory_stats_map: # skill name + the word `knowledge`
-                    renpy.notify(_('[stats_name!t] knowledge increased by [val_str]'))
+                    renpy.notify(stats_name + _(' knowledge increased by ') + val_str)
                 else: # just plain string `Sanity` or `CS Knowledge`
-                    renpy.notify(_('[stats_name!t] increased by [val_str]'))
+                    renpy.notify(stats_name + _(' increased by ') + val_str)
             elif val < 0:
                 change_direction = CHANGE_DIRECTION_DEC                    
                 val_str = str(-val)
                 renpy.sound.play('audio/sfx/stats_change_buzz.wav')
                 if stats_name in self.subcategory_stats_map:
-                    renpy.notify(_('[stats_name!t] knowledge decreased by [val_str]'))
+                    renpy.notify(stats_name + _(' knowledge decreased by ') + val_str)
                 else:
-                    renpy.notify(_('[stats_name!t] knowledge decreased by [val_str]'))
+                    renpy.notify(stats_name + _(' decreased by ') + val_str)
 
             renpy.show_screen('player_stats_todo_screen', 
                 _layer='transient', changed_stats=stats_name, change_direction=change_direction)

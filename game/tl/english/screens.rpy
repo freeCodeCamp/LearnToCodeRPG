@@ -1,4 +1,4 @@
-﻿# TODO: Translation updated at 2022-01-08 18:58
+﻿# TODO: Translation updated at 2022-01-11 21:38
 
 translate english strings:
 
@@ -181,18 +181,6 @@ translate english strings:
     # game/screens.rpy:835
     old "Save Reminder"
     new "Save Reminder"
-
-    # game/screens.rpy:839
-    old "Language"
-    new "Language"
-
-    # game/screens.rpy:840
-    old "English"
-    new "English"
-
-    # game/screens.rpy:841
-    old "{font=fonts/simplified_chinese/NotoSansSC-Regular.otf}简体中文{/font}"
-    new "{font=fonts/simplified_chinese/NotoSansSC-Regular.otf}简体中文{/font}"
 
     # game/screens.rpy:852
     old "Text Speed"
