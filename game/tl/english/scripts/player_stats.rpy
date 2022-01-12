@@ -3,8 +3,8 @@
 translate english strings:
 
     # game/scripts/player_stats.rpy:28
-    old "[stats_name!t] is set to [clamped_val_str]"
-    new "[stats_name!t] is set to [clamped_val_str]"
+    old " is set to "
+    new " is set to "
 
     # game/scripts/player_stats.rpy:47
     old " knowledge increased by "

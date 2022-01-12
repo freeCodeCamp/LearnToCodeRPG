@@ -25,7 +25,7 @@ init python:
             clamped_val = min(100, max(0, val))
             self.player_stats_map[stats_name] = clamped_val
             clamped_val_str = str(clamped_val)
-            renpy.notify(_('[stats_name!t] is set to [clamped_val_str]'))
+            renpy.notify(stats_name + _(' is set to ') + clamped_val_str)
 
         def change_stats(self, stats_name, val):
             # keep between 0 and 100
@@ -214,6 +214,6 @@ screen todo_screen():
     vbox:
         spacing 5
         for todo in todo_list.incomplete:
-            text '    {icon=icon-square}    [todo!t]'
+            text '    {icon=icon-square}    ' + todo
         for todo in todo_list.completed:
-            text '    {icon=icon-check-square}    [todo!t]' color gui.insensitive_color
+            text '    {icon=icon-check-square}    ' + todo color gui.insensitive_color
