@@ -6,7 +6,7 @@ label start:
 
     $ persistent.has_started_game = True
     $ calendar_enabled = False
-    
+
     stop music fadeout 2.0
     scene bg laptop_screen with dissolve
 
@@ -30,10 +30,10 @@ label start:
 
         "Banana nuts":
             pass
-    
+
         "I don't know":
             pass
-    
+
         "...":
             pass
 
@@ -44,13 +44,13 @@ label start_interview_question2:
     "Second question."
     menu:
         "In Python, what is a generator?"
-    
+
         "Banana nuts":
             pass
-    
+
         "I don't know":
             pass
-    
+
         "...":
             pass
 
@@ -61,13 +61,13 @@ label start_interview_question3:
     "Third question."
     menu:
         "How do you explain how the Internet works to a five year old?"
-    
+
         "Banana nuts":
             pass
-    
+
         "I don't know":
             pass
-    
+
         "...":
             pass
 
@@ -100,14 +100,26 @@ label start_after_interview:
 
     # TODO
     # player_pronouns = renpy.input("What's your preferred pronoun?")
+    menu:
+        "What set of pronouns do you prefer?"
+
+        "She/Her":
+            "We will refer to you with she/her pronouns from now on."
+            $ player_pronouns = FEMALE_PRONOUNS
+        "He/Him":
+            "We will refer to you with he/him pronouns from now on."
+            $ player_pronouns = MALE_PRONOUNS
+        "They/Them":
+            "We will refer to you with they/them pronouns from now on."
+            $ player_pronouns = NONBINARY_PRONOUNS
 
     # questions with no substantial consequences
     menu:
         "How did you hear about this opportunity?"
-    
+
         "Email":
             "Cool! We're glad that you're here!"
-    
+
         "Career fair":
             "Cool! We're glad that you're here!"
 
@@ -122,7 +134,7 @@ label start_after_interview:
                 play sound 'audio/sfx/system_processing.wav'
                 "System processing... Looks like you were referred by a VIP team member. That's awesome! We'll highlight this on your profile."
                 "And we'll make sure to let our VIP team member {a=[vip_profile_url]}[referral_name]{/a} know!"
-           
+
                 $ add_achievement(plot_vip)
             else:
                 "Hmmm... We aren't able to locate that person in our employee database. Maybe you made a typo?"
@@ -133,13 +145,13 @@ label start_after_interview:
 
     menu:
         "Would you like to opt in to our recruiting email list?"
-    
+
         "Yes":
             "Way to go! We'll notify you about all the events and opportunities."
-    
+
         "No":
             "Maybe next time?"
-    
+
     "Thanks for filling in your information. We will be in touch about the next steps."
 
     with fadehold
@@ -236,7 +248,7 @@ label stage2:
             menu:
                 "Leave a like":
                     player "Liked. Wow. They've got 1k+ likes already? Guess I'm one of them now."
-            
+
                 "Post a comment":
                     player "{i}Congrats!{/i} Posted. Now I'm one of their 100+ comments."
 
@@ -339,7 +351,7 @@ label stage2_stats_change:
     scene black with eyeclose
 
     play sound 'audio/sfx/wake_up_noise.mp3'
-    pause 2.0    
+    pause 2.0
     scene bg bedroom night with eyeopen
     player worry "... I can't sleep with all these thoughts floating around in my head."
     player "What can I do if the kid I'm tutoring cuts down our sessions for his coding classes?"
@@ -609,7 +621,7 @@ label stage5_annika:
     play sound 'audio/sfx/alarm.wav'
     pause 1.0
     hide smartphone
-    
+
     player pout "Ahhh... my alarm... It's a new day already?"
     player smile "What's on our To-Do list today?"
     $ renpy.show_screen('player_stats_todo_screen', _layer='transient', show_todo=True)
@@ -767,7 +779,7 @@ label stage6:
 
     scene bg bedroom with dissolve
 
-    player happy "That's about it for the morning. I feel like I'm much more productive if I can focus on one thing for an entire day."    
+    player happy "That's about it for the morning. I feel like I'm much more productive if I can focus on one thing for an entire day."
     player "Let's alternate between working whole-day shifts and spending whole days studying."
     player "I can call Annika this afternoon when she's done with her work. It'll be good to chat and ask her about things."
 
@@ -979,7 +991,7 @@ label stage6_after_annika_questions:
     player "I found this person who taught himself to code from scratch with [freeCodeCamp]."
     player "That's truly a from-zero-to-hero story."
     player "He is now a senior software engineer and has decided to give back to the community."
-    player happy "He said I can ask him anything so let's give it a shot."    
+    player happy "He said I can ask him anything so let's give it a shot."
 
 label stage7:
     # Stage 7. Marco
@@ -1161,11 +1173,11 @@ label stage7:
     annika "It turns out that a lot of tech companies actually want to test your ability to write code without any assistance."
     annika "Like without code search, documentation, or support from your IDEs."
     player "Huh?"
-    menu:    
+    menu:
         "Wait, what even is an IDE?":
             annika "It's short for Integrated Development Environment. You know, like PyCharm for Python, IntelliJ for Java, etc."
             player smile "Okay, got it."
-    
+
         "Hmmm... Interesting":
             pass
     annika @ neutral "Coding on a whiteboard means that you have to be familiar with the syntax, but don't worry, the company will usually allow you to choose a programming language you're comfortable with."
@@ -1185,7 +1197,7 @@ label stage7:
         set stage7_coding_interview_questions_visited
 
         "Any more questions about coding interviews?"
-    
+
         "What's the entire interview pipeline like?":
             annika "It depends. A company might have multiple rounds of interviews and different recruitment processes."
             annika "Their interview pipeline might start with an online assessment, usually called an OA."
@@ -1198,7 +1210,7 @@ label stage7:
             annika "Onsite interviews might sound daunting, but it's actually a good way for you to learn about the company's culture and the engineer's day-to-day."
             annika "That's about it for the pipeline."
             jump stage7_coding_interview_questions
-    
+
         "What happens after an interview?":
             annika "Usually, you can expect to hear back from the recruiter in a few days."
             annika "It's best to just wait and not rush to email the recruiter for results if you don't hear back immediately. But there is an exception."
@@ -1615,7 +1627,7 @@ label ending:
             player relieved "I've checked it so many times that I've lost count..."
 
             $ add_achievement(plot_double_check)
-            
+
             player smile "It should be good to go, right?"
             # proceed with plot
 
@@ -1634,7 +1646,7 @@ label ending:
     stop music fadeout 1.0
 
     # office red alert animation
-    show red_flash    
+    show red_flash
     play sound 'audio/sfx/error.wav'
     layla "[player_name]? Was that your change a few seconds ago?"
     layla "Oh don't tell me... I think we have some problems here..."
@@ -1655,7 +1667,7 @@ label ending:
     play sound 'audio/sfx/cartoon_suspense.wav'
     scene black with dissolve
     pause 1
-    show text _("{bt}{size=48}{color=[white]}{i}Well, that's another chapter that we will bring to you in the future!{/i}{/color}{/size}{/bt}") with dissolve 
+    show text _("{bt}{size=48}{color=[white]}{i}Well, that's another chapter that we will bring to you in the future!{/i}{/color}{/size}{/bt}") with dissolve
     pause 3
     hide text with dissolve
 
@@ -1683,13 +1695,13 @@ label ending_splash: # alternative endings also jump to here
     scene main_menu overlay with dissolve
     pause 1
     show text _("{size=48}Thanks for playing {b}Learn to Code RPG{/b}!\n\n[about!t]{/size}")
-    with dissolve 
+    with dissolve
     show screen ctc() # click to continue
     pause
     hide text with dissolve
 
     show text "{size=48}[credits!t]{/size}"
-    with dissolve 
+    with dissolve
     pause
     hide screen ctc
     hide text with dissolve
@@ -1754,7 +1766,7 @@ label ending_splash: # alternative endings also jump to here
         #     "You can help support our nonprofit's mission {a=https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/}by donating to us here{/a}."
         #     "Remember you can visit link anytime from the {b}Bonus{/b} screen."
         #     jump post_game_choice
-        
+
         # "Check out the bonus screen for minigames, resources, and more {icon=icon-award}":
         #     "Did you have the chance to enjoy the rhythm minigame while you were busy learning to code, visiting the Hacker Space, and serving coffee?"
         #     "Are you interested in checking out the actual [freeCodeCamp] curriculum and teach yourself to code in real life?"
@@ -1775,5 +1787,5 @@ label ending_splash: # alternative endings also jump to here
 
         "Gotcha. I'm ready to explore on my own!":
             "Great to hear! Hope you enjoyed the ride!"
-            
+
     return # return to main menu

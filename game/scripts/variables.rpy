@@ -2,7 +2,15 @@
 # run last
 init 998:
     default player_name = ''
-    
+
+    default FEMALE_PRONOUNS = 'She/Her'
+
+    default MALE_PRONOUNS = 'He/Him'
+
+    default NONBINARY_PRONOUNS = 'They/Them'
+
+    default player_pronouns = FEMALE_PRONOUNS
+
     default stats_unlocked = False
     default stats_knowledge_unlocked = False # cs knowledge
     default stats_subcategory_unlocked = False # subcategory of cs knowledge
@@ -106,7 +114,7 @@ init python:
     'barista_machinelearning',
     'barista_agile',
     'barista_api',
-    'barista_userexperience',    
+    'barista_userexperience',
     ]
 
     # map topic to label name
@@ -125,9 +133,9 @@ init python:
     # VIP names and profile links
     # TODO: add other contributors
     vip_names = {
-    'Quincy': 'https://twitter.com/ossia', 
+    'Quincy': 'https://twitter.com/ossia',
     'Lynn': 'https://ruolinzheng08.github.io/',
-    'Abbey': 'https://twitter.com/abbeyrenn', 
+    'Abbey': 'https://twitter.com/abbeyrenn',
     'Estefania': 'https://twitter.com/EstefaniaCassN',
     'Jessica': 'https://twitter.com/codergirl1991',
     'Oliver': 'https://github.com/ojeytonwilliams/',
@@ -251,34 +259,34 @@ init python:
 
     plot_bonus_to_tweet_map = {
         plot_vip: generate_tweet_intent(tweet_vip),
-        plot_cookie: generate_tweet_intent(tweet_cookie), 
-        plot_quiz_all: generate_tweet_intent(tweet_quiz_all), 
-        plot_quiz_none: generate_tweet_intent(tweet_quiz_none), 
+        plot_cookie: generate_tweet_intent(tweet_cookie),
+        plot_quiz_all: generate_tweet_intent(tweet_quiz_all),
+        plot_quiz_none: generate_tweet_intent(tweet_quiz_none),
         plot_stats_full: generate_tweet_intent(tweet_stats_full),
         plot_stats_all: generate_tweet_intent(tweet_stats_all),
         plot_rejection: generate_tweet_intent(tweet_rejection),
         plot_third_rejection: generate_tweet_intent(tweet_third_rejection),
-        plot_barista_discover: generate_tweet_intent(tweet_barista_discover), 
+        plot_barista_discover: generate_tweet_intent(tweet_barista_discover),
         plot_buzzword_ask: generate_tweet_intent(tweet_buzzword_ask),
-        plot_all_buzzwords: generate_tweet_intent(tweet_all_buzzwords), 
-        plot_hackerspace_discover: generate_tweet_intent(tweet_hackerspace_discover), 
-        plot_hackerspace_all_events: generate_tweet_intent(tweet_hackerspace_all_events), 
-        plot_trivia: generate_tweet_intent(tweet_trivia), 
+        plot_all_buzzwords: generate_tweet_intent(tweet_all_buzzwords),
+        plot_hackerspace_discover: generate_tweet_intent(tweet_hackerspace_discover),
+        plot_hackerspace_all_events: generate_tweet_intent(tweet_hackerspace_all_events),
+        plot_trivia: generate_tweet_intent(tweet_trivia),
         plot_cupcakecpu: generate_tweet_intent(tweet_cupcakecpu),
-        plot_win_pong: generate_tweet_intent(tweet_win_pong), 
-        plot_lose_pong: generate_tweet_intent(tweet_lose_pong), 
-        plot_music_discover: generate_tweet_intent(tweet_music_discover), 
-        plot_rhythm_discover: generate_tweet_intent(tweet_rhythm_discover), 
-        plot_rhythm_highscore: generate_tweet_intent(tweet_rhythm_highscore), 
-        plot_rhythm_perfect: generate_tweet_intent(tweet_rhythm_perfect), 
-        plot_rhythm_perfect_all: generate_tweet_intent(tweet_rhythm_perfect_all), 
-        plot_park: generate_tweet_intent(tweet_park), 
-        plot_skill_coffee: generate_tweet_intent(tweet_skill_coffee), 
-        plot_skill_fax: generate_tweet_intent(tweet_skill_fax), 
-        plot_skill_customer: generate_tweet_intent(tweet_skill_customer), 
-        plot_skill_cable: generate_tweet_intent(tweet_skill_cable), 
-        plot_skill_password: generate_tweet_intent(tweet_skill_password), 
-        plot_skill_pet: generate_tweet_intent(tweet_skill_pet), 
+        plot_win_pong: generate_tweet_intent(tweet_win_pong),
+        plot_lose_pong: generate_tweet_intent(tweet_lose_pong),
+        plot_music_discover: generate_tweet_intent(tweet_music_discover),
+        plot_rhythm_discover: generate_tweet_intent(tweet_rhythm_discover),
+        plot_rhythm_highscore: generate_tweet_intent(tweet_rhythm_highscore),
+        plot_rhythm_perfect: generate_tweet_intent(tweet_rhythm_perfect),
+        plot_rhythm_perfect_all: generate_tweet_intent(tweet_rhythm_perfect_all),
+        plot_park: generate_tweet_intent(tweet_park),
+        plot_skill_coffee: generate_tweet_intent(tweet_skill_coffee),
+        plot_skill_fax: generate_tweet_intent(tweet_skill_fax),
+        plot_skill_customer: generate_tweet_intent(tweet_skill_customer),
+        plot_skill_cable: generate_tweet_intent(tweet_skill_cable),
+        plot_skill_password: generate_tweet_intent(tweet_skill_password),
+        plot_skill_pet: generate_tweet_intent(tweet_skill_pet),
         plot_double_check: generate_tweet_intent(tweet_double_check),
         plot_rewind_time: generate_tweet_intent(tweet_rewind_time),
     }
