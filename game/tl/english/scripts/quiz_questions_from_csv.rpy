@@ -9419,8 +9419,8 @@ translate english strings:
     new "Which command is used to display the NAME of the operating system?"
 
     # game/scripts/quiz_questions_from_csv.rpy:3342
-    old "uname -s"
-    new "uname -s"
+    old "uname -o"
+    new "uname -o"
 
     # game/scripts/quiz_questions_from_csv.rpy:3342
     old "uname -r"

@@ -3727,7 +3727,7 @@ init python:
     ),
     QuizQuestion(
     question=_("Which command is used to display the NAME of the operating system?"),
-    true=_("uname -s"),
+    true=_("uname -o"),
     false=[_("uname -r"), _("uname -k"), _("uname -u")],
     explanation=_("The s option of the uname command prints the Operating System name"),
     learn_more_url="https://www.freecodecamp.org/news/the-linux-commands-handbook/#the-linux-uname-command",
