@@ -9435,8 +9435,8 @@ translate english strings:
     new "uname -u"
 
     # game/scripts/quiz_questions_from_csv.rpy:3342
-    old "The s option of the uname command prints the Operating System name"
-    new "The s option of the uname command prints the Operating System name"
+    old "The o option of the uname command prints the Operating System name"
+    new "The o option of the uname command prints the Operating System name"
 
     # game/scripts/quiz_questions_from_csv.rpy:3342
     old "Which command prints the Linux version?"
