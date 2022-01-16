@@ -4,61 +4,61 @@ translate russian strings:
 
     # game/scripts/calendar.rpy:11
     old "January"
-    new ""
+    new "Январь"
 
     # game/scripts/calendar.rpy:11
     old "February"
-    new ""
+    new "Февраль"
 
     # game/scripts/calendar.rpy:11
     old "March"
-    new ""
+    new "Март"
 
     # game/scripts/calendar.rpy:11
     old "April"
-    new ""
+    new "Апрель"
 
     # game/scripts/calendar.rpy:11
     old "May"
-    new ""
+    new "Май"
 
     # game/scripts/calendar.rpy:11
     old "June"
-    new ""
+    new "Июнь"
 
     # game/scripts/calendar.rpy:11
     old "July"
-    new ""
+    new "Июль"
 
     # game/scripts/calendar.rpy:11
     old "August"
-    new ""
+    new "Август"
 
     # game/scripts/calendar.rpy:11
     old "September"
-    new ""
+    new "Сентябрь"
 
     # game/scripts/calendar.rpy:11
     old "October"
-    new ""
+    new "Октябрь"
 
     # game/scripts/calendar.rpy:11
     old "November"
-    new ""
+    new "Ноябрь"
 
     # game/scripts/calendar.rpy:11
     old "December"
-    new ""
+    new "Декабрь"
 
     # game/scripts/calendar.rpy:23
     old "The next day..."
-    new ""
+    new "На следующий день..."
 
     # game/scripts/calendar.rpy:33
     old "Fast-forwarding a week..."
-    new ""
+    new "Через неделю..."
 
     # game/scripts/calendar.rpy:40
     old "Fast-forwarding a month..."
-    new ""
+    new "Через месяц..."
 

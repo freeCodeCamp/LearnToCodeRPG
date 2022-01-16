@@ -4,5 +4,5 @@ translate russian strings:
 
     # game/scripts/click_to_continue.rpy:14
     old "Click to continue"
-    new ""
+    new "Нажмите, чтобы продолжить"
 

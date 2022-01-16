@@ -4,27 +4,27 @@ translate russian strings:
 
     # game/scripts/definitions.rpy:158
     old "Annika"
-    new ""
+    new "Анника"
 
     # game/scripts/definitions.rpy:159
     old "Marco"
-    new ""
+    new "Марко"
 
     # game/scripts/definitions.rpy:160
     old "Layla"
-    new ""
+    new "Лайла"
 
     # game/scripts/definitions.rpy:163
     old "High School Kid"
-    new ""
+    new "Старшеклассник"
 
     # game/scripts/definitions.rpy:164
     old "High School Boy"
-    new ""
+    new "Старшеклассник"
 
     # game/scripts/definitions.rpy:165
     old "High School Girl"
-    new ""
+    new "Старшеклассница"
 
     # game/scripts/definitions.rpy:166
     old "College Boy"
@@ -36,11 +36,11 @@ translate russian strings:
 
     # game/scripts/definitions.rpy:168
     old "Young Male"
-    new ""
+    new "Молодой парень"
 
     # game/scripts/definitions.rpy:169
     old "Young Female"
-    new ""
+    new "Молодая девушка"
 
     # game/scripts/definitions.rpy:170
     old "Trivia Guy"
@@ -48,11 +48,11 @@ translate russian strings:
 
     # game/scripts/definitions.rpy:171
     old "Mom"
-    new ""
+    new "Мама"
 
     # game/scripts/definitions.rpy:172
     old "Dad"
-    new ""
+    new "Папа"
 
     # game/scripts/definitions.rpy:173
     old "Mint"
@@ -68,21 +68,21 @@ translate russian strings:
 
     # game/scripts/definitions.rpy:176
     old "Journalist"
-    new ""
+    new "Журналист"
 
     # game/scripts/definitions.rpy:177
     old "Cafe Manager"
-    new ""
+    new "Менеджер кафе"
 
     # game/scripts/definitions.rpy:178
     old "Office Worker"
-    new ""
+    new "Работник офиса"
 
     # game/scripts/definitions.rpy:183
     old "Learn to Code RPG on itch.io"
-    new ""
+    new "Learn to Code RPG в itch.io"
 
     # game/scripts/definitions.rpy:184
     old "Learn to Code RPG on GitHub"
-    new ""
+    new "Learn to Code RPG в GitHub"
 
