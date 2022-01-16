@@ -3727,9 +3727,9 @@ init python:
     ),
     QuizQuestion(
     question=_("Which command is used to display the NAME of the operating system?"),
-    true=_("uname -s"),
+    true=_("uname -o"),
     false=[_("uname -r"), _("uname -k"), _("uname -u")],
-    explanation=_("The s option of the uname command prints the Operating System name"),
+    explanation=_("The o option of the uname command prints the Operating System name"),
     learn_more_url="https://www.freecodecamp.org/news/the-linux-commands-handbook/#the-linux-uname-command",
     difficulty=3,
     ),
@@ -3816,7 +3816,7 @@ init python:
     QuizQuestion(
     question=_("Which of the following is the pipe symbol in Linux?"),
     true=_("|"),
-    false=[_("/"), _(""), _("[[]")],
+    false=[_("/"), _(">"), _("[[]")],
     explanation=_("With the pipe symbol (|), the output of one command serves as the input to another."),
     learn_more_url="https://www.freecodecamp.org/news/the-linux-commands-handbook/#the-linux-cd-command",
     difficulty=1,
