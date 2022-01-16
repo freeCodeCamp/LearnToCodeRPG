@@ -34,18 +34,6 @@ If you are interested in how we made this game, check out [this article (a Let's
 | Quiz Questions & Proofreading | [Abbey Rennemeyer](https://twitter.com/abbeyrenn) <br /> [Oliver Eyton-Williams](https://github.com/ojeytonwilliams/) <br /> [Estefania Cassingena Navone](https://twitter.com/EstefaniaCassN) <br /> [Jessica Wilkins](https://twitter.com/codergirl1991) <br /> [Dionysia Lemonaki](https://twitter.com/deniselemonaki) <br /> |
 | Playtesting                   | [Ilenia Magoni](https://twitter.com/ieahleen) <br /> [Estefania Cassingena Navone](https://twitter.com/EstefaniaCassN) <br /> [Nicholas Carrigan](https://twitter.com/nhcarrigan) <br /> [Yoko Matsuda](https://twitter.com/_sidemt) <br /> [Daniel Rosa](https://twitter.com/Daniel__Rosa) <br /> [Beau Carnes](https://twitter.com/beaucarnes) <br /> |
 
-### How to contribute
-
-This open source project is a work in progress and ever evolving. We will publish major expansions to this game in the coming months, including new music and characters.
-
-We welcome all contributions, suggestions and ideas for improvement from the community.
-
-You can contribute by adding new quiz questions to [developerquiz.org](https://github.com/freeCodeCamp/Developer_Quiz_Site), catching typos, and volunteering to localize this game into other languages.
-
-Make sure to first read through the [Code of Conduct](https://www.freecodecamp.org/news/code-of-conduct/).
-
-Then, see the ways you can contribute [here](https://contribute.freecodecamp.org/#/).
-
 ### How to report bugs
 
 Found a bug while playing?
@@ -53,6 +41,89 @@ Found a bug while playing?
 Read through [this helpful article](https://forum.freecodecamp.org/t/how-to-report-a-bug-to-the-freecodecamp-open-source-community/19543) on how to report bugs.
 
 Then, report them by opening a **GitHub Issue**.
+
+### How to contribute
+
+This open source project is a work in progress and ever evolving. We will publish major expansions to this game in the coming months, including new music and characters.
+
+We welcome all contributions, suggestions and ideas for improvement from the community.
+
+You can contribute by adding new quiz questions to [developerquiz.org](https://github.com/freeCodeCamp/Developer_Quiz_Site), catching typos, and **volunteering to localize this game into other languages**.
+
+Make sure to first read through the [Code of Conduct](https://www.freecodecamp.org/news/code-of-conduct/).
+
+Then, see the ways you can contribute [here](https://contribute.freecodecamp.org/#/).
+
+#### How to help with translation
+
+The Crowdin (our localization platform) link will be posted here shortly.
+
+##### Instructions
+- The sentences to be translated are always between `""`. These are dialogues or UI strings.
+- In case of `new "..."` Do not translate `new`. 
+- Prefixes like `player`, `annika`, `layla`, `marco` (or variants like `player @ happy`) should not be translated.
+- Do not translate things between `[]` and `{}`. These are variable interpolations and text tags.
+
+##### Examples
+
+---
+https://github.com/freeCodeCamp/LearnToCodeRPG/blob/351f26074b441d056ab9d6e1381e8be1e9ede8b1/game/tl/traditional_chinese/script.rpy#L61
+
+###### Before translation
+
+```renpy
+# "[player_name]? What a coincidence! Our VIP team member {a=[vip_profile_url]}[player_name]{/a} will be honored to hear that."
+"[player_name]? What a coincidence! Our VIP team member {a=[vip_profile_url]}[player_name]{/a} will be honored to hear that."  <--- this is the line that needs to be translated. see translation below
+```
+
+###### After translation
+
+```renpy
+# "[player_name]? What a coincidence! Our VIP team member {a=[vip_profile_url]}[player_name]{/a} will be honored to hear that."
+"[player_name]？好巧，我们的VIP队友{a=[vip_profile_url]}[player_name]{/a}会很高兴的。"
+```
+
+Note: The `[]` and `{}` tags should be left intact.
+
+---
+
+https://github.com/freeCodeCamp/LearnToCodeRPG/blob/351f26074b441d056ab9d6e1381e8be1e9ede8b1/game/tl/traditional_chinese/screens.rpy#L15
+
+###### Before translation
+
+```renpy
+old "{icon=icon-fast-forward} Skip"
+new "{icon=icon-fast-forward} Skip" <-- translate this line, see below
+```
+
+###### After translation
+
+```renpy
+old "{icon=icon-fast-forward} Skip"
+new "{icon=icon-fast-forward} 跳过"
+```
+
+Note: Again, the `new` prefix and the `{icon=icon-fast-forward}` tag should be left intact.
+
+---
+
+###### Before translation
+
+```renpy
+# layla @ neutral "Hehe, [player_name], you are a fun one. I'm sure you will enjoy your work as a developer."
+layla @ neutral "Hehe, [player_name], you are a fun one. I'm sure you will enjoy your work as a developer."
+```
+
+###### After translation
+
+```renpy
+# layla @ neutral "Hehe, [player_name], you are a fun one. I'm sure you will enjoy your work as a developer."
+layla @ neutral "哈哈，[player_name]，你真有趣。我相信你一定会喜欢你的开发者工作的。"
+```
+
+Note: `layla @ neutral` and `[player_name]` are left unchanged.
+
+---
 
 ### License
 
