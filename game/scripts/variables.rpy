@@ -93,10 +93,11 @@ init python:
     # story labels for hacker space and barista
     hacker_space_event_labels = [
     'hacker_space_tech_talk',
-    'hacker_space_playtest',
     'hacker_space_project',
     'hacker_space_open_source',
     ]
+    if not renpy.mobile:
+        hacker_space_event_labels.insert(1, 'hacker_space_playtest')
 
     barista_event_labels = [
     'barista_fullstack',
@@ -265,13 +266,7 @@ init python:
         plot_hackerspace_all_events: generate_tweet_intent(tweet_hackerspace_all_events), 
         plot_trivia: generate_tweet_intent(tweet_trivia), 
         plot_cupcakecpu: generate_tweet_intent(tweet_cupcakecpu),
-        plot_win_pong: generate_tweet_intent(tweet_win_pong), 
-        plot_lose_pong: generate_tweet_intent(tweet_lose_pong), 
         plot_music_discover: generate_tweet_intent(tweet_music_discover), 
-        plot_rhythm_discover: generate_tweet_intent(tweet_rhythm_discover), 
-        plot_rhythm_highscore: generate_tweet_intent(tweet_rhythm_highscore), 
-        plot_rhythm_perfect: generate_tweet_intent(tweet_rhythm_perfect), 
-        plot_rhythm_perfect_all: generate_tweet_intent(tweet_rhythm_perfect_all), 
         plot_park: generate_tweet_intent(tweet_park), 
         plot_skill_coffee: generate_tweet_intent(tweet_skill_coffee), 
         plot_skill_fax: generate_tweet_intent(tweet_skill_fax), 
@@ -282,6 +277,17 @@ init python:
         plot_double_check: generate_tweet_intent(tweet_double_check),
         plot_rewind_time: generate_tweet_intent(tweet_rewind_time),
     }
+    if not renpy.mobile:
+        # minigame achievements
+        plot_bonus_to_tweet_map.update({
+            plot_win_pong: generate_tweet_intent(tweet_win_pong), 
+            plot_lose_pong: generate_tweet_intent(tweet_lose_pong),
+            plot_rhythm_discover: generate_tweet_intent(tweet_rhythm_discover), 
+            plot_rhythm_highscore: generate_tweet_intent(tweet_rhythm_highscore), 
+            plot_rhythm_perfect: generate_tweet_intent(tweet_rhythm_perfect), 
+            plot_rhythm_perfect_all: generate_tweet_intent(tweet_rhythm_perfect_all),
+        })
+
 
     ## quiz
     quiz_fcc_launch = _("The Launch of freeCodeCamp")

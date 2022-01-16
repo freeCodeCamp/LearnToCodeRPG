@@ -154,17 +154,10 @@ label day_activity_relax:
             $ day_activity = 'park'
             player "Let's head out to the park. Too bad I can't take Mint out on a walk. Annika does that with her puppy sometimes and they both love it."
             call day_activity_park from _call_day_activity_park
-        "Play some video games":
-            # NOTE
-            if renpy.mobile:
-                player "I'd love to play some games, but those are only available on my laptop."
-                "(You won't able to access mini-games when you are playing the mobile or the web version. Please download the desktop version instead.)"
-                player "Let's go take a walk in the park instead."
-                call day_activity_park from _call_day_activity_park_1
-            else:
-                $ day_activity = 'videogame'
-                player "Nothing beats some video games."
-                call day_activity_video_game from _call_day_activity_video_game
+        "Play some video games" if not renpy.mobile:
+            $ day_activity = 'videogame'
+            player "Nothing beats some video games."
+            call day_activity_video_game from _call_day_activity_video_game
         "Listen to music":
             $ day_activity = 'music'
             player "Let's listen to some music."

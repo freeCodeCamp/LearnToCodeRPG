@@ -8,9 +8,11 @@ screen bonus_screen():
         vbox:
             spacing 15
 
-            label _('Minigames')
-            textbutton _("{icon=icon-music} Rhythm Game") action Start('rhythm_game_entry_label')
-            # TODO: more mini games, quiz speedrun survival mode etc.
+            if not renpy.mobile:
+                label _('Minigames')
+                textbutton _("{icon=icon-music} Rhythm Game") action Start('rhythm_game_entry_label')
+                # TODO: more mini games, quiz speedrun survival mode etc.
+                # some might be playable on mobile
 
             null height 20
             label _('Bonus Content')
@@ -47,6 +49,7 @@ screen bonus_screen():
 
 screen achievements_screen():
     tag menu
+
     use game_menu(_("Achievements"), scroll="viewport"):
         style_prefix "bonus"
 
@@ -79,6 +82,8 @@ screen achievements_screen():
                                 $ tweet = achievement_to_tweet_map[achievement]
                                 text '{icon=icon-unlock} [achievement!t]':
                                     font gui.text_font
+                                    if renpy.variant("small"):
+                                        xsize 700
                                 textbutton _("{icon=icon-twitter} Tweet this") action OpenURL(tweet)
                             else:
                                 text _('{icon=icon-lock} ? ? ?'):

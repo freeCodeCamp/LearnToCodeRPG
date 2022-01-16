@@ -114,8 +114,8 @@ screen say(who, what):
 
     ## If there's a side image, display it above the text. Do not display on the
     ## phone variant - there's no room.
-    if not renpy.variant("small"):
-        add SideImage() xalign 0.0 yalign 1.0
+    # if not renpy.variant("small"):
+    add SideImage() xalign 0.0 yalign 1.0
 
 
 ## Make the namebox available for styling through the Character object.
@@ -1314,7 +1314,7 @@ screen skip_indicator():
     frame:
         # top right above textbox
         xalign 1.0
-        ypos 720
+        ypos gui.skip_ypos
         background white80
 
         hbox:
@@ -1541,14 +1541,24 @@ screen quick_menu():
         hbox:
             style_prefix "quick"
 
-            xalign 0.5
-            yalign 1.0
+            xalign 0.55
+            yalign 0.98
 
-            textbutton _("Back") action Rollback()
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Menu") action ShowMenu()
+            textbutton _("{icon=icon-skip-back} Back") action Rollback()
+            textbutton _("{icon=icon-fast-forward} Skip") action Skip() alternate Skip(fast=True, confirm=True)
+            textbutton _("{icon=icon-play-circle} Auto") action Preference("auto-forward", "toggle")
+            textbutton _("{icon=icon-menu} Menu") action ShowMenu()
 
+            # if stats is showing, hide it; else show it
+            if stats_unlocked:
+                textbutton _("{icon=icon-smartphone} Stats") action [
+                SensitiveIf(not renpy.get_screen('player_stats_todo_screen', layer='transient')),
+                If(
+                    renpy.get_screen('player_stats_todo_screen'),
+                    true=ToggleScreen('player_stats_todo_screen'),
+                    false=ShowTransient('player_stats_todo_screen')
+                    )
+                ]
 
 style window:
     variant "small"

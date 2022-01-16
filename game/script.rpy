@@ -502,7 +502,8 @@ label stage5:
             player "Maybe I should go for some beginner topics?"
             jump stage5_choose_curriculum
 
-        "Data Visualization":
+        # not enough space on small devices
+        "Data Visualization" if not renpy.variant("small"):
             player pout "I know there's a lot of hype about big data, but can I really do that without a Ph.D.?"
             player "This doesn't look like it's for me."
             jump stage5_choose_curriculum

@@ -251,7 +251,7 @@ define gui.file_slot_rows = 2
 define gui.navigation_xpos = 60
 
 ## The vertical position of the skip indicator.
-define gui.skip_ypos = 15
+define gui.skip_ypos = 720
 
 ## The vertical position of the notify screen.
 define gui.notify_ypos = 168
@@ -435,9 +435,10 @@ init python:
 
         ## Adjust the location of the textbox.
         gui.textbox_height = 360
-        gui.name_xpos = 120
-        gui.dialogue_xpos = 135
-        gui.dialogue_width = 1650
+        ## since we are using the player side image, these should be the same as PC
+        # gui.name_xpos = 120
+        # gui.dialogue_xpos = 135
+        gui.dialogue_width = 1400
 
         ## Change the size and spacing of various things.
         gui.slider_size = 54
@@ -473,5 +474,4 @@ init python:
         gui.nvl_button_width = 1860
         gui.nvl_button_xpos = 30
 
-
-
+        gui.skip_ypos = 600

@@ -11,12 +11,13 @@ screen ctc(arg=None):
             size 40  
             color gui.accent_color
 
-        text _("Click to continue"):
-            font gui.interface_text_font
-            size gui.notify_text_size
-            xalign 0.94
-            yalign 0.96
-            color gui.accent_color
+        if not renpy.variant("small"):
+            text _("Click to continue"):
+                font gui.interface_text_font
+                size gui.notify_text_size
+                xalign 0.94
+                yalign 0.96
+                color gui.accent_color
     
 
 transform ctc_animation:
