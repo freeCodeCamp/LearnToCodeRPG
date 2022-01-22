@@ -63,6 +63,7 @@ The Crowdin (our localization platform) link will be posted here shortly.
 - In case of `new "..."` Do not translate `new`. 
 - Prefixes like `player`, `annika`, `layla`, `marco` (or variants like `player @ happy`) should not be translated.
 - Do not translate things between `[]` and `{}`. These are variable interpolations and text tags.
+- Do not translate the `nointeract` at the end of the sentence.
 
 ##### Examples
 
@@ -122,6 +123,23 @@ layla @ neutral "哈哈，[player_name]，你真有趣。我相信你一定会�
 ```
 
 Note: `layla @ neutral` and `[player_name]` are left unchanged.
+
+---
+
+
+###### Before translation
+
+```renpy
+# player "Maybe this is all a dream?" nointeract
+player "Maybe this is all a dream?" nointeract
+```
+
+###### After translation
+
+```renpy
+# player "Maybe this is all a dream?" nointeract
+player "也许这都是一场梦？" nointeract
+```
 
 ---
 
