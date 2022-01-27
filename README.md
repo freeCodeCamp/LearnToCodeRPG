@@ -48,100 +48,11 @@ This open source project is a work in progress and ever evolving. We will publis
 
 We welcome all contributions, suggestions and ideas for improvement from the community.
 
-You can contribute by adding new quiz questions to [developerquiz.org](https://github.com/freeCodeCamp/Developer_Quiz_Site), catching typos, and **volunteering to localize this game into other languages**.
+You can contribute by adding new quiz questions to [developerquiz.org](https://github.com/freeCodeCamp/Developer_Quiz_Site), catching typos, and **[helping to translate this game into other languages](https://contribute.freecodecamp.org/#/how-to-translate-files?id=translate-the-learntocode-rpg)**.
 
 Make sure to first read through the [Code of Conduct](https://www.freecodecamp.org/news/code-of-conduct/).
 
 Then, see the ways you can contribute [here](https://contribute.freecodecamp.org/#/).
-
-#### How to help with translation
-
-The Crowdin (our localization platform) link will be posted here shortly.
-
-##### Instructions
-- The sentences to be translated are always between `""`. These are dialogues or UI strings.
-- In case of `new "..."` Do not translate `new`. 
-- Prefixes like `player`, `annika`, `layla`, `marco` (or variants like `player @ happy`) should not be translated.
-- Do not translate things between `[]` and `{}`. These are variable interpolations and text tags.
-- Do not translate the `nointeract` at the end of the sentence.
-
-##### Examples
-
----
-https://github.com/freeCodeCamp/LearnToCodeRPG/blob/351f26074b441d056ab9d6e1381e8be1e9ede8b1/game/tl/traditional_chinese/script.rpy#L61
-
-###### Before translation
-
-```renpy
-# "[player_name]? What a coincidence! Our VIP team member {a=[vip_profile_url]}[player_name]{/a} will be honored to hear that."
-"[player_name]? What a coincidence! Our VIP team member {a=[vip_profile_url]}[player_name]{/a} will be honored to hear that."  <--- this is the line that needs to be translated. see translation below
-```
-
-###### After translation
-
-```renpy
-# "[player_name]? What a coincidence! Our VIP team member {a=[vip_profile_url]}[player_name]{/a} will be honored to hear that."
-"[player_name]？好巧，我们的VIP队友{a=[vip_profile_url]}[player_name]{/a}会很高兴的。"
-```
-
-Note: The `[]` and `{}` tags should be left intact.
-
----
-
-https://github.com/freeCodeCamp/LearnToCodeRPG/blob/351f26074b441d056ab9d6e1381e8be1e9ede8b1/game/tl/traditional_chinese/screens.rpy#L15
-
-###### Before translation
-
-```renpy
-old "{icon=icon-fast-forward} Skip"
-new "{icon=icon-fast-forward} Skip" <-- translate this line, see below
-```
-
-###### After translation
-
-```renpy
-old "{icon=icon-fast-forward} Skip"
-new "{icon=icon-fast-forward} 跳过"
-```
-
-Note: Again, the `new` prefix and the `{icon=icon-fast-forward}` tag should be left intact.
-
----
-
-###### Before translation
-
-```renpy
-# layla @ neutral "Hehe, [player_name], you are a fun one. I'm sure you will enjoy your work as a developer."
-layla @ neutral "Hehe, [player_name], you are a fun one. I'm sure you will enjoy your work as a developer."
-```
-
-###### After translation
-
-```renpy
-# layla @ neutral "Hehe, [player_name], you are a fun one. I'm sure you will enjoy your work as a developer."
-layla @ neutral "哈哈，[player_name]，你真有趣。我相信你一定会喜欢你的开发者工作的。"
-```
-
-Note: `layla @ neutral` and `[player_name]` are left unchanged.
-
----
-
-
-###### Before translation
-
-```renpy
-# player "Maybe this is all a dream?" nointeract
-player "Maybe this is all a dream?" nointeract
-```
-
-###### After translation
-
-```renpy
-# player "Maybe this is all a dream?" nointeract
-player "也许这都是一场梦？" nointeract
-```
-
----
 
 ### License
 
