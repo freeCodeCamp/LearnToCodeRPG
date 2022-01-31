@@ -223,8 +223,8 @@ translate english strings:
     new "This Job Needs Me to Brew Coffee?"
 
     # game/scripts/variables.rpy:208
-    old "This Job Needs Me to Fix Fax Machiens?"
-    new "This Job Needs Me to Fix Fax Machiens?"
+    old "This Job Needs Me to Fix Fax Machines?"
+    new "This Job Needs Me to Fix Fax Machines?"
 
     # game/scripts/variables.rpy:209
     old "This Job Needs Me to Handle Angry Customers?"

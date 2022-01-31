@@ -206,7 +206,7 @@ init python:
     plot_park = _('I Might Get a Puppy Just So I Can Go to the Park')
 
     plot_skill_coffee = _('This Job Needs Me to Brew Coffee?')
-    plot_skill_fax = _('This Job Needs Me to Fix Fax Machiens?')
+    plot_skill_fax = _('This Job Needs Me to Fix Fax Machines?')
     plot_skill_customer = _('This Job Needs Me to Handle Angry Customers?')
     plot_skill_cable = _('This Job Needs Me to Fuse Cables?')
     plot_skill_password = _('This Job Needs Me to Retrieve Lost Passwords?')
