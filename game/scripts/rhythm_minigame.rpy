@@ -132,7 +132,7 @@ init python:
     def read_beatmap_file(beatmap_path):
         # read newline separated floats
         beatmap_path_full = os.path.join(config.gamedir, beatmap_path)
-        with open(beatmap_path_full, 'rt') as f:
+        with renpy.file(beatmap_path) as f:
             text = f.read()
         onset_times = [float(string) for string in text.split('\n') if string != '']
         return onset_times
