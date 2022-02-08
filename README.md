@@ -32,7 +32,7 @@ If you are interested in how we made this game, check out [this article (a Let's
 | Music                         | [Quincy Larson](https://twitter.com/ossia) |
 | Character Art                 | [Layerto (Noa Trinh)](https://layerto.carrd.co) |
 | Quiz Questions & Proofreading | [Abbey Rennemeyer](https://twitter.com/abbeyrenn) <br /> [Oliver Eyton-Williams](https://github.com/ojeytonwilliams/) <br /> [Estefania Cassingena Navone](https://twitter.com/EstefaniaCassN) <br /> [Jessica Wilkins](https://twitter.com/codergirl1991) <br /> [Dionysia Lemonaki](https://twitter.com/deniselemonaki) <br /> |
-| Playtesting                   | [Ilenia Magoni](https://twitter.com/ieahleen) <br /> [Estefania Cassingena Navone](https://twitter.com/EstefaniaCassN) <br /> [Nicholas Carrigan](https://twitter.com/nhcarrigan) <br /> [Yoko Matsuda](https://twitter.com/_sidemt) <br /> [Daniel Rosa](https://twitter.com/Daniel__Rosa) <br /> [Beau Carnes](https://twitter.com/beaucarnes) <br /> |
+| Playtesting                   | [Ilenia Magoni](https://twitter.com/ieahleen) <br /> [Estefania Cassingena Navone](https://twitter.com/EstefaniaCassN) <br /> [Naomi Carrigan](https://twitter.com/nhcarrigan) <br /> [Yoko Matsuda](https://twitter.com/_sidemt) <br /> [Daniel Rosa](https://twitter.com/Daniel__Rosa) <br /> [Beau Carnes](https://twitter.com/beaucarnes) <br /> |
 
 ### How to report bugs
 

@@ -72,7 +72,7 @@ Quiz Questions & Proofreading:
 Playtesting:
     {a=https://twitter.com/ieahleen}Ilenia Magoni{/a},
     {a=https://twitter.com/EstefaniaCassN}Estefania Cassingena Navone{/a},
-    {a=https://twitter.com/nhcarrigan}Nicholas Carrigan{/a},
+    {a=https://twitter.com/nhcarrigan}Naomi Carrigan{/a},
     {a=https://twitter.com/_sidemt}Yoko Matsuda{/a},
     {a=https://twitter.com/Daniel__Rosa}Daniel Rosa{/a},
     {a=https://twitter.com/beaucarnes}Beau Carnes{/a}

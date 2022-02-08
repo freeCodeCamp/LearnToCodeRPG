@@ -134,7 +134,7 @@ init python:
     'Oliver': 'https://github.com/ojeytonwilliams/',
     'Ilenia': 'https://twitter.com/ieahleen',
     'Dionysia': 'https://twitter.com/deniselemonaki',
-    'Nick': 'https://twitter.com/nhcarrigan',
+    'Naomi': 'https://twitter.com/nhcarrigan',
     'Yoko': 'https://twitter.com/_sidemt',
     'Daniel': 'https://twitter.com/Daniel__Rosa',
     'Beau': 'https://twitter.com/beaucarnes'
