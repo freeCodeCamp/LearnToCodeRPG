@@ -344,7 +344,7 @@ init python:
         ending_barista: generate_tweet_intent(tweet_end_barista),
         ending_cat: generate_tweet_intent(tweet_end_cat),
         ending_tutor: generate_tweet_intent(tweet_end_tutor),
-        ending_office: generate_tweet_intent(tweet_end_barista),
+        ending_office: generate_tweet_intent(tweet_end_office),
         ending_farmer: generate_tweet_intent(tweet_end_farmer),
         ending_dev: generate_tweet_intent(tweet_end_dev),
     }
