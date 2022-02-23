@@ -330,7 +330,7 @@ init python:
     difficulty=1,
     ),
     QuizQuestion(
-    question=_("What does the animation-delay property property do in CSS?"),
+    question=_("What does the animation-delay property do in CSS?"),
     true=_("It sets a delay for the animation to start."),
     false=[_("It determines how long an animation should last in seconds."), _("It pauses the animation if the animation is running."), _("It determines when the animation should speed up or slow down.")],
     explanation=_("The animation-delay property is used to set a delay for the animation to start."),
