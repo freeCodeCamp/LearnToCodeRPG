@@ -915,8 +915,8 @@ translate english strings:
     new "The animation-timing-function is used to determine when the animation should speed up or slow down."
 
     # game/scripts/quiz_questions_from_csv.rpy:2
-    old "What does the animation-delay property property do in CSS?"
-    new "What does the animation-delay property property do in CSS?"
+    old "What does the animation-delay property do in CSS?"
+    new "What does the animation-delay property do in CSS?"
 
     # game/scripts/quiz_questions_from_csv.rpy:2
     old "The animation-delay property is used to set a delay for the animation to start."
