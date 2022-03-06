@@ -52,6 +52,8 @@ label study_session:
                 $ player_stats.change_stats(quiz_question.category, 10)
 
             player @ laugh "Correct!"
+            # show the correct answer and explanation using a viewport
+            call screen quiz_question_answer_explanation_screen(quiz_question)
         else:
             with vpunch
             player @ pout "Wrong..."
