@@ -55,8 +55,9 @@ label study_session:
         else:
             with vpunch
             player @ pout "Wrong..."
-            # show the correct answer and explanation using a viewport
-            call screen quiz_question_answer_explanation_screen(quiz_question)
+            
+        # show the correct answer and explanation using a viewport
+        call screen quiz_question_answer_explanation_screen(quiz_question)
 
         if quiz_question.easter_egg_name is not None: # Easter Egg achievement
             $ add_achievement(quiz_question.easter_egg_name)
