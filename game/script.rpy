@@ -1331,7 +1331,7 @@ label stage8:
             call day_activity_choices from _call_day_activity_choices_7
             $ calendar.next_week()
             scene black with dissolve
-            "(Does it feels like time is flying by without your doing much?)"
+            "(Does it feel like time is flying by without you doing much?)"
             "(Well, this is the reality of navigating the stress of applying to jobs, waiting for application follow-up, going to interviews, waiting for interview follow-up, and {b}Repeat{/b}.)"
             "(Hang in there, alright?)"
 
