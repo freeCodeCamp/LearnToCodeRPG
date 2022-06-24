@@ -5,8 +5,17 @@ label start:
     default start_date = date(2021, 8, 1) # this will be used to calculate how many days it took for the player to learn to code
 
     $ persistent.has_started_game = True
+
+    # DEBUG
+    menu:
+        "Would you like to start in v1 or v2?"
+        "v1":
+            jump v1_start
+        "v2":
+            jump v2_start
+
+label v1_start:
     $ calendar_enabled = False
-    
     stop music fadeout 2.0
     scene bg laptop_screen with dissolve
 
@@ -1586,7 +1595,7 @@ label stage14:
     layla @ laugh "Are we now ready to go back and squash some bugs?"
     player laugh "Lead the way!"
 
-label ending:
+label v1_ending:
     scene bg office with fadehold
     player relieved "Okay, finally, I think my code is good to go! Let's commit it to the server."
     player neutral "Hmmm... Maybe it's a good idea to double-check?"
@@ -1651,130 +1660,312 @@ label ending:
         show_achievements_count=False
         )
 
-    $ quick_menu = False
-    $ calendar_enabled = False
-    play sound 'audio/sfx/cartoon_suspense.wav'
-    scene black with dissolve
-    pause 1
-    show text _("{bt}{size=48}{color=[white]}{i}Well, that's another chapter that we will bring to you in the future!{/i}{/color}{/size}{/bt}") with dissolve 
-    pause 3
-    hide text with dissolve
+label v2_start:
+    # transition to v2 plot here
+    $ calendar.next_month()
+    player relieved "A lot has happened in this past month..."
+    player neutral "After I broke prod on the first day of work, Layla, the team, and my manager told me that it was okay and I didn't have to worry."
+    player "But I feel like maybe a fresh start will give me a morale boost."
+    player "So I went back to applying for jobs. Fortunately, I landed on this new job pretty quickly."
 
-label ending_splash: # alternative endings also jump to here
-    $ quick_menu = False
-    $ calendar_enabled = False
-    # Learn to Code RPG logo
-    scene gray90 with Pause(1)
-    play sound 'audio/sfx/title_fire_swoosh.ogg'
-    show learn_to_code_rpg_logo at truecenter with dissolve
-    with Pause(2)
-    scene gray90 with dissolve
-    with Pause(1)
+    scene bg newoffice
+    player "So this is CompanyName! Wow... It's enormous."
+    player "I put in the work, to become a developer, and today, it's real... "
+    player "I'm going to keep working hard, and keep learning! Doing that is what got me here, so if I keep that up, I should be okay!"
+    $ player_stats.set_stats('Renown', 20) # start with a bit of renown
+    
+    player "Um... hello?"
+    receptionist "Hello! How can I help you?"
+    player "My name is Lydia, and this is my first day."
+    receptionist "Ah, the new hire! And so punctual too - it's nice to meet you! "
+    receptionist "My name is Zainab, and I'll be showing you around! First, we'll drop off your things at your desk."
+    player "Got it!"
 
-    # freeCodeCamp logo
-    scene gray90 with Pause(1)
-    play sound 'audio/sfx/title_fire_swoosh.ogg'
-    show fcc_logo at truecenter with dissolve
-    with Pause(2)
-    scene gray90 with dissolve
-    with Pause(1)
+    "You're taken all around the CompanyName office. There are lots of snacks in the lunch area, and even a gym downstairs!"
+    "There are dozens and dozens of meeting rooms, all named following the theme of different countries of the world."
+    "There's even a nursing room for new mothers!"
 
-    # Credits, like in the About section from options.rpy
-    # use a lighter background because the hyperlinks are dark blue
-    scene main_menu overlay with dissolve
-    pause 1
-    show text _("{size=48}Thanks for playing {b}Learn to Code RPG{/b}!\n\n[about!t]{/size}")
-    with dissolve 
-    show screen ctc() # click to continue
-    pause
-    hide text with dissolve
+    zainab "... And this is your cubicle! We've even got your name plate all printed up!"
+    player "Wow... it's made of wood! This is so nice."
+    zainab "I'm glad you like it! Do you have any questions so far? I know I've been hitting you with a lot of information."
+    player "No no, everything has been awesome so far! "
+    zainab "Great! The last leg of our tour involves me handing you off to our engineering manager, Lauri!"
+    lauri "Hello. And who is this again?"
+    zainab "Lauri, don't be silly! This is Lydia! The new hire?"
+    lauri "Hm... I see."
+    player "(Jeez... this lady is... scary.)"
+    player "(I've been in the workforce for a few years now, and yet, this woman makes me feel like a high school kid who doesn't know what she's doing.)"
+    player "Um... hi. My name is... um... Lydia..."
+    lauri "“UmLydia”? What a strange name."
+    player "Um... no, it's -"
+    lauri "Zainab, please introduce... UmLydia to Akira. He can get her set up."
+    lauri "If you'll excuse me. I don't have much time for pleasantries."
+    player "... "
+    player "Ooookay. So. Who's Akira?"
+    akira "That'd be me."
+    akira "Don't mind Lauri. She's... prickly on the outside, but can be a nice lady when you get to know her."
+    player "Sure... I'm Lydia. It's nice to meet you!"
+    akira "Awesome to meet you Lydia! I'm Akira - I'll be your team lead for any projects moving forward."
+    akira "I've been around the bend a few times, and I'm a little less prickly than Lauri. So feel free to ask me any questions that you have."
+    player "Thanks! I appreciate it."
+    akira "Speaking of which Do you have any questions now?"
+    player "Um... "
+    player "Ah... "
+    player "Nope!"
+    akira "You don't? "
+    player "Nope! Completely solid!"
+    akira "Well... okay then! Like I said, I'm here if you need help."
+    player "Thanks!"
+    "Later that day..."
+    mint "Meow!"
+    player "Hi Mint! You'll never believe the day I just had. The office was huge!"
+    player "I met tons of people, and everyone was really nice."
+    player "They even gave me a company laptop and company cellphone! They're both the latest models. Talk about an upgrade!"
+    player "..."
+    mint "Mew?"
+    player "Well... It's all super cool, but it's also a little overwhelming. All of the people I met today were nice, but there were so many of them. "
+    player "How am I supposed to remember all of their names?"
+    player "And then I had to spend the rest of the day in meetings. Akira told me that I didn't have to do much but lend an ear, but even that was a lot."
+    player "There were a million acronyms that I didn't know... I had no know what anyone was talking about really."
+    player "Am I really cut out for this...?"
+    mint "...?"
+    mint "Meow!"
+    player "Hm... you're right! I can't give up yet. I worked too hard to get here."
+    player "I know! I should give Annika a call. She told me to give her a ring when I was done with my first day! Maybe I can ask her some questions?"
+    player "..."
+    annika "Lydia! How was your first day, superstar?"
+    player "Great! Great... but also... like, really overwhelming?"
+    annika "That sounds about right! That's just how my first day went at my job too. What happened?"
+    "You explain all of the concerns that you told Mint about."
+    annika "Wow, that's definitely a lot! I'm happy to answer any of your questions, though! What do you want to know specifically?"
+    player "Well..."
 
-    show text "{size=48}[credits!t]{/size}"
-    with dissolve 
-    pause
-    hide screen ctc
-    hide text with dissolve
+    default first_day_story_choices = set()
+    menu first_day_story_choices:
+        set first_day_story_choices
+        "Ask about acronyms":
+            player "So as I said, I had to attend a few meetings today."
+            player "It was so mind-boggling, because aside from just not knowing what anyone is talking about,"
+            player "There were so. Many. Acronyms!"
+            player "What is PII? Or ETA? What on earth is PEBCAK?"
+            annika "Hehehe... that last one is actually pretty funny."
+            player "Annika! This isn't funny at all, I'm freaking out!"
+            annika "Sorry, sorry! "
+            annika "Things will be okay. The truth is, every individual industry has their own acronyms. Some companies even have their own acronyms."
+            annika "So I could try to tell you what they all are, but I probably won't know them all."
+            annika "The good news is, most companies are totally fine with you learning these things as you go! "
+            player "Really?"
+            annika "Yup! You just have to make sure you make a habit of asking about them."
+            annika "Something that I started doing was keeping a journal page or a page in a note-taking app to write them down as I hear them."
+            annika "Then, when we have a bit of free time, I ask my team lead or another developer what each one means. "
+            annika "Just a few at a time though! You don't want to approach your manager with 10 different acronyms to explain"
+            jump first_day_story_choices
 
-    $ quick_menu = True
-    scene main_menu sepia with dissolve
+        "Ask about Ruby on Rails":
+            player "Okay... so I've always worked with programming languages like Python and JavaScript. But this company uses something called Ruby on Rails."
+            player "I've never even worked with it before! Sometimes I wonder if I should have even been hired, because I don't know it."
+            annika "That's totally fine!"
+            annika "Ruby on Rails is a Framework that relies on the Ruby programming language."
+            annika "A Framework is more or less a collection of pre-written code that allows you to do things without writing the code from scratch yourself."
+            annika "It's okay that you don't know it! My company uses a Framework called Django, and it relies on Python."
+            annika "I didn't know Django at all before I came here, but I was given some assignments that helped catch me up to speed."
+            annika "Something important to remember too is that when you're a junior, the company that hired you knows that you don't know Ruby on Rails. Right?"
+            player "Yeah... I made sure to make that very clear during my interviews. "
+            annika "See? It's not as if you lied to land the job! And let's take a look at your job description too - what does it say?"
+            player "Hm... "
+            player "Oh! How could I have missed this?"
+            player "It even says in my job description that I'll be started off with only frontend work, and slowly trained into assisting with the backend."
+            annika "See? It's perfect! Just be sure to spend time studying during and after work to really hone your skills."
+            player "I'm... allowed to study?"
+            player "At WORK?"
+            annika "You sure are! You're in the big leagues now, my friend!"
+            annika "You're not just being paid to develop - you're being paid to LEARN now too!"
+            annika "Another good thing about your situation is that Ruby on Rails is super well documented. It's been around for 19 years."
+            annika "That's ancient by programming standards! So you'll have lots of documentation online that can help you."
+            player "And... if I get stuck, can I still give you a call now and again?"
+            annika "Are you kidding? Always! We're Accountability Buddies, right?"
+            jump first_day_story_choices
 
-    "Hey [player_name]. Congratulations on reaching the end of the game!"
-    "Hope you enjoyed the ride!"
-    "You might be wondering, what's next?"
-    "Well, here are a bunch of things you can do."
+        "What the heck is JIRA?":
+            player "So at work, they kept talking about JIRA... What the heck is that?"
+            annika "Programming assignments are called “tickets”."
+            annika "JIRA is just a ticketing management system! It keeps track of who's assigned to what tickets."
+            player "Oh! I see!"
+            player "What does the acronym stand for?"
+            annika "Acronym?"
+            player "JIRA is usually written in all capital letters. That means it's an acronym, right?"
+            annika "No, no - that's just how it's written! The letters don't stand for anything."
+            annika "Fun Fact The name is actually a shorthand for “Gojira”, which is the Japanese translation of “Godzilla”!"
+            player "Woah, cool! I never would have guessed!"
+            jump first_day_story_choices
 
-    default post_game_choices = set()
-    menu post_game_choice:
-        set post_game_choices
-        "Here are some fun things that you can do now that you've finished the game. Select an option to learn more."
+        "Ask about getting stuck":
+            player "Well, for starters... what if I get stuck? "
+            annika "Stuck?"
+            player "Sometimes whenever I'm working on personal projects, I get stuck. That seems to be fine to do on personal projects,"
+            player "but this is the real deal! Won't that make me look like I don't know how to do my job?"
+            annika "Hahaha!"
+            annika "What do you do when you usually get stuck while you're working on a project?"
+            player "Well... I look things up. And I double-check my code."
+            player "I also see if I can't find any developers that can help online."
+            annika "See? You already know what to do!"
+            annika "I know your team is all new to you, but you're a junior developer. "
+            annika "Their job is to help you whenever you're stuck. You can not only ask them for help, but when you get assigned a task to fix some already existing code, you may even be able to speak to the person that originally wrote it!"
+            player "Oh! Is it really that simple...?"
+            annika "Yep! The cool part about doing this all professionally is that you're a part of a team now! They expect you to ask as many questions as you need to to get the work done."
+            player "Wow - that really does make me feel better!"
+            jump first_day_story_choices
 
-        "Check out your achievements and tweet {icon=icon-twitter}":
-            "Let's get social! You've made a lot of progress throughout the game and it's time to spread the words."
-            "You can view your achievements on the {b}Bonus > Achievements{/b} screen. Click on the {b}Tweet{/b} button next to the achievement to tweet it."
-            "If you see a lock next to the achievement, backtrack to some point in the game, try different choices, and see if you can unlock it."
-            call screen achievements_screen()
-            "Will you be able to unlock all of the achievements? Now that's a dare."
-            jump post_game_choice
+        "I think that answers all my questions!":
+            player "(Sigh) I feel much, much better!"
+            player "It looks like you've saved the day again, Annika."
+            annika "Any time! Remember, you're a junior developer now - you've got a lot of hard work ahead of you,"
+            annika "but you landing this job means that you were CHOSEN!"
+            annika "This all seems like a lot, and like things are really overwhelming,"
+            annika "but try to remember that your job isn't to learn all of these things in one day."
+            annika "Worst case scenario, you can feel free to talk to your manager for a temperature check!"
+            player "A temperature check?"
+            annika "Yep! You can ask every so often about how you're performing. You may even be able to ask for one-on-one's!"
+            annika "They're meetings where you chat with your manager, say, once a week, or every other week, or even a month."
+            annika "You can talk about your goals as a developer, receive feedback, or just as a chance to get to know your manager!"
+            player "That actually sounds kind of nice!"
+            annika "Don't forget - you're working with people, not a bunch of dragons that want to gobble you up!"
+            "You finish up chatting with Annika, feeling a huge weight lifted off of your shoulders."
+            "You get ready for bed, wanting to be as well-rested as possible for your first official day of work!"
 
-        "Rate and review this game on itch.io {icon=icon-thumbs-up}":
-            "Help us improve the game by rating and reviewing [learn_to_code_rpg_on_itch]."
-            show itch_rate at truecenter with zoomin
-            "You can find the {b}Rate Game{/b} button in the top right corner of the itch.io game page."
-            "Refer to {a=https://itch.io/updates/you-can-now-rate-games}this itch.io article{/a} for more details."
-            hide itch_rate
+    $ calendar.next()
+
+label working_late:
+    nigel "Lydia! Happy Monday! Did I catch you before you got settled in and started with work?"
+    player "No, I haven't gotten started just yet! What can I help you with?"
+    nigel "So you know that new client, Stacy & Lucy's?"
+    player "Yep - the bridal boutique chain?"
+    nigel "That's the one! I just got off of the phone with them earlier, and they're wondering if it'd be possible for you and the rest of the team to shoot for a closer completion date?"
+    player "A closer date? "
+    player "I mean - "
+    player "What do they have in mind? We have them slated to be finished next week."
+    nigel "So - "
+    nigel "and this is going to sound a bit crazy - "
+    nigel " - they need their e-commerce system completed within the next two days."
+    player "T... TWO days? "
+    nigel "Yeah, they were pretty insistent on the phone. The only thing that's left is user authentication. Do you think you can work something out?"
+    player "Um..."
+
+    menu:
+        "I'm pretty sure this will take more than two days.":
+            player "I'm not so sure that's possible Nigel. We have other projects that we have to make sure that we complete on time."
+            nigel "Hey, I totally understand. It's just that Brian says all they need is some kind of authentication setup completed. That shouldn't take you more than two days, right?"
+            player "I mean... do they want something custom built, or are we using an existing service like Auth0?"
+            nigel "Let me check my notes here... Yep - it says they'd like something custom. But we've rolled something like that out before, right?"
+            nigel "Last year, Brian knocked something like that out in 3 days. I bet you could if you pushed!"
+            player "Well..."
+
             menu:
-                "Would you mind taking a minute to rate and review us?"
-                "Sure thing! Take me to the page.":
-                    "Thanks! Here's the link to [learn_to_code_rpg_on_itch]."
-                "I've done that already!" if not persistent.has_rated_and_reviewed_on_itch:
-                    "Awesome. Thank you for your input!"
-                    $ persistent.has_rated_and_reviewed_on_itch = True
-                "Maybe next time :)":
-                    "Of course! Take your time to explore and enjoy the game. You can visit this link anytime from the {b}Bonus{/b} screen."
-            jump post_game_choice
+                "(I'm still not sure about this. We should talk to the client a bit more.)":
+                    player "Can we inform the client of the pros and cons of their decision for custom authentication? I don't think that we should just say yes without talking about this more."
+                    nigel "I spent about an hour on the phone with them this morning. I'm pretty sure that they won't budge. "
+                    nigel "Maybe you could get this done if you pushed a bit? I've been staying late to finish up with clients quite a bit this week - if you and the team do that, I bet you could get Stacy & Lucy's e-commerce setup completed in time!"
+                    nigel "I can even talk you up to Lauri if you get this finished on time. I bet she'll love the fact that you pulled the team through this and made a client really happy."
 
-        "Star the game's source code on GitHub {icon=icon-star}":
-            "Interested in learning about how this game is built? Take a peek into our source code by visiting [learn_to_code_rpg_on_github]."
-            show github_star at truecenter with zoomin
-            "Better yet, {b}Star{/b} our repository for your reference and {b}Watch{/b} for updates!"
-            "Refer to {a=https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars}this GitHub article{/a} for more details."
-            hide github_star
-            menu:
-                "Would you like to check out our GitHub repository?"
-                "Sure thing! Take me to the page.":
-                    "Thanks! Here's the link to [learn_to_code_rpg_on_github]."
-                "I've done that already!" if not persistent.has_visited_github:
-                    "Awesome. Enjoy digging through the source code!"
-                    $ persistent.has_visited_github = True
-                "Maybe next time :)":
-                    "Of course! Take your time to explore and enjoy the game. You can visit this link anytime from the {b}Bonus{/b} screen."
-            jump post_game_choice
+                    menu:
+                        "I think we need to consult with Akira about this first.":
+                            player "I think that we need to consult with Akira about this first. He's our team lead, and would understand what our commitments are looking like the best."
+                            akira "What's this that Akira will know how to do best?"
+                            nigel "Akira! Just the person we wanted to see!"
+                            "You step aside a bit and let the two of them converse, paying attention closely."
+                            "Akira offers to hop on a call along with Nigel to give a technical perspective on the project, and work out a timeline and some technical solutions that are more realistic with the timeline that the client has asked for."
+                            "By the time the two of them are done speaking, they've booked a meeting with the client for tomorrow morning. Nigel seems satisfied with this outcome, and says his goodbyes, excited to have some backup."
+                            player "Thanks for the help Akira! I wasn't sure what the right thing to do in that situation was."
+                            akira "Don't worry, you definitely did the right thing. It's best to not make split-second decisions and commitments on development projects, especially when we have other clients in line to get their projects done, and when your decision affects the whole team."
+                            akira "You should always come to a senior developer just like you did to get a second decision when you're unsure of a commitment you're being asked to make."
+                            player "Thanks! I'll keep note of that."
+                            "(You've earned 20 renown for your responsible decision-making.)"
+                            $ player_stats.change_stats('Renown', 20)
 
-        # "Support this game and other freeCodeCamp.org projects by donating {icon=icon-heart}":
-        #     "This game was made possible by all the kind people who donate to support [freeCodeCamp]."
-        #     "You can help support our nonprofit's mission {a=https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/}by donating to us here{/a}."
-        #     "Remember you can visit link anytime from the {b}Bonus{/b} screen."
-        #     jump post_game_choice
-        
-        # "Check out the bonus screen for minigames, resources, and more {icon=icon-award}":
-        #     "Did you have the chance to enjoy the rhythm minigame while you were busy learning to code, visiting the Hacker Space, and serving coffee?"
-        #     "Are you interested in checking out the actual [freeCodeCamp] curriculum and teach yourself to code in real life?"
-        #     "Well, you are in luck. The {b}Bonus{/b} screen has everything that you'll possibly need."
-        #     # go to the bonus screen
-        #     call screen bonus_screen()
-        #     "I'm sure you will make good use of the bonus content!"
-        #     jump post_game_choice
+                        "Maybe I could stay a little late. Okay.":
+                            nigel "That's the spirit! You're a great developer. I'm sure that you can get this done in no time!"
+                            player "Yeah! This can't be that hard, can it? "
+                            nigel "Just let me know if you have any questions. I'll shoot you the information on the project when "
+                            "You sit down at your desk, and take a look at the JIRA logs for the project. Everything seems to be just as Nigel describes."
+                            "Suddenly, Nigel sends you a ticket number for the change. Once you open it, you suddenly lose your confidence."
+                            "You request the authentication ticket that Nigel mentioned Brian completing a few year years ago. It doesn't help - there are nearly no comments in his code."
+                            "Even if there were, the project is done in a completely different language and framework that you don't know yet."
+                            player "Jeez... how am I supposed to get this done in two days? Now that I think about it, I don't know the first thing about building a custom authentication system."
+                            "You spend almost the entirety of the first day looking at videos and StackOverflow posts to even find out where to begin rolling your own authentication system."
+                            "Every comment on every forum disagrees with the others, citing their own way of writing an authentication system that's supposedly best."
+                            "You look up at the clock and notice that it's 6PM. Exhausted, you decide to take a break."
+                            akira "Lydia? What are you doing here? It's 6PM, you should probably be packing up."
+                            player "Hi Akira. I can't - I promised that I'd work to get the Stacy & Lucy's account's website finished in time."
+                            akira "But that's due a week from now?"
+                            player "Well, not since I talked to Nigel earlier, and he said that S & L insisted that it was super important for us to get it done within the next two days."
+                            akira "Two days? Lydia, I don't think that that's possible."
+                            player "I'm beginning to get that now... but I already promised I'd get this done. What should I do?"
+                            akira "I'll talk to Nigel. What will probably happen is that I'll hop on a call with him and the client and help him explain that what they're asking for won't be able to get done in the period of time that they're asking for."
+                            akira "If they'd like to to get their project done in two days, we're going to have to cut a lot of corners, and they need to understand that."
+                            player "I see."
+                            akira "Next time, I'd like you to reach out to me whenever a big commitment change like this is requested. "
+                            akira "This decision doesn't just affect you, but the entire team, and all of our client projects that are further ahead in the pipeline. "
+                            akira "Other clients that have been waiting longer than S & L might get their projects completed late if we put all of our time and resources into one company without having meetings to work it into our schedule."
+                            player "I'm sorry, I didn't think about that."
+                            akira "It's okay. For now, you might want to get home. Tomorrow, just continue with the other tasks we have in the pipeline for this week."
+                            "(You lose 10 renown for not discussing your decision with your team lead, and 15 sanity for a stressful 7 hours of searching the web for answers.)"
+                            $ player_stats.change_stats('Renown', -10)
+                            $ player_stats.change_stats('Sanity', -15)
 
-        "Discover alternative endings {icon=icon-map}":
-            "Which ending took you here, if I may ask?"
-            "Did you become a developer like you've always dreamed to be? Or did you take up some other job?"
-            "Perhaps you discovered that Mint, your adorable home cat, is better at coding than you?"
-            "Psssst... Did I just spoil the fact that there are several alternative endings hidden in the game?"
-            "The endings you unlocked will be displayed on the {b}Bonus > Achievements{/b} screen."
-            "Make sure to {b}Save{/b} your progress often if you want to unlock all of them!"
-            jump post_game_choice
+                "(Am I just a slow developer? If Brian could do it back then, I probably could too! I can do this.)":
+                    nigel "That's the spirit! You're a great developer. I'm sure that you can get this done in no time!"
+                    player "Yeah! This can't be that hard, can it? "
+                    nigel "Just let me know if you have any questions. I'll shoot you the information on the project when "
+                    "You sit down at your desk, and take a look at the JIRA logs for the project. Everything seems to be just as Nigel describes."
+                    "Suddenly, Nigel sends you a ticket number for the change. Once you open it, you suddenly lose your confidence."
+                    "You request the authentication ticket that Nigel mentioned Brian completing a few year years ago. It doesn't help - there are nearly no comments in his code."
+                    "Even if there were, the project is done in a completely different language and framework that you don't know yet."
+                    player "Jeez... how am I supposed to get this done in two days? Now that I think about it, I don't know the first thing about building a custom authentication system."
+                    "You spend almost the entirety of the first day looking at videos and StackOverflow posts to even find out where to begin rolling your own authentication system."
+                    "Every comment on every forum disagrees with the others, citing their own way of writing an authentication system that's supposedly best."
+                    "You look up at the clock and notice that it's 6PM. Exhausted, you decide to take a break."
+                    akira "Lydia? What are you doing here? It's 6PM, you should probably be packing up."
+                    player "Hi Akira. I can't - I promised that I'd work to get the Stacy & Lucy's account's website finished in time."
+                    akira "But that's due a week from now?"
+                    player "Well, not since I talked to Nigel earlier, and he said that S & L insisted that it was super important for us to get it done within the next two days."
+                    akira "Two days? Lydia, I don't think that that's possible."
+                    player "I'm beginning to get that now... but I already promised I'd get this done. What should I do?"
+                    akira "I'll talk to Nigel. What will probably happen is that I'll hop on a call with him and the client and help him explain that what they're asking for won't be able to get done in the period of time that they're asking for."
+                    akira "If they'd like to to get their project done in two days, we're going to have to cut a lot of corners, and they need to understand that."
+                    player "I see."
+                    akira "Next time, I'd like you to reach out to me whenever a big commitment change like this is requested. "
+                    akira "This decision doesn't just affect you, but the entire team, and all of our client projects that are further ahead in the pipeline. "
+                    akira "Other clients that have been waiting longer than S & L might get their projects completed late if we put all of our time and resources into one company without having meetings to work it into our schedule."
+                    player "I'm sorry, I didn't think about that."
+                    akira "It's okay. For now, you might want to get home. Tomorrow, just continue with the other tasks we have in the pipeline for this week."
+                    "(You lose 10 renown for not discussing your decision with your team lead, and 15 sanity for a stressful 7 hours of searching the web for answers.)"
+                    $ player_stats.change_stats('Renown', -10)
+                    $ player_stats.change_stats('Sanity', -15)
 
-        "Gotcha. I'm ready to explore on my own!":
-            "Great to hear! Hope you enjoyed the ride!"
-            
-    return # return to main menu
+        "Sure. I've been getting more comfortable in my duties here! I can probably work something out.":
+            nigel "That's the spirit! You're a great developer. I'm sure that you can get this done in no time!"
+            player "Yeah! This can't be that hard, can it? "
+            nigel "Just let me know if you have any questions. I'll shoot you the information on the project when "
+            "You sit down at your desk, and take a look at the JIRA logs for the project. Everything seems to be just as Nigel describes."
+            "Suddenly, Nigel sends you a ticket number for the change. Once you open it, your heart sinks."
+            player "Wait a minute... the clients want a custom authentication system? I thought I could just use a pre-existing library like Auth0. And they want this done in two days?"
+            "You spend almost the entirety of the first day looking at videos and StackOverflow posts to even find out where to begin rolling your own authentication system."
+            "Every comment on every forum disagrees with the others, citing their own way of writing an authentication system that's supposedly best."
+            "You look up at the clock and notice that it's 6PM. Exhausted, you decide to take a break."
+            akira "Lydia? What are you doing here? It's 6PM, you should probably be packing up."
+            player "Hi Akira. I can't - I promised that I'd work to get the Stacy & Lucy's account's website finished in time."
+            akira "But that's due a week from now?"
+            player "Well, not since I talked to Nigel earlier, and he said that S & L insisted that it was super important for us to get it done within the next two days."
+            akira "Two days? Lydia, I don't think that that's possible."
+            player "I'm beginning to get that now... but I already promised I'd get this done. What should I do?"
+            akira "I'll talk to Nigel. What will probably happen is that I'll hop on a call with him and the client and help him explain that what they're asking for won't be able to get done in the period of time that they're asking for."
+            akira "If they'd like to to get their project done in two days, we're going to have to cut a lot of corners, and they need to understand that."
+            player "I see."
+            akira "Next time, I'd like you to reach out to me whenever a big commitment change like this is requested. "
+            akira "This decision doesn't just affect you, but the entire team, and all of our client projects that are further ahead in the pipeline. "
+            akira "Other clients that have been waiting longer than S & L might get their projects completed late if we put all of our time and resources into one company without having meetings to work it into our schedule."
+            player "I'm sorry, I didn't think about that."
+            akira "It's okay. For now, you might want to get home. Tomorrow, just continue with the other tasks we have in the pipeline for this week."
+            "(You lose 10 renown for not discussing your decision with your team lead, and 15 sanity for a stressful 7 hours of searching the web for answers.)"
+            $ player_stats.change_stats('Renown', -10)
+            $ player_stats.change_stats('Sanity', -15)

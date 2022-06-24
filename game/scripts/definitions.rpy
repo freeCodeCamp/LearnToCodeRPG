@@ -158,6 +158,11 @@ init:
     define annika = Character(_("Annika"), image='annika')
     define marco = Character(_("Marco"), image='marco')
     define layla = Character(_("Layla"), image='layla')
+    # v2 characters
+    define zainab = Character(_("Zainab"))
+    define lauri = Character(_("Lauri"))
+    define akira = Character(_("Akira"))
+    define nigel = Character(_("Nigel"))
 
     # minor characters
     define kid = Character(_("High School Kid"))
@@ -176,6 +181,7 @@ init:
     define journalist = Character(_("Journalist"))
     define cafe_manager = Character(_("Cafe Manager"))
     define office_worker = Character(_("Office Worker"))
+    define receptionist = Character(_("Receptionist"))
 
     # text displayables
     define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp.org{/color}{/font}{/a}'
