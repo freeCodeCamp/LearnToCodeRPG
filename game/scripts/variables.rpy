@@ -121,9 +121,12 @@ init python:
         'v2_help_from_friends',
         'v2_eta',
         'v2_motormouth',
+        'v2_message',
+
         ],
     'Home':
         [
+        'v2_email'
         ],
     }
 

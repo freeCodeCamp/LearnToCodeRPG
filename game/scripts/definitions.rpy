@@ -167,6 +167,8 @@ init:
     define hunain = Character(_("Hunain"))
     define mike = Character(_("Mike"))
     define motormouth_mike = Character(_("Motormouth Mike"))
+    define darius = Character(_("Darius"))
+    define greg = Character(_("Greg"))
 
     # minor characters
     define kid = Character(_("High School Kid"))
@@ -185,6 +187,9 @@ init:
     define journalist = Character(_("Journalist"))
     define cafe_manager = Character(_("Cafe Manager"))
     define office_worker = Character(_("Office Worker"))
+    define high_school_student = Character(_("High School Student"))
+    define developer1 = Character(_("Developer 1"))
+    define developer2 = Character(_("Developer 2"))
 
     # text displayables
     define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp.org{/color}{/font}{/a}'
