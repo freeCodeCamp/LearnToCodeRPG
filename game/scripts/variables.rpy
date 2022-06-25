@@ -56,6 +56,10 @@ init 998:
     # seen labels
     default seen_hacker_space_events = set()
     default seen_barista_events = set()
+    default seen_v2_arc1_events = {
+    'Work': set(),
+    'Home': set(),
+    }
 
     default persistent.enable_save_reminder = None
 
@@ -109,6 +113,19 @@ init python:
     'barista_api',
     'barista_userexperience',    
     ]
+
+    v2_arc1_event_labels = {
+    'Work':
+        [
+        'v2_working_late',
+        'v2_help_from_friends',
+        'v2_eta',
+        'v2_motormouth',
+        ],
+    'Home':
+        [
+        ],
+    }
 
     # map topic to label name
     ask_npc = {

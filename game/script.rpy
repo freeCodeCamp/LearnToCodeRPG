@@ -1673,7 +1673,7 @@ label v2_start:
     player "I put in the work, to become a developer, and today, it's real... "
     player "I'm going to keep working hard, and keep learning! Doing that is what got me here, so if I keep that up, I should be okay!"
     $ player_stats.set_stats('Renown', 20) # start with a bit of renown
-    
+
     player "Um... hello?"
     receptionist "Hello! How can I help you?"
     player "My name is Lydia, and this is my first day."
@@ -1835,137 +1835,30 @@ label v2_start:
 
     $ calendar.next()
 
-label working_late:
-    nigel "Lydia! Happy Monday! Did I catch you before you got settled in and started with work?"
-    player "No, I haven't gotten started just yet! What can I help you with?"
-    nigel "So you know that new client, Stacy & Lucy's?"
-    player "Yep - the bridal boutique chain?"
-    nigel "That's the one! I just got off of the phone with them earlier, and they're wondering if it'd be possible for you and the rest of the team to shoot for a closer completion date?"
-    player "A closer date? "
-    player "I mean - "
-    player "What do they have in mind? We have them slated to be finished next week."
-    nigel "So - "
-    nigel "and this is going to sound a bit crazy - "
-    nigel " - they need their e-commerce system completed within the next two days."
-    player "T... TWO days? "
-    nigel "Yeah, they were pretty insistent on the phone. The only thing that's left is user authentication. Do you think you can work something out?"
-    player "Um..."
+    # jump to random v2 events
+    # TODO: use new coding questions
+    while True:
+        if len(seen_v2_arc1_events['Work']) == len(v2_arc1_event_labels['Work']):
+            player "I've seen all events happening in v2 Arc1 work."
+        else:
+            player "I think something is happening today at work."
+            python:
+                available_labels = list(set(v2_arc1_event_labels['Work']) - seen_v2_arc1_events['Work'])
+                label = renpy.random.choice(available_labels)
+                seen_v2_arc1_events['Work'].add(label)
+                renpy.call(label)
+                calendar.next()
 
-    menu:
-        "I'm pretty sure this will take more than two days.":
-            player "I'm not so sure that's possible Nigel. We have other projects that we have to make sure that we complete on time."
-            nigel "Hey, I totally understand. It's just that Brian says all they need is some kind of authentication setup completed. That shouldn't take you more than two days, right?"
-            player "I mean... do they want something custom built, or are we using an existing service like Auth0?"
-            nigel "Let me check my notes here... Yep - it says they'd like something custom. But we've rolled something like that out before, right?"
-            nigel "Last year, Brian knocked something like that out in 3 days. I bet you could if you pushed!"
-            player "Well..."
+    while True:
+        if len(seen_v2_arc1_events['Home']) == len(v2_arc1_event_labels['Home']):
+            player "I've seen all events happening in v2 Arc1 Home."
+        else:
+            player "I think something is happening today at home."
+            python:
+                available_labels = list(set(v2_arc1_event_labels['Home']) - seen_v2_arc1_events['Home'])
+                label = renpy.random.choice(available_labels)
+                seen_v2_arc1_events['Home'].add(label)
+                renpy.call(label)
+                calendar.next()
 
-            menu:
-                "(I'm still not sure about this. We should talk to the client a bit more.)":
-                    player "Can we inform the client of the pros and cons of their decision for custom authentication? I don't think that we should just say yes without talking about this more."
-                    nigel "I spent about an hour on the phone with them this morning. I'm pretty sure that they won't budge. "
-                    nigel "Maybe you could get this done if you pushed a bit? I've been staying late to finish up with clients quite a bit this week - if you and the team do that, I bet you could get Stacy & Lucy's e-commerce setup completed in time!"
-                    nigel "I can even talk you up to Lauri if you get this finished on time. I bet she'll love the fact that you pulled the team through this and made a client really happy."
-
-                    menu:
-                        "I think we need to consult with Akira about this first.":
-                            player "I think that we need to consult with Akira about this first. He's our team lead, and would understand what our commitments are looking like the best."
-                            akira "What's this that Akira will know how to do best?"
-                            nigel "Akira! Just the person we wanted to see!"
-                            "You step aside a bit and let the two of them converse, paying attention closely."
-                            "Akira offers to hop on a call along with Nigel to give a technical perspective on the project, and work out a timeline and some technical solutions that are more realistic with the timeline that the client has asked for."
-                            "By the time the two of them are done speaking, they've booked a meeting with the client for tomorrow morning. Nigel seems satisfied with this outcome, and says his goodbyes, excited to have some backup."
-                            player "Thanks for the help Akira! I wasn't sure what the right thing to do in that situation was."
-                            akira "Don't worry, you definitely did the right thing. It's best to not make split-second decisions and commitments on development projects, especially when we have other clients in line to get their projects done, and when your decision affects the whole team."
-                            akira "You should always come to a senior developer just like you did to get a second decision when you're unsure of a commitment you're being asked to make."
-                            player "Thanks! I'll keep note of that."
-                            "(You've earned 20 renown for your responsible decision-making.)"
-                            $ player_stats.change_stats('Renown', 20)
-
-                        "Maybe I could stay a little late. Okay.":
-                            nigel "That's the spirit! You're a great developer. I'm sure that you can get this done in no time!"
-                            player "Yeah! This can't be that hard, can it? "
-                            nigel "Just let me know if you have any questions. I'll shoot you the information on the project when "
-                            "You sit down at your desk, and take a look at the JIRA logs for the project. Everything seems to be just as Nigel describes."
-                            "Suddenly, Nigel sends you a ticket number for the change. Once you open it, you suddenly lose your confidence."
-                            "You request the authentication ticket that Nigel mentioned Brian completing a few year years ago. It doesn't help - there are nearly no comments in his code."
-                            "Even if there were, the project is done in a completely different language and framework that you don't know yet."
-                            player "Jeez... how am I supposed to get this done in two days? Now that I think about it, I don't know the first thing about building a custom authentication system."
-                            "You spend almost the entirety of the first day looking at videos and StackOverflow posts to even find out where to begin rolling your own authentication system."
-                            "Every comment on every forum disagrees with the others, citing their own way of writing an authentication system that's supposedly best."
-                            "You look up at the clock and notice that it's 6PM. Exhausted, you decide to take a break."
-                            akira "Lydia? What are you doing here? It's 6PM, you should probably be packing up."
-                            player "Hi Akira. I can't - I promised that I'd work to get the Stacy & Lucy's account's website finished in time."
-                            akira "But that's due a week from now?"
-                            player "Well, not since I talked to Nigel earlier, and he said that S & L insisted that it was super important for us to get it done within the next two days."
-                            akira "Two days? Lydia, I don't think that that's possible."
-                            player "I'm beginning to get that now... but I already promised I'd get this done. What should I do?"
-                            akira "I'll talk to Nigel. What will probably happen is that I'll hop on a call with him and the client and help him explain that what they're asking for won't be able to get done in the period of time that they're asking for."
-                            akira "If they'd like to to get their project done in two days, we're going to have to cut a lot of corners, and they need to understand that."
-                            player "I see."
-                            akira "Next time, I'd like you to reach out to me whenever a big commitment change like this is requested. "
-                            akira "This decision doesn't just affect you, but the entire team, and all of our client projects that are further ahead in the pipeline. "
-                            akira "Other clients that have been waiting longer than S & L might get their projects completed late if we put all of our time and resources into one company without having meetings to work it into our schedule."
-                            player "I'm sorry, I didn't think about that."
-                            akira "It's okay. For now, you might want to get home. Tomorrow, just continue with the other tasks we have in the pipeline for this week."
-                            "(You lose 10 renown for not discussing your decision with your team lead, and 15 sanity for a stressful 7 hours of searching the web for answers.)"
-                            $ player_stats.change_stats('Renown', -10)
-                            $ player_stats.change_stats('Sanity', -15)
-
-                "(Am I just a slow developer? If Brian could do it back then, I probably could too! I can do this.)":
-                    nigel "That's the spirit! You're a great developer. I'm sure that you can get this done in no time!"
-                    player "Yeah! This can't be that hard, can it? "
-                    nigel "Just let me know if you have any questions. I'll shoot you the information on the project when "
-                    "You sit down at your desk, and take a look at the JIRA logs for the project. Everything seems to be just as Nigel describes."
-                    "Suddenly, Nigel sends you a ticket number for the change. Once you open it, you suddenly lose your confidence."
-                    "You request the authentication ticket that Nigel mentioned Brian completing a few year years ago. It doesn't help - there are nearly no comments in his code."
-                    "Even if there were, the project is done in a completely different language and framework that you don't know yet."
-                    player "Jeez... how am I supposed to get this done in two days? Now that I think about it, I don't know the first thing about building a custom authentication system."
-                    "You spend almost the entirety of the first day looking at videos and StackOverflow posts to even find out where to begin rolling your own authentication system."
-                    "Every comment on every forum disagrees with the others, citing their own way of writing an authentication system that's supposedly best."
-                    "You look up at the clock and notice that it's 6PM. Exhausted, you decide to take a break."
-                    akira "Lydia? What are you doing here? It's 6PM, you should probably be packing up."
-                    player "Hi Akira. I can't - I promised that I'd work to get the Stacy & Lucy's account's website finished in time."
-                    akira "But that's due a week from now?"
-                    player "Well, not since I talked to Nigel earlier, and he said that S & L insisted that it was super important for us to get it done within the next two days."
-                    akira "Two days? Lydia, I don't think that that's possible."
-                    player "I'm beginning to get that now... but I already promised I'd get this done. What should I do?"
-                    akira "I'll talk to Nigel. What will probably happen is that I'll hop on a call with him and the client and help him explain that what they're asking for won't be able to get done in the period of time that they're asking for."
-                    akira "If they'd like to to get their project done in two days, we're going to have to cut a lot of corners, and they need to understand that."
-                    player "I see."
-                    akira "Next time, I'd like you to reach out to me whenever a big commitment change like this is requested. "
-                    akira "This decision doesn't just affect you, but the entire team, and all of our client projects that are further ahead in the pipeline. "
-                    akira "Other clients that have been waiting longer than S & L might get their projects completed late if we put all of our time and resources into one company without having meetings to work it into our schedule."
-                    player "I'm sorry, I didn't think about that."
-                    akira "It's okay. For now, you might want to get home. Tomorrow, just continue with the other tasks we have in the pipeline for this week."
-                    "(You lose 10 renown for not discussing your decision with your team lead, and 15 sanity for a stressful 7 hours of searching the web for answers.)"
-                    $ player_stats.change_stats('Renown', -10)
-                    $ player_stats.change_stats('Sanity', -15)
-
-        "Sure. I've been getting more comfortable in my duties here! I can probably work something out.":
-            nigel "That's the spirit! You're a great developer. I'm sure that you can get this done in no time!"
-            player "Yeah! This can't be that hard, can it? "
-            nigel "Just let me know if you have any questions. I'll shoot you the information on the project when "
-            "You sit down at your desk, and take a look at the JIRA logs for the project. Everything seems to be just as Nigel describes."
-            "Suddenly, Nigel sends you a ticket number for the change. Once you open it, your heart sinks."
-            player "Wait a minute... the clients want a custom authentication system? I thought I could just use a pre-existing library like Auth0. And they want this done in two days?"
-            "You spend almost the entirety of the first day looking at videos and StackOverflow posts to even find out where to begin rolling your own authentication system."
-            "Every comment on every forum disagrees with the others, citing their own way of writing an authentication system that's supposedly best."
-            "You look up at the clock and notice that it's 6PM. Exhausted, you decide to take a break."
-            akira "Lydia? What are you doing here? It's 6PM, you should probably be packing up."
-            player "Hi Akira. I can't - I promised that I'd work to get the Stacy & Lucy's account's website finished in time."
-            akira "But that's due a week from now?"
-            player "Well, not since I talked to Nigel earlier, and he said that S & L insisted that it was super important for us to get it done within the next two days."
-            akira "Two days? Lydia, I don't think that that's possible."
-            player "I'm beginning to get that now... but I already promised I'd get this done. What should I do?"
-            akira "I'll talk to Nigel. What will probably happen is that I'll hop on a call with him and the client and help him explain that what they're asking for won't be able to get done in the period of time that they're asking for."
-            akira "If they'd like to to get their project done in two days, we're going to have to cut a lot of corners, and they need to understand that."
-            player "I see."
-            akira "Next time, I'd like you to reach out to me whenever a big commitment change like this is requested. "
-            akira "This decision doesn't just affect you, but the entire team, and all of our client projects that are further ahead in the pipeline. "
-            akira "Other clients that have been waiting longer than S & L might get their projects completed late if we put all of our time and resources into one company without having meetings to work it into our schedule."
-            player "I'm sorry, I didn't think about that."
-            akira "It's okay. For now, you might want to get home. Tomorrow, just continue with the other tasks we have in the pipeline for this week."
-            "(You lose 10 renown for not discussing your decision with your team lead, and 15 sanity for a stressful 7 hours of searching the web for answers.)"
-            $ player_stats.change_stats('Renown', -10)
-            $ player_stats.change_stats('Sanity', -15)
+    return
