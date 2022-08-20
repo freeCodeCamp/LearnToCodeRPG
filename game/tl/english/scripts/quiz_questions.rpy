@@ -387,8 +387,8 @@ translate english strings:
     new "Gitter"
 
     # game/scripts/quiz_questions.rpy:139
-    old "The freeCodeCamp contributor community communicates mostly through our self-hosted Rocket Chat instance at https://chat.freecodecamp.org. This said, we do have an active Discord server, and in the past have used both Slack and Gitter."
-    new "The freeCodeCamp contributor community communicates mostly through our self-hosted Rocket Chat instance at https://chat.freecodecamp.org. This said, we do have an active Discord server, and in the past have used both Slack and Gitter."
+    old "The freeCodeCamp contributor community communicates mostly through our active Discord server at discord.gg/PRyKn3Vbay, and in the past have used RocketChat, Slack and Gitter."
+    new "The freeCodeCamp contributor community communicates mostly through our active Discord server at discord.gg/PRyKn3Vbay, and in the past have used RocketChat, Slack and Gitter."
 
     # game/scripts/quiz_questions.rpy:139
     old "freeCodeCamp's Mascot is:"

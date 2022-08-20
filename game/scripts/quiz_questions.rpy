@@ -212,10 +212,10 @@ init 101 python:
     ),
     QuizQuestion(
     question=_("What chat tool does freeCodecamp use for its main self-hosted chat server?"),
-    true=_("RocketChat"),
-    false=[_("Slack"), _("Discord"), _("Gitter")],
-    explanation=_("The freeCodeCamp contributor community communicates mostly through our self-hosted Rocket Chat instance at https://chat.freecodecamp.org. This said, we do have an active Discord server, and in the past have used both Slack and Gitter."),
-    learn_more_url="https://www.freecodecamp.org/news/introducing-freecodecamp-chat/",
+    true=_("Discord"),
+    false=[_("Slack"), _("RocketChat"), _("Gitter")],
+    explanation=_("The freeCodeCamp contributor community communicates mostly through our active Discord server at discord.gg/PRyKn3Vbay, and in the past have used RocketChat, Slack and Gitter."),
+    learn_more_url="https://www.freecodecamp.org/news/freecodecamp-discord-chat-room-server/",
     difficulty=1,
     easter_egg_name=quiz_fcc_chat
     ),

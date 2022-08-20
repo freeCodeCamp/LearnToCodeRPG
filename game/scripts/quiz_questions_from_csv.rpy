@@ -778,7 +778,7 @@ init python:
     difficulty=1,
     ),
     QuizQuestion(
-    question=_("Which one of these values represents 10% of the viewport width?"),
+    question=_("Which one of these values represents 10%% of the viewport width?"),
     true=_("10vw"),
     false=[_("10vh"), _("100vw"), _("1000vw")],
     explanation=_("10vw is equivalent to 10% of the viewport width."),
@@ -794,7 +794,7 @@ init python:
     difficulty=1,
     ),
     QuizQuestion(
-    question=_("Which one of these values represents 20% of the viewport height?"),
+    question=_("Which one of these values represents 20%% of the viewport height?"),
     true=_("20vh"),
     false=[_("200vh"), _("2vh"), _("2000vh")],
     explanation=_("20vh is equivalent to 20% of the viewport height."),
