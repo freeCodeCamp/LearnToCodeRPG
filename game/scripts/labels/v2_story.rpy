@@ -1,5 +1,5 @@
 label v2_working_late:
-    nigel "Lydia! Happy Monday! Did I catch you before you got settled in and started with work?"
+    nigel "[player_name]! Happy Monday! Did I catch you before you got settled in and started with work?"
     player "No, I haven't gotten started just yet! What can I help you with?"
     nigel "So you know that new client, Stacy & Lucy's?"
     player "Yep - the bridal boutique chain?"
@@ -57,11 +57,11 @@ label v2_working_late:
                             "You spend almost the entirety of the first day looking at videos and StackOverflow posts to even find out where to begin rolling your own authentication system."
                             "Every comment on every forum disagrees with the others, citing their own way of writing an authentication system that's supposedly best."
                             "You look up at the clock and notice that it's 6PM. Exhausted, you decide to take a break."
-                            akira "Lydia? What are you doing here? It's 6PM, you should probably be packing up."
+                            akira "[player_name]? What are you doing here? It's 6PM, you should probably be packing up."
                             player "Hi Akira. I can't - I promised that I'd work to get the Stacy & Lucy's account's website finished in time."
                             akira "But that's due a week from now?"
                             player "Well, not since I talked to Nigel earlier, and he said that S & L insisted that it was super important for us to get it done within the next two days."
-                            akira "Two days? Lydia, I don't think that that's possible."
+                            akira "Two days? [player_name], I don't think that that's possible."
                             player "I'm beginning to get that now... but I already promised I'd get this done. What should I do?"
                             akira "I'll talk to Nigel. What will probably happen is that I'll hop on a call with him and the client and help him explain that what they're asking for won't be able to get done in the period of time that they're asking for."
                             akira "If they'd like to to get their project done in two days, we're going to have to cut a lot of corners, and they need to understand that."
@@ -87,11 +87,11 @@ label v2_working_late:
                     "You spend almost the entirety of the first day looking at videos and StackOverflow posts to even find out where to begin rolling your own authentication system."
                     "Every comment on every forum disagrees with the others, citing their own way of writing an authentication system that's supposedly best."
                     "You look up at the clock and notice that it's 6PM. Exhausted, you decide to take a break."
-                    akira "Lydia? What are you doing here? It's 6PM, you should probably be packing up."
+                    akira "[player_name]? What are you doing here? It's 6PM, you should probably be packing up."
                     player "Hi Akira. I can't - I promised that I'd work to get the Stacy & Lucy's account's website finished in time."
                     akira "But that's due a week from now?"
                     player "Well, not since I talked to Nigel earlier, and he said that S & L insisted that it was super important for us to get it done within the next two days."
-                    akira "Two days? Lydia, I don't think that that's possible."
+                    akira "Two days? [player_name], I don't think that that's possible."
                     player "I'm beginning to get that now... but I already promised I'd get this done. What should I do?"
                     akira "I'll talk to Nigel. What will probably happen is that I'll hop on a call with him and the client and help him explain that what they're asking for won't be able to get done in the period of time that they're asking for."
                     akira "If they'd like to to get their project done in two days, we're going to have to cut a lot of corners, and they need to understand that."
@@ -115,11 +115,11 @@ label v2_working_late:
             "You spend almost the entirety of the first day looking at videos and StackOverflow posts to even find out where to begin rolling your own authentication system."
             "Every comment on every forum disagrees with the others, citing their own way of writing an authentication system that's supposedly best."
             "You look up at the clock and notice that it's 6PM. Exhausted, you decide to take a break."
-            akira "Lydia? What are you doing here? It's 6PM, you should probably be packing up."
+            akira "[player_name]? What are you doing here? It's 6PM, you should probably be packing up."
             player "Hi Akira. I can't - I promised that I'd work to get the Stacy & Lucy's account's website finished in time."
             akira "But that's due a week from now?"
             player "Well, not since I talked to Nigel earlier, and he said that S & L insisted that it was super important for us to get it done within the next two days."
-            akira "Two days? Lydia, I don't think that that's possible."
+            akira "Two days? [player_name], I don't think that that's possible."
             player "I'm beginning to get that now... but I already promised I'd get this done. What should I do?"
             akira "I'll talk to Nigel. What will probably happen is that I'll hop on a call with him and the client and help him explain that what they're asking for won't be able to get done in the period of time that they're asking for."
             akira "If they'd like to to get their project done in two days, we're going to have to cut a lot of corners, and they need to understand that."
@@ -136,7 +136,7 @@ label v2_working_late:
 label v2_help_from_friends:
     hunain "*Grumble grumble*"
     player "Hey Hunain, good morning!"
-    hunain "Hello, Lydia. I wish it was a good morning..."
+    hunain "Hello, [player_name]. I wish it was a good morning..."
     player "Did something happen? You look pretty upset."
     hunain "Ugh, I am! It's this bug. I've set everything in this React component up correctly, and it's still not working."
     player "I see. About how long have you been working on it?"
@@ -185,7 +185,7 @@ label v2_help_from_friends:
             player "I'll go grab a manager for her so he doesn't have to stop what he's doing."
             akira "..."
             player "Hey Akira! "
-            akira "Hi Lydia. Can I help you with anything?"
+            akira "Hi [player_name]. Can I help you with anything?"
             player "Actually, it's not help for me, but for Hunain!"
             akira "Hunain? What's going on?"
             player "She's stuck on this bug, and has been for about two hours. She can't figure out why her React component isn't firing off GET requests."
@@ -205,7 +205,7 @@ label v2_help_from_friends:
             $ player_stats.change_stats('Renown', -10)
 
 label v2_eta:
-    akira "Hi Lydia - how's that ticket for the GoGoGames account coming?"
+    akira "Hi [player_name] - how's that ticket for the GoGoGames account coming?"
     player "I actually haven't gotten to work on it yet; I'm still finishing up that ticket on the town hall website. Is that okay?"
     akira "Sure! I'm glad that you're getting that done as well. I just wanted to know if you've gotten a chance to look at the ticket yet?"
     akira "I just wanted to make sure that it was something that you're comfortable with."
@@ -248,7 +248,7 @@ label v2_eta:
             akira "Between you and me, it's sometimes better to give yourself a few extra days more than you actually think it'll take to complete a project."
             akira "Like you said, you never know if you'll hit some snags while working on your project. It also leaves room for other development emergencies on other projects if they come."
             player "Right! This way, I feel like I'll be ready for anything that comes up."
-            akira "Rock on. I'll give the client the update. Thanks Lydia."
+            akira "Rock on. I'll give the client the update. Thanks [player_name]."
             "You gain 10 Sanity knowing you'll have plenty of breathing room to complete all your duties this week."
             $ player_stats.change_stats('Sanity', 10)
 
@@ -256,7 +256,7 @@ label v2_motormouth:
     player "Phew - I've really been on a roll this morning! It's 1PM, and I've already got two tickets completed. I'm super thirsty!"
     player "I think I see Mike from Marketing over at the watercooler. I should say hi!"
     player "Hi Mike! What's new with you?"
-    mike "Lydia! Not much - how was your weekend?"
+    mike "[player_name]! Not much - how was your weekend?"
     "The two of you converse politely for a while about non-work related topics. It feels great to keep things casual!"
     "You're so relaxed, in fact, that you gain 10 Sanity!"
     "You take a look at the clock and notice you've been standing around for around 10 minutes. "
@@ -295,10 +295,10 @@ label v2_motormouth:
                     motormouth_mike "M-Ms. Benson! Good morning!"
                     lauri "It's afternoon at this point. I've been watching the two of you talk for, oh... 30 minutes now."
                     lauri "Mike, don't you have work to do? The big presentation for Walter Co. Construction is due tomorrow."
-                    motormouth_mike "Sure do! That's my cue - later Lydia!"
+                    motormouth_mike "Sure do! That's my cue - later [player_name]!"
                     player "Bye Mike. Welp, I better get going too - "
                     lauri "Not so fast. What are you doing? "
-                    lauri "Do we have a “Loquacious Lydia” to match Motormouth Mike now?"
+                    lauri "Do we have a “Loquacious [player_name]” to match Motormouth Mike now?"
                     player "Mike's always hanging out at the cooler, so I figured it would be okay to take a bit of a break..."
                     lauri "A break is fine, but if you stand around for too long, it'll begin to look like you haven't done much work."
                     lauri "Think about it - Mike's been at this company for 5 years. He shouldn't be doing it, but at least he has tenure here. But a brand new junior?"
@@ -322,7 +322,7 @@ label v2_motormouth:
             "Total Sanity gained 10 points"
 
 label v2_message:
-    darius "Lydia! Do you have a moment?"
+    darius "[player_name]! Do you have a moment?"
     player "I do! What's going on?"
     darius "I could use a little bit of help with this React bug? I've been stuck on it all morning."
     player "Sure! I'm a junior too, but I'll do the best that I can."
@@ -360,7 +360,7 @@ label v2_message:
             player "Board members?"
             akira "The people that fund our company. Basically, the people on top."
             player "..."
-            akira "Lydia, when you see that someone is in a meeting, you shouldn't send a message."
+            akira "[player_name], when you see that someone is in a meeting, you shouldn't send a message."
             akira "Wait until the meeting is over in the future, okay?"
     
         "Wait until the meeting is finished":
@@ -480,7 +480,7 @@ label v2_venting:
     player "It would cost them less money, too."
     player "I told the client this, and now we're 3 days into the project and they're demanding that we finish faster."
     player "I'm just so frustrated..."
-    mom "Lydia! Lydia, what's wrong honey? Are you upset about something?"
+    mom "[player_name]! [player_name], what's wrong honey? Are you upset about something?"
     player "(Hm... I am upset. And talking to Mom usually makes me feel better.)"
     player "(I could also post about this on my favorite web development forum. I see people complaining about their jobs there all the time.)"
     player "(I could call Annika too, and see if she has any advice.)"
@@ -488,7 +488,7 @@ label v2_venting:
     menu:
         "Vent to Mom":
             player "Yeah! I'll talk to Mom. She's a great listener, and super supportive. I'll talk to her about it."
-            mom "Hi Lydia! You sounded upset when you were talking to Mint. Did she get into your cookies again?"
+            mom "Hi [player_name]! You sounded upset when you were talking to Mint. Did she get into your cookies again?"
             player "Haha! No, but that sounds like something Mint would do!"
             player "I just had a rough day at work. "
             mom "Want to talk about it sweetheart?"
@@ -665,7 +665,7 @@ label v2_crypto:
             player "I bet we can find lots of places to use this at work."
             player "I should message Akira and tell him about what I learned!"
             player "..."
-            akira "Hey Lydia! Staying at the office a bit late?"
+            akira "Hey [player_name]! Staying at the office a bit late?"
             player "No, I just got back home!"
             player "So I was on this forum that I really like, and I read about some users talking about Blockchain, as well as this new framework..."
             "You send over pictures of the small webpage that you made using Fresssh."
@@ -706,7 +706,7 @@ label v2_crypto:
             player "Using this at work will be pretty straightforward."
             player "I should message Akira and tell him about what I learned!"
             player "..."
-            akira "Hey Lydia! Staying at the office a bit late?"
+            akira "Hey [player_name]! Staying at the office a bit late?"
             player "No, I just got back home!"
             player "I looked up Material UI. It looks like a lot of fun!"
             player "I even did a tutorial, and made something really quick!"
@@ -721,7 +721,7 @@ label v2_crypto:
 label v2_old_friend:
     player "This place is as busy as always! "
     player "I wonder if that “Moms Who Code” group finished their Hackathon project? I should go see!"
-    greg "Lydia? Lydia, is that you?"
+    greg "[player_name]? [player_name], is that you?"
     player "Oh my gosh, Greg! I haven't seen you since high school! "
     player "How have you been?"
     greg "I've been great, how about you? It's crazy to meet you here in HackerSpace! "
@@ -752,7 +752,7 @@ label v2_old_friend:
     menu:
         "Would you like me to refer you to a position at my company?":
             player "I've been thinking CompanyName has another junior position open right now. Would you like me to refer you to it?"
-            greg "What? No way, you'd do that for my Lydia?"
+            greg "What? No way, you'd do that for my [player_name]?"
             player "Of course, you're my old friend! I'd be glad to put in a good word with our team lead, Akira."
             greg "You'd be doing me a huge favor, thank you! The job market has been a little rough, so being able to get my foot in the door would be great!"
             player "Awesome! I'll send in my referral email first thing in the morning."
@@ -820,7 +820,7 @@ label v2_equity:
     layla "The point is that even though we're able to see, there are blind and visually-impaired users that you'll have to take into account."
     high_school_student "What's there to change? I was just telling her that I've never seen a blind person using a phone or a computer. What would they use a phone for besides calling people?"
     high_school_student "How would they even use a phone to call people if it isn't a flip-phone? The buttons on a phone-screen aren't even solid!"
-    layla "What do you think Lydia? What should he do?"
+    layla "What do you think [player_name]? What should he do?"
 
     menu:
         "Accessibility is important.":
@@ -842,10 +842,10 @@ label v2_equity:
 
         "It's just for a school project Layla. Maybe it isn't that big of a deal?":
             player "I don't know Layla... this is just for a school project? Maybe it isn't that big of a deal?"
-            layla "What? Lydia, don't you remember Lamont?"
+            layla "What? [player_name], don't you remember Lamont?"
             player "Lamont? ... Oh!"
             layla "There it is. So you DO remember Lamont."
-            layla "You told me about him one day a few months ago. Lydia here had a visually impaired student that she used to tutor.  "
+            layla "You told me about him one day a few months ago. [player_name] here had a visually impaired student that she used to tutor.  "
             layla "He used a phone with a screen-reader, a special piece of software that read content on a screen aloud. "
             player "That's right... he was a really good student."
             layla "I'm sure he got the chance to be because the sites that you sent him to for study materials were screen-reader friendly."
@@ -853,7 +853,7 @@ label v2_equity:
             layla "It's why it's important to use your aria-labels on visual elements like buttons, and alt-text on images. "
             layla "When a screen-reader reaches an image, it usually reads out the word, “Image”, and whatever you've put into Alt-Text."
             high_school_student "Wow... so I guess in that way, the visually impaired and blind actually can use computers and phones?"
-            layla "Lydia, what would Lamont say to you if he heard what you said earlier?"
+            layla "[player_name], what would Lamont say to you if he heard what you said earlier?"
             player "Jeez... his feelings would probably be really hurt."
             layla "Exactly. "
             layla "Just because it doesn't affect the two of you doesn't mean it won't affect others. "
@@ -886,7 +886,7 @@ label v2_gelato:
     menu:
         "Go get Gelato with friends.":
             player "..."
-            annika "Hey! Earth to Lydia! Are you coming?"
+            annika "Hey! Earth to [player_name]! Are you coming?"
             player "Oh! Absolutely!"
             player "My favorite flavor is Pistachio."
             layla "Pistachio??"
@@ -918,7 +918,7 @@ label v2_internet_safety:
     layla "That sounds like a good time! I missed the React talk last month, so I've been trying to check more often."
     player "Cool! I've been meaning to pick up Angular, so I hope they have a seminar on that ne -"
     player "..."
-    layla "Lydia? Everything okay?"
+    layla "[player_name]? Everything okay?"
     player "I'm just remembering..."
     player "I forgot to get a React ticket submitted today!"
     layla "Oh no! Was it urgent?"
