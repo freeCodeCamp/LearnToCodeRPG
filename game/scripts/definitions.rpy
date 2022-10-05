@@ -308,13 +308,40 @@ init:
     "laugh eyes_laugh brows_neutral mouth_laugh",
     "worry eyes_blink brows_lowered mouth_frown",
     "pout eyes_blink brows_lowered mouth_pout",
-    "relieved eyes_closed brows_neutral mouth_oh"
+    "relieved eyes_closed brows_neutral mouth_oh",
     ]
+
     # major characters except player
     define expressions = [
     "neutral eyes_blink brows_neutral mouth_smile",
     "serious eyes_blink brows_neutral mouth_frown",
     "laugh eyes_laugh brows_raised mouth_laugh",
+    ]
+
+    # other charas
+    define goro_expressions = [
+    "neutral eyes_blink brows_1 mouth_2",
+    "smile eyes_blink brows_1 mouth_1",
+    "sad eyes_blink brows_4 mouth_2",
+    "fearful eyes_blink brows_4 mouth_6",
+    "angry eyes_blink brows_3 mouth_2",
+    "disgust eyes_blink brows_5 mouth_4",
+    "laugh eyes_narrowblink brows_2 mouth_5",
+    ]
+
+    define iris_expressions = [
+    "neutral eyes_blink brows_1 mouth_1",
+    "smile eyes_blink brows_1 mouth_2",
+    "angry eyes_blink brows_2 mouth_1",
+    "disgust eyes_narrowblink brows_2 mouth_3",
+    "confused eyes_narrowblink brows_3 mouth_1",
+    ]
+
+    define mala_expressions = [
+    "neutral eyes_blink brows_1 mouth_2",
+    "smile eyes_blink brows_1 mouth_1",
+    "angry eyes_blink brows_2 mouth_2",
+    "laugh eyes_blink brows_1 mouth_3",
     ]
 
     # blink
@@ -336,6 +363,31 @@ init:
     image marco_eyes_blink = DynamicBlink(
         "images/chara/marco/marco_eyes_open.png",
         "images/chara/marco/marco_eyes_closed.png"
+        )
+
+    image goro_eyes_blink = DynamicBlink(
+        "images/chara/goro/goro_eyes_open.png",
+        "images/chara/goro/goro_eyes_closed.png"
+        )
+
+    image goro_eyes_narrowblink = DynamicBlink(
+        "images/chara/goro/goro_eyes_narrow.png",
+        "images/chara/goro/goro_eyes_closed.png"
+        )
+
+    image iris_eyes_blink = DynamicBlink(
+        "images/chara/iris/iris_eyes_open.png",
+        "images/chara/iris/iris_eyes_closed.png"
+        )
+
+    image iris_eyes_narrowblink = DynamicBlink(
+        "images/chara/iris/iris_eyes_narrow.png",
+        "images/chara/iris/iris_eyes_closed.png"
+        )
+
+    image mala_eyes_blink = DynamicBlink(
+        "images/chara/mala/mala_eyes_open.png",
+        "images/chara/mala/mala_eyes_closed.png"
         )
 
     # layered character sprites
@@ -419,6 +471,56 @@ init:
         attribute glasses default
 
         attribute_function Picker(expressions)
+
+    # charas with custom Picker(chara_expressions)
+    layeredimage goro:
+        always "goro_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute sad null
+            attribute fearful null
+            attribute angry null
+            attribute disgust null
+            attribute laugh null
+
+        attribute_function Picker(goro_expressions)
+
+    layeredimage iris:
+        always "iris_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute angry null
+            attribute disgust null
+            attribute confused null
+
+        attribute_function Picker(iris_expressions)
+
+    layeredimage mala:
+        always "mala_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute angry null
+            attribute laugh null
+
+        attribute_function Picker(mala_expressions)
 
 ## translation styles
 # https://www.renpy.org/doc/html/gui.html#translation-and-gui-variables
