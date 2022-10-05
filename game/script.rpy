@@ -94,7 +94,7 @@ label start_after_interview:
     $ player_name = ''
     player pout "(Phew... Looks like I survived the technical questions. Now let's fill in the general information.)"
 
-    $ player_name = renpy.input(_("What is your name? {color=[red]}*{/color} (Type your name and hit Enter. This name will be used throughout the game and you cannot change it unless you start a new game.)"), default=_("Lydia"))
+    $ player_name = renpy.input(_("What is your name? {color=[red]}*{/color} (Type your name and hit Enter. This name will be used throughout the game and you cannot change it unless you start a new game.)"), default=_("[player_name]"))
     $ player_name = player_name.strip()
     if player_name in vip_names:
         $ vip_profile_url = vip_names[player_name]
@@ -102,7 +102,7 @@ label start_after_interview:
         # TODO: Easter Egg
     # handle empty string case
     if not player_name:
-        $ player_name = _("Lydia")
+        $ player_name = _("[player_name]")
 
     # TODO: birthday Easter Egg
     # "What is your birthday?"
@@ -1676,45 +1676,45 @@ label v2_start:
 
     player "Um... hello?"
     receptionist "Hello! How can I help you?"
-    player "My name is Lydia, and this is my first day."
+    player "My name is [player_name], and this is my first day."
     receptionist "Ah, the new hire! And so punctual too - it's nice to meet you! "
-    receptionist "My name is Zainab, and I'll be showing you around! First, we'll drop off your things at your desk."
+    receptionist "My name is Maria, and I'll be showing you around! First, we'll drop off your things at your desk."
     player "Got it!"
 
     "You're taken all around the CompanyName office. There are lots of snacks in the lunch area, and even a gym downstairs!"
     "There are dozens and dozens of meeting rooms, all named following the theme of different countries of the world."
     "There's even a nursing room for new mothers!"
 
-    zainab "... And this is your cubicle! We've even got your name plate all printed up!"
+    maria "... And this is your cubicle! We've even got your name plate all printed up!"
     player "Wow... it's made of wood! This is so nice."
-    zainab "I'm glad you like it! Do you have any questions so far? I know I've been hitting you with a lot of information."
+    maria "I'm glad you like it! Do you have any questions so far? I know I've been hitting you with a lot of information."
     player "No no, everything has been awesome so far! "
-    zainab "Great! The last leg of our tour involves me handing you off to our engineering manager, Lauri!"
-    lauri "Hello. And who is this again?"
-    zainab "Lauri, don't be silly! This is Lydia! The new hire?"
-    lauri "Hm... I see."
+    maria "Great! The last leg of our tour involves me handing you off to our engineering manager, Iris!"
+    iris "Hello. And who is this again?"
+    maria "Iris, don't be silly! This is [player_name]! The new hire?"
+    iris "Hm... I see."
     player "(Jeez... this lady is... scary.)"
     player "(I've been in the workforce for a few years now, and yet, this woman makes me feel like a high school kid who doesn't know what she's doing.)"
-    player "Um... hi. My name is... um... Lydia..."
-    lauri "“UmLydia”? What a strange name."
+    player "Um... hi. My name is... um... [player_name]..."
+    iris "“Um[player_name]”? What a strange name."
     player "Um... no, it's -"
-    lauri "Zainab, please introduce... UmLydia to Akira. He can get her set up."
-    lauri "If you'll excuse me. I don't have much time for pleasantries."
+    iris "Maria, please introduce... Um[player_name] to Goro. He can get her set up."
+    iris "If you'll excuse me. I don't have much time for pleasantries."
     player "... "
-    player "Ooookay. So. Who's Akira?"
-    akira "That'd be me."
-    akira "Don't mind Lauri. She's... prickly on the outside, but can be a nice lady when you get to know her."
-    player "Sure... I'm Lydia. It's nice to meet you!"
-    akira "Awesome to meet you Lydia! I'm Akira - I'll be your team lead for any projects moving forward."
-    akira "I've been around the bend a few times, and I'm a little less prickly than Lauri. So feel free to ask me any questions that you have."
+    player "Ooookay. So. Who's Goro?"
+    goro "That'd be me."
+    goro "Don't mind Iris. She's... prickly on the outside, but can be a nice lady when you get to know her."
+    player "Sure... I'm [player_name]. It's nice to meet you!"
+    goro "Awesome to meet you [player_name]! I'm Goro - I'll be your team lead for any projects moving forward."
+    goro "I've been around the bend a few times, and I'm a little less prickly than Iris. So feel free to ask me any questions that you have."
     player "Thanks! I appreciate it."
-    akira "Speaking of which Do you have any questions now?"
+    goro "Speaking of which Do you have any questions now?"
     player "Um... "
     player "Ah... "
     player "Nope!"
-    akira "You don't? "
+    goro "You don't? "
     player "Nope! Completely solid!"
-    akira "Well... okay then! Like I said, I'm here if you need help."
+    goro "Well... okay then! Like I said, I'm here if you need help."
     player "Thanks!"
     "Later that day..."
     mint "Meow!"
@@ -1725,7 +1725,7 @@ label v2_start:
     mint "Mew?"
     player "Well... It's all super cool, but it's also a little overwhelming. All of the people I met today were nice, but there were so many of them. "
     player "How am I supposed to remember all of their names?"
-    player "And then I had to spend the rest of the day in meetings. Akira told me that I didn't have to do much but lend an ear, but even that was a lot."
+    player "And then I had to spend the rest of the day in meetings. Goro told me that I didn't have to do much but lend an ear, but even that was a lot."
     player "There were a million acronyms that I didn't know... I had no know what anyone was talking about really."
     player "Am I really cut out for this...?"
     mint "...?"
@@ -1733,7 +1733,7 @@ label v2_start:
     player "Hm... you're right! I can't give up yet. I worked too hard to get here."
     player "I know! I should give Annika a call. She told me to give her a ring when I was done with my first day! Maybe I can ask her some questions?"
     player "..."
-    annika "Lydia! How was your first day, superstar?"
+    annika "[player_name]! How was your first day, superstar?"
     player "Great! Great... but also... like, really overwhelming?"
     annika "That sounds about right! That's just how my first day went at my job too. What happened?"
     "You explain all of the concerns that you told Mint about."
