@@ -635,6 +635,9 @@ screen about():
             label _("Credits")
             text credits
 
+            # for Android Google Play Store compliance
+            text _("This game doesn't collect any user data. Check out our privacy policy {a=https://www.freecodecamp.org/news/privacy-policy/}here{/a}.")
+
             text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].")
             # text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
 

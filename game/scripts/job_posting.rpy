@@ -94,21 +94,33 @@ screen company_email_screen(company_name, message, ok_text):
         ypadding 25
         yalign .25
 
-        vbox:
-            xfill True
+        viewport:
+            draggable True
+            mousewheel True
+            ymaximum 900
 
-            label company_name xalign 0.5
+            scrollbars "vertical"
+            vscrollbar_unscrollable "hide"
 
-            $ company_logo = 'images/others/company/%s.png' % all_company_names[company_name]
-            add company_logo xalign 0.5
+            # Since we have scrollbars, we have to position the side, rather
+            # than the vpgrid proper.
+            side_xalign 0.5
 
-            text _(message)
+            vbox:
+                xfill True
 
-            null height 20
+                label company_name xalign 0.5
 
-            textbutton ok_text:
-                xalign 0.5
-                action Return()
+                $ company_logo = 'images/others/company/%s.png' % all_company_names[company_name]
+                add company_logo xalign 0.5
+
+                text _(message)
+
+                null height 20
+
+                textbutton ok_text:
+                    xalign 0.5
+                    action Return()
 
 screen company_interview_email_screen(company_name):
     use company_email_screen(
