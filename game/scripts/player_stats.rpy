@@ -195,6 +195,13 @@ screen player_stats_screen(changed_stats, change_direction):
         bar value sanity range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
         text str(sanity) + '  ' + get_stats_change_direction_icon('Sanity',changed_stats, change_direction)
 
+        # Renown
+        if stats_renown_unlocked:
+            $ renown = player_stats.player_stats_map['Renown']
+            text _('{icon=icon-award} Renown') color gui.accent_color
+            bar value renown range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
+            text str(renown) + '  ' + get_stats_change_direction_icon('Renown',changed_stats, change_direction)
+
         # CS Knowledge
         if stats_knowledge_unlocked:
             $ cs_knolwedge = player_stats.player_stats_map['CS Knowledge']

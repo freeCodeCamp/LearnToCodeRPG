@@ -5,6 +5,7 @@ init 998:
     
     default stats_unlocked = False
     default stats_knowledge_unlocked = False # cs knowledge
+    default stats_renown_unlocked = False # unlocked in v2
     default stats_subcategory_unlocked = False # subcategory of cs knowledge
     default todo_unlocked = False
 

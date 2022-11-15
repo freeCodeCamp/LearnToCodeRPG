@@ -1,8 +1,9 @@
 label start:
+    $ calendar_enabled = False
     default player_stats = PlayerStats(all_skills)
     default todo_list = ToDoList()
-    default calendar = Calendar(day=1, month=8, year=2021) # story starts on Aug 1st, 2021
-    default start_date = date(2021, 8, 1) # this will be used to calculate how many days it took for the player to learn to code
+    default calendar = Calendar() # story starts on Aug 1st, 2021
+    default start_date = calendar.date # this will be used to calculate how many days it took for the player to learn to code
 
     $ persistent.has_started_game = True
 
@@ -15,7 +16,6 @@ label start:
             jump v2_start
 
 label v1_start:
-    $ calendar_enabled = False
     stop music fadeout 2.0
     scene bg laptop_screen with dissolve
 
@@ -91,16 +91,15 @@ label start_after_interview:
     "The fields marked with {color=[red]}*{/color} are required."
 
     # TODO: more customization like gender, pronouns, life story
-    $ player_name = ''
     player pout "(Phew... Looks like I survived the technical questions. Now let's fill in the general information.)"
 
-    $ player_name = renpy.input(_("What is your name? {color=[red]}*{/color} (Type your name and hit Enter. This name will be used throughout the game and you cannot change it unless you start a new game.)"), default=_("[player_name]"))
+    $ player_name = renpy.input(_("What is your name? {color=[red]}*{/color} (Type your name and hit Enter. This name will be used throughout the game and you cannot change it unless you start a new game.)"), default=_("Lydia"))
     $ player_name = player_name.strip()
     if player_name in vip_names:
         $ vip_profile_url = vip_names[player_name]
         "[player_name]? What a coincidence! Our VIP team member {a=[vip_profile_url]}[player_name]{/a} will be honored to hear that."
         # TODO: Easter Egg
-    # handle empty string case
+    # handle empty string case by assigning default name
     if not player_name:
         $ player_name = _("[player_name]")
 
@@ -1661,8 +1660,20 @@ label v1_ending:
         )
 
 label v2_start:
+    if player_name == '':
+        $ player_name = renpy.input(_("What is your name? {color=[red]}*{/color} (Type your name and hit Enter. This name will be used throughout the game and you cannot change it unless you start a new game.)"), default=_("Lydia"))
+        $ player_name = player_name.strip()
+        if player_name in vip_names:
+            $ vip_profile_url = vip_names[player_name]
+            "[player_name]? What a coincidence! Our VIP team member {a=[vip_profile_url]}[player_name]{/a} will be honored to hear that."
+            # TODO: Easter Egg
+        # handle empty string case by assigning default name
+        if not player_name:
+            $ player_name = _("[player_name]")
+
     # transition to v2 plot here
     $ calendar.next_month()
+    $ calendar_enabled = True
     player relieved "A lot has happened in this past month..."
     player neutral "After I broke prod on the first day of work, Layla, the team, and my manager told me that it was okay and I didn't have to worry."
     player "But I feel like maybe a fresh start will give me a morale boost."
@@ -1672,6 +1683,7 @@ label v2_start:
     player "So this is CompanyName! Wow... It's enormous."
     player "I put in the work, to become a developer, and today, it's real... "
     player "I'm going to keep working hard, and keep learning! Doing that is what got me here, so if I keep that up, I should be okay!"
+    $ stats_renown_unlocked = True
     $ player_stats.set_stats('Renown', 20) # start with a bit of renown
 
     player "Um... hello?"
@@ -1836,7 +1848,6 @@ label v2_start:
     $ calendar.next()
 
     # jump to random v2 events
-    # TODO: use new coding questions
     while True:
         if len(seen_v2_arc1_events['Work']) == len(v2_arc1_event_labels['Work']):
             player "I've seen all events happening in v2 Arc1 work."

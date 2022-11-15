@@ -1,49 +1,25 @@
 init python:
-    from datetime import date
+    from datetime import date, timedelta
 
     class Calendar():
-        def __init__(self, day=1, month=8, year=2021):
-            self.is_daytime = True
-            self.day = day
-            self.month = month
-            self.year = year
-            
-            self.month_names = ['', _('January'), _('February'), _('March'), _('April'), _('May'), _('June'), _('July'),
-                                               _('August'), _('September'), _('October'), _('November'), _('December')]
-            self.days_count = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-                        
+        def __init__(self):
+            self.date = date.today() # system date
+            self.weekday_names = [_('Monday'), _('Tuesday'), _('Wednesday'), _('Thursday'), _('Friday'), _('Saturday'), _('Sunday')]
+
         def next(self):
-            self.day += 1
-            if self.day > self.days_count[self.month]:
-                self.day = 1 # first day of new month
-                self.month += 1 # new month
-                if self.month > 12: 
-                    self.month = 1 # back to January
-                    self.year += 1 # increment year
+            self.date += timedelta(days=1)
             renpy.call_screen('text_over_black_bg_screen', _('The next day...'))
 
         def next_week(self):
-            self.day += 7
-            if self.day > self.days_count[self.month]:
-                self.day = self.day - self.days_count[self.month]
-                self.month += 1 # new month
-                if self.month > 12: 
-                    self.month = 1 # back to January
-                    self.year += 1 # increment year
+            self.date += timedelta(days=7)
             renpy.call_screen('text_over_black_bg_screen', _('Fast-forwarding a week...'))
 
         def next_month(self):
-            self.month += 1
-            if self.month > 12: 
-                self.month = 1 # back to January
-                self.year += 1 # increment year
+            self.date += timedelta(days=30)
             renpy.call_screen('text_over_black_bg_screen', _('Fast-forwarding a month...'))
 
-        def get_month_string(self):
-            return self.month_names[self.month]
-
-        def get_day_string(self):
-            return str(self.day)
+        def get_weekday_string(self):
+            return self.weekday_names[self.date.weekday()]
 
 default calendar_enabled = True # similar to quick_menu boolean
 # this screen should always show
@@ -61,16 +37,13 @@ screen calendar_screen():
             hbox:
                 spacing 15
                 text '{icon=icon-calendar}'
-                text calendar.get_month_string():
+                text calendar.date.isoformat():
                     color gui.accent_color
                     font gui.interface_text_font
                     size gui.name_text_size
-                    bold True
-                    underline True
-                text calendar.get_day_string():
+                text calendar.get_weekday_string():
                     font gui.interface_text_font
                     size gui.name_text_size
-                    bold True
 
 # this can be used as calendar transition, chapter transition, etc.
 screen text_over_black_bg_screen(title_text):
