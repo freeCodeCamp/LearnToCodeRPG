@@ -1680,7 +1680,7 @@ label v2_start:
     player "So I went back to applying for jobs. Fortunately, I landed on this new job pretty quickly."
 
     scene bg newoffice
-    player "So this is CompanyName! Wow... It's enormous."
+    player "So this is ConsultMe! Wow... It's enormous."
     player "I put in the work, to become a developer, and today, it's real... "
     player "I'm going to keep working hard, and keep learning! Doing that is what got me here, so if I keep that up, I should be okay!"
     $ stats_renown_unlocked = True
@@ -1693,7 +1693,7 @@ label v2_start:
     receptionist "My name is Maria, and I'll be showing you around! First, we'll drop off your things at your desk."
     player "Got it!"
 
-    "You're taken all around the CompanyName office. There are lots of snacks in the lunch area, and even a gym downstairs!"
+    "You're taken all around the ConsultMe office. There are lots of snacks in the lunch area, and even a gym downstairs!"
     "There are dozens and dozens of meeting rooms, all named following the theme of different countries of the world."
     "There's even a nursing room for new mothers!"
 
