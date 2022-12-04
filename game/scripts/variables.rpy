@@ -123,7 +123,11 @@ init python:
         'v2_eta',
         'v2_motormouth',
         'v2_message',
-
+        'v2_css',
+        'v2_thick',
+        'v2_success',
+        'v2_competent',
+        'v2_automate',
         ],
     'Home':
         [

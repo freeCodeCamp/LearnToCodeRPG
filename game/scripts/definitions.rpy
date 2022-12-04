@@ -190,6 +190,8 @@ init:
     define high_school_student = Character(_("High School Student"))
     define developer1 = Character(_("Developer 1"))
     define developer2 = Character(_("Developer 2"))
+    define sarah = Character(_("Cousin Sarah"))
+    define teen = Character(_("Teen"))
 
     # text displayables
     define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp.org{/color}{/font}{/a}'
