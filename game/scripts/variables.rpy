@@ -131,8 +131,19 @@ init python:
         ],
     'Home':
         [
-        'v2_email'
+        'v2_email',
+        'v2_venting',
+        # 'v2_running_late', # this is a morning event
+        'v2_family_business',
         ],
+    'Hackerspace':
+        [
+        'v2_old_friend',
+        'v2_equity',
+        'v2_gelato',
+        'v2_internet_safety',
+        'v2_where_to_start',
+        ]
     }
 
     # map topic to label name

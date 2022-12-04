@@ -1,6 +1,4 @@
 label day_start:
-    
-    # this label should end up jumping to day_end, which then returns control to the main game
     $ calendar.next()
 
     scene black
