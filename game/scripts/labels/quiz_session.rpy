@@ -220,11 +220,11 @@ label work_session_questions:
 
         if result == True:
             $ num_correct += 1
-            $ player_stats.change_stats('Renown', 2)
+            $ player_stats.change_stats(RENOWN, 2)
             player @ laugh "Correct!"
         else:
             with vpunch
-            $ player_stats.change_stats('Renown', -1)
+            $ player_stats.change_stats(RENOWN, -1)
             player @ pout "Wrong..."
 
     # reset timeout
@@ -232,6 +232,6 @@ label work_session_questions:
     $ timeout_label = None
 
     player @ relieved "Phew... That was a long session."
-    $ player_stats.change_stats_random('Sanity', -20, -10)
+    $ player_stats.change_stats_random(SANITY, -20, -10)
 
     return

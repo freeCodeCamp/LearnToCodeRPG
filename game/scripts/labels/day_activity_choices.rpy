@@ -24,7 +24,7 @@ label day_activity_choices:
         "Study CS fundamentals":
             # this choice helps grow coding knowledge
             python:
-                day_activity = 'study'
+                day_activity = STUDY
                 text = renpy.random.choice([
                     "Let's hit the books!",
                     "Let's head over to [developerquiz]!",
@@ -43,7 +43,7 @@ label day_activity_choices:
                     ])
                 renpy.say(player, text)
 
-            $ player_stats.change_stats_random('Sanity', -20, -10)
+            $ player_stats.change_stats_random(SANITY, -20, -10)
 
             if num_correct == 4:
                 player @ laugh "I got all questions right! Way to go!"
@@ -69,14 +69,14 @@ label day_activity_choices:
         
         "Work gig as a barista":
             # this choice unlocks interesting tech rumors and recovers a bit of sanity
-            $ day_activity = 'barista'
+            $ day_activity = BARISTA
             player "I can work some shifts to cover my bills. Plus, I get to interact with people and take my mind off cramming for a bit."
             call day_activity_barista from _call_day_activity_barista
             call day_end from _call_day_end_2
 
         "Hang out at Hacker Space" if has_visited_hacker_space_with_annika:
             # this choice progresses the Hacker Space side story
-            $ day_activity = 'hackerspace'
+            $ day_activity = HACKER_SPACE
             player "I'm feeling adventurous. Why not check out Hacker Space and meet some other people who are learning to code?"
             call day_activity_hacker_space from _call_day_activity_hacker_space
             call day_end from _call_day_end_3
@@ -166,7 +166,7 @@ label day_activity_relax:
             if not plot_music_discover in persistent.achievements:
                 $ add_achievement(plot_music_discover)
 
-    $ player_stats.change_stats_random('Sanity', 5, 20)
+    $ player_stats.change_stats_random(SANITY, 5, 20)
     # all relaxing activities converge to the end of the day
     return
 
@@ -196,7 +196,7 @@ label day_activity_hacker_space:
     player @ surprised "Wow, it's already getting dark? Today's been quite an eventful day."
     player "Somehow I feel quite relaxed in this coder-centric atmosphere."
     # bump sanity for a little bit
-    $ player_stats.change_stats('Sanity', 5)
+    $ player_stats.change_stats(SANITY, 5)
     player "Let's head home now."
     return
 
@@ -247,7 +247,7 @@ label day_activity_barista:
 
     player @ relieved "My shift is almost over now."
     player "Serving coffee is no easy work, but somehow I feel refreshed from meeting and greeting people."
-    $ player_stats.change_stats('Sanity', 5)
+    $ player_stats.change_stats(SANITY, 5)
 
     if has_met_layla and not has_triggered_ending_barista and renpy.random.random() < 0.05:
         call ending_barista from _call_ending_barista
@@ -401,11 +401,24 @@ label day_activity_interview:
     $ renpy.hide(interviewer_sprite)
 
     player relieved "(... Was that everything? Kudos to me for surviving...)"
-    $ player_stats.change_stats_random('Sanity', -20, -10)
+    $ player_stats.change_stats_random(SANITY, -20, -10)
     player "That was as intense as I expected. I hope I did well with all my preparations."
     player "I can't wait to go home and just relax now..."
     return
 
 # v2 day activities
-label v2_weekend_day_activities:
-    pass
+label v2_activity_choices:
+    player smile "Now that I finally have some free time. What should I do?"
+    menu:
+        "Work on some tickets":
+            call work_session_questions
+    
+        "Hang out at Hacker Space":
+            call v2_activity_hacker_space
+
+        "Take a day off and relax":
+            call day_activity_relax
+            call day_end
+
+label v2_activities_hacker_space:
+    

@@ -481,7 +481,7 @@ label ending_farmer:
             player neutral "Alright, that was a nice joke, but an impractical one."
             player "Let's just go take a walk in the park to celebrate mother nature."
             call day_activity_park from _call_day_activity_park_2
-            $ player_stats.change_stats_random('Sanity', 5, 20)
+            $ player_stats.change_stats_random(SANITY, 5, 20)
             return
 
     $ calendar_enabled = False

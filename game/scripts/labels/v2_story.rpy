@@ -43,7 +43,7 @@ label v2_working_late:
                             goro "You should always come to a senior developer just like you did to get a second decision when you're unsure of a commitment you're being asked to make."
                             player "Thanks! I'll keep note of that."
                             "You've earned 20 renown for your responsible decision-making."
-                            $ player_stats.change_stats('Renown', 20)
+                            $ player_stats.change_stats(RENOWN, 20)
 
                         "Maybe I could stay a little late. Okay.":
                             oliver "That's the spirit! You're a great developer. I'm sure that you can get this done in no time!"
@@ -72,8 +72,8 @@ label v2_working_late:
                             player "I'm sorry, I didn't think about that."
                             goro "It's okay. For now, you might want to get home. Tomorrow, just continue with the other tasks we have in the pipeline for this week."
                             "You lose 10 renown for not discussing your decision with your team lead, and 15 sanity for a stressful 7 hours of searching the web for answers."
-                            $ player_stats.change_stats('Renown', -10)
-                            $ player_stats.change_stats('Sanity', -15)
+                            $ player_stats.change_stats(RENOWN, -10)
+                            $ player_stats.change_stats(SANITY, -15)
 
                 "(Am I just a slow developer? If Brian could do it back then, I probably could too! I can do this.)":
                     oliver "That's the spirit! You're a great developer. I'm sure that you can get this done in no time!"
@@ -102,8 +102,8 @@ label v2_working_late:
                     player "I'm sorry, I didn't think about that."
                     goro "It's okay. For now, you might want to get home. Tomorrow, just continue with the other tasks we have in the pipeline for this week."
                     "You lose 10 renown for not discussing your decision with your team lead, and 15 sanity for a stressful 7 hours of searching the web for answers."
-                    $ player_stats.change_stats('Renown', -10)
-                    $ player_stats.change_stats('Sanity', -15)
+                    $ player_stats.change_stats(RENOWN, -10)
+                    $ player_stats.change_stats(SANITY, -15)
 
         "Sure. I've been getting more comfortable in my duties here! I can probably work something out.":
             oliver "That's the spirit! You're a great developer. I'm sure that you can get this done in no time!"
@@ -130,8 +130,8 @@ label v2_working_late:
             player "I'm sorry, I didn't think about that."
             goro "It's okay. For now, you might want to get home. Tomorrow, just continue with the other tasks we have in the pipeline for this week."
             "You lose 10 renown for not discussing your decision with your team lead, and 15 sanity for a stressful 7 hours of searching the web for answers."
-            $ player_stats.change_stats('Renown', -10)
-            $ player_stats.change_stats('Sanity', -15)
+            $ player_stats.change_stats(RENOWN, -10)
+            $ player_stats.change_stats(SANITY, -15)
 
 label v2_help_from_friends:
     mala "*Grumble grumble*"
@@ -177,7 +177,7 @@ label v2_help_from_friends:
             player "That's no problem! Who knows? Maybe I'll give Rubber Duck Debugging a try in the future too."
             mala "I'd be honored to be your duck!"
             "You gain 5 Renown for being a helpful rubber duck."
-            $ player_stats.change_stats('Renown', 5)
+            $ player_stats.change_stats(RENOWN, 5)
     
         "Request help from a manager.":
             player "She seems a bit deep into her work now. I probably shouldn't disturb her."
@@ -202,7 +202,7 @@ label v2_help_from_friends:
             player "I understand."
             player "(Oh my gosh. This is so embarrassing!)"
             "You lose 10 Renown."
-            $ player_stats.change_stats('Renown', -10)
+            $ player_stats.change_stats(RENOWN, -10)
 
 label v2_eta:
     goro "Hi [player_name] - how's that ticket for the GoGoGames account coming?"
@@ -238,8 +238,8 @@ label v2_eta:
             player "..."
             player "(Sigh). Okay. Let's get started."
             "You gain 15 renown for completing your project early! But lose 20 Sanity as a result of pushing yourself."
-            $ player_stats.change_stats('Renown', 15)
-            $ player_stats.change_stats('Sanity', -20)
+            $ player_stats.change_stats(RENOWN, 15)
+            $ player_stats.change_stats(SANITY, -20)
     
         "Be conservative - We should tell them I need a week, just to be safe.":
             player "Hm... well, from what I remember about the ticket, it doesn't seem too hard. "
@@ -250,7 +250,7 @@ label v2_eta:
             player "Right! This way, I feel like I'll be ready for anything that comes up."
             goro "Rock on. I'll give the client the update. Thanks [player_name]."
             "You gain 10 Sanity knowing you'll have plenty of breathing room to complete all your duties this week."
-            $ player_stats.change_stats('Sanity', 10)
+            $ player_stats.change_stats(SANITY, 10)
 
 label v2_motormouth:
     player "Phew - I've really been on a roll this morning! It's 1PM, and I've already got two tickets completed. I'm super thirsty!"
@@ -268,7 +268,7 @@ label v2_motormouth:
     motormouth_mike "Who's your favorite character?!"
     "You can't believe your ears right now! You want to learn more, but you also want to get back to work."
     "BUT, talking with Mike seems to be doing good things for your Sanity. Should you stay and talk about Star Girl Galactica?"
-    $ player_stats.change_stats('Sanity', 10)
+    $ player_stats.change_stats(SANITY, 10)
 
     menu:    
         "A few more minutes won't hurt.":
@@ -282,7 +282,7 @@ label v2_motormouth:
             player "What?! You like Quinn C. Larkson too?"
             motormouth_mike "Who doesn't? What's your favorite song? Mine is Cruising for A Musing!"
             "The two of you even like some of the same music? The coincidences don't stop! "
-            $ player_stats.change_stats('Sanity', 20)
+            $ player_stats.change_stats(SANITY, 20)
             "But you've been chatting with Mike for a while now. It's so much fun, but maybe you should get back to work?"
             "Or maybe you should keep the ball rolling? You haven't felt this relaxed in some time (maybe you should get out more?)."
             "What will you do?"
@@ -306,8 +306,8 @@ label v2_motormouth:
                     player "Yes..."
                     iris "Good. Get back to work."
                     "You gained 30 Sanity, but lost it all, and an additional 10 Sanity for your trouble."
-                    $ player_stats.change_stats('Sanity', -30)
-                    $ player_stats.change_stats('Sanity', -10)
+                    $ player_stats.change_stats(SANITY, -30)
+                    $ player_stats.change_stats(SANITY, -10)
             
                 "I should get back to work":
                     player "Sorry Motormou - I mean, Mike. I'm a big Quinn C. Larkson fan, but I have a few projects that I have to get back to."
@@ -389,7 +389,7 @@ label v2_message:
             goro "Do exactly as you did earlier and just wait until after things are over."
             goro "You'll never know what you're interrupting until it's too late."
             "You gain 10 Renown for your patience."
-            $ player_stats.change_stats('Renown', 10)
+            $ player_stats.change_stats(RENOWN, 10)
 
 label v2_css:
     player "Bye everyone! It's about that time of day - I'm about to pack up and head home."
@@ -415,7 +415,7 @@ label v2_css:
             if renpy.random.random() < 0.5:
                 "... but sometimes it DOES. WILL this become a problem later?"
                 "Who knows. Either way, you gain 10 Sanity for being able to get home on time."
-                $ player_stats.change_stats('Sanity', 10)
+                $ player_stats.change_stats(SANITY, 10)
             else:
                 player "It's pretty late... and I'm not sure when Mom or Dad will be home to feed Mint."
                 player "I think I'm going to just add a little bit of inline CSS to fix this."
@@ -440,7 +440,7 @@ label v2_css:
                 player "Right. I'll see you in the morning."
                 "You pack up your things, embarrassed to have been caught coming up with a quick and dirty fix."
                 "You lose 5 Renown for your inline solution."
-                $ player_stats.change_stats('Renown', -5)
+                $ player_stats.change_stats(RENOWN, -5)
    
         "Spend some time fixing one of the conflicting classes":
             player "(Sigh) No point in kicking the can down the road..."
@@ -449,8 +449,8 @@ label v2_css:
             player "I'll give Mom or Dad a call to make sure that Mint is fed and get started on this."
             "It pays to do things the right way! But no good deed goes unpunished."
             "You gain 10 Renown for doing the right thing. But lose 5 Sanity for working late."
-            $ player_stats.change_stats('Renown', 10)
-            $ player_stats.change_stats('Sanity', -5)
+            $ player_stats.change_stats(RENOWN, 10)
+            $ player_stats.change_stats(SANITY, -5)
 
 label v2_thick:
     player "Ugh... it's 5PM and this is nowhere close to being done!"
@@ -520,7 +520,7 @@ label v2_thick:
             goro "Don't relax just yet! We've still got a lot of work here to do. "
             goro "But at least you don't have to do it all by yourself."
             "You gain 10 Sanity once you realize you won't need to handle that monster of a ticket on your own!"
-            $ player_stats.change_stats('Sanity', 10)
+            $ player_stats.change_stats(SANITY, 10)
 
         "Push through until it's done.":
             player "(Sigh)"
@@ -574,7 +574,7 @@ label v2_thick:
             player "Gotcha. Thanks Goro... sorry for making you worry."
             goro "It's fine. Just promise you won't do something like this again, okay? Ask for help when you need it."
             "You lose 15 Sanity for staying in the office so late."
-            $ player_stats.change_stats('Sanity', -15)
+            $ player_stats.change_stats(SANITY, -15)
 
 label v2_success:
     mala "Hey [player_name]? Can I talk to you for a sec?"
@@ -640,7 +640,7 @@ label v2_success:
             "Thankfully, she wasn't put on a PIP (a disciplinary Performance Improvement Plan that was usually the next step to being fired), but, at least for a while, Iris wouldn't view her in a favorable light."
             "You couldn't help but feel guilty, having advised her that the whole situation would blow over."
             "You lose 10 Renown. Mala says it's fine, but you can tell that she's a little upset with you too."
-            $ player_stats.change_stats('Renown', -10)
+            $ player_stats.change_stats(RENOWN, -10)
 
         "Should we tell someone about this?":
             player "I don't know if NOT telling someone is a good idea."
@@ -695,7 +695,7 @@ label v2_success:
             "Mala tells you that she told Goro that you were the one that pointed out that she should say something instead of keeping things to herself."
             "He said to thank you on his behalf."
             "You gain 10 Renown for your good advice and responsible thinking."
-            $ player_stats.change_stats('Renown', 10)
+            $ player_stats.change_stats(RENOWN, 10)
 
 label v2_competent:
     goro "[player_name]! How's ticket #999 going?"
@@ -788,7 +788,7 @@ label v2_competent:
     goro "Wanna grab lunch?"
     player "You know I do!"
     "Great detective skills! You earn 5 Renown for your function sleuthing."
-    $ player_stats.change_stats('Renown', 5)
+    $ player_stats.change_stats(RENOWN, 5)
 
 label v2_automate:
     goro "So, do you remember what we scheduled this meeting for?"
@@ -824,7 +824,7 @@ label v2_automate:
             "It took Goro around an hour to do it as someone experienced with the process."
             "It took you a little over two."
             "You took plenty of notes to learn how to automate the process next time, but for now, you've lost 10 Sanity thanks to this long, boring work."
-            $ player_stats.change_stats('Sanity', -10)
+            $ player_stats.change_stats(SANITY, -10)
 
         "Spend some time automating the minutes process.":
             player "Hm... I really can't help but shake the idea that this process can be automated."
@@ -857,7 +857,7 @@ label v2_automate:
             goro "Well... not ME, but the company credit card. You in?"
             player "Definitely!"
             "Thanks to your bright idea, you've gained 10 Renown."
-            $ player_stats.change_stats('Renown', 10)
+            $ player_stats.change_stats(RENOWN, 10)
 
 # start of home stories
 label v2_email:
@@ -894,7 +894,7 @@ label v2_email:
             player "On most computers, you can hover your mouse over the link, and your computer should tell you where they lead to in a tiny window."
             player "I guess I've got to face the music tomorrow. Iris is not going to be happy about this..."
             "You lose 10 Renown. You should be more careful!"
-            $ player_stats.change_stats('Renown', -10)
+            $ player_stats.change_stats(RENOWN, -10)
     
         "Check the sender's email":
             player "Come to think of it, did this really come from the payroll department? I just ran into Ryan from Payroll during lunch, and he didn't say anything about this."
@@ -937,7 +937,7 @@ label v2_email:
             player "You can also check the presence and quality of a company logo, and, most importantly, not click any links or attachments in the email unless you're sure of where they're coming from. "
             player "On most computers, you can hover your mouse over the link, and your computer should tell you where they lead to in a tiny window."
             "You've gained 10 Renown for your sharp eye."
-            $ player_stats.change_stats('Renown', 10)
+            $ player_stats.change_stats(RENOWN, 10)
 
 label v2_venting:
     player "(Sigh)"
@@ -974,7 +974,7 @@ label v2_venting:
             "Posting to one of your favorite development forums would have accomplished this, but what if someone from your job or even one of your clients saw it?"
             "You sigh. You probably should have called up Annika. She's a developer, but you also know her personally, and there'd be very little risk that what happened at work would be shared outside of just the two of you."
             "You lose 15 Sanity thanks to the headache you developed while trying to explain HTTP error codes."
-            $ player_stats.change_stats('Sanity', -15)
+            $ player_stats.change_stats(SANITY, -15)
 
         "Vent to Annika":
             player "I think I'll talk to Annika. She's one of my only friends that completely understands the work I do. I'll talk to her about this."
@@ -993,7 +993,7 @@ label v2_venting:
             player "I'm glad I cooled my head and spoke to Annika instead of going to the internet too! Annika told me about a friend of hers that did that, and one of her managers found her complaining on a popular forum! "
             player "The thought of Iris finding out I complained about a customer sounds scary..."
             "You gain 10 Sanity from venting to your friend. You feel much better!"
-            $ player_stats.change_stats('Sanity', 10)
+            $ player_stats.change_stats(SANITY, 10)
 
         "Vent Online":
             player "Right, I'll just solve this the way I solve all my other problems - bringing them to the internet! The users on my favorite web dev forum will understand how I feel."
@@ -1006,7 +1006,7 @@ label v2_venting:
             "You wouldn't have to be as worried about your identity on the internet being discovered, or a client seeing you vent."
             "You quickly delete the post, hoping that only a handful of people saw it. "
             "You lost 10 Sanity out of stress."
-            $ player_stats.change_stats('Sanity', -10)
+            $ player_stats.change_stats(SANITY, -10)
 
 label v2_running_late:
     player "..."
@@ -1048,7 +1048,7 @@ label v2_running_late:
                 "You use this distraction to sneak to your desk, un-noticed."
                 "You don't want to make a habit of this. You made it on time, but at what cost?"
                 "You lose 5 Sanity for your mad dash to the office."
-                $ player_stats.change_stats('Sanity', -5)
+                $ player_stats.change_stats(SANITY, -5)
             else:
                 player "Okay... okay, I'm going to go for it! I'm sure that I can make it. "
                 player "Like I said, I don't want to make a bad impression."
@@ -1081,7 +1081,7 @@ label v2_running_late:
                 iris "Exactly."
                 iris "Get to your desk, please. You've got quite a bit of work to catch up on."
                 "You lose 15 Renown for being very, very late."
-                $ player_stats.change_stats('Renown', -15)
+                $ player_stats.change_stats(RENOWN, -15)
     
         "Message someone in your TeamChat and tell the team you're running late.":
             player "Well... I don't want to be late, but at this rate, I probably will be."
@@ -1108,7 +1108,7 @@ label v2_running_late:
             player "This is so, so cool... "
             player "Okay! I may as well make a better breakfast than an apple since I'll be staying home! Come on, Mint!"
             "You gain 5 Sanity from being able to work in a familiar, comfortable environment."
-            $ player_stats.change_stats('Sanity', 5)
+            $ player_stats.change_stats(SANITY, 5)
 
 label v2_family_business:
     mom "Welcome home sweetheart!"
@@ -1218,7 +1218,7 @@ label v2_family_business:
     sarah "... thanks [player_name]."
     player "No problem!"
     "You're so proud of your cousin! You gain 5 Sanity from the nostalgia you experience from talking to a new developer."
-    $ player_stats.change_stats('Sanity', 5)
+    $ player_stats.change_stats(SANITY, 5)
 
 # label v2_crypto:
 #     player "I'm home everyone!"
@@ -1273,7 +1273,7 @@ label v2_family_business:
 #             goro "But for now, we need you down on the earth with us, okay?"
 #             player "Okay. I understand..."
 #             "You lose 10 Sanity from the realization that after studying these two frameworks, you won't be able to use them any time soon."
-#             $ player_stats.change_stats('Sanity', -10)
+#             $ player_stats.change_stats(SANITY, -10)
     
 #         "Learn a little bit about Material UI.":
 #             player "Okay..."
@@ -1295,7 +1295,7 @@ label v2_family_business:
 #             player "I'd be glad to!"
 #             goro "Great. Keep this up, and you'll always be an asset to the team."
 #             "You gain 10 Renown for thinking ahead."
-#             $ player_stats.change_stats('Renown', 10)
+#             $ player_stats.change_stats(RENOWN, 10)
 
 # start hackerspace stories
 label v2_old_friend:
@@ -1355,7 +1355,7 @@ label v2_old_friend:
             player "..."
             iris "The next time that you think about referring someone to the company... do spend a bit more time vetting them before sending in their resume, please."
             "You lost 15 renown for your shifty friend's behavior."
-            $ player_stats.change_stats('Renown', -15)
+            $ player_stats.change_stats(RENOWN, -15)
 
         "If you don't mind me asking, why are you looking for a job?":
             player "If you don't mind me asking, why are you currently looking for a job?"
@@ -1418,7 +1418,7 @@ label v2_equity:
             high_school_student "Fine... maybe you're right. Can you remind me again which attributes I should be using so I can go in and make changes?"
             layla "I'd be happy to!"
             "You gained 10 renown. Good job working towards a more equitable world!"
-            $ player_stats.change_stats('Renown', 10)
+            $ player_stats.change_stats(RENOWN, 10)
 
         "It's just for a school project Layla. Maybe it isn't that big of a deal?":
             player "I don't know Layla... this is just for a school project? Maybe it isn't that big of a deal?"
@@ -1441,7 +1441,7 @@ label v2_equity:
             high_school_student "Fine... maybe you're right. Can you remind me again which attributes I should be using so I can go in and make changes?"
             layla "I'd be happy to!"
             "Layla seems disappointed. You lose 10 Renown."
-            $ player_stats.change_stats('Renown', -10)
+            $ player_stats.change_stats(RENOWN, -10)
 
 label v2_gelato:
     player "Hey Layla! Annika!"
@@ -1474,7 +1474,7 @@ label v2_gelato:
             "You decide to have gelato with your friends. It's important to have downtime every now and then!"
             "If you really need to research about Flask or Django, you can do it during a bit of downtime at work tomorrow."
             "You gain 10 Sanity for taking time with friends."
-            $ player_stats.change_stats('Sanity', 10)
+            $ player_stats.change_stats(SANITY, 10)
 
         "Pardon myself and learn more about Flask/Django":
             player "Hey guys? Have either of you ever worked with Flask or Django?"
@@ -1490,7 +1490,7 @@ label v2_gelato:
             "Your conversation leads into other topics, and you all don't quite have enough time for gelato,"
             "but you've learned a lot! "
             "You gain 10 Renown points."
-            $ player_stats.change_stats('Renown', 10)
+            $ player_stats.change_stats(RENOWN, 10)
 
 label v2_internet_safety:
     layla "Hey there!"
@@ -1532,7 +1532,7 @@ label v2_internet_safety:
             layla "(sigh) Best not to let it worry you too much now. Your code has already been committed."
             player "Yeah. I guess you're right."
             "You lose 10 Sanity, worried about your private information."
-            $ player_stats.change_stats('Sanity', -10)
+            $ player_stats.change_stats(SANITY, -10)
 
         "Wait until work tomorrow to commit.":
             player "I dunno... I don't want to stress too much. Maybe I can just commit tomorrow?"
@@ -1575,8 +1575,6 @@ label v2_where_to_start:
     player "Hm... Well, if you're preparing projects for a portfolio, you should make sure your projects..."
 
     menu:
-        "make sure your projects..."
-
         "...are as visually appealing as possible":
             player "... because if your projects don't look great, potential employers won't take you seriously!"
             teen "Wow, really? "
@@ -1613,7 +1611,7 @@ label v2_where_to_start:
             annika "Don't worry - Layla's having a chat with him to set him straight. "
             annika "So it's okay!"
             "You lose 10 Sanity out of embarrassment."
-            $ player_stats.change_stats('Sanity', -10)
+            $ player_stats.change_stats(SANITY, -10)
 
         "...have a few cool features, and use at least one API":
             player "... because it's all about showing potential employers what you can do."
@@ -1642,7 +1640,7 @@ label v2_where_to_start:
             player "Of course!"
             "It feels great to help new developers get where they want to be even faster than you were able to!"
             "You gain 5 Renown for paying it forward."
-            $ player_stats.change_stats('Renown', 5)
+            $ player_stats.change_stats(RENOWN, 5)
 
         "...have as many features and technologies as possible":
             player "... because if you know lots of technologies, the chance of you getting a job is much higher!"
@@ -1689,4 +1687,4 @@ label v2_where_to_start:
             annika "Don't worry - Layla's having a chat with him to set him straight. "
             annika "So it's okay!"
             "You lose 10 Sanity out of embarrassment."
-            $ player_stats.change_stats('Sanity', -10)
+            $ player_stats.change_stats(SANITY, -10)

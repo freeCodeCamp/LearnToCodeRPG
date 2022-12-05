@@ -8,8 +8,8 @@ label day_start:
     play sound 'audio/sfx/birds.wav'
     pause 3.0
 
-    if is_in_v2_arc1 and not 'v2_running_late' in seen_v2_arc1_events['Home'] and renpy.random.random() < 0.2:
-        seen_v2_arc1_events['Home'].add('v2_running_late')
+    if is_in_v2_arc1 and not 'v2_running_late' in seen_v2_arc1_events[HOME] and renpy.random.random() < 0.2:
+        $ seen_v2_arc1_events[HOME].add('v2_running_late')
         call v2_running_late
 
     else:
@@ -93,21 +93,21 @@ label day_end:
 
     mom "How was your day, honey?"
     player "Good, good."
-    if day_activity == 'study':
+    if day_activity == STUDY:
         player "I spent today studying and learned a lot!"
-    elif day_activity == 'barista':
+    elif day_activity == BARISTA:
         player "I worked at the cafe today and heard some interesting conversations."
-    elif day_activity == 'hackerspace':
+    elif day_activity == HACKER_SPACE:
         player "I went to Hacker Space today and saw some people working on cool projects."
-    elif day_activity == 'park':
+    elif day_activity == PARK:
         player "I was at the park reading a nice book. It was really refreshing."
-    elif day_activity == 'videogame':
+    elif day_activity == VIDEO_GAME:
         player "I played some cool video games today. Hopefully one day I'll able to code up a game myself."
-    elif day_activity == 'music':
+    elif day_activity == MUSIC:
         player "I was listening to some really good music today. Music always helps me relax."
-    elif day_activity == 'jobsearch':
+    elif day_activity == JOB_SEARCH:
         player "I spent my day looking for job openings. I hope that my résumé will catch the recruiter's eye."
-    elif day_activity == 'interview':
+    elif day_activity == INTERVIEW:
         player "I had an interview today. I wouldn't say it wasn't stressful, but I felt like I gave it my best shot."
     else:
         player "I just chilled for the day."
@@ -131,7 +131,7 @@ label day_end:
     if has_triggered_ending_today:
         jump day_end_sleep
 
-    if not topics_to_ask and not day_activity == 'barista':
+    if not topics_to_ask and not day_activity == BARISTA:
         jump day_end_sleep
 
     # either has something to ask or has worked as a barista that day

@@ -36,7 +36,7 @@ init 998:
     default has_applied_to_cupcakecpu = False
 
     define cs_knowledge_threshold = 60 # need 60 CS Knowledge to pass the curriculum
-    # player_stats.player_stats_map['CS Knowledge'] >= cs_knowledge_threshold
+    # player_stats.player_stats_map[CS_KNOWLEDGE] >= cs_knowledge_threshold
     default has_completed_curriculum = False
 
     default num_jobs_applied = 0
@@ -58,9 +58,9 @@ init 998:
     default seen_hacker_space_events = set()
     default seen_barista_events = set()
     default seen_v2_arc1_events = {
-    'Work': set(),
-    'Home': set(),
-    'Hackerspace': set()
+    WORK: set(),
+    HOME: set(),
+    HACKER_SPACE: set()
     }
 
     default persistent.enable_save_reminder = None
@@ -78,6 +78,17 @@ init python:
     npc_sprite = 'annika'
 
     ## Non-mutable
+    # some constants for dict keys and other non-translatable strings
+    WORK = 'work'
+    HOME = 'home'
+    HACKER_SPACE = 'hacker_space'
+    STUDY = 'study'
+    BARISTA = 'barista'
+    PARK = 'park'
+    VIDEO_GAME = 'video_game'
+    MUSIC = 'music'
+    JOB_SEARCH = 'job_search'
+    INTERVIEW = 'interview'
 
     ## Note to proofreader: please proofread these; they show up as To-Do items
     # to-do strings
@@ -120,7 +131,7 @@ init python:
     ]
 
     v2_arc1_event_labels = {
-    'Work':
+    WORK:
         [
         'v2_working_late',
         'v2_help_from_friends',
@@ -133,14 +144,14 @@ init python:
         'v2_competent',
         'v2_automate',
         ],
-    'Home':
+    HOME:
         [
         'v2_email',
         'v2_venting',
         # 'v2_running_late', # this is a morning event
         'v2_family_business',
         ],
-    'Hackerspace':
+    HACKER_SPACE:
         [
         'v2_old_friend',
         'v2_equity',

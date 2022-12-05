@@ -4,6 +4,12 @@ init python:
     CHANGE_DIRECTION_INC = 'inc'
     CHANGE_DIRECTION_DEC = 'dec'
 
+    # some constants for dict keys
+    SANITY = 'sanity'
+    CS_KNOWLEDGE = 'cs_knowledge'
+    RENOWN = 'renown'
+    MONEY = 'money'
+
     class PlayerStats():
         def __init__(self, all_skills):
             # all_skills is defined in variables.rpy
@@ -11,8 +17,8 @@ init python:
             # map string names to stats
             # DO NOT TRANSLATE THESE TWO
             self.player_stats_map = {
-            'Sanity': 100, 
-            'CS Knowledge': 0, 
+            SANITY: 100, 
+            CS_KNOWLEDGE: 0, 
             }
 
             # these are translated as defined in variables.rpy
@@ -75,7 +81,7 @@ init python:
             self.change_stats(stats_name, val)
 
         def is_sanity_low(self):
-            return self.player_stats_map['Sanity'] < 50
+            return self.player_stats_map[SANITY] < 50
 
         def compute_cs_knowledge(self):
             # total
@@ -93,7 +99,7 @@ init python:
             # round to int
             val = int(round(val))
             clamped_val = min(100, max(0, val))
-            self.player_stats_map['CS Knowledge'] = clamped_val
+            self.player_stats_map[CS_KNOWLEDGE] = clamped_val
 
     class ToDoList():
         def __init__(self):
@@ -190,24 +196,24 @@ screen player_stats_screen(changed_stats, change_direction):
         yspacing 5
 
         # Sanity
-        $ sanity = player_stats.player_stats_map['Sanity']
+        $ sanity = player_stats.player_stats_map[SANITY]
         text _('{icon=icon-zap} Sanity') color gui.accent_color
         bar value sanity range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
-        text str(sanity) + '  ' + get_stats_change_direction_icon('Sanity',changed_stats, change_direction)
+        text str(sanity) + '  ' + get_stats_change_direction_icon(SANITY,changed_stats, change_direction)
 
         # Renown
         if stats_renown_unlocked:
-            $ renown = player_stats.player_stats_map['Renown']
+            $ renown = player_stats.player_stats_map[RENOWN]
             text _('{icon=icon-award} Renown') color gui.accent_color
             bar value renown range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
-            text str(renown) + '  ' + get_stats_change_direction_icon('Renown',changed_stats, change_direction)
+            text str(renown) + '  ' + get_stats_change_direction_icon(RENOWN,changed_stats, change_direction)
 
         # CS Knowledge
         if stats_knowledge_unlocked:
-            $ cs_knolwedge = player_stats.player_stats_map['CS Knowledge']
+            $ cs_knolwedge = player_stats.player_stats_map[CS_KNOWLEDGE]
             text _('{icon=icon-terminal} CS Knowledge') color gui.accent_color
             bar value cs_knolwedge range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
-            text str(cs_knolwedge) + '  ' + get_stats_change_direction_icon('CS Knowledge',changed_stats, change_direction)
+            text str(cs_knolwedge) + '  ' + get_stats_change_direction_icon(CS_KNOWLEDGE,changed_stats, change_direction)
 
         # Subcategory CS Stats
         if stats_subcategory_unlocked:

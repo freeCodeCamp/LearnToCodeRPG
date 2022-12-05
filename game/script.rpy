@@ -293,29 +293,29 @@ label stage2:
 
 label stage2_stats_change:
     player surprised "So Java and JavaScript are different languages?"
-    $ player_stats.change_stats('CS Knowledge', 1)
+    $ player_stats.change_stats(CS_KNOWLEDGE, 1)
     player "Wait, which one is for web dev again?"
-    $ player_stats.change_stats('Sanity', -5)
+    $ player_stats.change_stats(SANITY, -5)
 
     player pout "And there are print statements and print() functions. Which is for Python 2 and which is for Python 3?"
-    $ player_stats.change_stats('CS Knowledge', 1)
+    $ player_stats.change_stats(CS_KNOWLEDGE, 1)
     player "I remember one video saying that Python 2 is outdated. Does that mean that I don't have to learn it?"
-    $ player_stats.change_stats('Sanity', -5)
+    $ player_stats.change_stats(SANITY, -5)
 
     player "Maybe I shouldn't even bother with learning Python 3."
-    $ player_stats.change_stats('CS Knowledge', 1)
+    $ player_stats.change_stats(CS_KNOWLEDGE, 1)
     player "Someone may just decide that Python 3 is too old-fashioned before I even get a chance to learn it."
-    $ player_stats.change_stats('Sanity', -5)
+    $ player_stats.change_stats(SANITY, -5)
 
     player worry "Java doesn't sound like a good idea either. It's really old."
-    $ player_stats.change_stats('CS Knowledge', 1)
+    $ player_stats.change_stats(CS_KNOWLEDGE, 1)
     player "People nowadays are so hyped about Kotlin."
-    $ player_stats.change_stats('Sanity', -5)
+    $ player_stats.change_stats(SANITY, -5)
 
     player "JavaScript? TypeScript?"
-    $ player_stats.change_stats('CS Knowledge', 1)
+    $ player_stats.change_stats(CS_KNOWLEDGE, 1)
     player "Are they like cousins or something?"
-    $ player_stats.change_stats('Sanity', -5)
+    $ player_stats.change_stats(SANITY, -5)
 
     player "Maybe I can find a job posting I like and start learning their required skills."
     play sound 'audio/sfx/punch.wav'
@@ -329,7 +329,7 @@ label stage2_stats_change:
     player "And why is this company using their pet coding language that nobody else uses?"
 
     # hard-reset player's CS knowledge :)
-    $ player_stats.set_stats('CS Knowledge', 0)
+    $ player_stats.set_stats(CS_KNOWLEDGE, 0)
 
     with vpunch
     play sound 'audio/sfx/stats_change_doom.wav'
@@ -1229,17 +1229,17 @@ label stage7:
     player laugh "So much that I can't wait to wrap up my curriculum and jump in to see what a real coding interview is like!"
     player smile "I heard that [developerquiz] will send an email notification to people who have made significant progress in their curriculum."
     player "Let's check to see my progress."
-    if player_stats.player_stats_map['CS Knowledge'] < cs_knowledge_threshold:
+    if player_stats.player_stats_map[CS_KNOWLEDGE] < cs_knowledge_threshold:
         player "Hmmm... I think I still need to ramp up more on my CS knowledge. I'll get back to studying tomorrow."
         "(Try bumping your {b}CS Knowledge{/b} to above [cs_knowledge_threshold] by completing more quizzes.)"
 
-    while player_stats.player_stats_map['CS Knowledge'] < cs_knowledge_threshold:
+    while player_stats.player_stats_map[CS_KNOWLEDGE] < cs_knowledge_threshold:
         call day_start from _call_day_start_6
         call day_activity_choices from _call_day_activity_choices_6
 
     call save_reminder from _call_save_reminder_12
 
-    # once we are down here, we should have player_stats.player_stats_map['CS Knowledge'] >= cs_knowledge_threshold
+    # once we are down here, we should have player_stats.player_stats_map[CS_KNOWLEDGE] >= cs_knowledge_threshold
     player laugh "Looks like I've made quite a bit of progress! I wonder when I can expect to receive that email."
     player "But let's first have a movie night to celebrate what I've gotten done!"
 
@@ -1658,6 +1658,8 @@ label v1_ending:
         ok_text=_("Oopsy... Am I... fired?"),
         show_achievements_count=False
         )
+    # fall through to the next label
+    $ calendar.next_month()
 
 label v2_start:
     if player_name == '':
@@ -1672,19 +1674,18 @@ label v2_start:
             $ player_name = _("[player_name]")
 
     # transition to v2 plot here
-    $ calendar.next_month()
     $ calendar_enabled = True
     player relieved "A lot has happened in this past month..."
     player neutral "After I broke prod on the first day of work, Layla, the team, and my manager told me that it was okay and I didn't have to worry."
     player "But I feel like maybe a fresh start will give me a morale boost."
-    player "So I went back to applying for jobs. Fortunately, I landed on this new job pretty quickly."
+    player "So I went back to applying for jobs. Fortunately, I landed on this new job pretty quickly and my start date is today."
 
     scene bg company1_center
     player "So this is ConsultMe! Wow... It's enormous."
     player "I put in the work, to become a developer, and today, it's real... "
     player "I'm going to keep working hard, and keep learning! Doing that is what got me here, so if I keep that up, I should be okay!"
     $ stats_renown_unlocked = True
-    $ player_stats.set_stats('Renown', 20) # start with a bit of renown
+    $ player_stats.set_stats(RENOWN, 20) # start with a bit of renown
 
     player "Um... hello?"
     receptionist "Hello! How can I help you?"
@@ -1798,8 +1799,8 @@ label v2_start:
             annika "Are you kidding? Always! We're Accountability Buddies, right?"
             jump first_day_story_choices
 
-        "What the heck is JIRA?":
-            player "So at work, they kept talking about JIRA... What the heck is that?"
+        "What is JIRA?":
+            player "So at work, they kept talking about JIRA... What is that?"
             annika "Programming assignments are called “tickets”."
             annika "JIRA is just a ticketing management system! It keeps track of who's assigned to what tickets."
             player "Oh! I see!"
@@ -1849,7 +1850,9 @@ label v2_start:
 
     $ is_in_v2_arc1 = True
     $ work_session_questions = all_quiz_questions
-    for _ in range(20):
+    $ num_days = 0
+    while num_days < 21:
+        $ num_days -= 1
         call day_start
 
         # check if it's a weekday or weekend
@@ -1865,26 +1868,26 @@ label v2_start:
 
     # jump to random v2 events
     while True:
-        if len(seen_v2_arc1_events['Work']) == len(v2_arc1_event_labels['Work']):
+        if len(seen_v2_arc1_events[WORK]) == len(v2_arc1_event_labels[WORK]):
             player "I've seen all events happening in v2 Arc1 work."
         else:
             player "I think something is happening today at work."
             python:
-                available_labels = list(set(v2_arc1_event_labels['Work']) - seen_v2_arc1_events['Work'])
+                available_labels = list(set(v2_arc1_event_labels[WORK]) - seen_v2_arc1_events[WORK])
                 label = renpy.random.choice(available_labels)
-                seen_v2_arc1_events['Work'].add(label)
+                seen_v2_arc1_events[WORK].add(label)
                 renpy.call(label)
                 calendar.next()
 
     while True:
-        if len(seen_v2_arc1_events['Home']) == len(v2_arc1_event_labels['Home']):
+        if len(seen_v2_arc1_events[HOME]) == len(v2_arc1_event_labels[HOME]):
             player "I've seen all events happening in v2 Arc1 Home."
         else:
             player "I think something is happening today at home."
             python:
-                available_labels = list(set(v2_arc1_event_labels['Home']) - seen_v2_arc1_events['Home'])
+                available_labels = list(set(v2_arc1_event_labels[HOME]) - seen_v2_arc1_events[HOME])
                 label = renpy.random.choice(available_labels)
-                seen_v2_arc1_events['Home'].add(label)
+                seen_v2_arc1_events[HOME].add(label)
                 renpy.call(label)
                 calendar.next()
 
