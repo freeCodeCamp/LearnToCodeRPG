@@ -50,6 +50,8 @@ We welcome all contributions, suggestions and ideas for improvement from the com
 
 You can contribute by adding new quiz questions to [developerquiz.org](https://github.com/freeCodeCamp/Developer_Quiz_Site), catching typos, and **[helping to translate this game into other languages](https://contribute.freecodecamp.org/#/how-to-translate-files?id=translate-the-learntocode-rpg)**.
 
+If you are willing to dive deep and execute the game code, check out [Ren'Py](https://www.renpy.org/), the game engine we use to develop this game. Make sure you have the latest Ren'Py version (Ren'Py 8 as of December 2022) as we always keep our code up-to-date with the newest Ren'Py version.
+
 Make sure to first read through the [Code of Conduct](https://www.freecodecamp.org/news/code-of-conduct/).
 
 Then, see the ways you can contribute [here](https://contribute.freecodecamp.org/#/).
