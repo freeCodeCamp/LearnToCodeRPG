@@ -8,14 +8,19 @@ label day_start:
     play sound 'audio/sfx/birds.wav'
     pause 3.0
 
-    # randomly choose a start-of-day label to call
-    python:
-        day_start_text = renpy.random.choice(seq=[
-            'day_start_text1',
-            'day_start_text2',
-            'day_start_text3',
-            ])
-        renpy.call(day_start_text)
+    if is_in_v2_arc1 and not 'v2_running_late' in seen_v2_arc1_events['Home'] and renpy.random.random() < 0.2:
+        seen_v2_arc1_events['Home'].add('v2_running_late')
+        call v2_running_late
+
+    else:
+        # randomly choose a start-of-day label to call
+        python:
+            day_start_text = renpy.random.choice(seq=[
+                'day_start_text1',
+                'day_start_text2',
+                'day_start_text3',
+                ])
+            renpy.call(day_start_text)
         
     return
 

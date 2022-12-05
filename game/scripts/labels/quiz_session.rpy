@@ -158,7 +158,21 @@ label interview_session_questions:
             interviewer "Last question."
         else:
             interviewer "Next question."
-        call interview_one_question from _call_interview_one_question
+        
+        $ num_questions -= 1
+        # choose randomly from all available questions
+        $ quiz_question = renpy.random.choice(quiz_session_questions)
+        # if quiz_question.code_label is not None:
+        #     show screen example(quiz_question.code_label)
+
+        # display question
+        $ renpy.say(None, quiz_question.question, interact=False)
+        # result is True or False
+        $ result = renpy.display_menu(quiz_question.choices)
+        hide screen example
+
+        if result == True:
+            $ num_correct += 1
 
     # reset timeout
     $ timeout = None
@@ -173,20 +187,51 @@ label interview_session_questions:
 
     return
 
-label interview_one_question:
-    $ num_questions -= 1
-    # choose randomly from all available questions
-    $ quiz_question = renpy.random.choice(interview_questions)
-    if quiz_question.code_label is not None:
-        show screen example(quiz_question.code_label)
+## work session
+label work_session:
+    $ num_questions = 5
+    $ num_correct = 0
 
-    # display question
-    $ renpy.say(None, quiz_question.question, interact=False)
-    # result is True or False
-    $ result = renpy.display_menu(quiz_question.choices)
-    hide screen example
+    $ timeout_label = 'work_session_questions'
+    $ timeout = 180.0 # three minutes for each question
 
-    if result == True:
-        $ num_correct += 1
+# fall through to the next label
+
+label work_session_questions:
+    while num_questions > 0:
+        if num_questions == 5:
+            player "Looks like we got our first ticket."
+        elif num_questions == 1:
+            player "Last ticket."
+        else:
+            player "Next ticket."
+        
+        $ num_questions -= 1
+        # choose randomly from all available questions
+        $ quiz_question = renpy.random.choice(quiz_session_questions)
+        # if quiz_question.code_label is not None:
+        #     show screen example(quiz_question.code_label)
+
+        # display question
+        $ renpy.say(None, quiz_question.question, interact=False)
+        # result is True or False
+        $ result = renpy.display_menu(quiz_question.choices)
+        hide screen example
+
+        if result == True:
+            $ num_correct += 1
+            $ player_stats.change_stats('Renown', 2)
+            player @ laugh "Correct!"
+        else:
+            with vpunch
+            $ player_stats.change_stats('Renown', -1)
+            player @ pout "Wrong..."
+
+    # reset timeout
+    $ timeout = None
+    $ timeout_label = None
+
+    player @ relieved "Phew... That was a long session."
+    $ player_stats.change_stats_random('Sanity', -20, -10)
 
     return

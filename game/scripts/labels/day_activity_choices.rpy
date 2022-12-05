@@ -307,9 +307,9 @@ label day_activity_job_search:
 
             # set up interview questions
             python:
-                interview_questions = []
+                quiz_session_questions = []
                 for skill in company_required_skills:
-                    interview_questions.extend(all_questions_map[skill])
+                    quiz_session_questions.extend(all_questions_map[skill])
 
             $ add_achievement(plot_cupcakecpu)
 
@@ -340,9 +340,9 @@ label day_activity_job_search:
 
                 # set up interview questions
                 python:
-                    interview_questions = []
+                    quiz_session_questions = []
                     for skill in company_required_skills:
-                        interview_questions.extend(all_questions_map[skill])
+                        quiz_session_questions.extend(all_questions_map[skill])
 
     if has_applied:
         $ num_jobs_applied += 1
@@ -405,3 +405,7 @@ label day_activity_interview:
     player "That was as intense as I expected. I hope I did well with all my preparations."
     player "I can't wait to go home and just relax now..."
     return
+
+# v2 day activities
+label v2_weekend_day_activities:
+    pass

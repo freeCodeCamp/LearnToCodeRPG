@@ -1,6 +1,6 @@
 label v2_working_late:
-    oliver "[player_name]! Did I catch you before you got settled in and started with work?"
-    player "No, I haven't gotten started just yet! What can I help you with?"
+    oliver "[player_name]! Did I catch you before you wrapped work for the day?"
+    player "No, I haven't wrapped up work yet! What can I help you with?"
     oliver "So you know that new client, Stacy & Lucy's?"
     player "Yep - the bridal boutique chain?"
     oliver "That's the one! I just got off of the phone with them earlier, and they're wondering if it'd be possible for you and the rest of the team to shoot for a closer completion date?"

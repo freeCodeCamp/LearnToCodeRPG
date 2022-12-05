@@ -1679,7 +1679,7 @@ label v2_start:
     player "But I feel like maybe a fresh start will give me a morale boost."
     player "So I went back to applying for jobs. Fortunately, I landed on this new job pretty quickly."
 
-    scene bg newoffice
+    scene bg company1_center
     player "So this is ConsultMe! Wow... It's enormous."
     player "I put in the work, to become a developer, and today, it's real... "
     player "I'm going to keep working hard, and keep learning! Doing that is what got me here, so if I keep that up, I should be okay!"
@@ -1847,7 +1847,21 @@ label v2_start:
 
     $ calendar.next()
 
-    
+    $ is_in_v2_arc1 = True
+    $ work_session_questions = all_quiz_questions
+    for _ in range(20):
+        call day_start
+
+        # check if it's a weekday or weekend
+        if calendar.is_weekday():
+            # go to work
+            scene bg company1_center with fadehold
+            # TODO: maybe give player the choice to visit the vending machine before and after work?
+            call work_session
+
+            # after work, call random work events
+        else:
+            call v2_weekend_day_activities
 
     # jump to random v2 events
     while True:
@@ -1875,3 +1889,6 @@ label v2_start:
                 calendar.next()
 
     return
+
+    # start v2 arc2
+    $ is_in_v2_arc1 = False

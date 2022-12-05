@@ -60,9 +60,13 @@ init 998:
     default seen_v2_arc1_events = {
     'Work': set(),
     'Home': set(),
+    'Hackerspace': set()
     }
 
     default persistent.enable_save_reminder = None
+
+    # v2 variables
+    default is_in_v2_arc1 = False
 
 init python:
     if persistent.achievements is None:

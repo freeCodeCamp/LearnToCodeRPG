@@ -43,6 +43,7 @@ screen shop_screen():
                 bold True
             text _("Price: $") + str(item_on_display.price)
             text _("Quantitiy held: ") + str(player_items[item_on_display])
+            # TODO: check whether player has enough money
             textbutton _("Purchase Item"):
                 action SetDict(
                     player_items,

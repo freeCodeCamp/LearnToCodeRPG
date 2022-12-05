@@ -21,6 +21,9 @@ init python:
         def get_weekday_string(self):
             return self.weekday_names[self.date.weekday()]
 
+        def is_weekday(self):
+            return self.date.weekday() < 5 # 5 Sat, 6 Sun
+
 default calendar_enabled = True # similar to quick_menu boolean
 # this screen should always show
 screen calendar_screen():
