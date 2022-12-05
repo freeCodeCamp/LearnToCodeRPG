@@ -254,6 +254,8 @@ init python:
 ## The username and project name associated with an itch.io project, separated
 ## by a slash.
 
-# define build.itch_project = "renpytom/test-project"
+define build.itch_project = "freecodecamp/learn-to-code-rpg"
 
 # define config.mouse_displayable = MouseDisplayable(Text('{color=#000}{size=50}{icon=icon-mouse-pointer}{/size}{/color}'), 0, 0)
+
+define config.open_file_encoding = 'utf-8'

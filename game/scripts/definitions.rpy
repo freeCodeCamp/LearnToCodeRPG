@@ -1,7 +1,7 @@
 init python:
     import re
     import random # renpy.random doesn't have sample
-    import urllib # for tweet intent generation
+    import urllib.parse # for tweet intent generation
 
     class Picker(object):
         def __init__(self, options):
@@ -127,8 +127,8 @@ init python:
 
     # ref: https://tech.cymi.org/tweet-intents
     def generate_tweet_intent(tweet_content, url=article_url):
-        content_enc = urllib.quote(tweet_content, safe='')
-        url_enc = urllib.quote(url, safe='')
+        content_enc = urllib.parse.quote(tweet_content, safe='')
+        url_enc = urllib.parse.quote(url, safe='')
         # append url to the end
         ret = 'https://twitter.com/intent/tweet?url=' + url_enc + '&text=' + content_enc
         return ret
