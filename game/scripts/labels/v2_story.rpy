@@ -1,5 +1,5 @@
 label v2_working_late:
-    oliver "[player_name]! Happy Monday! Did I catch you before you got settled in and started with work?"
+    oliver "[player_name]! Did I catch you before you got settled in and started with work?"
     player "No, I haven't gotten started just yet! What can I help you with?"
     oliver "So you know that new client, Stacy & Lucy's?"
     player "Yep - the bridal boutique chain?"
@@ -1690,4 +1690,3 @@ label v2_where_to_start:
             annika "So it's okay!"
             "You lose 10 Sanity out of embarrassment."
             $ player_stats.change_stats('Sanity', -10)
-            
