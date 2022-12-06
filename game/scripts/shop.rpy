@@ -10,8 +10,8 @@ screen shop_screen():
         ysize 800
         xpadding 30
         ypadding 30
-        yalign 0.5
         xalign 0.5
+        yalign 0.5
 
         background white80
 
@@ -42,8 +42,8 @@ screen shop_screen():
             text item_on_display.name:
                 bold True
             text _("Price: $") + str(item_on_display.price)
-            text _("Quantitiy held: ") + str(player_items[item_on_display])
-            # TODO: check whether player has enough money
+            text _("Quantity held: ") + str(player_items[item_on_display])
+            # TODO: check whether player has enough money using Function()
             textbutton _("Purchase Item"):
                 action SetDict(
                     player_items,

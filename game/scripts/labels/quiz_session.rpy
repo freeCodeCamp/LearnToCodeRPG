@@ -221,6 +221,7 @@ label work_session_questions:
         if result == True:
             $ num_correct += 1
             $ player_stats.change_stats(RENOWN, 2)
+            $ player_stats.change_stats(MONEY, 50)
             player @ laugh "Correct!"
         else:
             with vpunch

@@ -3,11 +3,15 @@
 init 998:
     default player_name = ''
     
+    default todo_unlocked = False
+
     default stats_unlocked = False
     default stats_knowledge_unlocked = False # cs knowledge
-    default stats_renown_unlocked = False # unlocked in v2
     default stats_subcategory_unlocked = False # subcategory of cs knowledge
-    default todo_unlocked = False
+
+    # unlocked in v2
+    default stats_renown_unlocked = False
+    default stats_money_unlocked = False
 
     # alternative endings
     default has_triggered_ending_barista = False
@@ -66,7 +70,7 @@ init 998:
     default persistent.enable_save_reminder = None
 
     # v2 variables
-    default is_in_v2_arc1 = False
+    default is_in_v2_arc1 = False # TODO: refactor so that it's a string showing arc1, arc2, arc3 etc
 
 init python:
     if persistent.achievements is None:

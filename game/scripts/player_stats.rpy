@@ -5,10 +5,10 @@ init python:
     CHANGE_DIRECTION_DEC = 'dec'
 
     # some constants for dict keys
-    SANITY = 'sanity'
-    CS_KNOWLEDGE = 'cs_knowledge'
-    RENOWN = 'renown'
-    MONEY = 'money'
+    SANITY = _('Sanity')
+    CS_KNOWLEDGE = _('CS Knowledge')
+    RENOWN = _('Renown')
+    MONEY = _('Money')
 
     class PlayerStats():
         def __init__(self, all_skills):
@@ -27,21 +27,28 @@ init python:
             }
 
         def set_stats(self, stats_name, val):
-            # keep between 0 and 100
-            clamped_val = min(100, max(0, val))
+            if stats_name == MONEY:
+                clamped_val = max(0, val)
+            else:
+                # keep between 0 and 100 by default
+                clamped_val = min(100, max(0, val))
+            
             self.player_stats_map[stats_name] = clamped_val
-            clamped_val_str = str(clamped_val)
-            renpy.notify(stats_name + _(' is set to ') + clamped_val_str)
+            renpy.notify(stats_name + _(' is set to ') + str(clamped_val))
 
         def change_stats(self, stats_name, val):
-            # keep between 0 and 100
             if stats_name in self.player_stats_map:
                 map_pointer = self.player_stats_map
             elif stats_name in self.subcategory_stats_map:
                 map_pointer = self.subcategory_stats_map
 
             new_val = map_pointer[stats_name] + val
-            clamped_val = min(100, max(0, new_val))
+            if stats_name == MONEY:
+                # keep between 0 and 100 by default
+                clamped_val = max(0, new_val)
+            else:
+                clamped_val = min(100, max(0, new_val))
+                
             map_pointer[stats_name] = clamped_val
             
             change_direction = None
@@ -188,6 +195,10 @@ screen player_stats_screen(changed_stats, change_direction):
         num_rows = 1 # Sanity
         if stats_knowledge_unlocked:
             num_rows += 1
+        if stats_renown_unlocked:
+            num_rows += 1
+        if stats_money_unlocked:
+            num_rows += 1
         if stats_subcategory_unlocked:
             num_rows += len(all_skills)
 
@@ -195,25 +206,32 @@ screen player_stats_screen(changed_stats, change_direction):
         xspacing 10
         yspacing 5
 
+        # Money
+        if stats_money_unlocked:
+            $ val = player_stats.player_stats_map[MONEY]
+            text _('{icon=icon-dollar-sign} Money') color gui.accent_color
+            text '$' + str(val) + '  ' + get_stats_change_direction_icon(MONEY, changed_stats, change_direction)
+            null width 200
+
         # Sanity
-        $ sanity = player_stats.player_stats_map[SANITY]
+        $ val = player_stats.player_stats_map[SANITY]
         text _('{icon=icon-zap} Sanity') color gui.accent_color
-        bar value sanity range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
-        text str(sanity) + '  ' + get_stats_change_direction_icon(SANITY,changed_stats, change_direction)
+        bar value val range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
+        text str(val) + '  ' + get_stats_change_direction_icon(SANITY, changed_stats, change_direction)
 
         # Renown
         if stats_renown_unlocked:
-            $ renown = player_stats.player_stats_map[RENOWN]
+            $ val = player_stats.player_stats_map[RENOWN]
             text _('{icon=icon-award} Renown') color gui.accent_color
-            bar value renown range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
-            text str(renown) + '  ' + get_stats_change_direction_icon(RENOWN,changed_stats, change_direction)
+            bar value val range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
+            text str(val) + '  ' + get_stats_change_direction_icon(RENOWN, changed_stats, change_direction)
 
         # CS Knowledge
         if stats_knowledge_unlocked:
-            $ cs_knolwedge = player_stats.player_stats_map[CS_KNOWLEDGE]
+            $ val = player_stats.player_stats_map[CS_KNOWLEDGE]
             text _('{icon=icon-terminal} CS Knowledge') color gui.accent_color
-            bar value cs_knolwedge range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
-            text str(cs_knolwedge) + '  ' + get_stats_change_direction_icon(CS_KNOWLEDGE,changed_stats, change_direction)
+            bar value val range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
+            text str(val) + '  ' + get_stats_change_direction_icon(CS_KNOWLEDGE, changed_stats, change_direction)
 
         # Subcategory CS Stats
         if stats_subcategory_unlocked:

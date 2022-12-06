@@ -1,3 +1,16 @@
+label low_sanity:
+    $ renpy.notify(_('Your sanity is dropping dangerously low. Why not take some time to relax and recharge?'))
+    $ num_times_sanity_low += 1
+
+    if has_met_layla and not has_triggered_ending_farmer and \
+    num_times_sanity_low > 5 and renpy.random.random() < 0.05:
+        call ending_farmer from _call_ending_farmer
+    else:
+        call day_activity_relax from _call_day_activity_relax
+
+    call day_end from _call_day_end
+    return
+
 label day_activity_choices:
     $ day_activity = None
     $ has_triggered_ending_today = False
@@ -5,16 +18,7 @@ label day_activity_choices:
 
     # if the player has low sanity, jump directly to one of the relaxing choices
     if player_stats.is_sanity_low():
-        $ renpy.notify(_('Your sanity is dropping dangerously low. Why not take some time to relax and recharge?'))
-        $ num_times_sanity_low += 1
-
-        if has_met_layla and not has_triggered_ending_farmer and \
-        num_times_sanity_low > 5 and renpy.random.random() < 0.05:
-            call ending_farmer from _call_ending_farmer
-        else:
-            call day_activity_relax from _call_day_activity_relax
-
-        call day_end from _call_day_end
+        call low_sanity
         return # return to script.rpy
 
     player smile "What should we do for the day?"
@@ -65,27 +69,22 @@ label day_activity_choices:
                 if not plot_quiz_none in persistent.achievements:
                     $ add_achievement(plot_quiz_none)
 
-            call day_end from _call_day_end_1
-        
         "Work gig as a barista":
             # this choice unlocks interesting tech rumors and recovers a bit of sanity
             $ day_activity = BARISTA
             player "I can work some shifts to cover my bills. Plus, I get to interact with people and take my mind off cramming for a bit."
             call day_activity_barista from _call_day_activity_barista
-            call day_end from _call_day_end_2
 
         "Hang out at Hacker Space" if has_visited_hacker_space_with_annika:
             # this choice progresses the Hacker Space side story
             $ day_activity = HACKER_SPACE
             player "I'm feeling adventurous. Why not check out Hacker Space and meet some other people who are learning to code?"
             call day_activity_hacker_space from _call_day_activity_hacker_space
-            call day_end from _call_day_end_3
 
         "Take a day off and relax":
             call day_activity_relax from _call_day_activity_relax_1
-            call day_end from _call_day_end_4
 
-    
+    call day_end
     return
 
 label study_session_choose_topic:
@@ -408,6 +407,10 @@ label day_activity_interview:
 
 # v2 day activities
 label v2_activity_choices:
+    if player_stats.is_sanity_low():
+        call low_sanity
+        return # return to script.rpy
+
     player smile "Now that I finally have some free time. What should I do?"
     menu:
         "Work on some tickets":
@@ -418,7 +421,21 @@ label v2_activity_choices:
 
         "Take a day off and relax":
             call day_activity_relax
-            call day_end
+            
+    call day_end
+    return
 
-label v2_activities_hacker_space:
-    
+label v2_activity_hacker_space:
+    scene bg hacker_space with slideright
+    play sound 'audio/sfx/office_ambient.wav'
+
+    if len(v2_arc1_event_labels[HACKER_SPACE]) == len(seen_v2_arc1_events[HACKER_SPACE]) or renpy.random.random() < 0.6:
+        call day_activity_hacker_space_random
+    else: # 40% chance of triggering an event
+        python:
+            available_labels = list(set(v2_arc1_event_labels[HACKER_SPACE]) - seen_v2_arc1_events[HACKER_SPACE])
+            label = renpy.random.choice(available_labels)
+            seen_v2_arc1_events[HACKER_SPACE].add(label)
+            renpy.call(label)
+
+    return

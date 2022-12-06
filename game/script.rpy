@@ -1662,6 +1662,7 @@ label v1_ending:
     $ calendar.next_month()
 
 label v2_start:
+    ## setup for the case where the player started in v2 without filling in the info in v1
     if player_name == '':
         $ player_name = renpy.input(_("What is your name? {color=[red]}*{/color} (Type your name and hit Enter. This name will be used throughout the game and you cannot change it unless you start a new game.)"), default=_("Lydia"))
         $ player_name = player_name.strip()
@@ -1672,6 +1673,18 @@ label v2_start:
         # handle empty string case by assigning default name
         if not player_name:
             $ player_name = _("[player_name]")
+
+    $ todo_unlocked = True
+    $ stats_unlocked = True
+    $ stats_knowledge_unlocked = True
+    $ stats_subcategory_unlocked = True
+    ## end setup
+
+    $ stats_money_unlocked = True
+    $ player_stats.set_stats(MONEY, 500)
+
+    $ stats_renown_unlocked = True
+    $ player_stats.set_stats(RENOWN, 20) # start with a bit of renown
 
     # transition to v2 plot here
     $ calendar_enabled = True
@@ -1684,9 +1697,7 @@ label v2_start:
     player "So this is ConsultMe! Wow... It's enormous."
     player "I put in the work, to become a developer, and today, it's real... "
     player "I'm going to keep working hard, and keep learning! Doing that is what got me here, so if I keep that up, I should be okay!"
-    $ stats_renown_unlocked = True
-    $ player_stats.set_stats(RENOWN, 20) # start with a bit of renown
-
+    
     player "Um... hello?"
     receptionist "Hello! How can I help you?"
     player "My name is [player_name], and this is my first day."
@@ -1863,35 +1874,17 @@ label v2_start:
             call work_session
 
             # after work, call random work events
+            scene bg living_room night with slideright
+            player "Finally home!"
+            scene bg bedroom night with blinds
+            call v2_activity_choices
         else:
-            call v2_weekend_day_activities
+            # weekend, stay home
+            call v2_activity_choices
 
-    # jump to random v2 events
-    while True:
-        if len(seen_v2_arc1_events[WORK]) == len(v2_arc1_event_labels[WORK]):
-            player "I've seen all events happening in v2 Arc1 work."
-        else:
-            player "I think something is happening today at work."
-            python:
-                available_labels = list(set(v2_arc1_event_labels[WORK]) - seen_v2_arc1_events[WORK])
-                label = renpy.random.choice(available_labels)
-                seen_v2_arc1_events[WORK].add(label)
-                renpy.call(label)
-                calendar.next()
-
-    while True:
-        if len(seen_v2_arc1_events[HOME]) == len(v2_arc1_event_labels[HOME]):
-            player "I've seen all events happening in v2 Arc1 Home."
-        else:
-            player "I think something is happening today at home."
-            python:
-                available_labels = list(set(v2_arc1_event_labels[HOME]) - seen_v2_arc1_events[HOME])
-                label = renpy.random.choice(available_labels)
-                seen_v2_arc1_events[HOME].add(label)
-                renpy.call(label)
-                calendar.next()
-
-    return
+    "You've reached the end of v2 arc1"
 
     # start v2 arc2
     $ is_in_v2_arc1 = False
+
+    return
