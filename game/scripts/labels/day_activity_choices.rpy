@@ -294,7 +294,7 @@ label day_activity_job_search:
 
         $ company_name = 'CupcakeCPU'
         # choose 3 skills, sampling w/o replacement
-        $ company_required_skills = random.sample(all_skills, 3)
+        $ company_required_skills = random.sample(v1_skills, 3)
 
         call screen job_posting_screen(company_name, company_required_skills)
         $ has_applied = _return
@@ -318,7 +318,7 @@ label day_activity_job_search:
         $ company_name = renpy.random.choice(all_company_names.keys())
 
         # choose 3 skills, sampling w/o replacement
-        $ company_required_skills = random.sample(all_skills, 3)
+        $ company_required_skills = random.sample(v1_skills, 3)
 
         $ easter_egg_skill = None
         if renpy.random.random() < 0.05: # 5% chance of getting Easter Egg

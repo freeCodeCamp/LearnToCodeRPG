@@ -1,6 +1,6 @@
 label start:
     $ calendar_enabled = False
-    default player_stats = PlayerStats(all_skills)
+    default player_stats = PlayerStats()
     default todo_list = ToDoList()
     default calendar = Calendar() # story starts on Aug 1st, 2021
     default start_date = calendar.date # this will be used to calculate how many days it took for the player to learn to code
@@ -282,7 +282,6 @@ label stage2:
 
     # now the quick menu screen show the button to access stats
     $ stats_unlocked = True
-    $ stats_knowledge_unlocked = True
 
     player smile "I'll keep track of my progress on my phone."
     show smartphone at truecenter
@@ -709,7 +708,8 @@ label stage6:
     scene bg laptop_screen with dissolve
     player surprised "Looks like they even divided the questions into subcategories like HTML, CSS, and JavaScript."
 
-    $ stats_subcategory_unlocked = True
+    # unlock CS Knowledge subcategories here
+    $ player_stats.subcategory_stats_map = {stats_name: 0 for stats_name in v1_skills}
     $ renpy.show_screen('player_stats_todo_screen', _layer='transient')
 
     player smile "Well, guess I need to track my progress for each subcategory."
@@ -1676,14 +1676,9 @@ label v2_start:
 
     $ todo_unlocked = True
     $ stats_unlocked = True
-    $ stats_knowledge_unlocked = True
-    $ stats_subcategory_unlocked = True
     ## end setup
 
-    $ stats_money_unlocked = True
     $ player_stats.set_stats(MONEY, 500)
-
-    $ stats_renown_unlocked = True
     $ player_stats.set_stats(RENOWN, 20) # start with a bit of renown
 
     # transition to v2 plot here
@@ -1693,27 +1688,42 @@ label v2_start:
     player "But I feel like maybe a fresh start will give me a morale boost."
     player "So I went back to applying for jobs. Fortunately, I landed on this new job pretty quickly and my start date is today."
 
-    scene bg company1_center
-    player "So this is ConsultMe! Wow... It's enormous."
+    scene bg company1_reception with fadehold
+    player surprise "So this is ConsultMe! Wow... It's enormous."
     player "I put in the work, to become a developer, and today, it's real... "
     player "I'm going to keep working hard, and keep learning! Doing that is what got me here, so if I keep that up, I should be okay!"
     
     player "Um... hello?"
+    show maria
     receptionist "Hello! How can I help you?"
     player "My name is [player_name], and this is my first day."
     receptionist "Ah, the new hire! And so punctual too - it's nice to meet you! "
-    receptionist "My name is Maria, and I'll be showing you around! First, we'll drop off your things at your desk."
+    receptionist "My name is Maria, and I'll be showing you around!"
     player "Got it!"
+
+    scene bg company1_center with blinds
+    pause 2.0
+    scene bg company1_boardroom with blinds
+    pause 2.0
+    scene bg bg company1_breakroom with blinds
+    pause 2.0
+    scene bg bg company1_dining with blinds
 
     "You're taken all around the ConsultMe office. There are lots of snacks in the lunch area, and even a gym downstairs!"
     "There are dozens and dozens of meeting rooms, all named following the theme of different countries of the world."
     "There's even a nursing room for new mothers!"
 
+    scene bg company1_lydia_cubicle
+    show maria
     maria "... And this is your cubicle! We've even got your name plate all printed up!"
     player "Wow... it's made of wood! This is so nice."
     maria "I'm glad you like it! Do you have any questions so far? I know I've been hitting you with a lot of information."
     player "No no, everything has been awesome so far! "
     maria "Great! The last leg of our tour involves me handing you off to our engineering manager, Iris!"
+
+    scene bg company1_center with blinds
+    show maria at left with moveinleft
+    show iris with moveinright
     iris "Hello. And who is this again?"
     maria "Iris, don't be silly! This is [player_name]! The new hire?"
     iris "Hm... I see."
@@ -1726,6 +1736,8 @@ label v2_start:
     iris "If you'll excuse me. I don't have much time for pleasantries."
     player "... "
     player "Ooookay. So. Who's Goro?"
+
+    show goro at right with moveinright
     goro "That'd be me."
     goro "Don't mind Iris. She's... prickly on the outside, but can be a nice lady when you get to know her."
     player "Sure... I'm [player_name]. It's nice to meet you!"
@@ -1740,7 +1752,9 @@ label v2_start:
     player "Nope! Completely solid!"
     goro "Well... okay then! Like I said, I'm here if you need help."
     player "Thanks!"
+
     "Later that day..."
+    scene bg living_room night with fadehold
     mint "Meow!"
     player "Hi Mint! You'll never believe the day I just had. The office was huge!"
     player "I met tons of people, and everyone was really nice."

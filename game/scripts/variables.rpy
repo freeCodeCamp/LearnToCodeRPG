@@ -450,7 +450,7 @@ init python:
         all_quiz_questions.extend(question_list)
 
     # the order is important
-    all_skills = [
+    v1_skills = [
     _('General'),
     _('HTML'),
     _('CSS'),

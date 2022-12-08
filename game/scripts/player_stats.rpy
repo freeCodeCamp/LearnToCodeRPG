@@ -11,8 +11,8 @@ init python:
     MONEY = _('Money')
 
     class PlayerStats():
-        def __init__(self, all_skills):
-            # all_skills is defined in variables.rpy
+        def __init__(self):
+            # v1_skills is defined in variables.rpy
 
             # map string names to stats
             # DO NOT TRANSLATE THESE TWO
@@ -22,9 +22,7 @@ init python:
             }
 
             # these are translated as defined in variables.rpy
-            self.subcategory_stats_map = {
-            stats_name: 0 for stats_name in all_skills
-            }
+            self.subcategory_stats_map = {}
 
         def set_stats(self, stats_name, val):
             if stats_name == MONEY:
@@ -191,25 +189,16 @@ screen player_stats_todo_screen(show_todo=False, changed_stats=None, change_dire
                 use player_stats_screen(changed_stats, change_direction)
 
 screen player_stats_screen(changed_stats, change_direction):
-    python:
-        num_rows = 1 # Sanity
-        if stats_knowledge_unlocked:
-            num_rows += 1
-        if stats_renown_unlocked:
-            num_rows += 1
-        if stats_money_unlocked:
-            num_rows += 1
-        if stats_subcategory_unlocked:
-            num_rows += len(all_skills)
+    $ num_rows = len(player_stats.player_stats_map) + len(player_stats.subcategory_stats_map)
 
     grid 3 num_rows:
         xspacing 10
         yspacing 5
 
         # Money
-        if stats_money_unlocked:
+        if MONEY in player_stats.player_stats_map:
             $ val = player_stats.player_stats_map[MONEY]
-            text _('{icon=icon-dollar-sign} Money') color gui.accent_color
+            text _('{icon=icon-shopping-bag} Money') color gui.accent_color
             text '$' + str(val) + '  ' + get_stats_change_direction_icon(MONEY, changed_stats, change_direction)
             null width 200
 
@@ -220,22 +209,22 @@ screen player_stats_screen(changed_stats, change_direction):
         text str(val) + '  ' + get_stats_change_direction_icon(SANITY, changed_stats, change_direction)
 
         # Renown
-        if stats_renown_unlocked:
+        if RENOWN in player_stats.player_stats_map:
             $ val = player_stats.player_stats_map[RENOWN]
             text _('{icon=icon-award} Renown') color gui.accent_color
             bar value val range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
             text str(val) + '  ' + get_stats_change_direction_icon(RENOWN, changed_stats, change_direction)
 
         # CS Knowledge
-        if stats_knowledge_unlocked:
+        if CS_KNOWLEDGE in player_stats.player_stats_map:
             $ val = player_stats.player_stats_map[CS_KNOWLEDGE]
             text _('{icon=icon-terminal} CS Knowledge') color gui.accent_color
             bar value val range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
             text str(val) + '  ' + get_stats_change_direction_icon(CS_KNOWLEDGE, changed_stats, change_direction)
 
         # Subcategory CS Stats
-        if stats_subcategory_unlocked:
-            for skill in all_skills:
+        if player_stats.subcategory_stats_map:
+            for skill in player_stats.subcategory_stats_map:
                 $ val = player_stats.subcategory_stats_map[skill]
                 text "    {icon=icon-code} [skill!t]" color gui.accent_color
                 bar value val range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
