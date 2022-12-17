@@ -239,9 +239,8 @@ screen player_phone_screen(tab_showing=STATS, changed_stats=None, change_directi
                     action SetScreenVariable('tab_showing_local', ITEMS)
 
         viewport:
-            xsize 620
+            xmaximum 900
             ymaximum 550
-            xalign 0.5
             child_size (None, 4000)
             scrollbars 'vertical'
             spacing 5
@@ -250,7 +249,7 @@ screen player_phone_screen(tab_showing=STATS, changed_stats=None, change_directi
             arrowkeys True
             vscrollbar_xsize 5
             vscrollbar_unscrollable "hide"
-                
+
             if tab_showing_local == STATS:
                 use player_stats_screen(changed_stats, change_direction)
             elif tab_showing_local == TODO:
@@ -261,7 +260,7 @@ screen player_phone_screen(tab_showing=STATS, changed_stats=None, change_directi
 screen player_stats_screen(changed_stats, change_direction):
     $ num_rows = len(player_stats.player_stats_map) + len(player_stats.subcategory_stats_map)
 
-    # TODO: change to vpgrid
+    # no need for vpgrid because it's already inside a viewport
     grid 3 num_rows:
         xspacing 10
         yspacing 5

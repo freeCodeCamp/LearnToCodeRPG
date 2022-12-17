@@ -1,3 +1,65 @@
+init python:
+
+    from copy import deepcopy
+
+    class Item():
+        def __init__(self, name, image, description, price, stats_change=None):
+            self.name = name
+            self.image = image
+            self.description = description
+            self.price = price
+            self.stats_change = stats_change
+
+    class RoomItem(Item):
+        def __init__(self, name, image, description, price, tag=None, tag_priority=None, stats_change=None):
+            '''
+            tag: whether the item is a chair, a laptop, etc.
+            tag_priority: bigger number means the item will be displayed with priority
+            '''
+            super().__init__(name, image, description, price, stats_change)
+            self.image_room_display = 'room ' + self.image
+            self.tag = tag
+            self.tag_priority = tag_priority
+
+    food_items = [
+        Item('Water', 'water', 'Increase Sanity by 5', 10, { SANITY: 5 }),
+        Item('Soda', 'soda', 'Increase Sanity by 10', 20, { SANITY: 10 }),
+        Item('Beans', 'beans', 'Increase Sanity by 15', 30, { SANITY: 15 }),
+        Item('Chocolate', 'chocolate', 'Increase Sanity by 25', 50, { SANITY: 25 }),
+        Item('Pizza', 'whole_pizza', 'Increase Sanity by 50', 100, { SANITY: 50 }),
+        Item('Sushi', 'sushi', 'Increase Sanity by 100', 300, { SANITY: 100 }),
+    ]
+
+    home_shop_items = food_items + [
+        RoomItem('Nice desk', 'desk_nice', '', 1000, DESK, 2),
+
+        RoomItem('Second-hand chair', 'chair_second_hand', '', 500, CHAIR, 2),
+        RoomItem('Nice chair', 'chair_nice', '', 1000, CHAIR, 3),
+        RoomItem('Fancy chair', 'chair_fancy', '', 2000, CHAIR, 4),
+
+        RoomItem('Simple router', 'router_simple', '', 500, ROUTER, 2),
+        RoomItem('Nice router', 'router_nice', '', 1000, ROUTER, 3),
+        RoomItem('Fancy router', 'router_fancy', '', 2000, ROUTER, 4),
+
+        RoomItem('Used laptop', 'pc_used', '', 1000, PC, 2),
+        RoomItem('Student laptop', 'pc_student', '', 3000, PC, 3),
+        RoomItem('Custom PC', 'pc_custom', '', 5000, PC, 4),
+
+        RoomItem('Plant', 'plant', '', 300),
+        RoomItem('Poster 1', 'poster1', '', 200),
+        RoomItem('Poster 2', 'poster2', '', 200),
+        RoomItem('Poster 3', 'poster3', '', 200),
+        RoomItem('Cat lamp', 'cat_lamp', '', 400),
+        RoomItem('Cat bed', 'cat_bed', '', 600),
+    ]
+
+    # TODO: refactor this lookup
+    all_items = { item.name: item for item in home_shop_items }
+
+    vending_machine_items = deepcopy(food_items)
+    for item in vending_machine_items:
+        item.price *= 2
+
 screen shop_screen(shop_items):
     on 'show' action With(dissolve)
     on 'hide' action With(dissolve)
@@ -46,6 +108,7 @@ screen shop_screen(shop_items):
             vbox:
                 add item_on_display.image xalign 0.5 yalign 0.5
                 text item_on_display.name bold True xalign 0.5 text_align 0.5
+                text item_on_display.description xalign 0.5 text_align 0.5
                 text _('Price: $') + str(item_on_display.price) xalign 0.5 text_align 0.
                 if not isinstance(item_on_display, RoomItem):
                     text _('Quantity held: ') + str(player_stats.food_inventory[item_on_display.name]) xalign 0.5 text_align 0.5
@@ -59,105 +122,22 @@ screen shop_screen(shop_items):
             action Return()
             xalign 0.5
 
-init python:
-
-    from copy import deepcopy
-
-    class Item():
-        def __init__(self, name, image, description, price, stats_change=None):
-            self.name = name
-            self.image = image
-            self.description = description
-            self.price = price
-            self.stats_change = stats_change
-
-    class RoomItem(Item):
-        def __init__(self, name, image, description, price, tag=None, tag_priority=None, stats_change=None):
-            '''
-            tag: whether the item is a chair, a laptop, etc.
-            tag_priority: bigger number means the item will be displayed with priority
-            '''
-            super().__init__(name, image, description, price, stats_change)
-            self.image_room_display = 'room ' + self.image
-            self.tag = tag
-            self.tag_priority = tag_priority
-
-    food_items = [
-        Item('Water', 'water', '', 10, { SANITY: 5 }),
-        Item('Soda', 'soda', '', 20, { SANITY: 10 }),
-        Item('Beans', 'beans', '', 30, { SANITY: 15 }),
-        Item('Chocolate', 'chocolate', '', 50, { SANITY: 25 }),
-        Item('Pizza', 'whole_pizza', '', 100, { SANITY: 50 }),
-        Item('Sushi', 'sushi', '', 300, { SANITY: 100 }),
-    ]
-
-    home_shop_items = food_items + [
-        RoomItem('Nice desk', 'desk_nice', '', 1000, DESK, 2),
-
-        RoomItem('Second-hand chair', 'chair_second_hand', '', 500, CHAIR, 2),
-        RoomItem('Nice chair', 'chair_nice', '', 1000, CHAIR, 3),
-        RoomItem('Fancy chair', 'chair_fancy', '', 2000, CHAIR, 4),
-
-        RoomItem('Simple router', 'router_simple', '', 500, ROUTER, 2),
-        RoomItem('Nice router', 'router_nice', '', 1000, ROUTER, 3),
-        RoomItem('Fancy router', 'router_fancy', '', 2000, ROUTER, 4),
-
-        RoomItem('Used laptop', 'pc_used', '', 1000, PC, 2),
-        RoomItem('Student laptop', 'pc_student', '', 3000, PC, 3),
-        RoomItem('Custom PC', 'pc_custom', '', 5000, PC, 4),
-
-        RoomItem('Plant', 'plant', '', 300),
-        RoomItem('Poster 1', 'poster1', '', 200),
-        RoomItem('Poster 2', 'poster2', '', 200),
-        RoomItem('Poster 3', 'poster3', '', 200),
-        RoomItem('Cat lamp', 'cat_lamp', '', 400),
-        RoomItem('Cat bed', 'cat_bed', '', 600),
-    ]
-
-    # TODO: refactor this lookup
-    all_items = { item.name: item for item in home_shop_items }
-
-    vending_machine_items = deepcopy(food_items)
-    for item in vending_machine_items:
-        item.price *= 2
-
 # inventory for food
 screen inventory_screen():
 
-    default cell_xsize = 200
-    default cell_ysize = 50
-
-    vpgrid:
-
-        cols 3
-        rows len(player_stats.food_inventory)
-        xspacing 50
-        yspacing 10
-        draggable True
-        mousewheel True
-        ymaximum 760
-
-        scrollbars 'vertical'
-        vscrollbar_unscrollable 'hide'
-
-        # Since we have scrollbars, we have to position the side, rather
-        # than the vpgrid proper.
-        side_xalign 0.5
+    # no need for vpgrid because it's already inside a viewport
+    grid 4 len(player_stats.food_inventory):
+        xspacing 10
+        yspacing 5
 
         # body rows
         for item_name in player_stats.food_inventory:
-            text item_name:
-                xsize cell_xsize
-                ysize cell_ysize
-            text str(player_stats.food_inventory[item_name]):
-                xsize cell_xsize
-                ysize cell_ysize
-                xalign 0.5
-            if player_stats.food_inventory[item_name] > 0:
-                textbutton 'Consume':
-                    xsize cell_xsize
-                    ysize cell_ysize
-                    xalign 0.5
-                    action Function(player_stats.use_item, all_items[item_name])
-            else:
-                null width cell_xsize
+            $ item = all_items[item_name]
+
+            text item_name
+            text item.description size gui.quick_button_text_size
+            text str(player_stats.food_inventory[item_name]) xalign 0.5
+
+            textbutton _('Use'):
+                if player_stats.food_inventory[item_name] > 0:
+                    action Function(player_stats.use_item, item)
