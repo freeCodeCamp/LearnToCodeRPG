@@ -124,14 +124,15 @@ init python:
 # inventory for food
 screen inventory_screen():
 
-    default cell_xsize = 150
+    default cell_xsize = 200
     default cell_ysize = 50
 
     vpgrid:
 
         cols 3
         rows len(player_stats.food_inventory)
-        spacing 10
+        xspacing 50
+        yspacing 10
         draggable True
         mousewheel True
         ymaximum 760
@@ -159,4 +160,4 @@ screen inventory_screen():
                     xalign 0.5
                     action Function(player_stats.use_item, all_items[item_name])
             else:
-                null height cell_ysize
+                null width cell_xsize

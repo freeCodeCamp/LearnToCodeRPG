@@ -166,12 +166,11 @@ init python:
                 self.food_inventory[item.name] += 1
 
         def use_item(self, item):
-            if item in self.food_inventory:
+            if item.name in self.food_inventory:
                 self.food_inventory[item.name] -= 1
             # change stats
             for stats_name in item.stats_change:
                 self.change_stats(stats_name, item.stats_change[stats_name])
-            renpy.restart_interaction()
 
     class ToDoList():
         def __init__(self):

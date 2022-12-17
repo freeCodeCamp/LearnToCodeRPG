@@ -268,14 +268,11 @@ screen quick_menu():
             # if stats is showing, hide it; else show it
             if stats_unlocked:
                 textbutton _("{icon=icon-smartphone} Stats"):
-                    action [
-                        SensitiveIf(not renpy.get_screen(PLAYER_PHONE_SCREEN, layer='transient')),
-                        If(
+                    action If(
                             renpy.get_screen(PLAYER_PHONE_SCREEN),
                             true=ToggleScreen(PLAYER_PHONE_SCREEN),
                             false=ShowTransient(PLAYER_PHONE_SCREEN)
                         )
-                    ]
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
 ## the player has not explicitly hidden the interface.
@@ -1552,14 +1549,11 @@ screen quick_menu():
             # if stats is showing, hide it; else show it
             if stats_unlocked:
                 textbutton _("{icon=icon-smartphone} Stats"):
-                    action [
-                        SensitiveIf(not renpy.get_screen(PLAYER_PHONE_SCREEN, layer='transient')),
-                        If(
+                    action If(
                             renpy.get_screen(PLAYER_PHONE_SCREEN),
                             true=ToggleScreen(PLAYER_PHONE_SCREEN),
                             false=ShowTransient(PLAYER_PHONE_SCREEN)
                         )
-                    ]
 
 style window:
     variant "small"
