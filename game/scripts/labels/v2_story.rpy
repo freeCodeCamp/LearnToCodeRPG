@@ -182,7 +182,7 @@ label v2_help_from_friends:
         "Request help from a manager.":
             player "She seems a bit deep into her work now. I probably shouldn't disturb her."
             player "Maybe I can ask for help for her! Annika told me that I should always ask for help when I'm stuck on a problem. "
-            player "I'll go grab a manager for her so he doesn't have to stop what he's doing." [This is confusing - to whom does "he" refer here? Shouldn't it be "she" - as in Mala?]
+            player "I'll go grab a manager for her so she doesn't have to stop what she's doing."
             goro "..."
             player "Hey Goro! "
             goro "Hi [player_name]. Can I help you with anything?"
@@ -368,7 +368,7 @@ label v2_message:
             player "He can't message back during a MEETING, right?"
             player "We'll just end up needing to wait until he's done, regardless."
             darius "True, true. We also don't know if we're interrupting anything important..."
-            "After sending out a message, you and Darius head to the break room for some snacks." [Sounds like they decided not to send a message here - correct?]
+            "Instead of sending the message, you and Darius head to the break room for some snacks."
             "By the time you return, Goro is at his desk, typing away."
             "You go over what you need his help with. The two of you call over Darius and explain the solution to the bug that you found."
             "Once you and Darius prepare to leave, Goro stops you."

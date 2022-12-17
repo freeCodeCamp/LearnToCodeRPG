@@ -1,5 +1,7 @@
 init python:
 
+    from collections import defaultdict
+
     # a change in stats or todo should always automatically trigger the showing of the stats screen
     CHANGE_DIRECTION_INC = 'inc'
     CHANGE_DIRECTION_DEC = 'dec'
@@ -9,6 +11,12 @@ init python:
     CS_KNOWLEDGE = _('CS Knowledge')
     RENOWN = _('Renown')
     MONEY = _('Money')
+
+    # item tag definitions
+    DESK = 'desk'
+    CHAIR = 'chair'
+    ROUTER = 'router'
+    PC = 'pc'
 
     class PlayerStats():
         def __init__(self):
@@ -23,6 +31,21 @@ init python:
 
             # these are translated as defined in variables.rpy
             self.subcategory_stats_map = {}
+
+            # item: int
+            self.food_inventory = defaultdict(int)
+
+            self.room_inventory = set()
+
+            # tag: item
+            self.room_display_tagged = {
+                DESK: RoomItem('Simple desk', 'desk', '', 0),
+                CHAIR: RoomItem('Wooden chair', 'chair_wooden', '', 0),
+                ROUTER: RoomItem('Hotspot', 'hotspot', '', 0),
+                PC: RoomItem('Old computer', 'pc_old', '', 0)
+            }
+
+            self.room_display_tagless = []
 
         def set_stats(self, stats_name, val):
             if stats_name == MONEY:
@@ -105,6 +128,40 @@ init python:
             val = int(round(val))
             clamped_val = min(100, max(0, val))
             self.player_stats_map[CS_KNOWLEDGE] = clamped_val
+
+        def can_purchase_item(self, item):
+            if player_stats.player_stats_map[MONEY] < item.price:
+                return False
+            # if is room item, check whether has duplicate
+            if isinstance(item, RoomItem):
+                if item in self.room_inventory: # has duplicate
+                    return False
+            return True
+
+        def purchase_item(self, item):
+            self.player_stats_map[MONEY] -= item.price
+            if isinstance(item, RoomItem):
+                self.room_inventory.add(item)
+                # TODO: add stats_change here
+
+                # check whether it's tagged
+                if not item.tag:
+                    self.room_display_tagless.append(item.tag)
+                else:
+                    old_priority = self.room_display_tagged[item.tag]
+                    if item.tag_priority > old_priority:
+                        self.room_display_tagged[item.tag] = item # display this item
+
+                # TODO: redraw bg bedroom
+            else:
+                self.food_inventory[item] += 1
+
+        def use_item(self, item):
+            if item in self.food_inventory:
+                self.food_inventory[item] -= 1
+            # change stats
+            for stats_name in item.stats_change:
+                self.change_stats(stats_name, item.stats_change[stats_name])
 
     class ToDoList():
         def __init__(self):
