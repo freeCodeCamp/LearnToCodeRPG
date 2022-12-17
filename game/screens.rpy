@@ -267,15 +267,15 @@ screen quick_menu():
 
             # if stats is showing, hide it; else show it
             if stats_unlocked:
-                textbutton _("{icon=icon-smartphone} Stats") action [
-                SensitiveIf(not renpy.get_screen('player_stats_todo_screen', layer='transient')),
-                If(
-                    renpy.get_screen('player_stats_todo_screen'),
-                    true=ToggleScreen('player_stats_todo_screen'),
-                    false=ShowTransient('player_stats_todo_screen')
-                    )
-                ]
-
+                textbutton _("{icon=icon-smartphone} Stats"):
+                    action [
+                        SensitiveIf(not renpy.get_screen(PLAYER_PHONE_SCREEN, layer='transient')),
+                        If(
+                            renpy.get_screen(PLAYER_PHONE_SCREEN),
+                            true=ToggleScreen(PLAYER_PHONE_SCREEN),
+                            false=ShowTransient(PLAYER_PHONE_SCREEN)
+                        )
+                    ]
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
 ## the player has not explicitly hidden the interface.
@@ -332,13 +332,10 @@ screen main_menu_navigation():
 
         # TODO: v2 achievements, glossary etc.
         textbutton _("Bonus"):
-            action [
-            SensitiveIf(persistent.has_started_game),
-            ShowMenu("bonus")
-            ]
-            if persistent.has_started_game: # has some game in progress
+            if persistent.has_started_game:
                 background "gui/button/sticky_note_button_purple.png"
                 text_idle_color '#fff'
+                action ShowMenu("bonus")
 
         # if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
@@ -1554,14 +1551,15 @@ screen quick_menu():
 
             # if stats is showing, hide it; else show it
             if stats_unlocked:
-                textbutton _("{icon=icon-smartphone} Stats") action [
-                SensitiveIf(not renpy.get_screen('player_stats_todo_screen', layer='transient')),
-                If(
-                    renpy.get_screen('player_stats_todo_screen'),
-                    true=ToggleScreen('player_stats_todo_screen'),
-                    false=ShowTransient('player_stats_todo_screen')
-                    )
-                ]
+                textbutton _("{icon=icon-smartphone} Stats"):
+                    action [
+                        SensitiveIf(not renpy.get_screen(PLAYER_PHONE_SCREEN, layer='transient')),
+                        If(
+                            renpy.get_screen(PLAYER_PHONE_SCREEN),
+                            true=ToggleScreen(PLAYER_PHONE_SCREEN),
+                            false=ShowTransient(PLAYER_PHONE_SCREEN)
+                        )
+                    ]
 
 style window:
     variant "small"

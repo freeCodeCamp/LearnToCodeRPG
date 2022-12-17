@@ -3,15 +3,10 @@
 init 998:
     default player_name = ''
     
-    default todo_unlocked = False
 
     default stats_unlocked = False
-    default stats_knowledge_unlocked = False # cs knowledge
-    default stats_subcategory_unlocked = False # subcategory of cs knowledge
-
-    # unlocked in v2
-    default stats_renown_unlocked = False
-    default stats_money_unlocked = False
+    default todo_unlocked = False
+    default items_unlocked = False
 
     # alternative endings
     default has_triggered_ending_barista = False

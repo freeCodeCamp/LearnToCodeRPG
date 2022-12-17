@@ -7,6 +7,7 @@ init python:
     CHANGE_DIRECTION_DEC = 'dec'
 
     # some constants for dict keys
+    # TODO: for translation, refactor into 'sanity': _('Sanity')
     SANITY = _('Sanity')
     CS_KNOWLEDGE = _('CS Knowledge')
     RENOWN = _('Renown')
@@ -17,6 +18,14 @@ init python:
     CHAIR = 'chair'
     ROUTER = 'router'
     PC = 'pc'
+
+    # tab name for stats screen
+    STATS = 'stats'
+    TODO = 'todo'
+    ITEMS = 'items'
+
+    # screen name
+    PLAYER_PHONE_SCREEN = 'player_phone_screen'
 
     class PlayerStats():
         def __init__(self):
@@ -90,7 +99,7 @@ init python:
                 else:
                     renpy.notify(stats_name + _(' decreased by ') + val_str)
 
-            renpy.show_screen('player_stats_todo_screen', 
+            renpy.show_screen(PLAYER_PHONE_SCREEN, 
                 _layer='transient', changed_stats=stats_name, change_direction=change_direction)
 
             if stats_name in self.subcategory_stats_map:
@@ -141,7 +150,7 @@ init python:
         def purchase_item(self, item):
             self.player_stats_map[MONEY] -= item.price
             if isinstance(item, RoomItem):
-                self.room_inventory.add(item)
+                self.room_inventory.add(item.name)
                 # TODO: add stats_change here
 
                 # check whether it's tagged
@@ -154,14 +163,15 @@ init python:
 
                 # TODO: redraw bg bedroom
             else:
-                self.food_inventory[item] += 1
+                self.food_inventory[item.name] += 1
 
         def use_item(self, item):
             if item in self.food_inventory:
-                self.food_inventory[item] -= 1
+                self.food_inventory[item.name] -= 1
             # change stats
             for stats_name in item.stats_change:
                 self.change_stats(stats_name, item.stats_change[stats_name])
+            renpy.restart_interaction()
 
     class ToDoList():
         def __init__(self):
@@ -170,8 +180,8 @@ init python:
 
         def add_todo(self, todo):
             self.incomplete.append(todo)
-            if not renpy.get_screen('player_stats_todo_screen', layer='transient'):
-                renpy.show_screen('player_stats_todo_screen', _layer='transient', show_todo=True)
+            if not renpy.get_screen(PLAYER_PHONE_SCREEN, layer='transient'):
+                renpy.show_screen(PLAYER_PHONE_SCREEN, _layer='transient', show_todo=True)
             if not renpy.sound.is_playing():
                 renpy.sound.play('audio/sfx/smartphone_typing.wav')
 
@@ -179,8 +189,8 @@ init python:
             if todo in self.incomplete:
                 self.incomplete.remove(todo)
                 self.completed.append(todo)
-                if not renpy.get_screen('player_stats_todo_screen', layer='transient'):
-                    renpy.show_screen('player_stats_todo_screen', _layer='transient', show_todo=True)
+                if not renpy.get_screen(PLAYER_PHONE_SCREEN, layer='transient'):
+                    renpy.show_screen(PLAYER_PHONE_SCREEN, _layer='transient', show_todo=True)
                 if not renpy.sound.is_playing():
                     renpy.sound.play('audio/sfx/todo_complete.wav')
 
@@ -196,13 +206,13 @@ transform alpha_dissolve:
     alpha 0.0
     linear 0.5 alpha 1.0
 
-screen player_stats_todo_screen(show_todo=False, changed_stats=None, change_direction=None):
+screen player_phone_screen(tab_showing=STATS, changed_stats=None, change_direction=None):
     ## Ensure this appears on top of other screens.
     # zorder 100
     on "show" action With(dissolve)
     on "hide" action With(dissolve)
 
-    default show_todo_local = show_todo
+    default tab_showing_local = tab_showing
 
     frame:
         # center of screen
@@ -221,16 +231,18 @@ screen player_stats_todo_screen(show_todo=False, changed_stats=None, change_dire
             xalign 0.5
             style_prefix "radio"
             textbutton _("Show Stats"):
-                action ToggleScreenVariable(name='show_todo_local', true_value=False, false_value=True)
+                action SetScreenVariable('tab_showing_local', STATS)
             textbutton _("Show To-Do"):
-                action [
-                SensitiveIf(todo_unlocked),
-                ToggleScreenVariable(name='show_todo_local', true_value=True, false_value=False)
-                ]
+                if todo_unlocked:
+                    action SetScreenVariable('tab_showing_local', TODO)
+            textbutton _("Show Items"):
+                if items_unlocked:
+                    action SetScreenVariable('tab_showing_local', ITEMS)
 
         viewport:
             xsize 620
             ymaximum 550
+            xalign 0.5
             child_size (None, 4000)
             scrollbars 'vertical'
             spacing 5
@@ -240,14 +252,17 @@ screen player_stats_todo_screen(show_todo=False, changed_stats=None, change_dire
             vscrollbar_xsize 5
             vscrollbar_unscrollable "hide"
                 
-            if show_todo_local:
-                use todo_screen()
-            else: # show stats by default
+            if tab_showing_local == STATS:
                 use player_stats_screen(changed_stats, change_direction)
+            elif tab_showing_local == TODO:
+                use todo_screen()
+            elif tab_showing_local == ITEMS:
+                use inventory_screen()
 
 screen player_stats_screen(changed_stats, change_direction):
     $ num_rows = len(player_stats.player_stats_map) + len(player_stats.subcategory_stats_map)
 
+    # TODO: change to vpgrid
     grid 3 num_rows:
         xspacing 10
         yspacing 5

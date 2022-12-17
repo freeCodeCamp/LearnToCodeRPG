@@ -628,7 +628,7 @@ label stage5_annika:
     
     player pout "Ahhh... my alarm... It's a new day already?"
     player smile "What's on our To-Do list today?"
-    $ renpy.show_screen('player_stats_todo_screen', _layer='transient', show_todo=True)
+    $ renpy.show_screen(PLAYER_PHONE_SCREEN, _layer='transient', show_todo=True)
     player happy "Right. Let's give Annika a call and ask about the CS curriculum."
     show smartphone at truecenter
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
@@ -720,7 +720,7 @@ label stage6:
 
     # unlock CS Knowledge subcategories here
     $ player_stats.subcategory_stats_map = {stats_name: 0 for stats_name in v1_skills}
-    $ renpy.show_screen('player_stats_todo_screen', _layer='transient')
+    $ renpy.show_screen(PLAYER_PHONE_SCREEN, _layer='transient')
 
     player smile "Well, guess I need to track my progress for each subcategory."
     "(Your {b}CS Knowledge{/b} is calculated as the average of all subcategories. So make sure to study for each of the categories!)"
@@ -1117,7 +1117,7 @@ label stage7:
         call save_reminder from _call_save_reminder_10
 
     $ calendar.next_month()
-    $ renpy.show_screen('player_stats_todo_screen', _layer='transient')
+    $ renpy.show_screen(PLAYER_PHONE_SCREEN, _layer='transient')
     scene bg bedroom with fadehold
     player smile "It's been almost two months since I started learning to code. Time really flies."
     player "I feel like I'm so much more knowledgeable than when I started."
@@ -1263,7 +1263,7 @@ label stage7:
     player "But let's first have a movie night to celebrate what I've gotten done!"
 
     scene bg bedroom with fadehold
-    $ renpy.show_screen('player_stats_todo_screen', _layer='transient')
+    $ renpy.show_screen(PLAYER_PHONE_SCREEN, _layer='transient')
 
 label stage7_complete_curriculum:
     play sound 'audio/sfx/social_media_notification.wav'
@@ -1694,8 +1694,9 @@ label v2_start:
         if not player_name:
             $ player_name = _("[player_name]")
 
-    $ todo_unlocked = True
     $ stats_unlocked = True
+    $ todo_unlocked = True
+    $ items_unlocked = True
     ## end setup
 
     $ player_stats.set_stats(MONEY, 500)

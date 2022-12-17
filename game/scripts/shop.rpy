@@ -48,12 +48,12 @@ screen shop_screen(shop_items):
                 text item_on_display.name bold True xalign 0.5 text_align 0.5
                 text _('Price: $') + str(item_on_display.price) xalign 0.5 text_align 0.
                 if not isinstance(item_on_display, RoomItem):
-                    text _('Quantity held: ') + str(player_stats.food_inventory[item_on_display]) xalign 0.5 text_align 0.5
+                    text _('Quantity held: ') + str(player_stats.food_inventory[item_on_display.name]) xalign 0.5 text_align 0.5
                 textbutton '{icon=icon-shopping-cart} ' + _('Purchase Item'):
                     xalign 0.5
                     text_align 0.5
                     if player_stats.can_purchase_item(item_on_display):
-                        action Function(player_stats.purchase_item, item_on_display),
+                        action Function(player_stats.purchase_item, item_on_display)
 
         textbutton '{icon=icon-log-out} ' + _('Exit Shop'):
             action Return()
@@ -114,12 +114,19 @@ init python:
         RoomItem('Cat bed', 'cat_bed', '', 600),
     ]
 
+    # TODO: refactor this lookup
+    all_items = { item.name: item for item in home_shop_items }
+
     vending_machine_items = deepcopy(food_items)
     for item in vending_machine_items:
         item.price *= 2
 
 # inventory for food
 screen inventory_screen():
+
+    default cell_xsize = 150
+    default cell_ysize = 50
+
     vpgrid:
 
         cols 3
@@ -137,11 +144,19 @@ screen inventory_screen():
         side_xalign 0.5
 
         # body rows
-        for item in player_stats.food_inventory:
-            text item.name xysize cell_size
-            text player_stats.food_inventory[item] xysize cell_size xalign 0.5
-            textbutton 'Consume':
-                xysize cell_size
+        for item_name in player_stats.food_inventory:
+            text item_name:
+                xsize cell_xsize
+                ysize cell_ysize
+            text str(player_stats.food_inventory[item_name]):
+                xsize cell_xsize
+                ysize cell_ysize
                 xalign 0.5
-                if player_stats.food_inventory[item] > 0:
-                    action Function(player_stats.use_item, item)
+            if player_stats.food_inventory[item_name] > 0:
+                textbutton 'Consume':
+                    xsize cell_xsize
+                    ysize cell_ysize
+                    xalign 0.5
+                    action Function(player_stats.use_item, all_items[item_name])
+            else:
+                null height cell_ysize
