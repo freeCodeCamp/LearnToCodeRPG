@@ -80,7 +80,7 @@ label day_start_text3:
 
 label day_end:
     
-    scene bg bedroom dusk with slideright
+    scene bg bedroom with slideright
     player relieved "Phew... That was a long day."
 
     # dinner
@@ -120,7 +120,7 @@ label day_end:
     renpy.random.random() < 0.05:
         call ending_tutor from _call_ending_tutor
 
-    scene bg bedroom night with blinds
+    scene bg bedroom with blinds
     player happy "Delicious home-cooked dinner as always."
 
     if has_met_layla and not has_triggered_ending_today and \
@@ -205,7 +205,7 @@ label day_end_interview:
     player happy "Thanks, I will. It's awesome to know that you two have my back!"
     dad "Any time, pumpkin."
 
-    scene bg bedroom night with blinds
+    scene bg bedroom with blinds
     player relieved "Phew... What a day. I can't wait to go catch some zzzz's already..."
     play sound 'audio/sfx/social_media_notification.wav'
     show smartphone at truecenter

@@ -84,8 +84,8 @@ init python:
         if file.startswith('images/bg'):
             image_path = re.sub(r'images/', '', file) # remove the `images/` prefix
             image_name = re.match(r'images/bg/(.+).png', file, re.I).group(1) # ex. images/bg/(bg living_room).png
-            # renpy.image(image_name + ' night', im.MatrixColor(image_path, tint_dark))
-            # renpy.image(image_name + ' dusk', im.MatrixColor(image_path, tint_sunset))
+            renpy.image(image_name + ' night', im.MatrixColor(image_path, tint_dark))
+            renpy.image(image_name + ' dusk', im.MatrixColor(image_path, tint_sunset))
         # npc sprites
         if file.startswith('images/chara/npc'):
             image_path = re.sub(r'images/', '', file) # remove the `images/` prefix

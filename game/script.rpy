@@ -188,8 +188,7 @@ label stage1:
 label stage2:
     # Stage 2. player's decision to learn to code
     # player returns home
-    # scene bg living_room night with slideright
-    scene bg living_room with slideright
+    scene bg living_room night with slideright
 
     player laugh "I'm home!"
     mom "Hey sweetie. Welcome back!"
@@ -210,8 +209,7 @@ label stage2:
     player "Thanks mom! You are the best!"
 
     # dinner scene
-    # scene bg kitchen night with blinds
-    scene bg kitchen with blinds
+    scene bg kitchen night with blinds
     play sound 'audio/sfx/dining_ambient.wav'
     $ show_random_dinner_image()
     dad "So here's the best part about my day..."
@@ -219,7 +217,6 @@ label stage2:
     mom "What plans do we have for the weekend?"
     player "I'm up for anything!"
 
-    # scene bg bedroom night with blinds
     scene bg bedroom with blinds
     player happy "That was an awesome dinner... I'm stuffed. Mom's the best cook I know."
 
@@ -344,7 +341,6 @@ label stage2_stats_change:
 
     play sound 'audio/sfx/wake_up_noise.mp3'
     pause 2.0    
-    # scene bg bedroom night with eyeopen
     scene bg bedroom with eyeopen
     player worry "... I can't sleep with all these thoughts floating around in my head."
     player "What can I do if the kid I'm tutoring cuts down our sessions for his coding classes?"
@@ -456,12 +452,10 @@ label stage4:
     $ add_achievement(plot_barista_discover)
 
     # player goes back home
-    # scene bg bedroom night with fadehold
     scene bg bedroom with fadehold
     player relieved "Phew... It's been a long day at work."
 
-    # scene bg laptop_screen night with dissolve
-    scene bg laptop_screen with dissolve
+    scene bg laptop_screen night with dissolve
     player neutral "Let's check out the awesome resource that Annika was talking about."
 
     menu stage4_guess_name:
@@ -589,8 +583,7 @@ label stage5:
             jump stage5_annika
 
 label stage5_cookie:
-    # scene bg kitchen night with blinds
-    scene bg kitchen with blinds
+    scene bg kitchen night with blinds
     mom "Hey honey, taking a break from all the studying?"
     mom "Your dad and I are really glad that you're continuing to learn new things after college, but don't push yourself too hard, okay?"
     player happy "Haha thanks Mom. I'm doing just fine."
@@ -598,7 +591,6 @@ label stage5_cookie:
     mom "Alright, know that we are always here if you'd like to talk or anything."
     player "I will. Thanks Mom."
 
-    # scene bg bedroom night with blinds
     scene bg bedroom with blinds
     show cookie at truecenter
     pause 0.2
@@ -693,8 +685,7 @@ label stage5_annika:
 
     player neutral "I don't see too many people in the cafe today. Maybe because it's a work day?"
 
-    # scene bg cafe dusk with fadehold
-    scene bg cafe with fadehold
+    scene bg cafe dusk with fadehold
     play sound 'audio/sfx/cafe_pour.wav'
     show coffee at truecenter
     pause 5
@@ -706,7 +697,6 @@ label stage6:
     # Stage 6. Trials
     call screen text_over_black_bg_screen(_("{i}Chapter 3: Let's hit the books!{/i}"))
 
-    # scene bg bedroom dusk with fade
     scene bg bedroom with fade
     player smile "I'm finally home! Let's head over to [developerquiz] and try out some quiz questions."
     scene bg laptop_screen with dissolve
@@ -726,7 +716,6 @@ label stage6:
 
     $ add_achievement(milestone_start_curriculum)
 
-    # scene bg bedroom night with dissolve
     scene bg bedroom with dissolve
     player neutral "Phew... I'm finally done with these questions. What a day..."
     player pout "I think I did okay, but I do feel tired after a long day at work."
@@ -785,7 +774,6 @@ label stage6:
     player "Let's alternate between working whole-day shifts and spending whole days studying."
     player "I can call Annika this afternoon when she's done with her work. It'll be good to chat and ask her about things."
 
-    # scene bg bedroom dusk with fadehold
     scene bg bedroom with fadehold
 
     show smartphone at truecenter
@@ -863,8 +851,7 @@ label stage6_after_annika_questions:
     player laugh "Coming!"
 
     # dinner scene
-    # scene bg kitchen night with blinds
-    scene bg kitchen with blinds
+    scene bg kitchen night with blinds
     play sound 'audio/sfx/dining_ambient.wav'
     $ show_random_dinner_image()
     mom "Hey honey, how do you like working as a barista? You don't have to go if it distracts too much from your studies, you know."
@@ -878,10 +865,8 @@ label stage6_after_annika_questions:
     with vpunch
     player laugh "... I'm gonna work hard just like she did!"
     dad "That's the spirit!"
-    # scene bg kitchen night with fadehold
-    scene bg kitchen with fadehold
+    scene bg kitchen night with fadehold
 
-    # scene bg bedroom night with blinds
     scene bg bedroom with blinds
     player pout "Yawwwwwn... What a day. My brain certainly enjoyed a great workout today."
     player "I can barely keep my eyes open. Let's call it a day."
@@ -952,8 +937,7 @@ label stage6_after_annika_questions:
     college_girl "..."
     female "I've worked in recruiting, so I'll let you in on some interviewer secrets..."
 
-    # scene bg hacker_space dusk with fadehold
-    scene bg hacker_space with fadehold
+    scene bg hacker_space dusk with fadehold
     show annika
     annika "What do you think about this place, [player_name]?"
     player laugh "It's amazing!"
@@ -966,7 +950,6 @@ label stage6_after_annika_questions:
 
     $ add_achievement(plot_hackerspace_discover)
 
-    # scene bg bedroom night with slideright
     scene bg bedroom with slideright
     player smile "Wow. I'm amazed. Hacker Space sure is a cool place. I'll have to check it out on my own someday."
     player "Now let's call it a day and get some rest."
@@ -1081,7 +1064,6 @@ label stage7:
             show marco laugh
             marco "Any time, [player_name]. Have fun coding and keep me updated on your progress!"
 
-    # scene bg bedroom night with slideright
     scene bg bedroom with slideright
     player smile "Marco was certainly a cool guy. I'm so lucky to have him as my mentor."
     player "Now if I have questions about anything, I can either talk to Annika or Marco."
@@ -1236,7 +1218,6 @@ label stage7:
 
     call save_reminder from _call_save_reminder_11
 
-    # scene bg bedroom night with slideright
     scene bg bedroom with slideright
     player relieved "I feel like I've learned so much about the coding interview process from Annika today."
     player laugh "So much that I can't wait to wrap up my curriculum and jump in to see what a real coding interview is like!"
@@ -1305,7 +1286,6 @@ label stage8:
 
     $ add_achievement(milestone_start_interview_prep)
 
-    # scene bg bedroom night with fadehold
     scene bg bedroom with fadehold
     player relieved "Whew... Those questions are harder than CS fundamental questions. Guess I need to put in more studying."
     player smile "But this is still a good start!"
@@ -1769,8 +1749,7 @@ label v2_start:
     player "Thanks!"
 
     "Later that day..."
-    # scene bg living_room night with fadehold
-    scene bg living_room with fadehold
+    scene bg living_room night with fadehold
     mint "Meow!"
     player "Hi Mint! You'll never believe the day I just had. The office was huge!"
     player "I met tons of people, and everyone was really nice."
@@ -1904,8 +1883,7 @@ label v2_start:
             call work_session
 
             # after work, call random work events
-            # scene bg living_room night with slideright
-            scene bg living_room with fadehold
+            scene bg living_room night with slideright
             player "Finally home!"
             scene bg bedroom with blinds
             call v2_activity_choices

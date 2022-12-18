@@ -547,7 +547,7 @@ label v2_thick:
             goro "Regardless, I don't want you in that huge building on your own. We don't have any security on our floor, and there could be weirdos walking around."
             player "Okay. I'll start on my way back."
 
-            scene bg bedroom night with fadehold
+            scene bg bedroom with fadehold
             goro "So I think I'm seeing what the problem is."
             goro "I thought the function the last ticket added was just breaking one component?"
             player "Nope. Each time I make a change to it to fix one component, another one breaks."

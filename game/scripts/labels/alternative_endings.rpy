@@ -110,7 +110,7 @@ label ending_cat:
     $ has_triggered_ending_today = True
 
     scene black
-    scene bg bedroom night with eyeopen
+    scene bg bedroom with eyeopen
     play sound 'audio/sfx/keyboard_typing.wav'
     player relieved "Yawwwn...."
     player worry "I heard some strange noises coming from under my bed. Maybe Mint is hungry and woke up?"
@@ -233,7 +233,7 @@ label ending_cat:
         message=alternative_endind_message
         )
     jump second_chance
-    scene bg bedroom night with dissolve
+    scene bg bedroom with dissolve
     
     return
 
@@ -370,7 +370,7 @@ label ending_office:
     $ has_triggered_ending_office = True
     $ has_triggered_ending_today = True
 
-    scene bg bedroom night with dissolve
+    scene bg bedroom with dissolve
     play sound 'audio/sfx/social_media_notification.wav'
     show smartphone at truecenter
     player surprised "Hmm... A notification from my phone?"
