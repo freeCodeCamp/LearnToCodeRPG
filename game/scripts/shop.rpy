@@ -17,7 +17,6 @@ init python:
             tag_priority: bigger number means the item will be displayed with priority
             '''
             super().__init__(name, image, description, price, stats_change)
-            self.image_room_display = 'room ' + self.image
             self.tag = tag
             self.tag_priority = tag_priority
 
@@ -124,7 +123,6 @@ screen shop_screen(shop_items):
 
 # inventory for food
 screen inventory_screen():
-
     # no need for vpgrid because it's already inside a viewport
     grid 4 len(player_stats.food_inventory):
         xspacing 10

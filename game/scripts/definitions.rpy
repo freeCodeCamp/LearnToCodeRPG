@@ -524,6 +524,68 @@ init:
 
         attribute_function Picker(mala_expressions)
 
+    # TODO: refactor
+    image bg bedroom = LiveComposite(
+        (1920, 1080), # size of displayable
+        (0, 0), 'bg bedroom_empty',
+
+        # decorations
+        (0, 0), ConditionSwitch(
+            "'plant' in player_stats.room_display_tagless", 'room plant',
+            True, Null()
+            ),
+        (0, 0), ConditionSwitch(
+            "'poster1' in player_stats.room_display_tagless", 'room poster1',
+            True, Null()
+            ),
+        (0, 0), ConditionSwitch(
+            "'poster2' in player_stats.room_display_tagless", 'room poster2',
+            True, Null()
+            ),
+        (0, 0), ConditionSwitch(
+            "'poster3' in player_stats.room_display_tagless", 'room poster3',
+            True, Null()
+            ),
+        (0, 0), ConditionSwitch(
+            "'cat_lamp' in player_stats.room_display_tagless", 'room cat_lamp',
+            True, Null()
+            ),
+        (0, 0), ConditionSwitch(
+            "'cat_bed' in player_stats.room_display_tagless", 'room cat_bed',
+            True, Null()
+            ),
+
+        # desk
+        (0, 0), ConditionSwitch(
+            "player_stats.room_display_tagged[DESK].image == 'desk'", 'room desk',
+            "player_stats.room_display_tagged[DESK].image == 'desk_nice'", 'room desk_nice',
+            ),
+
+        # PC needs to be above the desk
+        (0, 0), ConditionSwitch(
+            "player_stats.room_display_tagged[PC].image == 'pc_old'", 'room pc_old',
+            "player_stats.room_display_tagged[PC].image == 'pc_used'", 'room pc_used',
+            "player_stats.room_display_tagged[PC].image == 'pc_student'", 'room pc_student',
+            "player_stats.room_display_tagged[PC].image == 'pc_custom'", 'room pc_custom',
+            ),
+
+        # chair might be hiding the PC
+        (0, 0), ConditionSwitch(
+            "player_stats.room_display_tagged[CHAIR].image == 'chair_wooden'", 'room chair_wooden',
+            "player_stats.room_display_tagged[CHAIR].image == 'chair_second_hand'", 'room chair_second_hand',
+            "player_stats.room_display_tagged[CHAIR].image == 'chair_nice'", 'room chair_nice',
+            "player_stats.room_display_tagged[CHAIR].image == 'chair_fancy'", 'room chair_fancy',
+            ),
+
+        # router needs to be above the desk
+        (0, 0), ConditionSwitch(
+            "player_stats.room_display_tagged[ROUTER].image == 'hotspot'", 'room hotspot',
+            "player_stats.room_display_tagged[ROUTER].image == 'router_simple'", 'room router_simple',
+            "player_stats.room_display_tagged[ROUTER].image == 'router_nice'", 'room router_nice',
+            "player_stats.room_display_tagged[ROUTER].image == 'router_fancy'", 'room router_fancy',
+            ),
+        )
+
 ## translation styles
 # https://www.renpy.org/doc/html/gui.html#translation-and-gui-variables
 translate simplified_chinese python:

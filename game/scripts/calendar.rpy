@@ -24,7 +24,6 @@ init python:
         def is_weekday(self):
             return self.date.weekday() < 5 # 5 Sat, 6 Sun
 
-default calendar_enabled = True # similar to quick_menu boolean
 # this screen should always show
 screen calendar_screen():
     ## Ensure this appears on top of other screens like quick_menu and player_stats

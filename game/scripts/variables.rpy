@@ -2,8 +2,13 @@
 # run last
 init 998:
     default player_name = ''
+    default player_stats = PlayerStats()
+    default todo_list = ToDoList()
+    default calendar = Calendar()
+    # start_date will be used to calculate how many days it took for the player to learn to code
+    default start_date = calendar.date
     
-
+    default calendar_enabled = False
     default stats_unlocked = False
     default todo_unlocked = False
     default items_unlocked = False

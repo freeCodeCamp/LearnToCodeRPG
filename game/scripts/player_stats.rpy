@@ -48,13 +48,13 @@ init python:
 
             # tag: item
             self.room_display_tagged = {
-                DESK: RoomItem('Simple desk', 'desk', '', 0),
-                CHAIR: RoomItem('Wooden chair', 'chair_wooden', '', 0),
-                ROUTER: RoomItem('Hotspot', 'hotspot', '', 0),
-                PC: RoomItem('Old computer', 'pc_old', '', 0)
+                DESK: RoomItem('Simple desk', 'desk', '', 0, DESK, 1),
+                CHAIR: RoomItem('Wooden chair', 'chair_wooden', '', 0, CHAIR, 1),
+                ROUTER: RoomItem('Hotspot', 'hotspot', '', 0, ROUTER, 1),
+                PC: RoomItem('Old computer', 'pc_old', '', 0, PC, 1)
             }
 
-            self.room_display_tagless = []
+            self.room_display_tagless = set()
 
         def set_stats(self, stats_name, val):
             if stats_name == MONEY:
@@ -151,26 +151,25 @@ init python:
             self.player_stats_map[MONEY] -= item.price
             if isinstance(item, RoomItem):
                 self.room_inventory.add(item.name)
-                # TODO: add stats_change here
+                # TODO: add stats_change here for room items
 
                 # check whether it's tagged
                 if not item.tag:
-                    self.room_display_tagless.append(item.tag)
+                    self.room_display_tagless.add(item.image)
                 else:
-                    old_priority = self.room_display_tagged[item.tag]
+                    old_priority = self.room_display_tagged[item.tag].tag_priority
                     if item.tag_priority > old_priority:
                         self.room_display_tagged[item.tag] = item # display this item
 
-                # TODO: redraw bg bedroom
             else:
                 self.food_inventory[item.name] += 1
 
         def use_item(self, item):
             if item.name in self.food_inventory:
                 self.food_inventory[item.name] -= 1
-            # change stats
-            for stats_name in item.stats_change:
-                self.change_stats(stats_name, item.stats_change[stats_name])
+                # change stats
+                for stats_name in item.stats_change:
+                    self.change_stats(stats_name, item.stats_change[stats_name])
 
     class ToDoList():
         def __init__(self):

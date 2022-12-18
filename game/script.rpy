@@ -1,13 +1,7 @@
 label start:
-    $ calendar_enabled = False
-    default player_stats = PlayerStats()
-    default todo_list = ToDoList()
-    default calendar = Calendar() # story starts on Aug 1st, 2021
-    default start_date = calendar.date # this will be used to calculate how many days it took for the player to learn to code
-
     $ persistent.has_started_game = True
 
-    # DEBUG
+    scene main_menu sepia with dissolve
     menu:
         "Would you like to start in v1 or v2?"
         "v1":
@@ -1710,7 +1704,7 @@ label v2_start:
     player "So I went back to applying for jobs. Fortunately, I landed on this new job pretty quickly and my start date is today."
 
     scene bg company1_reception with fadehold
-    player surprise "So this is ConsultMe! Wow... It's enormous."
+    player surprised "So this is ConsultMe! Wow... It's enormous."
     player "I put in the work, to become a developer, and today, it's real... "
     player "I'm going to keep working hard, and keep learning! Doing that is what got me here, so if I keep that up, I should be okay!"
     
@@ -1726,9 +1720,9 @@ label v2_start:
     pause 2.0
     scene bg company1_boardroom with blinds
     pause 2.0
-    scene bg bg company1_breakroom with blinds
+    scene bg company1_breakroom with blinds
     pause 2.0
-    scene bg bg company1_dining with blinds
+    scene bg company1_dining with blinds
 
     "You're taken all around the ConsultMe office. There are lots of snacks in the lunch area, and even a gym downstairs!"
     "There are dozens and dozens of meeting rooms, all named following the theme of different countries of the world."
@@ -1913,7 +1907,7 @@ label v2_start:
             # scene bg living_room night with slideright
             scene bg living_room with fadehold
             player "Finally home!"
-            scene bg bedroom night with blinds
+            scene bg bedroom with blinds
             call v2_activity_choices
         else:
             # weekend, stay home
