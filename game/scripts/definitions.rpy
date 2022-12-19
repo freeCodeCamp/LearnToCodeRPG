@@ -388,14 +388,68 @@ init:
     'neutral eyes_blink brows_1 mouth_1',
     'smile eyes_blink brows_1 mouth_2',
     'laugh eyes_laugh brows_1 mouth_3',
-    'question eyes_blink brows_2 mouth_1',
+    'confused eyes_blink brows_2 mouth_1',
     ]
 
     define darius_expressions = [
     'neutral eyes_blink brows_1 mouth_1',
     'smile eyes_blink brows_1 mouth_2',
     'laugh eyes_laugh brows_1 mouth_2',
-    'sad eyes_blink bro'
+    'sad eyes_blink brows_2 mouth_3',
+    'fearful eyes_blink brows_2 mouth_5',
+    'confused eyes_blink brows_3 mouth_4'
+    ]
+
+    define josephine_expressions = [
+    'neutral eyes_blink brows_1 mouth_1',
+    'smile eyes_blink brows_1 mouth_2',
+    'sad eyes_blink brows_2 mouth_1',
+    'fearful eyes_blink brows_2 mouth_3',
+    'confused eyes_blink brows_3 mouth_1',
+    ]
+
+    define maria_expressions = [
+    'neutral eyes_blink brows_1 mouth_1',
+    'smile eyes_blink brows_1 mouth_2',
+    'sad eyes_blink brows_2 mouth_1',
+    'fearful eyes_blink brows_2 mouth_4',
+    'laugh eyes_laugh brows_1 mouth_3'
+    ]
+
+    define oliver_expressions = [
+    'neutral eyes_blink brows mouth_1',
+    'smile eyes_blink brows mouth_2',
+    'laugh eyes_blink brows mouth_3'
+    ]
+
+    define raj_expressions = [
+    'neutral eyes_blink brows_1 mouth_1',
+    'smile eyes_blink brows_1 mouth_2',
+    'sad eyes_blink brows_3 mouth_1',
+    'angry eyes_blink brows_2 mouth_3',
+    'laugh eyes_blink brows_1 mouth_4',
+    'confused eyes_blink brows_4 mouth_1'
+    ]
+
+    define rishi_expressions = [
+    'neutral eyes_blink brows_1 mouth_1',
+    'smile eyes_blink brows_1 mouth_2',
+    'confused eyes_blink brows_4 mouth_1',
+    'disgust eyes_blink brows_3 mouth_3'
+    ]
+
+    define rohit_expressions = [
+    'neutral eyes_blink brows_1 mouth_1',
+    'smile eyes_blink brows_1 mouth_2',
+    'angry eyes_blink brows_2 mouth_1'
+    ]
+
+    define suits_expressions = [
+    'neutral eyes_blink brows_1 mouth_1',
+    'smile eyes_blink brows_1 mouth_2',
+    'angry eyes_blink brows_2 mouth_1',
+    'disgust eyes_blink brows_2 mouth_3',
+    'confused eyes_blink brows_3 mouth_1'
     ]
 
     # more blink
@@ -508,6 +562,8 @@ init:
             attribute disgust null
             attribute laugh null
 
+        attribute sweat
+
         attribute_function Picker(goro_expressions)
 
     layeredimage iris:
@@ -524,6 +580,8 @@ init:
             attribute disgust null
             attribute confused null
 
+        attribute sweat
+
         attribute_function Picker(iris_expressions)
 
     layeredimage mala:
@@ -539,8 +597,173 @@ init:
             attribute angry null
             attribute laugh null
 
+        attribute sweat
+
         attribute_function Picker(mala_expressions)
 
+    layeredimage adaku:
+        always "adaku_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute laugh null
+            attribute confused null
+
+        attribute sweat
+
+        attribute_function Picker(adaku_expressions)
+
+    layeredimage darius:
+        always "darius_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute laugh null
+            attribute sad null
+            attribute fearful null
+            attribute confused null
+
+        attribute glasses default
+        attribute sweat
+
+        attribute_function Picker(darius_expressions)
+
+    layeredimage josephine:
+        always "josephine_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute sad null
+            attribute fearful null
+            attribute confused null
+
+        attribute sweat
+        attribute blush
+
+        attribute_function Picker(josephine_expressions)
+
+    layeredimage maria:
+        always "maria_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute sad null
+            attribute fearful null
+            attribute laugh null
+
+        attribute glasses default
+        attribute sweat
+
+        attribute_function Picker(maria_expressions)
+
+    layeredimage oliver:
+        always "oliver_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute laugh null
+
+        attribute sweat
+
+        attribute_function Picker(oliver_expressions)
+
+    layeredimage raj:
+        always "raj_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute sad null
+            attribute angry null
+            attribute laugh null
+            attribute confused null
+
+        attribute sweat
+
+        attribute_function Picker(raj_expressions)
+
+    layeredimage rishi:
+        always "rishi_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute confused null
+            attribute disgust null
+
+        attribute sweat
+
+        attribute_function Picker(rishi_expressions)
+
+    layeredimage rohit:
+        always "adaku_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute angry null
+
+        attribute sweat
+        attribute blush
+
+        attribute_function Picker(rohit_expressions)
+
+    layeredimage suits:
+        always "suits_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute angry null
+            attribute disgust null
+            attribute confused null
+
+        attribute sweat
+
+        attribute_function Picker(suits_expressions)
+
+    # player's bedroom
     # TODO: refactor
     image bg bedroom = LiveComposite(
         (1920, 1080), # size of displayable
@@ -576,6 +799,7 @@ init:
         (0, 0), ConditionSwitch(
             "player_stats.room_display_tagged[DESK].image == 'desk'", 'room desk',
             "player_stats.room_display_tagged[DESK].image == 'desk_nice'", 'room desk_nice',
+            True, Null()
             ),
 
         # PC needs to be above the desk
@@ -584,6 +808,7 @@ init:
             "player_stats.room_display_tagged[PC].image == 'pc_used'", 'room pc_used',
             "player_stats.room_display_tagged[PC].image == 'pc_student'", 'room pc_student',
             "player_stats.room_display_tagged[PC].image == 'pc_custom'", 'room pc_custom',
+            True, Null()
             ),
 
         # chair might be hiding the PC
@@ -592,6 +817,7 @@ init:
             "player_stats.room_display_tagged[CHAIR].image == 'chair_second_hand'", 'room chair_second_hand',
             "player_stats.room_display_tagged[CHAIR].image == 'chair_nice'", 'room chair_nice',
             "player_stats.room_display_tagged[CHAIR].image == 'chair_fancy'", 'room chair_fancy',
+            True, Null()
             ),
 
         # router needs to be above the desk
@@ -600,6 +826,7 @@ init:
             "player_stats.room_display_tagged[ROUTER].image == 'router_simple'", 'room router_simple',
             "player_stats.room_display_tagged[ROUTER].image == 'router_nice'", 'room router_nice',
             "player_stats.room_display_tagged[ROUTER].image == 'router_fancy'", 'room router_fancy',
+            True, Null()
             ),
         )
 
