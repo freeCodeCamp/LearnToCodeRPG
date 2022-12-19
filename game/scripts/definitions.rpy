@@ -100,6 +100,38 @@ init python:
             renpy.image(image_name + ' blue flipped', im.MatrixColor(im.Flip(image_path, horizontal=True), tint_blue))
             renpy.image(image_name + ' purple flipped', im.MatrixColor(im.Flip(image_path, horizontal=True), tint_purple))
 
+    # blink
+    charas = [
+    'player',
+    'annika',
+    'layla',
+    'marco',
+    'goro',
+    'iris',
+    'mala',
+    'adaku',
+    'darius',
+    'josephine',
+    'maria',
+    'oliver',
+    'raj',
+    'rishi',
+    'rohit',
+    'suits'
+    ]
+    '''
+    image player_eyes_blink = DynamicBlink(
+        "images/chara/player/player_eyes_open.png",
+        "images/chara/player/player_eyes_closed.png"
+        )
+    '''
+    for chara in charas:
+        renpy.image(chara + '_eyes_blink', DynamicBlink(
+            f"images/chara/{chara}/{chara}_eyes_open.png",
+            f"images/chara/{chara}/{chara}_eyes_closed.png"
+            )
+        )
+
     ## font replacement
     # font file, boldness, italics
     config.font_replacement_map["fonts/lato/Lato-Regular.ttf", True, False] = ("fonts/lato/Lato-Bold.ttf", False, False)
@@ -159,16 +191,22 @@ init:
     define marco = Character(_("Marco"), image='marco')
     define layla = Character(_("Layla"), image='layla')
     # v2 characters
-    define receptionist = Character(_("Receptionist"))
-    define maria = Character(_("Maria"))
-    define iris = Character(_("Iris"))
-    define goro = Character(_("Goro"))
-    define oliver = Character(_("Oliver"))
-    define mala = Character(_("Mala"))
+    define receptionist = Character(_("Receptionist"), image='maria')
+    define maria = Character(_("Maria"), image='maria')
+    define iris = Character(_("Iris"), image='iris')
+    define goro = Character(_("Goro"), image='goro')
+    define oliver = Character(_("Oliver"), image='oliver')
+    define mala = Character(_("Mala"), image='mala')
     define mike = Character(_("Mike"))
     define motormouth_mike = Character(_("Motormouth Mike"))
-    define darius = Character(_("Darius"))
+    define darius = Character(_("Darius"), image='darius')
     define greg = Character(_("Greg"))
+    define adaku = Character(_('Adaku'), image='adaku')
+    define josephine = Character(_('Josephine'), image='josephine')
+    define raj = Character(_('Raj'), image='raj')
+    define rishi = Character(_('Rishi'), image='rishi')
+    define rohit = Character(_('Rohit'), image='rohit')
+    define suits = Character(_('Suits'), image='suits')
 
     # minor characters
     define kid = Character(_("High School Kid"))
@@ -346,50 +384,29 @@ init:
     "laugh eyes_blink brows_1 mouth_3",
     ]
 
-    # blink
-    image player_eyes_blink = DynamicBlink(
-        "images/chara/player/player_eyes_open.png",
-        "images/chara/player/player_eyes_closed.png"
-        )
+    define adaku_expressions = [
+    'neutral eyes_blink brows_1 mouth_1',
+    'smile eyes_blink brows_1 mouth_2',
+    'laugh eyes_laugh brows_1 mouth_3',
+    'question eyes_blink brows_2 mouth_1',
+    ]
 
-    image annika_eyes_blink = DynamicBlink(
-        "images/chara/annika/annika_eyes_open.png",
-        "images/chara/annika/annika_eyes_closed.png"
-        )
+    define darius_expressions = [
+    'neutral eyes_blink brows_1 mouth_1',
+    'smile eyes_blink brows_1 mouth_2',
+    'laugh eyes_laugh brows_1 mouth_2',
+    'sad eyes_blink bro'
+    ]
 
-    image layla_eyes_blink = DynamicBlink(
-        "images/chara/layla/layla_eyes_open.png",
-        "images/chara/layla/layla_eyes_closed.png"
-        )
-
-    image marco_eyes_blink = DynamicBlink(
-        "images/chara/marco/marco_eyes_open.png",
-        "images/chara/marco/marco_eyes_closed.png"
-        )
-
-    image goro_eyes_blink = DynamicBlink(
-        "images/chara/goro/goro_eyes_open.png",
-        "images/chara/goro/goro_eyes_closed.png"
-        )
-
+    # more blink
     image goro_eyes_narrowblink = DynamicBlink(
         "images/chara/goro/goro_eyes_narrow.png",
         "images/chara/goro/goro_eyes_closed.png"
         )
 
-    image iris_eyes_blink = DynamicBlink(
-        "images/chara/iris/iris_eyes_open.png",
-        "images/chara/iris/iris_eyes_closed.png"
-        )
-
     image iris_eyes_narrowblink = DynamicBlink(
         "images/chara/iris/iris_eyes_narrow.png",
         "images/chara/iris/iris_eyes_closed.png"
-        )
-
-    image mala_eyes_blink = DynamicBlink(
-        "images/chara/mala/mala_eyes_open.png",
-        "images/chara/mala/mala_eyes_closed.png"
         )
 
     # layered character sprites
