@@ -21,12 +21,12 @@ init python:
             self.tag_priority = tag_priority
 
     food_items = [
-        Item('Water', 'water', 'Increase Sanity by 5', 10, { SANITY: 5 }),
-        Item('Soda', 'soda', 'Increase Sanity by 10', 20, { SANITY: 10 }),
-        Item('Beans', 'beans', 'Increase Sanity by 15', 30, { SANITY: 15 }),
-        Item('Chocolate', 'chocolate', 'Increase Sanity by 25', 50, { SANITY: 25 }),
-        Item('Pizza', 'whole_pizza', 'Increase Sanity by 50', 100, { SANITY: 50 }),
-        Item('Sushi', 'sushi', 'Increase Sanity by 100', 300, { SANITY: 100 }),
+        Item('Water', 'water', 'Increase Energy by 5', 10, { ENERGY: 5 }),
+        Item('Soda', 'soda', 'Increase Energy by 10', 20, { ENERGY: 10 }),
+        Item('Beans', 'beans', 'Increase Energy by 15', 30, { ENERGY: 15 }),
+        Item('Chocolate', 'chocolate', 'Increase Energy by 25', 50, { ENERGY: 25 }),
+        Item('Pizza', 'whole_pizza', 'Increase Energy by 50', 100, { ENERGY: 50 }),
+        Item('Sushi', 'sushi', 'Increase Energy by 100', 300, { ENERGY: 100 }),
     ]
 
     home_shop_items = food_items + [

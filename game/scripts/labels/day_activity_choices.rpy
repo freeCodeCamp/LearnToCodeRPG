@@ -1,9 +1,9 @@
-label low_sanity:
-    $ renpy.notify(_('Your sanity is dropping dangerously low. Why not take some time to relax and recharge?'))
-    $ num_times_sanity_low += 1
+label low_energy:
+    $ renpy.notify(_('Your energy is dropping dangerously low. Why not take some time to relax and recharge?'))
+    $ num_times_energy_low += 1
 
     if has_met_layla and not has_triggered_ending_farmer and \
-    num_times_sanity_low > 5 and renpy.random.random() < 0.05:
+    num_times_energy_low > 5 and renpy.random.random() < 0.05:
         call ending_farmer from _call_ending_farmer
     else:
         call day_activity_relax from _call_day_activity_relax
@@ -16,9 +16,9 @@ label day_activity_choices:
     $ has_triggered_ending_today = False
     # this label should end up jumping to day_end
 
-    # if the player has low sanity, jump directly to one of the relaxing choices
-    if player_stats.is_sanity_low():
-        call low_sanity
+    # if the player has low energy, jump directly to one of the relaxing choices
+    if player_stats.is_energy_low():
+        call low_energy
         return # return to script.rpy
 
     player smile "What should we do for the day?"
@@ -47,7 +47,7 @@ label day_activity_choices:
                     ])
                 renpy.say(player, text)
 
-            $ player_stats.change_stats_random(SANITY, -20, -10)
+            $ player_stats.change_stats_random(ENERGY, -20, -10)
 
             if num_correct == 4:
                 player @ laugh "I got all questions right! Way to go!"
@@ -70,7 +70,7 @@ label day_activity_choices:
                     $ add_achievement(plot_quiz_none)
 
         "Work gig as a barista":
-            # this choice unlocks interesting tech rumors and recovers a bit of sanity
+            # this choice unlocks interesting tech rumors and recovers a bit of energy
             $ day_activity = BARISTA
             player "I can work some shifts to cover my bills. Plus, I get to interact with people and take my mind off cramming for a bit."
             call day_activity_barista from _call_day_activity_barista
@@ -137,10 +137,10 @@ label study_session_choose_topic:
     return
             
 label day_activity_relax:
-    # this choice boosts sanity
+    # this choice boosts energy
     player neutral "Hmmm... Actually, instead of doing something, I feel like I could use some rest today."
-    # if player_stats.is_sanity_low():
-    #     "(Whoa! {sc}Slow down, tiger.{/sc} We know you are excited about beefing up your {b}CS Knowledge{/b}, but it's important not to deplete your {b}Sanity{/b}. Why not take some time to recharge?)"
+    # if player_stats.is_energy_low():
+    #     "(Whoa! {sc}Slow down, tiger.{/sc} We know you are excited about beefing up your {b}CS Knowledge{/b}, but it's important not to deplete your {b}Energy{/b}. Why not take some time to recharge?)"
     # player pout "...But I have so much work to do..."
     show mint
     mint "Meow~"
@@ -165,7 +165,7 @@ label day_activity_relax:
             if not plot_music_discover in persistent.achievements:
                 $ add_achievement(plot_music_discover)
 
-    $ player_stats.change_stats_random(SANITY, 5, 20)
+    $ player_stats.change_stats_random(ENERGY, 5, 20)
     # all relaxing activities converge to the end of the day
     return
 
@@ -194,8 +194,8 @@ label day_activity_hacker_space:
     scene bg hacker_space dusk with fadehold
     player @ surprised "Wow, it's already getting dark? Today's been quite an eventful day."
     player "Somehow I feel quite relaxed in this coder-centric atmosphere."
-    # bump sanity for a little bit
-    $ player_stats.change_stats(SANITY, 5)
+    # bump energy for a little bit
+    $ player_stats.change_stats(ENERGY, 5)
     player "Let's head home now."
     return
 
@@ -246,7 +246,7 @@ label day_activity_barista:
 
     player @ relieved "My shift is almost over now."
     player "Serving coffee is no easy work, but somehow I feel refreshed from meeting and greeting people."
-    $ player_stats.change_stats(SANITY, 5)
+    $ player_stats.change_stats(ENERGY, 5)
 
     if has_met_layla and not has_triggered_ending_barista and renpy.random.random() < 0.05:
         call ending_barista from _call_ending_barista
@@ -400,15 +400,15 @@ label day_activity_interview:
     $ renpy.hide(interviewer_sprite)
 
     player relieved "(... Was that everything? Kudos to me for surviving...)"
-    $ player_stats.change_stats_random(SANITY, -20, -10)
+    $ player_stats.change_stats_random(ENERGY, -20, -10)
     player "That was as intense as I expected. I hope I did well with all my preparations."
     player "I can't wait to go home and just relax now..."
     return
 
 # v2 day activities
 label v2_activity_choices:
-    if player_stats.is_sanity_low():
-        call low_sanity
+    if player_stats.is_energy_low():
+        call low_energy
         return # return to script.rpy
 
     player smile "Now that I finally have some free time. What should I do?"

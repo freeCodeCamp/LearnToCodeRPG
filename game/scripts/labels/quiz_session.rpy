@@ -233,6 +233,6 @@ label work_session_questions:
     $ timeout_label = None
 
     player @ relieved "Phew... That was a long session."
-    $ player_stats.change_stats_random(SANITY, -20, -10)
+    $ player_stats.change_stats_random(ENERGY, -20, -10)
 
     return

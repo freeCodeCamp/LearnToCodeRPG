@@ -19,7 +19,7 @@ init 998:
     default has_triggered_ending_tutor = False
     default has_triggered_ending_office = False
 
-    default num_times_sanity_low = 0
+    default num_times_energy_low = 0
     default has_triggered_ending_farmer = False
 
     default has_triggered_ending_today = False
@@ -417,7 +417,7 @@ init python:
         ending_achievement: ending_to_tweet_map
     }
 
-    # master map for easy lookup in script.rpy, sanity check len(all_tweet_map) == num of achievements
+    # master map for easy lookup in script.rpy, energy check len(all_tweet_map) == num of achievements
     all_tweet_map = {}
     for tweet_map in achievement_labels_map.values():
         all_tweet_map.update(tweet_map)

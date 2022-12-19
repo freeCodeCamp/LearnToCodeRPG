@@ -152,7 +152,7 @@ label ending_cat:
 
         "I must be dreaming. Let's go back to sleep.":
             player worry "I must be so exhausted and anxious about the coding stuff that I'm hallucinating about Mint writing code."
-            player relieved "Let's go get more sleep before my {b}Sanity{/b} hits the floor."
+            player relieved "Let's go get more sleep before my {b}Energy{/b} hits the floor."
             hide mint_with_pixel_sunglasses
             return # return control to the script that called this label
 
@@ -451,7 +451,7 @@ label ending_office:
     return
 
 label ending_farmer:
-    # this is triggered if sanity is too low
+    # this is triggered if energy is too low
     $ has_triggered_ending_farmer = True
     $ has_triggered_ending_today = True
 
@@ -481,7 +481,7 @@ label ending_farmer:
             player neutral "Alright, that was a nice joke, but an impractical one."
             player "Let's just go take a walk in the park to celebrate mother nature."
             call day_activity_park from _call_day_activity_park_2
-            $ player_stats.change_stats_random(SANITY, 5, 20)
+            $ player_stats.change_stats_random(ENERGY, 5, 20)
             return
 
     $ calendar_enabled = False

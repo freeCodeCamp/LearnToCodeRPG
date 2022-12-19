@@ -247,7 +247,7 @@ label stage2:
 
         "Ignore":
             hide smartphone
-            player relieved "Let's make this evening distraction-free for my sanity."
+            player relieved "Let's make this evening distraction-free for my mental well-being."
 
     "(Hey [player_name]. It looks like you just made your first in-game choice. That is awesome!)"
     "(You will encounter many more choices in this game later on. There are no right or wrong choices, only consequences.)"
@@ -288,27 +288,27 @@ label stage2_stats_change:
     player surprised "So Java and JavaScript are different languages?"
     $ player_stats.change_stats(CS_KNOWLEDGE, 1)
     player "Wait, which one is for web dev again?"
-    $ player_stats.change_stats(SANITY, -5)
+    $ player_stats.change_stats(ENERGY, -5)
 
     player pout "And there are print statements and print() functions. Which is for Python 2 and which is for Python 3?"
     $ player_stats.change_stats(CS_KNOWLEDGE, 1)
     player "I remember one video saying that Python 2 is outdated. Does that mean that I don't have to learn it?"
-    $ player_stats.change_stats(SANITY, -5)
+    $ player_stats.change_stats(ENERGY, -5)
 
     player "Maybe I shouldn't even bother with learning Python 3."
     $ player_stats.change_stats(CS_KNOWLEDGE, 1)
     player "Someone may just decide that Python 3 is too old-fashioned before I even get a chance to learn it."
-    $ player_stats.change_stats(SANITY, -5)
+    $ player_stats.change_stats(ENERGY, -5)
 
     player worry "Java doesn't sound like a good idea either. It's really old."
     $ player_stats.change_stats(CS_KNOWLEDGE, 1)
     player "People nowadays are so hyped about Kotlin."
-    $ player_stats.change_stats(SANITY, -5)
+    $ player_stats.change_stats(ENERGY, -5)
 
     player "JavaScript? TypeScript?"
     $ player_stats.change_stats(CS_KNOWLEDGE, 1)
     player "Are they like cousins or something?"
-    $ player_stats.change_stats(SANITY, -5)
+    $ player_stats.change_stats(ENERGY, -5)
 
     player "Maybe I can find a job posting I like and start learning their required skills."
     play sound 'audio/sfx/punch.wav'

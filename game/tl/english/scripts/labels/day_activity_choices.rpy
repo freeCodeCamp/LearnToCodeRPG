@@ -447,8 +447,8 @@ translate english day_activity_interview_ca124db8:
 translate english strings:
 
     # game/scripts/labels/day_activity_choices.rpy:8
-    old "Your sanity is dropping dangerously low. Why not take some time to relax and recharge?"
-    new "Your sanity is dropping dangerously low. Why not take some time to relax and recharge?"
+    old "Your energy is dropping dangerously low. Why not take some time to relax and recharge?"
+    new "Your energy is dropping dangerously low. Why not take some time to relax and recharge?"
 
     # game/scripts/labels/day_activity_choices.rpy:21
     old "Study CS fundamentals"

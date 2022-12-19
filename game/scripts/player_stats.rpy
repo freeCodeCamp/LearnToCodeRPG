@@ -7,8 +7,8 @@ init python:
     CHANGE_DIRECTION_DEC = 'dec'
 
     # some constants for dict keys
-    # TODO: for translation, refactor into 'sanity': _('Sanity')
-    SANITY = _('Sanity')
+    # TODO: for translation, refactor into { 'energy': _('Energy') }
+    ENERGY = _('Energy')
     CS_KNOWLEDGE = _('CS Knowledge')
     RENOWN = _('Renown')
     MONEY = _('Money')
@@ -34,7 +34,7 @@ init python:
             # map string names to stats
             # DO NOT TRANSLATE THESE TWO
             self.player_stats_map = {
-            SANITY: 100, 
+            ENERGY: 100, 
             CS_KNOWLEDGE: 0, 
             }
 
@@ -88,7 +88,7 @@ init python:
                 renpy.sound.play('audio/sfx/stats_change_boop.wav')
                 if stats_name in self.subcategory_stats_map: # skill name + the word `knowledge`
                     renpy.notify(stats_name + _(' knowledge increased by ') + val_str)
-                else: # just plain string `Sanity` or `CS Knowledge`
+                else: # just plain string `Energy` or `CS Knowledge`
                     renpy.notify(stats_name + _(' increased by ') + val_str)
             elif val < 0:
                 change_direction = CHANGE_DIRECTION_DEC                    
@@ -117,8 +117,8 @@ init python:
             val = renpy.random.randint(min_val, max_val)
             self.change_stats(stats_name, val)
 
-        def is_sanity_low(self):
-            return self.player_stats_map[SANITY] < 50
+        def is_energy_low(self):
+            return self.player_stats_map[ENERGY] < 50
 
         def compute_cs_knowledge(self):
             # total
@@ -271,11 +271,11 @@ screen player_stats_screen(changed_stats, change_direction):
             text '$' + str(val) + '  ' + get_stats_change_direction_icon(MONEY, changed_stats, change_direction)
             null width 200
 
-        # Sanity
-        $ val = player_stats.player_stats_map[SANITY]
-        text _('{icon=icon-zap} Sanity') color gui.accent_color
+        # Energy
+        $ val = player_stats.player_stats_map[ENERGY]
+        text _('{icon=icon-zap} Energy') color gui.accent_color
         bar value val range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
-        text str(val) + '  ' + get_stats_change_direction_icon(SANITY, changed_stats, change_direction)
+        text str(val) + '  ' + get_stats_change_direction_icon(ENERGY, changed_stats, change_direction)
 
         # Renown
         if RENOWN in player_stats.player_stats_map:

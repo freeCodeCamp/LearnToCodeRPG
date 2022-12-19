@@ -71,9 +71,9 @@ label v2_working_late:
                             goro "Other clients that have been waiting longer than S & L might get their projects completed late if we put all of our time and resources into one account without having meetings to work it into our schedule."
                             player "I'm sorry, I didn't think about that."
                             goro "It's okay. For now, you might want to get home. Tomorrow, just continue with the other tasks we have in the pipeline for this week."
-                            "You lose 10 renown for not discussing your decision with your team lead, and 15 sanity for a stressful 7 hours of searching the web for answers."
+                            "You lose 10 renown for not discussing your decision with your team lead, and 15 energy for a stressful 7 hours of searching the web for answers."
                             $ player_stats.change_stats(RENOWN, -10)
-                            $ player_stats.change_stats(SANITY, -15)
+                            $ player_stats.change_stats(ENERGY, -15)
 
                 "(Am I just a slow developer? If Brian could do it back then, I probably could too! I can do this.)":
                     oliver "That's the spirit! You're a great developer. I'm sure that you can get this done in no time!"
@@ -101,9 +101,9 @@ label v2_working_late:
                     goro "Other clients that have been waiting longer than S & L might get their projects completed late if we put all of our time and resources into one account without having meetings to work it into our schedule."
                     player "I'm sorry, I didn't think about that."
                     goro "It's okay. For now, you might want to get home. Tomorrow, just continue with the other tasks we have in the pipeline for this week."
-                    "You lose 10 renown for not discussing your decision with your team lead, and 15 sanity for a stressful 7 hours of searching the web for answers."
+                    "You lose 10 renown for not discussing your decision with your team lead, and 15 energy for a stressful 7 hours of searching the web for answers."
                     $ player_stats.change_stats(RENOWN, -10)
-                    $ player_stats.change_stats(SANITY, -15)
+                    $ player_stats.change_stats(ENERGY, -15)
 
         "Sure. I've been getting more comfortable in my duties here! I can probably work something out.":
             oliver "That's the spirit! You're a great developer. I'm sure that you can get this done in no time!"
@@ -129,9 +129,9 @@ label v2_working_late:
             goro "Other clients that have been waiting longer than S & L might get their projects completed late if we put all of our time and resources into one account without having meetings to work it into our schedule."
             player "I'm sorry, I didn't think about that."
             goro "It's okay. For now, you might want to get home. Tomorrow, just continue with the other tasks we have in the pipeline for this week."
-            "You lose 10 renown for not discussing your decision with your team lead, and 15 sanity for a stressful 7 hours of searching the web for answers."
+            "You lose 10 renown for not discussing your decision with your team lead, and 15 energy for a stressful 7 hours of searching the web for answers."
             $ player_stats.change_stats(RENOWN, -10)
-            $ player_stats.change_stats(SANITY, -15)
+            $ player_stats.change_stats(ENERGY, -15)
 
 label v2_help_from_friends:
     mala "*Grumble grumble*"
@@ -237,9 +237,9 @@ label v2_eta:
             player "Thanks Goro. See ya later!"
             player "..."
             player "(Sigh). Okay. Let's get started."
-            "You gain 15 renown for completing your project early! But lose 20 Sanity as a result of pushing yourself."
+            "You gain 15 renown for completing your project early! But lose 20 Energy as a result of pushing yourself."
             $ player_stats.change_stats(RENOWN, 15)
-            $ player_stats.change_stats(SANITY, -20)
+            $ player_stats.change_stats(ENERGY, -20)
     
         "Be conservative - We should tell them I need a week, just to be safe.":
             player "Hm... well, from what I remember about the ticket, it doesn't seem too hard. "
@@ -249,8 +249,8 @@ label v2_eta:
             goro "Like you said, you never know if you'll hit some snags while working on your project. It also leaves room for other development emergencies on other projects if they come."
             player "Right! This way, I feel like I'll be ready for anything that comes up."
             goro "Rock on. I'll give the client the update. Thanks [player_name]."
-            "You gain 10 Sanity knowing you'll have plenty of breathing room to complete all your duties this week."
-            $ player_stats.change_stats(SANITY, 10)
+            "You gain 10 Energy knowing you'll have plenty of breathing room to complete all your duties this week."
+            $ player_stats.change_stats(ENERGY, 10)
 
 label v2_motormouth:
     player "Phew - I've really been on a roll this morning! It's 1PM, and I've already got two tickets completed. I'm super thirsty!"
@@ -258,7 +258,7 @@ label v2_motormouth:
     player "Hi Mike! What's new with you?"
     mike "[player_name]! Not much - how was your weekend?"
     "The two of you converse politely for a while about non-work related topics. It feels great to keep things casual!"
-    "You're so relaxed, in fact, that you gain 10 Sanity!"
+    "You're so relaxed, in fact, that you gain 10 Energy!"
     "You take a look at the clock and notice you've been standing around for 10 minutes."
     "You suddenly remember an office rumor you heard in passing – Mike is probably the nicest guy in the office, but he's really, really... “chatty”."
     "What was that nickname they gave him? Something about cars?"
@@ -267,8 +267,8 @@ label v2_motormouth:
     motormouth_mike "No way - you don't know about the remake? They remade the show with modern effects and CGI!"
     motormouth_mike "Who's your favorite character?!"
     "You can't believe your ears right now! You want to learn more, but you also want to get back to work."
-    "BUT, talking with Mike seems to be doing good things for your Sanity. Should you stay and talk about Star Girl Galactica?"
-    $ player_stats.change_stats(SANITY, 10)
+    "BUT, talking with Mike seems to be doing good things for your Energy. Should you stay and talk about Star Girl Galactica?"
+    $ player_stats.change_stats(ENERGY, 10)
 
     menu:    
         "A few more minutes won't hurt.":
@@ -276,13 +276,13 @@ label v2_motormouth:
             motormouth_mike "Nope - this is a totally new game based on the new TV series! It's a 3D Open World game."
             player "No way! Are they going to bring back that one item that gives you invincibility?"
             "The two of you talk a bit longer and exchange war stories on your struggles with the original game."
-            "You have so much fun guessing what features are going to be in the new game that you gain another 10 Sanity."
+            "You have so much fun guessing what features are going to be in the new game that you gain another 10 Energy."
             "You look up at the clock and notice another 10 minutes has gone by."
             motormouth_mike "So what's super cool is that if you watch the trailer for the new game, they use that new Quinn C. Larkson song, From the Ground Up."
             player "What?! You like Quinn C. Larkson too?"
             motormouth_mike "Who doesn't? What's your favorite song? Mine is Cruising for A Musing!"
             "The two of you even like some of the same music? The coincidences don't stop!"
-            $ player_stats.change_stats(SANITY, 20)
+            $ player_stats.change_stats(ENERGY, 20)
             "But you've been chatting with Mike for a while now. It's so much fun, but maybe you should get back to work?"
             "Or maybe you should keep the ball rolling? You haven't felt this relaxed in some time (maybe you should get out more?)."
             "What will you do?"
@@ -305,21 +305,21 @@ label v2_motormouth:
                     iris "It's not a good look. Do you understand?"
                     player "Yes..."
                     iris "Good. Get back to work."
-                    "You gained 30 Sanity, but lost it all, and an additional 10 Sanity for your trouble."
-                    $ player_stats.change_stats(SANITY, -30)
-                    $ player_stats.change_stats(SANITY, -10)
+                    "You gained 30 Energy, but lost it all, and an additional 10 Energy for your trouble."
+                    $ player_stats.change_stats(ENERGY, -30)
+                    $ player_stats.change_stats(ENERGY, -10)
             
                 "I should get back to work":
                     player "Sorry Motormou - I mean, Mike. I'm a big Quinn C. Larkson fan, but I have a few projects that I have to get back to."
                     motormouth_mike "No problem dude! I'll catch you at the watercooler later. Go home and watch the trailer so we can geek out about it next time!"
                     player "Will do!"
-                    "Total Sanity gained 30 points"
+                    "Total Energy gained 30 points"
     
         "I should get back to work":
             player "Sorry Motormou - I mean, Mike. I love video games as much as I love Star Girl Galactica, but I have a few projects that I have to get back to."
             motormouth_mike "No problem dude! I'll catch you at the watercooler later. Go home and watch it and we can chat about it!"
             player "Will do!"
-            "Total Sanity gained 10 points"
+            "Total Energy gained 10 points"
 
 label v2_message:
     darius "[player_name]! Do you have a moment?"
@@ -414,8 +414,8 @@ label v2_css:
 
             if renpy.random.random() < 0.5:
                 "... but sometimes it DOES. WILL this become a problem later?"
-                "Who knows. Either way, you gain 10 Sanity for being able to get home on time."
-                $ player_stats.change_stats(SANITY, 10)
+                "Who knows. Either way, you gain 10 Energy for being able to get home on time."
+                $ player_stats.change_stats(ENERGY, 10)
             else:
                 player "It's pretty late... and I'm not sure when Mom or Dad will be home to feed Mint."
                 player "I think I'm going to just add a little bit of inline CSS to fix this."
@@ -448,9 +448,9 @@ label v2_css:
             player "So I should probably do things right the first time."
             player "I'll give Mom or Dad a call to make sure that Mint is fed and get started on this."
             "It pays to do things the right way! But no good deed goes unpunished."
-            "You gain 10 Renown for doing the right thing. But lose 5 Sanity for working late."
+            "You gain 10 Renown for doing the right thing. But lose 5 Energy for working late."
             $ player_stats.change_stats(RENOWN, 10)
-            $ player_stats.change_stats(SANITY, -5)
+            $ player_stats.change_stats(ENERGY, -5)
 
 label v2_thick:
     player "Ugh... it's 5PM and this is nowhere close to being done!"
@@ -519,8 +519,8 @@ label v2_thick:
             player "Thanks Goro! That's a huge relief..."
             goro "Don't relax just yet! We've still got a lot of work here to do. "
             goro "But at least you don't have to do it all by yourself."
-            "You gain 10 Sanity once you realize you won't need to handle that monster of a ticket on your own!"
-            $ player_stats.change_stats(SANITY, 10)
+            "You gain 10 Energy once you realize you won't need to handle that monster of a ticket on your own!"
+            $ player_stats.change_stats(ENERGY, 10)
 
         "Push through until it's done.":
             player "(Sigh)"
@@ -573,8 +573,8 @@ label v2_thick:
             goro "I'll take a look at this and see how we can break things up. We'll discuss this during tomorrow's standup."
             player "Gotcha. Thanks Goro... sorry for making you worry."
             goro "It's fine. Just promise you won't do something like this again, okay? Ask for help when you need it."
-            "You lose 15 Sanity for staying in the office so late."
-            $ player_stats.change_stats(SANITY, -15)
+            "You lose 15 Energy for staying in the office so late."
+            $ player_stats.change_stats(ENERGY, -15)
 
 label v2_success:
     mala "Hey [player_name]? Can I talk to you for a sec?"
@@ -823,8 +823,8 @@ label v2_automate:
             "But what Goro taught you barely scratched the surface of how long doing the minutes manually would actually take you."
             "It took Goro around an hour to do it as someone experienced with the process."
             "It took you a little over two."
-            "You took plenty of notes to learn how to automate the process next time, but for now, you've lost 10 Sanity thanks to this long, boring work."
-            $ player_stats.change_stats(SANITY, -10)
+            "You took plenty of notes to learn how to automate the process next time, but for now, you've lost 10 Energy thanks to this long, boring work."
+            $ player_stats.change_stats(ENERGY, -10)
 
         "Spend some time automating the minutes process.":
             player "Hm... I really can't shake the idea that this process can be automated."
@@ -973,8 +973,8 @@ label v2_venting:
             "It turns out that sharing stories about work requires a certain level of knowledge about what you do to talk about it."
             "Posting to one of your favorite development forums would have accomplished this, but what if someone from your job or even one of your clients saw it?"
             "You sigh. You probably should have called up Annika. She's a developer, but you also know her personally, and there'd be very little risk that what happened at work would be shared outside of just the two of you."
-            "You lose 15 Sanity thanks to the headache you developed while trying to explain HTTP error codes."
-            $ player_stats.change_stats(SANITY, -15)
+            "You lose 15 Energy thanks to the headache you developed while trying to explain HTTP error codes."
+            $ player_stats.change_stats(ENERGY, -15)
 
         "Vent to Annika":
             player "I think I'll talk to Annika. She's one of my only friends that completely understands the work I do. I'll talk to her about this."
@@ -992,8 +992,8 @@ label v2_venting:
             player "I love Mom, but I have a feeling that she wouldn't've understood what I was talking about if I got into even a little bit of detail."
             player "I'm glad I cooled my head and spoke to Annika instead of going to the internet too! Annika told me about a friend of hers that did that, and one of her managers found her complaining on a popular forum! "
             player "The thought of Iris finding out I complained about a customer sounds scary..."
-            "You gain 10 Sanity from venting to your friend. You feel much better!"
-            $ player_stats.change_stats(SANITY, 10)
+            "You gain 10 Energy from venting to your friend. You feel much better!"
+            $ player_stats.change_stats(ENERGY, 10)
 
         "Vent Online":
             player "Right, I'll just solve this the way I solve all my other problems - bringing them to the internet! The users on my favorite web dev forum will understand how I feel."
@@ -1005,8 +1005,8 @@ label v2_venting:
             "You think to yourself that if you just talked to Annika, a developer that you know personally, this could have been much better."
             "You wouldn't have to be as worried about your identity on the internet being discovered, or a client seeing you vent."
             "You quickly delete the post, hoping that only a handful of people saw it. "
-            "You lost 10 Sanity out of stress."
-            $ player_stats.change_stats(SANITY, -10)
+            "You lost 10 Energy out of stress."
+            $ player_stats.change_stats(ENERGY, -10)
 
 label v2_running_late:
     player "..."
@@ -1047,8 +1047,8 @@ label v2_running_late:
                 "You listen for a moment, sighing with relief when you hear Iris's voice as well."
                 "You use this distraction to sneak to your desk, un-noticed."
                 "You don't want to make a habit of this. You made it on time, but at what cost?"
-                "You lose 5 Sanity for your mad dash to the office."
-                $ player_stats.change_stats(SANITY, -5)
+                "You lose 5 Energy for your mad dash to the office."
+                $ player_stats.change_stats(ENERGY, -5)
             else:
                 player "Okay... okay, I'm going to go for it! I'm sure that I can make it. "
                 player "Like I said, I don't want to make a bad impression."
@@ -1107,8 +1107,8 @@ label v2_running_late:
             player "I can stay HERE , with you! I can work, right here in my room, or the couch, or on the balcony if I wanted!"
             player "This is so, so cool... "
             player "Okay! I may as well make a better breakfast than an apple since I'll be staying home! Come on, Mint!"
-            "You gain 5 Sanity from being able to work in a familiar, comfortable environment."
-            $ player_stats.change_stats(SANITY, 5)
+            "You gain 5 Energy from being able to work in a familiar, comfortable environment."
+            $ player_stats.change_stats(ENERGY, 5)
 
 label v2_family_business:
     mom "Welcome home sweetheart!"
@@ -1217,8 +1217,8 @@ label v2_family_business:
     player "I'll be here for you supporting you, whichever you choose."
     sarah "... thanks [player_name]."
     player "No problem!"
-    "You're so proud of your cousin! You gain 5 Sanity from the nostalgia you experience from talking to a new developer."
-    $ player_stats.change_stats(SANITY, 5)
+    "You're so proud of your cousin! You gain 5 Energy from the nostalgia you experience from talking to a new developer."
+    $ player_stats.change_stats(ENERGY, 5)
 
 # label v2_crypto:
 #     player "I'm home everyone!"
@@ -1272,8 +1272,8 @@ label v2_family_business:
 #             goro "Once you've gained your footing in this field, you should feel free to venture off the beaten path. The sky will be your limit!"
 #             goro "But for now, we need you down on the earth with us, okay?"
 #             player "Okay. I understand..."
-#             "You lose 10 Sanity from the realization that after studying these two frameworks, you won't be able to use them any time soon."
-#             $ player_stats.change_stats(SANITY, -10)
+#             "You lose 10 Energy from the realization that after studying these two frameworks, you won't be able to use them any time soon."
+#             $ player_stats.change_stats(ENERGY, -10)
     
 #         "Learn a little bit about Material UI.":
 #             player "Okay..."
@@ -1473,8 +1473,8 @@ label v2_gelato:
             annika "Ewww!"
             "You decide to have gelato with your friends. It's important to have downtime every now and then!"
             "If you really need to research about Flask or Django, you can do it during a bit of downtime at work tomorrow."
-            "You gain 10 Sanity for taking time with friends."
-            $ player_stats.change_stats(SANITY, 10)
+            "You gain 10 Energy for taking time with friends."
+            $ player_stats.change_stats(ENERGY, 10)
 
         "Pardon myself and learn more about Flask/Django":
             player "Hey guys? Have either of you ever worked with Flask or Django?"
@@ -1531,8 +1531,8 @@ label v2_internet_safety:
             player "Aw man... I really, really hope nothing happens..."
             layla "(sigh) Best not to let it worry you too much now. Your code has already been committed."
             player "Yeah. I guess you're right."
-            "You lose 10 Sanity, worried about your private information."
-            $ player_stats.change_stats(SANITY, -10)
+            "You lose 10 Energy, worried about your private information."
+            $ player_stats.change_stats(ENERGY, -10)
 
         "Wait until work tomorrow to commit.":
             player "I dunno... I don't want to stress too much. Maybe I can just commit tomorrow?"
@@ -1610,8 +1610,8 @@ label v2_where_to_start:
             player "So I just told that guy something wrong... What if he follows my advice?"
             annika "Don't worry - Layla's having a chat with him to set him straight."
             annika "So it's okay!"
-            "You lose 10 Sanity out of embarrassment."
-            $ player_stats.change_stats(SANITY, -10)
+            "You lose 10 Energy out of embarrassment."
+            $ player_stats.change_stats(ENERGY, -10)
 
         "...have a few cool features, and use at least one API":
             player "... because it's all about showing potential employers what you can do."
@@ -1686,5 +1686,5 @@ label v2_where_to_start:
             player "So I just told that guy something wrong... What if he follows my advice?"
             annika "Don't worry - Layla's having a chat with him to set him straight. "
             annika "So it's okay!"
-            "You lose 10 Sanity out of embarrassment."
-            $ player_stats.change_stats(SANITY, -10)
+            "You lose 10 Energy out of embarrassment."
+            $ player_stats.change_stats(ENERGY, -10)
