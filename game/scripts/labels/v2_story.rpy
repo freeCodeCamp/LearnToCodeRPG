@@ -218,8 +218,8 @@ label v2_eta:
     return
 
 label v2_motormouth:
-    player "Phew - I've really been on a roll today! It's 3PM, and I've already got my tickets completed. I'm super thirsty!"
-    player "I think I see Mike from Marketing over at the watercooler. I should say hi!"
+    player "Phew - I've really been on a roll today! It's 3PM, and I've already finished all of my tickets. I'm super thirsty!"
+    player "I think I see Mike from marketing over at the water cooler. I should say hi!"
     player smile "Hi Mike! What's new with you?"
     mike "[player_name]! Not much - how was your weekend?"
     "The two of you converse politely for a while about non-work related topics. It feels great to keep things casual!"
@@ -262,7 +262,7 @@ label v2_motormouth:
                     iris angry "It's afternoon at this point. I've been watching the two of you talk for, oh... 30 minutes now."
                     iris "Mike, don't you have work to do? The big presentation for Walter Co. Construction is due tomorrow."
                     motormouth_mike "Sure do! That's my cue - later [player_name]!"
-                    player neutral sweat "Bye Mike. Welp, I better get going too - "
+                    player neutral sweat "Bye Mike. Whelp, I better get going, too -"
                     iris "Not so fast. What are you doing? "
                     iris "Do we have a “Loquacious [player_name]” to match Motormouth Mike now?"
                     player -sweat "Mike's always hanging out at the cooler, so I figured it would be okay to take a bit of a break..."
@@ -277,13 +277,13 @@ label v2_motormouth:
             
                 "I should get back to work":
                     player smile "Sorry Motormou - I mean, Mike. I'm a big Quinn C. Larkson fan, but I have a few projects that I have to get back to."
-                    motormouth_mike "No problem dude! I'll catch you at the watercooler later. Go home and watch the trailer so we can geek out about it next time!"
+                    motormouth_mike "No problem dude! I'll catch you at the water cooler later. Go home and watch the trailer so we can geek out about it next time!"
                     player "Will do!"
                     "Total Energy gained 30 points."
     
         "I should get back to work":
             player smile "Sorry Motormou - I mean, Mike. I love video games as much as I love Star Girl Galactica, but I have a few projects that I have to get back to."
-            motormouth_mike "No problem dude! I'll catch you at the watercooler later. Go home and watch it and we can chat about it!"
+            motormouth_mike "No problem dude! I'll catch you at the water cooler later. Go home and watch it and we can chat about it!"
             player "Will do!"
             "Total Energy gained 10 points."
     return
@@ -359,7 +359,7 @@ label v2_message:
             goro "Not only would they all have seen your message, but I was presenting to our board members."
             player "Board members?"
             goro "The people that fund our company. Basically, the people on top."
-            player neutral "Woah! That would have been... INCREDIBLY embarrassing."
+            player neutral "Whoa! That would have been... INCREDIBLY embarrassing."
             goro "Tell me about it! For you and me both!"
             goro "Always remember When you see that someone is in a meeting, you shouldn't send a message."
             goro "Do exactly as you did earlier and just wait until after things are over."
@@ -490,7 +490,7 @@ label v2_thick:
             goro "Gotcha. It's a good thing you came to me - it seems like the scope of this ticket has grown."
             player "What do you mean?"
             goro "Sometimes, a ticket looks like only one thing is broken. But it turns out an entire system needs to be re-written."
-            goro "When that happens, we don't just go, “Welp, that's your problem, since you accepted the ticket.”"
+            goro "When that happens, we don't just go, “Whelp, that's your problem, since you accepted the ticket.”"
             goro "It means we all need to re-group and either break this task into multiple tickets that all have their own points,"
             goro "Or re-point YOUR ticket."
             goro "Remember, the pointing system is supposed to give an idea of how difficult a task will be."
@@ -549,7 +549,7 @@ label v2_thick:
             goro "It seems like the scope of this ticket has grown."
             player "What do you mean?"
             goro "Sometimes, a ticket looks like only one thing is broken. But it turns out an entire system needs to be re-written."
-            goro "When that happens, we don't just go, “Welp, that's your problem, since you accepted the ticket.”"
+            goro "When that happens, we don't just go, “Whelp, that's your problem, since you accepted the ticket.”"
             goro "It means we all need to re-group and either break this task into multiple tickets that all have their own points,"
             goro "Or re-point YOUR ticket."
             goro "Remember, the pointing system is supposed to give an idea of how difficult a task will be."
@@ -735,8 +735,8 @@ label v2_competent:
         "Use Universal Search to find other places that the function is used":
             player neutral "A good place to start would probably be to run a Universal Search!"
             player "Using this, I can search every single document in our repo. Which also lets me see all of the places that background_jobs() is being run."
-            player sweat "Okay... so this is used in a TON of places."
-            player -sweat "But, I think with a bit of looking, I can find examples of people using the function."
+            player sweat "Okay... so this is used in a TON of places. (sweat drop)"
+            player sweat "But, I think with a bit of looking, I can find examples of people using the function."
             player "That way, I can get an idea of what situations it's meant to be used in. This will give me a clue as to how the function is supposed to be used."
             jump v2_competent_choices
 
@@ -837,7 +837,7 @@ label v2_automate:
             player "First, I could start by making a copy of the original and second spreadsheet in case I mess things up."
             player "Then, I could start by doing just one or two rows of data."
             player "I could make a list of all of the tasks that have to be performed to get those done... like transferring a list item from the text document to row one, column one of the second spreadsheet."
-            player "Once there's a linebreak "
+            player "Once there's a line break "
             player "I could make a list of those actions, program them out, turn that list into code, and do that until the process is done..."
             "Before you know it, you're in your IDE, hard at work on your automation project."
             "You're glad you make a copy of the needed spreadsheets before you start because the first few runs of the script, you mess up a few things."
@@ -1245,9 +1245,9 @@ label v2_paying_it_forward_p1:
     player "My... previous position?"
     player "You mean before I became a developer at ConsultMe?"
     iris "Yes."
-    player "Well... I used to be a tutor."
-    player "I tutored students from grade school to high school, basically."
-    player @ smile "My favorite was probably the grade school kids, though!"
+    player "Well… I used to be a tutor."
+    player "I tutored students from elementary to high school, basically."
+    player @ smile "The elementary students were probably my favorite, though!"
     iris "I see. Did you like your work?"
     player "..."
     player @ smile "I did. I even miss it sometimes."
@@ -2054,7 +2054,7 @@ label v2_gelato:
     developer2 "No, we're using Django on this project. We needed something bigger."
     developer1 "I've been wanting to ask forever - so what's the difference between Django and Flask?"
     developer2 "So flask is basically - "
-    "You turn around again to Annika and Layla, the two of them now discussing their favorite Gelato flavors."
+    "You turn around again to Annika and Layla, the two of them now discussing their favorite gelato flavors."
     player "(Hmm... On one hand, I've had a long day at work today, and would love to take it easy with something cold and sweet.)"
     player "(On the other hand, our most recent meeting at work covered a client that we'll be taking over from another company.)"
     player "(They need maintenance on their larger app written in Django, and the creation of a smaller app written in Flask.)"
@@ -2062,7 +2062,7 @@ label v2_gelato:
     player "(What should I do?)"
 
     menu:
-        "Go get Gelato with friends.":
+        "Go get gelato with friends.":
             player "..."
             annika "Hey! Earth to [player_name]! Are you coming?"
             player "Oh! Absolutely!"
