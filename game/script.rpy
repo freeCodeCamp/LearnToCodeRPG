@@ -787,7 +787,7 @@ label stage6:
     player smile "Hey Annika! Is now a good time to talk?"
 
     show annika laugh
-    annika "Heyya [player_name]! Now's perfect. I just got back from work."
+    annika "Heya [player_name]! Now's perfect. I just got back from work."
     annika "How did your first day of studying go?"
     player "I felt pretty productive today. It's nice how the quiz questions give you instant feedback."
     player happy "What about your day? How was work?"
@@ -1684,21 +1684,20 @@ label v2_start:
     $ calendar_enabled = True
     scene bg bedroom with dissolve
     player relieved "A lot has happened in this past month..."
-    player neutral "After I broke prod on the first day of work, Layla, the team, and my manager told me that it was okay and I didn't have to worry."
-    player "But I feel like maybe a fresh start will give me a morale boost."
-    player "So I went back to applying for jobs. Fortunately, I landed on this new job pretty quickly and my start date is today."
+    player neutral "After I broke prod on the first day of work, Layla, the team, and my manager told me that it was okay, and I didn't have to worry."
+    player "But I felt like a fresh start would give me a morale boost."
+    player "So I went back to applying for jobs. Fortunately, I landed a new job pretty quickly, and my start date is today."
 
     scene bg company1_reception with fadehold
     play sound 'audio/sfx/office_ambient.wav'
     player surprised "So this is ConsultMe! Wow... It's enormous."
-    player smile "I put in the work, to become a developer, and today, it's real... "
-    player "I'm going to keep working hard, and keep learning! Doing that is what got me here, so if I keep that up, I should be okay!"
-    
+    player smile "I put in the work to become a developer, and today, it's real... "
+    player "I'm going to keep working hard and learn everything I can! Doing that is what got me here, so if I keep it up, I should be okay!"    
     player "Um... hello?"
     show maria
     receptionist @ smile "Hello! How can I help you?"
     player "My name is [player_name], and this is my first day."
-    receptionist @ laugh "Ah, the new hire! And so punctual too - it's nice to meet you! "
+    receptionist @ laugh "Ah, the new hire! And so punctual too - it's nice to meet you!"
     receptionist "My name is Maria, and I'll be showing you around!"
     player "Got it!"
 
@@ -1711,15 +1710,15 @@ label v2_start:
     scene bg company1_dining with blinds
 
     "You're taken all around the ConsultMe office. There are lots of snacks in the lunch area, and even a gym downstairs!"
-    "There are dozens and dozens of meeting rooms, all named following the theme of different countries of the world."
+    "There are dozens and dozens of meeting rooms, all named after different countries around the world."
     "There's even a nursing room for new mothers!"
 
     scene bg company1_lydia_cubicle
     show maria
-    maria @ smile "... And this is your cubicle! We've even got your name plate all printed up!"
+    maria @ smile "... And this is your cubicle! We even prepared your name plate!"
     player surprised "Wow... it's made of wood! This is so nice."
     maria "I'm glad you like it! Do you have any questions so far? I know I've been hitting you with a lot of information."
-    player smile "No no, everything has been awesome so far! "
+    player smile "No no, everything has been awesome so far!"
     maria "Great! The last leg of our tour involves me handing you off to our engineering manager, Iris!"
 
     scene bg company1_center with blinds
@@ -1729,7 +1728,7 @@ label v2_start:
     maria @ smile "Iris, don't be silly! This is [player_name]! The new hire?"
     iris "Hm... I see."
     player "(Jeez... this lady is... scary.)"
-    player "(I've been in the workforce for a few years now, and yet, this woman makes me feel like a high school kid who doesn't know what she's doing.)"
+    player "(I've been in the workforce for a few years now, and yet, this woman makes me feel like a highschool kid who doesn't know what she's doing.)"
     player "Um... hi. My name is... um... [player_name]..."
     iris "“Um[player_name]”? What a strange name."
     player "Um... no, it's -"
@@ -1740,18 +1739,18 @@ label v2_start:
 
     show goro at right with moveinright
     goro @ smile "That'd be me."
-    goro "Don't mind Iris. She's... prickly on the outside, but can be a nice lady when you get to know her."
+    goro "Don't mind Iris. She's... prickly on the outside. But she can be really nice once you get to know her."
     player "Sure... I'm [player_name]. It's nice to meet you!"
-    goro "Awesome to meet you [player_name]! I'm Goro - I'll be your team lead for any projects moving forward."
-    goro "I've been around the bend a few times, and I'm a little less prickly than Iris. So feel free to ask me any questions that you have."
+    goro "Awesome to meet you, [player_name]! I'm Goro - I'll be your team lead for any projects moving forward."
+    goro "I've been around the bend a few times, and I'm a little less prickly than Iris. So feel free to ask me any questions that you might have."
     player "Thanks! I appreciate it."
-    goro "Speaking of which Do you have any questions now?"
-    player surprised "Um... "
-    player "Ah... "
+    goro "Speaking of which Do you have any questions for me now?"
+    player surprised "Um..."
+    player "Ah..."
     player smile "Nope!"
-    goro "You don't? "
-    player "Nope! Completely solid!"
-    goro "Well... okay then! Like I said, I'm here if you need help."
+    goro "You don't?"
+    player "No! I'm good!"
+    goro "Well... okay then! Like I said, I'm here if you need any help."
     player "Thanks!"
 
     scene bg bedroom with fadehold
@@ -1763,15 +1762,15 @@ label v2_start:
     player "They even gave me a company laptop and company cellphone! They're both the latest models. Talk about an upgrade!"
     player "..."
     mint "Mew?"
-    player worry "Well... It's all super cool, but it's also a little overwhelming. All of the people I met today were nice, but there were so many of them. "
+    player worry "Well... It's all super cool, but it's also a little overwhelming. All of the people I met today were nice, but there were so many of them."
     player "How am I supposed to remember all of their names?"
-    player "And then I had to spend the rest of the day in meetings. Goro told me that I didn't have to do much but lend an ear, but even that was a lot."
-    player "There were a million acronyms that I didn't know... I had no know what anyone was talking about really."
+    player "And then I had to spend the rest of the day in meetings. Goro told me that I didn't have to do much but lend an ear, and even that was a lot."
+    player "There were a million acronyms that I didn't know... I had idea what anyone was talking about."
     player "Am I really cut out for this...?"
     mint "...?"
     mint "Meow!"
     player smile "Hm... you're right! I can't give up yet. I worked too hard to get here."
-    player "I know! I should give Annika a call. She told me to give her a ring when I was done with my first day! Maybe I can ask her some questions?"
+    player "I know! I should give Annika a call. She told me to give her a ring when I finished my first day! Maybe I can ask her some questions?"
     hide mint
 
     show smartphone at truecenter
@@ -1784,7 +1783,7 @@ label v2_start:
     pause 1.0
     annika @ laugh "[player_name]! How was your first day, superstar?"
     player smile "Great! Great... but also... like, really overwhelming?"
-    annika "That sounds about right! That's just how my first day went at my job too. What happened?"
+    annika "That sounds about right! That's about how my first day went, too. What happened?"
     "You explain all of the concerns that you told Mint about."
     annika "Wow, that's definitely a lot! I'm happy to answer any of your questions, though! What do you want to know specifically?"
     player neutral "Well..."
@@ -1793,38 +1792,38 @@ label v2_start:
     menu first_day_story_choices:
         set first_day_story_choices
         "Ask about acronyms":
-            player "So like I said, I had to attend a few meetings today."
-            player "It was so mind-boggling, because aside from just not knowing what anyone is talking about,"
-            player worry "There were so. Many. Acronyms!"
+            player "So as I said, I had to attend a few meetings today."
+            player "It was so mind-boggling because, aside from not knowing what anyone was talking about,"
+            player "There were so. Many. Acronyms!"
             player "What is PII? Or ETA? What on earth is PEBCAK?"
             annika @ laugh "Hehehe... that last one is actually pretty funny."
-            player "Annika! This isn't funny at all, I'm freaking out!"
-            annika @ neutral "Sorry, sorry! "
-            annika "Things will be okay. The truth is, every individual industry has their own acronyms. Some companies even have their own acronyms."
+            player "Annika! This isn't funny at all. I'm freaking out!"
+            annika @ neutral "Sorry, sorry!"
+            annika "Things will be okay. The truth is, every industry has their own acronyms. Some companies even have their own acronyms."
             annika "So I could try to tell you what they all are, but I probably won't know them all."
-            annika "The good news is, most companies are totally fine with you learning these things as you go! "
+            annika "The good news is, most companies are totally fine with you learning these things as you go!"
             player neutral "Really?"
-            annika "Yup! You just have to make sure you make a habit of asking about them."
-            annika "Something that I started doing was keeping a journal page or a page in a note-taking app to write them down as I hear them."
-            annika "Then, when we have a bit of free time, I ask my team lead or another developer what each one means. "
-            annika "Just a few at a time though! You don't want to approach your manager with 10 different acronyms to explain"
+            annika "Yup! Just make a habit out of asking about them."
+            annika "What I do is keep a journal or a note-taking app open, and write down any acronyms I'm not familiar with."
+            annika "Then, when we have a bit of free time, I ask my team lead or another developer what each one means."
+            annika "Just a few at a time, though. You don't want to approach someone with 10 different acronyms to explain!"
             jump first_day_story_choices
 
         "Ask about Ruby on Rails":
             player "Okay... so I've always worked with programming languages like Python and JavaScript. But this company uses something called Ruby on Rails."
-            player worry "I've never even worked with it before! Sometimes I wonder if I should have even been hired, because I don't know it."
+            player worry "I've never even worked with it before! Sometimes I wonder if I should have even been hired, because I don't know anything about it."
             annika @ neutral "That's totally fine!"
-            annika "Ruby on Rails is a Framework that relies on the Ruby programming language."
-            annika "A Framework is more or less a collection of pre-written code that allows you to do things without writing the code from scratch yourself."
-            annika "It's okay that you don't know it! My company uses a Framework called Django, and it relies on Python."
+            annika "Ruby on Rails is a framework for the Ruby programming language."
+            annika "A framework is more or less a collection of pre-written code that allows you to do things without writing everything from scratch yourself."
+            annika "And it's okay that you don't know it! My company uses a Python framework called Django."
             annika "I didn't know Django at all before I came here, but I was given some assignments that helped catch me up to speed."
-            annika "Something important to remember too is that when you're a junior, the company that hired you knows that you don't know Ruby on Rails. Right?"
-            player neutral "Yeah... I made sure to make that very clear during my interviews. "
+            annika "Another important thing to remember is that your company knows you don't know Ruby on Rails, right?"
+            player neutral "Yeah... I made that very clear during my interviews."
             annika "See? It's not as if you lied to land the job! And let's take a look at your job description too - what does it say?"
-            player "Hm... "
+            player "Hm..."
             player "Oh! How could I have missed this?"
-            player "It even says in my job description that I'll be started off with only frontend work, and slowly trained into assisting with the backend."
-            annika "See? It's perfect! Just be sure to spend time studying during and after work to really hone your skills."
+            player "It says that I'll start off with just frontend work, and slowly be trained to assist with the backend."
+            annika "See? That's perfect! Just be sure to spend time studying during and after work to really hone your skills."
             player "I'm... allowed to study?"
             player surprised "At WORK?"
             annika "You sure are! You're in the big leagues now, my friend!"
@@ -1832,14 +1831,14 @@ label v2_start:
             annika "Another good thing about your situation is that Ruby on Rails is super well documented. It's been around for 19 years."
             annika "That's ancient by programming standards! So you'll have lots of documentation online that can help you."
             player smile "And... if I get stuck, can I still give you a call now and again?"
-            annika @ laugh "Are you kidding? Always! We're Accountability Buddies, right?"
+            annika @ laugh "Are you kidding? Always! We're accountability buddies, right?"
             jump first_day_story_choices
 
         "What is JIRA?":
             player "So at work, they kept talking about JIRA... What is that?"
             annika "Programming assignments are called “tickets”."
             annika "JIRA is just a ticketing management system! It keeps track of who's assigned to what tickets."
-            player smile "Oh! I see!"
+            player smile "Oh, I see!"
             player "What does the acronym stand for?"
             annika "Acronym?"
             player "JIRA is usually written in all capital letters. That means it's an acronym, right?"
@@ -1851,17 +1850,17 @@ label v2_start:
         "Ask about getting stuck":
             player "Well, for starters... what if I get stuck? "
             annika "Stuck?"
-            player "Sometimes whenever I'm working on personal projects, I get stuck. That seems to be fine to do on personal projects,"
+            player "Sometimes, whenever I'm working on personal projects, I get stuck. That seems to be fine to do on personal projects,"
             player "but this is the real deal! Won't that make me look like I don't know how to do my job?"
             annika @ laugh "Hahaha!"
             annika @ neutral "What do you do when you usually get stuck while you're working on a project?"
             player "Well... I look things up. And I double-check my code."
-            player "I also see if I can't find any developers that can help online."
+            player "I also see if I can find any developers that can help online."
             annika "See? You already know what to do!"
-            annika "I know your team is all new to you, but you're a junior developer. "
-            annika "Their job is to help you whenever you're stuck. You can not only ask them for help, but when you get assigned a task to fix some already existing code, you may even be able to speak to the person that originally wrote it!"
+            annika "I know your team is all new to you, but you're a junior developer."
+            annika "Their job is to help you whenever you're stuck. Not only can you ask them for help, but when you get assigned a task to fix some already existing code, you may even be able to speak to the person that originally wrote it!"
             player "Oh! Is it really that simple...?"
-            annika "Yep! The cool part about doing this all professionally is that you're a part of a team now! They expect you to ask as many questions as you need to to get the work done."
+            annika "Yep! The cool part about doing this all professionally is that you're a part of a team now! They expect you to ask as many questions as you need to to get the job done."
             player "Wow - that really does make me feel better!"
             jump first_day_story_choices
 
@@ -1872,14 +1871,14 @@ label v2_start:
             annika "but you landing this job means that you were CHOSEN!"
             annika "This all seems like a lot, and like things are really overwhelming,"
             annika "but try to remember that your job isn't to learn all of these things in one day."
-            annika "Worst case scenario, you can feel free to talk to your manager for a temperature check!"
+            annika "Worst case scenario, feel free to talk to your manager for a temperature check!"
             player "A temperature check?"
-            annika "Yep! You can ask every so often about how you're performing. You may even be able to ask for one-on-one's!"
-            annika "They're meetings where you chat with your manager, say, once a week, or every other week, or even a month."
-            annika "You can talk about your goals as a developer, receive feedback, or just as a chance to get to know your manager!"
+            annika "Yep! Every so often you can ask about how you're performing. You may even be able to ask for one-on-ones!"
+            annika "They're meetings where you chat with your manager, say, once a week, or every other week, or even once a month." # Ed: Are temperature checks and one-on-ones the same thing? If so, we should probably just use one term
+            annika "You can talk about your goals as a developer, receive feedback, or just use them as a chance to get to know your manager!"
             player "That actually sounds kind of nice!"
             annika "Don't forget - you're working with people, not a bunch of dragons that want to gobble you up!"
-            "You finish up chatting with Annika, feeling a huge weight lifted off of your shoulders."
+            "You finish up chatting with Annika, and feel a huge weight lifting off of your shoulders."
             "You get ready for bed, wanting to be as well-rested as possible for your first official day of work!"
 
     $ is_in_v2_arc1 = True
@@ -1924,7 +1923,7 @@ label v2_arc1_devops:
     call day_start from _call_day_start_19
     call v2_paying_it_forward_p2 from _call_v2_paying_it_forward_p2
     $ add_achievement(milestone_v2_arc1_complete)
-    call screen text_over_black_bg_screen(_("You've reached the end of Arc I. Stay tuned for Arc II coming up!"))
+    call screen text_over_black_bg_screen(_("You've reached the end of Arc I. Stay tuned for Arc II!"))
 
     # start v2 arc2
     $ is_in_v2_arc1 = False
