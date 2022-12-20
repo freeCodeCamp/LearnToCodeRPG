@@ -482,7 +482,7 @@ label v2_routine:
         scene bg company1_center with dissolve
         play sound 'audio/sfx/office_ambient.wav'
 
-        # trigger work events, if no events, give player the choice to visit the vending machine
+        # after work, trigger random work events, if no events, give player the choice to visit the vending machine
         if len(v2_arc1_event_labels[WORK]) == len(seen_v2_arc1_events[WORK]) or \
         renpy.random.random() < 0.8:
             call v2_vending_machine from _call_v2_vending_machine
@@ -493,19 +493,30 @@ label v2_routine:
                 seen_v2_arc1_events[WORK].add(label)
                 renpy.call(label)
 
-        # after work, call random work events
+        # go home
         scene bg living_room night with blinds
-        player smile "Finally home! I'm ready for dinner!"
-        scene bg kitchen night with blinds
-        play sound 'audio/sfx/dining_ambient.wav'
-        $ show_random_dinner_image()
-        player "So, today at work this happened..."
-        mom "Hahaha that's quite interesting."
-        dad "Your co-workers sure have quite unique personalities."
-        player "I bet they do!"
+        # trigger random home events, if no events, do routine
+        if len(v2_arc1_event_labels[HOME]) == len(seen_v2_arc1_events[HOME]) or \
+        renpy.random.random() < 0.8:
+            player smile "Finally home! I'm ready for dinner!"
+            scene bg kitchen night with blinds
+            play sound 'audio/sfx/dining_ambient.wav'
+            $ show_random_dinner_image()
+            player "So, today at work this happened..."
+            mom "Hahaha that's quite interesting."
+            dad "Your co-workers sure have quite unique personalities."
+            player "I bet they do!"
 
-        scene bg bedroom with blinds
-        call v2_activity_choices from _call_v2_activity_choices
+            scene bg bedroom with blinds
+            call v2_activity_choices from _call_v2_activity_choices
+
+        else: # trigger home event
+            python:
+                available_labels = list(set(v2_arc1_event_labels[HOME]) - seen_v2_arc1_events[HOME])
+                label = renpy.random.choice(available_labels)
+                seen_v2_arc1_events[HOME].add(label)
+                renpy.call(label)
+
     else:
         # weekend, stay home
         call v2_activity_choices from _call_v2_activity_choices_1

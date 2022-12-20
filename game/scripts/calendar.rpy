@@ -6,9 +6,22 @@ init python:
             self.date = date.today() # system date
             self.weekday_names = [_('Monday'), _('Tuesday'), _('Wednesday'), _('Thursday'), _('Friday'), _('Saturday'), _('Sunday')]
 
+        def is_weekday(self):
+            return self.date.weekday() < 5 # 5 Sat, 6 Sun
+
+        def get_weekday_string(self):
+            return self.weekday_names[self.date.weekday()]
+
         def next(self):
             self.date += timedelta(days=1)
             renpy.call_screen('text_over_black_bg_screen', _('The next day...'))
+
+        def next_weekday(self):
+            if self.is_weekday():
+                return
+            days_before_weekday = 7 - self.date.weekday()
+            self.date += timedelta(days=days_before_weekday)
+            renpy.call_screen('text_over_black_bg_screen', _('Fast-forwarding to a work day...'))
 
         def next_week(self):
             self.date += timedelta(days=7)
@@ -17,19 +30,6 @@ init python:
         def next_month(self):
             self.date += timedelta(days=30)
             renpy.call_screen('text_over_black_bg_screen', _('Fast-forwarding a month...'))
-
-        def get_weekday_string(self):
-            return self.weekday_names[self.date.weekday()]
-
-        def is_weekday(self):
-            return self.date.weekday() < 5 # 5 Sat, 6 Sun
-
-        def fast_forward_to_weekday(self):
-            if self.is_weekday():
-                return
-            days_before_weekday = 7 - self.date.weekday()
-            self.date += timedelta(days=days_before_weekday)
-            renpy.call_screen('text_over_black_bg_screen', _('Fast-forwarding to a work day...'))
 
 # this screen should always show
 screen calendar_screen():

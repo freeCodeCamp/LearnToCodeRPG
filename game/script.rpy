@@ -1680,7 +1680,7 @@ label v2_start:
     $ player_stats.set_stats(RENOWN, 20) # start with a bit of renown
 
     # transition to v2 plot here
-    $ calendar.fast_forward_to_weekday()
+    $ calendar.next_weekday()
     $ calendar_enabled = True
     scene bg bedroom with dissolve
     player relieved "A lot has happened in this past month..."
@@ -1772,6 +1772,7 @@ label v2_start:
     mint "Meow!"
     player smile "Hm... you're right! I can't give up yet. I worked too hard to get here."
     player "I know! I should give Annika a call. She told me to give her a ring when I was done with my first day! Maybe I can ask her some questions?"
+    hide mint
 
     show smartphone at truecenter
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
@@ -1885,12 +1886,12 @@ label v2_start:
     $ work_session_questions = all_quiz_questions
 
     $ num_days = 0
-    while num_days < 14:
+    while num_days < 21:
         $ num_days += 1
         call day_start from _call_day_start_13
         call v2_routine from _call_v2_routine
 
-    $ calendar.fast_forward_to_weekday()
+    $ calendar.next_weekday()
     call day_start
     call v2_demo from _call_v2_demo
 
@@ -1900,17 +1901,11 @@ label v2_start:
         call day_start from _call_day_start_14
         call v2_routine from _call_v2_routine_1
 
-    $ calendar.fast_forward_to_weekday()
+    $ calendar.next_weekday()
     call day_start
     call v2_redemption from _call_v2_redemption
+    $ add_achievement(milestone_v2_redemption)
 
-    $ num_days = 0
-    while num_days < 7:
-        $ num_days += 1
-        call day_start from _call_day_start_15
-        call v2_routine from _call_v2_routine_2
-
-    $ calendar.fast_forward_to_weekday()
     call day_start
     call v2_paying_it_forward_p1 from _call_v2_paying_it_forward_p1
 
@@ -1922,10 +1917,10 @@ label v2_start:
         call day_start from _call_day_start_16
         call v2_routine from _call_v2_routine_3
 
-    $ calendar.fast_forward_to_weekday()
+    $ calendar.next_weekday()
     call day_start
     call v2_paying_it_forward_p2 from _call_v2_paying_it_forward_p2
-
+    $ add_achievement(milestone_v2_arc1_complete)
     call screen text_over_black_bg_screen(_("You've reached the end of Arc I. Stay tuned for Arc II coming up!"))
 
     # start v2 arc2

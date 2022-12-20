@@ -518,6 +518,7 @@ label v2_thick:
             "It's nearly 8PM, and even the janitor is preparing to lock up for the day. "
 
             play sound 'audio/sfx/social_media_notification.wav'
+            show goro
             "You suddenly get a message from Goro in TeamChat."
             goro "Hey newbie. What's got you up so late?"
             goro "I saw that your TeamChat status was set to “Online” while I was double-checking some of my own work, so I thought I'd shoot you a message."
@@ -537,6 +538,7 @@ label v2_thick:
 
             scene bg bedroom with fadehold
             play sound 'audio/sfx/social_media_notification.wav'
+            show goro
             goro "So I think I'm seeing what the problem is."
             goro "I thought the function the last ticket added was just breaking one component?"
             player "Nope. Each time I make a change to it to fix one component, another one breaks."
@@ -610,6 +612,7 @@ label v2_success:
             player "Hm... What's this? Iris sent out an email?"
             player "It's flagged as 'URGENT'. Better read it so she doesn't have to talk to me about it in person."
             player "Or maybe she won't just talk to me - it looks like this has our whole department CC'd on it!"
+            show iris
             iris "To whom it may concern,"
             iris "We've recently had an... incident. I would like to take this as as an opportunity to remind you all that mistakes are natural."
             iris "Mistakes are a part of developing a good product or rendering a good service. They help us gow and remind us that we're human."
@@ -1228,11 +1231,10 @@ label v2_redemption:
     player "Will do."
     "You gain 20 Renown for saving the day with your Regex skills."
     $ player_stats.change_stats(RENOWN, 20)
-    # TWITTER: TITLE: Regex Guru TEXT: You saved the day with your Regex skills! Does Iris finally approve? "
     return
 
 label v2_paying_it_forward_p1:
-    scene bg company1_boardroom with blinds
+    scene bg company1_boardroom with fadehold
     play sound 'audio/sfx/knocking.mp3'
     show iris
     player "U-um Iris? I'm here."
@@ -1321,14 +1323,14 @@ label v2_paying_it_forward_p1:
     iris "Of course... we don't HAVE to stop working together. If you'd like to come along."
     player "What? With you? To your new company?"
     iris "Correct. I'll be co-managing with an old colleague of mine."
-    iris "I've been telling her all about you. She's interested in interviewing her for a junior devops position at the company she works at, Spaghetti Code."
-    player "Devops? But I don't know anything about devops..."
+    iris "I've been telling her all about you. She's interested in interviewing her for a junior DevOps position at the company she works at, Spaghetti Code."
+    player "Devops? But I don't know anything about DevOps..."
     player "A-and wait just a minute - I thought I was on a PIP?!"
     iris "There was no PIP."
     iris "I just needed you to tighten up the quality of your work."
     iris "Honestly, do you really think I'd be offering you an opportunity to come with me to a new company if I thought you needed to be on a PIP?"
     iris "My colleague is also aware of your junior status. She initially informed me that they were looking to fill the position, and that she'd trust my judgment on anyone that I'd like to come along."
-    iris "In the case that you said yes, I've created a few mock-devops tickets for you to make sure that you understand the basics."
+    iris "In the case that you said yes, I've created a few mock-DevOps tickets for you to make sure that you understand the basics."
     iris "You're more than welcome to say no, of course..."
     player "..."
     player "I-I'm not so sure I won't disappoint you again..."
@@ -1342,27 +1344,27 @@ label v2_paying_it_forward_p1:
     return
 
 label v2_paying_it_forward_p2:
+    scene bg company1_boardroom with fadehold
+    show iris
     iris "..."
-    player "I-I've completed the devops tickets."
-    iris "... so I've noticed. (SMILE)."
+    player "I-I've completed the DevOps tickets."
+    iris "... so I've noticed."
     iris "Shall I give my colleague a call?"
     player "I think I'd like that."
-    # * TRANSITION: CUBICLES"
+    scene bg company1_lydia_cubicle with fadehold
     "That week, you have three rigorous interviews with Spaghetti Code."
     "With bated breath, you wait for the email from your recruiter, informing you whether you received the position or not."
-    # * TRANSITION: LIVING ROOM"
+    scene bg living_room with fadehold
     "When you receive the offer letter, your parents couldn't be more proud. You play it cool, just like Iris instructed, requesting a day to think on the offer, despite barely being able to contain your excitement."
-    # * TRANSITION: CUBICLES"
+    scene bg company1_lydia_cubicle with fadehold
     "The next morning, you sign, and put in your 2 weeks notice at ConsultMe."
-    # * TRANSITION: OFFICE"
+    scene bg company1_center with fadehold
     "The whole team is saddened by seeing the two of you go, but Goro is sure to tell you how proud he is."
-    # * TRANSITION: FRONT DESK"
+    scene bg company1_reception with fadehold
     "You realize as you leave ConsultMe, passing its front desk for the final time, that you haven't seen Maria in a while. "
     "Perhaps she's off to greener pastures as well."
-    # * TRANSITION: CUSTOM"
+    scene bg bedroom with fadehold
     "The next 3 weeks crawl by, as you alternate between studying for your new position, and taking a much-needed break."
-    # TITLE CARD: END OF ARC I"
-    # TWITTER: TITLE: Arc I Completed! TEXT: Congratulations! You completed the first Arc! "
     return
 
 # start of home stories
@@ -1375,7 +1377,7 @@ label v2_email:
     player "“To whom it may concern,"
     player "“Our payroll system has experienced a privacy breach at 10:27AM today. To ensure your private information is safe, please click the link below to reset the password to your payroll account."
     player "We deeply apologize for the inconvenience.”"
-    player "Wow! That'd really stink if someone got a hold of my password! What should I do?"
+    player @ pout "Wow! That'd really stink if someone got a hold of my password! What should I do?"
 
     $ found_problem = False
     menu mysterious_email_choices:    
@@ -1405,7 +1407,7 @@ label v2_email:
         "Check the sender's email":
             player "Come to think of it, did this really come from the payroll department? I just ran into Ryan from Payroll during lunch, and he didn't say anything about this."
             player "..."
-            player "(Gasp!) ryanwebster@ajflke.net... Weird - This isn't a ConsultMe Consulting company email! Ryan Webster does work for the Payroll department, but the end of his email should be @goodvibes.com."
+            player @ surprised "(Gasp!) ryanwebster@ajflke.net... Weird - This isn't a ConsultMe Consulting company email! Ryan Webster does work for the Payroll department, but the end of his email should be @goodvibes.com."
             player "But what does that mean? Should I still go ahead and re-create my password?"
             $ found_problem = True
             jump mysterious_email_choices
@@ -1432,7 +1434,7 @@ label v2_email:
         "Something's not right here..." if found_problem:
             player "Something's not right here. Now that I think about it, I remember our security specialist telling me about a report button in my email software when I first started. I'll report this email to the Security Department."
             player "..."
-            player "Oh! Another email? And it's from the Security Department! I'd better open it."
+            player @ surprised "Oh! Another email? And it's from the Security Department! I'd better open it."
             player "“Congratulations! You've passed a routine ConsultMe phishing test. Your vigilance is appreciated and helps keep our company safe from cyber attacks and security vulnerabilities.”"
             player "Phishing? What's that? Are they talking about the password reset email?"
             player "I'd better look this up."
@@ -1448,6 +1450,7 @@ label v2_email:
 
 label v2_venting:
     player "(Sigh)"
+    show mint
     mint "Meow!"
     player "Hi Mint. Am I ever glad to see you! I had a rough day at work today."
     mint "Meow?"
@@ -1455,7 +1458,8 @@ label v2_venting:
     player "They told me that they wanted a custom API built for their project, even though I told them it was a bad idea. It would take the team an extra week if we did it that way instead of just using a public API. "
     player "It would cost them less money, too."
     player "I told the client this, and now we're 3 days into the project and they're demanding that we finish faster."
-    player "I'm just so frustrated..."
+    player @ worry "I'm just so frustrated..."
+    hide mint
     mom "[player_name]! [player_name], what's wrong honey? Are you upset about something?"
     player "(Hm... I am upset. And talking to Mom usually makes me feel better.)"
     player "(I could also post about this on my favorite web development forum. I see people complaining about their jobs there all the time.)"
@@ -1485,7 +1489,15 @@ label v2_venting:
 
         "Vent to Annika":
             player "I think I'll talk to Annika. She's one of my only friends that completely understands the work I do. I'll talk to her about this."
-            player "..."
+            window hide
+            show smartphone at truecenter
+            play sound "<to 2.0>audio/sfx/phone_ring.wav"
+            play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
+            pause 2.0
+            hide smartphone
+
+            show annika
+            pause 1.0
             annika "Hey accountability buddy! What's up?"
             player "Hey Annika. Do you have a second?"
             player "I've just had the roughest day today."
@@ -1518,6 +1530,7 @@ label v2_venting:
 
 label v2_running_late:
     player "..."
+    show mint
     mint "Mew!"
     player "Ngggh..."
     player "Meow!"
@@ -1525,7 +1538,7 @@ label v2_running_late:
     player "5 more minutes..."
     mint "Mew?"
     player "..."
-    player "Oh my gosh!"
+    player @ surprised "Oh my gosh!"
     player "Mint, is that really what time it is? I'm running late!"
     player "The office opens around 8AM, and I'm typically encouraged to arrive between then and 10AM."
     player "Right now, it's 9:20AM!"
@@ -1535,10 +1548,11 @@ label v2_running_late:
     player "It takes around 20 minutes for the bus to get to work, and maybe 20 minutes to walk there."
     player "I could probably make it if I run!"
     mint "... mew?"
-    player "Mint, don't look at me like that..."
+    player @ pout "Mint, don't look at me like that..."
     player "I want to make a good first impression my first few months at my first job. I shouldn't be getting there late! "
     player "I could maybe make it if I rush!"
     player "I mean... what else can I really do other than that?"
+    hide mint
 
     menu:
         "Run to the bus stop. You can probably make it!":
@@ -1565,7 +1579,9 @@ label v2_running_late:
                 "However, there's a factor that you didn't plan for - the bus is 20 minutes late getting there."
                 "You ask the driver what was going on when he arrives. He explains that there were two traffic jams on the highway to your neighborhood."
                 "To make things worse, the bus also catches a flat halfway to your job."
+                scene bg company1_center with fadehold
                 "By the time you arrive at work, it is 12:00PM. Iris does not seem pleased."
+                show iris
                 iris "Nice to see you actually show up."
                 player "*Pant*... *Pant...*"
                 player "I'm... *Pant*... Sorry!"
@@ -1632,10 +1648,18 @@ label v2_family_business:
     player "Sure! I remember when I was in the middle of having to make that decision."
     player "I'll talk over all of her options with her."
 
+    scene bg bedroom with fadehold
     "Later that evening..."
-    # phone ringing
+    show smartphone at truecenter
+    play sound "<to 2.0>audio/sfx/phone_ring.wav"
+    play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
+    pause 2.0
+    hide smartphone
+
+    show josephine smile
+    pause 1.0
     josephine "... Hello?"
-    player "Hey Josie! How are you doing?"
+    player smile "Hey Josie! How are you doing?"
     josephine "Hello Cousin [player_name]. I am well. "
     josephine "I heard about your success in acquiring a job in your desired field. Congratulations."
     player "Hey, thanks! It was a long road, but totally worth it."
@@ -1648,9 +1672,9 @@ label v2_family_business:
     josephine "I decided to take a gap year. To travel, y'know?"
     player "R-right... "
     player "Jeez, I heard that you were a genius, but this is too cool! "
-    player "I'm so proud of you. (Smile)"
-    josephine "Thanks. It's not THAT big of a deal... (BLUSH)"
-    josephine "You say that you're impressed, but I'm impressed by YOU."
+    player @ laugh "I'm so proud of you."
+    josephine blush "Thanks. It's not THAT big of a deal..."
+    josephine -blush "You say that you're impressed, but I'm impressed by YOU."
     josephine "Momma spoke about how you made a plan, and pursued your future. You even lacked formal training."
     josephine "So I decided to begin my own self-study in Python. I didn't realize it would be this interesting!"
     josephine "While building small projects has been fun, I'm not sure where to start as far as doing this stuff professionally."
@@ -1662,13 +1686,12 @@ label v2_family_business:
     josephine "My mother and father want like to discuss financing and time commitments."
     player "Are they aware of your... um... “5 year plan”?"
     josephine "... "
-    josephine "Momma and Vati want me to be happy. (BLUSH)"
+    josephine blush "Momma and Vati want me to be happy."
     josephine "They are phenomenal parents. They have always supported my pursuits, even when they do not understand. "
     josephine "I want THEM to be happy."
-    josephine "I want them to be proud of me. (BLUSH)"
-    player "... (HAPPY)"
-    player "Well, how about we go over what your options are, and we can talk about which one sounds best for you?"
-    josephine "Thanks, Cousin [player_name]! You're the best. (HAPPY)"
+    josephine "I want them to be proud of me."
+    player smile "Well, how about we go over what your options are, and we can talk about which one sounds best for you?"
+    josephine -blush "Thanks, Cousin [player_name]! You're the best."
     josephine "What are my options?"
 
     default v2_family_business_choices_visited = set()
@@ -1755,7 +1778,7 @@ label v2_family_business:
     josephine "Thanks again [player_name]. This is all really, really scary."
     josephine "It almost doesn't seem real that I'm about to start making decisions for my future."
     josephine "Especially programming. It's new and exciting, but I'm not sure if I'm ready to do this on a professional level."
-    player "Haha!"
+    player @ laugh "Haha!"
     josephine "..."
     josephine "What's so funny? I'm spilling my guts to you here."
     player "It's just so funny."
@@ -1774,7 +1797,10 @@ label v2_family_business:
 label v2_fresssh:
     player "I'm home everyone!"
     player "Now that I'm back, I can check my favorite Greddit group, the LearnProgramming forum!"
+    scene bg bedroom with blinds
+    show mint
     mint "Meow?"
+    hide mint
     player "People like to help each other out with programming problems that they have."
     player "Sometimes, they even post articles and news about updates in programming languages or other new, cutting-edge technologies!"
     player "Hm... what's this?"
@@ -1785,7 +1811,7 @@ label v2_fresssh:
     player "Looking them up, both of these seem so cool. Maybe those two are right, and these technologies are the future..."
     player "Plus, I can tell Goro all about them, and maybe we can start using them!"
     player "On the other hand, I heard Goro talking about how on our next project, we're going to be using something called Material UI."
-    player "Maybe I need to learn something like that so I can really help out the team."
+    player smile "Maybe I need to learn something like that so I can really help out the team."
 
     menu:
         "Learn about BingBong technology and Fresssh.":
@@ -1794,7 +1820,9 @@ label v2_fresssh:
             player "But Fresssh seems pretty cool! Following this tutorial, I managed to make a tiny application."
             player "I bet we can find lots of places to use this at work."
             player "I should message Goro and tell him about what I learned!"
-            player "..."
+
+            play sound 'audio/sfx/social_media_notification.wav'
+            show goro smile
             goro "Hey [player_name]! Staying at the office a bit late?"
             player "No, I just got back home!"
             player "So I was on this forum that I really like, and I read about some users talking about BingBong, as well as this new framework..."
@@ -1806,7 +1834,7 @@ label v2_fresssh:
             player "Aw man, really? Why?"
             goro "For one, Fresssh, even though it seems pretty cool, is super new. "
             goro "Like, it's fully-released version came out about 6 months ago."
-            player "Six MONTHS ago?"
+            player @ surprised "Six MONTHS ago?"
             goro "Yes. Which means that there's barely any documentation on it."
             "You do a quick Schmoogle search and sure enough, the only documentation you can find on Fresssh is on the official documentation page and Fresssh's Youtube channel."
             goro "What happens if you need to debug something? What if there are some bugs that even the developers of the framework haven't figured out or noticed yet?"
@@ -1835,7 +1863,9 @@ label v2_fresssh:
             "You spend a little bit of time on a Material UI tutorial, and before you know it, you've whipped up a little mockup."
             player "Using this at work will be pretty straightforward."
             player "I should message Goro and tell him about what I learned!"
-            player "..."
+
+            play sound 'audio/sfx/social_media_notification.wav'
+            show goro smile
             goro "Hey [player_name]! Staying at the office a bit late?"
             player "No, I just got back home!"
             player "I looked up Material UI. It looks like a lot of fun!"
@@ -1866,6 +1896,8 @@ label v2_old_friend:
     greg "It's okay. Stuff happens, y'know?"
     greg "It's been ages since I've seen you though - let me grab us some coffee and we can sit down and catch up!"
     player "That super nice of you, thanks! I'll wait here for you."
+
+    show layla with moveinleft
     layla "Did I just overhear that guy tell you that he's looking for work?"
     player "Yeah, that's Greg. We used to go to high school together."
     layla "Isn't ConsultMe hiring? You may want to think about referring him!"
@@ -1877,6 +1909,9 @@ label v2_old_friend:
     player "Wow! That's a LOT of money for just passing information on. Do you think I should refer Greg?"
     layla "Maybe! You should talk to him about it. I've got to run and meet up with a client in one of the meeting rooms here, but I thought I'd drop by and say hello. "
     layla "Good luck!"
+    hide layla with moveoutright
+
+    scene bg hacker_space with blinds
     greg "Hey! Sorry for the wait. These developers love their coffee, so the line was super long!"
     player "Always! Lots of people in my office can't start their day without it."
     player "So, Greg..."
@@ -1889,7 +1924,10 @@ label v2_old_friend:
             greg "You'd be doing me a huge favor, thank you! The job market has been a little rough, so being able to get my foot in the door would be great!"
             player "Awesome! I'll send in my referral email first thing in the morning."
 
-            $ calendar.next()
+            $ calendar.next_weekday()
+            scene bg company1_center with fadehold
+            "Some time later..."
+            show iris
             iris "So. Would you mind explaining yourself?"
             player "(It's so early... is Iris already mad at me?)"
             player "Hi Iris. What am I explaining?"
@@ -1899,7 +1937,7 @@ label v2_old_friend:
             player "Oh jeez... did he at least interview well?"
             iris "I've never been called “dude” so many times in my life by one person."
             iris "When we asked him about noteworthy skills, he explained, in GREAT detail, how he ate 30 pieces of pizza on a dare once in college."
-            iris "He also likes drinking Ranch with his pizza."
+            iris @ disgust "He also likes drinking Ranch with his pizza."
             player "I see."
             player "Wait."
             player "You mean... PUTTING ranch ON his pizza, right?"
@@ -1933,6 +1971,9 @@ label v2_old_friend:
             player "Well Greg, it's getting a bit late - I should probably get home."
             player "Good luck with finding a new job! I hope that I can at least keep seeing you here at the HackerSpace?"
             greg "Definitely! It's a great place to network. You never know where your next gig will come from!"
+
+            scene bg hacker_space_cafe with blinds
+            show layla
             layla "So, are you going to recommend Greg?"
             player "No, I actually just have a bad feeling about it... Greg was always kind of a slacker in school. What happens if he hasn't changed?"
             layla "That's a good point. If he comes into an interview late and bombs it, or even gets hired but never comes in on time, that's a bad look for you."
@@ -1943,6 +1984,7 @@ label v2_equity:
     player "I wonder what's going on in the HackerSpace today?"
     player "Hm... Oh look, there's Layla! And she's talking to someone, but she looks pretty upset."
     player "I wonder what's going on?"
+    show layla
     layla "I'm telling you, you're wrong. If you're going to be a good developer, you've got to change your way of thinking."
     high_school_student "I feel like you're making a big deal out of nothing. I've never even seen this happen in real life."
     player "Sorry to butt in, but what's going on here?"
@@ -1998,6 +2040,8 @@ label v2_equity:
     return
 
 label v2_gelato:
+    show layla at left
+    show annika at right
     player "Hey Layla! Annika!"
     layla "Hey! Did you get the new Hackerspace newsletter?"
     player "No, I haven't checked it recently, why?"
@@ -2048,6 +2092,7 @@ label v2_gelato:
     return
 
 label v2_internet_safety:
+    show layla
     layla "Hey there!"
     player "Hi Layla! Wanna take a look at the community board and see if any good talks are coming up?"
     layla "That sounds like a good time! I missed the React talk last month, so I've been trying to check more often."
@@ -2108,6 +2153,8 @@ label v2_internet_safety:
 label v2_where_to_start:
     "It's as busy as ever at the Hackerspace."
     "You scan around the room looking for a familiar face and spot Layla and Annika sitting at a table by the vending machine."
+    show layla at left
+    show annika at right
     "As you slide into a seat and greet your friends, a young man approaches, no older than 18."
     teen "H-hello."
     annika "Hey, what's up? Are you new here?"

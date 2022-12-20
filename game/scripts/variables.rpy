@@ -152,7 +152,7 @@ init python:
         [
         'v2_email',
         'v2_venting',
-        'v2_running_late', # this is a morning event
+        # 'v2_running_late', # this is a morning event
         'v2_family_business',
         'v2_fresssh',
         ],
@@ -210,6 +210,9 @@ init python:
     milestone_first_offer = _('Got My First Offer!')
     # TODO: v2 can have multiple offers
     milestone_onboarding = _('Now Streaming: My Dream Dev Job')
+    # v2
+    milestone_v2_redemption = _('Saved the day at work!')
+    milestone_v2_arc1_complete = _('About to transition into my new DevOps job!')
 
     tweet_start_curriculum = _('I just started teaching myself to code in #LearnToCodeRPG. Play the game here: ')
     tweet_complete_curriculum = _('I nailed the CS curriculum in #LearnToCodeRPG. Play the game here: ')
@@ -218,6 +221,8 @@ init python:
     tweet_first_interview = _('I got my first technical interview in #LearnToCodeRPG. Play the game here: ')
     tweet_first_offer = _('I got my first dev job in #LearnToCodeRPG. Play the game here: ')
     tweet_onboarding = _('I started onboarding at my dream dev job in #LearnToCodeRPG. Play the game here: ')
+    tweet_v2_redemption = _('I saved the day with my Regex skills! Play the game here: ')
+    tweet_v2_arc1_complete = _("I'm about to transition into my new DevOps job! Play the game here: ")
 
     milestone_to_tweet_map = {
         milestone_start_curriculum: generate_tweet_intent(tweet_start_curriculum),
@@ -226,7 +231,9 @@ init python:
         milestone_first_application: generate_tweet_intent(tweet_first_application),
         milestone_first_interview: generate_tweet_intent(tweet_first_interview),
         milestone_first_offer: generate_tweet_intent(tweet_first_offer),
-        milestone_onboarding: generate_tweet_intent(tweet_onboarding)
+        milestone_onboarding: generate_tweet_intent(tweet_onboarding),
+        milestone_v2_redemption: generate_tweet_intent(tweet_v2_redemption),
+        milestone_v2_arc1_complete: generate_tweet_intent(tweet_v2_arc1_complete),
     }
 
     ## plot easter eggs
