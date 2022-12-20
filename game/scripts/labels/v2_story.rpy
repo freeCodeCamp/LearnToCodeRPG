@@ -49,13 +49,13 @@ label v2_working_late:
                             $ player_stats.change_stats(RENOWN, 20)
 
                         "Maybe I could stay a little late. Okay.":
-                            call v2_working_late_sad_path
+                            call v2_working_late_sad_path from _call_v2_working_late_sad_path
 
                 "(Am I just a slow developer? If Brian could do it back then, I probably could too! I can do this.)":
-                    call v2_working_late_sad_path
+                    call v2_working_late_sad_path from _call_v2_working_late_sad_path_1
 
         "Sure. I've been getting more comfortable in my duties here! I can probably work something out.":
-            call v2_working_late_sad_path
+            call v2_working_late_sad_path from _call_v2_working_late_sad_path_2
     return
 
 label v2_working_late_sad_path:

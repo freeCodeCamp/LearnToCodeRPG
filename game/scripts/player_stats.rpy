@@ -74,7 +74,6 @@ init python:
             renpy.notify(stats_name + _(' is set to ') + str(clamped_val))
 
         def change_stats(self, stats_name, val):
-            print(stats_name)
             if stats_name in self.player_stats_map:
                 map_pointer = self.player_stats_map
             elif stats_name in self.subcategory_stats_map:
@@ -126,7 +125,7 @@ init python:
             self.change_stats(stats_name, val)
 
         def is_energy_low(self):
-            return self.player_stats_map[ENERGY] < 50
+            return self.player_stats_map[ENERGY] < 30
 
         def compute_cs_knowledge(self):
             # total

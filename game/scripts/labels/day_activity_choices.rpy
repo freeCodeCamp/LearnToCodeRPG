@@ -47,7 +47,7 @@ label day_activity_choices:
                     ])
                 renpy.say(player, text)
 
-            $ player_stats.change_stats_random(ENERGY, -20, -10)
+            $ player_stats.change_stats_random(ENERGY, -15, -10)
 
             if num_correct == 4:
                 player @ laugh "I got all questions right! Way to go!"

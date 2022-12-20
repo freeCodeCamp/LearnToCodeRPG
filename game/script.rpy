@@ -1885,6 +1885,7 @@ label v2_start:
     $ is_in_v2_arc1 = True
     $ work_session_questions = all_quiz_questions
 
+label v2_days_before_demo:
     $ num_days = 0
     while num_days < 21:
         $ num_days += 1
@@ -1892,9 +1893,10 @@ label v2_start:
         call v2_routine from _call_v2_routine
 
     $ calendar.next_weekday()
-    call day_start
+    call day_start from _call_day_start_15
     call v2_demo from _call_v2_demo
 
+label v2_days_after_demo:
     $ num_days = 0
     while num_days < 7:
         $ num_days += 1
@@ -1902,13 +1904,14 @@ label v2_start:
         call v2_routine from _call_v2_routine_1
 
     $ calendar.next_weekday()
-    call day_start
+    call day_start from _call_day_start_17
     call v2_redemption from _call_v2_redemption
     $ add_achievement(milestone_v2_redemption)
 
-    call day_start
+    call day_start from _call_day_start_18
     call v2_paying_it_forward_p1 from _call_v2_paying_it_forward_p1
 
+label v2_arc1_devops:
     $ player_stats.subcategory_stats_map[DEVOPS] = 0
     $ quiz_session_questions = devops_questions
     $ num_days = 0
@@ -1918,7 +1921,7 @@ label v2_start:
         call v2_routine from _call_v2_routine_3
 
     $ calendar.next_weekday()
-    call day_start
+    call day_start from _call_day_start_19
     call v2_paying_it_forward_p2 from _call_v2_paying_it_forward_p2
     $ add_achievement(milestone_v2_arc1_complete)
     call screen text_over_black_bg_screen(_("You've reached the end of Arc I. Stay tuned for Arc II coming up!"))
