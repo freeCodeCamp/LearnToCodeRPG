@@ -48,10 +48,10 @@ init python:
 
             # tag: item
             self.room_display_tagged = {
-                DESK: RoomItem('Simple desk', 'desk', '', 0, DESK, 1),
-                CHAIR: RoomItem('Wooden chair', 'chair_wooden', '', 0, CHAIR, 1),
-                ROUTER: RoomItem('Hotspot', 'hotspot', '', 0, ROUTER, 1),
-                PC: RoomItem('Old computer', 'pc_old', '', 0, PC, 1)
+                DESK: RoomItem('Old Desk', 'desk', '', 0, DESK, 1),
+                CHAIR: RoomItem('Kitchen Chair', 'chair_wooden', '', 0, CHAIR, 1),
+                ROUTER: RoomItem('Prepaid Hotspot', 'hotspot', '', 0, ROUTER, 1),
+                PC: RoomItem("Grandma’s Desktop", 'pc_old', '', 0, PC, 1)
             }
 
             self.room_display_tagless = set()
