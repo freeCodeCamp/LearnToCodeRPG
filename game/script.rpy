@@ -4,9 +4,9 @@ label start:
     scene main_menu sepia with dissolve
     menu:
         "Would you like to start in v1 or v2?"
-        "v1":
+        "v1 - Prologue":
             jump v1_start
-        "v2":
+        "v2 - Arc I":
             jump v2_start
 
 label v1_start:
@@ -156,7 +156,7 @@ label start_after_interview:
 label stage1:
     # use call instead of show b/c the screen will return after the timer finishes
     call screen text_over_black_bg_screen(_('About three months ago...'))
-    call screen text_over_black_bg_screen(_("{i}Chapter 1: Let's learn to code!{/i}"))
+    call screen text_over_black_bg_screen(_("{i}Prologue Chapter 1: Let's learn to code!{/i}"))
 
     scene bg kid_home
     $ calendar_enabled = True
@@ -349,7 +349,7 @@ label stage2_stats_change:
 
 label stage3:
     # Stage 3. Annika
-    call screen text_over_black_bg_screen(_('{i}Chapter 2: A learning buddy to make it better!{/i}'))
+    call screen text_over_black_bg_screen(_('{i}Prologue Chapter 2: A learning buddy to make it better!{/i}'))
     $ calendar.next()
     scene black
     scene bg bedroom with eyeopen
@@ -695,7 +695,7 @@ label stage5_annika:
 
 label stage6:
     # Stage 6. Trials
-    call screen text_over_black_bg_screen(_("{i}Chapter 3: Let's hit the books!{/i}"))
+    call screen text_over_black_bg_screen(_("{i}Prologue Chapter 3: Let's hit the books!{/i}"))
 
     scene bg bedroom with fade
     player smile "I'm finally home! Let's head over to [developerquiz] and try out some quiz questions."
@@ -986,7 +986,7 @@ label stage6_after_annika_questions:
 
 label stage7:
     # Stage 7. Marco
-    call screen text_over_black_bg_screen(_('{i}Chapter 4: A mentor to lead the way!{/i}'))
+    call screen text_over_black_bg_screen(_('{i}Prologue Chapter 4: A mentor to lead the way!{/i}'))
 
     $ has_met_marco = True # unlocks Marco's topics_to_ask
 
@@ -1268,7 +1268,7 @@ label stage7_complete_curriculum:
 
 label stage8:
     # Stage 8. Coding interviews
-    call screen text_over_black_bg_screen(_("{i}Chapter 5: Let's crush those interviews!{/i}"))
+    call screen text_over_black_bg_screen(_("{i}Prologue Chapter 5: Let's crush those interviews!{/i}"))
 
     scene bg bedroom with fadehold
     player smile "Alright! Let's start by applying to jobs!"
@@ -1452,11 +1452,9 @@ label stage8:
 
 label stage14:
     # Stage 14. New hire player meets Layla
-    call screen text_over_black_bg_screen(_("{i}Chapter 6: Let's meet my new colleagues!{/i}"))
+    call screen text_over_black_bg_screen(_("{i}Prologue Chapter 6: Let's meet my new colleagues!{/i}"))
 
     $ calendar.next_month() # player's start date is in a month
-    # TODO: maybe in v2
-    # $ player_stats.set_stats('Developer Skill', 0)
 
     scene bg office
     player surprised "Wow. I still can't believe that starting today, I'll be working in such a fancy office."
@@ -1656,6 +1654,7 @@ label v1_ending:
     $ calendar.next_month()
 
 label v2_start:
+    scene bg laptop_screen with dissolve
     ## setup for the case where the player started in v2 without filling in the info in v1
     if player_name == '':
         $ player_name = renpy.input(_("What is your name? {color=[red]}*{/color} (Type your name and hit Enter. This name will be used throughout the game and you cannot change it unless you start a new game.)"), default=_("Lydia"))
@@ -1671,12 +1670,15 @@ label v2_start:
     $ stats_unlocked = True
     $ todo_unlocked = True
     $ items_unlocked = True
+    $ quiz_session_questions = all_quiz_questions
     ## end setup
+    call screen text_over_black_bg_screen(_("{i}Arc I{/i}"))
 
     $ player_stats.set_stats(MONEY, 500)
     $ player_stats.set_stats(RENOWN, 20) # start with a bit of renown
 
     # transition to v2 plot here
+    $ calendar.fast_forward_to_weekday()
     $ calendar_enabled = True
     player relieved "A lot has happened in this past month..."
     player neutral "After I broke prod on the first day of work, Layla, the team, and my manager told me that it was okay and I didn't have to worry."
@@ -1867,33 +1869,48 @@ label v2_start:
             "You get ready for bed, wanting to be as well-rested as possible for your first official day of work!"
 
     $ calendar.next()
-
     $ is_in_v2_arc1 = True
     $ work_session_questions = all_quiz_questions
+
     $ num_days = 0
-    while num_days < 21:
-        $ num_days -= 1
+    while num_days < 14:
+        $ num_days += 1
         call day_start
+        call v2_routine
 
-        # check if it's a weekday or weekend
-        if calendar.is_weekday():
-            # go to work
-            scene bg company1_center with fadehold
-            # TODO: maybe give player the choice to visit the vending machine before and after work?
-            call work_session
+    $ calendar.fast_forward_to_weekday()
+    call v2_demo
 
-            # after work, call random work events
-            scene bg living_room night with slideright
-            player "Finally home!"
-            scene bg bedroom with blinds
-            call v2_activity_choices
-        else:
-            # weekend, stay home
-            call v2_activity_choices
+    $ num_days = 0
+    while num_days < 7:
+        $ num_days += 1
+        call day_start
+        call v2_routine
 
-    "You've reached the end of v2 arc1"
+    $ calendar.fast_forward_to_weekday()
+    call v2_redemption
+
+    $ num_days = 0
+    while num_days < 7:
+        $ num_days += 1
+        call day_start
+        call v2_routine
+
+    $ calendar.fast_forward_to_weekday()
+    call v2_paying_it_forward_p1
+
+    $ num_days = 0
+    while num_days < 4:
+        $ num_days += 1
+        call day_start
+        call v2_routine
+    $ calendar.fast_forward_to_weekday()
+
+    call v2_paying_it_forward_p2
+
+    call screen text_over_black_bg_screen(_("You've reached the end of Arc I. Stay tuned for Arc II coming up!"))
 
     # start v2 arc2
     $ is_in_v2_arc1 = False
 
-    return
+    jump ending_splash

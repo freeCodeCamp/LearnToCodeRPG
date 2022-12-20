@@ -228,8 +228,10 @@ init:
     define high_school_student = Character(_("High School Student"))
     define developer1 = Character(_("Developer 1"))
     define developer2 = Character(_("Developer 2"))
-    define sarah = Character(_("Cousin Sarah"))
     define teen = Character(_("Teen"))
+    define salesperson1 = Character(_("Salesperson 1"))
+    define salesperson2 = Character(_("Salesperson 2"))
+    define salesperson3 = Character(_("Salesperson 3"))
 
     # text displayables
     define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp.org{/color}{/font}{/a}'
@@ -490,6 +492,9 @@ init:
             attribute pout null
             attribute relieved null
 
+        attribute sweat
+
+        # glasses are on top of the face layers
         if player_glasses == 'player_pixelsunglasses':
             "player_pixelsunglasses"
         elif player_glasses == 'player_glasses':

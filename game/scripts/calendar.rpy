@@ -24,6 +24,13 @@ init python:
         def is_weekday(self):
             return self.date.weekday() < 5 # 5 Sat, 6 Sun
 
+        def fast_forward_to_weekday(self):
+            if self.is_weekday():
+                return
+            days_before_weekday = 7 - self.date.weekday()
+            self.date += timedelta(days=days_before_weekday)
+            renpy.call_screen('text_over_black_bg_screen', _('Fast-forwarding to a work day...'))
+
 # this screen should always show
 screen calendar_screen():
     ## Ensure this appears on top of other screens like quick_menu and player_stats

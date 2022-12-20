@@ -429,7 +429,8 @@ label v2_activity_hacker_space:
     scene bg hacker_space with slideright
     play sound 'audio/sfx/office_ambient.wav'
 
-    if len(v2_arc1_event_labels[HACKER_SPACE]) == len(seen_v2_arc1_events[HACKER_SPACE]) or renpy.random.random() < 0.6:
+    if len(v2_arc1_event_labels[HACKER_SPACE]) == len(seen_v2_arc1_events[HACKER_SPACE]) or \
+    renpy.random.random() < 0.6:
         call day_activity_hacker_space_random
     else: # 40% chance of triggering an event
         python:
@@ -438,4 +439,54 @@ label v2_activity_hacker_space:
             seen_v2_arc1_events[HACKER_SPACE].add(label)
             renpy.call(label)
 
+    return
+
+label v2_vending_machine:
+    "Would you like to visit the vending machine?"
+    menu:
+        "Yes":
+            call screen shop_screen(vending_machine_items)
+    
+        "Maybe later":
+            pass
+
+    return
+    
+label v2_shop:
+    "Would you like to do some shopping?"
+    menu:
+        "Yes":
+            call screen shop_screen(home_shop_items)
+    
+        "Maybe later":
+            pass
+
+    return
+
+label v2_routine:
+    # check if it's a weekday or weekend
+    if calendar.is_weekday():
+        # go to work
+        scene bg company1_center with fadehold
+        # TODO: maybe give player the choice to visit the vending machine both before and after work?
+        call work_session
+        # trigger work events, if no events, give player the choice to visit the vending machine
+        if len(v2_arc1_event_labels[WORK]) == len(seen_v2_arc1_events[WORK]) or \
+        renpy.random.random() < 0.2:
+            call v2_shop
+        else: # trigger work event
+            python:
+                available_labels = list(set(v2_arc1_event_labels[WORK]) - seen_v2_arc1_events[WORK])
+                label = renpy.random.choice(available_labels)
+                seen_v2_arc1_events[WORK].add(label)
+                renpy.call(label)
+
+        # after work, call random work events
+        scene bg living_room night with slideright
+        player "Finally home!"
+        scene bg bedroom with blinds
+        call v2_activity_choices
+    else:
+        # weekend, stay home
+        call v2_activity_choices
     return
