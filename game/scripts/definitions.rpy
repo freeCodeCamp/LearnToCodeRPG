@@ -241,6 +241,9 @@ init:
 
     # transitions
     define fadehold = Fade(0.5, 1.0, 0.5)
+    # NOTE: use fadehold for bigger location change
+    # location change within a company/space should use blinds
+    # changing time of the day should use dissolve
 
     ## images
     # mint

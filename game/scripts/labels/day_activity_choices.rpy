@@ -471,8 +471,17 @@ label v2_routine:
     if calendar.is_weekday():
         # go to work
         scene bg company1_center with fadehold
+        play sound 'audio/sfx/office_ambient.wav'
         # TODO: maybe give player the choice to visit the vending machine both before and after work?
+
+        player "Alright. Let's get to my seat."
+        scene bg company1_lydia_cubicle with blinds
         call work_session from _call_work_session_1
+
+        # after work
+        scene bg company1_center with dissolve
+        play sound 'audio/sfx/office_ambient.wav'
+
         # trigger work events, if no events, give player the choice to visit the vending machine
         if len(v2_arc1_event_labels[WORK]) == len(seen_v2_arc1_events[WORK]) or \
         renpy.random.random() < 0.8:
@@ -486,7 +495,15 @@ label v2_routine:
 
         # after work, call random work events
         scene bg living_room night with blinds
-        player "Finally home!"
+        player smile "Finally home! I'm ready for dinner!"
+        scene bg kitchen night with blinds
+        play sound 'audio/sfx/dining_ambient.wav'
+        $ show_random_dinner_image()
+        player "So, today at work this happened..."
+        mom "Hahaha that's quite interesting."
+        dad "Your co-workers sure have quite unique personalities."
+        player "I bet they do!"
+
         scene bg bedroom with blinds
         call v2_activity_choices from _call_v2_activity_choices
     else:
