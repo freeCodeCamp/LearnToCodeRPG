@@ -80,7 +80,7 @@ label day_start_text3:
 
 label day_end:
     
-    scene bg bedroom with slideright
+    scene bg bedroom with blinds
     player relieved "Phew... That was a long day."
 
     # dinner

@@ -188,7 +188,7 @@ label stage1:
 label stage2:
     # Stage 2. player's decision to learn to code
     # player returns home
-    scene bg living_room night with slideright
+    scene bg living_room night with blinds
 
     player laugh "I'm home!"
     mom "Hey sweetie. Welcome back!"
@@ -906,7 +906,7 @@ label stage6_after_annika_questions:
     annika "You ready for the ride?"
     player laugh "Yes! Lead the way."
 
-    scene bg hacker_space with slideright
+    scene bg hacker_space with blinds
     play sound 'audio/sfx/office_ambient.wav'
 
     show annika
@@ -950,7 +950,7 @@ label stage6_after_annika_questions:
 
     $ add_achievement(plot_hackerspace_discover)
 
-    scene bg bedroom with slideright
+    scene bg bedroom with blinds
     player smile "Wow. I'm amazed. Hacker Space sure is a cool place. I'll have to check it out on my own someday."
     player "Now let's call it a day and get some rest."
 
@@ -1064,7 +1064,7 @@ label stage7:
             show marco laugh
             marco "Any time, [player_name]. Have fun coding and keep me updated on your progress!"
 
-    scene bg bedroom with slideright
+    scene bg bedroom with blinds
     player smile "Marco was certainly a cool guy. I'm so lucky to have him as my mentor."
     player "Now if I have questions about anything, I can either talk to Annika or Marco."
     show mint
@@ -1117,7 +1117,7 @@ label stage7:
     annika "Wanna come with me to check it out today?"
     player @ laugh "Sounds good! See you in a bit!"
 
-    scene bg hacker_space with slideright
+    scene bg hacker_space with blinds
     play sound 'audio/sfx/office_ambient.wav'
     player surprised "It's even more crowded than usual..."
     annika @ laugh "Looks like high school kids are all hyped up for the event!"
@@ -1218,7 +1218,7 @@ label stage7:
 
     call save_reminder from _call_save_reminder_11
 
-    scene bg bedroom with slideright
+    scene bg bedroom with blinds
     player relieved "I feel like I've learned so much about the coding interview process from Annika today."
     player laugh "So much that I can't wait to wrap up my curriculum and jump in to see what a real coding interview is like!"
     player smile "I heard that [developerquiz] will send an email notification to people who have made significant progress in their curriculum."
@@ -1654,6 +1654,8 @@ label v1_ending:
     $ calendar.next_month()
 
 label v2_start:
+    call screen text_over_black_bg_screen(_("{i}Arc I{/i}"))
+
     scene bg laptop_screen with dissolve
     ## setup for the case where the player started in v2 without filling in the info in v1
     if player_name == '':
@@ -1671,8 +1673,8 @@ label v2_start:
     $ todo_unlocked = True
     $ items_unlocked = True
     $ quiz_session_questions = all_quiz_questions
-    ## end setup
-    call screen text_over_black_bg_screen(_("{i}Arc I{/i}"))
+    $ player_stats.subcategory_stats_map = {stats_name: 0 for stats_name in v1_skills}
+    ## end v2 setup
 
     $ player_stats.set_stats(MONEY, 500)
     $ player_stats.set_stats(RENOWN, 20) # start with a bit of renown
@@ -1680,6 +1682,7 @@ label v2_start:
     # transition to v2 plot here
     $ calendar.fast_forward_to_weekday()
     $ calendar_enabled = True
+    scene bg bedroom with dissolve
     player relieved "A lot has happened in this past month..."
     player neutral "After I broke prod on the first day of work, Layla, the team, and my manager told me that it was okay and I didn't have to worry."
     player "But I feel like maybe a fresh start will give me a morale boost."
@@ -1868,7 +1871,6 @@ label v2_start:
             "You finish up chatting with Annika, feeling a huge weight lifted off of your shoulders."
             "You get ready for bed, wanting to be as well-rested as possible for your first official day of work!"
 
-    $ calendar.next()
     $ is_in_v2_arc1 = True
     $ work_session_questions = all_quiz_questions
 

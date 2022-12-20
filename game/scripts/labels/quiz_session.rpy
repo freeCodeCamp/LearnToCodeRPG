@@ -122,8 +122,6 @@ label trivia_session_questions:
 label trivia_one_question:
     $ num_questions -= 1
     $ quiz_question = trivia_questions[num_questions]
-    if quiz_question.code_label is not None:
-        show screen example(quiz_question.code_label)
 
     # display question
     $ renpy.say(None, quiz_question.question, interact=False)
@@ -162,8 +160,6 @@ label interview_session_questions:
         $ num_questions -= 1
         # choose randomly from all available questions
         $ quiz_question = renpy.random.choice(quiz_session_questions)
-        # if quiz_question.code_label is not None:
-        #     show screen example(quiz_question.code_label)
 
         # display question
         $ renpy.say(None, quiz_question.question, interact=False)
@@ -209,8 +205,6 @@ label work_session_questions:
         $ num_questions -= 1
         # choose randomly from all available questions
         $ quiz_question = renpy.random.choice(quiz_session_questions)
-        # if quiz_question.code_label is not None:
-        #     show screen example(quiz_question.code_label)
 
         # display question
         $ renpy.say(None, quiz_question.question, interact=False)
@@ -220,12 +214,15 @@ label work_session_questions:
 
         if result == True:
             $ num_correct += 1
-            $ player_stats.change_stats(RENOWN, 2)
+            # $ player_stats.change_stats(RENOWN, 2)
             $ player_stats.change_stats(MONEY, 50)
+            if quiz_question.category is not None: # non-Easter Egg question
+                $ player_stats.change_stats(quiz_question.category, 10)
+                
             player @ laugh "Correct!"
         else:
             with vpunch
-            $ player_stats.change_stats(RENOWN, -1)
+            # $ player_stats.change_stats(RENOWN, -1)
             player @ pout "Wrong..."
 
     # reset timeout

@@ -170,7 +170,7 @@ label day_activity_relax:
     return
 
 label day_activity_hacker_space:
-    scene bg hacker_space with slideright
+    scene bg hacker_space with blinds
     play sound 'audio/sfx/office_ambient.wav'
     player "(As always, a lot of people are hanging out here.)"
     player "(I can go around and talk to people to learn about what cool things are happening.)"
@@ -214,7 +214,7 @@ label day_activity_hacker_space_random:
     return
 
 label day_activity_barista:
-    scene bg cafe with slideright
+    scene bg cafe with blinds
     player "Alright, let's serve some coffee to help get people started with their day!"
     play sound 'audio/sfx/cafe_pour.wav'
     show coffee at truecenter
@@ -253,7 +253,7 @@ label day_activity_barista:
     return
 
 label day_activity_park:
-    scene bg park1 with slideright
+    scene bg park1 with blinds
     play sound 'audio/sfx/birds.wav'
     player happy "It always soothes my nerves to take a walk in the park."
     scene bg park2 with fadehold
@@ -378,9 +378,9 @@ label day_activity_interview:
         ])
     $ renpy.scene()
     $ renpy.show(interview_room_bg)
-    with slideright
+    with blinds
     # the above is equivalent to the below show statement
-    # scene interview_room_bg with slideright
+    # scene interview_room_bg with blinds
     player surprised "Wow. Their office sure is fancy. I hope I can get my cubicle in a fancy office like this..."
 
     $ interviewer_sprite = renpy.random.choice([
@@ -400,7 +400,7 @@ label day_activity_interview:
     $ renpy.hide(interviewer_sprite)
 
     player relieved "(... Was that everything? Kudos to me for surviving...)"
-    $ player_stats.change_stats_random(ENERGY, -20, -10)
+    $ player_stats.change_stats_random(ENERGY, -10, -5)
     player "That was as intense as I expected. I hope I did well with all my preparations."
     player "I can't wait to go home and just relax now..."
     return
@@ -421,12 +421,15 @@ label v2_activity_choices:
 
         "Take a day off and relax":
             call day_activity_relax
+
+        "Do some shopping":
+            call screen shop_screen(home_shop_items)
             
     call day_end
     return
 
 label v2_activity_hacker_space:
-    scene bg hacker_space with slideright
+    scene bg hacker_space with blinds
     play sound 'audio/sfx/office_ambient.wav'
 
     if len(v2_arc1_event_labels[HACKER_SPACE]) == len(seen_v2_arc1_events[HACKER_SPACE]) or \
@@ -472,7 +475,7 @@ label v2_routine:
         call work_session
         # trigger work events, if no events, give player the choice to visit the vending machine
         if len(v2_arc1_event_labels[WORK]) == len(seen_v2_arc1_events[WORK]) or \
-        renpy.random.random() < 0.2:
+        renpy.random.random() < 0.8:
             call v2_shop
         else: # trigger work event
             python:
@@ -482,7 +485,7 @@ label v2_routine:
                 renpy.call(label)
 
         # after work, call random work events
-        scene bg living_room night with slideright
+        scene bg living_room night with blinds
         player "Finally home!"
         scene bg bedroom with blinds
         call v2_activity_choices
