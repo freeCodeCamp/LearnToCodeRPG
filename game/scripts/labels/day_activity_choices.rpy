@@ -414,7 +414,7 @@ label v2_activity_choices:
     player smile "Now that I finally have some free time. What should I do?"
     menu:
         "Work on some tickets":
-            call work_session_questions
+            call work_session
     
         "Hang out at Hacker Space":
             call v2_activity_hacker_space
@@ -476,7 +476,7 @@ label v2_routine:
         # trigger work events, if no events, give player the choice to visit the vending machine
         if len(v2_arc1_event_labels[WORK]) == len(seen_v2_arc1_events[WORK]) or \
         renpy.random.random() < 0.8:
-            call v2_shop
+            call v2_vending_machine
         else: # trigger work event
             python:
                 available_labels = list(set(v2_arc1_event_labels[WORK]) - seen_v2_arc1_events[WORK])

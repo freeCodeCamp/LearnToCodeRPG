@@ -218,12 +218,15 @@ label work_session_questions:
             $ player_stats.change_stats(MONEY, 50)
             if quiz_question.category is not None: # non-Easter Egg question
                 $ player_stats.change_stats(quiz_question.category, 10)
-                
+
             player @ laugh "Correct!"
         else:
             with vpunch
             # $ player_stats.change_stats(RENOWN, -1)
             player @ pout "Wrong..."
+
+        # show the correct answer and explanation using a viewport
+        call screen quiz_question_answer_explanation_screen(quiz_question)
 
     # reset timeout
     $ timeout = None

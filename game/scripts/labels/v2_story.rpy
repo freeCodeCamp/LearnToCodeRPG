@@ -989,7 +989,7 @@ label v2_demo:
     "Iris is incredibly upset with you. Goro seems more disappointed than anything."
     "That stings worse."
     iris "Do you understand what you've done? (ANGER)"
-    iris "We have to cancel 70% of our demos for the next day or two while we get all of this figured out. (DISGUST)"
+    iris "We have to cancel 70\% of our demos for the next day or two while we get all of this figured out. (DISGUST)"
     goro "Mala explained to me that she reminded you to check in staging. Is that true? (EYEBROW)"
     player "Yes…"
     goro "Oh [player_name]… (SOUND: SIGH)"
