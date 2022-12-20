@@ -7,11 +7,18 @@ init python:
     CHANGE_DIRECTION_DEC = 'dec'
 
     # some constants for dict keys
-    # TODO: for translation, refactor into { 'energy': _('Energy') }
-    ENERGY = _('Energy')
-    CS_KNOWLEDGE = _('CS Knowledge')
-    RENOWN = _('Renown')
-    MONEY = _('Money')
+    ENERGY = 'energy'
+    CS_KNOWLEDGE = 'cs_knowledge'
+    RENOWN = 'renown'
+    MONEY = 'money'
+
+    # REFACTOR: determine whether this is necessary
+    player_stats_display_name_map = {
+        ENERGY: _('Energy'),
+        CS_KNOWLEDGE: _('CS Knowledge'),
+        RENOWN: _('Renown'),
+        MONEY: _('Money'),
+    }
 
     # item tag definitions
     DESK = 'desk'
@@ -67,6 +74,7 @@ init python:
             renpy.notify(stats_name + _(' is set to ') + str(clamped_val))
 
         def change_stats(self, stats_name, val):
+            print(stats_name)
             if stats_name in self.player_stats_map:
                 map_pointer = self.player_stats_map
             elif stats_name in self.subcategory_stats_map:
@@ -294,8 +302,9 @@ screen player_stats_screen(changed_stats, change_direction):
         # Subcategory CS Stats
         if player_stats.subcategory_stats_map:
             for skill in player_stats.subcategory_stats_map:
+                $ skill_name = all_skills[skill]
                 $ val = player_stats.subcategory_stats_map[skill]
-                text "    {icon=icon-code} [skill!t]" color gui.accent_color
+                text "    {icon=icon-code} [skill_name!t]" color gui.accent_color
                 bar value val range 100 xalign 0.5 yalign 0.9 xmaximum 200 at alpha_dissolve
                 text str(val) + '  ' + get_stats_change_direction_icon(skill, changed_stats, change_direction)
 

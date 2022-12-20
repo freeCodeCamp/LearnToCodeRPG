@@ -1914,8 +1914,10 @@ label v2_start:
     call day_start
     call v2_paying_it_forward_p1 from _call_v2_paying_it_forward_p1
 
+    $ player_stats.subcategory_stats_map[DEVOPS] = 0
+    $ quiz_session_questions = devops_questions
     $ num_days = 0
-    while num_days < 7:
+    while num_days < 3:
         $ num_days += 1
         call day_start from _call_day_start_16
         call v2_routine from _call_v2_routine_3

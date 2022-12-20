@@ -428,16 +428,29 @@ init python:
     tweet_all_achievements_unlocked = generate_tweet_intent(_('Hooray! I unlocked all of the achievements in #LearnToCodeRPG, bagging all alternative endings, Easter Eggs, and minigame high scores. Play the game here: '))
 
     # skills
+    GENERAL = 'general'
+    HTML = 'html'
+    CSS = 'css'
+    JAVASCRIPT = 'javascript'
+    PYTHON = 'python'
+    LINUX = 'linux'
+    GIT = 'git'
+    SQL = 'sql'
+    IT = 'it'
+    DEVOPS = 'devops'
+
+    # TODO: refactor tralsation strings
     all_questions_map = {
-    _('General'): general_cs_questions,
-    _('HTML'): html_questions,
-    _('CSS'): css_questions,
-    _('JavaScript'): javascript_questions,
-    _('Python'): python_questions,
-    _('Linux'): linux_questions,
-    _('Git'): git_questions,
-    _('SQL'): sql_questions,
-    _('IT'): it_questions,
+    GENERAL: general_cs_questions,
+    HTML: html_questions,
+    CSS: css_questions,
+    JAVASCRIPT: javascript_questions,
+    PYTHON: python_questions,
+    LINUX: linux_questions,
+    GIT: git_questions,
+    SQL: sql_questions,
+    IT: it_questions,
+    DEVOPS: devops_questions,
     }
 
     # assign category to questions
@@ -451,14 +464,20 @@ init python:
         all_quiz_questions.extend(question_list)
 
     # the order is important
-    v1_skills = [
-    _('General'),
-    _('HTML'),
-    _('CSS'),
-    _('JavaScript'),
-    _('Python'),
-    _('Linux'),
-    _('Git'),
-    _('SQL'),
-    _('IT'),
-    ]
+    v1_skills = {
+    GENERAL: _('General'),
+    HTML: _('HTML'),
+    CSS: _('CSS'),
+    JAVASCRIPT: _('JavaScript'),
+    PYTHON: _('Python'),
+    LINUX: _('Linux'),
+    GIT: _('Git'),
+    SQL: _('SQL'),
+    IT: _('IT'),
+    }
+
+    v2_skills = {
+    DEVOPS: _('DevOps')
+    }
+
+    all_skills = {**v1_skills, **v2_skills}

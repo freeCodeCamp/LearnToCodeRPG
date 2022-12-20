@@ -772,7 +772,6 @@ init:
         attribute_function Picker(suits_expressions)
 
     # player's bedroom
-    # TODO: refactor
     image bg bedroom = LiveComposite(
         (1920, 1080), # size of displayable
         (0, 0), 'bg bedroom_empty',

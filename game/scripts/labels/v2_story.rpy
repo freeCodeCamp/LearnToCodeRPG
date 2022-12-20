@@ -864,7 +864,7 @@ label v2_automate:
     return
 
 label v2_demo:
-    scene company1_boardroom with fadehold
+    scene bg company1_boardroom with fadehold
     show darius at right
     show goro at left
     darius "...and that's about it for what I got done yesterday."
@@ -873,7 +873,7 @@ label v2_demo:
     goro "It looks like Darius is our last update for today's standup."
     goro "Make today a great day, everyone!"
 
-    scene company1_center with blinds
+    scene bg company1_center with blinds
     show mala
     player "Hey, Mala! Could I ask you a question really quick?"
     mala "Sure! How can I help, fishie?"
@@ -931,7 +931,7 @@ label v2_demo:
     mala "And don't forget that you can always ping me if you need any help!"
     player "Gotcha!"
 
-    scene company1_lydia_cubicle with blinds
+    scene bg company1_lydia_cubicle with blinds
     "Back at your desk, you take a look at Postgres's documentation to get an idea of how to perform basic queries."
     "You believe you've got a good idea of searching very specific records, and decide to try your hand at deleting."
     player "This isn't so bad!"
@@ -970,13 +970,13 @@ label v2_demo:
     salesperson1 "What the heck? What's wrong with my demo?"
     player surprised "... huh?"
 
-    scene company1_center with blinds
+    scene bg company1_center with blinds
     "You peek your head out of your cubicle"
     salesperson2 "Yours too? I thought I was crazy - I can't get into the blog demo."
     salesperson3 "I can't get into the eCommerce demo either. What's going on here?"
     player pout "What the..."
 
-    scene company1_lydia_cubicle with blinds
+    scene bg company1_lydia_cubicle with blinds
     "You rush back to your computer, and your anxiety begins to go. It couldn't be that this whole time, you HAVEN'T been deleting from Staging?"
     show mala
     mala "[player_name]... have you already started deleting data?"
@@ -991,7 +991,7 @@ label v2_demo:
     iris "Come with me."
     iris "Now, please."
 
-    scene company1_breakroom with blinds
+    scene bg company1_breakroom with blinds
     "The next 10 minutes feel like hours."
     "Iris is incredibly upset with you. Goro seems more disappointed than anything."
     "That stings worse."
@@ -1108,7 +1108,7 @@ label v2_demo:
     return
 
 label v2_redemption:
-    scene company1_center with fadehold
+    scene bg company1_center with fadehold
     play sound 'audio/sfx/office_ambient.wav'
     show mala
     mala "Goro, can you come over here for a second? I can't get this to work."
@@ -1120,7 +1120,7 @@ label v2_redemption:
     oliver "I want to make sure I'm telling them the right thing."
     goro "Sure thing. Darius can help you with that while I'm busy."
     hide goro with moveoutleft
-    show daris at left with moveinleft
+    show darius at left with moveinleft
     darius "Gimme just a second - once I get this query written, I'll be right with you, Oliver."
     oliver "Thanks, Darius."
     "When you arrived at the office, the entire team seems frantic."
@@ -1184,7 +1184,7 @@ label v2_redemption:
     player @ surprised "Seriously?"
     player @ laugh "Regex can handle all of that too!"
 
-    scene company1_center dusk with dissolve 
+    scene bg company1_center dusk with dissolve 
     "One by one, you tackle the issue tickets that Oliver quickly writes up for the project almost faster than he can type them."
     "Before you know it, the project is to a functioning state again."
     show oliver
@@ -1232,21 +1232,24 @@ label v2_redemption:
     return
 
 label v2_paying_it_forward_p1:
-    player "U-um Iris? I'm here. (SOUND: KNOCKING) (ENTER: RIGHT)"
+    scene bg company1_boardroom with blinds
+    play sound 'audio/sfx/knocking.mp3'
+    show iris
+    player "U-um Iris? I'm here."
     player "You said that you wanted to see me?"
     iris "..."
-    player "(Oh no... have I managed to get her upset somehow between yesterday and today?) (FEARFUL)"
+    player pout "(Oh no... have I managed to get her upset somehow between yesterday and today?)"
     iris "[player_name]... can you tell me about your previous position?"
     player "My... previous position?"
     player "You mean before I became a developer at ConsultMe?"
     iris "Yes."
     player "Well... I used to be a tutor."
-    player "I tutored students from gradeschool to high school, basically."
-    player "My favorite was probably the gradeschoolers, though! (SMILE)"
+    player "I tutored students from grade school to high school, basically."
+    player @ smile "My favorite was probably the grade school kids, though!"
     iris "I see. Did you like your work?"
     player "..."
-    player "I did. I even miss it sometimes. (SMILE)"
-    iris "Oh? Why is that? (EYEBROW)"
+    player @ smile "I did. I even miss it sometimes."
+    iris @ confused "Oh? Why is that?"
     player "For a lot of the other tutors, it was just a job,"
     player "But for me, I saw it as a really special invitation into a pretty personal part of my students' lives."
     player "I wasn't always the best student myself when I was in school. But I had a teacher that really, really believed in me."
@@ -1265,19 +1268,19 @@ label v2_paying_it_forward_p1:
     player "With this student, I was particularly determined; I used to struggle with my ADHD too."
     iris "You have a diagnosis?"
     player "Yep! Mom and Dad found out when I was 10."
-    player "I really, really used to struggle paying attention in class and getting my schoolwork done. My grades were pretty bad, just like my student's. (SWEAT HAPPY)"
+    player smile sweat "I really, really used to struggle paying attention in class and getting my schoolwork done. My grades were pretty bad, just like my student's."
     iris "... how did you overcome it?"
-    player "Well, ADHD never really goes away, but I was able to cope and make things work for myself thanks to that teacher I mentioned earlier."
+    player -sweat "Well, ADHD never really goes away, but I was able to cope and make things work for myself thanks to that teacher I mentioned earlier."
     player "She taught me how there are many, many ways to learn, and that all I had to do was find the way that worked for ME the best."
     player "Some of my students are great at memorizing from long pieces of text."
     player "Others aren't great at retaining written information, but do really well when they're given videos."
     player "Sometimes those only work a little, so I'd find games that teach what they need to know."
     player "For my student, it meant using a combination of these things."
     iris "..."
-    iris "And did you ever find anything that worked for Isaac? (SMILE)"
-    player "We did! (SMILE)"
-    player "It was so cute, watching his expressions change each tutoring visit, from bringing in D's, to C's, to eventually B's and A's. (LAUGH)"
-    player "I'll never forget the day he came with his first A, telling me how proud his mother would b - (SMILE)"
+    iris @ smile "And did you ever find anything that worked for Isaac?"
+    player @ smile "We did!"
+    player @ laugh "It was so cute, watching his expressions change each tutoring visit, from bringing in D's, to C's, to eventually B's and A's."
+    player @ smile "I'll never forget the day he came with his first A, telling me how proud his mother would be..."
     player "..."
     player "... how did you now his name?"
     iris "..."
@@ -1290,7 +1293,7 @@ label v2_paying_it_forward_p1:
     iris "So I the last thing I could think of: I placed him into tutoring after school."
     iris "I was a single parent, at the end of her rope. All I could do is trust the tutors at the tutoring center."
     iris "..."
-    iris "... thank you for believing in my son, even when I fought to find a reason to. (SMILE)"
+    iris @ smile "... thank you for believing in my son, even when I fought to find a reason to."
     player "Wait... YOU'RE Isaac's mom?!"
     player "But you're the one that interviewed me!"
     player "So that means you knew -"
@@ -1300,20 +1303,20 @@ label v2_paying_it_forward_p1:
     iris "It was down to you and one other developer. Your skills and technical interview scores almost matched."
     iris "... I'm not one for nepotism, but I knew that I had to choose you for the role."
     iris "I'd already seen what you were capable of when you put your mind to something."
-    iris "It took some convincing, but as you know, we chose you for the role. (SMILE)"
+    iris @ smile "It took some convincing, but as you know, we chose you for the role."
     player "I guess this makes sense in hindsight."
-    player "I feel like I bombed our interpersonal interview. I was so nervous! (SWEAT HAPPY)"
+    player smile sweat "I feel like I bombed our interpersonal interview. I was so nervous!"
     iris "You were nervous during your technical interview, true."
     iris "But then I remembered how Isaac would come back to the car, beaming about the “nice teacher lady” that helped him each day. (SMILE)"
     iris "I listened outside of the door for a few sessions to hear you work your “magic”, as he called it. So I knew what you REALLY sounded like when you were confident in what you were doing."
-    iris "Honestly, you're eagerness is impressive, but you got sloppy. (DISGUST)"
-    player "(Aaaaand we're back to normal Iris.) (SWEAT HAPPY)"
-    player "... (SAD)"
-    iris "... it reminded me of myself, when I was a junior. (SMILE)"
+    iris @ disgust "Honestly, you're eagerness is impressive, but you got sloppy."
+    player "(Aaaaand we're back to normal Iris.)"
+    player pout -sweat "..."
+    iris @ smile "... it reminded me of myself, when I was a junior."
     iris "I can finally take my leave without worrying too much."
-    player "... take your leave? Are you quitting ConsultMe? (SAD)"
-    iris "Yes. I've been extended an offer that I can't refuse. (SMILE)"
-    iris "I put in my two weeks this morning. (SMILE)"
+    player @ surprised "... take your leave? Are you quitting ConsultMe?"
+    iris "Yes. I've been extended an offer that I can't refuse."
+    iris "I put in my two weeks this morning."
     player "(But... we were just beginning to connect. And now she's leaving?)"
     iris "Of course... we don't HAVE to stop working together. If you'd like to come along."
     player "What? With you? To your new company?"
@@ -1335,11 +1338,11 @@ label v2_paying_it_forward_p1:
     iris "- or someone else - "
     iris "can learn something, you do it. Look how far you've gotten? You taught yourself how to program."
     iris "You can do this."
-    iris "Come to my office again once those tickets are completed, and we'll move to next steps. (EXIT: LEFT)"
+    iris "Come to my office again once those tickets are completed, and we'll move to next steps."
     return
 
 label v2_paying_it_forward_p2:
-    iris "... "
+    iris "..."
     player "I-I've completed the devops tickets."
     iris "... so I've noticed. (SMILE)."
     iris "Shall I give my colleague a call?"
