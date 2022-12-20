@@ -419,9 +419,9 @@ init:
     ]
 
     define oliver_expressions = [
-    'neutral eyes_blink brows mouth_1',
-    'smile eyes_blink brows mouth_2',
-    'laugh eyes_blink brows mouth_3'
+    'neutral eyes_blink brows_1 mouth_1',
+    'smile eyes_blink brows_1 mouth_2',
+    'laugh eyes_blink brows_1 mouth_3'
     ]
 
     define raj_expressions = [
