@@ -10,7 +10,7 @@ label day_start:
 
     if is_in_v2_arc1 and not 'v2_running_late' in seen_v2_arc1_events[HOME] and renpy.random.random() < 0.2:
         $ seen_v2_arc1_events[HOME].add('v2_running_late')
-        call v2_running_late
+        call v2_running_late from _call_v2_running_late
 
     else:
         # randomly choose a start-of-day label to call

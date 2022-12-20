@@ -18,7 +18,7 @@ label day_activity_choices:
 
     # if the player has low energy, jump directly to one of the relaxing choices
     if player_stats.is_energy_low():
-        call low_energy
+        call low_energy from _call_low_energy
         return # return to script.rpy
 
     player smile "What should we do for the day?"
@@ -84,7 +84,7 @@ label day_activity_choices:
         "Take a day off and relax":
             call day_activity_relax from _call_day_activity_relax_1
 
-    call day_end
+    call day_end from _call_day_end_1
     return
 
 label study_session_choose_topic:
@@ -408,24 +408,24 @@ label day_activity_interview:
 # v2 day activities
 label v2_activity_choices:
     if player_stats.is_energy_low():
-        call low_energy
+        call low_energy from _call_low_energy_1
         return # return to script.rpy
 
     player smile "Now that I finally have some free time. What should I do?"
     menu:
         "Work on some tickets":
-            call work_session
+            call work_session from _call_work_session
     
         "Hang out at Hacker Space":
-            call v2_activity_hacker_space
+            call v2_activity_hacker_space from _call_v2_activity_hacker_space
 
         "Take a day off and relax":
-            call day_activity_relax
+            call day_activity_relax from _call_day_activity_relax_2
 
         "Do some shopping":
             call screen shop_screen(home_shop_items)
             
-    call day_end
+    call day_end from _call_day_end_2
     return
 
 label v2_activity_hacker_space:
@@ -434,7 +434,7 @@ label v2_activity_hacker_space:
 
     if len(v2_arc1_event_labels[HACKER_SPACE]) == len(seen_v2_arc1_events[HACKER_SPACE]) or \
     renpy.random.random() < 0.6:
-        call day_activity_hacker_space_random
+        call day_activity_hacker_space_random from _call_day_activity_hacker_space_random_2
     else: # 40% chance of triggering an event
         python:
             available_labels = list(set(v2_arc1_event_labels[HACKER_SPACE]) - seen_v2_arc1_events[HACKER_SPACE])
@@ -472,11 +472,11 @@ label v2_routine:
         # go to work
         scene bg company1_center with fadehold
         # TODO: maybe give player the choice to visit the vending machine both before and after work?
-        call work_session
+        call work_session from _call_work_session_1
         # trigger work events, if no events, give player the choice to visit the vending machine
         if len(v2_arc1_event_labels[WORK]) == len(seen_v2_arc1_events[WORK]) or \
         renpy.random.random() < 0.8:
-            call v2_vending_machine
+            call v2_vending_machine from _call_v2_vending_machine
         else: # trigger work event
             python:
                 available_labels = list(set(v2_arc1_event_labels[WORK]) - seen_v2_arc1_events[WORK])
@@ -488,8 +488,8 @@ label v2_routine:
         scene bg living_room night with blinds
         player "Finally home!"
         scene bg bedroom with blinds
-        call v2_activity_choices
+        call v2_activity_choices from _call_v2_activity_choices
     else:
         # weekend, stay home
-        call v2_activity_choices
+        call v2_activity_choices from _call_v2_activity_choices_1
     return

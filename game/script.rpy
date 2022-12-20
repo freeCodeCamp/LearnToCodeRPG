@@ -1875,40 +1875,40 @@ label v2_start:
     $ work_session_questions = all_quiz_questions
 
     $ num_days = 0
-    while num_days < 4:
+    while num_days < 14:
         $ num_days += 1
-        call day_start
-        call v2_routine
+        call day_start from _call_day_start_13
+        call v2_routine from _call_v2_routine
 
     $ calendar.fast_forward_to_weekday()
-    call v2_demo
+    call v2_demo from _call_v2_demo
 
     $ num_days = 0
-    while num_days < 2:
+    while num_days < 7:
         $ num_days += 1
-        call day_start
-        call v2_routine
+        call day_start from _call_day_start_14
+        call v2_routine from _call_v2_routine_1
 
     $ calendar.fast_forward_to_weekday()
-    call v2_redemption
+    call v2_redemption from _call_v2_redemption
 
     $ num_days = 0
-    while num_days < 2:
+    while num_days < 7:
         $ num_days += 1
-        call day_start
-        call v2_routine
+        call day_start from _call_day_start_15
+        call v2_routine from _call_v2_routine_2
 
     $ calendar.fast_forward_to_weekday()
-    call v2_paying_it_forward_p1
+    call v2_paying_it_forward_p1 from _call_v2_paying_it_forward_p1
 
     $ num_days = 0
-    while num_days < 2:
+    while num_days < 7:
         $ num_days += 1
-        call day_start
-        call v2_routine
+        call day_start from _call_day_start_16
+        call v2_routine from _call_v2_routine_3
 
     $ calendar.fast_forward_to_weekday()
-    call v2_paying_it_forward_p2
+    call v2_paying_it_forward_p2 from _call_v2_paying_it_forward_p2
 
     call screen text_over_black_bg_screen(_("You've reached the end of Arc I. Stay tuned for Arc II coming up!"))
 
