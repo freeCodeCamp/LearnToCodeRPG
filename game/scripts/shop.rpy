@@ -25,12 +25,12 @@ init python:
     #     self.item
 
     food_items = [
-        Item('Water', 'water', 'Plain water. Tastes refreshing. Boost Energy by 5.', 10, { ENERGY: 5 }),
-        Item('Soda', 'soda', 'Soda water. No added sugar. Boost Energy by 10.', 20, { ENERGY: 10 }),
-        Item('Beans', 'beans', 'Canned beans. A savory snack. Boost Energy by 15.', 30, { ENERGY: 15 }),
-        Item('Chocolate', 'chocolate', "Who doesn't like chocolate? Boost Energy by 25.", 50, { ENERGY: 25 }),
-        Item('Pizza', 'whole_pizza', 'An entire pizza. Smells like delicious bread and cheese. Boost Energy by 50.', 100, { ENERGY: 50 }),
-        Item('Sushi', 'sushi', 'Sushi rolls with real crab meat (or could it be imitation crab?) and cucumber. Boost Energy by 100.', 300, { ENERGY: 100 }),
+        Item('Water', 'water', 'Plain water. Tastes refreshing. Increase Energy by 5.', 10, { ENERGY: 5 }),
+        Item('Soda', 'soda', 'Soda water. No added sugar. Increase Energy by 10.', 20, { ENERGY: 10 }),
+        Item('Beans', 'beans', 'Canned beans. A savory snack. Increase Energy by 15.', 30, { ENERGY: 15 }),
+        Item('Chocolate', 'chocolate', "Who doesn't like chocolate? Increase Energy by 25.", 50, { ENERGY: 25 }),
+        Item('Pizza', 'whole_pizza', 'An entire pizza. Smells like delicious bread and cheese. Increase Energy by 50.', 100, { ENERGY: 50 }),
+        Item('Sushi', 'sushi', 'Sushi rolls with real crab meat (or could it be imitation crab?) and cucumber. Increase Energy by 100.', 300, { ENERGY: 100 }),
     ]
 
     home_shop_items = food_items + [
@@ -161,7 +161,7 @@ screen shop_screen(shop_items):
 screen inventory_screen():
     # no need for vpgrid because it's already inside a viewport
     grid 4 len(player_stats.food_inventory):
-        xspacing 10
+        xspacing 20
         yspacing 5
 
         # body rows
@@ -169,7 +169,9 @@ screen inventory_screen():
             $ item = all_items[item_name]
 
             text item_name
-            text item.description size gui.quick_button_text_size
+            text item.description:
+                size gui.quick_button_text_size
+                xysize (230, 50)
             text str(player_stats.food_inventory[item_name]) xalign 0.5
 
             textbutton _('Use'):

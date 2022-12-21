@@ -153,7 +153,7 @@ init python:
                 return False
             # if is room item, check whether has duplicate
             if isinstance(item, RoomItem):
-                if item in self.room_inventory: # has duplicate
+                if item.name in self.room_inventory: # has duplicate
                     return False
             return True
 
