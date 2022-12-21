@@ -154,7 +154,7 @@ init python:
         'v2_venting',
         # 'v2_running_late', # this is a morning event
         'v2_family_business',
-        'v2_fresssh',
+        # 'v2_fresssh', # TODO: this event has some logical inconsistency that needs fixing
         ],
     HACKER_SPACE:
         [

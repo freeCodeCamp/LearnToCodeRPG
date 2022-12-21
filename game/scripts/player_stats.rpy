@@ -78,6 +78,9 @@ init python:
                 map_pointer = self.player_stats_map
             elif stats_name in self.subcategory_stats_map:
                 map_pointer = self.subcategory_stats_map
+            # TODO: this is hacky, need to remove this return
+            else: 
+                return
 
             new_val = map_pointer[stats_name] + val
             if stats_name == MONEY:
@@ -186,7 +189,7 @@ init python:
         def add_todo(self, todo):
             self.incomplete.append(todo)
             if not renpy.get_screen(PLAYER_PHONE_SCREEN, layer='transient'):
-                renpy.show_screen(PLAYER_PHONE_SCREEN, _layer='transient', show_todo=True)
+                renpy.show_screen(PLAYER_PHONE_SCREEN, _layer='transient', tab_showing=TODO)
             if not renpy.sound.is_playing():
                 renpy.sound.play('audio/sfx/smartphone_typing.wav')
 
@@ -195,7 +198,7 @@ init python:
                 self.incomplete.remove(todo)
                 self.completed.append(todo)
                 if not renpy.get_screen(PLAYER_PHONE_SCREEN, layer='transient'):
-                    renpy.show_screen(PLAYER_PHONE_SCREEN, _layer='transient', show_todo=True)
+                    renpy.show_screen(PLAYER_PHONE_SCREEN, _layer='transient', tab_showing=TODO)
                 if not renpy.sound.is_playing():
                     renpy.sound.play('audio/sfx/todo_complete.wav')
 

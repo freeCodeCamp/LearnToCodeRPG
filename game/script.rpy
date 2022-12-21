@@ -614,7 +614,7 @@ label stage5_annika:
     
     player pout "Ahhh... my alarm... It's a new day already?"
     player smile "What's on our To-Do list today?"
-    $ renpy.show_screen(PLAYER_PHONE_SCREEN, _layer='transient', show_todo=True)
+    $ renpy.show_screen(PLAYER_PHONE_SCREEN, _layer='transient', tab_showing=TODO)
     player happy "Right. Let's give Annika a call and ask about the CS curriculum."
     show smartphone at truecenter
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
@@ -1650,6 +1650,9 @@ label v1_ending:
         ok_text=_("Oopsy... Am I... fired?"),
         show_achievements_count=False
         )
+
+    show main_menu_v1 with fadehold
+    pause 5.0
     # fall through to the next label
     $ calendar.next_month()
 
@@ -1881,6 +1884,8 @@ label v2_start:
             annika "Don't forget - you're working with people, not a bunch of dragons that want to gobble you up!"
             "You finish up chatting with Annika, feeling a huge weight lifted off of your shoulders."
             "You get ready for bed, wanting to be as well-rested as possible for your first official day of work!"
+
+    hide annika
 
     $ is_in_v2_arc1 = True
     $ work_session_questions = all_quiz_questions

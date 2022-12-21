@@ -56,6 +56,8 @@ init python:
 
     ## images
 
+    renpy.image('main_menu_v1', 'gui/main_menu_v1.png')
+
     renpy.image('main_menu', 'gui/main_menu.png')
     renpy.image('main_menu sepia', im.Sepia('gui/main_menu.png'))
     renpy.image('main_menu overlay', Composite(
