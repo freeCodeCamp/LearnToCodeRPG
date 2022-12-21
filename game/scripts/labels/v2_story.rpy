@@ -537,6 +537,8 @@ label v2_thick:
             player "Okay. I'll start on my way back."
 
             scene bg bedroom with fadehold
+            pause 2.0
+            scene bg laptop_screen night with blinds
             play sound 'audio/sfx/social_media_notification.wav'
             show goro
             goro "So I think I'm seeing what the problem is."
@@ -1821,6 +1823,7 @@ label v2_fresssh:
             player "I bet we can find lots of places to use this at work."
             player "I should message Goro and tell him about what I learned!"
 
+            scene bg laptop_screen night with blinds
             play sound 'audio/sfx/social_media_notification.wav'
             show goro smile
             goro "Hey [player_name]! Staying at the office a bit late?"
@@ -1864,6 +1867,7 @@ label v2_fresssh:
             player "Using this at work will be pretty straightforward."
             player "I should message Goro and tell him about what I learned!"
 
+            scene bg laptop_screen night with blinds
             play sound 'audio/sfx/social_media_notification.wav'
             show goro smile
             goro "Hey [player_name]! Staying at the office a bit late?"
