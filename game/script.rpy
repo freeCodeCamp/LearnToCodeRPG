@@ -1765,7 +1765,7 @@ label v2_start:
     player worry "Well... It's all super cool, but it's also a little overwhelming. All of the people I met today were nice, but there were so many of them."
     player "How am I supposed to remember all of their names?"
     player "And then I had to spend the rest of the day in meetings. Goro told me that I didn't have to do much but lend an ear, and even that was a lot."
-    player "There were a million acronyms that I didn't know... I had idea what anyone was talking about."
+    player "There were a million acronyms that I didn't know... I had no idea what anyone was talking about."
     player "Am I really cut out for this...?"
     mint "...?"
     mint "Meow!"
