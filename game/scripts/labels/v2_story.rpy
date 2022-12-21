@@ -2042,7 +2042,7 @@ label v2_equity:
 label v2_gelato:
     show layla at left
     show annika at right
-    player "Hey Layla! Annika!"
+    player smile "Hey Layla! Annika!"
     layla "Hey! Did you get the new Hackerspace newsletter?"
     player "No, I haven't checked it recently, why?"
     annika "There's a gelato place RIGHT next door now!"
