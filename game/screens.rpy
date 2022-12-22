@@ -311,15 +311,11 @@ screen main_menu_navigation():
         spacing gui.navigation_spacing
 
         textbutton _("New Game") action Start():
-            if not persistent.has_started_game: # a new game, make `start` stand out
-                background "gui/button/sticky_note_button_green.png"
-            # else use regular yellow
+            background "gui/button/sticky_note_button_green.png"
 
         textbutton _("Continue") action ShowMenu("load"):
-            if persistent.has_started_game: # has some game in progress, make `load` stand out
-                background "gui/button/sticky_note_button_pink.png"
-                text_idle_color '#fff'
-            # else use regular yellow
+            background "gui/button/sticky_note_button_pink.png"
+            text_idle_color '#fff'
 
         textbutton _("Settings") action ShowMenu("preferences")
 

@@ -1,6 +1,4 @@
 label start:
-    $ persistent.has_started_game = True
-
     stop music fadeout 2.0
     scene bg laptop_screen with dissolve
 

@@ -7,7 +7,7 @@ label splashscreen:
     with Pause(1)
 
     scene gray90 with Pause(1)
-    play sound 'audio/sfx/title_fire_swoosh.ogg'
+    # play sound 'audio/sfx/title_fire_swoosh.ogg'
     show fcc_logo at truecenter with dissolve
     with Pause(2)
     scene gray90 with dissolve
@@ -41,6 +41,8 @@ label splashscreen:
 
     $ beta_disclaimer = _p("""
         This game, {b}Learn to Code RPG{/b}, is currently in beta.
+
+        The current version is v1.5. Save data from v1 might not be compatible with this version. Please start a new game instead of loading from your v1 data if applicable.
 
         If you notice any bugs or have suggestions about accessibility, the interface, the story, or anything at all, please report them on our {a=https://github.com/freeCodeCamp/LearnToCodeRPG}GitHub repo{/a}.
 
