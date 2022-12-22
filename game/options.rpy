@@ -27,7 +27,7 @@ define gui.show_name = False
 
 ## The version of the game.
 
-define config.version = "1.0"
+define config.version = "2.0"
 
 
 ## Text that is placed on the game's about screen. Place the text between the
@@ -53,8 +53,12 @@ Creative Lead:
     {a=https://www.linkedin.com/in/ruolin-zheng/}{icon=icon-linkedin}{/a}
     {a=https://twitter.com/lynnzheng08}{icon=icon-twitter}{/a}
 
-Coding & Writing & Misc. Art:
+Coding:
     {a=https://ruolinzheng08.github.io/}Lynn Zheng (Ruolin Zheng){/a}
+
+Writing:
+    {a=https://ruolinzheng08.github.io/}Lynn Zheng (Ruolin Zheng){/a}
+    {a=https://twitter.com/rainFrogTush}KayLa Thomas{/a}
     
 Music:
     {a=https://twitter.com/ossia}Quincy Larson{/a}
@@ -62,8 +66,13 @@ Music:
 Character Art:
     {a=https://layerto.carrd.co}Layerto (Noa Trinh){/a}
 
+Other Graphics:
+    {a=https://ruolinzheng08.github.io/}Lynn Zheng (Ruolin Zheng){/a}
+    {a=https://twitter.com/nieldakarla}Nielda Karla{/a}
+
 Quiz Questions & Proofreading:
     {a=https://twitter.com/abbeyrenn}Abbey Rennemeyer{/a},
+    {a=https://twitter.com/kriskoishigawa}Kris Koishigawa{/a},
     {a=https://github.com/ojeytonwilliams/}Oliver Eyton-Williams{/a},
     {a=https://twitter.com/EstefaniaCassN}Estefania Cassingena Navone{/a},
     {a=https://twitter.com/codergirl1991}Jessica Wilkins{/a},

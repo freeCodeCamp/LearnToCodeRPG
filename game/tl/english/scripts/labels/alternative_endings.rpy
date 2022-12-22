@@ -483,8 +483,8 @@ translate english ending_cat_af7cdbb5:
 # game/scripts/labels/alternative_endings.rpy:155
 translate english ending_cat_e2319935:
 
-    # player relieved "Let's go get more sleep before my {b}Sanity{/b} hits the floor."
-    player relieved "Let's go get more sleep before my {b}Sanity{/b} hits the floor."
+    # player relieved "Let's go get more sleep before my {b}Energy{/b} hits the floor."
+    player relieved "Let's go get more sleep before my {b}Energy{/b} hits the floor."
 
 # game/scripts/labels/alternative_endings.rpy:162
 translate english ending_cat_0e2325ed:

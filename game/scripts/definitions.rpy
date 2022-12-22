@@ -56,6 +56,8 @@ init python:
 
     ## images
 
+    renpy.image('main_menu_v1', 'gui/main_menu_v1.png')
+
     renpy.image('main_menu', 'gui/main_menu.png')
     renpy.image('main_menu sepia', im.Sepia('gui/main_menu.png'))
     renpy.image('main_menu overlay', Composite(
@@ -100,6 +102,38 @@ init python:
             renpy.image(image_name + ' blue flipped', im.MatrixColor(im.Flip(image_path, horizontal=True), tint_blue))
             renpy.image(image_name + ' purple flipped', im.MatrixColor(im.Flip(image_path, horizontal=True), tint_purple))
 
+    # blink
+    charas = [
+    'player',
+    'annika',
+    'layla',
+    'marco',
+    'goro',
+    'iris',
+    'mala',
+    'adaku',
+    'darius',
+    'josephine',
+    'maria',
+    'oliver',
+    'raj',
+    'rishi',
+    'rohit',
+    'suits'
+    ]
+    '''
+    image player_eyes_blink = DynamicBlink(
+        "images/chara/player/player_eyes_open.png",
+        "images/chara/player/player_eyes_closed.png"
+        )
+    '''
+    for chara in charas:
+        renpy.image(chara + '_eyes_blink', DynamicBlink(
+            f"images/chara/{chara}/{chara}_eyes_open.png",
+            f"images/chara/{chara}/{chara}_eyes_closed.png"
+            )
+        )
+
     ## font replacement
     # font file, boldness, italics
     config.font_replacement_map["fonts/lato/Lato-Regular.ttf", True, False] = ("fonts/lato/Lato-Bold.ttf", False, False)
@@ -123,7 +157,7 @@ init python:
     # this game's url on itch
     itch_url = 'https://freecodecamp.itch.io/learn-to-code-rpg'
     github_url = 'https://github.com/freeCodeCamp/LearnToCodeRPG'
-    article_url = 'https://www.freecodecamp.org/news/learn-to-code-rpg/'
+    article_url = 'https://www.freecodecamp.org/news/learn-to-code-rpg-1-5-update/'
 
     # ref: https://tech.cymi.org/tweet-intents
     def generate_tweet_intent(tweet_content, url=article_url):
@@ -158,6 +192,23 @@ init:
     define annika = Character(_("Annika"), image='annika')
     define marco = Character(_("Marco"), image='marco')
     define layla = Character(_("Layla"), image='layla')
+    # v2 characters
+    define receptionist = Character(_("Receptionist"), image='maria')
+    define maria = Character(_("Maria"), image='maria')
+    define iris = Character(_("Iris"), image='iris')
+    define goro = Character(_("Goro"), image='goro')
+    define oliver = Character(_("Oliver"), image='oliver')
+    define mala = Character(_("Mala"), image='mala')
+    define mike = Character(_("Mike"))
+    define motormouth_mike = Character(_("Motormouth Mike"))
+    define darius = Character(_("Darius"), image='darius')
+    define greg = Character(_("Greg"))
+    define adaku = Character(_('Adaku'), image='adaku')
+    define josephine = Character(_('Josephine'), image='josephine')
+    define raj = Character(_('Raj'), image='raj')
+    define rishi = Character(_('Rishi'), image='rishi')
+    define rohit = Character(_('Rohit'), image='rohit')
+    define suits = Character(_('Suits'), image='suits')
 
     # minor characters
     define kid = Character(_("High School Kid"))
@@ -176,6 +227,13 @@ init:
     define journalist = Character(_("Journalist"))
     define cafe_manager = Character(_("Cafe Manager"))
     define office_worker = Character(_("Office Worker"))
+    define high_school_student = Character(_("High School Student"))
+    define developer1 = Character(_("Developer 1"))
+    define developer2 = Character(_("Developer 2"))
+    define teen = Character(_("Teen"))
+    define salesperson1 = Character(_("Salesperson 1"))
+    define salesperson2 = Character(_("Salesperson 2"))
+    define salesperson3 = Character(_("Salesperson 3"))
 
     # text displayables
     define freeCodeCamp = '{a=https://www.freecodecamp.org/}{font=fonts/saxmono.ttf}{color=#002ead}freeCodeCamp.org{/color}{/font}{/a}'
@@ -185,6 +243,9 @@ init:
 
     # transitions
     define fadehold = Fade(0.5, 1.0, 0.5)
+    # NOTE: use fadehold for bigger location change
+    # location change within a company/space should use blinds
+    # changing time of the day should use dissolve
 
     ## images
     # mint
@@ -294,8 +355,9 @@ init:
     "laugh eyes_laugh brows_neutral mouth_laugh",
     "worry eyes_blink brows_lowered mouth_frown",
     "pout eyes_blink brows_lowered mouth_pout",
-    "relieved eyes_closed brows_neutral mouth_oh"
+    "relieved eyes_closed brows_neutral mouth_oh",
     ]
+
     # major characters except player
     define expressions = [
     "neutral eyes_blink brows_neutral mouth_smile",
@@ -303,25 +365,109 @@ init:
     "laugh eyes_laugh brows_raised mouth_laugh",
     ]
 
-    # blink
-    image player_eyes_blink = DynamicBlink(
-        "images/chara/player/player_eyes_open.png",
-        "images/chara/player/player_eyes_closed.png"
+    # other charas
+    define goro_expressions = [
+    "neutral eyes_blink brows_1 mouth_2",
+    "smile eyes_blink brows_1 mouth_1",
+    "sad eyes_blink brows_4 mouth_2",
+    "fearful eyes_blink brows_4 mouth_6",
+    "angry eyes_blink brows_3 mouth_2",
+    "disgust eyes_blink brows_5 mouth_4",
+    "laugh eyes_narrowblink brows_2 mouth_5",
+    ]
+
+    define iris_expressions = [
+    "neutral eyes_blink brows_1 mouth_1",
+    "smile eyes_blink brows_1 mouth_2",
+    "angry eyes_blink brows_2 mouth_1",
+    "disgust eyes_narrowblink brows_2 mouth_3",
+    "confused eyes_narrowblink brows_3 mouth_1",
+    ]
+
+    define mala_expressions = [
+    "neutral eyes_blink brows_1 mouth_2",
+    "smile eyes_blink brows_1 mouth_1",
+    "angry eyes_blink brows_2 mouth_2",
+    "laugh eyes_blink brows_1 mouth_3",
+    ]
+
+    define adaku_expressions = [
+    'neutral eyes_blink brows_1 mouth_1',
+    'smile eyes_blink brows_1 mouth_2',
+    'laugh eyes_laugh brows_1 mouth_3',
+    'confused eyes_blink brows_2 mouth_1',
+    ]
+
+    define darius_expressions = [
+    'neutral eyes_blink brows_1 mouth_1',
+    'smile eyes_blink brows_1 mouth_2',
+    'laugh eyes_laugh brows_1 mouth_2',
+    'sad eyes_blink brows_2 mouth_3',
+    'fearful eyes_blink brows_2 mouth_5',
+    'confused eyes_blink brows_3 mouth_4'
+    ]
+
+    define josephine_expressions = [
+    'neutral eyes_blink brows_1 mouth_1',
+    'smile eyes_blink brows_1 mouth_2',
+    'sad eyes_blink brows_2 mouth_1',
+    'fearful eyes_blink brows_2 mouth_3',
+    'confused eyes_blink brows_3 mouth_1',
+    ]
+
+    define maria_expressions = [
+    'neutral eyes_blink brows_1 mouth_1',
+    'smile eyes_blink brows_1 mouth_2',
+    'sad eyes_blink brows_2 mouth_1',
+    'fearful eyes_blink brows_2 mouth_4',
+    'laugh eyes_laugh brows_1 mouth_3'
+    ]
+
+    define oliver_expressions = [
+    'neutral eyes_blink brows_1 mouth_1',
+    'smile eyes_blink brows_1 mouth_2',
+    'laugh eyes_blink brows_1 mouth_3'
+    ]
+
+    define raj_expressions = [
+    'neutral eyes_blink brows_1 mouth_1',
+    'smile eyes_blink brows_1 mouth_2',
+    'sad eyes_blink brows_3 mouth_1',
+    'angry eyes_blink brows_2 mouth_3',
+    'laugh eyes_blink brows_1 mouth_4',
+    'confused eyes_blink brows_4 mouth_1'
+    ]
+
+    define rishi_expressions = [
+    'neutral eyes_blink brows_1 mouth_1',
+    'smile eyes_blink brows_1 mouth_2',
+    'confused eyes_blink brows_4 mouth_1',
+    'disgust eyes_blink brows_3 mouth_3'
+    ]
+
+    define rohit_expressions = [
+    'neutral eyes_blink brows_1 mouth_1',
+    'smile eyes_blink brows_1 mouth_2',
+    'angry eyes_blink brows_2 mouth_1'
+    ]
+
+    define suits_expressions = [
+    'neutral eyes_blink brows_1 mouth_1',
+    'smile eyes_blink brows_1 mouth_2',
+    'angry eyes_blink brows_2 mouth_1',
+    'disgust eyes_blink brows_2 mouth_3',
+    'confused eyes_blink brows_3 mouth_1'
+    ]
+
+    # more blink
+    image goro_eyes_narrowblink = DynamicBlink(
+        "images/chara/goro/goro_eyes_narrow.png",
+        "images/chara/goro/goro_eyes_closed.png"
         )
 
-    image annika_eyes_blink = DynamicBlink(
-        "images/chara/annika/annika_eyes_open.png",
-        "images/chara/annika/annika_eyes_closed.png"
-        )
-
-    image layla_eyes_blink = DynamicBlink(
-        "images/chara/layla/layla_eyes_open.png",
-        "images/chara/layla/layla_eyes_closed.png"
-        )
-
-    image marco_eyes_blink = DynamicBlink(
-        "images/chara/marco/marco_eyes_open.png",
-        "images/chara/marco/marco_eyes_closed.png"
+    image iris_eyes_narrowblink = DynamicBlink(
+        "images/chara/iris/iris_eyes_narrow.png",
+        "images/chara/iris/iris_eyes_closed.png"
         )
 
     # layered character sprites
@@ -351,6 +497,9 @@ init:
             attribute pout null
             attribute relieved null
 
+        attribute sweat
+
+        # glasses are on top of the face layers
         if player_glasses == 'player_pixelsunglasses':
             "player_pixelsunglasses"
         elif player_glasses == 'player_glasses':
@@ -405,6 +554,290 @@ init:
         attribute glasses default
 
         attribute_function Picker(expressions)
+
+    # charas with custom Picker(chara_expressions)
+    layeredimage goro:
+        always "goro_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute sad null
+            attribute fearful null
+            attribute angry null
+            attribute disgust null
+            attribute laugh null
+
+        attribute sweat
+
+        attribute_function Picker(goro_expressions)
+
+    layeredimage iris:
+        always "iris_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute angry null
+            attribute disgust null
+            attribute confused null
+
+        attribute sweat
+
+        attribute_function Picker(iris_expressions)
+
+    layeredimage mala:
+        always "mala_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute angry null
+            attribute laugh null
+
+        attribute sweat
+
+        attribute_function Picker(mala_expressions)
+
+    layeredimage adaku:
+        always "adaku_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute laugh null
+            attribute confused null
+
+        attribute sweat
+
+        attribute_function Picker(adaku_expressions)
+
+    layeredimage darius:
+        always "darius_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute laugh null
+            attribute sad null
+            attribute fearful null
+            attribute confused null
+
+        attribute glasses default
+        attribute sweat
+
+        attribute_function Picker(darius_expressions)
+
+    layeredimage josephine:
+        always "josephine_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute sad null
+            attribute fearful null
+            attribute confused null
+
+        attribute sweat
+        attribute blush
+
+        attribute_function Picker(josephine_expressions)
+
+    layeredimage maria:
+        always "maria_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute sad null
+            attribute fearful null
+            attribute laugh null
+
+        attribute glasses default
+        attribute sweat
+
+        attribute_function Picker(maria_expressions)
+
+    layeredimage oliver:
+        always "oliver_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute laugh null
+
+        attribute sweat
+
+        attribute_function Picker(oliver_expressions)
+
+    layeredimage raj:
+        always "raj_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute sad null
+            attribute angry null
+            attribute laugh null
+            attribute confused null
+
+        attribute sweat
+
+        attribute_function Picker(raj_expressions)
+
+    layeredimage rishi:
+        always "rishi_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute confused null
+            attribute disgust null
+
+        attribute sweat
+
+        attribute_function Picker(rishi_expressions)
+
+    layeredimage rohit:
+        always "adaku_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute angry null
+
+        attribute sweat
+        attribute blush
+
+        attribute_function Picker(rohit_expressions)
+
+    layeredimage suits:
+        always "suits_base"
+
+        group eyes auto prefix "eyes"
+        group brows auto prefix "brows"
+        group mouth auto prefix "mouth"
+
+        group expressions:
+            attribute neutral default null
+            attribute smile null
+            attribute angry null
+            attribute disgust null
+            attribute confused null
+
+        attribute sweat
+
+        attribute_function Picker(suits_expressions)
+
+    # player's bedroom
+    image bg bedroom = LiveComposite(
+        (1920, 1080), # size of displayable
+        (0, 0), 'bg bedroom_empty',
+
+        # decorations
+        (0, 0), ConditionSwitch(
+            "'plant' in player_stats.room_display_tagless", 'room plant',
+            True, Null()
+            ),
+        (0, 0), ConditionSwitch(
+            "'poster1' in player_stats.room_display_tagless", 'room poster1',
+            True, Null()
+            ),
+        (0, 0), ConditionSwitch(
+            "'poster2' in player_stats.room_display_tagless", 'room poster2',
+            True, Null()
+            ),
+        (0, 0), ConditionSwitch(
+            "'poster3' in player_stats.room_display_tagless", 'room poster3',
+            True, Null()
+            ),
+        (0, 0), ConditionSwitch(
+            "'cat_lamp' in player_stats.room_display_tagless", 'room cat_lamp',
+            True, Null()
+            ),
+        (0, 0), ConditionSwitch(
+            "'cat_bed' in player_stats.room_display_tagless", 'room cat_bed',
+            True, Null()
+            ),
+
+        # desk
+        (0, 0), ConditionSwitch(
+            "player_stats.room_display_tagged[DESK].image == 'desk'", 'room desk',
+            "player_stats.room_display_tagged[DESK].image == 'desk_nice'", 'room desk_nice',
+            True, Null()
+            ),
+
+        # PC needs to be above the desk
+        (0, 0), ConditionSwitch(
+            "player_stats.room_display_tagged[PC].image == 'pc_old'", 'room pc_old',
+            "player_stats.room_display_tagged[PC].image == 'pc_used'", 'room pc_used',
+            "player_stats.room_display_tagged[PC].image == 'pc_student'", 'room pc_student',
+            "player_stats.room_display_tagged[PC].image == 'pc_custom'", 'room pc_custom',
+            True, Null()
+            ),
+
+        # chair might be hiding the PC
+        (0, 0), ConditionSwitch(
+            "player_stats.room_display_tagged[CHAIR].image == 'chair_wooden'", 'room chair_wooden',
+            "player_stats.room_display_tagged[CHAIR].image == 'chair_second_hand'", 'room chair_second_hand',
+            "player_stats.room_display_tagged[CHAIR].image == 'chair_nice'", 'room chair_nice',
+            "player_stats.room_display_tagged[CHAIR].image == 'chair_fancy'", 'room chair_fancy',
+            True, Null()
+            ),
+
+        # router needs to be above the desk
+        (0, 0), ConditionSwitch(
+            "player_stats.room_display_tagged[ROUTER].image == 'hotspot'", 'room hotspot',
+            "player_stats.room_display_tagged[ROUTER].image == 'router_simple'", 'room router_simple',
+            "player_stats.room_display_tagged[ROUTER].image == 'router_nice'", 'room router_nice',
+            "player_stats.room_display_tagged[ROUTER].image == 'router_fancy'", 'room router_fancy',
+            True, Null()
+            ),
+        )
 
 ## translation styles
 # https://www.renpy.org/doc/html/gui.html#translation-and-gui-variables

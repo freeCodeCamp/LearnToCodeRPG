@@ -61,10 +61,8 @@ screen achievements_screen():
                 text _('{icon=icon-award} Number of Achievements Unlocked: [num_achievements] / [total_num_achievements]'):
                     font gui.text_font
                 textbutton _("{icon=icon-twitter} Tweet it when you've unlocked all of the achievements!"):
-                    action [
-                    SensitiveIf(num_achievements == total_num_achievements), 
-                    OpenURL(tweet_all_achievements_unlocked)
-                ]
+                    if num_achievements == total_num_achievements:
+                        action OpenURL(tweet_all_achievements_unlocked)
 
             for category in [plot_achievement, plot_bonus, quiz_bonus, ending_achievement]:
                 vbox:

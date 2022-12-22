@@ -429,8 +429,8 @@ translate english stage2_702bde03:
 # game/script.rpy:248
 translate english stage2_61eef83c:
 
-    # player relieved "Let's make this evening distraction-free for my sanity."
-    player relieved "Let's make this evening distraction-free for my sanity."
+    # player relieved "Let's make this evening distraction-free for my energy."
+    player relieved "Let's make this evening distraction-free for my energy."
 
 # game/script.rpy:250
 translate english stage2_3357f0de:

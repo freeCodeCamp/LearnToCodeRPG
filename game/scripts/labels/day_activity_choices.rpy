@@ -1,20 +1,24 @@
+label low_energy:
+    $ renpy.notify(_('Your energy is dropping dangerously low. Why not take some time to relax and recharge?'))
+    $ num_times_energy_low += 1
+
+    if has_met_layla and not has_triggered_ending_farmer and \
+    num_times_energy_low > 5 and renpy.random.random() < 0.05:
+        call ending_farmer from _call_ending_farmer
+    else:
+        call day_activity_relax from _call_day_activity_relax
+
+    call day_end from _call_day_end
+    return
+
 label day_activity_choices:
     $ day_activity = None
     $ has_triggered_ending_today = False
     # this label should end up jumping to day_end
 
-    # if the player has low sanity, jump directly to one of the relaxing choices
-    if player_stats.is_sanity_low():
-        $ renpy.notify(_('Your sanity is dropping dangerously low. Why not take some time to relax and recharge?'))
-        $ num_times_sanity_low += 1
-
-        if has_met_layla and not has_triggered_ending_farmer and \
-        num_times_sanity_low > 5 and renpy.random.random() < 0.05:
-            call ending_farmer from _call_ending_farmer
-        else:
-            call day_activity_relax from _call_day_activity_relax
-
-        call day_end from _call_day_end
+    # if the player has low energy, jump directly to one of the relaxing choices
+    if player_stats.is_energy_low():
+        call low_energy from _call_low_energy
         return # return to script.rpy
 
     player smile "What should we do for the day?"
@@ -24,7 +28,7 @@ label day_activity_choices:
         "Study CS fundamentals":
             # this choice helps grow coding knowledge
             python:
-                day_activity = 'study'
+                day_activity = STUDY
                 text = renpy.random.choice([
                     "Let's hit the books!",
                     "Let's head over to [developerquiz]!",
@@ -43,7 +47,7 @@ label day_activity_choices:
                     ])
                 renpy.say(player, text)
 
-            $ player_stats.change_stats_random('Sanity', -20, -10)
+            $ player_stats.change_stats_random(ENERGY, -15, -10)
 
             if num_correct == 4:
                 player @ laugh "I got all questions right! Way to go!"
@@ -65,27 +69,22 @@ label day_activity_choices:
                 if not plot_quiz_none in persistent.achievements:
                     $ add_achievement(plot_quiz_none)
 
-            call day_end from _call_day_end_1
-        
         "Work gig as a barista":
-            # this choice unlocks interesting tech rumors and recovers a bit of sanity
-            $ day_activity = 'barista'
+            # this choice unlocks interesting tech rumors and recovers a bit of energy
+            $ day_activity = BARISTA
             player "I can work some shifts to cover my bills. Plus, I get to interact with people and take my mind off cramming for a bit."
             call day_activity_barista from _call_day_activity_barista
-            call day_end from _call_day_end_2
 
         "Hang out at Hacker Space" if has_visited_hacker_space_with_annika:
             # this choice progresses the Hacker Space side story
-            $ day_activity = 'hackerspace'
+            $ day_activity = HACKER_SPACE
             player "I'm feeling adventurous. Why not check out Hacker Space and meet some other people who are learning to code?"
             call day_activity_hacker_space from _call_day_activity_hacker_space
-            call day_end from _call_day_end_3
 
         "Take a day off and relax":
             call day_activity_relax from _call_day_activity_relax_1
-            call day_end from _call_day_end_4
 
-    
+    call day_end from _call_day_end_1
     return
 
 label study_session_choose_topic:
@@ -138,10 +137,10 @@ label study_session_choose_topic:
     return
             
 label day_activity_relax:
-    # this choice boosts sanity
+    # this choice boosts energy
     player neutral "Hmmm... Actually, instead of doing something, I feel like I could use some rest today."
-    # if player_stats.is_sanity_low():
-    #     "(Whoa! {sc}Slow down, tiger.{/sc} We know you are excited about beefing up your {b}CS Knowledge{/b}, but it's important not to deplete your {b}Sanity{/b}. Why not take some time to recharge?)"
+    # if player_stats.is_energy_low():
+    #     "(Whoa! {sc}Slow down, tiger.{/sc} We know you are excited about beefing up your {b}CS Knowledge{/b}, but it's important not to deplete your {b}Energy{/b}. Why not take some time to recharge?)"
     # player pout "...But I have so much work to do..."
     show mint
     mint "Meow~"
@@ -166,12 +165,12 @@ label day_activity_relax:
             if not plot_music_discover in persistent.achievements:
                 $ add_achievement(plot_music_discover)
 
-    $ player_stats.change_stats_random('Sanity', 5, 20)
+    $ player_stats.change_stats_random(ENERGY, 5, 20)
     # all relaxing activities converge to the end of the day
     return
 
 label day_activity_hacker_space:
-    scene bg hacker_space with slideright
+    scene bg hacker_space with blinds
     play sound 'audio/sfx/office_ambient.wav'
     player "(As always, a lot of people are hanging out here.)"
     player "(I can go around and talk to people to learn about what cool things are happening.)"
@@ -195,8 +194,8 @@ label day_activity_hacker_space:
     scene bg hacker_space dusk with fadehold
     player @ surprised "Wow, it's already getting dark? Today's been quite an eventful day."
     player "Somehow I feel quite relaxed in this coder-centric atmosphere."
-    # bump sanity for a little bit
-    $ player_stats.change_stats('Sanity', 5)
+    # bump energy for a little bit
+    $ player_stats.change_stats(ENERGY, 5)
     player "Let's head home now."
     return
 
@@ -215,7 +214,7 @@ label day_activity_hacker_space_random:
     return
 
 label day_activity_barista:
-    scene bg cafe with slideright
+    scene bg cafe with blinds
     player "Alright, let's serve some coffee to help get people started with their day!"
     play sound 'audio/sfx/cafe_pour.wav'
     show coffee at truecenter
@@ -247,14 +246,14 @@ label day_activity_barista:
 
     player @ relieved "My shift is almost over now."
     player "Serving coffee is no easy work, but somehow I feel refreshed from meeting and greeting people."
-    $ player_stats.change_stats('Sanity', 5)
+    $ player_stats.change_stats(ENERGY, 5)
 
     if has_met_layla and not has_triggered_ending_barista and renpy.random.random() < 0.05:
         call ending_barista from _call_ending_barista
     return
 
 label day_activity_park:
-    scene bg park1 with slideright
+    scene bg park1 with blinds
     play sound 'audio/sfx/birds.wav'
     player happy "It always soothes my nerves to take a walk in the park."
     scene bg park2 with fadehold
@@ -295,7 +294,7 @@ label day_activity_job_search:
 
         $ company_name = 'CupcakeCPU'
         # choose 3 skills, sampling w/o replacement
-        $ company_required_skills = random.sample(all_skills, 3)
+        $ company_required_skills = random.sample(v1_skills, 3)
 
         call screen job_posting_screen(company_name, company_required_skills)
         $ has_applied = _return
@@ -307,9 +306,9 @@ label day_activity_job_search:
 
             # set up interview questions
             python:
-                interview_questions = []
+                quiz_session_questions = []
                 for skill in company_required_skills:
-                    interview_questions.extend(all_questions_map[skill])
+                    quiz_session_questions.extend(all_questions_map[skill])
 
             $ add_achievement(plot_cupcakecpu)
 
@@ -319,7 +318,7 @@ label day_activity_job_search:
         $ company_name = renpy.random.choice(all_company_names.keys())
 
         # choose 3 skills, sampling w/o replacement
-        $ company_required_skills = random.sample(all_skills, 3)
+        $ company_required_skills = random.sample(v1_skills, 3)
 
         $ easter_egg_skill = None
         if renpy.random.random() < 0.05: # 5% chance of getting Easter Egg
@@ -340,9 +339,9 @@ label day_activity_job_search:
 
                 # set up interview questions
                 python:
-                    interview_questions = []
+                    quiz_session_questions = []
                     for skill in company_required_skills:
-                        interview_questions.extend(all_questions_map[skill])
+                        quiz_session_questions.extend(all_questions_map[skill])
 
     if has_applied:
         $ num_jobs_applied += 1
@@ -379,9 +378,9 @@ label day_activity_interview:
         ])
     $ renpy.scene()
     $ renpy.show(interview_room_bg)
-    with slideright
+    with blinds
     # the above is equivalent to the below show statement
-    # scene interview_room_bg with slideright
+    # scene interview_room_bg with blinds
     player surprised "Wow. Their office sure is fancy. I hope I can get my cubicle in a fancy office like this..."
 
     $ interviewer_sprite = renpy.random.choice([
@@ -401,7 +400,128 @@ label day_activity_interview:
     $ renpy.hide(interviewer_sprite)
 
     player relieved "(... Was that everything? Kudos to me for surviving...)"
-    $ player_stats.change_stats_random('Sanity', -20, -10)
+    $ player_stats.change_stats_random(ENERGY, -10, -5)
     player "That was as intense as I expected. I hope I did well with all my preparations."
     player "I can't wait to go home and just relax now..."
+    return
+
+# v2 day activities
+label v2_activity_choices:
+    if player_stats.is_energy_low():
+        call low_energy from _call_low_energy_1
+        return # return to script.rpy
+
+    player smile "Now that I finally have some free time. What should I do?"
+    menu:
+        "Work on some tickets":
+            call work_session from _call_work_session
+    
+        "Hang out at Hacker Space":
+            call v2_activity_hacker_space from _call_v2_activity_hacker_space
+
+        "Take a day off and relax":
+            call day_activity_relax from _call_day_activity_relax_2
+
+        "Do some shopping":
+            call screen shop_screen(home_shop_items)
+            
+    call day_end from _call_day_end_2
+    return
+
+label v2_activity_hacker_space:
+    scene bg hacker_space with blinds
+    play sound 'audio/sfx/office_ambient.wav'
+
+    if len(v2_arc1_event_labels[HACKER_SPACE]) == len(seen_v2_arc1_events[HACKER_SPACE]) or \
+    renpy.random.random() < 0.6:
+        call day_activity_hacker_space_random from _call_day_activity_hacker_space_random_2
+    else: # 40% chance of triggering an event
+        python:
+            available_labels = list(set(v2_arc1_event_labels[HACKER_SPACE]) - seen_v2_arc1_events[HACKER_SPACE])
+            label = renpy.random.choice(available_labels)
+            seen_v2_arc1_events[HACKER_SPACE].add(label)
+            renpy.call(label)
+
+    return
+
+label v2_vending_machine:
+    "Would you like to visit the vending machine?"
+    menu:
+        "Yes":
+            call screen shop_screen(vending_machine_items)
+    
+        "Maybe later":
+            pass
+
+    return
+    
+label v2_shop:
+    "Would you like to do some shopping?"
+    menu:
+        "Yes":
+            call screen shop_screen(home_shop_items)
+    
+        "Maybe later":
+            pass
+
+    return
+
+label v2_routine:
+    # check if it's a weekday or weekend
+    if calendar.is_weekday():
+        # go to work
+        scene bg company1_center with fadehold
+        play sound 'audio/sfx/office_ambient.wav'
+        # TODO: maybe give player the choice to visit the vending machine both before and after work?
+
+        player "Alright. Let's get to my seat."
+        scene bg company1_lydia_cubicle with blinds
+        call work_session from _call_work_session_1
+
+        # after work
+        scene bg company1_center with dissolve
+        play sound 'audio/sfx/office_ambient.wav'
+
+        # after work, trigger random work events, if no events, give player the choice to visit the vending machine
+        if len(v2_arc1_event_labels[WORK]) == len(seen_v2_arc1_events[WORK]) or \
+        renpy.random.random() < 0.8:
+            call v2_vending_machine from _call_v2_vending_machine
+        else: # trigger work event
+            python:
+                available_labels = list(set(v2_arc1_event_labels[WORK]) - seen_v2_arc1_events[WORK])
+                label = renpy.random.choice(available_labels)
+                seen_v2_arc1_events[WORK].add(label)
+                renpy.call(label)
+
+        # go home
+        scene bg living_room night with blinds
+        # trigger random home events, if no events, do routine
+        if len(v2_arc1_event_labels[HOME]) == len(seen_v2_arc1_events[HOME]) or \
+        renpy.random.random() < 0.8:
+            player smile "Finally home! I'm ready for dinner!"
+
+            if renpy.random().random() < 0.2:
+                # dinner scene
+                scene bg kitchen night with blinds
+                play sound 'audio/sfx/dining_ambient.wav'
+                $ show_random_dinner_image()
+                player "So, today at work this happened..."
+                mom "Hahaha that's quite interesting."
+                dad "Your co-workers sure have quite unique personalities."
+                player "I bet they do!"
+
+            scene bg bedroom with blinds
+            player "Dinner sure was fun."
+            call v2_activity_choices from _call_v2_activity_choices
+
+        else: # trigger home event
+            python:
+                available_labels = list(set(v2_arc1_event_labels[HOME]) - seen_v2_arc1_events[HOME])
+                label = renpy.random.choice(available_labels)
+                seen_v2_arc1_events[HOME].add(label)
+                renpy.call(label)
+
+    else:
+        # weekend, stay home
+        call v2_activity_choices from _call_v2_activity_choices_1
     return

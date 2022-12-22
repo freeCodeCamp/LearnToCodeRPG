@@ -31,8 +31,8 @@ translate english strings:
     new "Show To-Do"
 
     # game/scripts/player_stats.rpy:194
-    old "{icon=icon-zap} Sanity"
-    new "{icon=icon-zap} Sanity"
+    old "{icon=icon-zap} Energy"
+    new "{icon=icon-zap} Energy"
 
     # game/scripts/player_stats.rpy:201
     old "{icon=icon-terminal} CS Knowledge"

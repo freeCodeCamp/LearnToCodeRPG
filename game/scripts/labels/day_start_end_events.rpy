@@ -1,6 +1,4 @@
 label day_start:
-    
-    # this label should end up jumping to day_end, which then returns control to the main game
     $ calendar.next()
 
     scene black
@@ -10,14 +8,19 @@ label day_start:
     play sound 'audio/sfx/birds.wav'
     pause 3.0
 
-    # randomly choose a start-of-day label to call
-    python:
-        day_start_text = renpy.random.choice(seq=[
-            'day_start_text1',
-            'day_start_text2',
-            'day_start_text3',
-            ])
-        renpy.call(day_start_text)
+    if is_in_v2_arc1 and not 'v2_running_late' in seen_v2_arc1_events[HOME] and renpy.random.random() < 0.2:
+        $ seen_v2_arc1_events[HOME].add('v2_running_late')
+        call v2_running_late from _call_v2_running_late
+
+    else:
+        # randomly choose a start-of-day label to call
+        python:
+            day_start_text = renpy.random.choice(seq=[
+                'day_start_text1',
+                'day_start_text2',
+                'day_start_text3',
+                ])
+            renpy.call(day_start_text)
         
     return
 
@@ -77,47 +80,48 @@ label day_start_text3:
 
 label day_end:
     
-    scene bg bedroom dusk with slideright
+    scene bg bedroom with blinds
     player relieved "Phew... That was a long day."
 
-    # dinner
-    mom "[player_name], dinner's ready!"
-    player happy "Coming, mom!"
+    if renpy.random().random() < 0.2:
+        # dinner scene
+        mom "[player_name], dinner's ready!"
+        player happy "Coming, mom!"
 
-    scene bg kitchen night with blinds
-    play sound 'audio/sfx/dining_ambient.wav'
-    $ show_random_dinner_image()
+        scene bg kitchen night with blinds
+        play sound 'audio/sfx/dining_ambient.wav'
+        $ show_random_dinner_image()
 
-    mom "How was your day, honey?"
-    player "Good, good."
-    if day_activity == 'study':
-        player "I spent today studying and learned a lot!"
-    elif day_activity == 'barista':
-        player "I worked at the cafe today and heard some interesting conversations."
-    elif day_activity == 'hackerspace':
-        player "I went to Hacker Space today and saw some people working on cool projects."
-    elif day_activity == 'park':
-        player "I was at the park reading a nice book. It was really refreshing."
-    elif day_activity == 'videogame':
-        player "I played some cool video games today. Hopefully one day I'll able to code up a game myself."
-    elif day_activity == 'music':
-        player "I was listening to some really good music today. Music always helps me relax."
-    elif day_activity == 'jobsearch':
-        player "I spent my day looking for job openings. I hope that my résumé will catch the recruiter's eye."
-    elif day_activity == 'interview':
-        player "I had an interview today. I wouldn't say it wasn't stressful, but I felt like I gave it my best shot."
-    else:
-        player "I just chilled for the day."
-    dad "Sounds like you enjoyed your day."
-    mom "Talk to us if you need anything."
-    player laugh "Thanks! You two are the best."
+        mom "How was your day, honey?"
+        player "Good, good."
+        if day_activity == STUDY:
+            player "I spent today studying and learned a lot!"
+        elif day_activity == BARISTA:
+            player "I worked at the cafe today and heard some interesting conversations."
+        elif day_activity == HACKER_SPACE:
+            player "I went to Hacker Space today and saw some people working on cool projects."
+        elif day_activity == PARK:
+            player "I was at the park reading a nice book. It was really refreshing."
+        elif day_activity == VIDEO_GAME:
+            player "I played some cool video games today. Hopefully one day I'll able to code up a game myself."
+        elif day_activity == MUSIC:
+            player "I was listening to some really good music today. Music always helps me relax."
+        elif day_activity == JOB_SEARCH:
+            player "I spent my day looking for job openings. I hope that my résumé will catch the recruiter's eye."
+        elif day_activity == INTERVIEW:
+            player "I had an interview today. I wouldn't say it wasn't stressful, but I felt like I gave it my best shot."
+        else:
+            player "I just chilled for the day."
+        dad "Sounds like you enjoyed your day."
+        mom "Talk to us if you need anything."
+        player laugh "Thanks! You two are the best."
 
     if has_met_layla and not has_triggered_ending_today and \
     not has_triggered_ending_tutor and \
     renpy.random.random() < 0.05:
         call ending_tutor from _call_ending_tutor
 
-    scene bg bedroom night with blinds
+    scene bg bedroom with blinds
     player happy "Delicious home-cooked dinner as always."
 
     if has_met_layla and not has_triggered_ending_today and \
@@ -128,7 +132,7 @@ label day_end:
     if has_triggered_ending_today:
         jump day_end_sleep
 
-    if not topics_to_ask and not day_activity == 'barista':
+    if not topics_to_ask and not day_activity == BARISTA:
         jump day_end_sleep
 
     # either has something to ask or has worked as a barista that day
@@ -202,7 +206,7 @@ label day_end_interview:
     player happy "Thanks, I will. It's awesome to know that you two have my back!"
     dad "Any time, pumpkin."
 
-    scene bg bedroom night with blinds
+    scene bg bedroom with blinds
     player relieved "Phew... What a day. I can't wait to go catch some zzzz's already..."
     play sound 'audio/sfx/social_media_notification.wav'
     show smartphone at truecenter

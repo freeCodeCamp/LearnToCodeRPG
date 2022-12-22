@@ -110,7 +110,7 @@ label ending_cat:
     $ has_triggered_ending_today = True
 
     scene black
-    scene bg bedroom night with eyeopen
+    scene bg bedroom with eyeopen
     play sound 'audio/sfx/keyboard_typing.wav'
     player relieved "Yawwwn...."
     player worry "I heard some strange noises coming from under my bed. Maybe Mint is hungry and woke up?"
@@ -152,7 +152,7 @@ label ending_cat:
 
         "I must be dreaming. Let's go back to sleep.":
             player worry "I must be so exhausted and anxious about the coding stuff that I'm hallucinating about Mint writing code."
-            player relieved "Let's go get more sleep before my {b}Sanity{/b} hits the floor."
+            player relieved "Let's go get more sleep before my {b}Energy{/b} hits the floor."
             hide mint_with_pixel_sunglasses
             return # return control to the script that called this label
 
@@ -233,7 +233,7 @@ label ending_cat:
         message=alternative_endind_message
         )
     jump second_chance
-    scene bg bedroom night with dissolve
+    scene bg bedroom with dissolve
     
     return
 
@@ -370,7 +370,7 @@ label ending_office:
     $ has_triggered_ending_office = True
     $ has_triggered_ending_today = True
 
-    scene bg bedroom night with dissolve
+    scene bg bedroom with dissolve
     play sound 'audio/sfx/social_media_notification.wav'
     show smartphone at truecenter
     player surprised "Hmm... A notification from my phone?"
@@ -451,7 +451,7 @@ label ending_office:
     return
 
 label ending_farmer:
-    # this is triggered if sanity is too low
+    # this is triggered if energy is too low
     $ has_triggered_ending_farmer = True
     $ has_triggered_ending_today = True
 
@@ -481,7 +481,7 @@ label ending_farmer:
             player neutral "Alright, that was a nice joke, but an impractical one."
             player "Let's just go take a walk in the park to celebrate mother nature."
             call day_activity_park from _call_day_activity_park_2
-            $ player_stats.change_stats_random('Sanity', 5, 20)
+            $ player_stats.change_stats_random(ENERGY, 5, 20)
             return
 
     $ calendar_enabled = False
@@ -577,3 +577,122 @@ label second_chance:
             jump ending_splash
 
     return
+
+label ending_splash: # alternative endings also jump to here
+    $ quick_menu = False
+    $ calendar_enabled = False
+    # Learn to Code RPG logo
+    scene gray90 with Pause(1)
+    play sound 'audio/sfx/title_fire_swoosh.ogg'
+    show learn_to_code_rpg_logo at truecenter with dissolve
+    with Pause(2)
+    scene gray90 with dissolve
+    with Pause(1)
+
+    # freeCodeCamp logo
+    scene gray90 with Pause(1)
+    play sound 'audio/sfx/title_fire_swoosh.ogg'
+    show fcc_logo at truecenter with dissolve
+    with Pause(2)
+    scene gray90 with dissolve
+    with Pause(1)
+
+    # Credits, like in the About section from options.rpy
+    # use a lighter background because the hyperlinks are dark blue
+    scene main_menu overlay with dissolve
+    pause 1
+    show text _("{size=48}Thanks for playing {b}Learn to Code RPG{/b}!\n\n[about!t]{/size}")
+    with dissolve 
+    show screen ctc() # click to continue
+    pause
+    hide text with dissolve
+
+    show text "{size=48}[credits!t]{/size}"
+    with dissolve 
+    pause
+    hide screen ctc
+    hide text with dissolve
+
+    $ quick_menu = True
+    scene main_menu sepia with dissolve
+
+    "Hey [player_name]. Congratulations on reaching the end of the game!"
+    "Hope you enjoyed the ride!"
+    "You might be wondering, what's next?"
+    "Well, here are a bunch of things you can do."
+
+    default post_game_choices = set()
+    menu post_game_choice:
+        set post_game_choices
+        "Here are some fun things that you can do now that you've finished the game. Select an option to learn more."
+
+        "Check out your achievements and tweet {icon=icon-twitter}":
+            "Let's get social! You've made a lot of progress throughout the game and it's time to spread the words."
+            "You can view your achievements on the {b}Bonus > Achievements{/b} screen. Click on the {b}Tweet{/b} button next to the achievement to tweet it."
+            "If you see a lock next to the achievement, backtrack to some point in the game, try different choices, and see if you can unlock it."
+            call screen achievements_screen()
+            "Will you be able to unlock all of the achievements? Now that's a dare."
+            jump post_game_choice
+
+        "Rate and review this game on itch.io {icon=icon-thumbs-up}":
+            "Help us improve the game by rating and reviewing [learn_to_code_rpg_on_itch]."
+            show itch_rate at truecenter with zoomin
+            "You can find the {b}Rate Game{/b} button in the top right corner of the itch.io game page."
+            "Refer to {a=https://itch.io/updates/you-can-now-rate-games}this itch.io article{/a} for more details."
+            hide itch_rate
+            menu:
+                "Would you mind taking a minute to rate and review us?"
+                "Sure thing! Take me to the page.":
+                    "Thanks! Here's the link to [learn_to_code_rpg_on_itch]."
+                "I've done that already!" if not persistent.has_rated_and_reviewed_on_itch:
+                    "Awesome. Thank you for your input!"
+                    $ persistent.has_rated_and_reviewed_on_itch = True
+                "Maybe next time :)":
+                    "Of course! Take your time to explore and enjoy the game. You can visit this link anytime from the {b}Bonus{/b} screen."
+            jump post_game_choice
+
+        "Star the game's source code on GitHub {icon=icon-star}":
+            "Interested in learning about how this game is built? Take a peek into our source code by visiting [learn_to_code_rpg_on_github]."
+            show github_star at truecenter with zoomin
+            "Better yet, {b}Star{/b} our repository for your reference and {b}Watch{/b} for updates!"
+            "Refer to {a=https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars}this GitHub article{/a} for more details."
+            hide github_star
+            menu:
+                "Would you like to check out our GitHub repository?"
+                "Sure thing! Take me to the page.":
+                    "Thanks! Here's the link to [learn_to_code_rpg_on_github]."
+                "I've done that already!" if not persistent.has_visited_github:
+                    "Awesome. Enjoy digging through the source code!"
+                    $ persistent.has_visited_github = True
+                "Maybe next time :)":
+                    "Of course! Take your time to explore and enjoy the game. You can visit this link anytime from the {b}Bonus{/b} screen."
+            jump post_game_choice
+
+        # "Support this game and other freeCodeCamp.org projects by donating {icon=icon-heart}":
+        #     "This game was made possible by all the kind people who donate to support [freeCodeCamp]."
+        #     "You can help support our nonprofit's mission {a=https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/}by donating to us here{/a}."
+        #     "Remember you can visit link anytime from the {b}Bonus{/b} screen."
+        #     jump post_game_choice
+        
+        # "Check out the bonus screen for minigames, resources, and more {icon=icon-award}":
+        #     "Did you have the chance to enjoy the rhythm minigame while you were busy learning to code, visiting the Hacker Space, and serving coffee?"
+        #     "Are you interested in checking out the actual [freeCodeCamp] curriculum and teach yourself to code in real life?"
+        #     "Well, you are in luck. The {b}Bonus{/b} screen has everything that you'll possibly need."
+        #     # go to the bonus screen
+        #     call screen bonus_screen()
+        #     "I'm sure you will make good use of the bonus content!"
+        #     jump post_game_choice
+
+        "Discover alternative endings {icon=icon-map}":
+            "Which ending took you here, if I may ask?"
+            "Did you become a developer like you've always dreamed to be? Or did you take up some other job?"
+            "Perhaps you discovered that Mint, your adorable home cat, is better at coding than you?"
+            "Psssst... Did I just spoil the fact that there are several alternative endings hidden in the game?"
+            "The endings you unlocked will be displayed on the {b}Bonus > Achievements{/b} screen."
+            "Make sure to {b}Save{/b} your progress often if you want to unlock all of them!"
+            jump post_game_choice
+
+        "Gotcha. I'm ready to explore on my own!":
+            "Great to hear! Hope you enjoyed the ride!"
+            
+    return # return to main menu

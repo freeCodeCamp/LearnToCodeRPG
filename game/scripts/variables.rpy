@@ -2,11 +2,16 @@
 # run last
 init 998:
     default player_name = ''
+    default player_stats = PlayerStats()
+    default todo_list = ToDoList()
+    default calendar = Calendar()
+    # start_date will be used to calculate how many days it took for the player to learn to code
+    default start_date = calendar.date
     
+    default calendar_enabled = False
     default stats_unlocked = False
-    default stats_knowledge_unlocked = False # cs knowledge
-    default stats_subcategory_unlocked = False # subcategory of cs knowledge
     default todo_unlocked = False
+    default items_unlocked = False
 
     # alternative endings
     default has_triggered_ending_barista = False
@@ -14,7 +19,7 @@ init 998:
     default has_triggered_ending_tutor = False
     default has_triggered_ending_office = False
 
-    default num_times_sanity_low = 0
+    default num_times_energy_low = 0
     default has_triggered_ending_farmer = False
 
     default has_triggered_ending_today = False
@@ -35,7 +40,7 @@ init 998:
     default has_applied_to_cupcakecpu = False
 
     define cs_knowledge_threshold = 60 # need 60 CS Knowledge to pass the curriculum
-    # player_stats.player_stats_map['CS Knowledge'] >= cs_knowledge_threshold
+    # player_stats.player_stats_map[CS_KNOWLEDGE] >= cs_knowledge_threshold
     default has_completed_curriculum = False
 
     default num_jobs_applied = 0
@@ -56,8 +61,16 @@ init 998:
     # seen labels
     default seen_hacker_space_events = set()
     default seen_barista_events = set()
+    default seen_v2_arc1_events = {
+    WORK: set(),
+    HOME: set(),
+    HACKER_SPACE: set()
+    }
 
     default persistent.enable_save_reminder = None
+
+    # v2 variables
+    default is_in_v2_arc1 = False # TODO: refactor so that it's a string showing arc1, arc2, arc3 etc
 
 init python:
     if persistent.achievements is None:
@@ -69,6 +82,17 @@ init python:
     npc_sprite = 'annika'
 
     ## Non-mutable
+    # some constants for dict keys and other non-translatable strings
+    WORK = 'work'
+    HOME = 'home'
+    HACKER_SPACE = 'hacker_space'
+    STUDY = 'study'
+    BARISTA = 'barista'
+    PARK = 'park'
+    VIDEO_GAME = 'video_game'
+    MUSIC = 'music'
+    JOB_SEARCH = 'job_search'
+    INTERVIEW = 'interview'
 
     ## Note to proofreader: please proofread these; they show up as To-Do items
     # to-do strings
@@ -109,6 +133,38 @@ init python:
     'barista_api',
     'barista_userexperience',    
     ]
+
+    v2_arc1_event_labels = {
+    WORK:
+        [
+        'v2_working_late',
+        'v2_help_from_friends',
+        'v2_eta',
+        'v2_motormouth',
+        'v2_message',
+        'v2_css',
+        'v2_thick',
+        'v2_success',
+        'v2_competent',
+        'v2_automate',
+        ],
+    HOME:
+        [
+        'v2_email',
+        'v2_venting',
+        # 'v2_running_late', # this is a morning event
+        'v2_family_business',
+        'v2_fresssh',
+        ],
+    HACKER_SPACE:
+        [
+        'v2_old_friend',
+        'v2_equity',
+        'v2_gelato',
+        'v2_internet_safety',
+        'v2_where_to_start',
+        ]
+    }
 
     # map topic to label name
     ask_npc = {
@@ -154,6 +210,9 @@ init python:
     milestone_first_offer = _('Got My First Offer!')
     # TODO: v2 can have multiple offers
     milestone_onboarding = _('Now Streaming: My Dream Dev Job')
+    # v2
+    milestone_v2_redemption = _('Saved the day at work!')
+    milestone_v2_arc1_complete = _('About to transition into my new DevOps job!')
 
     tweet_start_curriculum = _('I just started teaching myself to code in #LearnToCodeRPG. Play the game here: ')
     tweet_complete_curriculum = _('I nailed the CS curriculum in #LearnToCodeRPG. Play the game here: ')
@@ -162,6 +221,8 @@ init python:
     tweet_first_interview = _('I got my first technical interview in #LearnToCodeRPG. Play the game here: ')
     tweet_first_offer = _('I got my first dev job in #LearnToCodeRPG. Play the game here: ')
     tweet_onboarding = _('I started onboarding at my dream dev job in #LearnToCodeRPG. Play the game here: ')
+    tweet_v2_redemption = _('I saved the day with my Regex skills! Play the game here: ')
+    tweet_v2_arc1_complete = _("I'm about to transition into my new DevOps job! Play the game here: ")
 
     milestone_to_tweet_map = {
         milestone_start_curriculum: generate_tweet_intent(tweet_start_curriculum),
@@ -170,7 +231,9 @@ init python:
         milestone_first_application: generate_tweet_intent(tweet_first_application),
         milestone_first_interview: generate_tweet_intent(tweet_first_interview),
         milestone_first_offer: generate_tweet_intent(tweet_first_offer),
-        milestone_onboarding: generate_tweet_intent(tweet_onboarding)
+        milestone_onboarding: generate_tweet_intent(tweet_onboarding),
+        milestone_v2_redemption: generate_tweet_intent(tweet_v2_redemption),
+        milestone_v2_arc1_complete: generate_tweet_intent(tweet_v2_arc1_complete),
     }
 
     ## plot easter eggs
@@ -362,7 +425,7 @@ init python:
         ending_achievement: ending_to_tweet_map
     }
 
-    # master map for easy lookup in script.rpy, sanity check len(all_tweet_map) == num of achievements
+    # master map for easy lookup in script.rpy, energy check len(all_tweet_map) == num of achievements
     all_tweet_map = {}
     for tweet_map in achievement_labels_map.values():
         all_tweet_map.update(tweet_map)
@@ -372,16 +435,29 @@ init python:
     tweet_all_achievements_unlocked = generate_tweet_intent(_('Hooray! I unlocked all of the achievements in #LearnToCodeRPG, bagging all alternative endings, Easter Eggs, and minigame high scores. Play the game here: '))
 
     # skills
+    GENERAL = 'general'
+    HTML = 'html'
+    CSS = 'css'
+    JAVASCRIPT = 'javascript'
+    PYTHON = 'python'
+    LINUX = 'linux'
+    GIT = 'git'
+    SQL = 'sql'
+    IT = 'it'
+    DEVOPS = 'devops'
+
+    # TODO: refactor tralsation strings
     all_questions_map = {
-    _('General'): general_cs_questions,
-    _('HTML'): html_questions,
-    _('CSS'): css_questions,
-    _('JavaScript'): javascript_questions,
-    _('Python'): python_questions,
-    _('Linux'): linux_questions,
-    _('Git'): git_questions,
-    _('SQL'): sql_questions,
-    _('IT'): it_questions,
+    GENERAL: general_cs_questions,
+    HTML: html_questions,
+    CSS: css_questions,
+    JAVASCRIPT: javascript_questions,
+    PYTHON: python_questions,
+    LINUX: linux_questions,
+    GIT: git_questions,
+    SQL: sql_questions,
+    IT: it_questions,
+    DEVOPS: devops_questions,
     }
 
     # assign category to questions
@@ -395,14 +471,20 @@ init python:
         all_quiz_questions.extend(question_list)
 
     # the order is important
-    all_skills = [
-    _('General'),
-    _('HTML'),
-    _('CSS'),
-    _('JavaScript'),
-    _('Python'),
-    _('Linux'),
-    _('Git'),
-    _('SQL'),
-    _('IT'),
-    ]
+    v1_skills = {
+    GENERAL: _('General'),
+    HTML: _('HTML'),
+    CSS: _('CSS'),
+    JAVASCRIPT: _('JavaScript'),
+    PYTHON: _('Python'),
+    LINUX: _('Linux'),
+    GIT: _('Git'),
+    SQL: _('SQL'),
+    IT: _('IT'),
+    }
+
+    v2_skills = {
+    DEVOPS: _('DevOps')
+    }
+
+    all_skills = {**v1_skills, **v2_skills}

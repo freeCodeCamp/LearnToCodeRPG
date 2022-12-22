@@ -1,12 +1,4 @@
 label start:
-    default player_stats = PlayerStats(all_skills)
-    default todo_list = ToDoList()
-    default calendar = Calendar(day=1, month=8, year=2021) # story starts on Aug 1st, 2021
-    default start_date = date(2021, 8, 1) # this will be used to calculate how many days it took for the player to learn to code
-
-    $ persistent.has_started_game = True
-    $ calendar_enabled = False
-    
     stop music fadeout 2.0
     scene bg laptop_screen with dissolve
 
@@ -82,7 +74,6 @@ label start_after_interview:
     "The fields marked with {color=[red]}*{/color} are required."
 
     # TODO: more customization like gender, pronouns, life story
-    $ player_name = ''
     player pout "(Phew... Looks like I survived the technical questions. Now let's fill in the general information.)"
 
     $ player_name = renpy.input(_("What is your name? {color=[red]}*{/color} (Type your name and hit Enter. This name will be used throughout the game and you cannot change it unless you start a new game.)"), default=_("Lydia"))
@@ -91,9 +82,9 @@ label start_after_interview:
         $ vip_profile_url = vip_names[player_name]
         "[player_name]? What a coincidence! Our VIP team member {a=[vip_profile_url]}[player_name]{/a} will be honored to hear that."
         # TODO: Easter Egg
-    # handle empty string case
+    # handle empty string case by assigning default name
     if not player_name:
-        $ player_name = _("Lydia")
+        $ player_name = _("[player_name]")
 
     # TODO: birthday Easter Egg
     # "What is your birthday?"
@@ -154,7 +145,7 @@ label start_after_interview:
 label stage1:
     # use call instead of show b/c the screen will return after the timer finishes
     call screen text_over_black_bg_screen(_('About three months ago...'))
-    call screen text_over_black_bg_screen(_("{i}Chapter 1: Let's learn to code!{/i}"))
+    call screen text_over_black_bg_screen(_("{i}Prologue Chapter 1: Let's learn to code!{/i}"))
 
     scene bg kid_home
     $ calendar_enabled = True
@@ -186,7 +177,7 @@ label stage1:
 label stage2:
     # Stage 2. player's decision to learn to code
     # player returns home
-    scene bg living_room night with slideright
+    scene bg living_room night with blinds
 
     player laugh "I'm home!"
     mom "Hey sweetie. Welcome back!"
@@ -215,7 +206,7 @@ label stage2:
     mom "What plans do we have for the weekend?"
     player "I'm up for anything!"
 
-    scene bg bedroom night with blinds
+    scene bg bedroom with blinds
     player happy "That was an awesome dinner... I'm stuffed. Mom's the best cook I know."
 
     play sound 'audio/sfx/social_media_notification.wav'
@@ -245,7 +236,7 @@ label stage2:
 
         "Ignore":
             hide smartphone
-            player relieved "Let's make this evening distraction-free for my sanity."
+            player relieved "Let's make this evening distraction-free for my mental well-being."
 
     "(Hey [player_name]. It looks like you just made your first in-game choice. That is awesome!)"
     "(You will encounter many more choices in this game later on. There are no right or wrong choices, only consequences.)"
@@ -274,7 +265,6 @@ label stage2:
 
     # now the quick menu screen show the button to access stats
     $ stats_unlocked = True
-    $ stats_knowledge_unlocked = True
 
     player smile "I'll keep track of my progress on my phone."
     show smartphone at truecenter
@@ -285,29 +275,29 @@ label stage2:
 
 label stage2_stats_change:
     player surprised "So Java and JavaScript are different languages?"
-    $ player_stats.change_stats('CS Knowledge', 1)
+    $ player_stats.change_stats(CS_KNOWLEDGE, 1)
     player "Wait, which one is for web dev again?"
-    $ player_stats.change_stats('Sanity', -5)
+    $ player_stats.change_stats(ENERGY, -5)
 
     player pout "And there are print statements and print() functions. Which is for Python 2 and which is for Python 3?"
-    $ player_stats.change_stats('CS Knowledge', 1)
+    $ player_stats.change_stats(CS_KNOWLEDGE, 1)
     player "I remember one video saying that Python 2 is outdated. Does that mean that I don't have to learn it?"
-    $ player_stats.change_stats('Sanity', -5)
+    $ player_stats.change_stats(ENERGY, -5)
 
     player "Maybe I shouldn't even bother with learning Python 3."
-    $ player_stats.change_stats('CS Knowledge', 1)
+    $ player_stats.change_stats(CS_KNOWLEDGE, 1)
     player "Someone may just decide that Python 3 is too old-fashioned before I even get a chance to learn it."
-    $ player_stats.change_stats('Sanity', -5)
+    $ player_stats.change_stats(ENERGY, -5)
 
     player worry "Java doesn't sound like a good idea either. It's really old."
-    $ player_stats.change_stats('CS Knowledge', 1)
+    $ player_stats.change_stats(CS_KNOWLEDGE, 1)
     player "People nowadays are so hyped about Kotlin."
-    $ player_stats.change_stats('Sanity', -5)
+    $ player_stats.change_stats(ENERGY, -5)
 
     player "JavaScript? TypeScript?"
-    $ player_stats.change_stats('CS Knowledge', 1)
+    $ player_stats.change_stats(CS_KNOWLEDGE, 1)
     player "Are they like cousins or something?"
-    $ player_stats.change_stats('Sanity', -5)
+    $ player_stats.change_stats(ENERGY, -5)
 
     player "Maybe I can find a job posting I like and start learning their required skills."
     play sound 'audio/sfx/punch.wav'
@@ -321,7 +311,7 @@ label stage2_stats_change:
     player "And why is this company using their pet coding language that nobody else uses?"
 
     # hard-reset player's CS knowledge :)
-    $ player_stats.set_stats('CS Knowledge', 0)
+    $ player_stats.set_stats(CS_KNOWLEDGE, 0)
 
     with vpunch
     play sound 'audio/sfx/stats_change_doom.wav'
@@ -340,7 +330,7 @@ label stage2_stats_change:
 
     play sound 'audio/sfx/wake_up_noise.mp3'
     pause 2.0    
-    scene bg bedroom night with eyeopen
+    scene bg bedroom with eyeopen
     player worry "... I can't sleep with all these thoughts floating around in my head."
     player "What can I do if the kid I'm tutoring cuts down our sessions for his coding classes?"
     player "Ugh. I still need to pay the bills even if my parents are nice enough not to ask me for rent."
@@ -348,7 +338,7 @@ label stage2_stats_change:
 
 label stage3:
     # Stage 3. Annika
-    call screen text_over_black_bg_screen(_('{i}Chapter 2: A learning buddy to make it better!{/i}'))
+    call screen text_over_black_bg_screen(_('{i}Prologue Chapter 2: A learning buddy to make it better!{/i}'))
     $ calendar.next()
     scene black
     scene bg bedroom with eyeopen
@@ -451,7 +441,7 @@ label stage4:
     $ add_achievement(plot_barista_discover)
 
     # player goes back home
-    scene bg bedroom night with fadehold
+    scene bg bedroom with fadehold
     player relieved "Phew... It's been a long day at work."
 
     scene bg laptop_screen night with dissolve
@@ -590,7 +580,7 @@ label stage5_cookie:
     mom "Alright, know that we are always here if you'd like to talk or anything."
     player "I will. Thanks Mom."
 
-    scene bg bedroom night with blinds
+    scene bg bedroom with blinds
     show cookie at truecenter
     pause 0.2
     play sound 'audio/sfx/chew_food.wav'
@@ -613,7 +603,7 @@ label stage5_annika:
     
     player pout "Ahhh... my alarm... It's a new day already?"
     player smile "What's on our To-Do list today?"
-    $ renpy.show_screen('player_stats_todo_screen', _layer='transient', show_todo=True)
+    $ renpy.show_screen(PLAYER_PHONE_SCREEN, _layer='transient', tab_showing=TODO)
     player happy "Right. Let's give Annika a call and ask about the CS curriculum."
     show smartphone at truecenter
     play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
@@ -694,15 +684,16 @@ label stage5_annika:
 
 label stage6:
     # Stage 6. Trials
-    call screen text_over_black_bg_screen(_("{i}Chapter 3: Let's hit the books!{/i}"))
+    call screen text_over_black_bg_screen(_("{i}Prologue Chapter 3: Let's hit the books!{/i}"))
 
-    scene bg bedroom dusk with fade
+    scene bg bedroom with fade
     player smile "I'm finally home! Let's head over to [developerquiz] and try out some quiz questions."
     scene bg laptop_screen with dissolve
     player surprised "Looks like they even divided the questions into subcategories like HTML, CSS, and JavaScript."
 
-    $ stats_subcategory_unlocked = True
-    $ renpy.show_screen('player_stats_todo_screen', _layer='transient')
+    # unlock CS Knowledge subcategories here
+    $ player_stats.subcategory_stats_map = {stats_name: 0 for stats_name in v1_skills}
+    $ renpy.show_screen(PLAYER_PHONE_SCREEN, _layer='transient')
 
     player smile "Well, guess I need to track my progress for each subcategory."
     "(Your {b}CS Knowledge{/b} is calculated as the average of all subcategories. So make sure to study for each of the categories!)"
@@ -714,7 +705,7 @@ label stage6:
 
     $ add_achievement(milestone_start_curriculum)
 
-    scene bg bedroom night with dissolve
+    scene bg bedroom with dissolve
     player neutral "Phew... I'm finally done with these questions. What a day..."
     player pout "I think I did okay, but I do feel tired after a long day at work."
     player "Maybe it's best for my productivity if I take an entire day off to study?"
@@ -772,7 +763,7 @@ label stage6:
     player "Let's alternate between working whole-day shifts and spending whole days studying."
     player "I can call Annika this afternoon when she's done with her work. It'll be good to chat and ask her about things."
 
-    scene bg bedroom dusk with fadehold
+    scene bg bedroom with fadehold
 
     show smartphone at truecenter
     play sound "<to 2.0>audio/sfx/phone_ring.wav"
@@ -785,7 +776,7 @@ label stage6:
     player smile "Hey Annika! Is now a good time to talk?"
 
     show annika laugh
-    annika "Heyya [player_name]! Now's perfect. I just got back from work."
+    annika "Heya [player_name]! Now's perfect. I just got back from work."
     annika "How did your first day of studying go?"
     player "I felt pretty productive today. It's nice how the quiz questions give you instant feedback."
     player happy "What about your day? How was work?"
@@ -865,7 +856,7 @@ label stage6_after_annika_questions:
     dad "That's the spirit!"
     scene bg kitchen night with fadehold
 
-    scene bg bedroom night with blinds
+    scene bg bedroom with blinds
     player pout "Yawwwwwn... What a day. My brain certainly enjoyed a great workout today."
     player "I can barely keep my eyes open. Let's call it a day."
     player smile "Good night, Mint."
@@ -904,7 +895,7 @@ label stage6_after_annika_questions:
     annika "You ready for the ride?"
     player laugh "Yes! Lead the way."
 
-    scene bg hacker_space with slideright
+    scene bg hacker_space with blinds
     play sound 'audio/sfx/office_ambient.wav'
 
     show annika
@@ -948,7 +939,7 @@ label stage6_after_annika_questions:
 
     $ add_achievement(plot_hackerspace_discover)
 
-    scene bg bedroom night with slideright
+    scene bg bedroom with blinds
     player smile "Wow. I'm amazed. Hacker Space sure is a cool place. I'll have to check it out on my own someday."
     player "Now let's call it a day and get some rest."
 
@@ -984,7 +975,7 @@ label stage6_after_annika_questions:
 
 label stage7:
     # Stage 7. Marco
-    call screen text_over_black_bg_screen(_('{i}Chapter 4: A mentor to lead the way!{/i}'))
+    call screen text_over_black_bg_screen(_('{i}Prologue Chapter 4: A mentor to lead the way!{/i}'))
 
     $ has_met_marco = True # unlocks Marco's topics_to_ask
 
@@ -1062,7 +1053,7 @@ label stage7:
             show marco laugh
             marco "Any time, [player_name]. Have fun coding and keep me updated on your progress!"
 
-    scene bg bedroom night with slideright
+    scene bg bedroom with blinds
     player smile "Marco was certainly a cool guy. I'm so lucky to have him as my mentor."
     player "Now if I have questions about anything, I can either talk to Annika or Marco."
     show mint
@@ -1091,7 +1082,7 @@ label stage7:
         call save_reminder from _call_save_reminder_10
 
     $ calendar.next_month()
-    $ renpy.show_screen('player_stats_todo_screen', _layer='transient')
+    $ renpy.show_screen(PLAYER_PHONE_SCREEN, _layer='transient')
     scene bg bedroom with fadehold
     player smile "It's been almost two months since I started learning to code. Time really flies."
     player "I feel like I'm so much more knowledgeable than when I started."
@@ -1115,7 +1106,7 @@ label stage7:
     annika "Wanna come with me to check it out today?"
     player @ laugh "Sounds good! See you in a bit!"
 
-    scene bg hacker_space with slideright
+    scene bg hacker_space with blinds
     play sound 'audio/sfx/office_ambient.wav'
     player surprised "It's even more crowded than usual..."
     annika @ laugh "Looks like high school kids are all hyped up for the event!"
@@ -1216,27 +1207,27 @@ label stage7:
 
     call save_reminder from _call_save_reminder_11
 
-    scene bg bedroom night with slideright
+    scene bg bedroom with blinds
     player relieved "I feel like I've learned so much about the coding interview process from Annika today."
     player laugh "So much that I can't wait to wrap up my curriculum and jump in to see what a real coding interview is like!"
     player smile "I heard that [developerquiz] will send an email notification to people who have made significant progress in their curriculum."
     player "Let's check to see my progress."
-    if player_stats.player_stats_map['CS Knowledge'] < cs_knowledge_threshold:
+    if player_stats.player_stats_map[CS_KNOWLEDGE] < cs_knowledge_threshold:
         player "Hmmm... I think I still need to ramp up more on my CS knowledge. I'll get back to studying tomorrow."
         "(Try bumping your {b}CS Knowledge{/b} to above [cs_knowledge_threshold] by completing more quizzes.)"
 
-    while player_stats.player_stats_map['CS Knowledge'] < cs_knowledge_threshold:
+    while player_stats.player_stats_map[CS_KNOWLEDGE] < cs_knowledge_threshold:
         call day_start from _call_day_start_6
         call day_activity_choices from _call_day_activity_choices_6
 
     call save_reminder from _call_save_reminder_12
 
-    # once we are down here, we should have player_stats.player_stats_map['CS Knowledge'] >= cs_knowledge_threshold
+    # once we are down here, we should have player_stats.player_stats_map[CS_KNOWLEDGE] >= cs_knowledge_threshold
     player laugh "Looks like I've made quite a bit of progress! I wonder when I can expect to receive that email."
     player "But let's first have a movie night to celebrate what I've gotten done!"
 
     scene bg bedroom with fadehold
-    $ renpy.show_screen('player_stats_todo_screen', _layer='transient')
+    $ renpy.show_screen(PLAYER_PHONE_SCREEN, _layer='transient')
 
 label stage7_complete_curriculum:
     play sound 'audio/sfx/social_media_notification.wav'
@@ -1266,7 +1257,7 @@ label stage7_complete_curriculum:
 
 label stage8:
     # Stage 8. Coding interviews
-    call screen text_over_black_bg_screen(_("{i}Chapter 5: Let's crush those interviews!{/i}"))
+    call screen text_over_black_bg_screen(_("{i}Prologue Chapter 5: Let's crush those interviews!{/i}"))
 
     scene bg bedroom with fadehold
     player smile "Alright! Let's start by applying to jobs!"
@@ -1284,7 +1275,7 @@ label stage8:
 
     $ add_achievement(milestone_start_interview_prep)
 
-    scene bg bedroom night with fadehold
+    scene bg bedroom with fadehold
     player relieved "Whew... Those questions are harder than CS fundamental questions. Guess I need to put in more studying."
     player smile "But this is still a good start!"
     $ todo_list.complete_todo(todo_interview_prep)
@@ -1450,11 +1441,9 @@ label stage8:
 
 label stage14:
     # Stage 14. New hire player meets Layla
-    call screen text_over_black_bg_screen(_("{i}Chapter 6: Let's meet my new colleagues!{/i}"))
+    call screen text_over_black_bg_screen(_("{i}Prologue Chapter 6: Let's meet my new colleagues!{/i}"))
 
     $ calendar.next_month() # player's start date is in a month
-    # TODO: maybe in v2
-    # $ player_stats.set_stats('Developer Skill', 0)
 
     scene bg office
     player surprised "Wow. I still can't believe that starting today, I'll be working in such a fancy office."
@@ -1586,7 +1575,7 @@ label stage14:
     layla @ laugh "Are we now ready to go back and squash some bugs?"
     player laugh "Lead the way!"
 
-label ending:
+label v1_ending:
     scene bg office with fadehold
     player relieved "Okay, finally, I think my code is good to go! Let's commit it to the server."
     player neutral "Hmmm... Maybe it's a good idea to double-check?"
@@ -1651,130 +1640,286 @@ label ending:
         show_achievements_count=False
         )
 
-    $ quick_menu = False
-    $ calendar_enabled = False
-    play sound 'audio/sfx/cartoon_suspense.wav'
-    scene black with dissolve
-    pause 1
-    show text _("{bt}{size=48}{color=[white]}{i}Well, that's another chapter that we will bring to you in the future!{/i}{/color}{/size}{/bt}") with dissolve 
-    pause 3
-    hide text with dissolve
+    show main_menu_v1 with fadehold
+    pause 5.0
+    # fall through to the next label
+    $ calendar.next_month()
 
-label ending_splash: # alternative endings also jump to here
-    $ quick_menu = False
-    $ calendar_enabled = False
-    # Learn to Code RPG logo
-    scene gray90 with Pause(1)
-    play sound 'audio/sfx/title_fire_swoosh.ogg'
-    show learn_to_code_rpg_logo at truecenter with dissolve
-    with Pause(2)
-    scene gray90 with dissolve
-    with Pause(1)
+label v2_start:
+    call screen text_over_black_bg_screen(_("{i}Arc I{/i}"))
 
-    # freeCodeCamp logo
-    scene gray90 with Pause(1)
-    play sound 'audio/sfx/title_fire_swoosh.ogg'
-    show fcc_logo at truecenter with dissolve
-    with Pause(2)
-    scene gray90 with dissolve
-    with Pause(1)
+    scene bg laptop_screen with dissolve
+    ## setup for the case where the player started in v2 without filling in the info in v1
+    if player_name == '':
+        $ player_name = renpy.input(_("What is your name? {color=[red]}*{/color} (Type your name and hit Enter. This name will be used throughout the game and you cannot change it unless you start a new game.)"), default=_("Lydia"))
+        $ player_name = player_name.strip()
+        if player_name in vip_names:
+            $ vip_profile_url = vip_names[player_name]
+            "[player_name]? What a coincidence! Our VIP team member {a=[vip_profile_url]}[player_name]{/a} will be honored to hear that."
+            # TODO: Easter Egg
+        # handle empty string case by assigning default name
+        if not player_name:
+            $ player_name = _("[player_name]")
 
-    # Credits, like in the About section from options.rpy
-    # use a lighter background because the hyperlinks are dark blue
-    scene main_menu overlay with dissolve
-    pause 1
-    show text _("{size=48}Thanks for playing {b}Learn to Code RPG{/b}!\n\n[about!t]{/size}")
-    with dissolve 
-    show screen ctc() # click to continue
-    pause
-    hide text with dissolve
+    $ stats_unlocked = True
+    $ todo_unlocked = True
+    $ items_unlocked = True
+    $ quiz_session_questions = all_quiz_questions
+    $ player_stats.subcategory_stats_map = {stats_name: 0 for stats_name in v1_skills}
+    ## end v2 setup
 
-    show text "{size=48}[credits!t]{/size}"
-    with dissolve 
-    pause
-    hide screen ctc
-    hide text with dissolve
+    $ player_stats.set_stats(MONEY, 500)
+    $ player_stats.set_stats(RENOWN, 20) # start with a bit of renown
 
-    $ quick_menu = True
-    scene main_menu sepia with dissolve
+    # transition to v2 plot here
+    $ calendar.next_weekday()
+    $ calendar_enabled = True
+    scene bg bedroom with dissolve
+    player relieved "A lot has happened in this past month..."
+    player neutral "After I broke prod on the first day of work, Layla, the team, and my manager told me that it was okay, and I didn't have to worry."
+    player "But I felt like a fresh start would give me a morale boost."
+    player "So I went back to applying for jobs. Fortunately, I landed a new job pretty quickly, and my start date is today."
 
-    "Hey [player_name]. Congratulations on reaching the end of the game!"
-    "Hope you enjoyed the ride!"
-    "You might be wondering, what's next?"
-    "Well, here are a bunch of things you can do."
+    scene bg company1_reception with fadehold
+    play sound 'audio/sfx/office_ambient.wav'
+    player surprised "So this is ConsultMe! Wow... It's enormous."
+    player smile "I put in the work to become a developer, and today, it's real... "
+    player "I'm going to keep working hard and learn everything I can! Doing that is what got me here, so if I keep it up, I should be okay!"    
+    player "Um... hello?"
+    show maria
+    receptionist @ smile "Hello! How can I help you?"
+    player "My name is [player_name], and this is my first day."
+    receptionist @ laugh "Ah, the new hire! And so punctual too - it's nice to meet you!"
+    receptionist "My name is Maria, and I'll be showing you around!"
+    player "Got it!"
 
-    default post_game_choices = set()
-    menu post_game_choice:
-        set post_game_choices
-        "Here are some fun things that you can do now that you've finished the game. Select an option to learn more."
+    scene bg company1_center with blinds
+    pause 2.0
+    scene bg company1_boardroom with blinds
+    pause 2.0
+    scene bg company1_breakroom with blinds
+    pause 2.0
+    scene bg company1_dining with blinds
 
-        "Check out your achievements and tweet {icon=icon-twitter}":
-            "Let's get social! You've made a lot of progress throughout the game and it's time to spread the words."
-            "You can view your achievements on the {b}Bonus > Achievements{/b} screen. Click on the {b}Tweet{/b} button next to the achievement to tweet it."
-            "If you see a lock next to the achievement, backtrack to some point in the game, try different choices, and see if you can unlock it."
-            call screen achievements_screen()
-            "Will you be able to unlock all of the achievements? Now that's a dare."
-            jump post_game_choice
+    "You're taken all around the ConsultMe office. There are lots of snacks in the lunch area, and even a gym downstairs!"
+    "There are dozens and dozens of meeting rooms, all named after different countries around the world."
+    "There's even a nursing room for new mothers!"
 
-        "Rate and review this game on itch.io {icon=icon-thumbs-up}":
-            "Help us improve the game by rating and reviewing [learn_to_code_rpg_on_itch]."
-            show itch_rate at truecenter with zoomin
-            "You can find the {b}Rate Game{/b} button in the top right corner of the itch.io game page."
-            "Refer to {a=https://itch.io/updates/you-can-now-rate-games}this itch.io article{/a} for more details."
-            hide itch_rate
-            menu:
-                "Would you mind taking a minute to rate and review us?"
-                "Sure thing! Take me to the page.":
-                    "Thanks! Here's the link to [learn_to_code_rpg_on_itch]."
-                "I've done that already!" if not persistent.has_rated_and_reviewed_on_itch:
-                    "Awesome. Thank you for your input!"
-                    $ persistent.has_rated_and_reviewed_on_itch = True
-                "Maybe next time :)":
-                    "Of course! Take your time to explore and enjoy the game. You can visit this link anytime from the {b}Bonus{/b} screen."
-            jump post_game_choice
+    scene bg company1_lydia_cubicle
+    show maria
+    maria @ smile "... And this is your cubicle! We even prepared your name plate!"
+    player surprised "Wow... it's made of wood! This is so nice."
+    maria "I'm glad you like it! Do you have any questions so far? I know I've been hitting you with a lot of information."
+    player smile "No no, everything has been awesome so far!"
+    maria "Great! The last leg of our tour involves me handing you off to our engineering manager, Iris!"
 
-        "Star the game's source code on GitHub {icon=icon-star}":
-            "Interested in learning about how this game is built? Take a peek into our source code by visiting [learn_to_code_rpg_on_github]."
-            show github_star at truecenter with zoomin
-            "Better yet, {b}Star{/b} our repository for your reference and {b}Watch{/b} for updates!"
-            "Refer to {a=https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars}this GitHub article{/a} for more details."
-            hide github_star
-            menu:
-                "Would you like to check out our GitHub repository?"
-                "Sure thing! Take me to the page.":
-                    "Thanks! Here's the link to [learn_to_code_rpg_on_github]."
-                "I've done that already!" if not persistent.has_visited_github:
-                    "Awesome. Enjoy digging through the source code!"
-                    $ persistent.has_visited_github = True
-                "Maybe next time :)":
-                    "Of course! Take your time to explore and enjoy the game. You can visit this link anytime from the {b}Bonus{/b} screen."
-            jump post_game_choice
+    scene bg company1_center with blinds
+    show maria at left with moveinleft
+    show iris with moveinright
+    iris "Hello. And who is this again?"
+    maria @ smile "Iris, don't be silly! This is [player_name]! The new hire?"
+    iris "Hm... I see."
+    player "(Jeez... this lady is... scary.)"
+    player "(I've been in the workforce for a few years now, and yet, this woman makes me feel like a highschool kid who doesn't know what she's doing.)"
+    player "Um... hi. My name is... um... [player_name]..."
+    iris "“Um[player_name]”? What a strange name."
+    player "Um... no, it's -"
+    iris "Maria, please introduce... Um[player_name] to Goro. He can get her set up."
+    iris "If you'll excuse me. I don't have much time for pleasantries."
+    player "... "
+    player "Ooookay. So. Who's Goro?"
 
-        # "Support this game and other freeCodeCamp.org projects by donating {icon=icon-heart}":
-        #     "This game was made possible by all the kind people who donate to support [freeCodeCamp]."
-        #     "You can help support our nonprofit's mission {a=https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/}by donating to us here{/a}."
-        #     "Remember you can visit link anytime from the {b}Bonus{/b} screen."
-        #     jump post_game_choice
-        
-        # "Check out the bonus screen for minigames, resources, and more {icon=icon-award}":
-        #     "Did you have the chance to enjoy the rhythm minigame while you were busy learning to code, visiting the Hacker Space, and serving coffee?"
-        #     "Are you interested in checking out the actual [freeCodeCamp] curriculum and teach yourself to code in real life?"
-        #     "Well, you are in luck. The {b}Bonus{/b} screen has everything that you'll possibly need."
-        #     # go to the bonus screen
-        #     call screen bonus_screen()
-        #     "I'm sure you will make good use of the bonus content!"
-        #     jump post_game_choice
+    show goro at right with moveinright
+    goro @ smile "That'd be me."
+    goro "Don't mind Iris. She's... prickly on the outside. But she can be really nice once you get to know her."
+    player "Sure... I'm [player_name]. It's nice to meet you!"
+    goro "Awesome to meet you, [player_name]! I'm Goro - I'll be your team lead for any projects moving forward."
+    goro "I've been around the bend a few times, and I'm a little less prickly than Iris. So feel free to ask me any questions that you might have."
+    player "Thanks! I appreciate it."
+    goro "Speaking of which Do you have any questions for me now?"
+    player surprised "Um..."
+    player "Ah..."
+    player smile "Nope!"
+    goro "You don't?"
+    player "No! I'm good!"
+    goro "Well... okay then! Like I said, I'm here if you need any help."
+    player "Thanks!"
 
-        "Discover alternative endings {icon=icon-map}":
-            "Which ending took you here, if I may ask?"
-            "Did you become a developer like you've always dreamed to be? Or did you take up some other job?"
-            "Perhaps you discovered that Mint, your adorable home cat, is better at coding than you?"
-            "Psssst... Did I just spoil the fact that there are several alternative endings hidden in the game?"
-            "The endings you unlocked will be displayed on the {b}Bonus > Achievements{/b} screen."
-            "Make sure to {b}Save{/b} your progress often if you want to unlock all of them!"
-            jump post_game_choice
+    scene bg bedroom with fadehold
+    "Later that day..."
+    show mint
+    mint "Meow!"
+    player smile "Hi Mint! You'll never believe the day I just had. The office was huge!"
+    player "I met tons of people, and everyone was really nice."
+    player "They even gave me a company laptop and company cellphone! They're both the latest models. Talk about an upgrade!"
+    player "..."
+    mint "Mew?"
+    player worry "Well... It's all super cool, but it's also a little overwhelming. All of the people I met today were nice, but there were so many of them."
+    player "How am I supposed to remember all of their names?"
+    player "And then I had to spend the rest of the day in meetings. Goro told me that I didn't have to do much but lend an ear, and even that was a lot."
+    player "There were a million acronyms that I didn't know... I had no idea what anyone was talking about."
+    player "Am I really cut out for this...?"
+    mint "...?"
+    mint "Meow!"
+    player smile "Hm... you're right! I can't give up yet. I worked too hard to get here."
+    player "I know! I should give Annika a call. She told me to give her a ring when I finished my first day! Maybe I can ask her some questions?"
+    hide mint
 
-        "Gotcha. I'm ready to explore on my own!":
-            "Great to hear! Hope you enjoyed the ride!"
-            
-    return # return to main menu
+    show smartphone at truecenter
+    play sound "<to 2.0>audio/sfx/phone_ring.wav"
+    play sound "<to 2.0>audio/sfx/phone_dial_tone.wav"
+    pause 2.0
+    hide smartphone
+
+    show annika
+    pause 1.0
+    annika @ laugh "[player_name]! How was your first day, superstar?"
+    player smile "Great! Great... but also... like, really overwhelming?"
+    annika "That sounds about right! That's about how my first day went, too. What happened?"
+    "You explain all of the concerns that you told Mint about."
+    annika "Wow, that's definitely a lot! I'm happy to answer any of your questions, though! What do you want to know specifically?"
+    player neutral "Well..."
+
+    default first_day_story_choices = set()
+    menu first_day_story_choices:
+        set first_day_story_choices
+        "Ask about acronyms":
+            player "So as I said, I had to attend a few meetings today."
+            player "It was so mind-boggling because, aside from not knowing what anyone was talking about,"
+            player "There were so. Many. Acronyms!"
+            player "What is PII? Or ETA? What on earth is PEBCAK?"
+            annika @ laugh "Hehehe... that last one is actually pretty funny."
+            player "Annika! This isn't funny at all. I'm freaking out!"
+            annika @ neutral "Sorry, sorry!"
+            annika "Things will be okay. The truth is, every industry has their own acronyms. Some companies even have their own acronyms."
+            annika "So I could try to tell you what they all are, but I probably won't know them all."
+            annika "The good news is, most companies are totally fine with you learning these things as you go!"
+            player neutral "Really?"
+            annika "Yup! Just make a habit out of asking about them."
+            annika "What I do is keep a journal or a note-taking app open, and write down any acronyms I'm not familiar with."
+            annika "Then, when we have a bit of free time, I ask my team lead or another developer what each one means."
+            annika "Just a few at a time, though. You don't want to approach someone with 10 different acronyms to explain!"
+            jump first_day_story_choices
+
+        "Ask about Ruby on Rails":
+            player "Okay... so I've always worked with programming languages like Python and JavaScript. But this company uses something called Ruby on Rails."
+            player worry "I've never even worked with it before! Sometimes I wonder if I should have even been hired, because I don't know anything about it."
+            annika @ neutral "That's totally fine!"
+            annika "Ruby on Rails is a framework for the Ruby programming language."
+            annika "A framework is more or less a collection of pre-written code that allows you to do things without writing everything from scratch yourself."
+            annika "And it's okay that you don't know it! My company uses a Python framework called Django."
+            annika "I didn't know Django at all before I came here, but I was given some assignments that helped catch me up to speed."
+            annika "Another important thing to remember is that your company knows you don't know Ruby on Rails, right?"
+            player neutral "Yeah... I made that very clear during my interviews."
+            annika "See? It's not as if you lied to land the job! And let's take a look at your job description too - what does it say?"
+            player "Hm..."
+            player "Oh! How could I have missed this?"
+            player "It says that I'll start off with just frontend work, and slowly be trained to assist with the backend."
+            annika "See? That's perfect! Just be sure to spend time studying during and after work to really hone your skills."
+            player "I'm... allowed to study?"
+            player surprised "At WORK?"
+            annika "You sure are! You're in the big leagues now, my friend!"
+            annika "You're not just being paid to develop - you're being paid to LEARN now too!"
+            annika "Another good thing about your situation is that Ruby on Rails is super well documented. It's been around for 19 years."
+            annika "That's ancient by programming standards! So you'll have lots of documentation online that can help you."
+            player smile "And... if I get stuck, can I still give you a call now and again?"
+            annika @ laugh "Are you kidding? Always! We're accountability buddies, right?"
+            jump first_day_story_choices
+
+        "What is JIRA?":
+            player "So at work, they kept talking about JIRA... What is that?"
+            annika "Programming assignments are called “tickets”."
+            annika "JIRA is just a ticketing management system! It keeps track of who's assigned to what tickets."
+            player smile "Oh, I see!"
+            player "What does the acronym stand for?"
+            annika "Acronym?"
+            player "JIRA is usually written in all capital letters. That means it's an acronym, right?"
+            annika "No, no - that's just how it's written! The letters don't stand for anything."
+            annika @ laugh "Fun Fact The name is actually a shorthand for “Gojira”, which is the Japanese translation of “Godzilla”!"
+            player "Woah, cool! I never would have guessed!"
+            jump first_day_story_choices
+
+        "Ask about getting stuck":
+            player "Well, for starters... what if I get stuck? "
+            annika "Stuck?"
+            player "Sometimes, whenever I'm working on personal projects, I get stuck. That seems to be fine to do on personal projects,"
+            player "but this is the real deal! Won't that make me look like I don't know how to do my job?"
+            annika @ laugh "Hahaha!"
+            annika @ neutral "What do you do when you usually get stuck while you're working on a project?"
+            player "Well... I look things up. And I double-check my code."
+            player "I also see if I can find any developers that can help online."
+            annika "See? You already know what to do!"
+            annika "I know your team is all new to you, but you're a junior developer."
+            annika "Their job is to help you whenever you're stuck. Not only can you ask them for help, but when you get assigned a task to fix some already existing code, you may even be able to speak to the person that originally wrote it!"
+            player "Oh! Is it really that simple...?"
+            annika "Yep! The cool part about doing this all professionally is that you're a part of a team now! They expect you to ask as many questions as you need to to get the job done."
+            player "Wow - that really does make me feel better!"
+            jump first_day_story_choices
+
+        "I think that answers all my questions!":
+            player relieved "(Sigh) I feel much, much better!"
+            player smile "It looks like you've saved the day again, Annika."
+            annika "Any time! Remember, you're a junior developer now - you've got a lot of hard work ahead of you,"
+            annika "but you landing this job means that you were CHOSEN!"
+            annika "This all seems like a lot, and like things are really overwhelming,"
+            annika "but try to remember that your job isn't to learn all of these things in one day."
+            annika "Worst case scenario, feel free to talk to your manager for a temperature check!"
+            player "A temperature check?"
+            annika "Yep! Every so often you can ask about how you're performing. You may even be able to ask for one-on-ones!"
+            annika "They're meetings where you chat with your manager, say, once a week, or every other week, or even once a month." # Ed: Are temperature checks and one-on-ones the same thing? If so, we should probably just use one term
+            annika "You can talk about your goals as a developer, receive feedback, or just use them as a chance to get to know your manager!"
+            player "That actually sounds kind of nice!"
+            annika "Don't forget - you're working with people, not a bunch of dragons that want to gobble you up!"
+            "You finish up chatting with Annika, and feel a huge weight lifting off of your shoulders."
+            "You get ready for bed, wanting to be as well-rested as possible for your first official day of work!"
+
+    hide annika
+
+    $ is_in_v2_arc1 = True
+    $ work_session_questions = all_quiz_questions
+
+label v2_days_before_demo:
+    $ num_days = 0
+    while num_days < 21:
+        $ num_days += 1
+        call day_start from _call_day_start_13
+        call v2_routine from _call_v2_routine
+
+    $ calendar.next_weekday()
+    call day_start from _call_day_start_15
+    call v2_demo from _call_v2_demo
+
+label v2_days_after_demo:
+    $ num_days = 0
+    while num_days < 7:
+        $ num_days += 1
+        call day_start from _call_day_start_14
+        call v2_routine from _call_v2_routine_1
+
+    $ calendar.next_weekday()
+    call day_start from _call_day_start_17
+    call v2_redemption from _call_v2_redemption
+    $ add_achievement(milestone_v2_redemption)
+
+    call day_start from _call_day_start_18
+    call v2_paying_it_forward_p1 from _call_v2_paying_it_forward_p1
+
+label v2_arc1_devops:
+    $ player_stats.subcategory_stats_map[DEVOPS] = 0
+    $ quiz_session_questions = devops_questions
+    $ num_days = 0
+    while num_days < 3:
+        $ num_days += 1
+        call day_start from _call_day_start_16
+        call v2_routine from _call_v2_routine_3
+
+    $ calendar.next_weekday()
+    call day_start from _call_day_start_19
+    call v2_paying_it_forward_p2 from _call_v2_paying_it_forward_p2
+    $ add_achievement(milestone_v2_arc1_complete)
+    call screen text_over_black_bg_screen(_("You've reached the end of Arc I. Stay tuned for Arc II!"))
+
+    # start v2 arc2
+    $ is_in_v2_arc1 = False
+
+    jump ending_splash
