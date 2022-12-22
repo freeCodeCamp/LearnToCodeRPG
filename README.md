@@ -15,10 +15,10 @@ The game features:
 
 <div><a href="https://freecodecamp.itch.io/learn-to-code-rpg"><img src="https://github.com/freeCodeCamp/LearnToCodeRPG/blob/df44a3b66015021f939ef210af039d0ade1ca33a/badge-bw.png" alt="Available on itch.io" width="400"/></a></div>
 
-<div><img src="https://github.com/freeCodeCamp/LearnToCodeRPG/blob/804f8a04d7c6962adda3847ab6d6edff03fb5eef/game/gui/main_menu.png" alt="Learn to Code RPG v1.5 Splash Image" width="600"/></div>
+<div><img src="https://github.com/freeCodeCamp/LearnToCodeRPG/blob/d66204da2999cf5edb842fe41b0e6364a9933488/game/gui/main_menu.png" alt="Learn to Code RPG v1.5 Splash Image" width="600"/></div>
 
 
-<div><img src="https://github.com/freeCodeCamp/LearnToCodeRPG/blob/804f8a04d7c6962adda3847ab6d6edff03fb5eef/game/gui/main_menu_v1.png" alt="Learn to Code RPG v1 Splash Image" width="600"/></div>
+<div><img src="https://github.com/freeCodeCamp/LearnToCodeRPG/blob/d66204da2999cf5edb842fe41b0e6364a9933488/game/gui/main_menu_v1.png" alt="Learn to Code RPG v1 Splash Image" width="600"/></div>
 
 This game was made possible by all the kind people who donate to support freeCodeCamp.org. You can help support our nonprofit's mission [here](https://www.freecodecamp.org/news/how-to-donate-to-free-code-camp/).
 
