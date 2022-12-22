@@ -1,15 +1,6 @@
 label start:
     $ persistent.has_started_game = True
 
-    scene main_menu sepia with dissolve
-    menu:
-        "Would you like to start in v1 or v2?"
-        "v1 - Prologue":
-            jump v1_start
-        "v2 - Arc I":
-            jump v2_start
-
-label v1_start:
     stop music fadeout 2.0
     scene bg laptop_screen with dissolve
 

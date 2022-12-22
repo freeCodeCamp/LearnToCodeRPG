@@ -499,15 +499,19 @@ label v2_routine:
         if len(v2_arc1_event_labels[HOME]) == len(seen_v2_arc1_events[HOME]) or \
         renpy.random.random() < 0.8:
             player smile "Finally home! I'm ready for dinner!"
-            scene bg kitchen night with blinds
-            play sound 'audio/sfx/dining_ambient.wav'
-            $ show_random_dinner_image()
-            player "So, today at work this happened..."
-            mom "Hahaha that's quite interesting."
-            dad "Your co-workers sure have quite unique personalities."
-            player "I bet they do!"
+
+            if renpy.random().random() < 0.2:
+                # dinner scene
+                scene bg kitchen night with blinds
+                play sound 'audio/sfx/dining_ambient.wav'
+                $ show_random_dinner_image()
+                player "So, today at work this happened..."
+                mom "Hahaha that's quite interesting."
+                dad "Your co-workers sure have quite unique personalities."
+                player "I bet they do!"
 
             scene bg bedroom with blinds
+            player "Dinner sure was fun."
             call v2_activity_choices from _call_v2_activity_choices
 
         else: # trigger home event

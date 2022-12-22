@@ -83,37 +83,38 @@ label day_end:
     scene bg bedroom with blinds
     player relieved "Phew... That was a long day."
 
-    # dinner
-    mom "[player_name], dinner's ready!"
-    player happy "Coming, mom!"
+    if renpy.random().random() < 0.2:
+        # dinner scene
+        mom "[player_name], dinner's ready!"
+        player happy "Coming, mom!"
 
-    scene bg kitchen night with blinds
-    play sound 'audio/sfx/dining_ambient.wav'
-    $ show_random_dinner_image()
+        scene bg kitchen night with blinds
+        play sound 'audio/sfx/dining_ambient.wav'
+        $ show_random_dinner_image()
 
-    mom "How was your day, honey?"
-    player "Good, good."
-    if day_activity == STUDY:
-        player "I spent today studying and learned a lot!"
-    elif day_activity == BARISTA:
-        player "I worked at the cafe today and heard some interesting conversations."
-    elif day_activity == HACKER_SPACE:
-        player "I went to Hacker Space today and saw some people working on cool projects."
-    elif day_activity == PARK:
-        player "I was at the park reading a nice book. It was really refreshing."
-    elif day_activity == VIDEO_GAME:
-        player "I played some cool video games today. Hopefully one day I'll able to code up a game myself."
-    elif day_activity == MUSIC:
-        player "I was listening to some really good music today. Music always helps me relax."
-    elif day_activity == JOB_SEARCH:
-        player "I spent my day looking for job openings. I hope that my résumé will catch the recruiter's eye."
-    elif day_activity == INTERVIEW:
-        player "I had an interview today. I wouldn't say it wasn't stressful, but I felt like I gave it my best shot."
-    else:
-        player "I just chilled for the day."
-    dad "Sounds like you enjoyed your day."
-    mom "Talk to us if you need anything."
-    player laugh "Thanks! You two are the best."
+        mom "How was your day, honey?"
+        player "Good, good."
+        if day_activity == STUDY:
+            player "I spent today studying and learned a lot!"
+        elif day_activity == BARISTA:
+            player "I worked at the cafe today and heard some interesting conversations."
+        elif day_activity == HACKER_SPACE:
+            player "I went to Hacker Space today and saw some people working on cool projects."
+        elif day_activity == PARK:
+            player "I was at the park reading a nice book. It was really refreshing."
+        elif day_activity == VIDEO_GAME:
+            player "I played some cool video games today. Hopefully one day I'll able to code up a game myself."
+        elif day_activity == MUSIC:
+            player "I was listening to some really good music today. Music always helps me relax."
+        elif day_activity == JOB_SEARCH:
+            player "I spent my day looking for job openings. I hope that my résumé will catch the recruiter's eye."
+        elif day_activity == INTERVIEW:
+            player "I had an interview today. I wouldn't say it wasn't stressful, but I felt like I gave it my best shot."
+        else:
+            player "I just chilled for the day."
+        dad "Sounds like you enjoyed your day."
+        mom "Talk to us if you need anything."
+        player laugh "Thanks! You two are the best."
 
     if has_met_layla and not has_triggered_ending_today and \
     not has_triggered_ending_tutor and \

@@ -157,7 +157,7 @@ init python:
     # this game's url on itch
     itch_url = 'https://freecodecamp.itch.io/learn-to-code-rpg'
     github_url = 'https://github.com/freeCodeCamp/LearnToCodeRPG'
-    article_url = 'https://www.freecodecamp.org/news/learn-to-code-rpg/'
+    article_url = 'https://www.freecodecamp.org/news/learn-to-code-rpg-1-5-update/'
 
     # ref: https://tech.cymi.org/tweet-intents
     def generate_tweet_intent(tweet_content, url=article_url):
