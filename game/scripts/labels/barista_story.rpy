@@ -77,7 +77,8 @@ label barista_api:
     college_girl "Huh. Knowing you, anything that saves you efforts sounds like a good idea."
     college_boy "Ouch. Don't be so mean. I'm only doing this so we can avoid {bt}reinventing the wheel.{/bt}"
     college_girl "... Okay. Whatever you say. Let's get to work."
-    player @ surprised "An {b}API{/b}... What is that? I better take notes so I can learn more about it."
+    player @ surprised "An {b}API{/b}... What is that? Programming sure involves a lot of abbreviations..."
+    player "But with Annika helping me, this stuff isn't as scary. I'd better at this to my To-Do list to learn about later."
     $ todo_list.add_todo(todo_ask_api)
     $ topics_to_ask.add(_('API'))
     player @ smile "Added it to my To-Do list!"

@@ -161,7 +161,7 @@ label ending_cat:
 
     player neutral "Nope. This can't be a dream. I need to figure out what's going on."
     player "What I've gathered from what I've seen is that Mint is a coding whiz..."
-    player laugh "And isn't that awesome? I mean, I have a {bt}cat who codes{/bt}!"
+    player laugh "And isn't that awesome? I mean, I have a {bt}pretty code-y cat myself{/bt}!"
     player smile "Hey Mint! Can I have a moment?"
     player neutral "..."
     player "(Mint is still staring determinedly at the laptop and not responding to me.)"
@@ -198,7 +198,7 @@ label ending_cat:
 
     call screen text_over_black_bg_screen("A month later...")
     scene bg hall with fade
-    host "And now let's give a round of applause to our hackathon winner team: {b}Cat Who Codes{/b}!"
+    host "And now let's give a round of applause to our hackathon winner team: {b}The Code-y Cats!{/b}!"
     play sound 'audio/sfx/applause.ogg'
     show mint_with_pixel_sunglasses
     player laugh "Wow... We managed to win first place all thanks to Mint. This is awesome!"
@@ -208,7 +208,7 @@ label ending_cat:
     scene bg hall_audience with fade
     play sound 'audio/sfx/applause.ogg'
     show woman orange
-    journalist "Did you see that person and the cat there? They are the famous {b}Cat Who Codes{/b}."
+    journalist "Did you see that person and the cat there? They are the famous {b}The Code-y Cats!{/b}."
     show girl flipped red at left with moveinleft
     college_girl "So that's the team that's been bagging all the trophies at hackathons, large and small?"
     show boy red at right with moveinright

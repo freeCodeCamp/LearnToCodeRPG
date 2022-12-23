@@ -74,18 +74,18 @@ label v2_working_late_sad_path:
     show goro with moveinleft
     goro "[player_name]? What are you doing here? It's 6PM, you should probably be packing up."
     player pout "Hi Goro. I can't - I promised that I'd work to get the Stacy & Lucy's project finished in time."
-    goro "But that's due a week from now?"
+    goro brows_1 "But that's due a week from now?"
     player "Well, not since I talked to Oliver earlier, and he said that S & L insisted that it was super important for us to get it done within the next two days."
     goro "Two days? [player_name], I don't think that's possible."
     player neutral "I'm beginning to get that now... but I already promised I'd get this done. What should I do?"
-    goro "I'll talk to Oliver. What will probably happen is that I'll hop on a call with him and the client and help him explain that we won't be able to do what they're asking within this shorter period of time."
+    goro neutral "I'll talk to Oliver. What will probably happen is that I'll hop on a call with him and the client and help him explain that we won't be able to do what they're asking within this shorter period of time."
     goro "If they'd like to to get their project done in two days, we're going to have to cut a lot of corners, and they need to understand that."
     player "I see."
     goro "Next time, I'd like you to reach out to me whenever a big commitment change like this is requested."
     goro "This decision doesn't just affect you, but the entire team, and all of our client projects that are further ahead in the pipeline."
     goro "Other clients that have been waiting longer than S & L might get their projects completed late if we put all of our time and resources into one account without having meetings to work it into our schedule."
     player "I'm sorry, I didn't think about that."
-    goro "It's okay. For now, you might want to get home. Tomorrow, just continue with the other tasks we have in the pipeline for this week."
+    goro smile "It's okay. For now, you might want to get home. Tomorrow, just continue with the other tasks we have in the pipeline for this week."
     "You lose 10 Renown for not discussing your decision with your team lead, and 15 Energy for a stressful 7 hours of searching the web for answers."
     $ player_stats.change_stats(RENOWN, -10)
     $ player_stats.change_stats(ENERGY, -15)
@@ -95,7 +95,7 @@ label v2_help_from_friends:
     show mala
     mala "*Grumble grumble*"
     player smile "Hey Mala! How's your day been?"
-    mala "Hello, [player_name]. I wish my day were going better."
+    mala angry "Hello, [player_name]. I wish my day were going better."
     player neutral "Did something happen? You look pretty upset."
     mala @ angry "Ugh, I am! It's this bug. I've set everything in this React component up correctly, and it's still not working."
     player "I see. About how long have you been working on it?"
@@ -109,7 +109,7 @@ label v2_help_from_friends:
         "Ask for Mala to explain the problem from the beginning and take notes.":
             player "I'm sorry to hear that you're having a hard time. Could you tell me all about the problem step by step?"
             player "I can maybe even take some notes?"
-            mala "Hm... Maybe that's not such a bad idea. You can be my rubber duck!"
+            mala laugh "Hm... Maybe that's not such a bad idea. You can be my rubber duck!"
             player surprised "I'm sorry, your what?"
             mala @ smile "A rubber duck! I left mine at home, but it'd be great if you could stand in for it."
             player "Sorry, but what do bath toys have to do with programming?"
@@ -290,7 +290,7 @@ label v2_motormouth:
 
 label v2_message:
     show darius
-    darius "[player_name]! Do you have a moment?"
+    darius "[player_name]! Do you have a sec?"
     player "I do! What's going on?"
     darius "I could use a little bit of help with this React bug? I've been stuck on it all morning."
     player "Sure! I'm a junior too, but I'll do the best that I can."
@@ -333,7 +333,7 @@ label v2_message:
             goro "The people that fund our company. Basically, the people on top."
             player pout "..."
             goro "[player_name], when you see that someone is in a meeting, you shouldn't send a message."
-            goro "Wait until the meeting is over in the future, okay?"
+            goro brows_1 "Wait until the meeting is over in the future, okay?"
     
         "Wait until the meeting is finished":
             player "No... we should probably wait."
@@ -372,8 +372,8 @@ label v2_css:
     player smile "Bye everyone! It's about that time of day - I'm about to pack up and head home."
 
     show goro
-    goro "Hold on there for a second, [player_name]."
-    goro "Can you do me a favor before you go?"
+    goro smile "Hold on there for a second, [player_name]."
+    goro brows_1 "Can you do me a favor before you go?"
     player "Sure Goro! What's up?"
     goro "It's about ticket number 4497. "
     goro "You did a great job on it! There's just a small problem with some of the CSS on the homepage."
@@ -1351,29 +1351,29 @@ label v2_paying_it_forward_p2:
     iris "..."
     player "I-I've completed the DevOps tickets."
     iris "... so I've noticed."
-    iris "Shall I give my colleague a call?"
-    player "I think I'd like that."
+    iris smile "Shall I give my colleague a call?"
+    player smile "I think I'd like that."
     scene bg company1_lydia_cubicle with fadehold
-    "That week, you have three rigorous interviews with Spaghetti Code."
-    "With bated breath, you wait for the email from your recruiter, informing you whether you received the position or not."
+    "(That week, you have three rigorous interviews with Spaghetti Code.)"
+    "(With bated breath, you wait for the email from your recruiter, informing you whether you received the position or not.)"
     scene bg living_room with fadehold
-    "When you receive the offer letter, your parents couldn't be more proud. You play it cool, just like Iris instructed, requesting a day to think on the offer, despite barely being able to contain your excitement."
+    "(When you receive the offer letter, your parents couldn't be more proud. You play it cool, just like Iris instructed, requesting a day to think on the offer, despite barely being able to contain your excitement.)"
     scene bg company1_lydia_cubicle with fadehold
-    "The next morning, you sign, and put in your 2 weeks notice at ConsultMe."
+    "(The next morning, you sign, and put in your 2 weeks notice at ConsultMe.)"
     scene bg company1_center with fadehold
-    "The whole team is saddened by seeing the two of you go, but Goro is sure to tell you how proud he is."
+    "(The whole team is saddened by seeing the two of you go, but Goro is sure to tell you how proud he is.)"
     scene bg company1_reception with fadehold
-    "You realize as you leave ConsultMe, passing its front desk for the final time, that you haven't seen Maria in a while."
-    "Perhaps she's off to greener pastures as well."
+    "(You realize as you leave ConsultMe, passing its front desk for the final time, that you haven't seen Maria in a while.)"
+    "(Perhaps she's off to greener pastures as well.)"
     scene bg bedroom with fadehold
-    "The next 3 weeks crawl by, as you alternate between studying for your new position, and taking a much-needed break."
+    "(The next 3 weeks crawl by, as you alternate between studying for your new position, and taking a much-needed break.)"
     return
 
 # start of home stories
 label v2_email:
-    player "Phew - I'm so glad to be home!"
-    player "I got a lot done today. But now that I think about it, I don't think that I got to check any of my emails. I should probably do that before I relax."
-    player "Meeting invite... "
+    player relieved "Phew - I'm so glad to be home!"
+    player smile "I got a lot done today. But now that I think about it, I don't think that I got to check any of my emails. I should probably do that before I relax."
+    player neutral "Meeting invite... "
     player "Office birthday party..."
     player "Hm... an email from the payroll department? What's this about?"
     player "“To whom it may concern,"
@@ -1386,10 +1386,10 @@ label v2_email:
         "Re-create my password":
             player "I'd better quickly re-set my password before my data is compromised! It looks like they'll need me to log in first."
             player "..."
-            player "Strange... The site just keeps loading. Did I do something wrong? Maybe I should refresh."
+            player worry "Strange... The site just keeps loading. Did I do something wrong? Maybe I should refresh."
             player "..."
-            player "Oh! I just got an email from our Security Department. Maybe this can wait. I'd better open it."
-            player "“Good evening,"
+            player surprised "Oh! I just got an email from our Security Department. Maybe this can wait. I'd better open it."
+            player neuetral "“Good evening,"
             player "You have failed a routine ConsultMe phishing test. Please email your supervisor no later than 11AM tomorrow to schedule a mandatory security training.”"
             player "What? Phishing? What is that? And why do I need to report for additional training?"
             player "I should look this up."
@@ -1427,22 +1427,22 @@ label v2_email:
             player "Like the email says, there's a hyperlink to reset my password. But where does it go?"
             player "I should probably hover over the link before clicking it. It's not good to follow links without knowing where they lead."
             player "..."
-            player "Weird! Our company URL is ConsultMe.com, so our reset link should be something like ConsultMe.com/password-reset. This link leads me to company.name.co/pssword-reset."
+            player worry "Weird! Our company URL is ConsultMe.com, so our reset link should be something like ConsultMe.com/password-reset. This link leads me to company.name.co/pssword-reset."
             player "The links look the same, but they definitely aren't - this link has dots in-between the words in the title of our company."
-            player "That feels pretty sneaky!"
+            player surprised "That feels pretty sneaky!"
             $ found_problem = True
             jump mysterious_email_choices
 
         "Something's not right here..." if found_problem:
-            player "Something's not right here. Now that I think about it, I remember our security specialist telling me about a report button in my email software when I first started. I'll report this email to the Security Department."
+            player worry "Something's not right here. Now that I think about it, I remember our security specialist telling me about a report button in my email software when I first started. I'll report this email to the Security Department."
             player "..."
             player @ surprised "Oh! Another email? And it's from the Security Department! I'd better open it."
-            player "“Congratulations! You've passed a routine ConsultMe phishing test. Your vigilance is appreciated and helps keep our company safe from cyber attacks and security vulnerabilities.”"
-            player "Phishing? What's that? Are they talking about the password reset email?"
-            player "I'd better look this up."
+            player neutral "“Congratulations! You've passed a routine ConsultMe phishing test. Your vigilance is appreciated and helps keep our company safe from cyber attacks and security vulnerabilities.”"
+            player worry "Phishing? What's that? Are they talking about the password reset email?"
+            player neutral "I'd better look this up."
             player "..."
             player "Here it is; Phishing - “The fraudulent practice of sending emails pretending to be from reputable companies in order to trick individuals into revealing personal information, such as passwords, credit card numbers, and other private information.”"
-            player "Oh! So ConsultMe must perform these to make sure that we're staying on our toes about our company's private information! I'm glad I listened to my gut!"
+            player surprised "Oh! So ConsultMe must perform these to make sure that we're staying on our toes about our company's private information! I'm glad I listened to my gut!"
             player "Interesting - it says here that phishing can be discovered in a few ways. You can check the sender to ensure that the extension on their email matches the company's professional email."
             player "You can also check the presence and quality of a company logo, and, most importantly, not click any links or attachments in the email unless you're sure of where they're coming from. "
             player "On most computers, you can hover your mouse over the link, and your computer should tell you where they lead to in a tiny window."
@@ -1585,19 +1585,19 @@ label v2_running_late:
                 "By the time you arrive at work, it is 12:00PM. Iris does not seem pleased."
                 show iris
                 iris "Nice to see you actually show up."
-                player "*Pant*... *Pant...*"
-                player "I'm... *Pant*... Sorry!"
-                player "The bus took a lot longer than usual... a-and then the tire... *Pant*..."
-                player "As soon as the bus got here, I ran all the way to our sector of the building and the stairs."
+                player sweat worry "*Pant*... *Pant...*"
+                player worry "I'm... *Pant*... Sorry!"
+                player pout "The bus took a lot longer than usual... a-and then the tire... *Pant*..."
+                player -sweat pout "As soon as the bus got here, I ran all the way to our sector of the building and the stairs."
                 player "It was much faster than the elevator."
-                iris "And yet... you're still late."
+                iris disgust "And yet... you're still late."
                 player "I'm sorry..."
-                iris "You should have messaged me or someone on the team. Can you tell me why that wasn't the first thing that you did?"
-                player "(Well, you're super scary, for one!)"
-                player "I just thought that it would make everyone upset, and make them lose respect for me, maybe?"
-                iris "So you think that wasting half of the day trying to GET to the office was a good use of your time?"
+                iris neutral "You should have messaged me or someone on the team. Can you tell me why that wasn't the first thing that you did?"
+                player sweat pout "(Well, you're super scary, for one!)"
+                player smile sweat "I just thought that it would make everyone upset, and make them lose respect for me, maybe?"
+                iris disgust "So you think that wasting half of the day trying to GET to the office was a good use of your time?"
                 iris "Did you have your work laptop with you?"
-                player "Yes..."
+                player -sweat "Yes..."
                 iris "(Sigh) Then you also could have just worked from home."
                 player "I could have WHAT?"
                 iris "I usually recommend juniors come into the office as much as possible. It's good to be around your team quite a bit in the beginning."
@@ -1639,7 +1639,7 @@ label v2_running_late:
 
 label v2_family_business:
     mom "Welcome home sweetheart!"
-    player "Hi Mom! Is dinner almost ready?"
+    player smile "Hi Mom! Is dinner almost ready?"
     mom "Almost - but get this:"
     mom "I got a call from your cousin earlier. I've been talking to your aunt about how well you've been doing at your job,"
     mom "and she spoke to your cousin about it."
@@ -1680,19 +1680,19 @@ label v2_family_business:
     josephine "Momma spoke about how you made a plan and pursued your future. Even though you lacked formal training."
     josephine "So I decided to start learning Python. I didn't realize it would be this interesting!"
     josephine "While building small projects has been fun, I'm not sure where to start as far as doing this stuff professionally."
-    player "A profession? A-Aren't you a little... YOUNG to be thinking about employment?"
+    player sweat smile "A profession? A-Aren't you a little... YOUNG to be thinking about employment?"
     josephine "It's never too early to start working on your future! I wanna be a powerful working professional one day, and an early start is right here in my 5-year plan."
     josephine "I WILL be 18 by the time I'm done, so I'll be able to work." # Ed: If Josie is 16, then she'll be 18 in 2 years, not 5. Unless she started her 5 year plan earlier? Maybe it'd be better to say that she'll be over 18 by the time she's done, so she can work?
     josephine "Anyway, I know college is an option, but I've also read that I can learn a lot of this stuff on my own?"
     josephine "Which brings me to the biggest question I want  answered: Which path should I take?"
     josephine "My mother and father want to discuss financing and time commitments." # Ed: Do Josie's parents want to discuss financing and a timeline because they expect her to go to college? Or because they want to help her with her 5 year plan and are supportive of that? Maybe it would be better to say something like "My parents want me to explore my options, and find out how much time and money will be involved."
-    player "Are they aware of your... um... “5 year plan”?"
+    player sweat smile "Are they aware of your... um... “5 year plan”?"
     josephine "..."
     josephine blush "Momma and Vati want me to be happy."
     josephine "They are phenomenal parents. They have always supported my pursuits, even when they do not understand."
     josephine "I want THEM to be happy."
     josephine "I want them to be proud of me."
-    player smile "Well, how about we go over what your options are, and we can talk about which one sounds best for you?"
+    player laugh -sweat "Well, how about we go over what your options are, and we can talk about which one sounds best for you?"
     josephine -blush "Thanks, Cousin [player_name]! You're the best."
     josephine "What are my options?"
 
@@ -1740,13 +1740,13 @@ label v2_family_business:
             player "An associate's degree is usually only 2 years! So you can finish a lot faster."
             player "Associate's degrees are usually more affordable, too."
             josephine "Hm... that fits right into my 5 year plan~"
-            player "You and that 5 year plan again... (SWEAT)"
+            player sweat smile "You and that 5 year plan again..."
             jump v2_family_business_choices
 
         "Self-teaching":
             josephine "So... Mother says that you taught YOURSELF how to program?"
             josephine "What's THAT like?"
-            player "It was a lot of hard work!"
+            player -sweat laugh "It was a lot of hard work!"
             player "Though, to be fair, however you learn programming, it's going to be a lot of hard work..."
             player "But self-teaching worked best for me."
             player "I had a part-time job at the time because I needed to pay my bills, but also needed time to study."
@@ -1826,16 +1826,16 @@ label v2_fresssh:
             scene bg laptop_screen night with blinds
             play sound 'audio/sfx/social_media_notification.wav'
             show goro smile
-            goro "Hey [player_name]! Staying at the office a bit late?"
-            player "No, I just got back home!"
-            player "So I was on this forum that I really like, and I read about some users talking about BingBong, as well as this new framework..."
+            goro smile "Hey [player_name]! Staying at the office a bit late?"
+            player smile "No, I just got back home!"
+            player neutral "So I was on this forum that I really like, and I read about some users talking about BingBong, as well as this new framework..."
             "You send over pictures of the small webpage that you made using Fresssh."
             "You also explain how you think that it and BingBong could be really useful to the team."
             goro "That's really cool that you're doing research during your free time."
             goro "It's definitely something that good developers do."
-            goro "Unfortunately... I don't think that these technologies will be really useful to us."
+            goro brows_1 "Unfortunately... I don't think that these technologies will be really useful to us."
             player "Aw man, really? Why?"
-            goro "For one, Fresssh, even though it seems pretty cool, is super new. "
+            goro disgust "For one, Fresssh, even though it seems pretty cool, is super new. "
             goro "Like, it's fully-released version came out about 6 months ago."
             player @ surprised "Six MONTHS ago?"
             goro "Yes. Which means that there's barely any documentation on it."
@@ -1848,7 +1848,7 @@ label v2_fresssh:
             goro "We could certainly use it, but there are far, far fewer BingBong developers than, say, Ruby on Rails developers."
             goro "If the client ever needs help in the future to fix a bug in the system we built, and we're not the ones to do it, how will they find people that can do it?"
             goro "Does that make sense?"
-            player "It does. I'm sorry!"
+            player pout "It does. I'm sorry!"
             goro "No need. This is a learning experience."
             goro "Just understand that in the future, as you develop your skills as a junior, you'll generally want to stick with popular technologies."
             goro "Once you've gained your footing in this field, you should feel free to venture off the beaten path. The sky will be your limit!"
@@ -1861,7 +1861,7 @@ label v2_fresssh:
             player "Okay..."
             player "So according to my search results, Material UI is something called a component library."
             player "It's got lots of pre-built visual components like slide carousels and navbars."
-            player "So I guess we're going to be using this on our next project's frontend!"
+            player smile "So I guess we're going to be using this on our next project's frontend!"
             player "It'll probably make building a frontend even faster, not having to do anything from scratch!"
             "You spend a little bit of time on a Material UI tutorial, and before you know it, you've whipped up a little mockup."
             player "Using this at work will be pretty straightforward."
