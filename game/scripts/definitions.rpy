@@ -33,7 +33,7 @@ init python:
     # continue_looping_music = False
 
     all_music_tracks = {
-    "Can't Stop Me. Can't Even Slow Me Down": "audio/bgm/Can't Stop Me. Can't Even Slow Me Down.mp3",
+    "Can't Stop Me. Can't Even Slow Me Down": "audio/bgm/Can_t Stop Me. Can_t Even Slow Me Down.mp3",
     'Chasing That Feeling': "audio/bgm/Chasing That Feeling.mp3",
     'Cruising for a Musing': 'audio/bgm/Cruising for a Musing.mp3',
     'Crystalize That Inner Child': "audio/bgm/Crystalize That Inner Child.mp3",
@@ -45,7 +45,7 @@ init python:
     'We Are Going to Make it': 'audio/bgm/We Are Going to Make it.mp3',
     'Alone With the City': "audio/bgm/Alone With the City.mp3",
     'The Surest Way Out is Through': "audio/bgm/The Surest Way Out is Through.mp3",
-    "Can't Stay Down": "audio/bgm/Can't Stay Down.mp3",
+    "Can't Stay Down": "audio/bgm/Can_t Stay Down.mp3",
     'Walking on Air': "audio/bgm/Walking on Air.mp3",
     'Collider in My Head': "audio/bgm/Collider in My Head.mp3",
     }
