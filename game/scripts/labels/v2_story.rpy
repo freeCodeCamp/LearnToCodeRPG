@@ -607,6 +607,8 @@ label v2_success:
             player "You accidentally posted the key, but then you took it down immediately. No harm done, right?"
             mala "I GUESS so..."
             player "Let's go grab some lunch. Maybe that'll take your mind off of things."
+            hide mala
+            scene bg company1_center with fadehold
             "Later that afternoon..."
             player "Phew! I'm full! I think I can probably knock out this ticket before heading home for the day."
 
