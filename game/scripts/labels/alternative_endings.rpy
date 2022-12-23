@@ -198,7 +198,7 @@ label ending_cat:
 
     call screen text_over_black_bg_screen("A month later...")
     scene bg hall with fade
-    host "And now let's give a round of applause to our hackathon winner team: {b}The Code-y Cats{/b}!"
+    host "And now let's give a round of applause to the winning team: {b}The Code-y Cats{/b}!"
     play sound 'audio/sfx/applause.ogg'
     show mint_with_pixel_sunglasses
     player laugh "Wow... We managed to win first place all thanks to Mint. This is awesome!"
