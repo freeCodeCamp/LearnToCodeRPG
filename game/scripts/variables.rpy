@@ -7,6 +7,7 @@ init 998:
     default calendar = Calendar()
     # start_date will be used to calculate how many days it took for the player to learn to code
     default start_date = calendar.date
+    default completed_curriculum_date = None # set in curriculum.rpy
     
     default calendar_enabled = False
     default stats_unlocked = False
