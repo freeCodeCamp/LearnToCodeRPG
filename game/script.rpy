@@ -351,7 +351,7 @@ label stage2_stats_change:
     player "Maybe I can find a job posting I like and start learning those required skills."
     play sound 'audio/sfx/punch.wav'
     with hpunch
-    player pout "But what is front end, back end, or full stack? What are the differences?"
+    player pout "But what is front-end, back-end, or full-stack? What are the differences?"
     player "When I try to look any of them up, I find two more words I don't know. Then when I look those up, there are even MORE pieces of vocabulary I don't recognize."
     play sound 'audio/sfx/punch.wav'
     with hpunch
