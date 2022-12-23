@@ -1389,7 +1389,7 @@ label v2_email:
             player worry "Strange... The site just keeps loading. Did I do something wrong? Maybe I should refresh."
             player "..."
             player surprised "Oh! I just got an email from our Security Department. Maybe this can wait. I'd better open it."
-            player neuetral "“Good evening,"
+            player "“Good evening,"
             player "You have failed a routine ConsultMe phishing test. Please email your supervisor no later than 11AM tomorrow to schedule a mandatory security training.”"
             player "What? Phishing? What is that? And why do I need to report for additional training?"
             player "I should look this up."

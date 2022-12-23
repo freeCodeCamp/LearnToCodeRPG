@@ -4,7 +4,7 @@ label start:
 
     # get some action and conflict in here :)
     interviewer "So - are you feeling excited?"
-    player "U-um.. I definitely am. I'm just a bit nervous…"
+    player "U-um.. I definitely am. I'm just a bit nervous..."
     interviewer "Don't sweat it! Everyone gets nervous during the interviews - even the pros."
     interviewer "How about we start with your name?"
     # TODO: more customization like gender, pronouns, life story
@@ -137,8 +137,8 @@ label start_after_interview:
     interviewer "And that'll be all! Thanks so much for coming, [player_name]."
     player "N-no, thank you - I appreciate your time."
     interviewer "We'll call you if we decide we'd like to move you forward to the offer stage."
-    player "Thank you…"
-    player "(Jeez… I'm really not sure how I did in that interview!)"
+    player "Thank you..."
+    player "(Jeez... I'm really not sure how I did in that interview!)"
     player "(To be fair, it wasn't that long ago that I was a total newbie. And look at where I am now!)"
     player "(It feels like it was only yesterday that I decided I could teach myself to program...)"
 
@@ -157,50 +157,50 @@ label stage1:
     show boy orange
     player smile "Okay, we can pick up tomorrow."
     kid "Okay - thanks [player_name]! I appreciate the help."
-    kid "By the way, I’m going to miss my tutoring session tomorrow, so don’t wait up."
+    kid "By the way, I'm going to miss my tutoring session tomorrow, so don't wait up."
     player "What? Mason, are you sure? Your science grades could really use some work."
-    player worry "I don’t think we should be missing any sessions."
-    kid "Nah, you’ve got it all wrong, Ms. Wallflower - I AM taking science classes!"
-    kid "I’m learning how to code in my robotics club after school!"
-    player surprised "Robotics? Jeez… that sounds harder than your advanced physics class."
-    kid "I know - I was surprised too, but it’s actually WAY easier - and way more fun!"
-    kid "I get to learn to program, like my older brother. He’s a software engineer."
-    kid "My teachers told me that if I take this elective, I’m off the hook for advanced physics."
+    player worry "I don't think we should be missing any sessions."
+    kid "Nah, you've got it all wrong, Ms. Wallflower - I AM taking science classes!"
+    kid "I'm learning how to code in my robotics club after school!"
+    player surprised "Robotics? Jeez... that sounds harder than your advanced physics class."
+    kid "I know - I was surprised too, but it's actually WAY easier - and way more fun!"
+    kid "I get to learn to program, like my older brother. He's a software engineer."
+    kid "My teachers told me that if I take this elective, I'm off the hook for advanced physics."
     player "Oh yeah?"
-    kid "Yep! And I’ve been thinking… I really like this stuff. Maybe I’ll do it when I grow up?"
+    kid "Yep! And I've been thinking... I really like this stuff. Maybe I'll do it when I grow up?"
     kid "Anyway, see you Ms. Wallflower!"
     player smile "Bye Mason."
-    player neutral "(Man… Mason is only 16, and already knows what he wants to do?)"
-    player worry "(I graduated college 8 months ago and I STILL feel like I don’t know where I’m going.)"
+    player neutral "(Man... Mason is only 16, and already knows what he wants to do?)"
+    player worry "(I graduated college 8 months ago and I STILL feel like I don't know where I'm going.)"
     player "(It seems like everyone from my year is settling into their careers.)"
-    player sweat "(This tutoring job is okay, and definitely keeps me busy, but it doesn’t make me as much as I’d like…)"
-    player -sweat neutral "(It’s been a long day. I’m just going to head home.)"
+    player sweat "(This tutoring job is okay, and definitely keeps me busy, but it doesn't make me as much as I'd like...)"
+    player -sweat neutral "(It's been a long day. I'm just going to head home.)"
 
 label stage2:
     # Stage 2. player's decision to learn to code
     # player returns home
     scene bg living_room night with blinds
 
-    player "Mom, Dad, I’m home!"
-    dad "[player_name]! How’s my little Tulip?"
-    player sweat "Dad! Aren’t I a bit old for you to be calling me that?"
-    dad "Aw, you’re never too old! I still call Misses Walflower “Rosie”, don’t I dear?"
-    mom "You sure do! I love it as much as I did when we first started going steady…"
+    player "Mom, Dad, I'm home!"
+    dad "[player_name]! How's my little Tulip?"
+    player sweat "Dad! Aren't I a bit old for you to be calling me that?"
+    dad "Aw, you're never too old! I still call Misses Walflower “Rosie”, don't I dear?"
+    mom "You sure do! I love it as much as I did when we first started going steady..."
     player "(Jeez. Those two are as lovey-dovey as ever.)"
     player "(Maybe I can change the subject.)"
     player -sweat smile "So! What have you two been up to today?"
-    dad "Oh! I was just over at the Anderson’s house, chatting about Jerry - you remember Jerry?"
+    dad "Oh! I was just over at the Anderson's house, chatting about Jerry - you remember Jerry?"
     player surprised "I do. He stole my crayons when I was four."
     player "Are we talking about crayon-stealing Jerry?"
-    mom "Sweetheart, you’ve got to get over that."
-    dad "Well, Jerry just landed his first job out of college. You’ll never guess what he does!”"
-    player sweat smile "… steals crayons for a living?"
-    mom "He’s a software engineer!"
+    mom "Sweetheart, you've got to get over that."
+    dad "Well, Jerry just landed his first job out of college. You'll never guess what he does!”"
+    player sweat smile "... steals crayons for a living?"
+    mom "He's a software engineer!"
     player -sweat surprised "Really? Jerry? Jerry Anderson?"
-    mom "He is! His parents say that he really likes the work. I’ve always wondered what those computer whizzes do."
-    mom "Making lots of magic, I’m sure!"
+    mom "He is! His parents say that he really likes the work. I've always wondered what those computer whizzes do."
+    mom "Making lots of magic, I'm sure!"
     mom "Anyway, ready for dinner?"
-    player "(Hm… another programmer? Strange. Seems like everyone’s getting some kind of bug…)"
+    player "(Hm... another programmer? Strange. Seems like everyone's getting some kind of bug...)"
     player smile "(Heh. A computer bug.)"
     mom "[player_name]? I asked if you were hungry?"
     player "Oh, right! Sure Mom, thanks."
@@ -217,73 +217,73 @@ label stage2:
     player "I'm up for anything!"
 
     scene bg bedroom with blinds
-    player "Phew - I’m stuffed!"
+    player "Phew - I'm stuffed!"
     mint "Mew!"
-    player "Oh hey, Mint! How’s my favorite kitty doing?"
+    player "Oh hey, Mint! How's my favorite kitty doing?"
     mint "Meow!"
     mint "Meow?"
-    player "Yeah… I’m feeling a little down in the dumps today."
-    player "I’m beginning to think this tutoring stuff isn’t enough, Mint."
-    player "Mom and Dad don’t mind me living here at all, but I don’t want to live here without being able to help out at least a little."
-    player worry "I’m barely making enough to cover stuff like my wifi and phone bill."
-    player worry "Maybe I ought to just look for another job in addition to my tutoring work. It’s only a few times a week right now."
-    player neutral "I guess I’ll sign up for a job-hunting site and set myself up for notifications."
-    player "…"
-    player "…"
+    player "Yeah... I'm feeling a little down in the dumps today."
+    player "I'm beginning to think this tutoring stuff isn't enough, Mint."
+    player "Mom and Dad don't mind me living here at all, but I don't want to live here without being able to help out at least a little."
+    player worry "I'm barely making enough to cover stuff like my wifi and phone bill."
+    player worry "Maybe I ought to just look for another job in addition to my tutoring work. It's only a few times a week right now."
+    player neutral "I guess I'll sign up for a job-hunting site and set myself up for notifications."
+    player "..."
+    player "..."
     player surprised "Woah - is that a response already?"
     player surprised "Should I pick up?"
     menu:
         "Check phone":
             show smartphone
             player smile "Looks like I was right - the local cafe down the street is hiring right now."
-            player smile "It looks like they’d like me to come in for an interview. Maybe I can work there?"
-            player "It’s right down the road, so I’d just have to walk."
+            player smile "It looks like they'd like me to come in for an interview. Maybe I can work there?"
+            player "It's right down the road, so I'd just have to walk."
             hide smartphone
             "(Congratulations! You just made your first choice.)"
             "(Choices can affect gameplay, and how stories progress.)"
-            "(There aren’t necessarily right or wrong choices… just consequences or rewards!)"
+            "(There aren't necessarily right or wrong choices... just consequences or rewards!)"
         "Ignore":
             mint "Mew!"
-            player "You’re right Mint. (SAD)"
-            player "As tired as I am, I really do think I need to check this. Let me take a look…"
+            player "You're right Mint."
+            player "As tired as I am, I really do think I need to check this. Let me take a look..."
             show smartphone
             player "Looks like I was right - the local cafe down the street is hiring right now."
-            player "It looks like they’d like me to come in for an interview. Maybe I can work there?"
-            player "If it’s only right down the road, I’d just have to walk."
+            player "It looks like they'd like me to come in for an interview. Maybe I can work there?"
+            player "If it's only right down the road, I'd just have to walk."
             hide smartphone
             "(Congratulations! You just made your first choice.)"
             "(Choices can affect gameplay, and how stories progress.)"
-            "(There aren’t necessarily right or wrong choices… just consequences or rewards!)"
-    player relieved "Phew! I guess it’s a good thing that I answered!"
+            "(There aren't necessarily right or wrong choices... just consequences or rewards!)"
+    player relieved "Phew! I guess it's a good thing that I answered!"
     player "I could have missed that opportunity and stayed in a funk like I have been all day."
-    "([player_name] is right: It may be a good idea to save your progress when you’re about to make a choice, start a new chapter, or just to be safe.)"
+    "([player_name] is right: It may be a good idea to save your progress when you're about to make a choice, start a new chapter, or just to be safe.)"
     "(You can save by clicking the {b}Save{/b} button at the bottom-right of the screen.)"
     "(Would you like to Save your progress now?)"
-    "(Thanks for entertaining your Friendly Save Reminder! Now back to the story…)"
+    "(Thanks for entertaining your Friendly Save Reminder! Now back to the story...)"
     play sound 'audio/sfx/social_media_notification.wav'
     show smartphone at truecenter
     player "What? Another notification?"
-    player "…"
-    player "Oh - it’s Jerry."
-    player "It looks like he’s posting a selfie from his new office."
-    player "It looks pretty cool… and what a view!"
+    player "..."
+    player "Oh - it's Jerry."
+    player "It looks like he's posting a selfie from his new office."
+    player "It looks pretty cool... and what a view!"
     player "First Mason, and now Jerry? It seems like everyone is learning to program."
     player "I mean, six months of self-paced learning, and then an almost six-figure job? Talk about the end of craziness."
-    player "If Mason is only 16 and he’s learning,"
-    player "and Jerry Anderson is…"
-    player "… JERRY,"
-    player "then maybe it’s something I can do too?"
+    player "If Mason is only 16 and he's learning,"
+    player "and Jerry Anderson is..."
+    player "... JERRY,"
+    player "then maybe it's something I can do too?"
     mint "Mew!"
     player "Aw. Do you believe in me, Mint?"
     player "Thanks."
     player "(Mom and Dad are super supportive, but Mint is probably the biggest reason I decided to move back home.)"
     player smile "(Look at those little eyes. And her little toebeans!)"
-    player smile "(It’s hard to tell her “no” most of the time. Not that I want to.)"
-    player "(Alright - I think I’ve made a decision.)"
-    player smile "(I’m going to do it! I’m going to learn to program, too.)"
-    player "(I’ll start tomorrow morning.)"
-    player "Welp, Mint - let’s get to bed. It looks like I have an interview tomorrow."
-    player "I’ve got to fund myself somehow while I learn, right?"
+    player smile "(It's hard to tell her “no” most of the time. Not that I want to.)"
+    player "(Alright - I think I've made a decision.)"
+    player smile "(I'm going to do it! I'm going to learn to program, too.)"
+    player "(I'll start tomorrow morning.)"
+    player "Welp, Mint - let's get to bed. It looks like I have an interview tomorrow."
+    player "I've got to fund myself somehow while I learn, right?"
     mint "Mew!"
 
     call save_reminder from _call_save_reminder
@@ -299,10 +299,10 @@ label stage2:
     player "Good morning Mint!"
     mint "Meow!"
     player "Today is the day that my programming journey begins!"
-    player smile "Now that I’ve had time to sleep on it, I’m getting pretty excited."
-    player "I think I even have a bit of time before my interview. Getting started with a bit of research won’t hurt!"
+    player smile "Now that I've had time to sleep on it, I'm getting pretty excited."
+    player "I think I even have a bit of time before my interview. Getting started with a bit of research won't hurt!"
     player neutral "Where shall we start? Maybe I should find some free online resources like everyone else is doing?"
-    player "Oh - here’s a video about the top 10 tech skills worth learning this year. Let’s check that out!"
+    player "Oh - here's a video about the top 10 tech skills worth learning this year. Let's check that out!"
 
 
     # now the quick menu screen show the button to access stats
@@ -311,14 +311,14 @@ label stage2:
     player smile "I'll keep track of my progress on my phone."
     show smartphone at truecenter
     "(Click on the {icon=icon-smartphone} {b}Stats{/b} button on the bottom-right corner of the textbox to view your progress.)"
-    "(There, you can keep track of what you’ve been learning, your energy, and other useful pieces of information.)"
+    "(There, you can keep track of what you've been learning, your energy, and other useful pieces of information.)"
 
     hide smartphone
-    player "Alright-y. Here goes nothing…"
+    player "Alright-y. Here goes nothing..."
     player "..."
 
 label stage2_stats_change:
-    player surprised "Okay… so JavaScript and Java are different languages? Really?"
+    player surprised "Okay... so JavaScript and Java are different languages? Really?"
     $ player_stats.change_stats(CS_KNOWLEDGE, 1)
     player neutral "Oh - and one of them is for web dev while one is for making phone apps. Which is which?"
     $ player_stats.change_stats(ENERGY, -5)
@@ -332,18 +332,18 @@ label stage2_stats_change:
 
     player "Maybe I shouldn't even bother with learning Python 3."
     $ player_stats.change_stats(CS_KNOWLEDGE, 1)
-    player "Soooo this video says that Python 2 is outdated. Does that mean I don’t have to learn it?"
+    player "Soooo this video says that Python 2 is outdated. Does that mean I don't have to learn it?"
     player worry "Maybe I should just skip Python 3 too? When do we go to Python 4?"
     player "Someone may just decide that Python 3 is too old-fashioned before I even get a chance to learn it."
     $ player_stats.change_stats(ENERGY, -5)
 
-    player "Hmm… and by the looks of it, maybe I shouldn’t learn Java for the same reason. It’s really old. Right?"
+    player "Hmm... and by the looks of it, maybe I shouldn't learn Java for the same reason. It's really old. Right?"
     $ player_stats.change_stats(CS_KNOWLEDGE, 1)
     player 'It says on this website that people nowadays are hyped up about something called, "Kotlin"?'
     player "Sounds like over-the-counter medication for when you get the sniffles."
     $ player_stats.change_stats(ENERGY, -5)
 
-    player surprised "Wait… there’s JavaScript AND TypeScript? How many of these are there?"
+    player surprised "Wait... there's JavaScript AND TypeScript? How many of these are there?"
     $ player_stats.change_stats(CS_KNOWLEDGE, 1)
     player worry "Are they all cousins or something?"
     $ player_stats.change_stats(ENERGY, -5)
@@ -352,7 +352,7 @@ label stage2_stats_change:
     play sound 'audio/sfx/punch.wav'
     with hpunch
     player pout "But what is front-end, back-end, or full-stack? What are the differences?"
-    player "When I try to look any of them up, I find two more words I don’t know. Then when I look those up, there are even MORE pieces of vocabulary I don’t recognize."
+    player "When I try to look any of them up, I find two more words I don't know. Then when I look those up, there are even MORE pieces of vocabulary I don't recognize."
     play sound 'audio/sfx/punch.wav'
     with hpunch
     player "What are DevOps and Cyber Security?"
@@ -366,26 +366,26 @@ label stage2_stats_change:
 
     with vpunch
     play sound 'audio/sfx/stats_change_doom.wav'
-    player serious "Ugh… this is so frustrating!" 
-    player worry "Jeez… maybe this coding thing isn’t for me? Maybe it’s too hard?"
+    player "Ugh... this is so frustrating!" 
+    player worry "Jeez... maybe this coding thing isn't for me? Maybe it's too hard?"
     play sound 'audio/sfx/meow1.wav'
     show mint 
     mint "Meow!"
-    player neutral "What’s wrong Mint? Did I scare you with my frustrations? I’m sorry…"
+    player neutral "What's wrong Mint? Did I scare you with my frustrations? I'm sorry..."
     play sound 'audio/sfx/meow2.wav'
     mint "Meow!"
-    player "Hm…? Oh! I’m going to be late! I’ve got to hurry to that interview - thanks for the heads up, Mint!"
+    player "Hm...? Oh! I'm going to be late! I've got to hurry to that interview - thanks for the heads up, Mint!"
     play sound 'audio/sfx/meow1.wav'
     mint "Meow."
 
 label stage3:
     # Stage 3. Annika
     call screen text_over_black_bg_screen(_('{i}Prologue: Chapter - 3: Everyone could use a friend like Annika.{/i}'))
-    call screen text_over_black_bg_screen(_('Four days later…'))
+    call screen text_over_black_bg_screen(_('Four days later...'))
     scene bg cafe with fadehold
 
     player smile "Thanks! Come again!"
-    player neutral "(Wow - it’s only been a few days, and I feel like I know how to make every coffee in existence.)"
+    player neutral "(Wow - it's only been a few days, and I feel like I know how to make every coffee in existence.)"
     player "(The free coffee is nice, but after smelling it for so many hours, it gets to be a bit much. Maybe I should go on my break?)"
 
     show smartphone at truecenter
@@ -396,13 +396,13 @@ label stage3:
     hide smartphone
     show annika
     player smile "Annika?"
-    player happy "Wow, it’s been so long! How have you been, girlie?"
-    player neutral "I haven’t seen you since we were moving out after graduation! Mom and Dad miss having you over!"
-    annika laugh "Please - they saw me enough while were growing up! I bet your Mom is glad I’m not tracking mud into your house like I used to whenever I visited."
-    player laugh "Hey, it was a team effort. You didn’t make those stains yourself!"
+    player happy "Wow, it's been so long! How have you been, girlie?"
+    player neutral "I haven't seen you since we were moving out after graduation! Mom and Dad miss having you over!"
+    annika laugh "Please - they saw me enough while were growing up! I bet your Mom is glad I'm not tracking mud into your house like I used to whenever I visited."
+    player laugh "Hey, it was a team effort. You didn't make those stains yourself!"
     player neutral "So what have you been up to? Has your job search been going well?"
     annika "Things have been so well - like you have no idea how well!"
-    player happy "Well don’t keep me in suspense! What’s going on?"
+    player happy "Well don't keep me in suspense! What's going on?"
     annika "I just got a job offer!"
     player happy "Oh?" 
     annika "Yeah! And not just any job offer - a WEB DEVELOPMENT job offer?"
@@ -412,65 +412,65 @@ label stage3:
     annika "It was! But then I was kind of messing around with user interface design for a website I was dreaming up and posted it online when online and posting it online, when a recruiter saw it!"
     annika "We got to talking, and after going through their screenings,they decided they wanted me for the position!"
     player smile "Woah!"
-    player neutral "What’s user interface design? And what do they have you doing all day?"
+    player neutral "What's user interface design? And what do they have you doing all day?"
     annika "Oh, it's SO cool! Basically, it involves..."
     "(You listen to Annika excitedly talk about her new position. You're incredibly happy for her, but still have a sinking feeling in your chest.)"
     player surprised "Wow."
-    player pout "That’s… great."
-    annika "Hey - what’s wrong?"
+    player pout "That's... great."
+    annika "Hey - what's wrong?"
     annika "You sound like you just dropped your ice cream on the floor."
     player  "Ice cream would be great right about now."
-    player "I’m currently working at a coffee shop - it’s all I’ve been smelling all day!"
-    player "I’m just upset because… well,"
+    player "I'm currently working at a coffee shop - it's all I've been smelling all day!"
+    player "I'm just upset because... well,"
     player "You and a few other people that I know or keep crossing paths with are getting into programming."
     player "But I spent a bit of time looking things up last night, and NOTHING was sticking."
-    player "I think I’m just not cut out for it."
-    annika surprised "What?! [player_name], no!"
-    annika "You’re legitimately one of the smartest people I know! The last I checked, I thought you landed a tutoring position?"
+    player "I think I'm just not cut out for it."
+    annika @ laugh "What?! [player_name], no!"
+    annika "You're legitimately one of the smartest people I know! The last I checked, I thought you landed a tutoring position?"
     annika "You HAVE to be smart to do that."
-    player pout "I don’t know… it’s just hard to feel good about something when you’re not excited about it." 
+    player pout "I don't know... it's just hard to feel good about something when you're not excited about it." 
     player pout "You just lit up while you were talking about your job. I definitely want something like that myself." 
-    annika "[player_name]…"
-    annika "Look - you’d be a GREAT programmer. And if it’s really what you want to do,"
-    annika "I’ll support you every step of the way!"
-    player smile "Wow… really? You’d do that for me?"
-    annika "Of course! You took the fall for me that time I knocked over your Mom’s nice vase."
+    annika "[player_name]..."
+    annika "Look - you'd be a GREAT programmer. And if it's really what you want to do,"
+    annika "I'll support you every step of the way!"
+    player smile "Wow... really? You'd do that for me?"
+    annika "Of course! You took the fall for me that time I knocked over your Mom's nice vase."
     player laugh "I had to!"
-    player neutral "She would have banned you from the house for a week if I hadn’t!"
-    annika"Everything is going to be just fine, [player_name]. In fact - I’ve got something super cool to show you."
-    annika "I’m not going to be free’d up from work for about three days, but once I am, I’ve got something that’ll help you with your programming goals!"
+    player neutral "She would have banned you from the house for a week if I hadn't!"
+    annika"Everything is going to be just fine, [player_name]. In fact - I've got something super cool to show you."
+    annika "I'm not going to be free'd up from work for about three days, but once I am, I've got something that'll help you with your programming goals!"
     annika "Do ya trust me?"
     player neutral "..."
-    player laugh "It’s hard not to, with all that energy!"
+    player laugh "It's hard not to, with all that energy!"
     annika "Good!"
-    annika "I’ve gotta go - my lunch break is almost over."
-    annika "But until we meet up in a few days, here’s what you should do - there’s this awesome website called developerquiz.org."
-    annika "It’s got free practice programming questions - think that you should go there and do a few questions a day to get your feet wet!"
-    player neutral "Okay. But what if I don’t know the answers?"
+    annika "I've gotta go - my lunch break is almost over."
+    annika "But until we meet up in a few days, here's what you should do - there's this awesome website called developerquiz.org."
+    annika "It's got free practice programming questions - think that you should go there and do a few questions a day to get your feet wet!"
+    player neutral "Okay. But what if I don't know the answers?"
     annika "Easy! freeCodeCamp?"
-    player "Free… what?"
-    annika "freeCodeCamp! It’s this amazing website where you can learn to program, completely free!"
-    annika "It’s what I used to get my job now." 
+    player "Free... what?"
+    annika "freeCodeCamp! It's this amazing website where you can learn to program, completely free!"
+    annika "It's what I used to get my job now." 
     annika "I took their Responsive Web Design course, and within a few months of intense study, I was ready to start interviewing."
     player "Really? Just a few months?"
-    annika "Well… learning to program is less of a race, and more of a marathon. You get what you put into it."
-    annika "Welp! Anyway - like I said, I’ve gotta go."
+    annika "Well... learning to program is less of a race, and more of a marathon. You get what you put into it."
+    annika "Welp! Anyway - like I said, I've gotta go."
     annika "Try out the website! And if you hear any tech-y buzzwords, be sure to ask me about it when we meet up, okay?"
     player smile "Okay. Thanks Annika." 
     annika "Anytime, Wallflower!"
 
     scene bg cafe with dissolve
 
-    player neutral "(Alright… my shift is almost over.)"
+    player neutral "(Alright... my shift is almost over.)"
     player "(Talking with Annika has actually got me excited again, I think!)"
-    player "(She said to ask her to explain if I hear something I don’t understand but,)"
+    player "(She said to ask her to explain if I hear something I don't understand but,)"
     player "(she said something just like that right before she got off the phone. What was it?)"
     player "(Responsive Web Design?)"
     player "(I know what Web Design is, but what does it mean when something is responsive?)"
 
     "(You just collected a Buzzword! Buzzwords are words that are really popular in the IT scene.)" 
     "(When you hear a Buzzword, be sure to add it to your to-do list, and ask Annika about it later.)"
-    player "Come to think of it maybe I’m in an ideal position? There are a lot of people here with computers every single day."
+    player "Come to think of it maybe I'm in an ideal position? There are a lot of people here with computers every single day."
     player "I used to come to coffee shops to get work done in college. Maybe developers like doing that too?"
 
     show girl flipped red at left
@@ -481,12 +481,12 @@ label stage3:
     boy "Cool! What is the club learning about now?"
     girl "We're learning about Python! Mr. Stevens runs the club, and he says that we should have a {bt}Hackathon{/bt} so we can all practice."
     boy "Hackathon? What's that...?"
-    girl "Well, from what I understand…"
+    girl "Well, from what I understand..."
     hide girl
     hide boy
 
-    player surprised "Oops! I wasn’t intentionally eavesdropping on those kids. But I think I remember reading about HTML and CSS - I just don’t know exactly what they have to do with each other."
-    player smile "I know! I’ll make another To-Do list item to ask Annika about it." 
+    player surprised "Oops! I wasn't intentionally eavesdropping on those kids. But I think I remember reading about HTML and CSS - I just don't know exactly what they have to do with each other."
+    player smile "I know! I'll make another To-Do list item to ask Annika about it." 
 
     $ todo_list.add_todo(todo_ask_hackathon)
     $ topics_to_ask.add('Hackathon')
@@ -494,7 +494,7 @@ label stage3:
 
     $ add_achievement(plot_barista_discover)
 
-    player neutral "Alright - it’s about time to go home!"
+    player neutral "Alright - it's about time to go home!"
 
     call save_reminder from _call_save_reminder_1
 
@@ -801,15 +801,15 @@ label stage6:
     $ add_achievement(milestone_start_curriculum)
 
     "(Congratulations on starting your coding journey! The path will be long, but worth it in the end.)" 
-    "(Whether you’re learning to program to land a new job, transition into a new career path, build your dream app, or just for fun, the Free Code Camp RPG (and the Free Code Camp community!) are here to help.)"
+    "(Whether you're learning to program to land a new job, transition into a new career path, build your dream app, or just for fun, the Free Code Camp RPG (and the Free Code Camp community!) are here to help.)"
     "(To use this game most effectively, we suggest studying alongside playing! By answering quiz question each day with [player_name], you have the opportunity to both learn, and learn where you need improvement.)" 
-    "(If you get a question wrong and don’t understand a concept, don’t be discouraged!)"
+    "(If you get a question wrong and don't understand a concept, don't be discouraged!)"
     "(Just click the “Learn More” button if you get a question wrong. We recommend clicking it when you get something right, too - it never hurts to learn!)"
     "(If you get stuck, or feel discouraged, feel free to reach out to your Free Code Camp community in our forums.)"
     "(Remember - your journey with [player_name], as well as your own personal programming journey have just begun! Carpe that Diem!)"
     "(Happy coding!)"
 
-    scene bg bedroom night with dissolve
+    scene bg bedroom with dissolve
     player relieved "Phew... I'm finally done with these questions. What a day..."
     player "I'm tired... and I may not be a developer yet,"
     player smile "but I'm feeling more fired up than ever about making positive change!"
