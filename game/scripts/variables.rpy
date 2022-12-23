@@ -221,8 +221,8 @@ init python:
     tweet_first_interview = _('I got my first technical interview in #LearnToCodeRPG. Play the game here: ')
     tweet_first_offer = _('I got my first dev job in #LearnToCodeRPG. Play the game here: ')
     tweet_onboarding = _('I started onboarding at my dream dev job in #LearnToCodeRPG. Play the game here: ')
-    tweet_v2_redemption = _('I saved the day with my Regex skills! Play the game here: ')
-    tweet_v2_arc1_complete = _("I'm about to transition into my new DevOps job! Play the game here: ")
+    tweet_v2_redemption = _('I saved the day with my Regex skills in #LearnToCodeRPG! Play the game here: ')
+    tweet_v2_arc1_complete = _("I'm about to transition into my new DevOps job in #LearnToCodeRPG! Play the game here: ")
 
     milestone_to_tweet_map = {
         milestone_start_curriculum: generate_tweet_intent(tweet_start_curriculum),
@@ -390,7 +390,7 @@ init python:
 
     ## endings
     ending_barista = _('Now serving {font=fonts/saxmono.ttf}0xc0ffee{/font}')
-    ending_cat = _('Cat Who Codes')
+    ending_cat = _('The Code-y Cats')
     ending_tutor = _('Coding It Forward')
     ending_office = _('Just Another Day at the Office')
     ending_farmer = _('Nature Lover at Heart')
