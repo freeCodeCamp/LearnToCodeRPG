@@ -298,12 +298,12 @@ label stage2:
     show mint
     player "Good morning Mint!"
     mint "Meow!"
+    hide mint
     player "Today is the day that my programming journey begins!"
     player smile "Now that I've had time to sleep on it, I'm getting pretty excited."
     player "I think I even have a bit of time before my interview. Getting started with a bit of research won't hurt!"
     player neutral "Where shall we start? Maybe I should find some free online resources like everyone else is doing?"
     player "Oh - here's a video about the top 10 tech skills worth learning this year. Let's check that out!"
-
 
     # now the quick menu screen show the button to access stats
     $ stats_unlocked = True
@@ -368,15 +368,13 @@ label stage2_stats_change:
     play sound 'audio/sfx/stats_change_doom.wav'
     player "Ugh... this is so frustrating!" 
     player worry "Jeez... maybe this coding thing isn't for me? Maybe it's too hard?"
-    play sound 'audio/sfx/meow1.wav'
     show mint 
     mint "Meow!"
     player neutral "What's wrong Mint? Did I scare you with my frustrations? I'm sorry..."
-    play sound 'audio/sfx/meow2.wav'
     mint "Meow!"
     player "Hm...? Oh! I'm going to be late! I've got to hurry to that interview - thanks for the heads up, Mint!"
-    play sound 'audio/sfx/meow1.wav'
     mint "Meow."
+    hide mint
 
 label stage3:
     # Stage 3. Annika
@@ -1872,7 +1870,7 @@ label v2_start:
     goro "Well that was good timing. But you still haven't met - "
     show darius at left with moveinleft
     darius "Goro! Oliver bet that Mala could get more JIRA tickets done than I could!"
-    darius brows_1 "Can you {i}believe{/i} that man?"
+    darius "Can you {i}believe{/i} that man?"
     show oliver at center with moveinright
     oliver "It's nothing personal mate - I just know who I can count on to get our KPIs met, is all."
     darius "Mhm. Don't come crying back to me when we hit Q4, you have deadlines, and everyone else is on vacation."

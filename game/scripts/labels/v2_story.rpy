@@ -74,7 +74,7 @@ label v2_working_late_sad_path:
     show goro with moveinleft
     goro "[player_name]? What are you doing here? It's 6PM, you should probably be packing up."
     player pout "Hi Goro. I can't - I promised that I'd work to get the Stacy & Lucy's project finished in time."
-    goro brows_1 "But that's due a week from now?"
+    goro "But that's due a week from now?"
     player "Well, not since I talked to Oliver earlier, and he said that S & L insisted that it was super important for us to get it done within the next two days."
     goro "Two days? [player_name], I don't think that's possible."
     player neutral "I'm beginning to get that now... but I already promised I'd get this done. What should I do?"
@@ -333,7 +333,7 @@ label v2_message:
             goro "The people that fund our company. Basically, the people on top."
             player pout "..."
             goro "[player_name], when you see that someone is in a meeting, you shouldn't send a message."
-            goro brows_1 "Wait until the meeting is over in the future, okay?"
+            goro "Wait until the meeting is over in the future, okay?"
     
         "Wait until the meeting is finished":
             player "No... we should probably wait."
@@ -373,7 +373,7 @@ label v2_css:
 
     show goro
     goro smile "Hold on there for a second, [player_name]."
-    goro brows_1 "Can you do me a favor before you go?"
+    goro "Can you do me a favor before you go?"
     player "Sure Goro! What's up?"
     goro "It's about ticket number 4497. "
     goro "You did a great job on it! There's just a small problem with some of the CSS on the homepage."
@@ -1833,7 +1833,7 @@ label v2_fresssh:
             "You also explain how you think that it and BingBong could be really useful to the team."
             goro "That's really cool that you're doing research during your free time."
             goro "It's definitely something that good developers do."
-            goro brows_1 "Unfortunately... I don't think that these technologies will be really useful to us."
+            goro "Unfortunately... I don't think that these technologies will be really useful to us."
             player "Aw man, really? Why?"
             goro disgust "For one, Fresssh, even though it seems pretty cool, is super new. "
             goro "Like, it's fully-released version came out about 6 months ago."
