@@ -1996,7 +1996,7 @@ label v2_start:
             player "JIRA is usually written in all capital letters. That means it's an acronym, right?"
             annika "No, no - that's just how it's written! The letters don't stand for anything."
             annika @ laugh "Fun Fact The name is actually a shorthand for “Gojira”, which is the Japanese translation of “Godzilla”!"
-            player "Woah, cool! I never would have guessed!"
+            player "Whoa, cool! I never would have guessed!"
             annika "You'll be doing tickets every day at work - once you sign in, you can get started immediately!"
             jump first_day_story_choices
 

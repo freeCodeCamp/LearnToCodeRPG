@@ -71,7 +71,7 @@ label barista_api:
     show girl purple flipped at left
     show boy red at right
     college_girl "Here's the requirements for this project."
-    college_boy "Woah. We need to come up with our own APIs?"
+    college_boy "Whoa. We need to come up with our own APIs?"
     college_girl "Maybe. Or we can search online to see if there are public ones we can use."
     college_boy "That sounds like a good idea!"
     college_girl "Huh. Knowing you, anything that saves you efforts sounds like a good idea."

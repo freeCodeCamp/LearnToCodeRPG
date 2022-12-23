@@ -717,7 +717,7 @@ label v2_competent:
     goro "But now, users are starting to see more and more duplicates."
     goro "That definitely means we have an issue with duplicates being made, sure, but that's a whole other ticket."
     goro "For now, we need someone to go into his function and figure out why duplicates aren't being created."
-    player surprised "Woah... I agreed to doing that?"
+    player surprised "Whoa... I agreed to doing that?"
     goro "You really need to pay more attention during meetings. (laugh)"
     goro "But yes, that's correct. Does that sound like something you can do? Have you done something like this before?"
     player smile "To be honest, I haven't, but I'll do my best!"
