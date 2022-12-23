@@ -1,4 +1,35 @@
 label splashscreen:
+    # check if new version is available on itch
+    if not renpy.mobile:
+        python:
+            import requests
+
+            itch_butler_target = 'freecodecamp/learn-to-code-rpg'
+            if renpy.linux:
+                itch_butler_channel = 'linux'
+            elif renpy.macintosh:
+                itch_butler_channel = 'mac'
+            elif renpy.windows:
+                itch_butler_channel = 'win' 
+
+            try:
+                # query for version on itch
+                response = requests.get(f"https://itch.io/api/1/x/wharf/latest?target={itch_butler_target}&channel_name={itch_butler_channel}")
+                itch_version = response.json()['latest'].strip()
+                # compare with local version
+                with renpy.open_file('version.txt') as f:
+                    local_version = f.read().strip()
+
+            except requests.ConnectionError: # no internet
+                pass
+
+        if local_version != itch_version:
+            call screen confirm(
+                _("We've released a new version on itch.io that contains bug fixes and feature enhancements. Would you like to download the new version now?"),
+                OpenURL(itch_url),
+                Return()
+                )
+
     scene gray90 with Pause(1)
     play sound 'audio/sfx/title_fire_swoosh.ogg'
     show learn_to_code_rpg_logo at truecenter with dissolve

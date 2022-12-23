@@ -27,7 +27,7 @@ define gui.show_name = False
 
 ## The version of the game.
 # don't increment the version number because itch.io only keeps download counts if the file name is the same
-define config.version = "1.0"
+define config.version = "1.5"
 
 
 ## Text that is placed on the game's about screen. Place the text between the
