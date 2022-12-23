@@ -207,7 +207,7 @@ label ask_userexperience:
             npc "That's what I think as well. You can maybe learn something by navigating through their site and taking notes."
 
         "Needs work!":
-            npc "Whelp, they always welcome feedback from the community. So do let them know!"
+            npc "Welp, they always welcome feedback from the community. So do let them know!"
 
     player "Will do!"
 

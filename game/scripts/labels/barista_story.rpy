@@ -5,7 +5,7 @@ label barista_fullstack:
     show man blue at right
     female "So I heard that you've moved up to a new role? Congrats!"
     female "What do you do now?"
-    male "Whelp, I'm now finally doing full-stack dev. Remember that I used to do front-end dev only? That got boring really fast..."
+    male "Welp, I'm now finally doing full-stack dev. Remember that I used to do front-end dev only? That got boring really fast..."
     player @ surprised "{b}Full-stack{/b}... What is that? I better take notes so I can learn more about it."
     $ todo_list.add_todo(todo_ask_fullstack)
     $ topics_to_ask.add(_('Full-Stack'))

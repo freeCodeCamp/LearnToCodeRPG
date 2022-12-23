@@ -932,7 +932,7 @@ label stage6:
 label stage6_after_annika_questions:
     player laugh "That's all I want to know. Thanks so much for answering my questions!"
     annika @ laugh "Any time! You'll become a pro with these tech culture terms in no time."
-    annika "Whelp, I guess you must be tired after a day's studying. Enjoy a relaxing evening!"
+    annika "Welp, I guess you must be tired after a day's studying. Enjoy a relaxing evening!"
     player happy "Haha thanks Annika. You as well. Have a good night and a great day at work tomorrow!"
 
     hide annika
