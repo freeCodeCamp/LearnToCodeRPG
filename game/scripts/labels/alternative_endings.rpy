@@ -198,7 +198,7 @@ label ending_cat:
 
     call screen text_over_black_bg_screen("A month later...")
     scene bg hall with fade
-    host "And now let's give a round of applause to our hackathon winner team: {b}The Code-y Cats!{/b}!"
+    host "And now let's give a round of applause to our hackathon winner team: {b}The Code-y Cats{/b}!"
     play sound 'audio/sfx/applause.ogg'
     show mint_with_pixel_sunglasses
     player laugh "Wow... We managed to win first place all thanks to Mint. This is awesome!"
@@ -208,7 +208,7 @@ label ending_cat:
     scene bg hall_audience with fade
     play sound 'audio/sfx/applause.ogg'
     show woman orange
-    journalist "Did you see that person and the cat there? They are the famous {b}The Code-y Cats!{/b}."
+    journalist "Did you see that person and the cat there? They are the famous {b}The Code-y Cats{/b}!"
     show girl flipped red at left with moveinleft
     college_girl "So that's the team that's been bagging all the trophies at hackathons, large and small?"
     show boy red at right with moveinright
