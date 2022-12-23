@@ -40,11 +40,11 @@ label splashscreen:
     hide text with dissolve
 
     $ beta_disclaimer = _p("""
-        This game, {b}Learn to Code RPG{/b}, is currently in beta.
+        This game, {b}Learn to Code RPG{/b}, is currently in beta. 
 
         The current version is v1.5. Save data from v1 might not be compatible with this version. Please start a new game instead of loading from your v1 data if applicable.
 
-        If you notice any bugs or have suggestions about accessibility, the interface, the story, or anything at all, please report them on our {a=https://github.com/freeCodeCamp/LearnToCodeRPG}GitHub repo{/a}.
+        If you notice any bugs or have suggestions about accessibility, the interface, the story, or anything at all, please report them on our {a=https://github.com/freeCodeCamp/LearnToCodeRPG}GitHub repo{/a} and download the latest version of the game in case the bug has already been fixed.
 
         If you are enjoying this game, please {icon=icon-thumbs-up} rate and review us on {a=https://freecodecamp.itch.io/learn-to-code-rpg}itch.io{/a} and {icon=icon-star} star our {a=https://github.com/freeCodeCamp/LearnToCodeRPG}GitHub repo{/a}.
         """)
