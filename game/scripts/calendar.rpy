@@ -31,6 +31,15 @@ init python:
             self.date += timedelta(days=30)
             renpy.call_screen('text_over_black_bg_screen', _('Fast-forwarding a month...'))
 
+        def get_year(self):
+            return self.date.year
+
+        def get_month(self):
+            return self.date.month
+
+        def get_day(self):
+            return self.date.day
+
 # this screen should always show
 screen calendar_screen():
     ## Ensure this appears on top of other screens like quick_menu and player_stats
