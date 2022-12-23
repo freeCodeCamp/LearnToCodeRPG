@@ -5,7 +5,7 @@ label barista_fullstack:
     show man blue at right
     female "So I heard that you've moved up to a new role? Congrats!"
     female "What do you do now?"
-    male "Whelp, I'm now finally doing full-stack dev. Remember that I used to do front-end dev only? That got boring really fast..."
+    male "Welp, I'm now finally doing full-stack dev. Remember that I used to do front-end dev only? That got boring really fast..."
     player @ surprised "{b}Full-stack{/b}... What is that? I better take notes so I can learn more about it."
     $ todo_list.add_todo(todo_ask_fullstack)
     $ topics_to_ask.add(_('Full-Stack'))
@@ -71,14 +71,14 @@ label barista_api:
     show girl purple flipped at left
     show boy red at right
     college_girl "Here's the requirements for this project."
-    college_boy "Woah. We need to come up with our own APIs?"
+    college_boy "Whoa. We need to come up with our own APIs?"
     college_girl "Maybe. Or we can search online to see if there are public ones we can use."
     college_boy "That sounds like a good idea!"
     college_girl "Huh. Knowing you, anything that saves you efforts sounds like a good idea."
     college_boy "Ouch. Don't be so mean. I'm only doing this so we can avoid {bt}reinventing the wheel.{/bt}"
     college_girl "... Okay. Whatever you say. Let's get to work."
     player @ surprised "An {b}API{/b}... What is that? Programming sure involves a lot of abbreviations..."
-    player "But with Annika helping me, this stuff isn't as scary. I'd better at this to my To-Do list to learn about later."
+    player "But with Annika helping me, this stuff isn't as scary. I'd better add this to my To-Do list to learn about later."
     $ todo_list.add_todo(todo_ask_api)
     $ topics_to_ask.add(_('API'))
     player @ smile "Added it to my To-Do list!"
