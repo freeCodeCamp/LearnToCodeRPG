@@ -1342,7 +1342,7 @@ label stage7_complete_curriculum:
     player "It says {bt}Congratulations!{/bt}...?"
     $ has_completed_curriculum = True
 
-    $ completed_curriculum_date = date(calendar.year, calendar.month, calendar.day)
+    $ completed_curriculum_date = date(calendar.get_year(), calendar.get_month(), calendar.get_day())
     $ days_between_start_and_curriculum_completion = (completed_curriculum_date - start_date).days
 
     $ add_achievement(
@@ -1525,7 +1525,7 @@ label stage8:
     play sound 'audio/sfx/applause.ogg'
     $ todo_list.complete_todo(todo_get_job)
     player "Can't forget to check that off the To-Do list."
-    $ accepted_offer_date = date(calendar.year, calendar.month, calendar.day)
+    $ accepted_offer_date = date(calendar.get_year(), calendar.get_month(), calendar.get_day())
     $ days_between_start_and_offer = (accepted_offer_date - start_date).days
     $ days_between_curriculum_completion_and_offer = (accepted_offer_date - completed_curriculum_date).days
 
