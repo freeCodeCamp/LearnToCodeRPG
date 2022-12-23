@@ -58,7 +58,7 @@ init python:
                 DESK: RoomItem('Old Desk', 'desk', '', 0, DESK, 1),
                 CHAIR: RoomItem('Kitchen Chair', 'chair_wooden', '', 0, CHAIR, 1),
                 ROUTER: RoomItem('Prepaid Hotspot', 'hotspot', '', 0, ROUTER, 1),
-                PC: RoomItem("Grandma’s Desktop", 'pc_old', '', 0, PC, 1)
+                PC: RoomItem("Grandma's Desktop", 'pc_old', '', 0, PC, 1)
             }
 
             self.room_display_tagless = set()

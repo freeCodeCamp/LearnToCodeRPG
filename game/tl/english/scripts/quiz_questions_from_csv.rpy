@@ -7215,8 +7215,8 @@ translate english strings:
     new "The application layer"
 
     # game/scripts/quiz_questions_from_csv.rpy:2334
-    old "Layer 1 is the physical layer. There’s a lot of technology in Layer 1 - everything from physical network devices, cabling, to how the cables hook up to the devices."
-    new "Layer 1 is the physical layer. There’s a lot of technology in Layer 1 - everything from physical network devices, cabling, to how the cables hook up to the devices."
+    old "Layer 1 is the physical layer. There's a lot of technology in Layer 1 - everything from physical network devices, cabling, to how the cables hook up to the devices."
+    new "Layer 1 is the physical layer. There's a lot of technology in Layer 1 - everything from physical network devices, cabling, to how the cables hook up to the devices."
 
     # game/scripts/quiz_questions_from_csv.rpy:2334
     old "Which layer of the Open Systems Interconnection (OSI) model is responsible for error detection?"
@@ -9071,8 +9071,8 @@ translate english strings:
     new "esc"
 
     # game/scripts/quiz_questions_from_csv.rpy:3342
-    old "The i command( for ’insert’), immediately switches vim to insert mode. Once you are in insert mode, you can insert characters just like a regular text editor."
-    new "The i command( for ’insert’), immediately switches vim to insert mode. Once you are in insert mode, you can insert characters just like a regular text editor."
+    old "The i command( for 'insert'), immediately switches vim to insert mode. Once you are in insert mode, you can insert characters just like a regular text editor."
+    new "The i command( for 'insert'), immediately switches vim to insert mode. Once you are in insert mode, you can insert characters just like a regular text editor."
 
     # game/scripts/quiz_questions_from_csv.rpy:3342
     old "Which Unix command is used to move the cursor one character to the left in the VIM editor?"
@@ -9363,8 +9363,8 @@ translate english strings:
     new "Greatly Needed Unix"
 
     # game/scripts/quiz_questions_from_csv.rpy:3342
-    old "GNU is a recursive acronym for ‘GNU's not UNIX’."
-    new "GNU is a recursive acronym for ‘GNU's not UNIX’."
+    old "GNU is a recursive acronym for ‘GNU's not UNIX'."
+    new "GNU is a recursive acronym for ‘GNU's not UNIX'."
 
     # game/scripts/quiz_questions_from_csv.rpy:3342
     old "Which Linux command is used to remove all previous commands and output from the terminal?"
@@ -9559,8 +9559,8 @@ translate english strings:
     new "Flux"
 
     # game/scripts/quiz_questions_from_csv.rpy:3342
-    old "Linux’s mascot is a penguin named “Tux”."
-    new "Linux’s mascot is a penguin named “Tux”."
+    old "Linux's mascot is a penguin named “Tux”."
+    new "Linux's mascot is a penguin named “Tux”."
 
     # game/scripts/quiz_questions_from_csv.rpy:3342
     old "In what year was the Linux Operating System created?"
@@ -10083,8 +10083,8 @@ translate english strings:
     new "Unstoppable"
 
     # game/scripts/quiz_questions_from_csv.rpy:3826
-    old "Strings are immutable, so we can’t update or remove their characters after they have been defined in the program. "
-    new "Strings are immutable, so we can’t update or remove their characters after they have been defined in the program. "
+    old "Strings are immutable, so we can't update or remove their characters after they have been defined in the program. "
+    new "Strings are immutable, so we can't update or remove their characters after they have been defined in the program. "
 
     # game/scripts/quiz_questions_from_csv.rpy:3826
     old "What built-in data structure in Python can store key-value pairs? "
