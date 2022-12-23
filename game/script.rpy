@@ -355,7 +355,7 @@ label stage2_stats_change:
     player "When I try to look any of them up, I find two more words I don't know. Then when I look those up, there are even MORE pieces of vocabulary I don't recognize."
     play sound 'audio/sfx/punch.wav'
     with hpunch
-    player "What are DevOps and Cyber Security?"
+    player "What are DevOps and cyber security?"
     play sound 'audio/sfx/punch.wav'
     with hpunch
     player "And it says here that this one company is using their own programming language that no one else is even using?"
