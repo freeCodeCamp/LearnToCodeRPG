@@ -43,6 +43,11 @@ init python:
     'Scratching The Surface': 'audio/bgm/Scratching The Surface.mp3',
     'Still Learning': 'audio/bgm/Still Learning.mp3',
     'We Are Going to Make it': 'audio/bgm/We Are Going to Make it.mp3',
+    'Alone With the City': "audio/bgm/Alone With the City.mp3",
+    'The Surest Way Out is Through': "audio/bgm/The Surest Way Out is Through.mp3",
+    "Can't Stay Down": "audio/bgm/Can't Stay Down.mp3",
+    'Walking on Air': "audio/bgm/Walking on Air.mp3",
+    'Collider in My Head': "audio/bgm/Collider in My Head.mp3",
     }
 
     all_music_files = list(all_music_tracks.values())
