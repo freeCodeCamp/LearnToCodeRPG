@@ -500,7 +500,7 @@ label v2_routine:
         renpy.random.random() < 0.8:
             player smile "Finally home! I'm ready for dinner!"
 
-            if renpy.random().random() < 0.2:
+            if renpy.random.random() < 0.2:
                 # dinner scene
                 scene bg kitchen night with blinds
                 play sound 'audio/sfx/dining_ambient.wav'
