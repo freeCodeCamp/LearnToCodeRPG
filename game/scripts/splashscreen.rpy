@@ -1,7 +1,7 @@
 label splashscreen:
     # check if new version is available on itch
     if not renpy.mobile:
-        python:
+        init python:
             import requests
 
             itch_butler_target = 'freecodecamp/learn-to-code-rpg'
@@ -10,7 +10,7 @@ label splashscreen:
             elif renpy.macintosh:
                 itch_butler_channel = 'mac'
             elif renpy.windows:
-                itch_butler_channel = 'win' 
+                itch_butler_channel = 'win'
 
             try:
                 # query for version on itch
@@ -81,7 +81,7 @@ label splashscreen:
         """)
     # use a lighter background because the hyperlinks are dark blue
     show text "{size=48}[beta_disclaimer!t]{/size}"
-    with dissolve 
+    with dissolve
     pause
     hide screen ctc
     hide text with dissolve
