@@ -1,9 +1,13 @@
+init python:
+    def get_version():
+        with renpy.open_file('version.txt') as f:
+            version = f.read().strip()
+        return version
+
 label splashscreen:
     # check if new version is available on itch
     if not renpy.mobile:
         python:
-            import requests
-
             itch_butler_target = 'freecodecamp/learn-to-code-rpg'
             if renpy.linux:
                 itch_butler_channel = 'linux'
@@ -17,8 +21,7 @@ label splashscreen:
                 response = requests.get(f"https://itch.io/api/1/x/wharf/latest?target={itch_butler_target}&channel_name={itch_butler_channel}")
                 itch_version = response.json()['latest'].strip()
                 # compare with local version
-                with renpy.open_file('version.txt') as f:
-                    local_version = f.read().strip()
+                local_version = get_version()
 
             except requests.ConnectionError: # no internet
                 pass
