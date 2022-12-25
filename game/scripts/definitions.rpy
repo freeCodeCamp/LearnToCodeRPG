@@ -3,7 +3,6 @@ init python:
     import random # renpy.random doesn't have sample
     import urllib.parse # for tweet intent generation
     import requests # for querying itch.io API
-    config.use_cpickle = False
 
     class Picker(object):
         def __init__(self, options):
