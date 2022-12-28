@@ -325,10 +325,9 @@ screen main_menu_navigation():
 
         # TODO: v2 achievements, glossary etc.
         textbutton _("Bonus"):
-            if persistent.has_started_game:
-                background "gui/button/sticky_note_button_purple.png"
-                text_idle_color '#fff'
-                action ShowMenu("bonus")
+            background "gui/button/sticky_note_button_purple.png"
+            text_idle_color '#fff'
+            action ShowMenu("bonus")
 
         # if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
