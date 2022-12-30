@@ -4733,7 +4733,7 @@ init python:
     question=_("What is a bug?"),
     true=_("An error in a computer program that causes it to generate an incorrect or unexpected result or output."),
     false=[_("A programming paradigm. "), _("A programming structure that repeats a block of code a given number of times"), _("This concept is not related to programming at all.")],
-    explanation=_("A {{b}bug{{/b} is an error in a computer program that causes it to generate an incorrect or unexpected result or output. The process of finding and fixing bugs is known as {{b}debugging{{/b}."),
+    explanation=_("A {b}bug{/b} is an error in a computer program that causes it to generate an incorrect or unexpected result or output. The process of finding and fixing bugs is known as {b}debugging{/b}."),
     learn_more_url="https://en.wikipedia.org/wiki/Software_bug",
     difficulty=1,
     ),
