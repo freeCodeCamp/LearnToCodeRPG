@@ -9,6 +9,7 @@ label splashscreen:
     if not renpy.mobile:
         python:
             itch_butler_target = 'freecodecamp/learn-to-code-rpg'
+            retrieved_version_info = False 
             if renpy.linux:
                 itch_butler_channel = 'linux'
             elif renpy.macintosh:
@@ -22,16 +23,16 @@ label splashscreen:
                 itch_version = response.json()['latest'].strip()
                 # compare with local version
                 local_version = get_version()
-
+                retrieved_version_info == True
             except requests.ConnectionError: # no internet
                 pass
-
-        if local_version != itch_version:
-            call screen confirm(
-                _("We've released a new version on itch.io that contains bug fixes and feature enhancements. Would you like to download the new version now?"),
-                OpenURL(itch_url),
-                Return()
-                )
+        if retrieved_version_info == True: 
+            if local_version != itch_version:
+                call screen confirm(
+                    _("We've released a new version on itch.io that contains bug fixes and feature enhancements. Would you like to download the new version now?"),
+                    OpenURL(itch_url),
+                    Return()
+                    )
 
     scene gray90 with Pause(1)
     play sound 'audio/sfx/title_fire_swoosh.ogg'
