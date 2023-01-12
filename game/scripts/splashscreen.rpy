@@ -23,7 +23,7 @@ label splashscreen:
                 itch_version = response.json()['latest'].strip()
                 # compare with local version
                 local_version = get_version()
-                retrieved_version_info == True
+                retrieved_version_info = True
             except requests.ConnectionError: # no internet
                 pass
         if retrieved_version_info == True: 
