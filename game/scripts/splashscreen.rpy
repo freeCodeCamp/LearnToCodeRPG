@@ -16,6 +16,8 @@ label splashscreen:
             elif renpy.windows:
                 itch_butler_channel = 'win' 
 
+            local_version = None
+            itch_version = None
             try:
                 # query for version on itch
                 response = requests.get(f"https://itch.io/api/1/x/wharf/latest?target={itch_butler_target}&channel_name={itch_butler_channel}")
