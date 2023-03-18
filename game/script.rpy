@@ -1771,7 +1771,7 @@ label v2_start:
     $ stats_unlocked = True
     $ todo_unlocked = True
     $ items_unlocked = True
-    $ quiz_session_questions = all_quiz_questions
+    $ quiz_session_questions = persistent.all_quiz_questions
     $ player_stats.subcategory_stats_map = {stats_name: 0 for stats_name in v1_skills}
     ## end v2 setup
 
@@ -2037,7 +2037,7 @@ label v2_start:
     hide annika
 
     $ is_in_v2_arc1 = True
-    $ work_session_questions = all_quiz_questions
+    $ work_session_questions = persistent.all_quiz_questions
 
 label v2_days_before_demo:
     $ num_days = 0

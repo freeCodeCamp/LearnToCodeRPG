@@ -132,7 +132,7 @@ label study_session_choose_topic:
 
         "Let's mix and match all categories":
             player "Mixing and matching all categories sounds like fun. Let's bring in the potpourri!"
-            $ study_session_questions = all_quiz_questions
+            $ study_session_questions = persistent.all_quiz_questions
 
     return
             

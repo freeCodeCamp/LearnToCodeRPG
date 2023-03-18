@@ -11,8 +11,10 @@ screen bonus_screen():
             if not renpy.mobile:
                 label _('Minigames')
                 textbutton _("{icon=icon-music} Rhythm Game") action Start('rhythm_game_entry_label')
-                # TODO: more mini games, quiz speedrun survival mode etc.
-                # some might be playable on mobile
+                textbutton _("{icon=icon-zap} Quiz Mode") action Start('bonus_quiz_entry_label')
+            else:
+                label _('Minigames')
+                textbutton _("{icon=icon-zap} Quiz Mode") action Start('bonus_quiz_entry_label')
 
             null height 20
             label _('Bonus Content')

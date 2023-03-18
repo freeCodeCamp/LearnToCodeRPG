@@ -38,7 +38,7 @@ screen quiz_question_answer_explanation_screen(quiz_question):
                 xalign 0.5
                 action Return()
 
-init python:
+python early:
 
     class QuizQuestion():
         '''
@@ -49,7 +49,8 @@ init python:
         code_label: an optional string, see game/quiz_code_snippets.txt
         '''
         def __init__(self, question, true, false, category=None, explanation=None, 
-            code_label=None, learn_more_url=None, easter_egg_name=None, difficulty=None):
+            code_label=None, learn_more_url=None, easter_egg_name=None, difficulty=None,
+            spaced_repetition=None):
 
             """
             tech trivia questions only have question, true, and false, so all other fields are optional
@@ -88,6 +89,14 @@ init python:
             self.learn_more_url = learn_more_url
             self.easter_egg_name = easter_egg_name
             self.difficulty = difficulty
+
+            self.spaced_repetition = spaced_repetition
+
+        def __eq__(self, other):
+            if isinstance(other, self.__class__):
+                return self.__dict__ == other.__dict__
+            else:
+                return False
 
 init 101 python:
 

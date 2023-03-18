@@ -467,9 +467,9 @@ init python:
             question.category = category
 
     # master list of questions for mix-and-match
-    all_quiz_questions = []
+    persistent.all_quiz_questions = []
     for question_list in all_questions_map.values():
-        all_quiz_questions.extend(question_list)
+        persistent.all_quiz_questions.extend(question_list)
 
     # the order is important
     v1_skills = {

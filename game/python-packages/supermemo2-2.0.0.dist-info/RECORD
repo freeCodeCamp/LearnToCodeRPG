@@ -1,0 +1,14 @@
+supermemo2-2.0.0.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+supermemo2-2.0.0.dist-info/METADATA,sha256=R3OHtwXJ5tEq_LsH14_GKd7oPKVZbanGONI1xrWhWSY,9550
+supermemo2-2.0.0.dist-info/RECORD,,
+supermemo2-2.0.0.dist-info/REQUESTED,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+supermemo2-2.0.0.dist-info/WHEEL,sha256=OqRkF0eY5GHssMorFjlbTIq072vpHpF60fIQA6lS9xA,92
+supermemo2-2.0.0.dist-info/top_level.txt,sha256=ZuNtz9T-xL1Inilh_-KdS7mchvQLFroaeVwiNHHk4mU,17
+supermemo2/__init__.py,sha256=6tG2iCswA76ocnzo788P5gHc66ZHq0sLt5QWHzEpJIk,22
+supermemo2/__pycache__/__init__.cpython-39.pyc,,
+supermemo2/__pycache__/sm_two.cpython-39.pyc,,
+supermemo2/sm_two.py,sha256=IpUfGajr2jIYTPUDlcPI1K-0ZjBnoQLyzMXck4VO7V0,1903
+tests/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+tests/__pycache__/__init__.cpython-39.pyc,,
+tests/__pycache__/test_sm_two.cpython-39.pyc,,
+tests/test_sm_two.py,sha256=eNcY-Z516zHkGyMtlxDaWevdpq2mgDMDPE4vZT1-czs,5843

@@ -7,7 +7,8 @@ label study_session:
     $ timeout_label = None # no time limit
     $ num_questions = 4 # ask 4 questions each time
     $ num_correct = 0
-    $ questions_asked = set()  # keep track of questions asked
+    # keep track of questions asked so as to avoid the same questions in one session
+    $ questions_asked = set() 
     while num_questions > 0:
         if num_questions == 4:
             player neutral "First question."
