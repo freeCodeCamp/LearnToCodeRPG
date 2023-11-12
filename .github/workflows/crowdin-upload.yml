@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout Source Files
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Generate Crowdin Config
         uses: freecodecamp/crowdin-action@main
